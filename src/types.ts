@@ -85,10 +85,35 @@ export interface PhysicsObjectInstance {
   density?: number;
   material?: string;
   springConstant?: number;
+  damping?: number;
+  airDrag?: number;
+  motorSpeed?: number;
+  motorTorque?: number;
+  torque?: number;
   length?: number;
   pivotX?: number;
   pivotY?: number;
   trail: { x: number; y: number; t: number }[];
+}
+
+export interface ViewportState {
+  offsetX: number;
+  offsetY: number;
+  zoom: number;
+}
+
+export interface SimulationSettings {
+  gravity: number;
+  timeScale: number;
+  airResistance: boolean;
+  airDensity: number;
+}
+
+export interface EngineSnapshot {
+  objects: PhysicsObjectInstance[];
+  graphPoint?: GraphPoint;
+  simulationTime: number;
+  warnings: string[];
 }
 
 export interface FormulaDefinition {
@@ -138,9 +163,52 @@ export interface GraphPoint {
   vx: number;
   vy: number;
   speed: number;
+  acceleration?: number;
+  force?: number;
+  momentum?: number;
   kineticEnergy: number;
   potentialEnergy: number;
+  totalEnergy?: number;
+  pressure?: number;
+  volume?: number;
+  temperature?: number;
+  voltage?: number;
+  current?: number;
+  intensity?: number;
+  angle?: number;
+  wavelength?: number;
+  frequency?: number;
 }
+
+export type GraphVariable = keyof GraphPoint;
+
+export interface GraphTraceConfig {
+  id: string;
+  xKey: GraphVariable;
+  yKey: GraphVariable;
+  label: string;
+  color: string;
+  enabled: boolean;
+  errorPercent?: number;
+}
+
+export interface ObservationRow {
+  id: string;
+  label: string;
+  measured: number;
+  expected: number;
+  unit: string;
+  note: string;
+}
+
+export interface AccessibilitySettings {
+  highContrast: boolean;
+  largeUi: boolean;
+  colorBlindSafe: boolean;
+  reducedMotion: boolean;
+}
+
+export type UnitSystem = "SI" | "CGS";
 
 export interface ProjectFile {
   version: "1.0.0";

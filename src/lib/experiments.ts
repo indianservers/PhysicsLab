@@ -1,4 +1,4 @@
-import { ExperimentDefinition } from "../types";
+import { ExperimentDefinition, FormulaDefinition } from "../types";
 import { createObject } from "./objectRegistry";
 
 export const projectileDefaults = {
@@ -7,6 +7,18 @@ export const projectileDefaults = {
   gravity: 9.81,
   mass: 1,
   airResistance: false,
+};
+
+const formulaByTitle: Record<string, FormulaDefinition[]> = {
+  "Uniform Motion": [{ id: "uniform-motion-formula", name: "Uniform motion", expression: "x = x_0 + vt", variables: [{ symbol: "x", name: "Position", unit: "m" }, { symbol: "v", name: "Velocity", unit: "m/s" }, { symbol: "t", name: "Time", unit: "s" }] }],
+  "Newton's Second Law": [{ id: "newton-2-formula", name: "Newton's second law", expression: "F = ma", variables: [{ symbol: "F", name: "Force", unit: "N" }, { symbol: "m", name: "Mass", unit: "kg" }, { symbol: "a", name: "Acceleration", unit: "m/s^2" }] }],
+  Friction: [{ id: "friction-formula", name: "Kinetic friction", expression: "f = \\mu N", variables: [{ symbol: "mu", name: "Coefficient of friction", unit: "" }, { symbol: "N", name: "Normal force", unit: "N" }] }],
+  "Inclined Plane": [{ id: "incline-formula", name: "Incline acceleration", expression: "a = g(\\sin\\theta - \\mu\\cos\\theta)", variables: [{ symbol: "theta", name: "Incline angle", unit: "degree" }, { symbol: "mu", name: "Friction coefficient", unit: "" }] }],
+  "Elastic Collision": [{ id: "collision-formula", name: "Momentum conservation", expression: "m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2", variables: [{ symbol: "m", name: "Mass", unit: "kg" }, { symbol: "u", name: "Initial velocity", unit: "m/s" }, { symbol: "v", name: "Final velocity", unit: "m/s" }] }],
+  "Conservation of Energy": [{ id: "energy-formula", name: "Mechanical energy", expression: "E = \\frac{1}{2}mv^2 + mgh", variables: [{ symbol: "E", name: "Energy", unit: "J" }, { symbol: "h", name: "Height", unit: "m" }] }],
+  "Hooke's Law": [{ id: "hooke-formula", name: "Hooke's law", expression: "F = -kx", variables: [{ symbol: "k", name: "Spring constant", unit: "N/m" }, { symbol: "x", name: "Extension", unit: "m" }] }],
+  "Simple Pendulum": [{ id: "pendulum-formula", name: "Small-angle period", expression: "T = 2\\pi\\sqrt{\\frac{L}{g}}", variables: [{ symbol: "T", name: "Period", unit: "s" }, { symbol: "L", name: "Length", unit: "m" }] }],
+  "Circular Motion": [{ id: "circular-formula", name: "Centripetal force", expression: "F_c = mr\\omega^2", variables: [{ symbol: "r", name: "Radius", unit: "m" }, { symbol: "omega", name: "Angular speed", unit: "rad/s" }] }],
 };
 
 export const experiments: ExperimentDefinition[] = [
@@ -23,20 +35,20 @@ export const experiments: ExperimentDefinition[] = [
       {
         id: "range",
         name: "Range",
-        expression: "R = u^2 sin(2θ) / g",
+        expression: "R = \\frac{u^2\\sin(2\\theta)}{g}",
         variables: [
           { symbol: "u", name: "Initial speed", unit: "m/s" },
-          { symbol: "θ", name: "Launch angle", unit: "degree" },
-          { symbol: "g", name: "Acceleration due to gravity", unit: "m/s²" },
+          { symbol: "theta", name: "Launch angle", unit: "degree" },
+          { symbol: "g", name: "Acceleration due to gravity", unit: "m/s^2" },
         ],
       },
       {
         id: "height",
         name: "Maximum height",
-        expression: "H = u^2 sin²(θ) / 2g",
+        expression: "H = \\frac{u^2\\sin^2(\\theta)}{2g}",
         variables: [
           { symbol: "H", name: "Maximum height", unit: "m" },
-          { symbol: "g", name: "Acceleration due to gravity", unit: "m/s²" },
+          { symbol: "g", name: "Acceleration due to gravity", unit: "m/s^2" },
         ],
       },
     ],
@@ -77,7 +89,7 @@ export const experiments: ExperimentDefinition[] = [
     aim: `Explore ${title.toLowerCase()} with editable variables and live measurements.`,
     theory: "This starter experiment uses the common lab workspace, object properties, vectors, graphs, and observation table.",
     apparatus: ["Physics canvas", "Graph plotter", "Data logger", "Measurement probe"],
-    formulae: [],
+    formulae: formulaByTitle[title] ?? [],
     procedure: ["Load the setup.", "Adjust variables in the properties panel.", "Run the simulation.", "Record graph and observation values."],
     simulationSetup: { gravity: 9.81, objects: [createObject("ball", 180, 180), createObject("floor", 460, 560)] },
     observationColumns: ["Trial", "Variable", "Measured value", "Expected value", "Error %"],

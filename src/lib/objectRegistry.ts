@@ -8,6 +8,8 @@ const sharedRigidProperties = [
   { key: "vy", label: "Velocity Y", unit: "m/s", type: "number" as const, step: 0.1 },
   { key: "friction", label: "Friction", type: "number" as const, min: 0, max: 1, step: 0.01 },
   { key: "restitution", label: "Restitution", type: "number" as const, min: 0, max: 1, step: 0.01 },
+  { key: "airDrag", label: "Air drag", type: "number" as const, min: 0, max: 2, step: 0.01 },
+  { key: "torque", label: "Torque", unit: "N m", type: "number" as const, step: 0.1 },
   { key: "locked", label: "Lock", type: "boolean" as const },
 ];
 
@@ -84,6 +86,7 @@ export const objectRegistry: PhysicsObjectDefinition[] = [
     defaultProperties: { width: 130, height: 22, mass: 0.2, springConstant: 24, friction: 0.04, restitution: 0.2, color: "#a78bfa" },
     editableProperties: [
       { key: "springConstant", label: "Spring Constant", unit: "N/m", type: "number", min: 0, step: 1 },
+      { key: "damping", label: "Damping", type: "number", min: 0, max: 1, step: 0.01 },
       ...sharedRigidProperties,
     ],
     renderType: "canvas",
@@ -97,6 +100,7 @@ export const objectRegistry: PhysicsObjectDefinition[] = [
     defaultProperties: { radius: 18, mass: 1, length: 160, pivotX: 420, pivotY: 90, friction: 0.01, restitution: 0.2, color: "#fb923c" },
     editableProperties: [
       { key: "length", label: "Length", unit: "cm", type: "number", min: 40, step: 5 },
+      { key: "damping", label: "Damping", type: "number", min: 0, max: 1, step: 0.01 },
       ...sharedRigidProperties,
     ],
     renderType: "canvas",
@@ -116,7 +120,7 @@ function makePlaceholderObjects(): PhysicsObjectDefinition[] {
     editable?: PropertyDefinition[];
   }> = [
     { id: "rope", name: "Rope", category: "Constraints", icon: "ROP", simulationType: "rigid-body", defaults: { width: 150, height: 8, mass: 0.2, color: "#cbd5e1" } },
-    { id: "pulley", name: "Pulley", category: "Simple Machines", icon: "PUL", simulationType: "rigid-body", defaults: { radius: 28, mass: 1, isStatic: true, color: "#94a3b8" } },
+    { id: "pulley", name: "Pulley", category: "Simple Machines", icon: "PUL", simulationType: "rigid-body", defaults: { radius: 28, mass: 1, isStatic: true, motorSpeed: 0, color: "#94a3b8" }, editable: [{ key: "motorSpeed", label: "Motor speed", unit: "rad/s", type: "number", step: 0.1 }, ...sharedRigidProperties] },
     { id: "cart", name: "Cart", category: "Mechanics", icon: "CAR", simulationType: "rigid-body", defaults: { width: 76, height: 36, mass: 2, color: "#60a5fa" } },
     { id: "wheel", name: "Wheel", category: "Rotational", icon: "WHL", simulationType: "rigid-body", defaults: { radius: 30, mass: 1.5, restitution: 0.5, color: "#f97316" } },
     { id: "disc", name: "Disc", category: "Rotational", icon: "DSC", simulationType: "rigid-body", defaults: { radius: 32, mass: 2, color: "#facc15" } },
@@ -188,6 +192,11 @@ export function createObject(kind: PhysicsObjectKind, x = 300, y = 160): Physics
     density: Number(defaults.density ?? 1000),
     material: String(defaults.material ?? "default"),
     springConstant: Number(defaults.springConstant ?? 0),
+    damping: Number(defaults.damping ?? 0.02),
+    airDrag: Number(defaults.airDrag ?? 0.05),
+    motorSpeed: Number(defaults.motorSpeed ?? 0),
+    motorTorque: Number(defaults.motorTorque ?? 0),
+    torque: Number(defaults.torque ?? 0),
     length: Number(defaults.length ?? 120),
     pivotX: Number(defaults.pivotX ?? x),
     pivotY: Number(defaults.pivotY ?? y - 120),

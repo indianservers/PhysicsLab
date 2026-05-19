@@ -22,8 +22,16 @@ const topics = [
 
 export default function App() {
   const theme = useLabStore((state) => state.theme);
+  const accessibility = useLabStore((state) => state.accessibility);
+  const classes = [
+    theme === "dark" ? "dark" : "",
+    accessibility.highContrast ? "high-contrast" : "",
+    accessibility.largeUi ? "large-ui" : "",
+    accessibility.colorBlindSafe ? "color-blind-safe" : "",
+    accessibility.reducedMotion ? "reduced-motion" : "",
+  ].join(" ");
   return (
-    <div className={theme === "dark" ? "dark" : ""}>
+    <div className={classes}>
       <main className="min-h-screen bg-slate-100 text-slate-950 dark:bg-lab-ink dark:text-slate-100">
         <Routes>
           <Route path="/" element={<HomePage />} />

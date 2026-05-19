@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { experiments } from "../lib/experiments";
 import { Toolbar } from "../components/Toolbar";
+import { useEffect, useState } from "react";
+import { listProjects } from "../lib/storage";
+import { ProjectFile } from "../types";
 
 const labs = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics"];
 
 export function HomePage() {
+  const [recentProjects, setRecentProjects] = useState<ProjectFile[]>([]);
+  useEffect(() => {
+    listProjects().then((projects) => setRecentProjects(projects.slice(0, 3))).catch(() => setRecentProjects([]));
+  }, []);
   return (
     <div className="min-h-screen">
       <Toolbar />
@@ -43,11 +50,30 @@ export function HomePage() {
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 pb-12">
-        <h2 className="mb-4 text-2xl font-bold">Featured Experiments</h2>
-        <div className="grid gap-3 md:grid-cols-5">
-          {experiments.slice(0, 10).map((experiment) => (
-            <Link className="home-card" key={experiment.id} to={`/experiments/${experiment.id}`}>{experiment.title}</Link>
-          ))}
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Featured Experiments</h2>
+            <div className="grid gap-3 md:grid-cols-2">
+              {experiments.slice(0, 10).map((experiment) => (
+                <Link className="home-card" key={experiment.id} to={`/experiments/${experiment.id}`}>{experiment.title}</Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Recent Projects</h2>
+            <div className="grid gap-3">
+              {recentProjects.length === 0 && <Link className="home-card" to="/projects">No saved projects yet</Link>}
+              {recentProjects.map((project) => <Link className="home-card" key={project.name} to="/projects">{project.name}</Link>)}
+            </div>
+          </div>
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Teacher Tools</h2>
+            <div className="grid gap-3">
+              {["Create assignment", "Lock variables", "Question bank", "Export package"].map((tool) => (
+                <Link className="home-card" key={tool} to="/settings">{tool}</Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </div>

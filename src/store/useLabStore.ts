@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { GraphPoint, PhysicsObjectInstance, PhysicsObjectKind, ProjectFile } from "../types";
+import { AccessibilitySettings, GraphPoint, GraphTraceConfig, GraphVariable, ObservationRow, PhysicsObjectInstance, PhysicsObjectKind, ProjectFile, UnitSystem, ViewportState } from "../types";
 import { createObject } from "../lib/objectRegistry";
 import { projectileDefaults } from "../lib/experiments";
 
@@ -13,31 +13,62 @@ interface ProjectileControls {
 
 interface LabState {
   objects: PhysicsObjectInstance[];
+  undoStack: PhysicsObjectInstance[][];
+  redoStack: PhysicsObjectInstance[][];
   selectedId?: string;
   running: boolean;
   gravity: number;
   timeScale: number;
+  airResistance: boolean;
+  airDensity: number;
   showGrid: boolean;
   showVectors: boolean;
   showTrails: boolean;
   theme: "dark" | "light";
   graphData: GraphPoint[];
+  graphPaused: boolean;
+  graphTraces: GraphTraceConfig[];
+  cursorIndex: number;
+  observationRows: ObservationRow[];
+  unitSystem: UnitSystem;
+  significantFigures: number;
+  accessibility: AccessibilitySettings;
   simulationTime: number;
+  stepSignal: number;
+  engineWarnings: string[];
+  viewport: ViewportState;
   projectile: ProjectileControls;
   addObject: (kind: PhysicsObjectKind, x?: number, y?: number) => void;
   selectObject: (id?: string) => void;
   updateObject: (id: string, patch: Partial<PhysicsObjectInstance>) => void;
   removeSelected: () => void;
   duplicateSelected: () => void;
+  undo: () => void;
+  redo: () => void;
   setObjects: (objects: PhysicsObjectInstance[]) => void;
   setRunning: (running: boolean) => void;
   toggleRunning: () => void;
   resetSandbox: () => void;
   resetGraph: () => void;
   pushGraphPoint: (point: GraphPoint) => void;
+  setGraphPaused: (graphPaused: boolean) => void;
+  setGraphTrace: (id: string, patch: Partial<GraphTraceConfig>) => void;
+  addGraphTrace: (xKey: GraphVariable, yKey: GraphVariable) => void;
+  setCursorIndex: (cursorIndex: number) => void;
+  addObservationRow: () => void;
+  updateObservationRow: (id: string, patch: Partial<ObservationRow>) => void;
+  removeObservationRow: (id: string) => void;
+  setUnitSystem: (unitSystem: UnitSystem) => void;
+  setSignificantFigures: (significantFigures: number) => void;
+  setAccessibility: (patch: Partial<AccessibilitySettings>) => void;
   setSimulationTime: (time: number) => void;
   setGravity: (gravity: number) => void;
   setTimeScale: (timeScale: number) => void;
+  setAirResistance: (airResistance: boolean) => void;
+  stepSimulation: () => void;
+  setEngineWarnings: (engineWarnings: string[]) => void;
+  setViewport: (viewport: Partial<ViewportState>) => void;
+  resetViewport: () => void;
   setTheme: (theme: "dark" | "light") => void;
   toggleGrid: () => void;
   toggleVectors: () => void;
@@ -57,28 +88,54 @@ const initialObjects = () => [
 
 export const useLabStore = create<LabState>((set, get) => ({
   objects: initialObjects(),
+  undoStack: [],
+  redoStack: [],
   running: false,
   gravity: 9.81,
   timeScale: 1,
+  airResistance: false,
+  airDensity: 1,
   showGrid: true,
   showVectors: true,
   showTrails: true,
   theme: "dark",
   graphData: [],
+  graphPaused: false,
+  graphTraces: [
+    { id: "x-time", xKey: "t", yKey: "x", label: "x vs t", color: "#22d3ee", enabled: true, errorPercent: 0 },
+    { id: "y-time", xKey: "t", yKey: "y", label: "y vs t", color: "#34d399", enabled: true, errorPercent: 0 },
+    { id: "speed-time", xKey: "t", yKey: "speed", label: "speed vs t", color: "#fb923c", enabled: true, errorPercent: 0 },
+    { id: "pv", xKey: "volume", yKey: "pressure", label: "pressure vs volume", color: "#facc15", enabled: false, errorPercent: 2 },
+    { id: "vi", xKey: "current", yKey: "voltage", label: "voltage vs current", color: "#a78bfa", enabled: false, errorPercent: 1 },
+    { id: "ia", xKey: "angle", yKey: "intensity", label: "intensity vs angle", color: "#f43f5e", enabled: false, errorPercent: 3 },
+    { id: "wf", xKey: "frequency", yKey: "wavelength", label: "wavelength vs frequency", color: "#38bdf8", enabled: false, errorPercent: 1 },
+  ],
+  cursorIndex: 0,
+  observationRows: [],
+  unitSystem: "SI",
+  significantFigures: 4,
+  accessibility: { highContrast: false, largeUi: false, colorBlindSafe: false, reducedMotion: false },
   simulationTime: 0,
+  stepSignal: 0,
+  engineWarnings: [],
+  viewport: { offsetX: 0, offsetY: 0, zoom: 1 },
   projectile: projectileDefaults,
   addObject: (kind, x = 280, y = 120) =>
     set((state) => {
       const object = createObject(kind, x, y);
-      return { objects: [...state.objects, object], selectedId: object.id };
+      return { undoStack: [...state.undoStack.slice(-19), state.objects], redoStack: [], objects: [...state.objects, object], selectedId: object.id };
     }),
   selectObject: (id) => set({ selectedId: id }),
   updateObject: (id, patch) =>
     set((state) => ({
+      undoStack: [...state.undoStack.slice(-19), state.objects],
+      redoStack: [],
       objects: state.objects.map((object) => (object.id === id ? { ...object, ...patch } : object)),
     })),
   removeSelected: () =>
     set((state) => ({
+      undoStack: [...state.undoStack.slice(-19), state.objects],
+      redoStack: [],
       objects: state.objects.filter((object) => object.id !== state.selectedId),
       selectedId: undefined,
     })),
@@ -94,21 +151,53 @@ export const useLabStore = create<LabState>((set, get) => ({
         y: selected.y + 32,
         trail: [],
       };
-      return { objects: [...state.objects, copy], selectedId: copy.id };
+      return { undoStack: [...state.undoStack.slice(-19), state.objects], redoStack: [], objects: [...state.objects, copy], selectedId: copy.id };
     }),
-  setObjects: (objects) => set({ objects }),
+  undo: () => set((state) => {
+    const previous = state.undoStack[state.undoStack.length - 1];
+    if (!previous) return state;
+    return { objects: previous, undoStack: state.undoStack.slice(0, -1), redoStack: [...state.redoStack, state.objects], selectedId: undefined };
+  }),
+  redo: () => set((state) => {
+    const next = state.redoStack[state.redoStack.length - 1];
+    if (!next) return state;
+    return { objects: next, redoStack: state.redoStack.slice(0, -1), undoStack: [...state.undoStack, state.objects], selectedId: undefined };
+  }),
+  setObjects: (objects) => set((state) => ({ undoStack: [...state.undoStack.slice(-19), state.objects], redoStack: [], objects })),
   setRunning: (running) => set({ running }),
   toggleRunning: () => set((state) => ({ running: !state.running })),
-  resetSandbox: () => set({ objects: initialObjects(), graphData: [], simulationTime: 0, running: false, selectedId: undefined }),
-  resetGraph: () => set({ graphData: [], simulationTime: 0 }),
+  resetSandbox: () => set({ objects: initialObjects(), graphData: [], observationRows: [], simulationTime: 0, running: false, selectedId: undefined, engineWarnings: [], viewport: { offsetX: 0, offsetY: 0, zoom: 1 } }),
+  resetGraph: () => set({ graphData: [], observationRows: [], simulationTime: 0 }),
   pushGraphPoint: (point) =>
-    set((state) => ({
+    set((state) => state.graphPaused ? state : ({
       graphData: [...state.graphData.slice(-399), point],
       simulationTime: point.t,
     })),
+  setGraphPaused: (graphPaused) => set({ graphPaused }),
+  setGraphTrace: (id, patch) => set((state) => ({ graphTraces: state.graphTraces.map((trace) => trace.id === id ? { ...trace, ...patch } : trace) })),
+  addGraphTrace: (xKey, yKey) => set((state) => ({ graphTraces: [...state.graphTraces, { id: crypto.randomUUID(), xKey, yKey, label: `${String(yKey)} vs ${String(xKey)}`, color: "#22d3ee", enabled: true, errorPercent: 0 }] })),
+  setCursorIndex: (cursorIndex) => set({ cursorIndex }),
+  addObservationRow: () => set((state) => ({ observationRows: [...state.observationRows, { id: crypto.randomUUID(), label: `Trial ${state.observationRows.length + 1}`, measured: 0, expected: 0, unit: "m", note: "" }] })),
+  updateObservationRow: (id, patch) => set((state) => ({ observationRows: state.observationRows.map((row) => row.id === id ? { ...row, ...patch } : row) })),
+  removeObservationRow: (id) => set((state) => ({ observationRows: state.observationRows.filter((row) => row.id !== id) })),
+  setUnitSystem: (unitSystem) => set({ unitSystem }),
+  setSignificantFigures: (significantFigures) => set({ significantFigures: Math.max(2, Math.min(8, significantFigures)) }),
+  setAccessibility: (patch) => set((state) => ({ accessibility: { ...state.accessibility, ...patch } })),
   setSimulationTime: (simulationTime) => set({ simulationTime }),
   setGravity: (gravity) => set({ gravity }),
   setTimeScale: (timeScale) => set({ timeScale }),
+  setAirResistance: (airResistance) => set({ airResistance }),
+  stepSimulation: () => set((state) => ({ stepSignal: state.stepSignal + 1, running: false })),
+  setEngineWarnings: (engineWarnings) => set({ engineWarnings }),
+  setViewport: (viewport) =>
+    set((state) => ({
+      viewport: {
+        offsetX: viewport.offsetX ?? state.viewport.offsetX,
+        offsetY: viewport.offsetY ?? state.viewport.offsetY,
+        zoom: Math.max(0.25, Math.min(3, viewport.zoom ?? state.viewport.zoom)),
+      },
+    })),
+  resetViewport: () => set({ viewport: { offsetX: 0, offsetY: 0, zoom: 1 } }),
   setTheme: (theme) => set({ theme }),
   toggleGrid: () => set((state) => ({ showGrid: !state.showGrid })),
   toggleVectors: () => set((state) => ({ showVectors: !state.showVectors })),
@@ -120,6 +209,7 @@ export const useLabStore = create<LabState>((set, get) => ({
       graphData: project.graphs,
       gravity: project.simulationSettings.gravity,
       timeScale: project.simulationSettings.timeScale,
+      airResistance: project.simulationSettings.airResistance,
       running: false,
       selectedId: undefined,
     }),
@@ -138,7 +228,7 @@ export const useLabStore = create<LabState>((set, get) => ({
       experimentData: state.graphData,
       simulationSettings: {
         gravity: state.gravity,
-        airResistance: state.projectile.airResistance,
+        airResistance: state.airResistance,
         timeScale: state.timeScale,
       },
       createdAt: now,
