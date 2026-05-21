@@ -1,5 +1,7 @@
 import Matter from "matter-js";
 import { EngineSnapshot, PhysicsObjectInstance, SimulationSettings } from "../types";
+import { playTone, stopTone } from "../lib/audioEngine";
+import { stepDoublePendulum } from "./doublePendulumSolver";
 
 const SCALE = 50;
 const FLOOR_Y = 560;
@@ -23,6 +25,7 @@ export class MatterSimulationEngine {
     this.bodies.clear();
     this.constraints = [];
     this.objects.forEach((object) => {
+      if (isFieldOnly(object)) return;
       const body = createBody(object);
       this.bodies.set(object.id, body);
       Matter.Composite.add(this.engine.world, body);
@@ -56,7 +59,9 @@ export class MatterSimulationEngine {
     this.warnings = [];
     this.engine.gravity.y = settings.gravity / SCALE;
     this.applyEducationalForces(settings, dt);
+    this.applyFluidForces(settings);
     Matter.Engine.update(this.engine, dt * 1000);
+    this.objects = this.objects.map((object) => object.kind === "double-pendulum" ? stepDoublePendulum(object, dt, settings.gravity) : object);
     this.simulationTime += dt;
     return this.snapshot(settings);
   }
@@ -146,8 +151,54 @@ export class MatterSimulationEngine {
       if (object.motorSpeed && Math.abs(object.motorSpeed) > 0.001) {
         Matter.Body.setAngularVelocity(body, object.motorSpeed * 0.04);
       }
+      if (object.kind === "spring") {
+        const rest = object.length ?? object.width ?? 120;
+        const current = Math.hypot(body.position.x - (object.pivotX ?? object.x), body.position.y - (object.pivotY ?? object.y));
+        const extension = Math.abs(current - rest) / SCALE;
+        const f = (1 / (2 * Math.PI)) * Math.sqrt(Math.max(0.01, object.springConstant ?? 24) / Math.max(0.01, object.mass));
+        if (extension > 0.01 && f >= 20 && f <= 2000) playTone(object.id, f, Math.min(extension / 0.5, 1), "sine");
+        if (extension < 0.001) stopTone(object.id);
+      }
+      if (object.kind === "pendulum") {
+        const length = Math.max(0.1, (object.length ?? 120) / SCALE);
+        const angle = Math.atan2(body.position.x - (object.pivotX ?? object.x), body.position.y - (object.pivotY ?? object.y - (object.length ?? 120)));
+        const f = (1 / (2 * Math.PI)) * Math.sqrt(settings.gravity / length);
+        if (Math.abs(angle) > 0.05) playTone(object.id, f, Math.min(Math.abs(angle), 1), "sine");
+        else stopTone(object.id);
+      }
       if ((object.springConstant ?? 0) > 400) this.warnings.push(`${object.name}: spring constant may be unstable.`);
       if (settings.timeScale > 1.6 && speed > 30) this.warnings.push(`${object.name}: collision tunneling risk at high speed/time scale.`);
+    }
+  }
+
+  private applyFluidForces(settings: SimulationSettings) {
+    const fluids = this.objects.filter((object) => object.kind === "fluid-region");
+    if (!fluids.length) return;
+    for (const object of this.objects) {
+      const body = this.bodies.get(object.id);
+      if (!body || body.isStatic) continue;
+      for (const fluid of fluids) {
+        const fraction = overlapFraction(body.bounds, fluid);
+        if (fraction <= 0) continue;
+        const objectDensity = Math.max(1, object.density ?? 500);
+        const volume = Math.max(0.001, object.mass / objectDensity);
+        const buoyancy = fraction * (fluid.density ?? 1000) * settings.gravity * volume;
+        Matter.Body.applyForce(body, body.position, { x: 0, y: -buoyancy * 0.00002 });
+
+        const vx = body.velocity.x / SCALE;
+        const vy = body.velocity.y / SCALE;
+        const speed = Math.hypot(vx, vy);
+        if (speed <= 0.0001) continue;
+        const viscosity = fluid.viscosity ?? 0.001;
+        let drag = 0;
+        if (object.radius) {
+          drag = 6 * Math.PI * viscosity * Math.max(0.01, object.radius / SCALE) * speed;
+        } else {
+          const area = Math.max(0.01, ((object.width ?? 48) * (object.height ?? 48)) / (SCALE * SCALE));
+          drag = 0.5 * 0.47 * (fluid.density ?? 1000) * area * speed * speed;
+        }
+        Matter.Body.applyForce(body, body.position, { x: -Math.sign(vx) * drag * 0.00002, y: -Math.sign(vy) * drag * 0.00002 });
+      }
     }
   }
 
@@ -221,11 +272,11 @@ function createBody(object: PhysicsObjectInstance) {
   const options: Matter.IBodyDefinition = {
     friction: object.friction,
     restitution: object.restitution,
-    isStatic: object.isStatic || Boolean(object.locked),
+    isStatic: object.isStatic || Boolean(object.locked) || ["battery", "resistor", "bulb", "switch", "ammeter", "voltmeter"].includes(object.kind),
     angle: object.angle,
     density: Math.max(0.0001, object.mass / 100000),
   };
-  if (["ball", "pendulum", "wheel", "disc", "pulley", "charge"].includes(object.kind)) {
+  if (["ball", "pendulum", "wheel", "disc", "pulley", "charge", "bulb", "ammeter", "voltmeter"].includes(object.kind)) {
     const body = Matter.Bodies.circle(object.x, object.y, object.radius ?? 22, options);
     if (!options.isStatic) Matter.Body.setMass(body, Math.max(0.01, object.mass));
     return body;
@@ -233,6 +284,22 @@ function createBody(object: PhysicsObjectInstance) {
   const body = Matter.Bodies.rectangle(object.x, object.y, object.width ?? 48, object.height ?? 48, options);
   if (!options.isStatic) Matter.Body.setMass(body, Math.max(0.01, object.mass));
   return body;
+}
+
+function isFieldOnly(object: PhysicsObjectInstance) {
+  return ["double-pendulum", "wire", "fluid-region", "wave-source", "wave-barrier", "light-ray", "plane-mirror", "convex-lens", "concave-mirror", "prism"].includes(object.kind);
+}
+
+function overlapFraction(bounds: Matter.Bounds, fluid: PhysicsObjectInstance) {
+  const left = fluid.x - (fluid.width ?? 0) / 2;
+  const right = fluid.x + (fluid.width ?? 0) / 2;
+  const top = fluid.y - (fluid.height ?? 0) / 2;
+  const bottom = fluid.y + (fluid.height ?? 0) / 2;
+  const overlapX = Math.max(0, Math.min(bounds.max.x, right) - Math.max(bounds.min.x, left));
+  const overlapY = Math.max(0, Math.min(bounds.max.y, bottom) - Math.max(bounds.min.y, top));
+  const overlapArea = overlapX * overlapY;
+  const bodyArea = Math.max(1, (bounds.max.x - bounds.min.x) * (bounds.max.y - bounds.min.y));
+  return clamp(overlapArea / bodyArea, 0, 1);
 }
 
 function clamp(value: number, min: number, max: number) {

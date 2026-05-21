@@ -27,6 +27,7 @@ interface LabState {
   theme: "dark" | "light";
   graphData: GraphPoint[];
   graphPaused: boolean;
+  graphSplit: boolean;
   graphTraces: GraphTraceConfig[];
   cursorIndex: number;
   observationRows: ObservationRow[];
@@ -37,8 +38,9 @@ interface LabState {
   stepSignal: number;
   engineWarnings: string[];
   viewport: ViewportState;
+  selectedTool: "select" | "wire";
   projectile: ProjectileControls;
-  addObject: (kind: PhysicsObjectKind, x?: number, y?: number) => void;
+  addObject: (kind: PhysicsObjectKind, x?: number, y?: number, patch?: Partial<PhysicsObjectInstance>) => void;
   selectObject: (id?: string) => void;
   updateObject: (id: string, patch: Partial<PhysicsObjectInstance>) => void;
   removeSelected: () => void;
@@ -52,6 +54,7 @@ interface LabState {
   resetGraph: () => void;
   pushGraphPoint: (point: GraphPoint) => void;
   setGraphPaused: (graphPaused: boolean) => void;
+  setGraphSplit: (graphSplit: boolean) => void;
   setGraphTrace: (id: string, patch: Partial<GraphTraceConfig>) => void;
   addGraphTrace: (xKey: GraphVariable, yKey: GraphVariable) => void;
   setCursorIndex: (cursorIndex: number) => void;
@@ -69,6 +72,7 @@ interface LabState {
   setEngineWarnings: (engineWarnings: string[]) => void;
   setViewport: (viewport: Partial<ViewportState>) => void;
   resetViewport: () => void;
+  setSelectedTool: (selectedTool: "select" | "wire") => void;
   setTheme: (theme: "dark" | "light") => void;
   toggleGrid: () => void;
   toggleVectors: () => void;
@@ -101,6 +105,7 @@ export const useLabStore = create<LabState>((set, get) => ({
   theme: "dark",
   graphData: [],
   graphPaused: false,
+  graphSplit: false,
   graphTraces: [
     { id: "x-time", xKey: "t", yKey: "x", label: "x vs t", color: "#22d3ee", enabled: true, errorPercent: 0 },
     { id: "y-time", xKey: "t", yKey: "y", label: "y vs t", color: "#34d399", enabled: true, errorPercent: 0 },
@@ -119,10 +124,11 @@ export const useLabStore = create<LabState>((set, get) => ({
   stepSignal: 0,
   engineWarnings: [],
   viewport: { offsetX: 0, offsetY: 0, zoom: 1 },
+  selectedTool: "select",
   projectile: projectileDefaults,
-  addObject: (kind, x = 280, y = 120) =>
+  addObject: (kind, x = 280, y = 120, patch = {}) =>
     set((state) => {
-      const object = createObject(kind, x, y);
+      const object = { ...createObject(kind, x, y), ...patch };
       return { undoStack: [...state.undoStack.slice(-19), state.objects], redoStack: [], objects: [...state.objects, object], selectedId: object.id };
     }),
   selectObject: (id) => set({ selectedId: id }),
@@ -174,6 +180,7 @@ export const useLabStore = create<LabState>((set, get) => ({
       simulationTime: point.t,
     })),
   setGraphPaused: (graphPaused) => set({ graphPaused }),
+  setGraphSplit: (graphSplit) => set({ graphSplit }),
   setGraphTrace: (id, patch) => set((state) => ({ graphTraces: state.graphTraces.map((trace) => trace.id === id ? { ...trace, ...patch } : trace) })),
   addGraphTrace: (xKey, yKey) => set((state) => ({ graphTraces: [...state.graphTraces, { id: crypto.randomUUID(), xKey, yKey, label: `${String(yKey)} vs ${String(xKey)}`, color: "#22d3ee", enabled: true, errorPercent: 0 }] })),
   setCursorIndex: (cursorIndex) => set({ cursorIndex }),
@@ -198,6 +205,7 @@ export const useLabStore = create<LabState>((set, get) => ({
       },
     })),
   resetViewport: () => set({ viewport: { offsetX: 0, offsetY: 0, zoom: 1 } }),
+  setSelectedTool: (selectedTool) => set({ selectedTool }),
   setTheme: (theme) => set({ theme }),
   toggleGrid: () => set((state) => ({ showGrid: !state.showGrid })),
   toggleVectors: () => set((state) => ({ showVectors: !state.showVectors })),

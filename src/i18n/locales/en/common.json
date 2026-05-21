@@ -1,0 +1,19 @@
+{
+  "toolbar": {
+    "new": "New", "open": "Open", "save": "Save", "share": "Share", "exportJson": "Export JSON", "importJson": "Import JSON", "exportPng": "Export PNG", "exportPdf": "Export PDF", "run": "Run", "pause": "Pause", "step": "Step", "reset": "Reset", "slowMotion": "Slow motion", "speed": "Speed", "gravity": "Gravity", "air": "Air", "theme": "Theme", "video": "Video Analysis", "quantum": "Quantum", "lms": "LMS", "help": "Help", "install": "Install App", "audio": "Audio", "volume": "Volume"
+  },
+  "sidebar": {
+    "topics": "Topics", "objects": "Objects", "forces": "Forces", "instruments": "Instruments", "graphs": "Graphs", "experiments": "Experiments", "formulas": "Formulas", "quantum": "Quantum", "circuits": "Circuits",
+    "categories": { "Mechanics": "Mechanics", "Waves": "Waves", "Optics": "Optics", "Electricity": "Electricity", "Magnetism": "Magnetism", "Thermodynamics": "Thermodynamics", "Fluid Mechanics": "Fluid Mechanics", "Modern Physics": "Modern Physics", "Oscillations": "Oscillations", "Circuits": "Circuits" }
+  },
+  "bottom": {
+    "graphs": "Graphs", "dataTable": "Data table", "formula": "Formula", "instruments": "Instruments", "errors": "Errors", "steps": "Steps", "questions": "Questions", "labReport": "Lab report", "log": "Log", "csv": "CSV", "json": "JSON", "warnings": "Warnings", "noSelection": "No object selected for property inspection.", "badMass": "Object has zero or negative mass.", "outside": "Selected object is outside the visible area.", "noData": "No data recorded yet."
+  },
+  "experiments": {
+    "Projectile Motion": "Projectile Motion", "Wave Lab": "Wave Lab", "Single Slit Diffraction": "Single Slit Diffraction", "Buoyancy": "Buoyancy", "Chaos Demo": "Chaos Demo", "Chladni Plate": "Chladni Plate"
+  },
+  "difficulty": { "Beginner": "Beginner", "Intermediate": "Intermediate", "Advanced": "Advanced" },
+  "toast": { "linkCopied": "Link copied!" },
+  "settings": { "language": "Language", "english": "English", "hindi": "हिन्दी" },
+  "offline": "You are offline. Saved assets and cached labs remain available."
+}

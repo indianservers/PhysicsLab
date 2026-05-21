@@ -1,31 +1,42 @@
 import { useMemo, useRef, useState } from "react";
-import { CartesianGrid, ErrorBar, Legend, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useTranslation } from "react-i18next";
+import { CartesianGrid, ErrorBar, Legend, Line, LineChart, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { fft } from "../lib/fft";
 import { coreFormulae, evaluateFormula, renderFormula } from "../lib/formulas";
 import { formatValue, percentageError, validateUnit } from "../lib/units";
 import { useLabStore } from "../store/useLabStore";
 import { GraphPoint, GraphVariable } from "../types";
+import { sendStatement } from "../lib/xapi";
 
 const tabs = ["Graphs", "Data table", "Formula", "Instruments", "Errors", "Steps", "Questions", "Lab report", "Log"];
 const graphVariables: GraphVariable[] = ["t", "x", "y", "vx", "vy", "speed", "acceleration", "force", "momentum", "kineticEnergy", "potentialEnergy", "totalEnergy", "pressure", "volume", "temperature", "voltage", "current", "intensity", "angle", "wavelength", "frequency"];
 
 export function BottomPanel() {
+  const { t } = useTranslation();
   const [tab, setTab] = useState("Graphs");
+  const [domain, setDomain] = useState<"time" | "frequency">("time");
   const graphRef = useRef<HTMLDivElement>(null);
   const state = useLabStore();
   const graphData = state.graphData.map((point) => ({ ...point, error: Object.fromEntries(state.graphTraces.map((trace) => [trace.yKey, Math.abs(Number(point[trace.yKey] ?? 0)) * ((trace.errorPercent ?? 0) / 100)])) }));
   const selected = state.objects.find((object) => object.id === state.selectedId);
+  const activePanel = state.running || state.graphSplit ? "Graphs" : selected ? "Data table" : "Overview";
   const enabledTraces = state.graphTraces.filter((trace) => trace.enabled);
   const activeTrace = enabledTraces[0];
   const cursor = graphData[Math.min(state.cursorIndex, Math.max(0, graphData.length - 1))];
   const stats = useMemo(() => activeTrace ? calculateStats(graphData, activeTrace.xKey, activeTrace.yKey) : undefined, [graphData, activeTrace]);
+  const frequencyAnalysis = useMemo(() => activeTrace ? analyzeFrequency(state.graphData, activeTrace.yKey) : undefined, [state.graphData, activeTrace]);
 
   const csv = () => {
     const header = graphVariables.join(",");
     const rows = state.graphData.map((point) => graphVariables.map((key) => point[key] ?? "").join(","));
     download(new Blob([[header, ...rows].join("\n")], { type: "text/csv" }), "physicslab-data.csv");
+    sendStatement("interacted", "/graphs/export-csv");
   };
 
-  const json = () => download(new Blob([JSON.stringify(state.graphData, null, 2)], { type: "application/json" }), "physicslab-data.json");
+  const json = () => {
+    download(new Blob([JSON.stringify(state.graphData, null, 2)], { type: "application/json" }), "physicslab-data.json");
+    sendStatement("interacted", "/graphs/export-json");
+  };
 
   const graphPng = async () => {
     const svg = graphRef.current?.querySelector("svg");
@@ -43,6 +54,7 @@ export function BottomPanel() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
       canvas.toBlob((blob) => blob && download(blob, "physicslab-graph.png"));
+      sendStatement("interacted", "/graphs/export-png");
       URL.revokeObjectURL(url);
     };
     image.src = url;
@@ -50,21 +62,25 @@ export function BottomPanel() {
 
   return (
     <section className="panel min-h-0 p-3">
-      <div className="mb-3 flex gap-2 overflow-x-auto">
-        {tabs.map((item) => (
-          <button key={item} className={item === tab ? "tab-active" : "tab-btn"} onClick={() => setTab(item)}>
-            {item}
-          </button>
-        ))}
-        <button className="tool-btn ml-auto" onClick={csv}>CSV</button>
-        <button className="tool-btn" onClick={json}>JSON</button>
+      <div className="mb-3 flex items-center gap-2 overflow-x-auto">
+        <div>
+          <div className="ui-label">{state.running ? "Live simulation" : selected ? "Paused data" : "Ready"}</div>
+          <h2 className="ui-title">{activePanel === "Graphs" ? "Live Graph" : activePanel === "Data table" ? "Data + Export" : "Experiment Guide"}</h2>
+        </div>
+        {activePanel === "Graphs" && <button className={state.graphSplit ? "tab-active ml-auto" : "tab-btn ml-auto"} onClick={() => state.setGraphSplit(!state.graphSplit)}>{state.graphSplit ? "Dock graph" : "Split view"}</button>}
+        <button className="tool-btn ml-auto" onClick={csv}>{t("bottom.csv")}</button>
+        <button className="tool-btn" onClick={json}>{t("bottom.json")}</button>
       </div>
-      {tab === "Graphs" && (
-        <div className="grid gap-3 lg:grid-cols-[240px_minmax(0,1fr)_220px]">
+      {activePanel === "Graphs" && (
+        <div className={state.graphSplit ? "grid h-full gap-3 lg:grid-cols-1" : "grid gap-3 lg:grid-cols-[240px_minmax(0,1fr)_220px]"}>
           <div className="space-y-2 text-xs">
             <button className="tool-btn w-full" onClick={() => state.setGraphPaused(!state.graphPaused)}>{state.graphPaused ? "Resume graph" : "Pause graph"}</button>
             <button className="tool-btn w-full" onClick={graphPng}>Export graph PNG</button>
             <button className="tool-btn w-full" onClick={() => state.addGraphTrace("t", "momentum")}>Add trace</button>
+            <div className="grid grid-cols-2 rounded border border-slate-300/60 p-1 dark:border-lab-line">
+              <button className={domain === "time" ? "tab-active" : "tab-btn"} onClick={() => setDomain("time")}>Time Domain</button>
+              <button className={domain === "frequency" ? "tab-active" : "tab-btn"} onClick={() => setDomain("frequency")}>Frequency Domain</button>
+            </div>
             {state.graphTraces.map((trace) => (
               <div key={trace.id} className="rounded border border-slate-300/60 p-2 dark:border-lab-line">
                 <label className="flex items-center gap-2"><input type="checkbox" checked={trace.enabled} onChange={(event) => state.setGraphTrace(trace.id, { enabled: event.target.checked })} /> {trace.label}</label>
@@ -78,22 +94,29 @@ export function BottomPanel() {
               </div>
             ))}
           </div>
-          <div ref={graphRef} className="h-56 min-w-0">
+          <div ref={graphRef} className={state.graphSplit ? "h-[calc(100vh-190px)] min-w-0" : "h-56 min-w-0"}>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={graphData}>
+              <LineChart data={domain === "frequency" ? frequencyAnalysis?.data ?? [] : graphData}>
                 <CartesianGrid stroke="rgba(148,163,184,0.18)" />
-                <XAxis dataKey={activeTrace?.xKey ?? "t"} stroke="#94a3b8" />
+                <XAxis dataKey={domain === "frequency" ? "frequency" : activeTrace?.xKey ?? "t"} stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" />
                 <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid rgba(148,163,184,0.25)", color: "#e2e8f0" }} />
                 <Legend />
-                {enabledTraces.map((trace) => (
-                  <Line key={trace.id} type="monotone" dataKey={trace.yKey} stroke={trace.color} dot={false} name={trace.label}>
-                    {(trace.errorPercent ?? 0) > 0 && <ErrorBar dataKey={`error.${String(trace.yKey)}`} width={4} stroke={trace.color} />}
-                  </Line>
-                ))}
-                {cursor && activeTrace && <ReferenceDot x={cursor[activeTrace.xKey] as number} y={cursor[activeTrace.yKey] as number} r={5} fill="#facc15" stroke="none" />}
+                {domain === "time" && enabledTraces.map((trace) => (
+                    <Line key={trace.id} type="monotone" dataKey={trace.yKey} stroke={trace.color} dot={false} name={trace.label}>
+                      {(trace.errorPercent ?? 0) > 0 && <ErrorBar dataKey={`error.${String(trace.yKey)}`} width={4} stroke={trace.color} />}
+                    </Line>
+                  ))}
+                {domain === "frequency" && <Line type="monotone" dataKey="magnitude" stroke={activeTrace?.color ?? "#22d3ee"} dot={false} name="Magnitude" />}
+                {domain === "frequency" && frequencyAnalysis?.dominant && <ReferenceLine x={frequencyAnalysis.dominant.frequency} stroke="#facc15" strokeDasharray="4 4" label={`f = ${frequencyAnalysis.dominant.frequency.toFixed(2)} Hz`} />}
+                {domain === "time" && cursor && activeTrace && <ReferenceDot x={cursor[activeTrace.xKey] as number} y={cursor[activeTrace.yKey] as number} r={5} fill="#facc15" stroke="none" />}
               </LineChart>
             </ResponsiveContainer>
+            {domain === "frequency" && (
+              <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                Peak Frequencies: {frequencyAnalysis?.peaks.length ? frequencyAnalysis.peaks.map((peak) => `${peak.frequency.toFixed(2)} Hz (${peak.magnitude.toFixed(3)})`).join(", ") : "-"}
+              </div>
+            )}
           </div>
           <div className="space-y-2 text-xs">
             <label className="block">Cursor
@@ -108,16 +131,35 @@ export function BottomPanel() {
           </div>
         </div>
       )}
-      {tab === "Data table" && <ObservationTable />}
-      {tab === "Formula" && <FormulaPanel />}
-      {tab === "Instruments" && <Info title="Instruments" body="Stopwatch, ruler, protractor, motion sensor, force sensor, graph plotter, thermometer, charge and field probes are available in the object library." />}
-      {tab === "Errors" && <Warnings selected={selected} />}
-      {tab === "Steps" && <Info title="Experiment Steps" body="Choose a guided experiment, adjust variables, run or pause the simulation, record observations, inspect graphs, and export the lab report." />}
-      {tab === "Questions" && <Info title="Questions" body="Viva and graph interpretation prompts are shown on experiment pages. Teacher and exam modes can reuse this panel architecture." />}
-      {tab === "Lab report" && <Info title="Lab Report" body="Report sections: student name, aim, apparatus, theory, formulas, procedure, observations, graphs, calculations, result, precautions, viva, and teacher remarks." />}
-      {tab === "Log" && <Info title="Simulation Log" body={`Samples recorded: ${state.graphData.length}. Selected object: ${selected?.name ?? "none"}. Graph recording: ${state.graphPaused ? "paused" : "active"}.`} />}
+      {activePanel === "Data table" && <ObservationTable />}
+      {activePanel === "Overview" && (
+        <div className="grid gap-3 md:grid-cols-2">
+          <Info title="Experiment Steps" body="Add an object, run the simulation, watch the live graph, then pause to inspect and export data." />
+          <FormulaPanel />
+        </div>
+      )}
     </section>
   );
+}
+
+function analyzeFrequency(data: GraphPoint[], yKey: GraphVariable) {
+  const usable = data.map((point) => ({ t: Number(point.t), y: Number(point[yKey]) })).filter((point) => Number.isFinite(point.t) && Number.isFinite(point.y));
+  const count = Math.min(4096, Math.max(512, usable.length));
+  const samples = usable.slice(-count);
+  if (samples.length < 2) return { data: [], peaks: [], dominant: undefined };
+  const elapsed = samples[samples.length - 1].t - samples[0].t;
+  const sampleRate = elapsed > 0 ? samples.length / elapsed : 1;
+  const mean = average(samples.map((sample) => sample.y));
+  const spectrum = fft(Float64Array.from(samples.map((sample) => sample.y - mean)));
+  const dataPoints = Array.from(spectrum.magnitudes).map((magnitude, index) => ({
+    frequency: (spectrum.frequencies[index] * sampleRate) / (spectrum.magnitudes.length * 2),
+    magnitude,
+  })).slice(1);
+  const peaks = dataPoints
+    .filter((point, index, arr) => point.magnitude >= (arr[index - 1]?.magnitude ?? 0) && point.magnitude >= (arr[index + 1]?.magnitude ?? 0))
+    .sort((a, b) => b.magnitude - a.magnitude)
+    .slice(0, 3);
+  return { data: dataPoints, peaks, dominant: peaks[0] };
 }
 
 function ObservationTable() {
@@ -210,18 +252,34 @@ function FormulaPanel() {
 }
 
 function Warnings({ selected }: { selected?: { mass: number; x: number; y: number } }) {
+  const { t } = useTranslation();
   const graphData = useLabStore((state) => state.graphData);
   const engineWarnings = useLabStore((state) => state.engineWarnings);
   return (
     <div className="rounded border border-slate-300/60 p-3 text-xs dark:border-lab-line">
-      <div className="font-semibold text-cyan-500">Warnings</div>
-      {!selected && <p>No object selected for property inspection.</p>}
-      {selected && selected.mass <= 0 && <p>Object has zero or negative mass.</p>}
-      {selected && (selected.x < -100 || selected.x > 2000 || selected.y < -100 || selected.y > 2000) && <p>Selected object is outside the visible area.</p>}
-      {graphData.length === 0 && <p>No data recorded yet.</p>}
+      <div className="font-semibold text-cyan-500">{t("bottom.warnings")}</div>
+      {!selected && <p>{t("bottom.noSelection")}</p>}
+      {selected && selected.mass <= 0 && <p>{t("bottom.badMass")}</p>}
+      {selected && (selected.x < -100 || selected.x > 2000 || selected.y < -100 || selected.y > 2000) && <p>{t("bottom.outside")}</p>}
+      {graphData.length === 0 && <p>{t("bottom.noData")}</p>}
       {engineWarnings.map((warning) => <p key={warning}>{warning}</p>)}
     </div>
   );
+}
+
+function tabKey(item: string) {
+  const map: Record<string, string> = {
+    Graphs: "bottom.graphs",
+    "Data table": "bottom.dataTable",
+    Formula: "bottom.formula",
+    Instruments: "bottom.instruments",
+    Errors: "bottom.errors",
+    Steps: "bottom.steps",
+    Questions: "bottom.questions",
+    "Lab report": "bottom.labReport",
+    Log: "bottom.log",
+  };
+  return map[item] ?? item;
 }
 
 function Select({ value, onChange }: { value: GraphVariable; onChange: (value: GraphVariable) => void }) {

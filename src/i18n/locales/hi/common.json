@@ -1,0 +1,19 @@
+{
+  "toolbar": {
+    "new": "नया", "open": "खोलें", "save": "सहेजें", "share": "साझा करें", "exportJson": "JSON निर्यात", "importJson": "JSON आयात", "exportPng": "PNG निर्यात", "exportPdf": "PDF निर्यात", "run": "चलाएँ", "pause": "रोकें", "step": "चरण", "reset": "रीसेट", "slowMotion": "धीमी गति", "speed": "गति", "gravity": "गुरुत्व", "air": "वायु", "theme": "थीम", "video": "वीडियो विश्लेषण", "quantum": "क्वांटम", "lms": "LMS", "help": "सहायता", "install": "ऐप इंस्टॉल करें", "audio": "ध्वनि", "volume": "आवाज़"
+  },
+  "sidebar": {
+    "topics": "विषय", "objects": "वस्तुएँ", "forces": "बल", "instruments": "उपकरण", "graphs": "ग्राफ़", "experiments": "प्रयोग", "formulas": "सूत्र", "quantum": "क्वांटम", "circuits": "परिपथ",
+    "categories": { "Mechanics": "यांत्रिकी", "Waves": "तरंगें", "Optics": "प्रकाशिकी", "Electricity": "विद्युत", "Magnetism": "चुंबकत्व", "Thermodynamics": "ऊष्मागतिकी", "Fluid Mechanics": "द्रव यांत्रिकी", "Modern Physics": "आधुनिक भौतिकी", "Oscillations": "दोलन", "Circuits": "परिपथ" }
+  },
+  "bottom": {
+    "graphs": "ग्राफ़", "dataTable": "डेटा तालिका", "formula": "सूत्र", "instruments": "उपकरण", "errors": "त्रुटियाँ", "steps": "चरण", "questions": "प्रश्न", "labReport": "लैब रिपोर्ट", "log": "लॉग", "csv": "CSV", "json": "JSON", "warnings": "चेतावनियाँ", "noSelection": "गुण देखने के लिए कोई वस्तु चयनित नहीं है।", "badMass": "वस्तु का द्रव्यमान शून्य या ऋणात्मक है।", "outside": "चयनित वस्तु दृश्य क्षेत्र से बाहर है।", "noData": "अभी कोई डेटा रिकॉर्ड नहीं हुआ है।"
+  },
+  "experiments": {
+    "Projectile Motion": "प्रक्षेप्य गति", "Wave Lab": "तरंग प्रयोगशाला", "Single Slit Diffraction": "एकल छिद्र विवर्तन", "Buoyancy": "उत्प्लावन", "Chaos Demo": "कैओस डेमो", "Chladni Plate": "क्लाडनी प्लेट"
+  },
+  "difficulty": { "Beginner": "आरंभिक", "Intermediate": "मध्यम", "Advanced": "उन्नत" },
+  "toast": { "linkCopied": "लिंक कॉपी हो गया!" },
+  "settings": { "language": "भाषा", "english": "English", "hindi": "हिन्दी" },
+  "offline": "आप ऑफ़लाइन हैं। सहेजी गई सामग्री और कैश किए गए लैब उपलब्ध रहेंगे।"
+}

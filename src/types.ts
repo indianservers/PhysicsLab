@@ -24,11 +24,25 @@ export type PhysicsObjectKind =
   | "light-ray"
   | "plane-mirror"
   | "convex-lens"
+  | "concave-mirror"
+  | "prism"
+  | "wave-source"
+  | "wave-barrier"
+  | "fluid-region"
+  | "chladni-plate"
   | "charge"
   | "electric-field-region"
   | "bar-magnet"
   | "thermometer"
-  | "gas-container";
+  | "gas-container"
+  | "battery"
+  | "resistor"
+  | "bulb"
+  | "switch"
+  | "ammeter"
+  | "voltmeter"
+  | "wire"
+  | "double-pendulum";
 
 export type Difficulty = "Beginner" | "Intermediate" | "Advanced";
 
@@ -57,8 +71,12 @@ export interface PhysicsObjectDefinition {
     | "optics"
     | "thermal"
     | "fluid"
-    | "modern";
+    | "modern"
+    | "circuit"
+    | "numerical";
 }
+
+export type TerminalKind = "pos" | "neg";
 
 export interface PhysicsObjectInstance {
   id: string;
@@ -93,6 +111,42 @@ export interface PhysicsObjectInstance {
   length?: number;
   pivotX?: number;
   pivotY?: number;
+  focalLength?: number;
+  refractiveIndex?: number;
+  reflectivity?: number;
+  wavelength?: number;
+  intensity?: number;
+  viscosity?: number;
+  frequency?: number;
+  amplitude?: number;
+  phase?: number;
+  x1?: number;
+  y1?: number;
+  x2?: number;
+  y2?: number;
+  gapPositions?: number[];
+  gapWidth?: number;
+  length1?: number;
+  length2?: number;
+  mass1?: number;
+  mass2?: number;
+  angle1?: number;
+  angle2?: number;
+  omega1?: number;
+  omega2?: number;
+  emf?: number;
+  internalResistance?: number;
+  resistance?: number;
+  brightness?: number;
+  closed?: boolean;
+  current?: number;
+  voltage?: number;
+  voltageDiff?: number;
+  connectedTo?: [string, string];
+  fromId?: string;
+  fromTerminal?: TerminalKind;
+  toId?: string;
+  toTerminal?: TerminalKind;
   trail: { x: number; y: number; t: number }[];
 }
 

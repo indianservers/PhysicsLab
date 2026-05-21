@@ -26,6 +26,7 @@ export function HomePage() {
             <Link className="hero-btn" to="/sandbox">Start new simulation</Link>
             <Link className="hero-btn-secondary" to="/experiments/projectile-motion">Open projectile lab</Link>
             <Link className="hero-btn-secondary" to="/experiments">Guided experiments</Link>
+            <Link className="hero-btn-secondary" to="/video">Video Analysis</Link>
           </div>
         </div>
         <div className="panel p-4 shadow-glow">
