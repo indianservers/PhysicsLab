@@ -8,6 +8,8 @@ import { solveCircuit, isCircuitLike } from "../lib/circuitSolver";
 import { deserializeState } from "../lib/stateSerializer";
 import { useLabStore } from "../store/useLabStore";
 import { sendStatement } from "../lib/xapi";
+import { GuidePanel } from "../components/GuidePanel";
+import { workspaceGuide } from "../lib/guides";
 
 export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const loadedRef = useRef(false);
@@ -120,6 +122,9 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
                 <span className="badge">SI Units</span>
                 <span className="badge">Vectors</span>
               </div>
+            </div>
+            <div className="mb-2 px-2">
+              <GuidePanel guide={workspaceGuide} compact />
             </div>
             <PhysicsCanvas />
           </section>

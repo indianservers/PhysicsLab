@@ -1,6 +1,8 @@
 import { useMemo, useRef, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Toolbar } from "../components/Toolbar";
+import { GuidePanel } from "../components/GuidePanel";
+import { videoGuide } from "../lib/guides";
 
 interface TrackPoint {
   frame: number;
@@ -132,6 +134,7 @@ export function VideoAnalysisPage() {
       <Toolbar />
       <div className="grid min-h-0 flex-1 gap-3 p-3 lg:grid-cols-[minmax(0,1fr)_340px]">
         <section className="panel min-h-0 p-3">
+          <GuidePanel guide={videoGuide} compact />
           <div className="relative aspect-video w-full overflow-hidden rounded bg-slate-950">
             {videoUrl && <video ref={videoRef} src={videoUrl} className="h-full w-full" onLoadedMetadata={drawOverlay} onSeeked={drawOverlay} />}
             <canvas ref={canvasRef} className="absolute inset-0 h-full w-full cursor-crosshair" onPointerDown={handleCanvasClick} />

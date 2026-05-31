@@ -54,6 +54,23 @@ input {
   outline-color: #22d3ee;
 }
 
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -48px;
+  z-index: 100;
+  border-radius: 6px;
+  background: #22d3ee;
+  color: #0f172a;
+  padding: 10px 14px;
+  font-weight: 900;
+  transition: top 140ms ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
 @layer components {
   .panel {
     @apply rounded-lg border border-slate-300/70 bg-white/80 shadow-sm backdrop-blur dark:border-lab-line dark:bg-lab-panel;
@@ -177,6 +194,35 @@ input {
 
   .metric-card {
     @apply rounded-md border border-slate-300/60 bg-slate-100 p-3 dark:border-lab-line dark:bg-slate-900/70;
+  }
+
+  .guide-panel {
+    @apply rounded-lg border border-cyan-400/30 bg-cyan-400/5 p-4 dark:bg-cyan-400/10;
+  }
+
+  .guide-panel-compact {
+    @apply rounded-md p-3;
+  }
+
+  .guide-panel summary {
+    @apply flex cursor-pointer list-none flex-wrap items-center justify-between gap-2 text-sm font-black text-cyan-600 dark:text-cyan-300;
+  }
+
+  .guide-panel summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .guide-panel summary::after {
+    content: "+";
+    @apply grid h-6 w-6 place-items-center rounded-full border border-cyan-400/40 text-xs;
+  }
+
+  .guide-panel[open] summary::after {
+    content: "-";
+  }
+
+  .guide-title {
+    @apply text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400;
   }
 }
 
@@ -485,6 +531,65 @@ input {
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
+  }
+}
+
+.lab-anim-dash {
+  stroke-dasharray: 12 10;
+  animation: lab-dash 1.4s linear infinite;
+}
+
+.lab-anim-dash-fast {
+  stroke-dasharray: 8 8;
+  animation: lab-dash 0.75s linear infinite;
+}
+
+.lab-anim-pulse {
+  animation: lab-pulse 1.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.lab-anim-float {
+  animation: lab-float 2.6s ease-in-out infinite;
+}
+
+.lab-anim-glow {
+  animation: lab-glow 1.6s ease-in-out infinite;
+}
+
+@keyframes lab-dash {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
+@keyframes lab-pulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes lab-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes lab-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(34, 211, 238, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 13px rgba(34, 211, 238, 0.9));
   }
 }
 

@@ -7,6 +7,8 @@ import { formatValue, percentageError, validateUnit } from "../lib/units";
 import { useLabStore } from "../store/useLabStore";
 import { GraphPoint, GraphVariable } from "../types";
 import { sendStatement } from "../lib/xapi";
+import { GuidePanel } from "./GuidePanel";
+import { graphGuide } from "../lib/guides";
 
 const tabs = ["Graphs", "Data table", "Formula", "Instruments", "Errors", "Steps", "Questions", "Lab report", "Log"];
 const graphVariables: GraphVariable[] = ["t", "x", "y", "vx", "vy", "speed", "acceleration", "force", "momentum", "kineticEnergy", "potentialEnergy", "totalEnergy", "pressure", "volume", "temperature", "voltage", "current", "intensity", "angle", "wavelength", "frequency"];
@@ -74,6 +76,7 @@ export function BottomPanel() {
       {activePanel === "Graphs" && (
         <div className={state.graphSplit ? "grid h-full gap-3 lg:grid-cols-1" : "grid gap-3 lg:grid-cols-[240px_minmax(0,1fr)_220px]"}>
           <div className="space-y-2 text-xs">
+            <GuidePanel guide={graphGuide} compact />
             <button className="tool-btn w-full" onClick={() => state.setGraphPaused(!state.graphPaused)}>{state.graphPaused ? "Resume graph" : "Pause graph"}</button>
             <button className="tool-btn w-full" onClick={graphPng}>Export graph PNG</button>
             <button className="tool-btn w-full" onClick={() => state.addGraphTrace("t", "momentum")}>Add trace</button>
@@ -134,6 +137,7 @@ export function BottomPanel() {
       {activePanel === "Data table" && <ObservationTable />}
       {activePanel === "Overview" && (
         <div className="grid gap-3 md:grid-cols-2">
+          <GuidePanel guide={graphGuide} compact />
           <Info title="Experiment Steps" body="Add an object, run the simulation, watch the live graph, then pause to inspect and export data." />
           <FormulaPanel />
         </div>
@@ -177,6 +181,9 @@ function ObservationTable() {
   const std = standardDeviation(values);
   return (
     <div className="min-h-0 overflow-auto">
+      <div className="mb-3">
+        <GuidePanel guide={graphGuide} compact />
+      </div>
       <div className="mb-2 flex gap-2">
         <button className="tool-btn" onClick={state.addObservationRow}>Add manual row</button>
         <button className="tool-btn" onClick={state.resetGraph}>Reset data</button>

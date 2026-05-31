@@ -2,6 +2,8 @@ import { Toolbar } from "../components/Toolbar";
 import { BohrModelSim } from "../components/quantum/BohrModelSim";
 import { PhotoelectricSim } from "../components/quantum/PhotoelectricSim";
 import { TunnelingSim } from "../components/quantum/TunnelingSim";
+import { GuidePanel } from "../components/GuidePanel";
+import { guideForQuantumTool } from "../lib/guides";
 
 export function QuantumPage() {
   return (
@@ -9,6 +11,11 @@ export function QuantumPage() {
       <Toolbar />
       <main className="mx-auto grid max-w-7xl gap-4 px-5 py-6">
         <h1 className="text-3xl font-bold">Quantum Simulations</h1>
+        <div className="grid gap-3 lg:grid-cols-3">
+          <GuidePanel guide={guideForQuantumTool("photoelectric")} compact />
+          <GuidePanel guide={guideForQuantumTool("tunneling")} compact />
+          <GuidePanel guide={guideForQuantumTool("bohr")} compact />
+        </div>
         <div className="grid gap-4 xl:grid-cols-2">
           <PhotoelectricSim />
           <TunnelingSim />

@@ -10,6 +10,7 @@ import { SimplePage } from "./pages/SimplePage";
 import { VideoAnalysisPage } from "./pages/VideoAnalysisPage";
 import { LMSConfigPage } from "./pages/LMSConfigPage";
 import { QuantumPage } from "./pages/QuantumPage";
+import { TeacherPage } from "./pages/TeacherPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement } from "./lib/xapi";
 
@@ -24,6 +25,8 @@ const topics = [
   "fluid-mechanics",
   "oscillations",
   "astronomy",
+  "measurement",
+  "electronics",
 ];
 
 export default function App() {
@@ -50,6 +53,7 @@ export default function App() {
   ].join(" ");
   return (
     <div className={classes}>
+      <a href="#content" className="skip-link">Skip to content</a>
       <main className="min-h-screen bg-slate-100 text-slate-950 dark:bg-lab-ink dark:text-slate-100">
         {!online && <div className="bg-amber-300 px-4 py-2 text-center text-sm font-semibold text-slate-950">{t("offline")}</div>}
         <Routes>
@@ -60,6 +64,7 @@ export default function App() {
           <Route path="/experiments/:id" element={<ExperimentDetailPage />} />
           <Route path="/video" element={<VideoAnalysisPage />} />
           <Route path="/quantum" element={<QuantumPage />} />
+          <Route path="/teacher" element={<TeacherPage />} />
           <Route path="/lms-config" element={<LMSConfigPage />} />
           <Route path="/topics" element={<Navigate to="/topics/mechanics" replace />} />
           {topics.map((topic) => (

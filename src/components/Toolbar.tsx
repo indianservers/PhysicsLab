@@ -132,7 +132,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
   };
 
   return (
-    <header className="flex min-h-14 items-center gap-2 border-b border-slate-300/60 bg-white/80 px-3 backdrop-blur dark:border-lab-line dark:bg-slate-950/70">
+    <header className="flex min-h-14 items-center gap-2 overflow-x-auto border-b border-slate-300/60 bg-white/80 px-3 backdrop-blur dark:border-lab-line dark:bg-slate-950/70">
       <RouterLink to="/" className="mr-2 whitespace-nowrap text-lg font-bold text-cyan-500">
         PhysicsLab 100
       </RouterLink>
@@ -186,6 +186,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
       </button>}
       {!compact && <RouterLink to="/video" className="tool-btn">{t("toolbar.video")}</RouterLink>}
       {!compact && <RouterLink to="/quantum" className="tool-btn">{t("toolbar.quantum")}</RouterLink>}
+      {!compact && <RouterLink to="/teacher" className="tool-btn">Teacher</RouterLink>}
       {!compact && <RouterLink to="/lms-config" className="tool-btn">{t("toolbar.lms")}</RouterLink>}
       {!compact && <RouterLink to="/help" className="tool-btn">{t("toolbar.help")}</RouterLink>}
       <input ref={inputRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importJson(event.target.files[0])} />

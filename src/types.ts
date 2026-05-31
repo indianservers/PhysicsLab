@@ -198,6 +198,12 @@ export interface ExperimentDefinition {
   category: string;
   difficulty: Difficulty;
   classLevel: string;
+  curriculumTags?: {
+    classes: number[];
+    unitIds: string[];
+    topicIds: string[];
+    domains: string[];
+  };
   aim: string;
   theory: string;
   apparatus: string[];

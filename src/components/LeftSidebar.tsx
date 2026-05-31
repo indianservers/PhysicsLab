@@ -6,6 +6,8 @@ import { coreFormulae } from "../lib/formulas";
 import { createObject, objectRegistry } from "../lib/objectRegistry";
 import { useLabStore } from "../store/useLabStore";
 import { PhysicsObjectInstance } from "../types";
+import { GuidePanel } from "./GuidePanel";
+import { guideForTool } from "../lib/guides";
 
 const topics = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics"];
 const tabs = ["Topics", "Objects", "Forces", "Instruments", "Graphs", "Experiments", "Formulas", "Quantum"];
@@ -39,6 +41,7 @@ export function LeftSidebar() {
           <h2 className="ui-title mt-1">{selected.name}</h2>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Focused controls for the selected object.</p>
         </div>
+        <GuidePanel guide={guideForTool(selected.name)} compact />
         <div className="space-y-3">
           {definition?.editableProperties.slice(0, 10).map((property) => {
             const value = selected[property.key as keyof PhysicsObjectInstance];
@@ -69,6 +72,9 @@ export function LeftSidebar() {
         ))}
       </div>
       <div className="min-h-0 flex-1 overflow-auto p-3">
+        <div className="mb-3">
+          <GuidePanel guide={guideForTool(`${tab} tool`)} compact />
+        </div>
         {tab === "Topics" && <TileLinks items={topics.map((topic) => ({ label: topic, href: `/topics/${topic.toLowerCase().replace(/\s+/g, "-")}` }))} />}
         {tab === "Objects" && (
           <div className="space-y-4">
