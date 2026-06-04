@@ -1,12 +1,20 @@
-import { useMemo } from "react";
+import { ReactNode, useMemo, useRef, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useLabStore } from "../store/useLabStore";
 import { ExperimentDefinition } from "../types";
 import { ExperimentLearningCoach } from "./ExperimentLearningCoach";
 import { PhysicsIcon } from "../lib/icons";
+import { Experiment3DAnimation, has3DAnimation } from "./Experiment3DAnimation";
+import { AnimationExplanationTimeline, AnimationMoment } from "./AnimationExplanationTimeline";
+import { FullscreenButton } from "./FullscreenButton";
+
+type ProjectileView = "timeline" | "three" | "trajectory" | "graphs";
 
 export function ProjectileExperiment({ experiment }: { experiment: ExperimentDefinition }) {
   const { projectile, updateProjectile } = useLabStore();
+  const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
+  const hasThreeD = has3DAnimation(experiment.id);
+  const [view, setView] = useState<ProjectileView>(hasThreeD ? "three" : "trajectory");
   const angleRad = (projectile.angle * Math.PI) / 180;
   const dragFactor = projectile.airResistance ? 0.86 : 1;
   const range = ((projectile.speed ** 2 * Math.sin(2 * angleRad)) / projectile.gravity) * dragFactor;
@@ -28,11 +36,17 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
     { label: "Gravity (m/s^2)", min: 1, max: 25, step: 0.1 },
   ];
   const outputs = projectileOutputs(projectile.speed, projectile.angle, projectile.gravity, projectile.airResistance);
+  const views: Array<{ id: ProjectileView; label: string; icon: Parameters<typeof PhysicsIcon>[0]["name"] }> = [
+    ...(hasThreeD ? [{ id: "three" as const, label: "3D", icon: "orbit" as const }] : []),
+    { id: "trajectory", label: "Trajectory", icon: "rocket" },
+    { id: "graphs", label: "Graphs", icon: "chart" },
+    { id: "timeline", label: "Timeline", icon: "step" },
+  ];
 
   return (
-    <div className="grid gap-4 xl:grid-cols-[380px_minmax(0,1fr)]">
-      <section className="panel min-h-0 p-4">
-        <h2 className="panel-title flex items-center gap-2"><PhysicsIcon name="rocket" className="h-5 w-5 text-cyan-500" />Guided Experiment</h2>
+    <div className="projectile-cockpit">
+      <section className="projectile-control-column">
+      <ProjectilePanel title="Guided Experiment" icon="rocket" className="panel min-h-0 p-4 projectile-control-panel">
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">{experiment.aim}</p>
         <div className="mt-5 space-y-4">
           <Slider label="Initial speed" unit="m/s" min={1} max={60} step={1} value={projectile.speed} onChange={(speed) => updateProjectile({ speed })} />
@@ -54,20 +68,43 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
             {projectile.speed.toFixed(1)}^2 x sin({(2 * projectile.angle).toFixed(0)} deg) / {projectile.gravity.toFixed(2)} = {range.toFixed(2)} m
           </p>
         </div>
-        <ExperimentLearningCoach
-          experiment={experiment}
-          controls={coachControls}
-          values={[projectile.speed, projectile.angle, projectile.gravity]}
-          outputs={outputs}
-          formula="R = u^2 sin(2 theta) / g"
-          onSetValues={(values) => updateProjectile({ speed: values[0], angle: values[1], gravity: values[2] })}
-          makeTrialOutputs={(values) => projectileOutputs(values[0], values[1], values[2], projectile.airResistance)}
-        />
+        <details className="projectile-coach-disclosure mt-4">
+          <summary>
+            <span className="inline-flex items-center gap-2"><PhysicsIcon name="teacher" className="h-4 w-4 text-cyan-500" />Easy learning mode</span>
+          </summary>
+          <ExperimentLearningCoach
+            experiment={experiment}
+            controls={coachControls}
+            values={[projectile.speed, projectile.angle, projectile.gravity]}
+            outputs={outputs}
+            formula="R = u^2 sin(2 theta) / g"
+            onSetValues={(values) => updateProjectile({ speed: values[0], angle: values[1], gravity: values[2] })}
+            makeTrialOutputs={(values) => projectileOutputs(values[0], values[1], values[2], projectile.airResistance)}
+          />
+        </details>
+      </ProjectilePanel>
       </section>
-      <section className="grid gap-4">
-        <div className="panel p-4">
-          <h2 className="panel-title flex items-center gap-2"><PhysicsIcon name="rocket" className="h-5 w-5 text-cyan-500" />Trajectory</h2>
-          <svg className="mt-3 h-72 w-full rounded bg-slate-950" viewBox="0 0 820 300" role="img" aria-label="Projectile trajectory">
+      <section className="projectile-stage-column">
+        <div className="projectile-stage-header">
+          <div>
+            <p className="ui-label">Live side panel</p>
+            <h2 className="text-xl font-black">Change controls, watch here</h2>
+          </div>
+          <div className="projectile-stage-tabs" aria-label="Projectile visualization views">
+            {views.map((item) => (
+              <button key={item.id} className={view === item.id ? "projectile-stage-tab projectile-stage-tab-active" : "projectile-stage-tab"} type="button" onClick={() => setView(item.id)}>
+                <PhysicsIcon name={item.icon} className="h-4 w-4" />
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="projectile-stage-stack">
+          {view === "timeline" && <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />}
+          {view === "three" && hasThreeD && <Experiment3DAnimation experiment={experiment} values={[projectile.speed, projectile.angle, projectile.gravity]} outputs={outputs} timelineTime={activeMoment?.time ?? null} fixedShell />}
+          {view === "trajectory" && (
+            <ProjectilePanel title="Trajectory" icon="rocket" className="panel p-4 projectile-stage-fill">
+          <svg className="projectile-trajectory-svg mt-3 w-full rounded bg-slate-950" viewBox="0 0 820 300" role="img" aria-label="Projectile trajectory">
             <defs>
               <pattern id="projectile-grid" width="40" height="40" patternUnits="userSpaceOnUse">
                 <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148,163,184,.18)" strokeWidth="1" />
@@ -89,10 +126,11 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
             <text x="42" y="34" fill="#e2e8f0" fontSize="14">Range {range.toFixed(2)} m - Height {maxHeight.toFixed(2)} m</text>
             <text x="42" y="56" fill="#94a3b8" fontSize="12">Increase speed for a longer arc; change angle to trade range and height.</text>
           </svg>
-        </div>
-        <div className="panel p-4">
-          <h2 className="panel-title flex items-center gap-2"><PhysicsIcon name="chart" className="h-5 w-5 text-cyan-500" />x-y, x-time, y-time Graphs</h2>
-          <div className="mt-3 h-72">
+        </ProjectilePanel>
+          )}
+          {view === "graphs" && (
+            <ProjectilePanel title="x-y, x-time, y-time Graphs" icon="chart" className="panel p-4 projectile-stage-fill">
+          <div className="projectile-graph-frame mt-3">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={points}>
                 <CartesianGrid stroke="rgba(148,163,184,0.18)" />
@@ -105,9 +143,27 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
               </LineChart>
             </ResponsiveContainer>
           </div>
+        </ProjectilePanel>
+          )}
         </div>
       </section>
     </div>
+  );
+}
+
+function ProjectilePanel({ title, icon, className, children }: { title: string; icon: Parameters<typeof PhysicsIcon>[0]["name"]; className: string; children: ReactNode }) {
+  const panelRef = useRef<HTMLDetailsElement>(null);
+  return (
+    <details ref={panelRef} className={`${className} projectile-disclosure fullscreen-target`} open>
+      <summary className="projectile-disclosure-summary">
+        <span className="panel-title flex items-center gap-2">
+          <PhysicsIcon name={icon} className="h-5 w-5 text-cyan-500" />
+          {title}
+        </span>
+        <FullscreenButton targetRef={panelRef} compact />
+      </summary>
+      <div className="projectile-disclosure-body">{children}</div>
+    </details>
   );
 }
 

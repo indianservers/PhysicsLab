@@ -536,6 +536,19 @@ function drawObject(ctx: CanvasRenderingContext2D, object: PhysicsObjectInstance
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
+      ctx.strokeStyle = "rgba(226,232,240,0.75)";
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(-w * 0.18, -h * 0.12);
+      ctx.lineTo(w * 0.18, h * 0.18);
+      ctx.moveTo(w * 0.18, -h * 0.1);
+      ctx.lineTo(w * 0.42, h * 0.26);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "10px sans-serif";
+      ctx.fillText(`n=${(object.refractiveIndex ?? 1.5).toFixed(2)}`, -w * 0.25, h * 0.18);
+      ctx.fillText("A", -4, h * 0.38);
     } else if (object.kind === "wave-source") {
       ctx.beginPath();
       ctx.arc(0, 0, object.radius ?? 18, 0, Math.PI * 2);

@@ -18,7 +18,9 @@ const stages: Array<{ id: GuidedStage; label: string; icon: PhysicsIconName }> =
 export function LearningPanel({ experiment }: { experiment: ExperimentDefinition }) {
   const [record, setRecord] = useState<LearningRecord>(() => getLearningRecord(experiment.id));
   const quiz = useMemo(() => generateQuiz(experiment), [experiment]);
-  const progress = progressPercent(record);
+  const completedStages = record.completedStages ?? [];
+  const quizAnswers = record.quizAnswers ?? {};
+  const progress = progressPercent({ ...record, completedStages, quizAnswers });
 
   useEffect(() => {
     setRecord(getLearningRecord(experiment.id));
@@ -31,15 +33,15 @@ export function LearningPanel({ experiment }: { experiment: ExperimentDefinition
   };
 
   const markStage = (stage: GuidedStage) => {
-    const next = completeStage(record, stage);
+    const next = completeStage({ ...record, completedStages }, stage);
     setRecord(next);
     saveLearningRecord(next);
   };
 
   const answerQuiz = (id: string, value: string) => {
-    const quizAnswers = { ...record.quizAnswers, [id]: value };
-    const quizScore = gradeQuiz(quiz, quizAnswers);
-    update({ quizAnswers, quizScore });
+    const nextQuizAnswers = { ...quizAnswers, [id]: value };
+    const quizScore = gradeQuiz(quiz, nextQuizAnswers);
+    update({ quizAnswers: nextQuizAnswers, quizScore });
   };
 
   const exportPortfolio = () => {
@@ -68,7 +70,7 @@ export function LearningPanel({ experiment }: { experiment: ExperimentDefinition
       <div className="mt-5 grid gap-3 md:grid-cols-6">
         {stages.map((stage) => {
           const active = record.currentStage === stage.id;
-          const done = record.completedStages.includes(stage.id);
+          const done = completedStages.includes(stage.id);
           return (
             <button key={stage.id} className={`${active ? "tab-active" : done ? "tab-btn border-cyan-400 text-cyan-500" : "tab-btn"} inline-flex items-center justify-center gap-2`} onClick={() => update({ currentStage: stage.id })}>
               <PhysicsIcon name={stage.icon} className="h-4 w-4" />
@@ -182,9 +184,9 @@ function StageContent({ experiment, record, quiz, onUpdate, onAnswer }: {
             <div key={item.id} className="rounded-md border border-slate-300/60 p-3 dark:border-lab-line">
               <div className="text-sm font-bold">{item.prompt}</div>
               <div className="mt-2 grid gap-2">
-                {item.options.map((option) => (
+                {(item.options ?? [item.answer]).map((option) => (
                   <label key={option} className="flex gap-2 text-sm">
-                    <input type="radio" name={`${experiment.id}-${item.id}`} checked={record.quizAnswers[item.id] === option} onChange={() => onAnswer(item.id, option)} />
+                    <input type="radio" name={`${experiment.id}-${item.id}`} checked={(record.quizAnswers ?? {})[item.id] === option} onChange={() => onAnswer(item.id, option)} />
                     <span>{option}</span>
                   </label>
                 ))}
@@ -200,7 +202,7 @@ function StageContent({ experiment, record, quiz, onUpdate, onAnswer }: {
     <div>
       <h3 className="flex items-center gap-2 font-black"><PhysicsIcon name="spark" className="h-5 w-5 text-cyan-500" />Mastery Snapshot</h3>
       <div className="mt-3 grid gap-3 md:grid-cols-3">
-        <Metric label="Stages done" value={`${record.completedStages.length}/${stages.length}`} />
+        <Metric label="Stages done" value={`${(record.completedStages ?? []).length}/${stages.length}`} />
         <Metric label="Quiz score" value={`${record.quizScore}%`} />
         <Metric label="Updated" value={new Date(record.updatedAt).toLocaleDateString()} />
       </div>

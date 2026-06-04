@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Component, ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HomePage } from "./pages/HomePage";
 import { WorkspacePage } from "./pages/WorkspacePage";
@@ -11,6 +11,8 @@ import { VideoAnalysisPage } from "./pages/VideoAnalysisPage";
 import { LMSConfigPage } from "./pages/LMSConfigPage";
 import { QuantumPage } from "./pages/QuantumPage";
 import { TeacherPage } from "./pages/TeacherPage";
+import { SolverPage } from "./pages/SolverPage";
+import { QuizPage } from "./pages/QuizPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement } from "./lib/xapi";
 
@@ -61,7 +63,9 @@ export default function App() {
           <Route path="/lab" element={<WorkspacePage mode="guided" />} />
           <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
           <Route path="/experiments" element={<ExperimentsPage />} />
-          <Route path="/experiments/:id" element={<ExperimentDetailPage />} />
+          <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />
+          <Route path="/solver" element={<SolverPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
           <Route path="/video" element={<VideoAnalysisPage />} />
           <Route path="/quantum" element={<QuantumPage />} />
           <Route path="/teacher" element={<TeacherPage />} />
@@ -78,4 +82,28 @@ export default function App() {
       </main>
     </div>
   );
+}
+
+class RouteErrorBoundary extends Component<{ children: ReactNode }, { message: string | null }> {
+  state = { message: null };
+
+  static getDerivedStateFromError(error: unknown) {
+    return { message: error instanceof Error ? error.message : "This lab view could not render." };
+  }
+
+  render() {
+    if (this.state.message) {
+      return (
+        <section className="mx-auto max-w-3xl p-6">
+          <div className="panel border-amber-300/60 p-5">
+            <p className="ui-label text-amber-600 dark:text-amber-200">Lab view recovered</p>
+            <h1 className="mt-2 text-2xl font-black">This experiment needs a refresh</h1>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{this.state.message}</p>
+            <a className="hero-btn-secondary mt-4 inline-flex" href="/experiments">Back to experiments</a>
+          </div>
+        </section>
+      );
+    }
+    return this.props.children;
+  }
 }

@@ -45,7 +45,7 @@ export function wavelengthToRgba(wavelength: number, alpha = 1) {
 
 function castSingleRay(ray: Ray, objects: OpticsObject[], maxBounces: number) {
   const paths: RayPath[] = [];
-  let current = ray;
+  let current = { ...ray, mediumN: 1 };
   for (let bounce = 0; bounce <= maxBounces && current.intensity > 0.02; bounce += 1) {
     const hit = nearestHit(current, objects);
     const end = hit ? hit.point : add(current.origin, scale(current.direction, 1600));
@@ -62,8 +62,17 @@ function castSingleRay(ray: Ray, objects: OpticsObject[], maxBounces: number) {
       current = { ...current, origin: add(hit.point, scale(refracted, 0.1)), direction: refracted, intensity: current.intensity * 0.92 };
     } else if (object.type === "prism") {
       const dispersion = (540 - current.wavelength) / 16000;
-      const refracted = rotate(current.direction, 0.12 + dispersion);
-      current = { ...current, origin: add(hit.point, scale(refracted, 0.1)), direction: refracted, intensity: current.intensity * 0.82 };
+      const prismIndex = object.refractiveIndex + dispersion;
+      const entering = current.mediumN <= 1.001;
+      const n1 = entering ? 1 : prismIndex;
+      const n2 = entering ? prismIndex : 1;
+      const refracted = refract(current.direction, hit.normal, n1, n2);
+      if (refracted) {
+        current = { ...current, mediumN: n2, origin: add(hit.point, scale(refracted, 0.1)), direction: refracted, intensity: current.intensity * 0.9 };
+      } else {
+        const reflected = reflect(current.direction, hit.normal);
+        current = { ...current, origin: add(hit.point, scale(reflected, 0.1)), direction: reflected, intensity: current.intensity * 0.86 };
+      }
     } else if (object.type === "surface") {
       const refracted = refract(current.direction, hit.normal, object.n1, object.n2);
       const direction = refracted ?? reflect(current.direction, hit.normal);
@@ -85,20 +94,38 @@ function nearestHit(ray: Ray, objects: OpticsObject[]) {
 }
 
 function intersectObject(ray: Ray, object: OpticsObject) {
-  const segment = objectSegment(object);
-  const hit = intersectRaySegment(ray.origin, ray.direction, segment.a, segment.b);
-  if (!hit) return undefined;
-  const tangent = normalize({ x: segment.b.x - segment.a.x, y: segment.b.y - segment.a.y });
-  let normal = normalize({ x: -tangent.y, y: tangent.x });
-  if (dot(normal, ray.direction) > 0) normal = scale(normal, -1);
-  return { point: hit.point, normal, distance: hit.distance };
+  const segments = objectSegments(object);
+  let best: { point: Vec2; normal: Vec2; distance: number } | undefined;
+  for (const segment of segments) {
+    const hit = intersectRaySegment(ray.origin, ray.direction, segment.a, segment.b);
+    if (!hit || hit.distance <= 0.001 || (best && hit.distance >= best.distance)) continue;
+    const tangent = normalize({ x: segment.b.x - segment.a.x, y: segment.b.y - segment.a.y });
+    let normal = normalize({ x: -tangent.y, y: tangent.x });
+    if (dot(normal, ray.direction) > 0) normal = scale(normal, -1);
+    best = { point: hit.point, normal, distance: hit.distance };
+  }
+  return best;
 }
 
-function objectSegment(object: OpticsObject) {
+function objectSegments(object: OpticsObject) {
+  if (object.type === "prism") {
+    const w = object.width;
+    const h = object.height;
+    const local = [
+      { x: 0, y: -h / 2 },
+      { x: w / 2, y: h / 2 },
+      { x: -w / 2, y: h / 2 },
+    ].map((point) => rotateAround(add(point, { x: object.x, y: object.y }), { x: object.x, y: object.y }, object.angle));
+    return [
+      { a: local[0], b: local[1] },
+      { a: local[1], b: local[2] },
+      { a: local[2], b: local[0] },
+    ];
+  }
   const length = object.type === "lens" ? object.height : object.width;
   const normalAngle = object.angle + Math.PI / 2;
   const half = { x: Math.cos(normalAngle) * length / 2, y: Math.sin(normalAngle) * length / 2 };
-  return { a: { x: object.x - half.x, y: object.y - half.y }, b: { x: object.x + half.x, y: object.y + half.y } };
+  return [{ a: { x: object.x - half.x, y: object.y - half.y }, b: { x: object.x + half.x, y: object.y + half.y } }];
 }
 
 function intersectRaySegment(origin: Vec2, direction: Vec2, a: Vec2, b: Vec2) {
@@ -128,6 +155,11 @@ function rotate(v: Vec2, angle: number) {
   const c = Math.cos(angle);
   const s = Math.sin(angle);
   return { x: v.x * c - v.y * s, y: v.x * s + v.y * c };
+}
+
+function rotateAround(point: Vec2, center: Vec2, angle: number) {
+  const rotated = rotate({ x: point.x - center.x, y: point.y - center.y }, angle);
+  return add(center, rotated);
 }
 
 function normalize(v: Vec2) {
