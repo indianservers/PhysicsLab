@@ -69,7 +69,7 @@ export function TeacherPage() {
             <p className="ui-label">Teacher mode</p>
             <h1 className="mt-2 text-3xl font-black">Assignments and Classroom Controls</h1>
             <p className="mt-2 max-w-3xl text-slate-500 dark:text-slate-300">
-              Create browser-local lab assignments, lock variables by instruction, require notebook/quiz completion, and export shareable assignment packs.
+              Create browser-local lab assignments, lock variables by instruction, require notebook/quiz completion, and share links that carry assignment data in the URL. No server account is required.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -80,6 +80,9 @@ export function TeacherPage() {
         </div>
         <div className="mt-5">
           <GuidePanel guide={teacherGuide} defaultOpen />
+        </div>
+        <div className="mt-4 rounded-md border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          Sharing is browser-only: copied assignment links include the assignment payload, and imported/exported packs are plain JSON files. Student progress remains on each student's device unless they export it.
         </div>
 
         <section className="mt-6 grid gap-5 lg:grid-cols-[420px_1fr]">

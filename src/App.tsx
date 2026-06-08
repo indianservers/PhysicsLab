@@ -14,7 +14,7 @@ import { TeacherPage } from "./pages/TeacherPage";
 import { SolverPage } from "./pages/SolverPage";
 import { QuizPage } from "./pages/QuizPage";
 import { useLabStore } from "./store/useLabStore";
-import { sendStatement } from "./lib/xapi";
+import { sendStatement, initXAPISync } from "./lib/xapi";
 
 const topics = [
   "mechanics",
@@ -38,6 +38,7 @@ export default function App() {
   const accessibility = useLabStore((state) => state.accessibility);
   useEffect(() => {
     sendStatement("launched", window.location.pathname);
+    initXAPISync();
     const update = () => setOnline(navigator.onLine);
     window.addEventListener("online", update);
     window.addEventListener("offline", update);
@@ -78,6 +79,8 @@ export default function App() {
           <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
           <Route path="/settings" element={<SimplePage title="Settings" />} />
           <Route path="/help" element={<SimplePage title="Help" />} />
+          <Route path="/privacy" element={<SimplePage title="Privacy" />} />
+          <Route path="/terms" element={<SimplePage title="Terms" />} />
         </Routes>
       </main>
     </div>

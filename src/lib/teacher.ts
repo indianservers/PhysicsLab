@@ -45,6 +45,19 @@ export function getAssignment(id: string | null) {
   return readAssignments()[id];
 }
 
+export function getAssignmentFromSearch(search: string) {
+  const params = new URLSearchParams(search);
+  const encoded = params.get("assignmentData");
+  if (encoded) {
+    const assignment = decodeAssignment(encoded);
+    if (assignment) {
+      saveAssignment(assignment);
+      return assignment;
+    }
+  }
+  return getAssignment(params.get("assignment"));
+}
+
 export function deleteAssignment(id: string) {
   const assignments = readAssignments();
   delete assignments[id];
@@ -52,7 +65,7 @@ export function deleteAssignment(id: string) {
 }
 
 export function assignmentSharePath(assignment: TeacherAssignment) {
-  return `/experiments/${assignment.experimentId}?assignment=${assignment.id}`;
+  return `/experiments/${assignment.experimentId}?assignment=${assignment.id}&assignmentData=${encodeAssignment(assignment)}`;
 }
 
 export function assignmentShareUrl(assignment: TeacherAssignment) {
@@ -100,5 +113,24 @@ function readAssignments(): Record<string, TeacherAssignment> {
     return JSON.parse(localStorage.getItem(KEY) ?? "{}") as Record<string, TeacherAssignment>;
   } catch {
     return {};
+  }
+}
+
+function encodeAssignment(assignment: TeacherAssignment) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(assignment))))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+function decodeAssignment(encoded: string): TeacherAssignment | undefined {
+  try {
+    const normalized = encoded.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+    const parsed = JSON.parse(decodeURIComponent(escape(atob(padded)))) as TeacherAssignment;
+    if (!parsed.id || !parsed.experimentId || !parsed.title) return undefined;
+    return parsed;
+  } catch {
+    return undefined;
   }
 }

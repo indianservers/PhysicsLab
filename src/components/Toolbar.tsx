@@ -224,6 +224,8 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
           <RouterLink to="/quantum" className={navClass("/quantum")} title={t("toolbar.quantum")}><PhysicsIcon name="atom" className="h-4 w-4" />{t("toolbar.quantum")}</RouterLink>
           <RouterLink to="/lms-config" className={navClass("/lms-config")} title={t("toolbar.lms")}><PhysicsIcon name="clipboard" className="h-4 w-4" />{t("toolbar.lms")}</RouterLink>
           <RouterLink to="/help" className={navClass("/help")} title={t("toolbar.help")}><PhysicsIcon name="book" className="h-4 w-4" />{t("toolbar.help")}</RouterLink>
+          <RouterLink to="/privacy" className={navClass("/privacy")} title="Privacy"><PhysicsIcon name="eye" className="h-4 w-4" />Privacy</RouterLink>
+          <RouterLink to="/terms" className={navClass("/terms")} title="Terms"><PhysicsIcon name="clipboard" className="h-4 w-4" />Terms</RouterLink>
         </ToolbarMenu>
       )}
       <input ref={inputRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importJson(event.target.files[0])} />

@@ -1,3 +1,5 @@
+import { flushXAPIQueue, queueXAPIStatement } from "./offlineDB";
+
 type Verb = "launched" | "attempted" | "completed" | "passed" | "interacted";
 
 export function sendStatement(verb: Verb, objectId: string, result?: Record<string, unknown>) {
@@ -17,9 +19,9 @@ export function sendStatement(verb: Verb, objectId: string, result?: Record<stri
     timestamp: new Date().toISOString(),
   };
   const endpoint = localStorage.getItem("xapi_endpoint");
-  const auth = localStorage.getItem("xapi_auth");
+  const auth = sessionStorage.getItem("xapi_auth") || localStorage.getItem("xapi_auth");
   if (!endpoint) {
-    console.info("xAPI statement", statement);
+    queueXAPIStatement(statement).catch(() => queueLocalFallback(statement));
     return;
   }
   fetch(endpoint, {
@@ -30,5 +32,28 @@ export function sendStatement(verb: Verb, objectId: string, result?: Record<stri
       ...(auth ? { Authorization: `Basic ${auth}` } : {}),
     },
     body: JSON.stringify(statement),
-  }).catch((error) => console.warn("xAPI send failed", error));
+  }).catch(() => {
+    queueXAPIStatement(statement).catch(() => queueLocalFallback(statement));
+  });
+}
+
+function queueLocalFallback(statement: Record<string, unknown>) {
+  try {
+    const key = "physicslab-xapi-local-queue-v1";
+    const current = JSON.parse(localStorage.getItem(key) ?? "[]") as unknown[];
+    localStorage.setItem(key, JSON.stringify([...current.slice(-99), statement]));
+  } catch {
+    // Storage full; analytics are optional.
+  }
+}
+
+export function initXAPISync() {
+  const tryFlush = () => {
+    const endpoint = localStorage.getItem("xapi_endpoint");
+    if (!endpoint) return;
+    const auth = sessionStorage.getItem("xapi_auth") || localStorage.getItem("xapi_auth");
+    flushXAPIQueue(endpoint, auth).catch(() => {});
+  };
+  window.addEventListener("online", tryFlush);
+  if (navigator.onLine) tryFlush();
 }

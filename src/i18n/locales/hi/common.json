@@ -1,19 +1,91 @@
 {
   "toolbar": {
-    "new": "नया", "open": "खोलें", "save": "सहेजें", "share": "साझा करें", "exportJson": "JSON निर्यात", "importJson": "JSON आयात", "exportPng": "PNG निर्यात", "exportPdf": "PDF निर्यात", "run": "चलाएँ", "pause": "रोकें", "step": "चरण", "reset": "रीसेट", "slowMotion": "धीमी गति", "speed": "गति", "gravity": "गुरुत्व", "air": "वायु", "theme": "थीम", "video": "वीडियो विश्लेषण", "quantum": "क्वांटम", "lms": "LMS", "help": "सहायता", "install": "ऐप इंस्टॉल करें", "audio": "ध्वनि", "volume": "आवाज़"
+    "new": "\u0928\u092f\u093e",
+    "open": "\u0916\u094b\u0932\u0947\u0902",
+    "save": "\u0938\u0939\u0947\u091c\u0947\u0902",
+    "share": "\u0938\u093e\u091d\u093e \u0915\u0930\u0947\u0902",
+    "exportJson": "JSON \u0928\u093f\u0930\u094d\u092f\u093e\u0924",
+    "importJson": "JSON \u0906\u092f\u093e\u0924",
+    "exportPng": "PNG \u0928\u093f\u0930\u094d\u092f\u093e\u0924",
+    "exportPdf": "PDF \u0928\u093f\u0930\u094d\u092f\u093e\u0924",
+    "run": "\u091a\u0932\u093e\u090f\u0902",
+    "pause": "\u0930\u094b\u0915\u0947\u0902",
+    "step": "\u091a\u0930\u0923",
+    "reset": "\u0930\u0940\u0938\u0947\u091f",
+    "slowMotion": "\u0927\u0940\u092e\u0940 \u0917\u0924\u093f",
+    "speed": "\u0917\u0924\u093f",
+    "gravity": "\u0917\u0941\u0930\u0941\u0924\u094d\u0935",
+    "air": "\u0935\u093e\u092f\u0941",
+    "theme": "\u0925\u0940\u092e",
+    "video": "\u0935\u0940\u0921\u093f\u092f\u094b \u0935\u093f\u0936\u094d\u0932\u0947\u0937\u0923",
+    "quantum": "\u0915\u094d\u0935\u093e\u0902\u091f\u092e",
+    "lms": "LMS",
+    "help": "\u0938\u0939\u093e\u092f\u0924\u093e",
+    "install": "\u090f\u092a \u0907\u0902\u0938\u094d\u091f\u0949\u0932 \u0915\u0930\u0947\u0902",
+    "audio": "\u0927\u094d\u0935\u0928\u093f",
+    "volume": "\u0906\u0935\u093e\u091c"
   },
   "sidebar": {
-    "topics": "विषय", "objects": "वस्तुएँ", "forces": "बल", "instruments": "उपकरण", "graphs": "ग्राफ़", "experiments": "प्रयोग", "formulas": "सूत्र", "quantum": "क्वांटम", "circuits": "परिपथ",
-    "categories": { "Mechanics": "यांत्रिकी", "Waves": "तरंगें", "Optics": "प्रकाशिकी", "Electricity": "विद्युत", "Magnetism": "चुंबकत्व", "Thermodynamics": "ऊष्मागतिकी", "Fluid Mechanics": "द्रव यांत्रिकी", "Modern Physics": "आधुनिक भौतिकी", "Oscillations": "दोलन", "Circuits": "परिपथ" }
+    "topics": "\u0935\u093f\u0937\u092f",
+    "objects": "\u0935\u0938\u094d\u0924\u0941\u090f\u0902",
+    "forces": "\u092c\u0932",
+    "instruments": "\u0909\u092a\u0915\u0930\u0923",
+    "graphs": "\u0917\u094d\u0930\u093e\u092b",
+    "experiments": "\u092a\u094d\u0930\u092f\u094b\u0917",
+    "formulas": "\u0938\u0942\u0924\u094d\u0930",
+    "quantum": "\u0915\u094d\u0935\u093e\u0902\u091f\u092e",
+    "circuits": "\u092a\u0930\u093f\u092a\u0925",
+    "categories": {
+      "Mechanics": "\u092f\u093e\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+      "Waves": "\u0924\u0930\u0902\u0917\u0947\u0902",
+      "Optics": "\u092a\u094d\u0930\u0915\u093e\u0936\u093f\u0915\u0940",
+      "Electricity": "\u0935\u093f\u0926\u094d\u092f\u0941\u0924",
+      "Magnetism": "\u091a\u0941\u0902\u092c\u0915\u0924\u094d\u0935",
+      "Thermodynamics": "\u090a\u0937\u094d\u092e\u093e\u0917\u0924\u093f\u0915\u0940",
+      "Fluid Mechanics": "\u0926\u094d\u0930\u0935 \u092f\u093e\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+      "Modern Physics": "\u0906\u0927\u0941\u0928\u093f\u0915 \u092d\u094c\u0924\u093f\u0915\u0940",
+      "Oscillations": "\u0926\u094b\u0932\u0928",
+      "Circuits": "\u092a\u0930\u093f\u092a\u0925"
+    }
   },
   "bottom": {
-    "graphs": "ग्राफ़", "dataTable": "डेटा तालिका", "formula": "सूत्र", "instruments": "उपकरण", "errors": "त्रुटियाँ", "steps": "चरण", "questions": "प्रश्न", "labReport": "लैब रिपोर्ट", "log": "लॉग", "csv": "CSV", "json": "JSON", "warnings": "चेतावनियाँ", "noSelection": "गुण देखने के लिए कोई वस्तु चयनित नहीं है।", "badMass": "वस्तु का द्रव्यमान शून्य या ऋणात्मक है।", "outside": "चयनित वस्तु दृश्य क्षेत्र से बाहर है।", "noData": "अभी कोई डेटा रिकॉर्ड नहीं हुआ है।"
+    "graphs": "\u0917\u094d\u0930\u093e\u092b",
+    "dataTable": "\u0921\u0947\u091f\u093e \u0924\u093e\u0932\u093f\u0915\u093e",
+    "formula": "\u0938\u0942\u0924\u094d\u0930",
+    "instruments": "\u0909\u092a\u0915\u0930\u0923",
+    "errors": "\u0924\u094d\u0930\u0941\u091f\u093f\u092f\u093e\u0902",
+    "steps": "\u091a\u0930\u0923",
+    "questions": "\u092a\u094d\u0930\u0936\u094d\u0928",
+    "labReport": "\u0932\u0948\u092c \u0930\u093f\u092a\u094b\u0930\u094d\u091f",
+    "log": "\u0932\u0949\u0917",
+    "csv": "CSV",
+    "json": "JSON",
+    "warnings": "\u091a\u0947\u0924\u093e\u0935\u0928\u093f\u092f\u093e\u0902",
+    "noSelection": "\u0917\u0941\u0923 \u0926\u0947\u0916\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0915\u094b\u0908 \u0935\u0938\u094d\u0924\u0941 \u091a\u092f\u0928\u093f\u0924 \u0928\u0939\u0940\u0902 \u0939\u0948.",
+    "badMass": "\u0935\u0938\u094d\u0924\u0941 \u0915\u093e \u0926\u094d\u0930\u0935\u094d\u092f\u092e\u093e\u0928 \u0936\u0942\u0928\u094d\u092f \u092f\u093e \u090b\u0923\u093e\u0924\u094d\u092e\u0915 \u0939\u0948.",
+    "outside": "\u091a\u092f\u0928\u093f\u0924 \u0935\u0938\u094d\u0924\u0941 \u0926\u0943\u0936\u094d\u092f \u0915\u094d\u0937\u0947\u0924\u094d\u0930 \u0938\u0947 \u092c\u093e\u0939\u0930 \u0939\u0948.",
+    "noData": "\u0905\u092d\u0940 \u0915\u094b\u0908 \u0921\u0947\u091f\u093e \u0930\u093f\u0915\u0949\u0930\u094d\u0921 \u0928\u0939\u0940\u0902 \u0939\u0941\u0906 \u0939\u0948."
   },
   "experiments": {
-    "Projectile Motion": "प्रक्षेप्य गति", "Wave Lab": "तरंग प्रयोगशाला", "Single Slit Diffraction": "एकल छिद्र विवर्तन", "Buoyancy": "उत्प्लावन", "Chaos Demo": "कैओस डेमो", "Chladni Plate": "क्लाडनी प्लेट"
+    "Projectile Motion": "\u092a\u094d\u0930\u0915\u094d\u0937\u0947\u092a\u094d\u092f \u0917\u0924\u093f",
+    "Wave Lab": "\u0924\u0930\u0902\u0917 \u092a\u094d\u0930\u092f\u094b\u0917\u0936\u093e\u0932\u093e",
+    "Single Slit Diffraction": "\u090f\u0915\u0932 \u091b\u093f\u0926\u094d\u0930 \u0935\u093f\u0935\u0930\u094d\u0924\u0928",
+    "Buoyancy": "\u0909\u0924\u094d\u092a\u094d\u0932\u093e\u0935\u0928",
+    "Chaos Demo": "\u0905\u0930\u093e\u091c\u0915\u0924\u093e \u0921\u0947\u092e\u094b",
+    "Chladni Plate": "\u0915\u094d\u0932\u093e\u0921\u0928\u0940 \u092a\u094d\u0932\u0947\u091f"
   },
-  "difficulty": { "Beginner": "आरंभिक", "Intermediate": "मध्यम", "Advanced": "उन्नत" },
-  "toast": { "linkCopied": "लिंक कॉपी हो गया!" },
-  "settings": { "language": "भाषा", "english": "English", "hindi": "हिन्दी" },
-  "offline": "आप ऑफ़लाइन हैं। सहेजी गई सामग्री और कैश किए गए लैब उपलब्ध रहेंगे।"
+  "difficulty": {
+    "Beginner": "\u0906\u0930\u0902\u092d\u093f\u0915",
+    "Intermediate": "\u092e\u0927\u094d\u092f\u092e",
+    "Advanced": "\u0909\u0928\u094d\u0928\u0924"
+  },
+  "toast": {
+    "linkCopied": "\u0932\u093f\u0902\u0915 \u0915\u0949\u092a\u0940 \u0939\u094b \u0917\u092f\u093e!"
+  },
+  "settings": {
+    "language": "\u092d\u093e\u0937\u093e",
+    "english": "English",
+    "hindi": "\u0939\u093f\u0928\u094d\u0926\u0940"
+  },
+  "offline": "\u0906\u092a \u0911\u092b\u0932\u093e\u0907\u0928 \u0939\u0948\u0902. \u0938\u0939\u0947\u091c\u0940 \u0917\u0908 \u0938\u093e\u092e\u0917\u094d\u0930\u0940 \u0914\u0930 \u0915\u0948\u0936 \u0915\u093f\u090f \u0917\u090f \u0932\u0948\u092c \u0909\u092a\u0932\u092c\u094d\u0927 \u0930\u0939\u0947\u0902\u0917\u0947."
 }

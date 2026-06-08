@@ -161,6 +161,18 @@ export function HomePage() {
           </div>
         </div>
       </section>
+      <section className="mx-auto max-w-7xl px-5 pb-12">
+        <div className="panel flex flex-wrap items-center justify-between gap-3 p-4">
+          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+            Pure browser mode: projects, assignments, quiz progress, and learning records stay on this device unless exported or shared by link/file.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link className="tool-btn" to="/privacy">Privacy</Link>
+            <Link className="tool-btn" to="/terms">Terms</Link>
+            <Link className="tool-btn" to="/help">Help</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

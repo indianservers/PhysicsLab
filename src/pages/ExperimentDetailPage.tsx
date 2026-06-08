@@ -4,7 +4,7 @@ import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { ProjectileExperiment } from "../components/ProjectileExperiment";
 import { LearningPanel } from "../components/LearningPanel";
-import { getAssignment } from "../lib/teacher";
+import { getAssignmentFromSearch } from "../lib/teacher";
 import { GuidedVisualization } from "../components/GuidedVisualization";
 import { iconForExperiment, PhysicsIcon } from "../lib/icons";
 import { GuidePanel } from "../components/GuidePanel";
@@ -22,7 +22,7 @@ export function ExperimentDetailPage() {
   const { id } = useParams();
   const location = useLocation();
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
-  const assignment = getAssignment(new URLSearchParams(location.search).get("assignment"));
+  const assignment = getAssignmentFromSearch(location.search);
   useEffect(() => {
     if (!location.hash) return undefined;
     const targetId = location.hash.slice(1);
@@ -121,7 +121,7 @@ function LabCommandStrip({ experiment }: { experiment: typeof experiments[number
   );
 }
 
-function AssignmentBanner({ assignment }: { assignment: NonNullable<ReturnType<typeof getAssignment>> }) {
+function AssignmentBanner({ assignment }: { assignment: NonNullable<ReturnType<typeof getAssignmentFromSearch>> }) {
   return (
     <section className="panel mb-4 border-cyan-400/60 p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
