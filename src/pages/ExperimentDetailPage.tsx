@@ -12,7 +12,6 @@ import { guideForExperiment } from "../lib/guides";
 import { ExperimentLearningCoach } from "../components/ExperimentLearningCoach";
 import { CoreLearningToolkit } from "../components/CoreLearningToolkit";
 import { Experiment3DAnimation, has3DAnimation } from "../components/Experiment3DAnimation";
-import { UIEnhancementPanel } from "../components/UIEnhancementPanel";
 import { FormulaGlossaryPanel, PlotSvg, symbolsFromText, UnitConverterPanel } from "../components/LearningTools";
 import { AnimationExplanationTimeline, AnimationMoment } from "../components/AnimationExplanationTimeline";
 import { FullscreenButton } from "../components/FullscreenButton";
@@ -339,7 +338,6 @@ function LabReferenceStack({ experiment, values }: { experiment: typeof experime
           {experiment.commonMistakes.slice(0, 3).map((mistake) => <li key={mistake}>{mistake}</li>)}
         </ul>
       </CollapsibleSection>
-      <UIEnhancementPanel compact />
       <Link to="/lab" className="hero-btn-secondary mt-4 inline-flex items-center gap-2" title="Open this concept in the full drag-and-drop physics canvas"><PhysicsIcon name="flask" className="h-4 w-4" />Full canvas</Link>
     </div>
   );

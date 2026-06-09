@@ -266,40 +266,44 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
         <span className={theme === "dark" ? "theme-orb dark" : "theme-orb"}><PhysicsIcon name={theme === "dark" ? "moon" : "sun"} className="h-4 w-4" /></span>
       </button>}
       {!compact && (
-        <ToolbarMenu icon="menu" label="Menu" tooltip="Simple navigation with all pages and nested sections">
+        <ToolbarMenu icon="menu" label="Menu" tooltip="Open app navigation" variant="mega">
           <div className="toolbar-menu-section">
-            <span className="toolbar-menu-label">Main</span>
+            <span className="toolbar-menu-label">Core</span>
             {primaryNavItems.map((item) => (
               <NavLinkItem key={item.path} item={item} navClass={navClass} />
             ))}
           </div>
-          <ToolbarSubMenu icon="book" label="Learn" tooltip="Topics, quiz, and guided study">
+          <div className="toolbar-menu-section">
+            <span className="toolbar-menu-label">Study</span>
             <NavLinkItem item={{ label: "Physics Syllabus", path: "/syllabus", icon: "book" }} navClass={navClass} />
             <NavLinkItem item={{ label: "Concept Library", path: "/concepts", icon: "spark" }} navClass={navClass} />
             <NavLinkItem item={{ label: "Student Roadmap", path: "/roadmap", icon: "compass" }} navClass={navClass} />
             <NavLinkItem item={{ label: "All Topics", path: "/topics", icon: "book" }} navClass={navClass} />
-            <NavLinkItem item={{ label: "Quiz", path: "/quiz", icon: "check" }} navClass={navClass} />
-            <ToolbarSubMenu icon="book" label="Topic Chapters" tooltip="Open a specific physics topic">
+            <NavLinkItem item={{ label: "Quiz Practice", path: "/quiz", icon: "check" }} navClass={navClass} />
+          </div>
+          <div className="toolbar-menu-section toolbar-menu-section-wide">
+            <span className="toolbar-menu-label">Topics</span>
+            <div className="toolbar-topic-grid">
               {topicNavItems.map((item) => (
                 <NavLinkItem key={item.path} item={item} navClass={navClass} />
               ))}
-            </ToolbarSubMenu>
-          </ToolbarSubMenu>
-          <ToolbarSubMenu icon="compass" label="Lab Tools" tooltip="Simulator, analysis, quantum, graphs, and projects">
+            </div>
+          </div>
+          <div className="toolbar-menu-section">
+            <span className="toolbar-menu-label">Tools</span>
             {toolNavItems.map((item) => (
               <NavLinkItem key={item.path} item={item} navClass={navClass} />
             ))}
-          </ToolbarSubMenu>
-          <ToolbarSubMenu icon="settings" label="Admin" tooltip="Configuration, help, and app documents">
+          </div>
+          <div className="toolbar-menu-section">
+            <span className="toolbar-menu-label">Manage</span>
             {adminNavItems.map((item) => (
               <NavLinkItem key={item.path} item={item} navClass={navClass} />
             ))}
-            <ToolbarSubMenu icon="clipboard" label="Documents" tooltip="Privacy and terms">
-              {legalNavItems.map((item) => (
-                <NavLinkItem key={item.path} item={item} navClass={navClass} />
-              ))}
-            </ToolbarSubMenu>
-          </ToolbarSubMenu>
+            {legalNavItems.map((item) => (
+              <NavLinkItem key={item.path} item={item} navClass={navClass} />
+            ))}
+          </div>
         </ToolbarMenu>
       )}
       <input ref={inputRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importJson(event.target.files[0])} />
@@ -328,9 +332,9 @@ function ToolbarAction({ icon, label, tooltip, onClick }: { icon: Parameters<typ
   );
 }
 
-function ToolbarMenu({ icon, label, tooltip, children }: { icon: Parameters<typeof PhysicsIcon>[0]["name"]; label: string; tooltip: string; children: ReactNode }) {
+function ToolbarMenu({ icon, label, tooltip, children, variant = "default" }: { icon: Parameters<typeof PhysicsIcon>[0]["name"]; label: string; tooltip: string; children: ReactNode; variant?: "default" | "mega" }) {
   return (
-    <details className="toolbar-menu">
+    <details className={variant === "mega" ? "toolbar-menu toolbar-menu-mega" : "toolbar-menu"}>
       <summary title={tooltip} data-tooltip={tooltip}>
         <PhysicsIcon name={icon} className="h-4 w-4" />
         <span>{label}</span>

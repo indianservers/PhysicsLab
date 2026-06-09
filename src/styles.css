@@ -87,20 +87,23 @@ body {
 
 @layer components {
   .app-toolbar {
-    @apply sticky top-0 z-50 flex min-h-14 flex-wrap items-center gap-2 overflow-visible border-b border-slate-300/60 bg-white/90 px-3 backdrop-blur-xl dark:border-lab-line dark:bg-slate-950/90;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    @apply sticky top-0 z-50 flex min-h-14 flex-wrap items-center gap-2 overflow-visible border-b border-slate-200 bg-white/95 px-3 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/95;
+    color: #334155;
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04), 0 12px 30px rgba(15, 23, 42, 0.06);
   }
 
   .brand-mark {
-    @apply mr-2 inline-flex items-center gap-2 whitespace-nowrap rounded-md px-2 py-1 text-lg font-black text-cyan-500 transition hover:bg-cyan-400/10;
+    @apply mr-2 inline-flex items-center gap-2 whitespace-nowrap rounded-md px-2 py-1 text-lg font-black transition hover:bg-slate-100 dark:hover:bg-slate-900;
+    color: #0f766e;
   }
 
   .nav-chip {
-    @apply inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm font-bold text-slate-600 transition hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-500 dark:text-slate-300;
+    @apply inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm font-bold transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-900 dark:hover:text-white;
+    color: #475569;
   }
 
   .nav-chip-active {
-    @apply border-cyan-400/60 bg-cyan-400/15 text-cyan-600 dark:text-cyan-300;
+    @apply border-teal-200 bg-teal-50 text-teal-800 shadow-sm dark:border-teal-400/30 dark:bg-teal-400/10 dark:text-teal-200;
   }
 
   .page-hero {
@@ -589,11 +592,11 @@ body {
   }
 
   .tool-btn {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-slate-300/70 bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-cyan-400 hover:text-cyan-500 dark:border-lab-line dark:bg-slate-900/80 dark:text-slate-200;
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-slate-300/70 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800;
   }
 
   .tool-btn-primary {
-    @apply rounded-md bg-cyan-400 px-3 py-1.5 text-sm font-black text-slate-950 transition hover:bg-cyan-300;
+    @apply rounded-md bg-teal-500 px-3 py-1.5 text-sm font-black text-white shadow-sm transition hover:bg-teal-400;
   }
 
   .fullscreen-btn {
@@ -637,11 +640,11 @@ body {
   }
 
   .toolbar-field {
-    @apply hidden items-center gap-2 rounded-md border border-slate-300/70 px-2 py-1 text-xs text-slate-600 dark:border-lab-line dark:text-slate-300 md:flex;
+    @apply hidden items-center gap-2 rounded-md border border-slate-300/70 bg-white px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 md:flex;
   }
 
   .toolbar-field-menu {
-    @apply flex w-full justify-between bg-slate-100 dark:bg-slate-900/80;
+    @apply flex w-full justify-between bg-slate-50 shadow-none dark:bg-slate-900/80;
   }
 
   .toolbar-menu {
@@ -649,7 +652,7 @@ body {
   }
 
   .toolbar-menu summary {
-    @apply inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md border border-slate-300/70 bg-slate-100 px-3 py-1.5 text-sm font-black text-slate-700 transition hover:-translate-y-0.5 hover:border-cyan-400 hover:text-cyan-500 dark:border-lab-line dark:bg-slate-900/80 dark:text-slate-200;
+    @apply inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md border border-slate-300/70 bg-white px-3 py-1.5 text-sm font-black text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800;
   }
 
   .toolbar-menu summary::-webkit-details-marker {
@@ -670,7 +673,8 @@ body {
   }
 
   .toolbar-menu-panel {
-    @apply absolute right-0 top-[calc(100%+8px)] z-50 grid min-w-64 gap-2 rounded-lg border border-slate-300/70 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-lab-line dark:bg-slate-950/95;
+    @apply absolute right-0 top-[calc(100%+8px)] z-50 grid min-w-64 gap-2 rounded-lg border border-slate-200 bg-white p-2 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-950;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.18);
   }
 
   .toolbar-menu:not([open]) .toolbar-menu-panel {
@@ -679,15 +683,34 @@ body {
 
   .toolbar-menu-panel .nav-chip,
   .toolbar-menu-panel .tool-btn {
-    @apply w-full justify-start;
+    @apply w-full justify-start shadow-none;
   }
 
   .toolbar-menu-section {
-    @apply grid gap-1 border-b border-slate-300/60 pb-2 dark:border-lab-line;
+    @apply grid gap-1 border-b border-slate-200 pb-2 dark:border-slate-800;
   }
 
   .toolbar-menu-label {
-    @apply px-2 text-[10px] font-black uppercase tracking-widest text-slate-400;
+    @apply px-2 pb-1 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400;
+  }
+
+  .toolbar-menu-mega .toolbar-menu-panel {
+    @apply right-0 w-[min(860px,calc(100vw-24px))] grid-cols-[1fr_1fr_1.55fr] gap-3 p-3;
+    align-items: start;
+  }
+
+  .toolbar-menu-mega .toolbar-menu-section {
+    @apply rounded-md border border-slate-200 bg-slate-50/70 p-2 dark:border-slate-800 dark:bg-slate-900/45;
+    align-content: start;
+  }
+
+  .toolbar-menu-mega .toolbar-menu-section-wide {
+    @apply row-span-2;
+  }
+
+  .toolbar-topic-grid {
+    @apply grid gap-1 sm:grid-cols-2;
+    align-content: start;
   }
 
   .toolbar-submenu {
@@ -695,7 +718,7 @@ body {
   }
 
   .toolbar-submenu summary {
-    @apply flex w-full cursor-pointer list-none items-center gap-1.5 rounded-md border border-slate-300/70 bg-slate-100 px-3 py-1.5 text-sm font-black text-slate-700 transition hover:border-cyan-400 hover:text-cyan-500 dark:border-lab-line dark:bg-slate-900/80 dark:text-slate-200;
+    @apply flex w-full cursor-pointer list-none items-center gap-1.5 rounded-md border border-slate-300/70 bg-white px-3 py-1.5 text-sm font-black text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800;
   }
 
   .toolbar-submenu summary::-webkit-details-marker {
@@ -713,7 +736,7 @@ body {
   }
 
   .toolbar-submenu-panel {
-    @apply absolute right-[calc(100%+8px)] top-0 z-50 grid min-w-64 gap-1 rounded-lg border border-slate-300/70 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-lab-line dark:bg-slate-950/95;
+    @apply absolute right-[calc(100%+8px)] top-0 z-50 grid min-w-64 gap-1 rounded-lg border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-950/95;
   }
 
   .toolbar-submenu-panel .nav-chip {
@@ -734,6 +757,10 @@ body {
   @media (max-width: 767px) {
     .toolbar-menu-panel {
       @apply fixed left-3 right-3 top-16 max-h-[70vh] overflow-auto;
+    }
+
+    .toolbar-menu-mega .toolbar-menu-panel {
+      @apply w-auto grid-cols-1;
     }
 
     .toolbar-submenu-panel {
@@ -876,19 +903,114 @@ body {
   }
 
   .play-toggle {
-    @apply flex items-center gap-2 rounded-md bg-cyan-400 px-3 py-1.5 text-sm font-black text-slate-950 transition hover:bg-cyan-300;
+    @apply flex items-center gap-2 rounded-md bg-teal-500 px-3 py-1.5 text-sm font-black text-white shadow-sm transition hover:bg-teal-400;
   }
 
   .speed-chip {
-    @apply rounded-full border border-cyan-400/50 bg-cyan-400/10 px-2.5 py-1 text-xs font-black text-cyan-500 transition hover:bg-cyan-400/20;
+    @apply rounded-full border border-teal-300 bg-teal-50 px-2.5 py-1 text-xs font-black text-teal-700 transition hover:bg-teal-100 dark:border-teal-400/35 dark:bg-teal-400/10 dark:text-teal-200;
   }
 
   .theme-toggle {
-    @apply rounded-full border border-slate-300/70 bg-slate-100 px-2 py-1 text-xs font-bold text-slate-700 transition dark:border-lab-line dark:bg-slate-900/80 dark:text-slate-200;
+    @apply rounded-full border border-slate-300/70 bg-white px-2 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200;
   }
 
   .metric-card {
     @apply rounded-md border border-slate-300/60 bg-slate-100 p-3 dark:border-lab-line dark:bg-slate-900/70;
+  }
+
+  .solver-page {
+    @apply pb-0;
+  }
+
+  .solver-hero {
+    @apply px-4 py-3;
+  }
+
+  .solver-title {
+    @apply mt-1 truncate text-3xl font-black md:text-4xl;
+  }
+
+  .solver-subtitle {
+    @apply mt-2 max-w-4xl text-sm font-semibold leading-relaxed text-slate-600 dark:text-slate-300;
+  }
+
+  .solver-metric-grid {
+    @apply grid min-w-72 grid-cols-4 gap-2;
+  }
+
+  .solver-metric-grid .metric-card {
+    @apply px-3 py-2;
+  }
+
+  .solver-metric-grid .metric-card .ui-label {
+    @apply text-[10px];
+  }
+
+  .solver-metric-grid .metric-card .text-2xl {
+    @apply text-xl;
+  }
+
+  .solver-chip-row {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .solver-filter-bar {
+    @apply rounded-lg border border-slate-300/70 bg-white/95 p-3 shadow-sm dark:border-lab-line dark:bg-slate-950/90;
+  }
+
+  .solver-filter-footer {
+    @apply mt-2 flex min-w-0 flex-wrap items-center gap-2;
+  }
+
+  .solver-practice-shell {
+    @apply grid min-h-0 gap-3;
+  }
+
+  .solver-results-grid {
+    @apply grid min-h-0 gap-3 lg:grid-cols-[300px_minmax(0,1fr)];
+  }
+
+  .solver-sidebar {
+    @apply min-h-0;
+  }
+
+  .solver-category-panel {
+    @apply p-3;
+  }
+
+  .solver-subcategory-card {
+    @apply rounded-lg border border-slate-300/70 bg-slate-50 p-3 dark:border-lab-line dark:bg-slate-900/70;
+  }
+
+  .solver-question-card {
+    @apply rounded-md border border-slate-300/70 bg-white p-3 dark:border-slate-700 dark:bg-slate-950/55;
+  }
+
+  @media (min-width: 1024px) {
+    .solver-page .desktop-tabs {
+      @apply mt-2;
+    }
+
+    .solver-page .desktop-tab-panel {
+      height: calc(100vh - 18.6rem);
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    .solver-practice-shell {
+      height: 100%;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .solver-results-grid {
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .solver-metric-grid {
+      @apply min-w-0 grid-cols-2;
+    }
   }
 
   .quiz-hero {
@@ -896,6 +1018,31 @@ body {
       linear-gradient(135deg, rgba(34, 211, 238, 0.12), transparent 35%),
       linear-gradient(315deg, rgba(16, 185, 129, 0.12), transparent 32%),
       rgba(255, 255, 255, 0.92);
+  }
+
+  .quiz-hero,
+  .dark .quiz-hero {
+    color: #f8fafc;
+  }
+
+  .quiz-hero .ui-label {
+    color: #93c5fd;
+  }
+
+  .quiz-hero h1 {
+    color: #f8fafc;
+  }
+
+  .quiz-hero p {
+    color: #cbd5e1;
+  }
+
+  .quiz-hero .metric-card {
+    @apply bg-white/95 text-slate-900 dark:bg-white/95 dark:text-slate-900;
+  }
+
+  .quiz-hero .metric-card .ui-label {
+    color: #475569;
   }
 
   .dark .quiz-hero {
@@ -1651,15 +1798,15 @@ body {
 
 .onboarding-layer {
   position: absolute;
-  inset: 0;
+  left: 1rem;
+  bottom: 1rem;
   z-index: 70;
   pointer-events: none;
-  background: rgba(2, 6, 23, 0.24);
 }
 
 .onboarding-tip {
-  position: absolute;
-  max-width: 260px;
+  position: relative;
+  max-width: 280px;
   border-radius: 12px;
   border: 1px solid rgba(34, 211, 238, 0.45);
   background: rgba(15, 23, 42, 0.94);
@@ -1671,18 +1818,12 @@ body {
 }
 
 .onboarding-tip::after {
-  content: "";
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 2px solid #22d3ee;
-  animation: pulse-target 1.2s infinite;
+  display: none;
 }
 
 .onboarding-tip.left {
-  left: 24px;
-  top: 120px;
+  left: auto;
+  top: auto;
 }
 
 .onboarding-tip.left::after {
@@ -1691,8 +1832,8 @@ body {
 }
 
 .onboarding-tip.play {
-  left: 46%;
-  top: 80px;
+  left: auto;
+  top: auto;
 }
 
 .onboarding-tip.play::after {
@@ -1701,8 +1842,8 @@ body {
 }
 
 .onboarding-tip.graph {
-  right: 360px;
-  bottom: 90px;
+  right: auto;
+  bottom: auto;
 }
 
 .onboarding-tip.graph::after {
@@ -1711,8 +1852,8 @@ body {
 }
 
 .onboarding-tip.done {
-  right: 340px;
-  top: 120px;
+  right: auto;
+  top: auto;
 }
 
 @keyframes pulse-target {

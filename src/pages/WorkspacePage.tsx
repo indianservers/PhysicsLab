@@ -393,12 +393,11 @@ function Onboarding({ step, onDone }: { step: number; onDone: () => void }) {
   return (
     <div className="onboarding-layer">
       <div className={className}>
-        <div>{text}</div>
-        {step === 3 && (
-          <button className="tool-btn mt-2" onClick={onDone}>
-            Finish
-          </button>
-        )}
+        <div className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Quick start</div>
+        <div className="mt-1">{text}</div>
+        <button className="tool-btn mt-3 w-full justify-center" onClick={onDone}>
+          {step === 3 ? "Finish" : "Skip guide"}
+        </button>
       </div>
     </div>
   );

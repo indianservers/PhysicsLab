@@ -65,24 +65,24 @@ export function SolverPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="desktop-page">
-        <section className="page-hero">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
+      <div id="content" className="desktop-page solver-page">
+        <section className="page-hero solver-hero">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
               <p className="ui-label">Solver module</p>
-              <h1 className="mt-2 text-3xl font-black md:text-5xl">Physics Solver Bank</h1>
-              <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
+              <h1 className="solver-title">Physics Solver Bank</h1>
+              <p className="solver-subtitle">
                 Class 7-12 practice across {solverStats.categories} major physics categories, with every subcategory holding at least {solverStats.minQuestionsPerSubcategory} unique questions, concept tags, difficulty labels, and answer explanations.
               </p>
             </div>
-            <div className="grid min-w-72 grid-cols-2 gap-2 sm:grid-cols-4">
+            <div className="solver-metric-grid">
               <Metric label="Categories" value={solverStats.categories} />
               <Metric label="Subcats" value={solverStats.subcategories} />
               <Metric label="Questions" value={solverStats.questions} />
               <Metric label="Min/Subcat" value={solverStats.minQuestionsPerSubcategory} />
             </div>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="solver-chip-row">
             <span className="status-chip status-chip-cyan"><PhysicsIcon name="book" className="h-3.5 w-3.5" />Class 7-12</span>
             <span className="status-chip"><PhysicsIcon name="calculator" className="h-3.5 w-3.5" />With answers</span>
             <span className="status-chip"><PhysicsIcon name="check" className="h-3.5 w-3.5" />10+ per subcategory</span>
@@ -116,10 +116,10 @@ export function SolverPage() {
           {activeTab === "revision" && <RevisionModePanel questions={filtered.slice(0, 80)} />}
 
           {activeTab === "practice" && (
-            <div className="grid min-h-0 gap-3">
+            <div className="solver-practice-shell">
 
-        <section className="filter-bar">
-          <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto_auto]">
+        <section className="solver-filter-bar">
+          <div className="grid gap-2 lg:grid-cols-[minmax(260px,1fr)_minmax(190px,0.5fr)_auto_auto_minmax(180px,0.45fr)]">
             <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search question, concept, formula, category..." />
             <select className="select-field" value={categoryId} onChange={(event) => setCategoryId(event.target.value)} aria-label="Solver category">
               <option value="all">All categories</option>
@@ -135,7 +135,9 @@ export function SolverPage() {
               {tags.map((tag) => <option key={tag} value={tag}>{tag === "all" ? "All tags" : tag}</option>)}
             </select>
           </div>
-          <div className="segmented-row mt-3">
+          <div className="solver-filter-footer">
+            <span className="ui-label shrink-0">{filtered.length} questions shown</span>
+            <div className="segmented-row min-w-0 flex-1">
             {formulaSearchEntries.map((entry) => (
               <button key={entry.label} className={activeFormulaSearch?.label === entry.label ? "segment-chip segment-chip-active" : "segment-chip"} onClick={() => setQuery(entry.label)}>
                 <PhysicsIcon name="calculator" className="h-3.5 w-3.5" />
@@ -148,6 +150,7 @@ export function SolverPage() {
                 {value === "all" ? "All levels" : value}
               </button>
             ))}
+            </div>
           </div>
         </section>
 
@@ -169,9 +172,9 @@ export function SolverPage() {
           </section>
         )}
 
-        <section className="desktop-two-pane">
-          <aside className="panel p-4 desktop-sidebar-scroll">
-            <h2 className="panel-title">15 Main Categories</h2>
+        <section className="solver-results-grid">
+          <aside className="panel p-3 desktop-sidebar-scroll solver-sidebar">
+            <h2 className="panel-title">Categories</h2>
             <div className="mt-3 grid gap-2">
               <button className={categoryId === "all" ? "pill border-cyan-400 text-cyan-500" : "pill"} onClick={() => setCategoryId("all")}>
                 All categories
@@ -190,21 +193,21 @@ export function SolverPage() {
             </div>
           </aside>
 
-          <div className="grid gap-5 desktop-main-scroll">
+          <div className="grid gap-3 desktop-main-scroll">
             {grouped.map((category) => (
-              <section key={category.id} className="panel p-4">
+              <section key={category.id} className="panel solver-category-panel">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="ui-label">{category.domain} | {category.classRange}</p>
-                    <h2 className="mt-1 text-2xl font-black">{category.title}</h2>
+                    <h2 className="mt-1 text-xl font-black">{category.title}</h2>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {category.conceptTags.slice(0, 4).map((tag) => <span key={tag} className="status-chip">{tag}</span>)}
                   </div>
                 </div>
-                <div className="mt-4 grid gap-4">
+                <div className="mt-3 grid gap-3">
                   {category.subcategories.map((subcategory) => (
-                    <article key={subcategory.id} className="rounded-lg border border-slate-300/70 bg-slate-50 p-4 dark:border-lab-line dark:bg-slate-900/70">
+                    <article key={subcategory.id} className="solver-subcategory-card">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div>
                           <h3 className="text-lg font-black">{subcategory.title}</h3>
@@ -212,9 +215,9 @@ export function SolverPage() {
                         </div>
                         <span className="status-chip status-chip-cyan">{subcategory.questions.length} questions</span>
                       </div>
-                      <div className="mt-4 grid gap-3">
+                      <div className="mt-3 grid gap-2">
                         {subcategory.questions.map((question) => (
-                          <div key={question.id} className="rounded-md border border-slate-300/70 bg-white p-3 dark:border-slate-700 dark:bg-slate-950/55">
+                          <div key={question.id} className="solver-question-card">
                             <div className="flex flex-wrap items-center justify-between gap-2">
                               <div className="flex flex-wrap gap-2">
                                 <span className="status-chip status-chip-cyan">{question.classRange}</span>

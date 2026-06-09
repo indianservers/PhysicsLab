@@ -4,7 +4,6 @@ import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { allCurriculumTopics, classOptions, curriculum } from "../lib/curriculum";
 import { iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
-import { UIEnhancementPanel } from "../components/UIEnhancementPanel";
 import { has3DAnimation } from "../components/Experiment3DAnimation";
 import { interactionModes } from "../components/InteractionModePanel";
 
@@ -17,7 +16,7 @@ export function ExperimentsPage() {
   const [sortBy, setSortBy] = useState("interactive");
   const [viewMode, setViewMode] = useState<"cards" | "compact">("compact");
   const [beginnerMode, setBeginnerMode] = useState(false);
-  const [activeTab, setActiveTab] = useState<"library" | "overview" | "syllabus">("library");
+  const [activeTab, setActiveTab] = useState<"library" | "syllabus">("library");
   const topics = useMemo(() => allCurriculumTopics(), []);
   const selectedGrade = selectedClass === "all" ? null : Number(selectedClass.replace("class-", ""));
   const selectedGradeExperimentIds = useMemo(() => new Set(
@@ -85,7 +84,6 @@ export function ExperimentsPage() {
         <div className="desktop-tabs mt-3" aria-label="Experiment library sections">
           {[
             { id: "library" as const, label: "Library", icon: "flask" as const },
-            { id: "overview" as const, label: "Overview", icon: "chart" as const },
             { id: "syllabus" as const, label: "Syllabus", icon: "book" as const },
           ].map((tab) => (
             <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
@@ -95,20 +93,6 @@ export function ExperimentsPage() {
         </div>
 
         <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
-          {activeTab === "overview" && (
-            <div className="grid gap-4">
-              <PhaseRoadmap />
-              <div className="grid gap-4 md:grid-cols-4">
-                <Metric icon="flask" label="Shown labs" value={filtered.length} />
-                <Metric icon="clipboard" label="Tagged labs" value={experiments.filter((item) => item.curriculumTags).length} />
-                <Metric icon="orbit" label="3D labs" value={experiments.filter((item) => has3DAnimation(item.id)).length} />
-                <Metric icon="book" label="Mapped topics" value={topics.filter((topic) => topic.experimentIds.length > 0).length} />
-              </div>
-              <UIEnhancementPanel />
-              <SyllabusGapPanel mappedTopicCount={mappedTopicCount} totalTopicCount={topics.length} />
-            </div>
-          )}
-
           {activeTab === "syllabus" && (
             <div className="grid gap-4">
         <div className="class-progress-panel">
@@ -309,30 +293,6 @@ export function ExperimentsPage() {
   );
 }
 
-function PhaseRoadmap() {
-  const phases = [
-    { label: "Phase 1", title: "Syllabus spine", icon: "book" as const, details: "AP State, CBSE, Cambridge, IB, Class 6-12, and UG to PhD lanes." },
-    { label: "Phase 2", title: "Concept library", icon: "spark" as const, details: "Compact concept cards, outcomes, misconceptions, and concept-to-lab paths." },
-    { label: "Phase 3", title: "Interaction layer", icon: "orbit" as const, details: "2D visuals, 3D models, sliders, graphing, prediction, and notebook flow." },
-    { label: "Phase 4", title: "Assessment repair", icon: "check" as const, details: "Focused quiz, weak-concept detection, lab retry, solver practice, remediation." },
-    { label: "Phase 5", title: "Teacher and roadmap", icon: "teacher" as const, details: "Teacher readiness, assignments, progress dashboard, and student roadmap." },
-  ];
-  return (
-    <section className="phase-roadmap mt-5" aria-label="Five phase implementation status">
-      {phases.map((phase) => (
-        <div key={phase.label} className="phase-card phase-card-active">
-          <span className="phase-icon"><PhysicsIcon name={phase.icon} className="h-4 w-4" /></span>
-          <span className="min-w-0">
-            <span className="block text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">{phase.label}</span>
-            <span className="block text-sm font-black text-slate-800 dark:text-slate-100">{phase.title}</span>
-            <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{phase.details}</span>
-          </span>
-        </div>
-      ))}
-    </section>
-  );
-}
-
 function topicIcon(domain: string): PhysicsIconName {
   if (domain.includes("Optics")) return "prism";
   if (domain.includes("Electric")) return "battery";
@@ -350,61 +310,6 @@ function topicIcon(domain: string): PhysicsIconName {
 function countClassLabs(grade: number) {
   const topicLabIds = new Set(allCurriculumTopics().filter((topic) => topic.grade === grade).flatMap((topic) => topic.experimentIds));
   return experiments.filter((item) => item.curriculumTags?.classes.includes(grade) || topicLabIds.has(item.id)).length;
-}
-
-function SyllabusGapPanel({ mappedTopicCount, totalTopicCount }: { mappedTopicCount: number; totalTopicCount: number }) {
-  const levels = curriculum.map((level) => {
-    const levelTopics = level.units.flatMap((unit) => unit.topics);
-    const mapped = levelTopics.filter((topic) => topic.experimentIds.length > 0).length;
-    return {
-      id: level.id,
-      label: level.label,
-      mapped,
-      total: levelTopics.length,
-      gaps: levelTopics.filter((topic) => topic.experimentIds.length === 0).slice(0, 3),
-    };
-  });
-  return (
-    <section className="topic-lens-panel mt-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="ui-label">Missing syllabus check</p>
-          <h2 className="text-lg font-black text-slate-800 dark:text-slate-100">Class 6 to PhD, compact view</h2>
-        </div>
-        <span className="status-chip status-chip-cyan">{mappedTopicCount}/{totalTopicCount} points mapped</span>
-      </div>
-      <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
-        {levels.map((level) => (
-          <a key={level.id} href={`#${level.id}-gap`} className="class-progress-item">
-            <span>{level.label}</span>
-            <span className="mini-progress"><span style={{ width: `${Math.round((level.mapped / Math.max(1, level.total)) * 100)}%` }} /></span>
-            <strong>{level.mapped}/{level.total}</strong>
-          </a>
-        ))}
-      </div>
-      <details className="mini-disclosure mt-3">
-        <summary>Show only current gaps</summary>
-        <div className="mt-3 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-          {levels.map((level) => (
-            <div key={level.id} id={`${level.id}-gap`} className="rounded-md border border-slate-300/70 bg-slate-100 p-3 dark:border-lab-line dark:bg-slate-900/70">
-              <div className="flex items-center justify-between gap-2">
-                <strong className="text-sm text-slate-800 dark:text-slate-100">{level.label}</strong>
-                <span className={level.gaps.length ? "status-chip" : "status-chip status-chip-cyan"}>{level.gaps.length ? `${level.gaps.length}+ gaps` : "covered"}</span>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {(level.gaps.length ? level.gaps : [{ id: `${level.id}-ok`, title: "Ready for deeper labs" }]).map((gap) => (
-                  <span key={gap.id} className="status-chip">{gap.title}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </details>
-      <Link to="/syllabus" className="hero-btn-secondary mt-3 inline-flex items-center gap-2">
-        <PhysicsIcon name="book" className="h-4 w-4" />Open full syllabus map
-      </Link>
-    </section>
-  );
 }
 
 function sortExperiments(left: typeof experiments[number], right: typeof experiments[number], sortBy: string) {
