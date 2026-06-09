@@ -6,12 +6,63 @@ import { saveProject } from "../lib/storage";
 import { rawStateJson, serializeState } from "../lib/stateSerializer";
 import { useLabStore } from "../store/useLabStore";
 import { ProjectFile } from "../types";
-import { PhysicsIcon } from "../lib/icons";
+import { PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { GlobalSearch } from "./GlobalSearch";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
 }
+
+type NavItem = {
+  label: string;
+  path: string;
+  icon: PhysicsIconName;
+};
+
+const primaryNavItems: NavItem[] = [
+  { label: "Experiments", path: "/experiments", icon: "flask" },
+  { label: "Solver", path: "/solver", icon: "calculator" },
+  { label: "Quiz", path: "/quiz", icon: "check" },
+  { label: "Syllabus", path: "/syllabus", icon: "book" },
+  { label: "Concepts", path: "/concepts", icon: "spark" },
+  { label: "Lab", path: "/lab", icon: "compass" },
+  { label: "Teacher", path: "/teacher", icon: "teacher" },
+];
+
+const topicNavItems: NavItem[] = [
+  { label: "Mechanics", path: "/topics/mechanics", icon: "gauge" },
+  { label: "Waves", path: "/topics/waves", icon: "wave" },
+  { label: "Optics", path: "/topics/optics", icon: "prism" },
+  { label: "Electricity", path: "/topics/electricity", icon: "battery" },
+  { label: "Magnetism", path: "/topics/magnetism", icon: "magnet" },
+  { label: "Thermodynamics", path: "/topics/thermodynamics", icon: "thermometer" },
+  { label: "Modern Physics", path: "/topics/modern-physics", icon: "atom" },
+  { label: "Fluid Mechanics", path: "/topics/fluid-mechanics", icon: "drop" },
+  { label: "Oscillations", path: "/topics/oscillations", icon: "spring" },
+  { label: "Astronomy", path: "/topics/astronomy", icon: "orbit" },
+  { label: "Measurement", path: "/topics/measurement", icon: "ruler" },
+  { label: "Electronics", path: "/topics/electronics", icon: "spark" },
+  { label: "Energy", path: "/topics/energy", icon: "flame" },
+];
+
+const toolNavItems: NavItem[] = [
+  { label: "Sandbox", path: "/sandbox", icon: "spark" },
+  { label: "Video Analysis", path: "/video", icon: "eye" },
+  { label: "Quantum Lab", path: "/quantum", icon: "atom" },
+  { label: "Graphs", path: "/graphs", icon: "chart" },
+  { label: "Projects", path: "/projects", icon: "folder" },
+];
+
+const adminNavItems: NavItem[] = [
+  { label: "LMS Config", path: "/lms-config", icon: "clipboard" },
+  { label: "Settings", path: "/settings", icon: "settings" },
+  { label: "Help", path: "/help", icon: "book" },
+];
+
+const legalNavItems: NavItem[] = [
+  { label: "Privacy", path: "/privacy", icon: "eye" },
+  { label: "Terms", path: "/terms", icon: "clipboard" },
+];
 
 export function Toolbar({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation();
@@ -149,12 +200,9 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
       </RouterLink>
       {!compact && (
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
-          <RouterLink to="/experiments" className={navClass("/experiments")}><PhysicsIcon name="flask" className="h-4 w-4" />Experiments</RouterLink>
-          <RouterLink to="/solver" className={navClass("/solver")}><PhysicsIcon name="calculator" className="h-4 w-4" />Solver</RouterLink>
-          <RouterLink to="/quiz" className={navClass("/quiz")}><PhysicsIcon name="check" className="h-4 w-4" />Quiz</RouterLink>
-          <RouterLink to="/topics" className={navClass("/topics")}><PhysicsIcon name="book" className="h-4 w-4" />Syllabus</RouterLink>
-          <RouterLink to="/lab" className={navClass("/lab")}><PhysicsIcon name="compass" className="h-4 w-4" />Lab</RouterLink>
-          <RouterLink to="/teacher" className={navClass("/teacher")}><PhysicsIcon name="teacher" className="h-4 w-4" />Teacher</RouterLink>
+          {primaryNavItems.map((item) => (
+            <NavLinkItem key={item.path} item={item} navClass={navClass} />
+          ))}
         </nav>
       )}
       <span className="mx-1 hidden h-7 w-px bg-slate-300 dark:bg-lab-line xl:block" />
@@ -218,14 +266,40 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
         <span className={theme === "dark" ? "theme-orb dark" : "theme-orb"}><PhysicsIcon name={theme === "dark" ? "moon" : "sun"} className="h-4 w-4" /></span>
       </button>}
       {!compact && (
-        <ToolbarMenu icon="menu" label="More" tooltip="Video, quantum, LMS, and help tools">
-          <RouterLink to="/video" className={navClass("/video")} title={t("toolbar.video")}><PhysicsIcon name="eye" className="h-4 w-4" />{t("toolbar.video")}</RouterLink>
-          <RouterLink to="/quiz" className={navClass("/quiz")} title="Quiz"><PhysicsIcon name="check" className="h-4 w-4" />Quiz</RouterLink>
-          <RouterLink to="/quantum" className={navClass("/quantum")} title={t("toolbar.quantum")}><PhysicsIcon name="atom" className="h-4 w-4" />{t("toolbar.quantum")}</RouterLink>
-          <RouterLink to="/lms-config" className={navClass("/lms-config")} title={t("toolbar.lms")}><PhysicsIcon name="clipboard" className="h-4 w-4" />{t("toolbar.lms")}</RouterLink>
-          <RouterLink to="/help" className={navClass("/help")} title={t("toolbar.help")}><PhysicsIcon name="book" className="h-4 w-4" />{t("toolbar.help")}</RouterLink>
-          <RouterLink to="/privacy" className={navClass("/privacy")} title="Privacy"><PhysicsIcon name="eye" className="h-4 w-4" />Privacy</RouterLink>
-          <RouterLink to="/terms" className={navClass("/terms")} title="Terms"><PhysicsIcon name="clipboard" className="h-4 w-4" />Terms</RouterLink>
+        <ToolbarMenu icon="menu" label="Menu" tooltip="Simple navigation with all pages and nested sections">
+          <div className="toolbar-menu-section">
+            <span className="toolbar-menu-label">Main</span>
+            {primaryNavItems.map((item) => (
+              <NavLinkItem key={item.path} item={item} navClass={navClass} />
+            ))}
+          </div>
+          <ToolbarSubMenu icon="book" label="Learn" tooltip="Topics, quiz, and guided study">
+            <NavLinkItem item={{ label: "Physics Syllabus", path: "/syllabus", icon: "book" }} navClass={navClass} />
+            <NavLinkItem item={{ label: "Concept Library", path: "/concepts", icon: "spark" }} navClass={navClass} />
+            <NavLinkItem item={{ label: "Student Roadmap", path: "/roadmap", icon: "compass" }} navClass={navClass} />
+            <NavLinkItem item={{ label: "All Topics", path: "/topics", icon: "book" }} navClass={navClass} />
+            <NavLinkItem item={{ label: "Quiz", path: "/quiz", icon: "check" }} navClass={navClass} />
+            <ToolbarSubMenu icon="book" label="Topic Chapters" tooltip="Open a specific physics topic">
+              {topicNavItems.map((item) => (
+                <NavLinkItem key={item.path} item={item} navClass={navClass} />
+              ))}
+            </ToolbarSubMenu>
+          </ToolbarSubMenu>
+          <ToolbarSubMenu icon="compass" label="Lab Tools" tooltip="Simulator, analysis, quantum, graphs, and projects">
+            {toolNavItems.map((item) => (
+              <NavLinkItem key={item.path} item={item} navClass={navClass} />
+            ))}
+          </ToolbarSubMenu>
+          <ToolbarSubMenu icon="settings" label="Admin" tooltip="Configuration, help, and app documents">
+            {adminNavItems.map((item) => (
+              <NavLinkItem key={item.path} item={item} navClass={navClass} />
+            ))}
+            <ToolbarSubMenu icon="clipboard" label="Documents" tooltip="Privacy and terms">
+              {legalNavItems.map((item) => (
+                <NavLinkItem key={item.path} item={item} navClass={navClass} />
+              ))}
+            </ToolbarSubMenu>
+          </ToolbarSubMenu>
         </ToolbarMenu>
       )}
       <input ref={inputRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importJson(event.target.files[0])} />
@@ -233,6 +307,15 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
       {showShortcuts && <ShortcutOverlay onClose={() => setShowShortcuts(false)} />}
       <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
+  );
+}
+
+function NavLinkItem({ item, navClass }: { item: NavItem; navClass: (path: string) => string }) {
+  return (
+    <RouterLink to={item.path} className={navClass(item.path)} title={item.label}>
+      <PhysicsIcon name={item.icon} className="h-4 w-4" />
+      <span>{item.label}</span>
+    </RouterLink>
   );
 }
 
@@ -253,6 +336,20 @@ function ToolbarMenu({ icon, label, tooltip, children }: { icon: Parameters<type
         <span>{label}</span>
       </summary>
       <div className="toolbar-menu-panel">
+        {children}
+      </div>
+    </details>
+  );
+}
+
+function ToolbarSubMenu({ icon, label, tooltip, children }: { icon: Parameters<typeof PhysicsIcon>[0]["name"]; label: string; tooltip: string; children: ReactNode }) {
+  return (
+    <details className="toolbar-submenu">
+      <summary title={tooltip}>
+        <PhysicsIcon name={icon} className="h-4 w-4" />
+        <span>{label}</span>
+      </summary>
+      <div className="toolbar-submenu-panel">
         {children}
       </div>
     </details>

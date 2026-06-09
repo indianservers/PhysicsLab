@@ -1,21 +1,53 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import i18next from "../i18n";
 import { experiments } from "../lib/experiments";
 import { listLearningRecords, progressPercent } from "../lib/learning";
-import { listProjects } from "../lib/storage";
+import { deleteProject, listProjects, renameProject } from "../lib/storage";
 import { useLabStore } from "../store/useLabStore";
 import { ProjectFile } from "../types";
+import { LearningProgressDashboard } from "../components/LearningProgressDashboard";
 
 export function SimplePage({ title, showProjects = false }: { title: string; showProjects?: boolean }) {
   const [projects, setProjects] = useState<ProjectFile[]>([]);
   const [learningRecords, setLearningRecords] = useState(listLearningRecords());
-  const { accessibility, setAccessibility, unitSystem, setUnitSystem, significantFigures, setSignificantFigures } = useLabStore();
+  const [renamingName, setRenamingName] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState("");
+  const navigate = useNavigate();
+  const { accessibility, setAccessibility, unitSystem, setUnitSystem, significantFigures, setSignificantFigures, loadProject } = useLabStore();
+
+  const refreshProjects = () => listProjects().then(setProjects).catch(() => setProjects([]));
+
   useEffect(() => {
-    if (showProjects) listProjects().then(setProjects).catch(() => setProjects([]));
-    if (showProjects) setLearningRecords(listLearningRecords());
+    if (showProjects) { refreshProjects(); setLearningRecords(listLearningRecords()); }
   }, [showProjects]);
+
+  const handleDelete = async (name: string) => {
+    if (!window.confirm(`Delete project "${name}"?`)) return;
+    await deleteProject(name);
+    refreshProjects();
+  };
+
+  const startRename = (project: ProjectFile) => {
+    setRenamingName(project.name);
+    setRenameValue(project.name);
+  };
+
+  const commitRename = async () => {
+    if (!renamingName || !renameValue.trim() || renameValue.trim() === renamingName) {
+      setRenamingName(null);
+      return;
+    }
+    await renameProject(renamingName, renameValue.trim());
+    setRenamingName(null);
+    refreshProjects();
+  };
+
+  const openInSandbox = (project: ProjectFile) => {
+    loadProject(project);
+    navigate("/sandbox");
+  };
   return (
     <div className="min-h-screen">
       <Toolbar />
@@ -61,6 +93,7 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
         )}
         {showProjects && (
           <>
+            <LearningProgressDashboard compact />
             <section className="mt-6">
               <h2 className="mb-3 text-xl font-black">Learning Portfolio</h2>
               <div className="grid gap-3 md:grid-cols-2">
@@ -89,8 +122,25 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
                 {projects.length === 0 && <div className="panel p-4">No local projects saved yet.</div>}
                 {projects.map((project) => (
                   <div key={project.name} className="panel p-4">
-                    <div className="font-bold">{project.name}</div>
-                    <div className="text-sm text-slate-500">Updated {new Date(project.updatedAt).toLocaleString()}</div>
+                    {renamingName === project.name ? (
+                      <div className="flex items-center gap-2">
+                        <input className="flex-1 rounded border border-slate-300 bg-slate-100 px-2 py-1 text-sm dark:border-lab-line dark:bg-slate-800" value={renameValue} autoFocus onChange={(e) => setRenameValue(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") commitRename(); if (e.key === "Escape") setRenamingName(null); }} />
+                        <button className="tool-btn" onClick={commitRename}>Save</button>
+                        <button className="tool-btn" onClick={() => setRenamingName(null)}>Cancel</button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <div className="font-bold">{project.name}</div>
+                          <div className="text-sm text-slate-500">Updated {new Date(project.updatedAt).toLocaleString()}</div>
+                        </div>
+                        <div className="flex gap-2">
+                          <button className="tool-btn" onClick={() => openInSandbox(project)}>Open</button>
+                          <button className="tool-btn" onClick={() => startRename(project)}>Rename</button>
+                          <button className="tool-btn text-rose-400 hover:text-rose-300" onClick={() => handleDelete(project.name)}>Delete</button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

@@ -38,8 +38,7 @@ export function LMSConfigPage() {
         </div>
         <section className="mt-8 rounded border border-slate-300/60 p-4 text-sm dark:border-lab-line">
           <h2 className="panel-title">Embed code</h2>
-          <pre className="mt-3 overflow-auto rounded bg-slate-950 p-3 text-cyan-100">{`<iframe src="https://yourhost/experiments/newton-s-second-law"
-        width="100%" height="700" allow="fullscreen"></iframe>`}</pre>
+          <pre className="mt-3 overflow-auto rounded bg-slate-950 p-3 text-cyan-100">{`<iframe src="${window.location.origin}/experiments/newton-s-second-law"\n        width="100%" height="700" allow="fullscreen"></iframe>`}</pre>
           <p className="mt-3 text-slate-500 dark:text-slate-400">Use your deployed static site URL. No server endpoint is required for the app itself.</p>
         </section>
       </main>

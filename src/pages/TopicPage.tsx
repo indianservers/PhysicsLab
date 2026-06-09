@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { curriculum, curriculumCoverageStats, findTopicsByDomainSlug } from "../lib/curriculum";
@@ -15,27 +16,33 @@ export function TopicPage({ topic }: { topic: string }) {
     ...klass,
     topics: matchingTopics.filter((item) => item.classId === klass.id),
   })).filter((klass) => klass.topics.length > 0);
+  const [activeClassId, setActiveClassId] = useState(classGroups[0]?.id ?? "");
+  useEffect(() => {
+    setActiveClassId(classGroups[0]?.id ?? "");
+  }, [topic]);
+  const activeClass = classGroups.find((klass) => klass.id === activeClassId) ?? classGroups[0];
   const labCount = new Set(matchingTopics.flatMap((item) => item.experimentIds)).size;
 
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="mx-auto max-w-7xl px-5 py-8">
-        <section className="grid gap-5 lg:grid-cols-[1fr_320px]">
+      <div id="content" className="desktop-page">
+        <section className="page-hero grid gap-5 lg:grid-cols-[1fr_320px]">
           <div>
             <p className="ui-label">Syllabus learning path</p>
             <h1 className="mt-2 text-3xl font-black md:text-5xl">{title}</h1>
             <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-              Topic-wise Class 7-12 map with learning outcomes, browser-based tools, guided labs, and assessment hooks ready for expansion.
+              Topic-wise Class 6 to PhD map with compact outcomes, browser-based tools, guided labs, and gaps ready for expansion.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               <Link to="/sandbox" className="hero-btn">Open sandbox</Link>
               <Link to="/experiments" className="hero-btn-secondary">Guided experiments</Link>
+              <Link to={`/concepts?domain=${encodeURIComponent(matchingTopics[0]?.domain ?? title)}`} className="hero-btn-secondary">Concept library</Link>
               <Link to="/graphs" className="hero-btn-secondary">Graphs and data</Link>
             </div>
           </div>
           <div className="panel p-4">
-            <h2 className="panel-title">Phase 1 Coverage</h2>
+            <h2 className="panel-title">Lab Coverage</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <Metric icon="teacher" label="Classes" value={stats.classes} />
               <Metric icon="book" label="Units" value={stats.units} />
@@ -45,17 +52,17 @@ export function TopicPage({ topic }: { topic: string }) {
           </div>
         </section>
 
-        <section className="mt-8 grid gap-4 lg:grid-cols-[260px_1fr]">
-          <aside className="panel h-fit p-4">
+        <section className="desktop-tab-panel desktop-two-pane">
+          <aside className="panel p-4 desktop-sidebar-scroll">
             <h2 className="panel-title">Classes</h2>
             <div className="mt-3 grid gap-2">
               {curriculum.map((klass) => {
                 const count = matchingTopics.filter((item) => item.classId === klass.id).length;
                 return (
-                  <a key={klass.id} href={`#${klass.id}`} className="pill flex items-center justify-between text-left">
+                  <button key={klass.id} type="button" onClick={() => count > 0 && setActiveClassId(klass.id)} className={activeClass?.id === klass.id ? "pill flex items-center justify-between border-cyan-400 text-left text-cyan-500" : "pill flex items-center justify-between text-left"}>
                     <span>{klass.label}</span>
                     <span className="badge">{count}</span>
-                  </a>
+                  </button>
                 );
               })}
             </div>
@@ -64,29 +71,29 @@ export function TopicPage({ topic }: { topic: string }) {
             </div>
           </aside>
 
-          <div className="grid gap-5">
+          <div className="desktop-main-scroll">
             {classGroups.length === 0 && (
               <div className="panel p-5">
                 <h2 className="panel-title">No mapped topics yet</h2>
                 <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                  This topic route exists, but Phase 1 has not mapped syllabus topics to it yet.
+                  Choose the syllabus map or concept library to continue from the closest physics domain.
                 </p>
               </div>
             )}
 
-            {classGroups.map((klass) => (
-              <section key={klass.id} id={klass.id} className="panel p-4">
+            {activeClass && (
+              <section key={activeClass.id} id={activeClass.id} className="panel p-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="ui-label">{klass.source}</p>
-                    <h2 className="mt-1 text-2xl font-black">{klass.label}</h2>
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{klass.description}</p>
+                    <p className="ui-label">{activeClass.source}</p>
+                    <h2 className="mt-1 text-2xl font-black">{activeClass.label}</h2>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{activeClass.description}</p>
                   </div>
-                  <span className="badge">{klass.topics.length} topics</span>
+                  <span className="badge">{activeClass.topics.length} topics</span>
                 </div>
 
                 <div className="mt-5 grid gap-3 xl:grid-cols-2">
-                  {klass.topics.map((item) => {
+                  {activeClass.topics.map((item) => {
                     const mappedExperiments = item.experimentIds.map((id) => experimentById.get(id)).filter(Boolean);
                     return (
                       <article key={item.id} className="rounded-lg border border-slate-300/70 bg-slate-50 p-4 dark:border-lab-line dark:bg-slate-900/70">
@@ -118,6 +125,7 @@ export function TopicPage({ topic }: { topic: string }) {
                               {experiment.title}
                             </Link>
                           ))}
+                          <Link to={`/concepts?concept=${item.id}`} className="tool-btn inline-flex items-center gap-2"><PhysicsIcon name="spark" className="h-4 w-4" />Concept path</Link>
                           <Link to="/lab" className="tool-btn inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Build in lab</Link>
                         </div>
                       </article>
@@ -125,7 +133,7 @@ export function TopicPage({ topic }: { topic: string }) {
                   })}
                 </div>
               </section>
-            ))}
+            )}
           </div>
         </section>
       </div>

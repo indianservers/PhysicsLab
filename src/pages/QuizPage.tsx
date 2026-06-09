@@ -1,15 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
 import { makeQuizSession, quizCategoryOptions, quizStats, QuizDifficulty } from "../lib/quiz";
+import { RemediationPanel } from "../components/RemediationPanel";
 
 const difficultyOptions: Array<"all" | QuizDifficulty> = ["all", "Basic", "Intermediate", "Difficult"];
-const classOptions = ["all", "7", "8", "9", "10", "11", "12"];
+const classOptions = ["all", "6", "7", "8", "9", "10", "11", "12"];
 const bestScoreKey = "physicslab-quiz-best-v1";
 const weakConceptKey = "physicslab-quiz-weak-concepts-v1";
 type WeakConceptMap = Record<string, number>;
 
 export function QuizPage() {
+  const [searchParams] = useSearchParams();
+  const focusTag = searchParams.get("focus")?.trim() ?? "";
   const [categoryId, setCategoryId] = useState("all");
   const [subcategoryId, setSubcategoryId] = useState("all");
   const [difficulty, setDifficulty] = useState<"all" | QuizDifficulty>("all");
@@ -26,7 +30,7 @@ export function QuizPage() {
     return quizCategoryOptions.find((category) => category.id === categoryId)?.subcategories ?? [];
   }, [categoryId]);
 
-  const weakConceptList = useMemo(() => topWeakConcepts(weakConcepts), [weakConcepts]);
+  const weakConceptList = useMemo(() => mergeFocusTag(topWeakConcepts(weakConcepts), focusTag), [focusTag, weakConcepts]);
   const session = useMemo(() => makeQuizSession({ categoryId, subcategoryId, difficulty, classFilter, seed: runSeed, weakConcepts: weakConceptList.map((item) => item.tag) }), [categoryId, subcategoryId, difficulty, classFilter, runSeed, weakConceptList]);
   const currentQuestion = session[currentIndex];
   const answeredCount = Object.keys(answers).length;
@@ -96,14 +100,14 @@ export function QuizPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="mx-auto max-w-7xl px-5 py-8">
+      <div id="content" className="desktop-page">
         <section className="page-hero quiz-hero">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="ui-label">Interactive quiz</p>
               <h1 className="mt-2 text-3xl font-black md:text-5xl">Physics MCQ Challenge</h1>
               <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-                A 400-question browser-only quiz bank for Class 7-12 physics. Pick category, subcategory, class, and level, then play a fast 12-question round with instant feedback and explanations.
+                A {quizStats.questions}-question browser-only quiz bank for Class 7-12 physics. Pick category, subcategory, class, and level, then play a fast 12-question round with instant feedback and explanations.
               </p>
             </div>
             <div className="grid min-w-72 grid-cols-2 gap-2 sm:grid-cols-4">
@@ -120,6 +124,7 @@ export function QuizPage() {
             <span className="status-chip"><PhysicsIcon name="clipboard" className="h-3.5 w-3.5" />Concept tagged</span>
             <span className="status-chip"><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />Best {bestScore}/12</span>
             <span className="status-chip"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />Adaptive weak-concept practice</span>
+            {focusTag && <span className="status-chip status-chip-cyan"><PhysicsIcon name="search" className="h-3.5 w-3.5" />Focused: {focusTag}</span>}
           </div>
         </section>
 
@@ -155,8 +160,8 @@ export function QuizPage() {
           </div>
         </section>
 
-        <section className="mt-6 grid gap-5 lg:grid-cols-[320px_1fr]">
-          <aside className="panel h-fit p-4 lg:sticky lg:top-36">
+        <section className="desktop-tab-panel desktop-two-pane">
+          <aside className="panel p-4 desktop-sidebar-scroll">
             <h2 className="panel-title">Quiz dashboard</h2>
             <div className="mt-4 grid gap-3">
               <DashboardStat icon="check" label="Score" value={`${score}/${quizStats.sessionSize}`} />
@@ -202,7 +207,8 @@ export function QuizPage() {
             </div>
           </aside>
 
-          <div className="grid gap-5">
+          <div className="grid gap-5 desktop-main-scroll">
+            <RemediationPanel weakConcepts={weakConceptList} />
             {currentQuestion && (
               <article className="panel quiz-card p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -284,6 +290,7 @@ export function QuizPage() {
                   </div>
                   <button className="hero-btn-secondary" onClick={startFreshQuiz}><PhysicsIcon name="spark" className="h-4 w-4" />Try another round</button>
                 </div>
+                <RemediationPanel weakConcepts={weakConceptList} />
                 <div className="quiz-review-grid mt-5">
                   {session.map((question, index) => {
                     const correct = answers[question.id] === question.correctOption;
@@ -349,4 +356,11 @@ function topWeakConcepts(concepts: WeakConceptMap) {
     .map(([tag, score]) => ({ tag, score }))
     .sort((left, right) => right.score - left.score || left.tag.localeCompare(right.tag))
     .slice(0, 8);
+}
+
+function mergeFocusTag(items: ReturnType<typeof topWeakConcepts>, focusTag: string) {
+  if (!focusTag) return items;
+  const existing = items.find((item) => item.tag.toLowerCase() === focusTag.toLowerCase());
+  if (existing) return items;
+  return [{ tag: focusTag, score: 1 }, ...items].slice(0, 8);
 }

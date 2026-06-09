@@ -583,6 +583,149 @@ function drawObject(ctx: CanvasRenderingContext2D, object: PhysicsObjectInstance
       ctx.moveTo(4, object.closed ? 8 : -8);
       ctx.lineTo(26, 8);
       ctx.stroke();
+    } else if (object.kind === "rope") {
+      const w = object.width ?? 150;
+      ctx.beginPath();
+      ctx.moveTo(-w / 2, 0);
+      for (let i = 1; i <= 10; i++) {
+        const x = -w / 2 + (i / 10) * w;
+        ctx.lineTo(x, (i % 2 === 0 ? -1 : 1) * 4);
+      }
+      ctx.strokeStyle = object.color ?? "#cbd5e1";
+      ctx.lineWidth = 5;
+      ctx.stroke();
+    } else if (object.kind === "cart") {
+      const w = object.width ?? 76;
+      const h = object.height ?? 36;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      const r = 9;
+      ctx.fillStyle = "#1e293b";
+      ctx.beginPath(); ctx.arc(-w / 2 + r + 4, h / 2 - 1, r, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w / 2 - r - 4, h / 2 - 1, r, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#94a3b8";
+      ctx.beginPath(); ctx.arc(-w / 2 + r + 4, h / 2 - 1, r, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(w / 2 - r - 4, h / 2 - 1, r, 0, Math.PI * 2); ctx.stroke();
+    } else if (object.kind === "rod") {
+      const w = object.width ?? 140;
+      const h = object.height ?? 14;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.4)";
+      ctx.fillRect(-w / 2 + 4, -h / 2 + 3, w - 8, 3);
+    } else if (object.kind === "stopwatch") {
+      const r = (object.width ?? 54) / 2;
+      ctx.beginPath(); ctx.arc(0, 2, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#0f172a";
+      ctx.fillRect(-4, -r - 8, 8, 8);
+      ctx.strokeStyle = "#e2e8f0"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, 2); ctx.lineTo(0, -(r - 8)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, 2); ctx.lineTo(r * 0.6, 2 + r * 0.3); ctx.stroke();
+    } else if (object.kind === "ruler") {
+      const w = object.width ?? 180;
+      const h = object.height ?? 18;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.strokeStyle = "#78350f";
+      ctx.lineWidth = 1;
+      const ticks = 10;
+      for (let i = 0; i <= ticks; i++) {
+        const x = -w / 2 + (i / ticks) * w;
+        const tickH = i % 5 === 0 ? h * 0.65 : h * 0.35;
+        ctx.beginPath(); ctx.moveTo(x, -h / 2); ctx.lineTo(x, -h / 2 + tickH); ctx.stroke();
+      }
+      ctx.fillStyle = "#78350f";
+      ctx.font = "8px sans-serif";
+      ctx.fillText("0", -w / 2 + 2, h / 2 - 2);
+      ctx.fillText("cm", w / 2 - 16, h / 2 - 2);
+    } else if (object.kind === "graph-plotter") {
+      const w = object.width ?? 68;
+      const h = object.height ?? 52;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.strokeStyle = "#22d3ee";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(-w / 2 + 6, h / 2 - 6);
+      ctx.lineTo(-w / 2 + 6, -h / 2 + 6);
+      ctx.moveTo(-w / 2 + 6, h / 2 - 6);
+      ctx.lineTo(w / 2 - 6, h / 2 - 6);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-w / 2 + 10, h / 4);
+      ctx.lineTo(-w / 2 + 18, -h / 8);
+      ctx.lineTo(-w / 2 + 28, h / 6);
+      ctx.lineTo(w / 2 - 10, -h / 4);
+      ctx.stroke();
+    } else if (object.kind === "motion-sensor") {
+      const w = object.width ?? 62;
+      const h = object.height ?? 34;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath(); ctx.arc(-w / 2 + 12, 0, 8, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#818cf8"; ctx.lineWidth = 1.5;
+      for (let i = 1; i <= 3; i++) {
+        ctx.beginPath();
+        ctx.arc(-w / 2 + 12, 0, 8 + i * 6, -Math.PI * 0.4, Math.PI * 0.4);
+        ctx.stroke();
+      }
+      ctx.fillStyle = "#e2e8f0";
+      ctx.font = "8px sans-serif";
+      ctx.fillText("MOT", w / 2 - 26, 4);
+    } else if (object.kind === "force-sensor") {
+      const w = object.width ?? 62;
+      const h = object.height ?? 34;
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.strokeStyle = "#fb7185"; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, 0, h * 0.3, -Math.PI * 0.6, Math.PI * 0.6);
+      ctx.stroke();
+      ctx.fillStyle = "#e2e8f0";
+      ctx.font = "8px sans-serif";
+      ctx.fillText("F", -4, 4);
+    } else if (object.kind === "electric-field-region") {
+      const w = object.width ?? 180;
+      const h = object.height ?? 110;
+      ctx.fillStyle = "rgba(6,182,212,0.1)";
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeStyle = "#06b6d4";
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6, 4]);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.setLineDash([]);
+      ctx.strokeStyle = "rgba(6,182,212,0.6)";
+      ctx.lineWidth = 1;
+      for (let i = 1; i <= 3; i++) {
+        const x = -w / 2 + (i / 4) * w;
+        drawArrow(ctx, x, -h / 2 + 10, x, h / 2 - 10, "rgba(6,182,212,0.7)", 1);
+      }
+    } else if (object.kind === "gas-container") {
+      const w = object.width ?? 150;
+      const h = object.height ?? 110;
+      ctx.strokeStyle = "#f97316";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.fillStyle = "rgba(249,115,22,0.12)";
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.fillStyle = "#f97316";
+      ctx.font = "10px sans-serif";
+      ctx.fillText(`T=${Math.round(object.temperature ?? 300)}K`, -w / 2 + 6, -h / 2 + 14);
+      const dots = [[0.2, 0.3], [0.5, 0.6], [0.75, 0.35], [0.35, 0.7], [0.65, 0.2]];
+      dots.forEach(([px, py]) => {
+        ctx.beginPath();
+        ctx.arc(-w / 2 + px * w, -h / 2 + py * h, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    } else if (object.kind === "plane-mirror") {
+      const w = object.width ?? 18;
+      const h = object.height ?? 150;
+      ctx.fillStyle = "#bfdbfe";
+      ctx.fillRect(-w / 2, -h / 2, w, h);
+      ctx.strokeRect(-w / 2, -h / 2, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.55)";
+      ctx.fillRect(-w / 2 + 2, -h / 2 + 4, w - 4, 6);
     } else {
       ctx.fillRect(-(object.width ?? 48) / 2, -(object.height ?? 48) / 2, object.width ?? 48, object.height ?? 48);
       ctx.strokeRect(-(object.width ?? 48) / 2, -(object.height ?? 48) / 2, object.width ?? 48, object.height ?? 48);

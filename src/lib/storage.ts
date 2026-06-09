@@ -36,3 +36,35 @@ export async function listProjects(): Promise<ProjectFile[]> {
   db.close();
   return projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
+
+export async function deleteProject(name: string) {
+  const db = await openDb();
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(STORE, "readwrite");
+    tx.objectStore(STORE).delete(name);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  db.close();
+}
+
+export async function renameProject(oldName: string, newName: string) {
+  const db = await openDb();
+  const project = await new Promise<ProjectFile | undefined>((resolve, reject) => {
+    const tx = db.transaction(STORE, "readonly");
+    const request = tx.objectStore(STORE).get(oldName);
+    request.onsuccess = () => resolve(request.result as ProjectFile | undefined);
+    request.onerror = () => reject(request.error);
+  });
+  if (!project) { db.close(); return; }
+  const renamed: ProjectFile = { ...project, name: newName, updatedAt: new Date().toISOString() };
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(STORE, "readwrite");
+    const store = tx.objectStore(STORE);
+    store.delete(oldName);
+    store.put(renamed);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  db.close();
+}

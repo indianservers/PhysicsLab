@@ -6,11 +6,13 @@ import { listProjects } from "../lib/storage";
 import { ProjectFile } from "../types";
 import { classOptions, curriculumCoverageStats } from "../lib/curriculum";
 import { iconForCategory, iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
+import { LearningProgressDashboard } from "../components/LearningProgressDashboard";
 
 const labs = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics", "Measurement", "Electronics", "Energy"];
 
 export function HomePage() {
   const [recentProjects, setRecentProjects] = useState<ProjectFile[]>([]);
+  const [activeTab, setActiveTab] = useState<"overview" | "learning" | "browse" | "activity">("overview");
   const stats = curriculumCoverageStats();
   useEffect(() => {
     listProjects().then((projects) => setRecentProjects(projects.slice(0, 3))).catch(() => setRecentProjects([]));
@@ -18,7 +20,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <section id="content" className="mx-auto grid max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[1.05fr_0.95fr]">
+      <section id="content" className="desktop-page grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="page-hero">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-500">Browser-only STEM lab</p>
           <h1 className="mt-4 max-w-3xl text-5xl font-black leading-tight md:text-7xl">PhysicsLab 100</h1>
@@ -36,6 +38,7 @@ export function HomePage() {
             <Link className="hero-btn" to="/sandbox"><PhysicsIcon name="flask" className="h-4 w-4" />Start new simulation</Link>
             <Link className="hero-btn-secondary" to="/experiments/projectile-motion"><PhysicsIcon name="rocket" className="h-4 w-4" />Projectile lab</Link>
             <Link className="hero-btn-secondary" to="/experiments"><PhysicsIcon name="compass" className="h-4 w-4" />Guided experiments</Link>
+            <Link className="hero-btn-secondary" to="/roadmap"><PhysicsIcon name="book" className="h-4 w-4" />Student roadmap</Link>
             <Link className="hero-btn-secondary" to="/solver"><PhysicsIcon name="calculator" className="h-4 w-4" />Solver bank</Link>
             <Link className="hero-btn-secondary" to="/teacher"><PhysicsIcon name="teacher" className="h-4 w-4" />Teacher mode</Link>
             <Link className="hero-btn-secondary" to="/video"><PhysicsIcon name="eye" className="h-4 w-4" />Video analysis</Link>
@@ -64,24 +67,22 @@ export function HomePage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-5 pb-10">
-        <div className="page-hero">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="ui-label">New learning layer</p>
-              <h2 className="mt-1 text-2xl font-black">Every experiment now has a 10-core learning toolkit</h2>
-              <p className="mt-2 max-w-3xl text-sm text-slate-500 dark:text-slate-400">
-                Prerequisites, concept map, derivation, unit check, misconception repair, real-world link, safety habit, prediction prompt, quick quiz, and mastery rubric.
-              </p>
-            </div>
-            <Link className="hero-btn-secondary" to="/experiments/human-eye-defects">
-              <PhysicsIcon name="eye" className="h-4 w-4" />Try a toolkit lab
-            </Link>
-          </div>
+      <section className="desktop-page pt-0">
+        <div className="desktop-tabs" aria-label="Home sections">
+          {[
+            { id: "overview" as const, label: "Overview", icon: "compass" as const },
+            { id: "learning" as const, label: "Learning", icon: "spark" as const },
+            { id: "browse" as const, label: "Browse", icon: "book" as const },
+            { id: "activity" as const, label: "Activity", icon: "chart" as const },
+          ].map((tab) => (
+            <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
+              <span className="inline-flex items-center gap-1.5"><PhysicsIcon name={tab.icon} className="h-3.5 w-3.5" />{tab.label}</span>
+            </button>
+          ))}
         </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-5 pb-10">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="desktop-tab-panel desktop-scroll-panel">
+          {activeTab === "overview" && (
+            <div className="grid gap-4 md:grid-cols-3">
           <Link className="enhanced-card" to="/solver">
             <span className="card-icon"><PhysicsIcon name="calculator" /></span>
             <h2 className="mt-3 text-xl font-black">Solver Module</h2>
@@ -97,38 +98,61 @@ export function HomePage() {
             <h2 className="mt-3 text-xl font-black">Syllabus Map</h2>
             <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Browse learning paths by domain, class, tools, and mapped labs.</p>
           </Link>
-        </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-5 pb-10">
-        <h2 className="mb-4 text-2xl font-bold">Classes 7-12</h2>
-        <div className="grid gap-3 md:grid-cols-6">
-          {classOptions.map((klass) => (
-            <Link className="home-card flex flex-col items-center justify-center gap-2 text-center" key={klass.id} to={`/experiments?class=${klass.id}`}>
-              <PhysicsIcon name="book" className="h-4 w-4 text-cyan-500" />
-              <span>{klass.label}</span>
-              <span className="mini-progress w-full"><span style={{ width: `${Math.min(100, 40 + klass.grade * 5)}%` }} /></span>
-            </Link>
-          ))}
-        </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-5 pb-10">
-        <h2 className="mb-4 text-2xl font-bold">Labs</h2>
-        <div className="grid gap-3 md:grid-cols-4">
-          {labs.map((lab) => {
-            const count = experiments.filter((experiment) => experiment.curriculumTags?.domains.includes(lab) || experiment.category === lab).length;
-            return (
-            <Link className="home-card flex items-center justify-between gap-3" key={lab} to={`/topics/${lab.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
-              <span className="flex items-center gap-3">
-              <PhysicsIcon name={iconForCategory(lab)} className="h-5 w-5 text-cyan-500" />
-              {lab} lab
-              </span>
-              <span className="status-chip status-chip-cyan">{count}</span>
-            </Link>
-          );})}
-        </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-5 pb-12">
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+            </div>
+          )}
+          {activeTab === "learning" && (
+            <div className="grid gap-4">
+              <LearningProgressDashboard />
+              <div className="page-hero">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="ui-label">New learning layer</p>
+                    <h2 className="mt-1 text-2xl font-black">Every experiment now has a 10-core learning toolkit</h2>
+                    <p className="mt-2 max-w-3xl text-sm text-slate-500 dark:text-slate-400">
+                      Prerequisites, concept map, derivation, unit check, misconception repair, real-world link, safety habit, prediction prompt, quick quiz, and mastery rubric.
+                    </p>
+                  </div>
+                  <Link className="hero-btn-secondary" to="/experiments/human-eye-defects">
+                    <PhysicsIcon name="eye" className="h-4 w-4" />Try a toolkit lab
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeTab === "browse" && (
+            <div className="grid gap-4 xl:grid-cols-[0.75fr_1fr]">
+              <section>
+                <h2 className="mb-3 text-xl font-bold">Classes 7-12</h2>
+                <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                  {classOptions.map((klass) => (
+                    <Link className="home-card flex flex-col items-center justify-center gap-2 text-center" key={klass.id} to={`/experiments?class=${klass.id}`}>
+                      <PhysicsIcon name="book" className="h-4 w-4 text-cyan-500" />
+                      <span>{klass.label}</span>
+                      <span className="mini-progress w-full"><span style={{ width: `${Math.min(100, 40 + klass.grade * 5)}%` }} /></span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+              <section>
+                <h2 className="mb-3 text-xl font-bold">Labs</h2>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {labs.map((lab) => {
+                    const count = experiments.filter((experiment) => experiment.curriculumTags?.domains.includes(lab) || experiment.category === lab).length;
+                    return (
+                    <Link className="home-card flex items-center justify-between gap-3" key={lab} to={`/topics/${lab.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+                      <span className="flex items-center gap-3">
+                      <PhysicsIcon name={iconForCategory(lab)} className="h-5 w-5 text-cyan-500" />
+                      {lab} lab
+                      </span>
+                      <span className="status-chip status-chip-cyan">{count}</span>
+                    </Link>
+                  );})}
+                </div>
+              </section>
+            </div>
+          )}
+          {activeTab === "activity" && (
+            <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
           <div>
             <h2 className="mb-4 text-2xl font-bold">Featured Experiments</h2>
             <div className="grid gap-3 md:grid-cols-2">
@@ -159,17 +183,17 @@ export function HomePage() {
               <ToolLink icon="chart" to="/projects" label="Review portfolios" />
             </div>
           </div>
-        </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-5 pb-12">
-        <div className="panel flex flex-wrap items-center justify-between gap-3 p-4">
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
-            Pure browser mode: projects, assignments, quiz progress, and learning records stay on this device unless exported or shared by link/file.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Link className="tool-btn" to="/privacy">Privacy</Link>
-            <Link className="tool-btn" to="/terms">Terms</Link>
-            <Link className="tool-btn" to="/help">Help</Link>
+            </div>
+          )}
+          <div className="panel mt-4 flex flex-wrap items-center justify-between gap-3 p-4">
+            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+              Pure browser mode: projects, assignments, quiz progress, and learning records stay on this device unless exported or shared by link/file.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link className="tool-btn" to="/privacy">Privacy</Link>
+              <Link className="tool-btn" to="/terms">Terms</Link>
+              <Link className="tool-btn" to="/help">Help</Link>
+            </div>
           </div>
         </div>
       </section>

@@ -108,7 +108,7 @@ function renderScene(experiment: ExperimentDefinition, a: number, b: number, c: 
   if (["heat-and-temperature", "heat-transfer", "gas-laws", "thermodynamic-process"].includes(experiment.id)) return <ThermalScene id={experiment.id} a={a} b={b} c={c} />;
   if (["force-and-pressure", "fluid-pressure", "buoyancy", "bernoulli-fluid-flow"].includes(experiment.id)) return <FluidScene id={experiment.id} a={a} b={b} c={c} />;
   if (["static-electricity", "electrostatic-field-potential", "lorentz-force", "emi-faraday", "magnetic-field-current", "electromagnet"].includes(experiment.id)) return <FieldScene id={experiment.id} a={a} b={b} c={c} />;
-  if (["photoelectric-equation", "nuclear-decay", "de-broglie-wavelength", "bohr-model"].includes(experiment.id)) return <ModernScene id={experiment.id} a={a} b={b} c={c} />;
+  if (["photoelectric-equation", "nuclear-decay", "de-broglie-wavelength", "bohr-model", "special-relativity-bridge"].includes(experiment.id)) return <ModernScene id={experiment.id} a={a} b={b} c={c} />;
   return <MechanicsScene id={experiment.id} a={a} b={b} c={c} />;
 }
 
@@ -975,6 +975,7 @@ function FieldScene({ id, a, b, c }: { id: string; a: number; b: number; c: numb
 
 function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
   if (id === "photoelectric-equation") return <PhotoelectricScene a={a} b={b} c={c} />;
+  if (id === "special-relativity-bridge") return <RelativityScene a={a} b={b} c={c} />;
   const emitted = a > b;
   const remaining = id === "nuclear-decay" ? clamp(220 * 0.5 ** (c / Math.max(1, b)), 10, 220) : 140;
   return (
@@ -986,6 +987,33 @@ function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
       {id === "nuclear-decay" ? <rect x="90" y="220" width={remaining} height="18" rx="9" fill="#f43f5e" /> : null}
       <text x="82" y="45" fill="#e2e8f0" fontSize="16">{id === "nuclear-decay" ? "Half-life model" : "Photoelectric model"}</text>
       <text x="82" y="265" fill="#94a3b8" fontSize="13">Quantum inputs determine emission, energy, or remaining nuclei.</text>
+    </g>
+  );
+}
+
+function RelativityScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const beta = clamp(a / 100, 0.05, 0.96);
+  const gamma = 1 / Math.sqrt(1 - beta * beta);
+  const lightPath = clamp(70 + gamma * 24, 80, 220);
+  const timeBar = clamp(70 * gamma, 70, 230);
+  const contracted = clamp(190 / gamma, 70, 190);
+  return (
+    <g>
+      <rect x="88" y="215" width="620" height="16" rx="6" fill="#475569" />
+      <g transform="translate(150 72)">
+        <rect x="0" y="0" width="120" height="150" rx="12" fill="#1e293b" stroke="#67e8f9" strokeWidth="3" />
+        <line className="lab-anim-dash-fast" x1="60" y1="125" x2="60" y2="25" stroke="#facc15" strokeWidth="4" markerEnd="url(#arrow-modern)" />
+        <circle r="6" fill="#facc15"><animateMotion dur="1.4s" repeatCount="indefinite" path="M60 125 V25 V125" /></circle>
+        <text x="6" y="174" fill="#94a3b8" fontSize="12">proper light clock</text>
+      </g>
+      <g transform="translate(350 72)">
+        <rect x="0" y="0" width={contracted} height="86" rx="10" fill="#38bdf8" opacity="0.78" />
+        <path d={`M 18 120 C 80 ${120 - lightPath / 3}, 130 ${120 + lightPath / 5}, 210 ${120 - lightPath / 4}`} fill="none" stroke="#facc15" strokeWidth="5" markerEnd="url(#arrow-modern)" />
+        <line x1="0" y1="150" x2={timeBar} y2="150" stroke="#22d3ee" strokeWidth="10" strokeLinecap="round" />
+        <text x="0" y="180" fill="#94a3b8" fontSize="12">moving-frame time stretches</text>
+      </g>
+      <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">relativity bridge: beta {beta.toFixed(2)}c, gamma {gamma.toFixed(2)}</text>
+      <text x="82" y="275" fill="#94a3b8" fontSize="13">Length contracts along motion while measured time grows with the Lorentz factor.</text>
     </g>
   );
 }

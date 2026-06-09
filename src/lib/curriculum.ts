@@ -26,6 +26,24 @@ export interface CurriculumClass {
   units: CurriculumUnit[];
 }
 
+export interface SyllabusFrameworkBand {
+  id: string;
+  label: string;
+  grades: number[];
+  focus: string[];
+  topicIds: string[];
+  experimentIds: string[];
+  status: "covered" | "partial" | "needs-lab";
+}
+
+export interface SyllabusFramework {
+  id: string;
+  label: string;
+  source: string;
+  note: string;
+  bands: SyllabusFrameworkBand[];
+}
+
 const topic = (
   id: string,
   title: string,
@@ -37,6 +55,25 @@ const topic = (
 ): CurriculumTopic => ({ id, title, domain, outcomes, tools, experimentIds, stage });
 
 export const curriculum: CurriculumClass[] = [
+  {
+    id: "class-6",
+    grade: 6,
+    label: "Class 6",
+    source: "Middle-school science bridge",
+    description: "Observation-first physics vocabulary before formal formulas.",
+    units: [
+      {
+        id: "c6-light-motion-electricity",
+        title: "Light, Motion, Electricity",
+        topics: [
+          topic("c6-light-shadows", "Light, Shadows, and Reflection", "Optics", ["Identify sources, shadows, and simple reflection."], ["Light ray", "Shadow screen"], ["shadows-eclipses", "reflection-plane-mirror"]),
+          topic("c6-motion-measurement", "Motion and Measurement", "Measurement", ["Measure length and time, then compare slow and fast motion."], ["Ruler", "Stopwatch"], ["measurement-errors", "uniform-motion"]),
+          topic("c6-simple-circuits", "Simple Electric Circuits", "Electricity", ["Build a closed circuit and explain why a bulb glows."], ["Battery", "Bulb", "Switch"], ["ohms-law"]),
+          topic("c6-magnets", "Magnets", "Magnetism", ["Compare poles, attraction, repulsion, and compass direction."], ["Bar magnet", "Compass"], ["magnetic-field-current"]),
+        ],
+      },
+    ],
+  },
   {
     id: "class-7",
     grade: 7,
@@ -130,6 +167,7 @@ export const curriculum: CurriculumClass[] = [
           topic("c9-floatation", "Floatation and Buoyancy", "Fluid Mechanics", ["Apply Archimedes' principle.", "Relate density to floating and sinking."], ["Fluid region", "Blocks", "Spring balance"], ["buoyancy"]),
           topic("c9-work-energy", "Work, Energy, and Power", "Mechanics", ["Calculate work, kinetic energy, potential energy, and power.", "Explain conservation of energy."], ["Ramp", "Graph plotter", "Energy readout"], ["conservation-of-energy", "inclined-plane", "work-power"]),
           topic("c9-sound", "Sound", "Waves", ["Visualize longitudinal waves.", "Explain echo, ultrasound, and speed of sound."], ["Wave source", "Slinky", "Audio analyzer"], ["wave-lab", "sound-wave-anatomy", "sound-pitch-loudness", "echo-speed-sound"]),
+          topic("c9-pendulum-intro", "Pendulum and Periodic Motion", "Oscillations", ["Observe how period depends on length, not mass.", "Connect periodic motion to time-keeping."], ["Pendulum", "Stopwatch"], ["simple-pendulum"]),
         ],
       },
     ],
@@ -206,10 +244,13 @@ export const curriculum: CurriculumClass[] = [
         title: "Matter, Thermal Physics, Oscillations, and Waves",
         marks: 30,
         topics: [
+          topic("c11-chaos-pendulum", "Chaotic and Coupled Oscillators", "Oscillations", ["Show sensitive dependence on initial conditions in a double pendulum.", "Contrast regular and chaotic motion."], ["Double pendulum", "Phase plot"], ["chaotic-coupled-oscillators"]),
           topic("c11-solids-fluids", "Solids and Fluids", "Fluid Mechanics", ["Model elasticity, viscosity, Bernoulli flow, and surface tension.", "Predict fluid pressure and lift."], ["Fluid region", "Spring", "Flow tube"], ["buoyancy", "hooke-s-law", "fluid-pressure", "bernoulli-fluid-flow"]),
           topic("c11-thermal", "Thermal Properties and Thermodynamics", "Thermodynamics", ["Explore expansion, calorimetry, heat transfer, and thermodynamic processes.", "Use PV diagrams."], ["Thermometer", "Gas container", "PV graph"], ["heat-transfer", "gas-laws", "thermodynamic-process"]),
           topic("c11-kinetic-theory", "Kinetic Theory", "Thermodynamics", ["Relate molecular motion to pressure and temperature.", "Visualize ideal gas assumptions."], ["Gas container", "Particle view"], ["gas-laws"]),
           topic("c11-oscillations-waves", "Oscillations and Waves", "Waves", ["Explore SHM, resonance, standing waves, and sound speed.", "Use frequency, wavelength, and phase."], ["Pendulum", "Spring", "Wave source"], ["simple-pendulum", "shm-spring", "wave-lab", "chladni-plate"]),
+          topic("c11-shm-pendulum", "Simple Harmonic Motion - Pendulum and Spring", "Oscillations", ["Describe SHM with period, frequency, and amplitude.", "Compare pendulum and spring-mass oscillators."], ["Pendulum", "Spring", "Stopwatch", "Graph plotter"], ["simple-pendulum", "shm-spring"]),
+          topic("c11-resonance", "Resonance and Forced Oscillations", "Oscillations", ["Explain resonance and damping.", "Identify natural frequency.", "Model forced oscillations and energy transfer."], ["Pendulum", "Wave source", "Audio oscillator"], ["chladni-plate", "shm-spring"]),
         ],
       },
     ],
@@ -241,7 +282,68 @@ export const curriculum: CurriculumClass[] = [
           topic("c12-ray-optics", "Ray Optics and Instruments", "Optics", ["Model TIR, lenses, microscopes, and telescopes.", "Use ray diagrams quantitatively."], ["Light ray", "Lens", "Mirror", "Prism"], ["mirror-formula", "lens-formula", "glass-slab-refraction", "total-internal-reflection", "optical-instruments", "prism-dispersion"]),
           topic("c12-wave-optics", "Wave Optics", "Waves", ["Explore interference, diffraction, and polarization.", "Measure fringe width."], ["Wave source", "Slits", "Screen", "Polarizers"], ["single-slit-diffraction", "wave-lab", "young-double-slit", "polarization-lab"]),
           topic("c12-dual-atoms", "Dual Nature, Atoms, and Nuclei", "Modern Physics", ["Use photoelectric equation and de Broglie wavelength.", "Model Bohr transitions and nuclear change."], ["Photoelectric sim", "Bohr sim", "Nuclear chart"], ["photoelectric-equation", "de-broglie-wavelength", "bohr-model", "nuclear-decay"]),
+          topic("c12-relativity-bridge", "Special Relativity Bridge", "Modern Physics", ["Compare proper time, measured time, and relativistic energy at high speed.", "Use spacetime diagrams to reason about simultaneity."], ["Light clock", "Spacetime graph", "Velocity slider"], ["special-relativity-bridge"]),
           topic("c12-semiconductors", "Semiconductor Electronics", "Electronics", ["Identify diode behavior.", "Build rectifier and simple logic circuits."], ["Diode", "Resistor", "AC source", "Logic gates"], ["semiconductor-diode", "logic-gates"]),
+        ],
+      },
+    ],
+  },
+  {
+    id: "class-13",
+    grade: 13,
+    label: "Undergraduate",
+    source: "BSc / engineering physics bridge",
+    description: "Core college physics as compact modules with room for deeper simulations.",
+    units: [
+      {
+        id: "ug-core",
+        title: "Core Physics",
+        topics: [
+          topic("ug-classical-mechanics", "Analytical Mechanics", "Mechanics", ["Model Lagrangian ideas, constraints, oscillations, and central forces."], ["Phase plot", "Pendulum", "Orbit"], ["simple-pendulum", "satellite-orbit", "rotational-dynamics"]),
+          topic("ug-electrodynamics", "Electrodynamics", "Electricity", ["Connect fields, potentials, induction, waves, and circuits."], ["Field map", "Coil", "AC source"], ["electrostatic-field-potential", "emi-faraday", "ac-lcr-resonance"]),
+          topic("ug-quantum", "Quantum Mechanics", "Modern Physics", ["Explore wave-particle duality, wells, tunneling, and atomic spectra."], ["Wave packet", "Barrier", "Bohr model"], ["photoelectric-equation", "de-broglie-wavelength", "bohr-model"]),
+          topic("ug-stat-thermal", "Statistical and Thermal Physics", "Thermodynamics", ["Connect microscopic states to temperature, pressure, entropy, and heat flow."], ["Gas particles", "PV graph"], ["gas-laws", "thermodynamic-process", "heat-transfer"]),
+          topic("ug-optics-waves", "Optics and Waves", "Waves", ["Compare interference, diffraction, polarization, and wave packets."], ["Slits", "Polarizer", "Spectrum"], ["young-double-slit", "single-slit-diffraction", "polarization-lab"]),
+        ],
+      },
+    ],
+  },
+  {
+    id: "class-14",
+    grade: 14,
+    label: "Postgraduate",
+    source: "MSc physics overview",
+    description: "Graduate topics grouped for targeted expansion without overloading the app.",
+    units: [
+      {
+        id: "pg-advanced",
+        title: "Advanced Physics",
+        topics: [
+          topic("pg-advanced-quantum", "Advanced Quantum Mechanics", "Modern Physics", ["Cover operators, spin, perturbation, scattering, and identical particles."], ["Operator lab", "Spin view", "Scattering plot"], ["advanced-quantum-operators"]),
+          topic("pg-statistical-field", "Statistical Mechanics", "Thermodynamics", ["Compare ensembles, phase transitions, and transport."], ["Ensemble view", "Phase map"], ["statistical-ensemble-lab"]),
+          topic("pg-condensed-matter", "Condensed Matter", "Electronics", ["Model bands, lattices, phonons, and semiconductors."], ["Band diagram", "Lattice model"], ["semiconductor-diode", "logic-gates"]),
+          topic("pg-nuclear-particle", "Nuclear and Particle Physics", "Modern Physics", ["Explore decay, scattering, detectors, and conservation laws."], ["Decay chart", "Detector view"], ["nuclear-decay"]),
+          topic("pg-plasma-astrophysics", "Plasma and Astrophysics", "Astronomy", ["Link charged fluids, stars, compact objects, and cosmology."], ["Orbit view", "Spectrum"], ["satellite-orbit", "em-spectrum"]),
+        ],
+      },
+    ],
+  },
+  {
+    id: "class-15",
+    grade: 15,
+    label: "PhD",
+    source: "Research-level physics map",
+    description: "Research directions shown as lightweight lanes, not textbook chapters.",
+    units: [
+      {
+        id: "phd-research-lanes",
+        title: "Research Lanes",
+        topics: [
+          topic("phd-computation", "Computational Physics", "Measurement", ["Run numerical models, uncertainty checks, and reproducible workflows."], ["Solver", "Graph plotter", "Notebook"], ["computational-physics-workflow"]),
+          topic("phd-quantum-info", "Quantum Information", "Modern Physics", ["Explore qubits, gates, entanglement, and measurement."], ["Bloch sphere", "Logic gates"], ["logic-gates", "bohr-model"]),
+          topic("phd-materials-devices", "Materials and Devices", "Electronics", ["Connect nanoscale structure to transport and device behavior."], ["Band model", "Device lab"], ["semiconductor-diode"]),
+          topic("phd-high-energy", "High Energy and Cosmology", "Astronomy", ["Track symmetry, detectors, spacetime, and early-universe models."], ["Detector view", "Orbit view"], ["nuclear-decay", "satellite-orbit"]),
+          topic("phd-biophysics-complexity", "Biophysics and Complex Systems", "Mechanics", ["Use physics tools on nonlinear, living, and networked systems."], ["Chaos view", "Phase graph"], ["simple-pendulum", "gas-laws"]),
         ],
       },
     ],
@@ -263,6 +365,7 @@ export const domainSlugs: Record<string, string> = {
   Astronomy: "astronomy",
   Electronics: "electronics",
   Energy: "energy",
+  Oscillations: "oscillations",
 };
 
 export function slugify(value: string) {
@@ -301,4 +404,80 @@ export function curriculumCoverageStats() {
     topics: topics.length,
     interactive,
   };
+}
+
+const band = (
+  id: string,
+  label: string,
+  grades: number[],
+  focus: string[],
+  topicIds: string[],
+  experimentIds: string[],
+  status: SyllabusFrameworkBand["status"] = experimentIds.length ? "covered" : "needs-lab"
+): SyllabusFrameworkBand => ({ id, label, grades, focus, topicIds, experimentIds, status });
+
+export const syllabusFrameworks: SyllabusFramework[] = [
+  {
+    id: "ap-state",
+    label: "AP State",
+    source: "AP SCERT school science / physical science and senior-secondary physics pathway",
+    note: "Mapped as AP State Class 6-10 physics strands plus 11-12 intermediate physics bridge.",
+    bands: [
+      band("ap-6-7", "Classes 6-7", [6, 7], ["motion", "heat", "light", "circuits", "magnets"], ["c6-motion-measurement", "c6-light-shadows", "c6-simple-circuits", "c7-heat-temperature", "c7-current-effects"], ["uniform-motion", "reflection-plane-mirror", "ohms-law", "heat-and-temperature", "electromagnet"]),
+      band("ap-8", "Class 8", [8], ["force", "pressure", "friction", "sound", "light"], ["c8-force-effects", "c8-pressure", "c8-friction", "c8-sound", "c8-light"], ["newton-s-second-law", "force-and-pressure", "friction", "sound-pitch-loudness", "multiple-reflection"]),
+      band("ap-9-10", "Classes 9-10", [9, 10], ["motion", "gravitation", "work-energy", "optics", "electricity", "magnetism"], ["c9-motion", "c9-gravitation", "c9-work-energy", "c10-mirrors", "c10-ohms-law", "c10-magnetism"], ["free-fall", "mass-and-weight", "conservation-of-energy", "mirror-formula", "ohms-law", "magnetic-field-current"]),
+      band("ap-11-12", "Classes 11-12", [11, 12], ["mechanics", "thermal", "waves", "electromagnetism", "optics", "modern"], ["c11-plane-motion", "c11-thermal", "c11-oscillations-waves", "c12-emi-ac", "c12-ray-optics", "c12-dual-atoms"], ["projectile-motion", "gas-laws", "wave-lab", "emi-faraday", "lens-formula", "bohr-model"]),
+    ],
+  },
+  {
+    id: "cbse",
+    label: "CBSE",
+    source: "CBSE/NCERT middle science, Science 086, and Physics 042",
+    note: "Mapped to CBSE Class 6-8 science foundations, IX-X Science, and XI-XII Physics.",
+    bands: [
+      band("cbse-6-8", "Classes 6-8", [6, 7, 8], ["measurement", "motion", "heat", "light", "sound", "current effects"], ["c6-motion-measurement", "c7-speed", "c7-heat-transfer", "c8-sound", "c8-light", "c8-chemical-current"], ["measurement-errors", "uniform-motion", "heat-transfer", "sound-pitch-loudness", "prism-dispersion", "chemical-effects-current"]),
+      band("cbse-9-10", "Classes 9-10", [9, 10], ["motion", "forces", "gravitation", "work", "sound", "optics", "electricity"], ["c9-motion", "c9-newton-laws", "c9-gravitation", "c9-work-energy", "c9-sound", "c10-lenses", "c10-series-parallel"], ["uniform-motion", "newton-s-second-law", "free-fall", "work-power", "sound-wave-anatomy", "lens-formula", "series-parallel-resistance"]),
+      band("cbse-11", "Class 11", [11], ["measurement", "kinematics", "laws", "rotation", "thermal", "waves"], ["c11-units-errors", "c11-plane-motion", "c11-laws-motion", "c11-rotation", "c11-thermal", "c11-oscillations-waves"], ["measurement-errors", "projectile-motion", "friction", "rotational-dynamics", "thermodynamic-process", "wave-lab"]),
+      band("cbse-12", "Class 12", [12], ["electrostatics", "current", "magnetism", "AC", "optics", "modern", "semiconductors"], ["c12-electrostatics", "c12-current", "c12-magnetic-effects", "c12-emi-ac", "c12-wave-optics", "c12-dual-atoms", "c12-semiconductors"], ["capacitor-lab", "meter-bridge", "lorentz-force", "ac-lcr-resonance", "young-double-slit", "photoelectric-equation", "logic-gates"]),
+    ],
+  },
+  {
+    id: "cambridge",
+    label: "Cambridge",
+    source: "Cambridge Lower Secondary Science, IGCSE Physics 0625, and AS/A Level bridge",
+    note: "IGCSE itself is normally 9-10; this lane shows the 6-12 Cambridge physics pathway.",
+    bands: [
+      band("cambridge-6-8", "Lower Secondary", [6, 7, 8], ["forces", "energy", "light", "sound", "electricity", "space"], ["c6-light-shadows", "c7-speed", "c8-force-effects", "c8-sound", "c8-static-lightning"], ["reflection-plane-mirror", "uniform-motion", "newton-s-second-law", "sound-pitch-loudness", "static-electricity"]),
+      band("cambridge-igcse", "IGCSE 0625", [9, 10], ["motion forces energy", "thermal", "waves", "electricity magnetism", "nuclear", "space"], ["c9-motion", "c9-work-energy", "c11-thermal", "c12-wave-optics", "c12-current", "c12-dual-atoms", "c11-gravitation"], ["free-fall", "conservation-of-energy", "heat-transfer", "single-slit-diffraction", "ohms-law", "nuclear-decay", "satellite-orbit"]),
+      band("cambridge-as-a", "AS/A Level Bridge", [11, 12], ["mechanics", "materials", "fields", "waves", "quantum", "nuclear"], ["c11-laws-motion", "c11-solids-fluids", "c12-electrostatics", "c12-ray-optics", "c12-dual-atoms"], ["elastic-collision", "hooke-s-law", "electrostatic-field-potential", "total-internal-reflection", "de-broglie-wavelength"]),
+    ],
+  },
+  {
+    id: "ib",
+    label: "IB",
+    source: "IB MYP Sciences and DP Physics first assessment 2025",
+    note: "Mapped as MYP 1-5 for Classes 6-10 and DP Physics SL/HL for Classes 11-12.",
+    bands: [
+      band("ib-myp-1-3", "MYP 1-3", [6, 7, 8], ["systems", "models", "energy", "waves", "forces"], ["c6-motion-measurement", "c7-heat-temperature", "c8-force-effects", "c8-sound", "c8-light"], ["uniform-motion", "heat-and-temperature", "force-and-pressure", "wave-lab", "reflection-plane-mirror"]),
+      band("ib-myp-4-5", "MYP 4-5", [9, 10], ["mechanics", "energy", "fields", "electric circuits", "optics"], ["c9-newton-laws", "c9-work-energy", "c10-ohms-law", "c10-magnetism", "c10-lenses"], ["newton-s-second-law", "conservation-of-energy", "ohms-law", "electromagnet", "lens-formula"]),
+      band("ib-dp", "DP Physics", [11, 12], ["space time motion", "particulate matter", "wave behaviour", "fields", "nuclear quantum"], ["c11-plane-motion", "c11-thermal", "c12-wave-optics", "c12-electrostatics", "c12-dual-atoms"], ["projectile-motion", "gas-laws", "young-double-slit", "capacitor-lab", "bohr-model"]),
+      band("ib-dp-hl", "DP HL Extensions", [12], ["rotational motion", "induction", "quantum", "relativity bridge"], ["c11-rotation", "c12-emi-ac", "c12-dual-atoms", "c12-relativity-bridge"], ["rotational-dynamics", "transformer-lab", "photoelectric-equation", "special-relativity-bridge"]),
+    ],
+  },
+];
+
+export function syllabusFrameworkCoverage() {
+  return syllabusFrameworks.map((framework) => {
+    const bands = framework.bands.map((item) => ({
+      ...item,
+      mappedCount: item.experimentIds.length,
+      gapCount: item.status === "covered" ? 0 : Math.max(1, item.focus.length - item.experimentIds.length),
+    }));
+    return {
+      ...framework,
+      bands,
+      mappedCount: bands.reduce((sum, item) => sum + item.mappedCount, 0),
+      gapCount: bands.reduce((sum, item) => sum + item.gapCount, 0),
+    };
+  });
 }

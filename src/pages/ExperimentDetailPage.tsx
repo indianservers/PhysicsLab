@@ -17,6 +17,7 @@ import { FormulaGlossaryPanel, PlotSvg, symbolsFromText, UnitConverterPanel } fr
 import { AnimationExplanationTimeline, AnimationMoment } from "../components/AnimationExplanationTimeline";
 import { FullscreenButton } from "../components/FullscreenButton";
 import { makePrismModel, prismMaterials } from "../lib/prism";
+import { InteractionModePanel } from "../components/InteractionModePanel";
 
 export function ExperimentDetailPage() {
   const { id } = useParams();
@@ -64,6 +65,7 @@ export function ExperimentDetailPage() {
           <a className="quick-jump" href="#notebook" title="Jump to observation table"><PhysicsIcon name="clipboard" className="h-4 w-4" />Notebook</a>
         </nav>
         <LabCommandStrip experiment={experiment} />
+        <InteractionModePanel experiment={experiment} compact />
         {assignment && <AssignmentBanner assignment={assignment} />}
         {experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} />}
         <LearningResourceDock experiment={experiment} />
@@ -252,16 +254,8 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
             <>
               <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />
               <div className="lab-visual-grid">
-                {experiment.id === "prism-dispersion" ? (
-                  <>
-                    <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
-                    <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />
-                  </>
-                ) : has3DAnimation(experiment.id) ? (
-                  <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />
-                ) : (
-                  <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
-                )}
+                <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
+                {has3DAnimation(experiment.id) && <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />}
               </div>
             </>
           )}

@@ -52,7 +52,7 @@ export const quizCategoryOptions: QuizCategoryOption[] = solverCategories.map((c
 
 const sourceQuestions = allSolverQuestions().slice(0, 400);
 
-export const quizQuestions: QuizQuestion[] = sourceQuestions.map((question) => {
+const generatedQuizQuestions: QuizQuestion[] = sourceQuestions.map((question) => {
   const correctOption = compactAnswer(question.answer);
   const distractors = sourceQuestions
     .filter((candidate) => candidate.id !== question.id)
@@ -75,6 +75,11 @@ export const quizQuestions: QuizQuestion[] = sourceQuestions.map((question) => {
     conceptTags: question.conceptTags,
   };
 });
+
+export const quizQuestions: QuizQuestion[] = [
+  ...generatedQuizQuestions,
+  ...buildTopicQuizBoosters(),
+];
 
 export const quizStats = {
   questions: quizQuestions.length,
@@ -139,6 +144,80 @@ function fallbackDistractors(tags: string[]) {
     `Ignore direction, signs, and graph area because they do not affect the result.`,
     `Change two variables together so the pattern is easier to force.`,
   ];
+}
+
+function buildTopicQuizBoosters(): QuizQuestion[] {
+  return solverCategories.flatMap((category) =>
+    category.subcategories.flatMap((subcategory) => {
+      const tags = uniqueTags([...category.conceptTags, ...subcategory.questions.flatMap((question) => question.conceptTags)]).slice(0, 5);
+      const primaryTag = tags[0] ?? subcategory.title;
+      const secondaryTag = tags[1] ?? category.domain;
+      const classRange = subcategory.questions[0]?.classRange ?? category.classRange;
+      const common = {
+        categoryId: category.id,
+        categoryTitle: category.title,
+        subcategoryId: subcategory.id,
+        subcategoryTitle: subcategory.title,
+        classRange,
+        conceptTags: tags.length > 0 ? tags : [subcategory.title],
+      };
+      return [
+        makeQuizQuestion({
+          ...common,
+          id: `topic-${subcategory.id}-model`,
+          difficulty: "Basic",
+          prompt: `In ${subcategory.title}, what should you identify before substituting numbers?`,
+          correctOption: `The physical model, known values, unknown quantity, and units for ${primaryTag}.`,
+          options: [
+            `The physical model, known values, unknown quantity, and units for ${primaryTag}.`,
+            `The final numerical answer first, then the formula later if time remains.`,
+            `Only the biggest number in the question, because it usually controls the answer.`,
+            `A random formula from the same chapter, even if the variables do not match.`,
+          ],
+          answer: `${subcategory.title} problems are easiest when you name the model first, list knowns and unknowns, and keep units consistent before calculation.`,
+        }),
+        makeQuizQuestion({
+          ...common,
+          id: `topic-${subcategory.id}-variable`,
+          difficulty: "Intermediate",
+          prompt: `A learner is testing ${subcategory.title} in a simulation and changes two sliders together. What is the best correction?`,
+          correctOption: `Change one variable at a time and compare the output pattern clearly.`,
+          options: [
+            `Change one variable at a time and compare the output pattern clearly.`,
+            `Keep changing all sliders until the result looks close to the textbook answer.`,
+            `Ignore the graph or table because simulations do not need controlled trials.`,
+            `Use only the largest slider value so the effect becomes dramatic.`,
+          ],
+          answer: `A controlled trial changes one variable at a time. That makes the relationship in ${subcategory.title} easier to see and explain.`,
+        }),
+        makeQuizQuestion({
+          ...common,
+          id: `topic-${subcategory.id}-check`,
+          difficulty: "Difficult",
+          prompt: `Which final-answer check is most useful for a ${subcategory.title} question?`,
+          correctOption: `Check units, sign or direction, and whether the size is physically reasonable.`,
+          options: [
+            `Check units, sign or direction, and whether the size is physically reasonable.`,
+            `Accept any answer with many decimal places because precision proves correctness.`,
+            `Remove units from the final line so the number is easier to read.`,
+            `Compare only with ${secondaryTag}; signs and magnitudes are not important.`,
+          ],
+          answer: `For ${subcategory.title}, the final answer should have correct units, sensible sign or direction where relevant, and a magnitude that fits the situation.`,
+        }),
+      ];
+    })
+  );
+}
+
+function makeQuizQuestion(question: QuizQuestion): QuizQuestion {
+  return {
+    ...question,
+    options: stableShuffle(question.options, question.id),
+  };
+}
+
+function uniqueTags(tags: string[]) {
+  return Array.from(new Set(tags.filter(Boolean)));
 }
 
 function stableShuffle<T>(items: T[], seed: string) {

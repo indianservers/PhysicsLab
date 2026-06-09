@@ -2,10 +2,11 @@ import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
-import { allCurriculumTopics, classOptions } from "../lib/curriculum";
+import { allCurriculumTopics, classOptions, curriculum } from "../lib/curriculum";
 import { iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { UIEnhancementPanel } from "../components/UIEnhancementPanel";
 import { has3DAnimation } from "../components/Experiment3DAnimation";
+import { interactionModes } from "../components/InteractionModePanel";
 
 export function ExperimentsPage() {
   const [searchParams] = useSearchParams();
@@ -14,20 +15,26 @@ export function ExperimentsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [sortBy, setSortBy] = useState("interactive");
-  const [viewMode, setViewMode] = useState<"cards" | "compact">("cards");
+  const [viewMode, setViewMode] = useState<"cards" | "compact">("compact");
   const [beginnerMode, setBeginnerMode] = useState(false);
+  const [activeTab, setActiveTab] = useState<"library" | "overview" | "syllabus">("library");
   const topics = useMemo(() => allCurriculumTopics(), []);
+  const selectedGrade = selectedClass === "all" ? null : Number(selectedClass.replace("class-", ""));
+  const selectedGradeExperimentIds = useMemo(() => new Set(
+    selectedGrade === null
+      ? []
+      : topics.filter((topic) => topic.grade === selectedGrade).flatMap((topic) => topic.experimentIds)
+  ), [selectedGrade, topics]);
   const categories = useMemo(() => ["all", ...Array.from(new Set(experiments.map((experiment) => experiment.category))).sort()], []);
   const difficulties = useMemo(() => ["all", "Beginner", "Intermediate", "Advanced"], []);
   const classTopicHighlights = useMemo(() => {
-    const grade = selectedClass === "all" ? null : Number(selectedClass.replace("class-", ""));
     return topics
       .filter((topic) => topic.experimentIds.length > 0)
-      .filter((topic) => grade === null || topic.classLabel === `Class ${grade}`)
+      .filter((topic) => selectedGrade === null || topic.grade === selectedGrade)
       .slice(0, 8);
-  }, [selectedClass, topics]);
+  }, [selectedGrade, topics]);
   const filteredBase = experiments.filter((experiment) => {
-    const classMatch = selectedClass === "all" || experiment.curriculumTags?.classes.includes(Number(selectedClass.replace("class-", "")));
+    const classMatch = selectedGrade === null || experiment.curriculumTags?.classes.includes(selectedGrade) || selectedGradeExperimentIds.has(experiment.id);
     const categoryMatch = selectedCategory === "all" || experiment.category === selectedCategory;
     const difficultyMatch = (selectedDifficulty === "all" || experiment.difficulty === selectedDifficulty) && (!beginnerMode || experiment.difficulty !== "Advanced");
     const topicText = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id)).map((topic) => `${topic.title} ${topic.domain} ${topic.outcomes.join(" ")}`).join(" ");
@@ -44,27 +51,26 @@ export function ExperimentsPage() {
     beginnerMode ? "Beginner focus" : null,
     query.trim() ? `Search: ${query.trim()}` : null,
   ].filter(Boolean) as string[];
-  const coveragePercent = Math.round((topics.filter((topic) => topic.experimentIds.length > 0).length / Math.max(1, topics.length)) * 100);
+  const mappedTopicCount = topics.filter((topic) => topic.experimentIds.length > 0).length;
+  const coveragePercent = Math.round((mappedTopicCount / Math.max(1, topics.length)) * 100);
   const interactiveCount = experiments.filter((item) => has3DAnimation(item.id)).length;
-  const syllabusSpine = [
-    { label: "Class 7", expected: ["Heat", "Motion and Time", "Electric Current Effects", "Light"], count: countClassLabs(7) },
-    { label: "Class 8", expected: ["Force and Pressure", "Friction", "Sound", "Chemical Effects", "Light"], count: countClassLabs(8) },
-    { label: "Class 9", expected: ["Motion", "Forces", "Gravitation", "Floatation", "Work-Energy", "Sound"], count: countClassLabs(9) },
-    { label: "Class 10", expected: ["Light", "Human Eye", "Electricity", "Magnetic Effects", "Energy Sources"], count: countClassLabs(10) },
-    { label: "Class 11", expected: ["Measurement", "Kinematics", "Laws", "Work-Energy", "Rotation", "Fluids", "Thermal", "Waves"], count: countClassLabs(11) },
-    { label: "Class 12", expected: ["Electrostatics", "Current", "Magnetism", "EMI/AC", "Optics", "Modern", "Semiconductors"], count: countClassLabs(12) },
-  ];
+  const syllabusSpine = curriculum.map((level) => ({
+    label: level.label,
+    expected: level.units.flatMap((unit) => unit.topics.map((topic) => topic.title)).slice(0, 5),
+    count: countClassLabs(level.grade),
+    topicCount: level.units.reduce((sum, unit) => sum + unit.topics.length, 0),
+  }));
 
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="mx-auto max-w-7xl px-5 py-8">
+      <div id="content" className="desktop-page">
         <div className="page-hero flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="ui-label">Interactive guided learning</p>
             <h1 className="mt-2 text-3xl font-black">Guided Experiments</h1>
             <p className="mt-2 max-w-3xl text-slate-500 dark:text-slate-400">
-              Browser-only experiment library mapped to Class 7-12 topics, with guided calculators, visualizations, viva prompts, and notebook-ready observations.
+              Browser-only experiment library mapped from Class 6 to PhD lanes, with compact gaps, guided calculators, 3D views, and notebook-ready observations.
             </p>
           </div>
           <div className="min-w-52">
@@ -76,16 +82,36 @@ export function ExperimentsPage() {
           </div>
         </div>
 
-        <PhaseRoadmap />
-
-        <div className="mt-6 grid gap-4 md:grid-cols-4">
-          <Metric icon="flask" label="Shown labs" value={filtered.length} />
-          <Metric icon="clipboard" label="Tagged labs" value={experiments.filter((item) => item.curriculumTags).length} />
-          <Metric icon="orbit" label="3D labs" value={experiments.filter((item) => has3DAnimation(item.id)).length} />
-          <Metric icon="book" label="Mapped topics" value={topics.filter((topic) => topic.experimentIds.length > 0).length} />
+        <div className="desktop-tabs mt-3" aria-label="Experiment library sections">
+          {[
+            { id: "library" as const, label: "Library", icon: "flask" as const },
+            { id: "overview" as const, label: "Overview", icon: "chart" as const },
+            { id: "syllabus" as const, label: "Syllabus", icon: "book" as const },
+          ].map((tab) => (
+            <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
+              <span className="inline-flex items-center gap-1.5"><PhysicsIcon name={tab.icon} className="h-3.5 w-3.5" />{tab.label}</span>
+            </button>
+          ))}
         </div>
 
-        <div className="class-progress-panel mt-4">
+        <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
+          {activeTab === "overview" && (
+            <div className="grid gap-4">
+              <PhaseRoadmap />
+              <div className="grid gap-4 md:grid-cols-4">
+                <Metric icon="flask" label="Shown labs" value={filtered.length} />
+                <Metric icon="clipboard" label="Tagged labs" value={experiments.filter((item) => item.curriculumTags).length} />
+                <Metric icon="orbit" label="3D labs" value={experiments.filter((item) => has3DAnimation(item.id)).length} />
+                <Metric icon="book" label="Mapped topics" value={topics.filter((topic) => topic.experimentIds.length > 0).length} />
+              </div>
+              <UIEnhancementPanel />
+              <SyllabusGapPanel mappedTopicCount={mappedTopicCount} totalTopicCount={topics.length} />
+            </div>
+          )}
+
+          {activeTab === "syllabus" && (
+            <div className="grid gap-4">
+        <div className="class-progress-panel">
           {classOptions.map((klass) => {
             const count = countClassLabs(klass.grade);
             const width = Math.min(100, Math.round((count / Math.max(1, experiments.length)) * 360));
@@ -99,9 +125,7 @@ export function ExperimentsPage() {
           })}
         </div>
 
-        <UIEnhancementPanel />
-
-        <div className="topic-lens-panel mt-4">
+        <div className="topic-lens-panel">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="ui-label">Topic lens</p>
@@ -142,18 +166,19 @@ export function ExperimentsPage() {
           </div>
         </div>
 
-        <details className="lab-disclosure mt-6" open>
-          <summary title="Compare the app topic map with the school physics spine">
-            <span className="inline-flex items-center gap-2"><PhysicsIcon name="chart" className="h-4 w-4 text-cyan-500" />Syllabus Spine Coverage</span>
-            <span className="info-dot" title="Each row shows expected school physics themes and how many app labs are tagged to that class.">i</span>
+        <details className="lab-disclosure">
+          <summary title="Compare the app topic map from Class 6 through research level">
+            <span className="inline-flex items-center gap-2"><PhysicsIcon name="chart" className="h-4 w-4 text-cyan-500" />Simple Syllabus Map</span>
+            <span className="info-dot" title="Open only when you want the compact level-by-level map.">i</span>
           </summary>
           <div className="lab-disclosure-body grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {syllabusSpine.map((row) => (
               <div key={row.label} className="rounded-md border border-slate-300/70 bg-slate-100 p-3 dark:border-lab-line dark:bg-slate-900/70">
                 <div className="flex items-center justify-between gap-3">
                   <div className="font-black text-slate-800 dark:text-slate-100">{row.label}</div>
-                  <span className="status-chip status-chip-cyan">{row.count} labs</span>
+                  <span className={row.count > 0 ? "status-chip status-chip-cyan" : "status-chip"}>{row.count} labs</span>
                 </div>
+                <div className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">{row.topicCount} syllabus points</div>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {row.expected.map((item) => <span key={item} className="status-chip">{item}</span>)}
                 </div>
@@ -161,8 +186,12 @@ export function ExperimentsPage() {
             ))}
           </div>
         </details>
+            </div>
+          )}
 
-        <div className="filter-bar mt-6">
+          {activeTab === "library" && (
+            <div className="grid min-h-0 gap-3">
+        <div className="filter-bar">
           <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto_auto]">
             <label>
               <span className="sr-only">Search experiments</span>
@@ -212,7 +241,7 @@ export function ExperimentsPage() {
           </div>
         </div>
 
-        <div className={viewMode === "compact" ? "mt-6 grid gap-2" : "mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3"}>
+        <div className={viewMode === "compact" ? "grid gap-2" : "grid gap-4 md:grid-cols-2 xl:grid-cols-3"}>
           {filtered.map((experiment) => {
             const mappedTopics = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id));
             const primaryOutcome = mappedTopics[0]?.outcomes[0] ?? experiment.expectedResult;
@@ -265,13 +294,16 @@ export function ExperimentsPage() {
           })}
         </div>
         {filtered.length === 0 && (
-          <div className="empty-state mt-6">
+          <div className="empty-state">
             <PhysicsIcon name="compass" className="mx-auto h-8 w-8 text-cyan-500" />
             <h2 className="mt-3 text-xl font-black">No matching experiments</h2>
             <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Clear the search or choose a broader class/category filter.</p>
             <button className="hero-btn-secondary mt-4" onClick={() => { setQuery(""); setSelectedClass("all"); setSelectedCategory("all"); setSelectedDifficulty("all"); setBeginnerMode(false); }}>Reset filters</button>
           </div>
         )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -279,14 +311,16 @@ export function ExperimentsPage() {
 
 function PhaseRoadmap() {
   const phases = [
-    { label: "Phase 1", title: "Easy discovery", icon: "compass" as const, active: true, details: "Class chips, topic lens, beginner focus, cleaner cards." },
-    { label: "Phase 2", title: "Guided lab flow", icon: "step" as const, active: false, details: "Compare mode, trial recorder, formula glossary, checkpoints." },
-    { label: "Phase 3", title: "Polish and presentation", icon: "spark" as const, active: false, details: "Teacher mode, mobile drawer, animation quality, export views." },
+    { label: "Phase 1", title: "Syllabus spine", icon: "book" as const, details: "AP State, CBSE, Cambridge, IB, Class 6-12, and UG to PhD lanes." },
+    { label: "Phase 2", title: "Concept library", icon: "spark" as const, details: "Compact concept cards, outcomes, misconceptions, and concept-to-lab paths." },
+    { label: "Phase 3", title: "Interaction layer", icon: "orbit" as const, details: "2D visuals, 3D models, sliders, graphing, prediction, and notebook flow." },
+    { label: "Phase 4", title: "Assessment repair", icon: "check" as const, details: "Focused quiz, weak-concept detection, lab retry, solver practice, remediation." },
+    { label: "Phase 5", title: "Teacher and roadmap", icon: "teacher" as const, details: "Teacher readiness, assignments, progress dashboard, and student roadmap." },
   ];
   return (
-    <section className="phase-roadmap mt-5" aria-label="Three phase UI improvement roadmap">
+    <section className="phase-roadmap mt-5" aria-label="Five phase implementation status">
       {phases.map((phase) => (
-        <div key={phase.label} className={phase.active ? "phase-card phase-card-active" : "phase-card"}>
+        <div key={phase.label} className="phase-card phase-card-active">
           <span className="phase-icon"><PhysicsIcon name={phase.icon} className="h-4 w-4" /></span>
           <span className="min-w-0">
             <span className="block text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">{phase.label}</span>
@@ -314,7 +348,63 @@ function topicIcon(domain: string): PhysicsIconName {
 }
 
 function countClassLabs(grade: number) {
-  return experiments.filter((item) => item.curriculumTags?.classes.includes(grade)).length;
+  const topicLabIds = new Set(allCurriculumTopics().filter((topic) => topic.grade === grade).flatMap((topic) => topic.experimentIds));
+  return experiments.filter((item) => item.curriculumTags?.classes.includes(grade) || topicLabIds.has(item.id)).length;
+}
+
+function SyllabusGapPanel({ mappedTopicCount, totalTopicCount }: { mappedTopicCount: number; totalTopicCount: number }) {
+  const levels = curriculum.map((level) => {
+    const levelTopics = level.units.flatMap((unit) => unit.topics);
+    const mapped = levelTopics.filter((topic) => topic.experimentIds.length > 0).length;
+    return {
+      id: level.id,
+      label: level.label,
+      mapped,
+      total: levelTopics.length,
+      gaps: levelTopics.filter((topic) => topic.experimentIds.length === 0).slice(0, 3),
+    };
+  });
+  return (
+    <section className="topic-lens-panel mt-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p className="ui-label">Missing syllabus check</p>
+          <h2 className="text-lg font-black text-slate-800 dark:text-slate-100">Class 6 to PhD, compact view</h2>
+        </div>
+        <span className="status-chip status-chip-cyan">{mappedTopicCount}/{totalTopicCount} points mapped</span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        {levels.map((level) => (
+          <a key={level.id} href={`#${level.id}-gap`} className="class-progress-item">
+            <span>{level.label}</span>
+            <span className="mini-progress"><span style={{ width: `${Math.round((level.mapped / Math.max(1, level.total)) * 100)}%` }} /></span>
+            <strong>{level.mapped}/{level.total}</strong>
+          </a>
+        ))}
+      </div>
+      <details className="mini-disclosure mt-3">
+        <summary>Show only current gaps</summary>
+        <div className="mt-3 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+          {levels.map((level) => (
+            <div key={level.id} id={`${level.id}-gap`} className="rounded-md border border-slate-300/70 bg-slate-100 p-3 dark:border-lab-line dark:bg-slate-900/70">
+              <div className="flex items-center justify-between gap-2">
+                <strong className="text-sm text-slate-800 dark:text-slate-100">{level.label}</strong>
+                <span className={level.gaps.length ? "status-chip" : "status-chip status-chip-cyan"}>{level.gaps.length ? `${level.gaps.length}+ gaps` : "covered"}</span>
+              </div>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {(level.gaps.length ? level.gaps : [{ id: `${level.id}-ok`, title: "Ready for deeper labs" }]).map((gap) => (
+                  <span key={gap.id} className="status-chip">{gap.title}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </details>
+      <Link to="/syllabus" className="hero-btn-secondary mt-3 inline-flex items-center gap-2">
+        <PhysicsIcon name="book" className="h-4 w-4" />Open full syllabus map
+      </Link>
+    </section>
+  );
 }
 
 function sortExperiments(left: typeof experiments[number], right: typeof experiments[number], sortBy: string) {
@@ -336,7 +426,8 @@ function difficultyScore(difficulty: string) {
 }
 
 function interactivityScore(experiment: typeof experiments[number]) {
-  return (has3DAnimation(experiment.id) ? 4 : 0) + (experiment.vivaQuestions.length > 0 ? 1 : 0);
+  const modeScore = interactionModes(experiment).filter((mode) => mode.active).length;
+  return (has3DAnimation(experiment.id) ? 4 : 0) + modeScore + (experiment.vivaQuestions.length > 0 ? 1 : 0);
 }
 
 function Metric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {

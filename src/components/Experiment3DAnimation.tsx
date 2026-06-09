@@ -79,6 +79,7 @@ const animationConfigs: Record<string, AnimationConfig> = {
   "sound-wave-anatomy": { kind: "interference", title: "3D sound wave", cue: "Compression bands travel forward while particles vibrate back and forth." },
   "photoelectric-equation": { kind: "photoelectric", title: "3D photoelectric effect", cue: "Photons strike the metal; electrons leave only when photon energy beats work function." },
   "de-broglie-wavelength": { kind: "interference", title: "3D matter-wave spread", cue: "Higher accelerating voltage shortens wavelength and tightens diffraction." },
+  "special-relativity-bridge": { kind: "graph3d", title: "3D spacetime bridge", cue: "A light-clock path and spacetime graph stretch as speed approaches light speed.", cinematic: true, steps: ["Set speed fraction", "Watch gamma grow", "Compare time and length readings"] },
   "bohr-model": { kind: "bohr", title: "Cinematic Bohr transition", cue: "Energy shells, electron jump path, photon pulse, and level ladder reveal why each spectral line has a fixed energy.", cinematic: true, steps: ["Choose energy levels", "Electron jumps shell", "Photon carries energy gap"] },
   "logic-gates": { kind: "logic", title: "3D logic gate", cue: "Inputs feed a digital gate and the output indicator switches between 0 and 1." },
 };
@@ -91,12 +92,12 @@ interface Experiment3DAnimationProps {
   fixedShell?: boolean;
 }
 
-export function has3DAnimation(_experimentId: string) {
-  return Boolean(animationConfigs[_experimentId]);
+export function has3DAnimation(experimentId: string) {
+  return Boolean(experimentId);
 }
 
 export function Experiment3DAnimation({ experiment, values, outputs = [], timelineTime = null, fixedShell = false }: Experiment3DAnimationProps) {
-  const config = useMemo(() => animationConfigs[experiment.id], [experiment.id]);
+  const config = useMemo(() => animationConfigs[experiment.id] ?? fallback3DConfig(experiment), [experiment]);
   const panelRef = useRef<HTMLElement | null>(null);
   const mountRef = useRef<HTMLDivElement>(null);
   const timelineTimeRef = useRef<number | null>(timelineTime);
@@ -110,11 +111,11 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount || !config) return undefined;
+    if (!mount) return undefined;
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
     } catch {
       const fallback = document.createElement("div");
       fallback.className = "three-lab-fallback";
@@ -293,7 +294,6 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
     };
   }, [config, experiment.id, values]);
 
-  if (!config) return null;
   const cardClassName = config.cinematic ? "three-lab-card three-lab-card-cinematic mt-5 fullscreen-target" : "three-lab-card mt-5 fullscreen-target";
   const setPanelRef = (element: HTMLElement | null) => {
     panelRef.current = element;
@@ -428,6 +428,7 @@ function fallback3DKind(experiment: ExperimentDefinition): AnimationKind {
   if (id.includes("prism") || id.includes("dispersion") || id.includes("internal") || id.includes("polarization") || id.includes("reflection")) return "prism";
   if (id.includes("lens") || id.includes("mirror") || id.includes("eye") || category.includes("optic")) return "lens";
   if (id.includes("photoelectric")) return "photoelectric";
+  if (id.includes("relativity")) return "graph3d";
   if (id.includes("bohr") || id.includes("nuclear")) return "bohr";
   if (id.includes("wave") || id.includes("sound") || id.includes("slit") || id.includes("diffraction") || id.includes("interference") || id.includes("chladni")) return "interference";
   if (category.includes("astronomy")) return "gravity";

@@ -7,12 +7,14 @@ import { iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { assignmentSharePath, assignmentShareUrl, createAssignment, defaultAssignmentDraft, deleteAssignment, exportAssignments, importAssignments, listAssignments, TeacherAssignment } from "../lib/teacher";
 import { GuidePanel } from "../components/GuidePanel";
 import { teacherGuide } from "../lib/guides";
+import { TeacherReadinessPanel } from "../components/TeacherReadinessPanel";
 
 export function TeacherPage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [draft, setDraft] = useState(defaultAssignmentDraft());
   const [assignments, setAssignments] = useState<TeacherAssignment[]>(listAssignments());
   const [copied, setCopied] = useState("");
+  const [activeTab, setActiveTab] = useState<"create" | "assignments" | "readiness" | "guide">("create");
   const topics = useMemo(() => allCurriculumTopics(), []);
   const classTopics = topics.filter((topic) => topic.classId === draft.classId);
   const selectedTopic = topics.find((topic) => topic.id === draft.topicId) ?? classTopics[0];
@@ -63,8 +65,8 @@ export function TeacherPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <main id="content" className="mx-auto max-w-7xl px-5 py-8">
-        <div className="flex flex-wrap items-start justify-between gap-4">
+      <div id="content" className="desktop-page">
+        <div className="page-hero flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="ui-label">Teacher mode</p>
             <h1 className="mt-2 text-3xl font-black">Assignments and Classroom Controls</h1>
@@ -78,14 +80,32 @@ export function TeacherPage() {
             <input ref={fileRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importFile(event.target.files[0])} />
           </div>
         </div>
-        <div className="mt-5">
-          <GuidePanel guide={teacherGuide} defaultOpen />
-        </div>
-        <div className="mt-4 rounded-md border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
-          Sharing is browser-only: copied assignment links include the assignment payload, and imported/exported packs are plain JSON files. Student progress remains on each student's device unless they export it.
+        <div className="desktop-tabs mt-3" aria-label="Teacher sections">
+          {[
+            { id: "create" as const, label: "Create", icon: "teacher" as const },
+            { id: "assignments" as const, label: "Assignments", icon: "clipboard" as const },
+            { id: "readiness" as const, label: "Readiness", icon: "check" as const },
+            { id: "guide" as const, label: "Guide", icon: "book" as const },
+          ].map((tab) => (
+            <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
+              <span className="inline-flex items-center gap-1.5"><PhysicsIcon name={tab.icon} className="h-3.5 w-3.5" />{tab.label}</span>
+            </button>
+          ))}
         </div>
 
-        <section className="mt-6 grid gap-5 lg:grid-cols-[420px_1fr]">
+        <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
+          {activeTab === "guide" && (
+            <div className="grid gap-3">
+              <GuidePanel guide={teacherGuide} defaultOpen />
+              <div className="rounded-md border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                Sharing is browser-only: copied assignment links include the assignment payload, and imported/exported packs are plain JSON files. Student progress remains on each student's device unless they export it.
+              </div>
+            </div>
+          )}
+          {activeTab === "readiness" && <TeacherReadinessPanel />}
+          {(activeTab === "create" || activeTab === "assignments") && (
+        <section className={activeTab === "create" ? "desktop-two-pane desktop-two-pane-wide" : "grid gap-4"}>
+          {activeTab === "create" && (
           <div className="panel p-4">
             <h2 className="panel-title flex items-center gap-2"><PhysicsIcon name="teacher" className="h-5 w-5 text-cyan-500" />Create Assignment</h2>
             <div className="mt-4 grid gap-3">
@@ -119,8 +139,9 @@ export function TeacherPage() {
               <button className="tool-btn-primary inline-flex items-center justify-center gap-2" onClick={save}><PhysicsIcon name="check" className="h-4 w-4" />Save assignment</button>
             </div>
           </div>
+          )}
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 desktop-main-scroll">
             <section className="grid gap-3 md:grid-cols-4">
               <Metric icon="teacher" label="Assignments" value={assignments.length} />
               <Metric icon="gauge" label="Locked" value={assignments.filter((item) => item.lockVariables).length} />
@@ -163,7 +184,9 @@ export function TeacherPage() {
             </section>
           </div>
         </section>
-      </main>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -87,7 +87,7 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
       <section className="projectile-stage-column">
         <div className="projectile-stage-header">
           <div>
-            <p className="ui-label">Live side panel</p>
+            <p className="ui-label">Interactive visualization</p>
             <h2 className="text-xl font-black">Change controls, watch here</h2>
           </div>
           <div className="projectile-stage-tabs" aria-label="Projectile visualization views">
@@ -104,6 +104,7 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
           {view === "three" && hasThreeD && <Experiment3DAnimation experiment={experiment} values={[projectile.speed, projectile.angle, projectile.gravity]} outputs={outputs} timelineTime={activeMoment?.time ?? null} fixedShell />}
           {view === "trajectory" && (
             <ProjectilePanel title="Trajectory" icon="rocket" className="panel p-4 projectile-stage-fill">
+          <div className="text-xs font-bold uppercase tracking-widest text-cyan-300">Interactive visualization</div>
           <svg className="projectile-trajectory-svg mt-3 w-full rounded bg-slate-950" viewBox="0 0 820 300" role="img" aria-label="Projectile trajectory">
             <defs>
               <pattern id="projectile-grid" width="40" height="40" patternUnits="userSpaceOnUse">

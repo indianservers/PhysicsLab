@@ -9,7 +9,7 @@ import { PhysicsObjectInstance } from "../types";
 import { GuidePanel } from "./GuidePanel";
 import { guideForTool } from "../lib/guides";
 
-const topics = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics"];
+const topics = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics", "Energy"];
 const tabs = ["Topics", "Objects", "Forces", "Instruments", "Graphs", "Experiments", "Formulas", "Quantum"];
 const circuitKinds = ["battery", "resistor", "bulb", "switch", "ammeter", "voltmeter", "wire"];
 

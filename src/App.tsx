@@ -6,7 +6,11 @@ import { WorkspacePage } from "./pages/WorkspacePage";
 import { ExperimentsPage } from "./pages/ExperimentsPage";
 import { ExperimentDetailPage } from "./pages/ExperimentDetailPage";
 import { TopicPage } from "./pages/TopicPage";
+import { SyllabusPage } from "./pages/SyllabusPage";
+import { ConceptsPage } from "./pages/ConceptsPage";
+import { RoadmapPage } from "./pages/RoadmapPage";
 import { SimplePage } from "./pages/SimplePage";
+import { GraphsPage } from "./pages/GraphsPage";
 import { VideoAnalysisPage } from "./pages/VideoAnalysisPage";
 import { LMSConfigPage } from "./pages/LMSConfigPage";
 import { QuantumPage } from "./pages/QuantumPage";
@@ -29,6 +33,7 @@ const topics = [
   "astronomy",
   "measurement",
   "electronics",
+  "energy",
 ];
 
 export default function App() {
@@ -65,6 +70,9 @@ export default function App() {
           <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
           <Route path="/experiments" element={<ExperimentsPage />} />
           <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />
+          <Route path="/syllabus" element={<SyllabusPage />} />
+          <Route path="/concepts" element={<ConceptsPage />} />
+          <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/solver" element={<SolverPage />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/video" element={<VideoAnalysisPage />} />
@@ -75,7 +83,7 @@ export default function App() {
           {topics.map((topic) => (
             <Route key={topic} path={`/topics/${topic}`} element={<TopicPage topic={topic} />} />
           ))}
-          <Route path="/graphs" element={<SimplePage title="Graphs" />} />
+          <Route path="/graphs" element={<GraphsPage />} />
           <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
           <Route path="/settings" element={<SimplePage title="Settings" />} />
           <Route path="/help" element={<SimplePage title="Help" />} />

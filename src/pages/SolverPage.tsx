@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
 import { allSolverQuestions, solverCategories, solverStats, SolverDifficulty } from "../lib/solver";
@@ -30,13 +30,16 @@ const formulaSearchEntries = [
 ];
 
 export function SolverPage() {
-  const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialTag = searchParams.get("tag") ?? "all";
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [categoryId, setCategoryId] = useState("all");
   const [difficulty, setDifficulty] = useState<"all" | SolverDifficulty>("all");
   const [classFilter, setClassFilter] = useState("all");
-  const [tagFilter, setTagFilter] = useState("all");
+  const [tagFilter, setTagFilter] = useState(initialTag);
   const [openAnswers, setOpenAnswers] = useState<Record<string, boolean>>({});
   const [stepLevel, setStepLevel] = useState<Record<string, number>>({});
+  const [activeTab, setActiveTab] = useState<"practice" | "tools" | "revision">("practice");
   const questions = useMemo(() => allSolverQuestions(), []);
   const tags = useMemo(() => ["all", ...Array.from(new Set(questions.flatMap((question) => question.conceptTags))).sort()], [questions]);
   const activeFormulaSearch = formulaEntryForQuery(query);
@@ -62,7 +65,7 @@ export function SolverPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="mx-auto max-w-7xl px-5 py-8">
+      <div id="content" className="desktop-page">
         <section className="page-hero">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
@@ -89,17 +92,33 @@ export function SolverPage() {
           </div>
         </section>
 
-        <section className="mt-6 grid gap-4 xl:grid-cols-3">
-          <FormulaGlossaryPanel />
-          <UnitConverterPanel />
-          <SolverGraphWorkspace />
-        </section>
-
-        <div className="mt-6">
-          <RevisionModePanel questions={filtered.slice(0, 80)} />
+        <div className="desktop-tabs mt-3" aria-label="Solver sections">
+          {[
+            { id: "practice" as const, label: "Practice", icon: "calculator" as const },
+            { id: "tools" as const, label: "Tools", icon: "ruler" as const },
+            { id: "revision" as const, label: "Revision", icon: "spark" as const },
+          ].map((tab) => (
+            <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
+              <span className="inline-flex items-center gap-1.5"><PhysicsIcon name={tab.icon} className="h-3.5 w-3.5" />{tab.label}</span>
+            </button>
+          ))}
         </div>
 
-        <section className="filter-bar mt-6">
+        <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
+          {activeTab === "tools" && (
+            <section className="grid gap-4 xl:grid-cols-3">
+              <FormulaGlossaryPanel />
+              <UnitConverterPanel />
+              <SolverGraphWorkspace />
+            </section>
+          )}
+
+          {activeTab === "revision" && <RevisionModePanel questions={filtered.slice(0, 80)} />}
+
+          {activeTab === "practice" && (
+            <div className="grid min-h-0 gap-3">
+
+        <section className="filter-bar">
           <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto_auto]">
             <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search question, concept, formula, category..." />
             <select className="select-field" value={categoryId} onChange={(event) => setCategoryId(event.target.value)} aria-label="Solver category">
@@ -133,7 +152,7 @@ export function SolverPage() {
         </section>
 
         {activeFormulaSearch && (
-          <section className="formula-search-panel mt-6">
+          <section className="formula-search-panel">
             <div>
               <p className="ui-label">Formula search</p>
               <h2 className="mt-1 text-xl font-black">Matches for {activeFormulaSearch.label}</h2>
@@ -150,8 +169,8 @@ export function SolverPage() {
           </section>
         )}
 
-        <section className="mt-6 grid gap-4 lg:grid-cols-[280px_1fr]">
-          <aside className="panel h-fit p-4 lg:sticky lg:top-36">
+        <section className="desktop-two-pane">
+          <aside className="panel p-4 desktop-sidebar-scroll">
             <h2 className="panel-title">15 Main Categories</h2>
             <div className="mt-3 grid gap-2">
               <button className={categoryId === "all" ? "pill border-cyan-400 text-cyan-500" : "pill"} onClick={() => setCategoryId("all")}>
@@ -171,7 +190,7 @@ export function SolverPage() {
             </div>
           </aside>
 
-          <div className="grid gap-5">
+          <div className="grid gap-5 desktop-main-scroll">
             {grouped.map((category) => (
               <section key={category.id} className="panel p-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -251,6 +270,9 @@ export function SolverPage() {
             )}
           </div>
         </section>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
