@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   FOUNDATION LAYER — 2026 Design System
+   5 systems: Typography · Spring · Elevation · Mesh · Glass
+   ============================================================ */
+
 @layer base {
   :root {
     color-scheme: dark;
 
+    /* ── Color Palette ──────────────────────────────────────── */
     --color-space-50: 248 251 255;
     --color-space-100: 229 238 249;
     --color-space-200: 195 210 230;
@@ -50,6 +56,13 @@
     --color-warning-800: 146 64 14;
     --color-warning-900: 120 53 15;
 
+    /* success + error semantic */
+    --color-success-400: 52 211 153;
+    --color-success-500: 16 185 129;
+    --color-error-400: 251 113 133;
+    --color-error-500: 244 63 94;
+
+    /* ── Surface Tokens ─────────────────────────────────────── */
     --surface-canvas: rgb(var(--color-space-900));
     --surface-void: rgb(2 6 13);
     --surface-rail: rgb(2 6 13 / 0.92);
@@ -58,66 +71,648 @@
     --surface-muted: rgb(var(--color-space-700) / 0.62);
     --surface-elevated: rgb(var(--color-space-700) / 0.86);
     --surface-glass: rgb(var(--color-space-800) / 0.72);
+
+    /* ── Line / Border Tokens ───────────────────────────────── */
     --line-soft: rgb(var(--color-space-300) / 0.18);
+    --line-medium: rgb(var(--color-space-300) / 0.28);
     --line-strong: rgb(var(--color-science-500) / 0.34);
+    /* Luminous glass border — top/left edges catch light */
+    --line-glass-top: rgb(255 255 255 / 0.10);
+    --line-glass-bottom: rgb(0 0 0 / 0.30);
+
+    /* ── Text Tokens ────────────────────────────────────────── */
     --text-primary: rgb(var(--color-space-50));
     --text-secondary: rgb(var(--color-space-200));
     --text-muted: rgb(var(--color-space-300));
+
+    /* ── Accent Tokens ──────────────────────────────────────── */
     --accent-primary: rgb(var(--color-science-500));
     --accent-primary-soft: rgb(var(--color-science-500) / 0.12);
-    --accent-quantum: rgb(var(--color-quantum-500));
+    --accent-quantum: rgb(var(--color-quantum-400));
     --accent-warning: rgb(var(--color-warning-500));
+    --accent-success: rgb(var(--color-success-400));
+    --accent-error: rgb(var(--color-error-400));
 
-    --font-size-xs: clamp(0.72rem, 0.7rem + 0.08vw, 0.78rem);
-    --font-size-sm: clamp(0.82rem, 0.79rem + 0.12vw, 0.92rem);
-    --font-size-base: clamp(0.94rem, 0.9rem + 0.18vw, 1.05rem);
-    --font-size-lg: clamp(1.08rem, 1rem + 0.34vw, 1.28rem);
-    --font-size-xl: clamp(1.24rem, 1.11rem + 0.55vw, 1.6rem);
-    --font-size-2xl: clamp(1.45rem, 1.24rem + 0.9vw, 2rem);
-    --font-size-3xl: clamp(1.75rem, 1.43rem + 1.35vw, 2.65rem);
-    --font-size-4xl: clamp(2.15rem, 1.67rem + 2vw, 3.5rem);
-    --font-size-5xl: clamp(2.55rem, 1.85rem + 3vw, 4.75rem);
-    --font-size-6xl: clamp(3rem, 2.1rem + 4.1vw, 6.25rem);
-    --font-size-7xl: clamp(3.45rem, 2.35rem + 5.2vw, 7.8rem);
-    --line-tight: 1.04;
+    /* ── SYSTEM 1: Fluid Typography ─────────────────────────── */
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    --font-optical: auto; /* enables optical sizing on variable fonts */
+
+    --font-size-xs:   clamp(0.72rem,  0.7rem  + 0.08vw, 0.78rem);
+    --font-size-sm:   clamp(0.82rem,  0.79rem + 0.12vw, 0.92rem);
+    --font-size-base: clamp(0.94rem,  0.9rem  + 0.18vw, 1.05rem);
+    --font-size-lg:   clamp(1.08rem,  1rem    + 0.34vw, 1.28rem);
+    --font-size-xl:   clamp(1.24rem,  1.11rem + 0.55vw, 1.6rem);
+    --font-size-2xl:  clamp(1.45rem,  1.24rem + 0.9vw,  2rem);
+    --font-size-3xl:  clamp(1.75rem,  1.43rem + 1.35vw, 2.65rem);
+    --font-size-4xl:  clamp(2.15rem,  1.67rem + 2vw,    3.5rem);
+    --font-size-5xl:  clamp(2.55rem,  1.85rem + 3vw,    4.75rem);
+    --font-size-6xl:  clamp(3rem,     2.1rem  + 4.1vw,  6.25rem);
+    --font-size-7xl:  clamp(3.45rem,  2.35rem + 5.2vw,  7.8rem);
+
+    --line-tight:   1.04;
     --line-heading: 1.12;
-    --line-body: 1.65;
+    --line-body:    1.65;
 
-    --shadow-inset: inset 0 1px 0 rgb(var(--color-space-50) / 0.06), inset 0 -1px 0 rgb(2 6 13 / 0.55);
-    --shadow-float: 0 18px 48px rgb(2 6 13 / 0.34), 0 4px 16px rgb(0 38 43 / 0.18);
-    --shadow-glow: 0 0 0 1px rgb(var(--color-science-500) / 0.24), 0 0 26px rgb(var(--color-science-500) / 0.28), 0 0 64px rgb(var(--color-science-700) / 0.18);
-    --shadow-glow-quantum: 0 0 0 1px rgb(var(--color-quantum-500) / 0.24), 0 0 30px rgb(var(--color-quantum-500) / 0.3);
-    --shadow-glow-warning: 0 0 0 1px rgb(var(--color-warning-500) / 0.28), 0 0 28px rgb(var(--color-warning-500) / 0.24);
+    /* Display heading letter-spacing (tighter = more premium) */
+    --tracking-display: -0.03em;
+    --tracking-heading: -0.02em;
+    --tracking-ui:      -0.01em;
+
+    /* ── SYSTEM 2: Spring Physics Easing ────────────────────── */
+    --ease-spring-soft:   cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring-medium: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-spring-stiff:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-spring-snap:   cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-decel:         cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-accel:         cubic-bezier(0.4, 0.0, 1, 1);
+    /* Standard durations */
+    --dur-instant:  50ms;
+    --dur-fast:     120ms;
+    --dur-base:     200ms;
+    --dur-medium:   280ms;
+    --dur-slow:     400ms;
+    --dur-reveal:   600ms;
+
+    /* ── SYSTEM 3: 6-Level Elevation ────────────────────────── */
+    /* Level 0 — flush, integrated */
+    --shadow-elev-0: none;
+    /* Level 1 — resting card */
+    --shadow-elev-1:
+      0 1px 2px rgb(2 6 13 / 0.40),
+      0 1px 6px rgb(2 6 13 / 0.20);
+    /* Level 2 — hover card */
+    --shadow-elev-2:
+      0 4px 8px  rgb(2 6 13 / 0.48),
+      0 2px 16px rgb(2 6 13 / 0.24),
+      0 0 0 1px  rgb(255 255 255 / 0.04);
+    /* Level 3 — floating panel / dropdown */
+    --shadow-elev-3:
+      0 8px 24px  rgb(2 6 13 / 0.56),
+      0 4px 48px  rgb(2 6 13 / 0.32),
+      0 0 0 1px   var(--line-soft);
+    /* Level 4 — modal / dialog */
+    --shadow-elev-4:
+      0 20px 56px  rgb(2 6 13 / 0.70),
+      0 8px  80px  rgb(2 6 13 / 0.40),
+      0 0 0 1px    var(--line-soft),
+      inset 0 1px 0 var(--line-glass-top);
+    /* Level 5 — tooltip / max elevation */
+    --shadow-elev-5:
+      0 32px 80px  rgb(2 6 13 / 0.80),
+      0 12px 100px rgb(2 6 13 / 0.50),
+      0 0 0 1px    var(--line-soft);
+    /* Colored accent glow shadows */
+    --shadow-glow-science:
+      0 0 0 1px   rgb(var(--color-science-500) / 0.24),
+      0 0 26px    rgb(var(--color-science-500) / 0.28),
+      0 0 64px    rgb(var(--color-science-700) / 0.18),
+      0 8px 24px  rgb(var(--color-science-500) / 0.20);
+    --shadow-glow-error:
+      0 0 0 1px   rgb(var(--color-error-500) / 0.28),
+      0 8px 24px  rgb(var(--color-error-500) / 0.25);
+    --shadow-glow-success:
+      0 0 0 1px   rgb(var(--color-success-500) / 0.28),
+      0 8px 24px  rgb(var(--color-success-500) / 0.22);
+    /* Press shadow — object sinks into surface */
+    --shadow-pressed:
+      0 1px 1px rgb(2 6 13 / 0.50),
+      inset 0 1px 3px rgb(2 6 13 / 0.50);
+    /* Kept existing */
+    --shadow-inset:
+      inset 0 1px 0 rgb(var(--color-space-50) / 0.06),
+      inset 0 -1px 0 rgb(2 6 13 / 0.55);
+    --shadow-float:
+      0 18px 48px rgb(2 6 13 / 0.34),
+      0 4px 16px  rgb(0 38 43 / 0.18);
+    --shadow-glow:
+      0 0 0 1px  rgb(var(--color-science-500) / 0.24),
+      0 0 26px   rgb(var(--color-science-500) / 0.28),
+      0 0 64px   rgb(var(--color-science-700) / 0.18);
+    --shadow-glow-quantum:
+      0 0 0 1px  rgb(var(--color-quantum-500) / 0.24),
+      0 0 30px   rgb(var(--color-quantum-500) / 0.30);
+    --shadow-glow-warning:
+      0 0 0 1px  rgb(var(--color-warning-500) / 0.28),
+      0 0 28px   rgb(var(--color-warning-500) / 0.24);
+    /* Glass specular highlight */
+    --shadow-glass:
+      inset 0 1px 0 var(--line-glass-top),
+      inset 1px 0 0 rgb(255 255 255 / 0.04),
+      inset 0 -1px 0 var(--line-glass-bottom);
+
+    /* ── SYSTEM 4: Animated Mesh Gradient ───────────────────── */
+    /* Used by .mesh-bg — positions for the 3 drifting blobs */
+    --mesh-blob-1: rgb(var(--color-science-900) / 0.30);
+    --mesh-blob-2: rgb(var(--color-quantum-900) / 0.24);
+    --mesh-blob-3: rgb(var(--color-warning-900) / 0.14);
+    --mesh-noise-opacity: 0.035;
+    /* Cursor light (updated by JS for cursor-reactive light) */
+    --cursor-x: 50%;
+    --cursor-y: 50%;
+
+    /* ── SYSTEM 5: Glassmorphism 2.0 ────────────────────────── */
+    --glass-blur:        20px;
+    --glass-saturate:    180%;
+    --glass-bg:          rgb(var(--color-space-800) / 0.72);
+    --glass-bg-strong:   rgb(var(--color-space-800) / 0.88);
+    --glass-bg-subtle:   rgb(var(--color-space-800) / 0.52);
+    --glass-border:      var(--line-soft);
+    --glass-border-top:  var(--line-glass-top);
+    /* Specular gradient — faint light sheen on top 40% */
+    --glass-specular:
+      linear-gradient(
+        180deg,
+        rgb(255 255 255 / 0.07) 0%,
+        rgb(255 255 255 / 0.02) 40%,
+        transparent 40%
+      );
   }
 
+  /* ── Typography Base ────────────────────────────────────────── */
   html {
     background: var(--surface-canvas);
+    font-optical-sizing: var(--font-optical);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
-    background:
-      radial-gradient(circle at 18% 8%, rgb(var(--color-science-900) / 0.2), transparent 32rem),
-      radial-gradient(circle at 82% 0%, rgb(var(--color-quantum-900) / 0.18), transparent 34rem),
-      var(--surface-canvas);
+    /* Animated mesh gradient body background */
+    background-color: var(--surface-canvas);
+    background-image:
+      /* Cursor-reactive ambient light */
+      radial-gradient(
+        600px circle at var(--cursor-x) var(--cursor-y),
+        rgb(var(--color-science-500) / 0.04),
+        transparent 60%
+      ),
+      /* Drifting blob 1 — cyan top-left */
+      radial-gradient(ellipse 60% 50% at 18% 8%,  var(--mesh-blob-1), transparent),
+      /* Drifting blob 2 — violet top-right */
+      radial-gradient(ellipse 55% 45% at 82% 0%,  var(--mesh-blob-2), transparent),
+      /* Drifting blob 3 — amber center warmth */
+      radial-gradient(ellipse 40% 35% at 50% 55%, var(--mesh-blob-3), transparent);
+    background-attachment: fixed;
     color: var(--text-primary);
+    font-family: var(--font-sans);
     font-size: var(--font-size-base);
     line-height: var(--line-body);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    /* Tabular numbers everywhere — prevents layout shift on live values */
+    font-variant-numeric: tabular-nums;
   }
 
+  /* ── Heading Typography — tight, confident ──────────────────── */
   h1 {
     font-size: var(--font-size-6xl);
     line-height: var(--line-tight);
+    letter-spacing: var(--tracking-display);
+    font-weight: 900;
   }
 
   h2 {
     font-size: var(--font-size-3xl);
     line-height: var(--line-heading);
+    letter-spacing: var(--tracking-heading);
+    font-weight: 800;
   }
 
   h3 {
     font-size: var(--font-size-xl);
     line-height: var(--line-heading);
+    letter-spacing: var(--tracking-ui);
+    font-weight: 700;
   }
+
+  h4, h5, h6 {
+    letter-spacing: var(--tracking-ui);
+  }
+
+  /* Monospace elements use JetBrains Mono */
+  code, kbd, samp, pre,
+  .font-mono, [class*="font-mono"] {
+    font-family: var(--font-mono);
+    font-feature-settings: "calt", "ss01", "ss02";
+  }
+}
+
+/* ============================================================
+   SPRING MICRO-INTERACTIONS — applied globally
+   ============================================================ */
+
+/* Button spring-press: scale down on active, spring back */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+.tool-btn,
+.hero-btn,
+.hero-btn-secondary,
+.tab-btn,
+.tab-active,
+.nav-chip,
+.focus-pill,
+.segment-chip,
+.quiz-option,
+.object-card,
+.object-tile {
+  transition:
+    transform     var(--dur-fast)   var(--ease-spring-snap),
+    box-shadow    var(--dur-base)   var(--ease-spring-snap),
+    border-color  var(--dur-fast)   var(--ease-spring-snap),
+    background    var(--dur-fast)   var(--ease-spring-snap),
+    color         var(--dur-fast)   var(--ease-spring-snap),
+    opacity       var(--dur-fast)   var(--ease-spring-snap);
+}
+
+button:not(:disabled):active,
+[role="button"]:not(:disabled):active,
+.tool-btn:active,
+.hero-btn:active,
+.hero-btn-secondary:active,
+.tab-btn:active,
+.nav-chip:active,
+.focus-pill:active,
+.segment-chip:active,
+.quiz-option:active,
+.object-card:active,
+.object-tile:active {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-pressed);
+}
+
+/* Card hover lift — spring float */
+.enhanced-card,
+.home-card,
+.progress-tile,
+.animation-moment,
+.topic-lens-card,
+.formula-lab-card,
+.remediation-action,
+.quiz-review-item,
+.teacher-readiness-metric,
+.teacher-advanced-lane,
+.class-progress-item,
+.object-card {
+  transition:
+    transform    var(--dur-base)   var(--ease-spring-soft),
+    box-shadow   var(--dur-base)   var(--ease-spring-snap),
+    border-color var(--dur-fast)   var(--ease-spring-snap),
+    background   var(--dur-base)   var(--ease-spring-snap);
+}
+
+.enhanced-card:hover,
+.home-card:hover,
+.progress-tile:hover,
+.animation-moment:hover,
+.topic-lens-card:hover,
+.formula-lab-card:hover,
+.remediation-action:hover,
+.quiz-review-item:hover,
+.teacher-readiness-metric:hover,
+.teacher-advanced-lane:hover,
+.class-progress-item:hover,
+.object-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elev-2);
+}
+
+.enhanced-card:hover { box-shadow: var(--shadow-float), var(--shadow-glow-science); }
+
+/* ============================================================
+   GLASSMORPHISM 2.0 — .glass-panel component
+   ============================================================ */
+
+.glass-panel {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  /* Specular pseudo-element */
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glass-specular);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.glass-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Luminous top + left edge — light from above-left */
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border-top:  1px solid var(--line-glass-top);
+  border-left: 1px solid rgb(255 255 255 / 0.05);
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid var(--line-glass-bottom);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Variants */
+.glass-panel-strong {
+  background: var(--glass-bg-strong);
+}
+
+.glass-panel-subtle {
+  background: var(--glass-bg-subtle);
+}
+
+/* Upgrade existing .panel to glass */
+.panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-color: var(--line-soft);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+}
+
+/* ============================================================
+   MESH GRADIENT HERO — .mesh-bg
+   ============================================================ */
+
+.mesh-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Three independently drifting blobs */
+.mesh-bg::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 55% 48% at 22% 18%, var(--mesh-blob-1), transparent),
+    radial-gradient(ellipse 50% 42% at 78% 10%, var(--mesh-blob-2), transparent),
+    radial-gradient(ellipse 38% 32% at 52% 62%, var(--mesh-blob-3), transparent);
+  animation:
+    mesh-drift-1 18s ease-in-out infinite alternate,
+    mesh-drift-2 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* SVG noise overlay — kills "web gradient" look */
+.mesh-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: var(--mesh-noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+}
+
+/* ============================================================
+   GRADIENT TEXT UTILITY — .text-gradient
+   ============================================================ */
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-science-300)) 0%,
+    rgb(var(--color-science-500)) 40%,
+    rgb(var(--color-quantum-400)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-science-400)) 0%,
+    rgb(var(--color-warning-400)) 60%,
+    rgb(var(--color-warning-300)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-gradient-quantum {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-quantum-300)) 0%,
+    rgb(var(--color-quantum-500)) 50%,
+    rgb(var(--color-science-500)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   ELEVATION UTILITIES — .elev-{n}
+   ============================================================ */
+
+.elev-0 { box-shadow: var(--shadow-elev-0); }
+.elev-1 { box-shadow: var(--shadow-elev-1); }
+.elev-2 { box-shadow: var(--shadow-elev-2); }
+.elev-3 { box-shadow: var(--shadow-elev-3); }
+.elev-4 { box-shadow: var(--shadow-elev-4); }
+.elev-5 { box-shadow: var(--shadow-elev-5); }
+
+/* ============================================================
+   SKELETON WAVE — upgraded shimmer
+   ============================================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--color-space-700) / 0.60) 25%,
+    rgb(var(--color-space-600) / 0.70) 37%,
+    rgb(var(--color-space-700) / 0.60) 63%
+  );
+  background-size: 400px 100%;
+  animation: skeleton-wave 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   FOCUS VISIBLE — glow ring
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px rgb(var(--color-science-500) / 0.20);
+  transition: box-shadow var(--dur-fast) var(--ease-spring-snap);
+}
+
+/* ============================================================
+   SCROLLBAR — thin, branded
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-science-500) / 0.28);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-science-500) / 0.55);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-science-500) / 0.28) transparent;
+}
+
+/* ============================================================
+   CURSOR-REACTIVE LIGHT — updated via JS
+   ============================================================ */
+
+/* Applied to body via JS: document.body.style.setProperty('--cursor-x', x+'px') */
+
+/* ============================================================
+   DARK MODE RADIAL THEME TRANSITION — .theme-transitioning
+   ============================================================ */
+
+.theme-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  animation: theme-reveal 400ms var(--ease-decel) forwards;
+}
+
+/* ============================================================
+   STAGGER ANIMATION UTILITIES
+   ============================================================ */
+
+.stagger-item {
+  opacity: 0;
+  animation: fade-up 280ms var(--ease-spring-snap) forwards;
+}
+
+.stagger-item:nth-child(1)  { animation-delay: 0ms; }
+.stagger-item:nth-child(2)  { animation-delay: 40ms; }
+.stagger-item:nth-child(3)  { animation-delay: 80ms; }
+.stagger-item:nth-child(4)  { animation-delay: 120ms; }
+.stagger-item:nth-child(5)  { animation-delay: 160ms; }
+.stagger-item:nth-child(6)  { animation-delay: 200ms; }
+.stagger-item:nth-child(7)  { animation-delay: 240ms; }
+.stagger-item:nth-child(8)  { animation-delay: 280ms; }
+/* Beyond 8 — just fade in, no stagger delay */
+.stagger-item:nth-child(n+9) { animation-delay: 280ms; }
+
+/* ============================================================
+   MESH GRADIENT KEYFRAMES  (referenced from tailwind config)
+   ============================================================ */
+
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(0%,  0%)  scale(1); }
+  33%       { transform: translate(8%, -6%) scale(1.08); }
+  66%       { transform: translate(-5%, 9%) scale(0.96); }
+}
+
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(0%,   0%)  scale(1); }
+  33%       { transform: translate(-10%, 7%) scale(1.06); }
+  66%       { transform: translate(6%, -8%)  scale(1.04); }
+}
+
+@keyframes theme-reveal {
+  from { clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%)); }
+  to   { clip-path: circle(150% at var(--reveal-x, 50%) var(--reveal-y, 50%)); }
+}
+
+@keyframes skeleton-wave {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   PAGE HERO — mesh-bg upgrade applied
+   ============================================================ */
+
+/* Upgrade .page-hero to use mesh gradient */
+.page-hero {
+  @apply relative overflow-hidden rounded-lg border p-5;
+  min-width: 0;
+  background:
+    linear-gradient(135deg, rgb(var(--color-space-800) / 0.9), rgb(var(--color-space-900) / 0.82)),
+    var(--surface-panel);
+  border-color: var(--line-soft);
+  box-shadow: var(--shadow-elev-3), var(--shadow-glass);
+}
+
+.page-hero::before {
+  content: "";
+  @apply pointer-events-none absolute inset-x-0 top-0 h-px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-quantum), var(--accent-warning));
+  box-shadow: var(--shadow-glow);
+  opacity: 0.9;
+}
+
+/* Mesh blobs inside hero */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 15% 20%, rgb(var(--color-science-900) / 0.35), transparent),
+    radial-gradient(ellipse 45% 40% at 85% 10%, rgb(var(--color-quantum-900) / 0.28), transparent);
+  animation: mesh-drift-1 18s ease-in-out infinite alternate;
+}
+
+.page-hero > * { position: relative; z-index: 1; }
+.page-hero h1 { overflow-wrap: anywhere; }
+
+/* ============================================================
+   AMBIENT PULSE — physics glow objects
+   ============================================================ */
+
+.ambient-glow {
+  animation: ambient-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.04); }
 }
 
 * {
@@ -5355,6 +5950,61 @@ details[open] > :not(summary) {
   pointer-events: auto;
 }
 
+.canvas-formula-pill:hover {
+  border-color: rgba(var(--science-300), 0.5);
+  color: rgb(var(--science-50));
+  transform: translateY(-1px);
+}
+
+.formula-detail-card {
+  position: absolute;
+  top: 86px;
+  right: 18px;
+  z-index: 31;
+  display: grid;
+  width: min(360px, calc(100% - 36px));
+  gap: 12px;
+  border: 1px solid rgba(var(--science-400), 0.26);
+  border-radius: 18px;
+  background: rgba(var(--space-950), 0.82);
+  padding: 16px;
+  color: rgb(var(--space-100));
+  box-shadow: var(--shadow-float), 0 0 34px rgba(var(--science-400), 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.formula-detail-card h3 {
+  margin: 2px 0 0;
+  font-size: 1rem;
+}
+
+.formula-detail-card button {
+  border: 1px solid rgba(var(--space-500), 0.7);
+  border-radius: 999px;
+  background: rgba(var(--space-800), 0.78);
+  padding: 0.34rem 0.7rem;
+  color: rgb(var(--space-100));
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.formula-detail-expression {
+  overflow-x: auto;
+  border: 1px solid rgba(var(--science-400), 0.2);
+  border-radius: 14px;
+  background: rgba(var(--space-900), 0.72);
+  padding: 14px;
+  color: rgb(var(--science-100));
+  font: 900 0.92rem ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.formula-detail-card p:last-child {
+  margin: 0;
+  color: rgb(var(--space-250));
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
 .fbd-panel {
   position: absolute;
   left: 18px;
@@ -5428,6 +6078,24 @@ details[open] > :not(summary) {
 .momentum-ok { background: rgb(34 197 94 / 0.18); color: rgb(134 239 172); }
 .momentum-watch { background: rgb(244 63 94 / 0.16); color: rgb(253 164 175); }
 
+.momentum-balance {
+  position: relative;
+  width: 76px;
+  height: 8px;
+  align-self: center;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(var(--space-700), 0.72);
+}
+
+.momentum-balance i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgb(34 197 94), rgb(var(--science-400)));
+  box-shadow: 0 0 12px rgb(34 197 94 / 0.5);
+}
+
 .constellation-shell {
   display: grid;
   gap: 12px;
@@ -5473,10 +6141,49 @@ details[open] > :not(summary) {
   box-shadow: var(--shadow-float);
 }
 
+.constellation-map-controls {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: calc(100% - 28px);
+  border: 1px solid rgba(var(--science-400), 0.2);
+  border-radius: 999px;
+  background: rgba(var(--space-950), 0.72);
+  padding: 6px;
+  box-shadow: var(--shadow-float);
+  backdrop-filter: blur(16px);
+}
+
+.constellation-map-controls button {
+  border: 1px solid rgba(var(--space-600), 0.82);
+  border-radius: 999px;
+  background: rgba(var(--space-800), 0.82);
+  padding: 0.36rem 0.68rem;
+  color: rgb(var(--space-200));
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.constellation-map-controls button:hover,
+.constellation-map-controls button.active {
+  border-color: rgba(var(--science-300), 0.62);
+  color: rgb(var(--science-100));
+  box-shadow: 0 0 18px rgba(var(--science-400), 0.24);
+}
+
 .constellation-canvas {
   width: 100%;
   height: 620px;
-  cursor: pointer;
+  cursor: grab;
+  touch-action: none;
+}
+
+.constellation-canvas:active {
+  cursor: grabbing;
 }
 
 .constellation-preview {
@@ -5505,4 +6212,778 @@ details[open] > :not(summary) {
 @keyframes slowmoFade {
   0%, 100% { opacity: 0; }
   12%, 88% { opacity: 1; }
+}
+
+/* ============================================================
+   PHASE 2-5 UI POLISH — Navigation, Data, Canvas, Pages
+   ============================================================ */
+
+/* ── Route Fade Transition ──────────────────────────────────── */
+.route-fade {
+  animation: route-fade-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes route-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Command Palette Trigger ────────────────────────────────── */
+.command-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  padding: 0 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+  transition:
+    border-color var(--dur-fast) var(--ease-spring-snap),
+    background   var(--dur-fast) var(--ease-spring-snap),
+    box-shadow   var(--dur-fast) var(--ease-spring-snap);
+}
+
+.command-trigger:hover {
+  border-color: rgb(var(--color-science-500) / 0.42);
+  background: rgb(var(--color-science-500) / 0.08);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-elev-1);
+}
+
+.command-trigger:active { transform: scale(0.98); }
+
+.command-trigger kbd {
+  margin-left: auto;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+  background: rgb(var(--color-space-800) / 0.60);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ── Shell Icon Buttons ─────────────────────────────────────── */
+.shell-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  background: var(--glass-bg-subtle);
+  color: var(--text-muted);
+  transition:
+    border-color var(--dur-fast) var(--ease-spring-snap),
+    background   var(--dur-fast) var(--ease-spring-snap),
+    transform    var(--dur-fast) var(--ease-spring-snap);
+}
+
+.shell-icon-btn:hover {
+  border-color: rgb(var(--color-science-500) / 0.42);
+  background: rgb(var(--color-science-500) / 0.10);
+  color: var(--text-primary);
+}
+
+.shell-icon-btn:active { transform: scale(0.96); }
+
+/* ── Theme Orb ──────────────────────────────────────────────── */
+.theme-orb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--dur-medium) var(--ease-spring-soft);
+}
+
+.theme-orb.dark { transform: rotate(-15deg); }
+
+/* ── App Nav Rail ───────────────────────────────────────────── */
+.app-nav-rail {
+  position: fixed;
+  inset-y: 0;
+  left: 0;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 248px;
+  padding: 72px 12px 16px;
+  overflow-y: auto;
+  overflow-x: visible;
+  background: transparent;
+}
+
+.app-nav-rail::-webkit-scrollbar { display: none; }
+
+.nav-rail-section-label {
+  padding: 12px 10px 4px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Enhanced Card — glass ──────────────────────────────────── */
+.enhanced-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line-soft);
+  padding: 16px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+}
+
+.enhanced-card::before {
+  content: "";
+  position: absolute;
+  inset-y: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-primary), var(--accent-quantum));
+  border-radius: 2px 0 0 2px;
+}
+
+.enhanced-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.05) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+/* ── Home Card — glass ──────────────────────────────────────── */
+.home-card {
+  border-radius: 12px;
+  border: 1px solid var(--line-soft);
+  padding: 16px;
+  font-weight: 600;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+}
+
+.home-card:hover {
+  border-color: rgb(var(--color-science-500) / 0.45);
+  color: rgb(var(--color-science-100));
+  box-shadow: var(--shadow-elev-2), var(--shadow-glow-science);
+}
+
+/* ── Hero Btn — shine sweep ─────────────────────────────────── */
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 900;
+  background: var(--accent-primary);
+  color: rgb(var(--color-space-900));
+  box-shadow: var(--shadow-glow-science);
+  letter-spacing: var(--tracking-ui);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / 0.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 400ms ease;
+}
+
+.hero-btn:hover::after { transform: translateX(100%); }
+.hero-btn:hover { background: rgb(var(--color-science-400)); }
+
+/* ── Tool Btn Primary — shine ───────────────────────────────── */
+.tool-btn-primary {
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 900;
+  background: var(--accent-primary);
+  color: rgb(var(--color-space-900));
+  box-shadow: var(--shadow-glow);
+  letter-spacing: var(--tracking-ui);
+  overflow: hidden;
+  position: relative;
+}
+
+.tool-btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.tool-btn-primary:hover { background: rgb(var(--color-science-400)); }
+
+/* ── Play Toggle — shine ────────────────────────────────────── */
+.play-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 900;
+  background: var(--accent-primary);
+  color: rgb(var(--color-space-900));
+  box-shadow: var(--shadow-glow-science);
+  position: relative;
+  overflow: hidden;
+}
+
+.play-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.14) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.play-toggle:hover { background: rgb(var(--color-science-400)); }
+
+/* ── Status Chip — glass ────────────────────────────────────── */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line-soft);
+  padding: 3px 10px;
+  font-size: var(--font-size-xs);
+  font-weight: 900;
+  background: var(--glass-bg-subtle);
+  color: var(--text-secondary);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-glass);
+}
+
+.status-chip-cyan {
+  background: rgb(var(--color-science-500) / 0.10);
+  border-color: rgb(var(--color-science-500) / 0.35);
+  color: rgb(var(--color-science-200));
+  box-shadow: 0 0 12px rgb(var(--color-science-500) / 0.10);
+}
+
+/* ── Badge — glass ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  border: 1px solid rgb(var(--color-science-500) / 0.36);
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  background: rgb(var(--color-science-500) / 0.10);
+  color: rgb(var(--color-science-200));
+  backdrop-filter: blur(6px);
+}
+
+/* ── Count Up Animation ─────────────────────────────────────── */
+.count-up {
+  display: inline-block;
+  animation: count-pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── Tooltip — glass ────────────────────────────────────────── */
+[data-tooltip] { position: relative; }
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  z-index: 100;
+  min-width: max-content;
+  max-width: 240px;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  padding: 6px 10px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-elev-5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease, transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: normal;
+  text-align: center;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 200ms;
+}
+
+/* ── Panel — glass override ─────────────────────────────────── */
+.panel {
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+}
+
+/* ── Metric Card — glass ────────────────────────────────────── */
+.metric-card {
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  padding: 12px;
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-elev-1);
+}
+
+/* ── Tab Active ─────────────────────────────────────────────── */
+.tab-active {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--accent-primary);
+  padding: 6px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: 900;
+  background: var(--accent-primary);
+  color: rgb(var(--color-space-900));
+  box-shadow: var(--shadow-glow);
+  white-space: nowrap;
+  letter-spacing: var(--tracking-ui);
+}
+
+/* ── Quiz Option — glass ────────────────────────────────────── */
+.quiz-option {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  border-radius: 12px;
+  border: 1px solid var(--line-soft);
+  padding: 12px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-elev-1);
+}
+
+.quiz-option:hover {
+  border-color: rgb(var(--color-science-500) / 0.5);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-elev-2);
+}
+
+.quiz-option-selected {
+  border-color: rgb(var(--color-science-500) / 0.7);
+  background: rgb(var(--color-science-500) / 0.12);
+  box-shadow: var(--shadow-glow-science);
+}
+
+.quiz-option-correct {
+  border-color: rgb(52 211 153 / 0.7);
+  background: rgb(52 211 153 / 0.10);
+  box-shadow: var(--shadow-glow-success);
+}
+
+.quiz-option-wrong {
+  border-color: rgb(244 63 94 / 0.7);
+  background: rgb(244 63 94 / 0.10);
+  box-shadow: var(--shadow-glow-error);
+}
+
+/* ── Desktop Tabs — glass ───────────────────────────────────── */
+.desktop-tabs {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  padding: 8px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: var(--shadow-elev-3), var(--shadow-glass);
+}
+
+/* ── Three Lab Card — glass ─────────────────────────────────── */
+.three-lab-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgb(var(--color-science-500) / 0.22);
+  background: rgb(var(--color-space-900) / 0.98);
+  box-shadow: var(--shadow-elev-2), var(--shadow-glass);
+  isolation: isolate;
+}
+
+.three-lab-card::before {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-quantum), var(--accent-warning));
+  box-shadow: 0 0 16px rgb(var(--color-science-500) / 0.4);
+}
+
+/* ── Jump Strip / Command Strip — glass ─────────────────────── */
+.experiment-jump-strip {
+  position: sticky;
+  top: 64px;
+  z-index: 30;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  padding: 8px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: var(--shadow-elev-2), var(--shadow-glass);
+}
+
+.lab-command-strip {
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid rgb(var(--color-science-500) / 0.20);
+  padding: 12px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: var(--shadow-elev-2), var(--shadow-glass);
+}
+
+/* ── Guide Panel — glass ────────────────────────────────────── */
+.guide-panel {
+  border-radius: 12px;
+  border: 1px solid rgb(var(--color-science-500) / 0.25);
+  padding: 16px;
+  background: rgb(var(--color-science-500) / 0.06);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-elev-1);
+}
+
+/* ── Lab Disclosure — glass ─────────────────────────────────── */
+.lab-disclosure {
+  border-radius: 12px;
+  border: 1px solid var(--line-soft);
+  padding: 12px;
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+}
+
+/* ── Empty State ────────────────────────────────────────────── */
+.empty-state {
+  border-radius: 16px;
+  border: 1px dashed var(--line-medium);
+  padding: 32px;
+  text-align: center;
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+}
+
+/* ── Result Card — glass ────────────────────────────────────── */
+.result-card {
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  padding: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-elev-1);
+}
+
+.result-card-value {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-lg);
+  font-weight: 900;
+  color: var(--accent-primary);
+  word-break: break-all;
+  font-feature-settings: "calt", "tnum";
+}
+
+/* ── Homepage Bento Grid ────────────────────────────────────── */
+.home-bento-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .home-bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .home-bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+  }
+  .home-bento-large { grid-column: span 2; }
+  .home-bento-tall  { grid-row: span 2; }
+}
+
+.home-bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--line-soft);
+  padding: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+  transition:
+    transform    280ms var(--ease-spring-soft),
+    box-shadow   200ms var(--ease-spring-snap),
+    border-color 160ms var(--ease-spring-snap);
+}
+
+.home-bento-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(var(--color-science-500) / 0.40);
+  box-shadow: var(--shadow-elev-2), var(--shadow-glow-science);
+}
+
+/* Top specular */
+.home-bento-card::after {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 60%;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Section Headings ───────────────────────────────────────── */
+.section-heading {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--line-heading);
+  color: var(--text-primary);
+}
+
+.section-heading-gradient {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--line-heading);
+  background: linear-gradient(135deg,
+    rgb(var(--color-science-200)) 0%,
+    rgb(var(--color-science-400)) 40%,
+    rgb(var(--color-quantum-400)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Experiment Cards ───────────────────────────────────────── */
+.experiment-card-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.experiment-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--line-soft);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: var(--shadow-elev-1), var(--shadow-glass);
+  cursor: pointer;
+  transition:
+    transform    280ms var(--ease-spring-soft),
+    box-shadow   200ms var(--ease-spring-snap),
+    border-color 160ms var(--ease-spring-snap);
+}
+
+.experiment-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(var(--color-science-500) / 0.40);
+  box-shadow: var(--shadow-elev-2), var(--shadow-glow-science);
+}
+
+.experiment-card:active { transform: scale(0.98) translateY(0); }
+
+.experiment-card-preview {
+  height: 140px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgb(var(--color-science-900) / 0.40), transparent),
+    rgb(var(--color-space-900));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.experiment-card-preview::after {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(0deg, var(--glass-bg) 0%, transparent 100%);
+}
+
+.experiment-card-body { padding: 12px 14px 14px; }
+
+.experiment-card-formula {
+  position: absolute;
+  inset-x: 0;
+  bottom: 0;
+  padding: 8px 14px;
+  background: linear-gradient(0deg, var(--glass-bg-strong) 60%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--accent-primary);
+  transform: translateY(100%);
+  transition: transform 220ms var(--ease-spring-soft);
+  backdrop-filter: blur(12px);
+}
+
+.experiment-card:hover .experiment-card-formula { transform: translateY(0); }
+
+/* ── Difficulty Dots ────────────────────────────────────────── */
+.difficulty-dots { display: inline-flex; gap: 3px; align-items: center; }
+
+.difficulty-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line-medium);
+}
+
+.difficulty-dot-filled {
+  background: var(--accent-primary);
+  box-shadow: 0 0 6px rgb(var(--color-science-500) / 0.5);
+}
+
+/* ── Progress Ring ──────────────────────────────────────────── */
+.progress-ring { position: relative; display: inline-grid; place-items: center; }
+.progress-ring svg { transform: rotate(-90deg); }
+.progress-ring-track { stroke: var(--line-soft); }
+.progress-ring-fill {
+  stroke: var(--accent-primary);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px rgb(var(--color-science-500) / 0.5));
+  transition: stroke-dashoffset 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.progress-ring-label {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+}
+
+/* ── Quiz Answer Animations ─────────────────────────────────── */
+@keyframes quiz-correct-spring {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.04); }
+  60%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes quiz-wrong-shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-6px); }
+  35%  { transform: translateX(5px); }
+  55%  { transform: translateX(-4px); }
+  75%  { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
+.quiz-option-animating-correct {
+  animation: quiz-correct-spring 280ms var(--ease-spring-stiff) both;
+}
+
+.quiz-option-animating-wrong {
+  animation: quiz-wrong-shake 300ms ease both;
+}
+
+/* ── Print ──────────────────────────────────────────────────── */
+@media print {
+  .app-toolbar, .app-nav-rail, .no-print { display: none !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+  }
+
+  main { margin: 0 !important; width: 100% !important; }
+  .desktop-page { max-width: 100%; padding: 0; }
+
+  .page-hero {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    color: #111 !important;
+  }
+
+  .panel, .enhanced-card, .metric-card, .result-card {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .notebook-table th { background: #f1f5f9 !important; }
+
+  h1, h2, h3 { color: #0f172a !important; }
+
+  .text-gradient, .text-gradient-warm, .text-gradient-quantum {
+    -webkit-text-fill-color: #0e7490 !important;
+    color: #0e7490 !important;
+  }
+
+  .graph-axis  { stroke: #334155; }
+  .graph-label { fill: #334155; }
+  .graph-line  { stroke: #0891b2; }
+
+  @page { margin: 18mm 15mm; size: A4 portrait; }
 }

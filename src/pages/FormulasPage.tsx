@@ -63,7 +63,7 @@ export function FormulasPage() {
         <section className="formula-hero page-hero">
           <div className="formula-hero-copy">
             <p className="ui-label">Formula module</p>
-            <h1>Physics Formula Bank</h1>
+            <h1 className="text-gradient">Physics Formula Bank</h1>
             <p>
               A searchable reference across {formulaBankStats.categories} categories with {formulaBankStats.formulas} core formulas. Every category starts with {formulaBankStats.minPerCategory} formulas and can scale up to deeper revision packs.
             </p>

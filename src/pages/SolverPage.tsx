@@ -70,7 +70,7 @@ export function SolverPage() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="ui-label">Solver module</p>
-              <h1 className="solver-title">Physics Solver Bank</h1>
+              <h1 className="solver-title text-gradient">Physics Solver Bank</h1>
               <p className="solver-subtitle">
                 Class 7-12 practice across {solverStats.categories} major physics categories, with every subcategory holding at least {solverStats.minQuestionsPerSubcategory} unique questions, concept tags, difficulty labels, and answer explanations.
               </p>

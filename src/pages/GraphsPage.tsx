@@ -204,7 +204,7 @@ export function GraphsPage() {
         <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="ui-label">Data analysis workspace</p>
-            <h1 className="mt-1 text-3xl font-black">Graphs</h1>
+            <h1 className="mt-1 text-3xl font-black text-gradient">Graph Studio</h1>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Enter data, plot multiple series, fit a best-fit line, and export to CSV.</p>
           </div>
           <div className="flex flex-wrap gap-2">

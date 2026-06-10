@@ -36,11 +36,11 @@ export function HomePage() {
     <div className="min-h-screen">
       <Toolbar />
       <main id="content" className="home-bento-page desktop-page">
-        <section className="home-bento-hero">
+        <section className="home-bento-hero mesh-bg">
           <LiveHeroPhysics />
           <div className="home-hero-content">
             <p className="ui-label">Browser-only STEM lab</p>
-            <h1>PhysicsLab 100</h1>
+            <h1 className="text-gradient">PhysicsLab 100</h1>
             <p>
               A cinematic dark-mode physics workspace with guided labs, a Matter.js sandbox, 3D explainers, live vectors, graphing, quizzes, and project storage that stays in the browser.
             </p>
@@ -61,7 +61,7 @@ export function HomePage() {
           <div className="home-section-heading">
             <div>
               <p className="ui-label">Continue</p>
-              <h2>Resume recent work</h2>
+              <h2 className="section-heading">Resume recent work</h2>
             </div>
             <Link className="tool-btn" to="/projects" viewTransition>Projects</Link>
           </div>
@@ -93,19 +93,19 @@ export function HomePage() {
         </section>
 
         <section className="home-feature-grid" aria-label="PhysicsLab feature grid">
-          <FeatureCard className="home-feature-large" icon="orbit" to="/experiments" title="Guided Experiment Library" body="Classroom-ready labs mapped to topics, with calculators, explainers, viva questions, and animated previews." />
-          <FeatureCard icon="calculator" to="/solver" title="Solver Bank" body="Practice formulas by category, reveal reasoning, and jump into the connected experiment." />
-          <FeatureCard icon="chart" to="/graphs" title="Graph Studio" body="Plot, fit, compare, and export lab data on a dark dot-grid canvas." />
-          <FeatureCard icon="eye" to="/video" title="Video Analysis" body="Track motion from uploaded clips with calibration and frame-step tools." />
-          <FeatureCard className="home-feature-tall" icon="teacher" to="/teacher" title="Teacher Mode" body="Create assignments, lock variables, build lesson packs, and review student artifacts locally." />
-          <FeatureCard icon="spark" to="/quantum" title="Quantum Lab" body="Explore Bohr jumps, tunneling, photoelectric emission, and modern physics bridges." />
+          <FeatureCard className="home-feature-large stagger-item" icon="orbit" to="/experiments" title="Guided Experiment Library" body="Classroom-ready labs mapped to topics, with calculators, explainers, viva questions, and animated previews." />
+          <FeatureCard className="stagger-item" icon="calculator" to="/solver" title="Solver Bank" body="Practice formulas by category, reveal reasoning, and jump into the connected experiment." />
+          <FeatureCard className="stagger-item" icon="chart" to="/graphs" title="Graph Studio" body="Plot, fit, compare, and export lab data on a dark dot-grid canvas." />
+          <FeatureCard className="stagger-item" icon="eye" to="/video" title="Video Analysis" body="Track motion from uploaded clips with calibration and frame-step tools." />
+          <FeatureCard className="home-feature-tall stagger-item" icon="teacher" to="/teacher" title="Teacher Mode" body="Create assignments, lock variables, build lesson packs, and review student artifacts locally." />
+          <FeatureCard className="stagger-item" icon="spark" to="/quantum" title="Quantum Lab" body="Explore Bohr jumps, tunneling, photoelectric emission, and modern physics bridges." />
         </section>
 
         <section className="home-showcase-section">
           <div className="home-section-heading">
             <div>
               <p className="ui-label">Living experiment cards</p>
-              <h2>Search by topic, formula, or keyword</h2>
+              <h2 className="section-heading-gradient">Search by topic, formula, or keyword</h2>
             </div>
             <Link className="tool-btn" to="/experiments" viewTransition>All experiments</Link>
           </div>

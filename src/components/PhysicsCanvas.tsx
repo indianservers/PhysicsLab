@@ -5,6 +5,7 @@ import { useSimulationEngine } from "../engine/useSimulationEngine";
 import { barriersFromObjects, sourcesFromObjects, WaveEngine } from "../engine/waveEngine";
 import { playTone, stopTone } from "../lib/audioEngine";
 import { isCircuitObject } from "../lib/circuitSolver";
+import { renderFormula } from "../lib/formulas";
 import { useLabStore } from "../store/useLabStore";
 import { PhysicsObjectInstance, SimulationSettings, TerminalKind, ViewportState } from "../types";
 
@@ -13,6 +14,7 @@ let lastTotalEnergy: number | null = null;
 let energyPulse = 0;
 
 type VectorType = "velocity" | "weight" | "normal" | "friction" | "netForce";
+type FieldType = "electrostatic" | "magnetic" | "gravity" | "optics";
 type MeasurementTool = "select" | "ruler" | "protractor" | "velocity";
 type CanvasTheme = "space" | "bench" | "blueprint" | "whiteboard";
 type MeasurementOverlay =
@@ -74,9 +76,12 @@ export function PhysicsCanvas() {
   const [autoSlowMo, setAutoSlowMo] = useState(() => localStorage.getItem("physicslab_auto_slowmo") !== "0");
   const [slowMoEvent, setSlowMoEvent] = useState<{ label: string; started: number; x?: number; y?: number } | null>(null);
   const [showFieldLines, setShowFieldLines] = useState(true);
+  const [fieldVisibility, setFieldVisibility] = useState<Record<FieldType, boolean>>({ electrostatic: true, magnetic: true, gravity: true, optics: true });
   const [formulaOverlay, setFormulaOverlay] = useState(() => localStorage.getItem("physicslab_formula_overlay") !== "0");
+  const [formulaDetail, setFormulaDetail] = useState<{ name: string; expression: string; derivation: string } | null>(null);
   const [canvasTheme, setCanvasTheme] = useState<CanvasTheme>(() => (localStorage.getItem("physicslab_canvas_theme") as CanvasTheme) || "space");
   const [multiSelectedIds, setMultiSelectedIds] = useState<string[]>([]);
+  const [momentumBaseline, setMomentumBaseline] = useState<{ px: number; py: number } | null>(null);
   const graphData = useLabStore((state) => state.graphData);
   const cursorIndex = useLabStore((state) => state.cursorIndex);
   const selectedId = useLabStore((state) => state.selectedId);
@@ -196,12 +201,12 @@ export function PhysicsCanvas() {
     }
     ctx.clearRect(0, 0, width, height);
     drawCanvasBackdrop(ctx, width, height, canvasTheme, state.theme);
-    if (state.showGrid) drawScientificGrid(ctx, width, height, state.viewport);
+    if (state.showGrid) drawScientificGrid(ctx, width, height, state.viewport, canvasTheme);
     drawVignette(ctx, width, height);
     updateSparkHistory(state.objects, now, sparkHistoryRef.current);
     maxEnergyRef.current = Math.max(maxEnergyRef.current, ...state.objects.map((object) => objectEnergy(object)));
     if (!state.running) drawGhostPredictions(ctx, state.objects, state.viewport, state.gravity);
-    if (showFieldLines) drawFieldLines(ctx, state.objects, state.viewport, width, height);
+    if (showFieldLines) drawFieldLines(ctx, state.objects, state.viewport, width, height, fieldVisibility, now);
     const collisionBefore = collisionFlashes.length;
     detectCollisionFlashes(state.objects);
     if (autoSlowMo && collisionFlashes.length > collisionBefore && collisionFlashes.length !== lastCollisionCountRef.current) {
@@ -291,10 +296,18 @@ export function PhysicsCanvas() {
     }
     if (event.shiftKey && object) {
       useLabStore.getState().selectObject(object.id);
-      setMultiSelectedIds((ids) => ids.includes(object.id) ? ids.filter((id) => id !== object.id) : [...ids, object.id]);
+      setMultiSelectedIds((ids) => {
+        const next = ids.includes(object.id) ? ids.filter((id) => id !== object.id) : [...ids, object.id];
+        if (next.length === 2) setMomentumBaseline(totalMomentum(useLabStore.getState().objects.filter((item) => next.includes(item.id))));
+        if (next.length < 2) setMomentumBaseline(null);
+        return next;
+      });
       return;
     }
-    if (!event.shiftKey) setMultiSelectedIds(object?.id ? [object.id] : []);
+    if (!event.shiftKey) {
+      setMultiSelectedIds(object?.id ? [object.id] : []);
+      setMomentumBaseline(null);
+    }
     useLabStore.getState().selectObject(object?.id);
     if (object) {
       dragRef.current = { id: object.id, dx: object.x - point.x, dy: object.y - point.y };
@@ -506,6 +519,7 @@ export function PhysicsCanvas() {
   return (
     <div
       className="physics-canvas-shell relative h-full w-full"
+      data-canvas-theme={canvasTheme}
       onDragOver={(event) => {
         event.preventDefault();
         const kind = event.dataTransfer.types.includes("application/x-physics-object") ? event.dataTransfer.getData("application/x-physics-object") || "object" : "object";
@@ -564,12 +578,18 @@ export function PhysicsCanvas() {
       </div>
       <div className="canvas-analysis-strip" aria-label="Analysis overlays">
         <button className={showFieldLines ? "active" : ""} type="button" onClick={() => setShowFieldLines((value) => !value)}>Fields</button>
-        <button className={formulaOverlay ? "active" : ""} type="button" onClick={() => setFormulaOverlay((value) => !value)}>E</button>
+        {(Object.keys(fieldVisibility) as FieldType[]).map((field) => (
+          <button key={field} className={fieldVisibility[field] ? "active" : ""} type="button" onClick={() => setFieldVisibility((state) => ({ ...state, [field]: !state[field] }))}>
+            {field === "electrostatic" ? "E" : field === "magnetic" ? "B" : field === "gravity" ? "g" : "ray"}
+          </button>
+        ))}
+        <button className={formulaOverlay ? "active" : ""} type="button" onClick={() => setFormulaOverlay((value) => !value)}>Eq</button>
         <button className={autoSlowMo ? "active" : ""} type="button" onClick={() => setAutoSlowMo((value) => !value)}>Slo</button>
       </div>
       <EnergyAuditPanel energy={energyHud} />
       {slowMoEvent && <div className="canvas-slowmo-overlay"><span>{slowMoEvent.label} · 0.1x</span></div>}
-      {formulaOverlay && <FormulaOverlay objects={stateRef.current.objects} viewport={stateRef.current.viewport} time={hud.time} />}
+      {formulaOverlay && <FormulaOverlay objects={stateRef.current.objects} viewport={stateRef.current.viewport} time={hud.time} onOpen={setFormulaDetail} />}
+      {formulaDetail && <FormulaDetailCard detail={formulaDetail} onClose={() => setFormulaDetail(null)} />}
       {graphData.length > 4 && (
         <div className="canvas-timeline">
           <div className="canvas-timeline-meta">
@@ -610,7 +630,7 @@ export function PhysicsCanvas() {
         />
       ))}
       {fbdObject && <FreeBodyDiagramPanel object={stateRef.current.objects.find((object) => object.id === fbdObject.id) ?? fbdObject} onClose={() => setFbdObject(null)} />}
-      {multiSelectedIds.length > 1 && <SystemStatsBar objects={stateRef.current.objects.filter((object) => multiSelectedIds.includes(object.id))} />}
+      {multiSelectedIds.length > 1 && <SystemStatsBar objects={stateRef.current.objects.filter((object) => multiSelectedIds.includes(object.id))} baseline={momentumBaseline} />}
       {guide && <GuideOverlay guide={guide} viewport={stateRef.current.viewport} />}
       {dragGhost && <div className="canvas-drag-ghost" style={{ left: dragGhost.x, top: dragGhost.y }}>{dragGhost.kind}</div>}
       {tooltip && <div className="canvas-tooltip" style={{ left: tooltip.x, top: tooltip.y }}>
@@ -681,20 +701,23 @@ function withViewport(ctx: CanvasRenderingContext2D, viewport: ViewportState, dr
 }
 
 function drawGrid(ctx: CanvasRenderingContext2D, width: number, height: number, viewport: ViewportState) {
-  drawScientificGrid(ctx, width, height, viewport);
+  drawScientificGrid(ctx, width, height, viewport, "space");
 }
 
-function drawScientificGrid(ctx: CanvasRenderingContext2D, width: number, height: number, viewport: ViewportState) {
+function drawScientificGrid(ctx: CanvasRenderingContext2D, width: number, height: number, viewport: ViewportState, canvasTheme: CanvasTheme = "space") {
   const topLeft = screenToWorld(0, 0, viewport);
   const bottomRight = screenToWorld(width, height, viewport);
   const minor = 20;
   const major = 100;
+  const majorColor = canvasTheme === "blueprint" ? "rgba(255,255,255,0.36)" : canvasTheme === "whiteboard" ? "rgba(15,23,42,0.14)" : canvasTheme === "bench" ? "rgba(255,255,255,0.2)" : "rgba(0, 229, 255, 0.22)";
+  const minorColor = canvasTheme === "blueprint" ? "rgba(255,255,255,0.14)" : canvasTheme === "whiteboard" ? "rgba(15,23,42,0.08)" : canvasTheme === "bench" ? "rgba(255,255,255,0.08)" : "rgba(148, 163, 184, 0.09)";
+  const axisColor = canvasTheme === "whiteboard" ? "rgba(15,23,42,0.5)" : canvasTheme === "blueprint" ? "rgba(255,255,255,0.68)" : "rgba(0, 229, 255, 0.62)";
   ctx.save();
   ctx.lineCap = "butt";
   for (let x = Math.floor(topLeft.x / minor) * minor; x <= bottomRight.x; x += minor) {
     const p = worldToScreen(x, 0, viewport);
     const isMajor = Math.abs(Math.round(x / major) * major - x) < 0.001;
-    ctx.strokeStyle = isMajor ? "rgba(0, 229, 255, 0.22)" : "rgba(148, 163, 184, 0.09)";
+    ctx.strokeStyle = isMajor ? majorColor : minorColor;
     ctx.lineWidth = isMajor ? 1 : 0.65;
     ctx.beginPath();
     ctx.moveTo(Math.round(p.x) + 0.5, 0);
@@ -704,7 +727,7 @@ function drawScientificGrid(ctx: CanvasRenderingContext2D, width: number, height
   for (let y = Math.floor(topLeft.y / minor) * minor; y <= bottomRight.y; y += minor) {
     const p = worldToScreen(0, y, viewport);
     const isMajor = Math.abs(Math.round(y / major) * major - y) < 0.001;
-    ctx.strokeStyle = isMajor ? "rgba(0, 229, 255, 0.22)" : "rgba(148, 163, 184, 0.09)";
+    ctx.strokeStyle = isMajor ? majorColor : minorColor;
     ctx.lineWidth = isMajor ? 1 : 0.65;
     ctx.beginPath();
     ctx.moveTo(0, Math.round(p.y) + 0.5);
@@ -712,7 +735,7 @@ function drawScientificGrid(ctx: CanvasRenderingContext2D, width: number, height
     ctx.stroke();
   }
   const origin = worldToScreen(0, 0, viewport);
-  ctx.strokeStyle = "rgba(0, 229, 255, 0.62)";
+  ctx.strokeStyle = axisColor;
   ctx.lineWidth = 1.4;
   ctx.beginPath();
   ctx.moveTo(0, origin.y);
@@ -750,7 +773,7 @@ function drawScientificGrid(ctx: CanvasRenderingContext2D, width: number, height
 }
 
 function drawAxes(ctx: CanvasRenderingContext2D, viewport: ViewportState) {
-  drawScientificGrid(ctx, ctx.canvas.width, ctx.canvas.height, viewport);
+  drawScientificGrid(ctx, ctx.canvas.width, ctx.canvas.height, viewport, "space");
 }
 
 function drawVignette(ctx: CanvasRenderingContext2D, width: number, height: number) {
@@ -1661,40 +1684,48 @@ function drawGhostPredictions(ctx: CanvasRenderingContext2D, objects: PhysicsObj
   });
 }
 
-function drawFieldLines(ctx: CanvasRenderingContext2D, objects: PhysicsObjectInstance[], viewport: ViewportState, width: number, height: number) {
+function drawFieldLines(ctx: CanvasRenderingContext2D, objects: PhysicsObjectInstance[], viewport: ViewportState, width: number, height: number, visible: Record<FieldType, boolean>, now: number) {
   const charges = objects.filter((object) => object.kind === "charge" && Math.abs(object.charge ?? 0) > 0);
   const magnets = objects.filter((object) => object.kind === "bar-magnet");
   const masses = objects.filter((object) => !object.isStatic && object.mass > 2);
   const optics = objects.filter((object) => object.kind === "convex-lens" || object.kind === "concave-mirror");
   withViewport(ctx, viewport, () => {
-    charges.forEach((charge) => {
+    if (visible.electrostatic) charges.forEach((charge) => {
       const sign = (charge.charge ?? 1) >= 0 ? 1 : -1;
       for (let i = 0; i < 16; i += 1) {
         const angle = (i / 16) * Math.PI * 2;
-        traceFieldLine(ctx, { x: charge.x + Math.cos(angle) * 18, y: charge.y + Math.sin(angle) * 18 }, charges, sign, viewport.zoom);
+        traceFieldLine(ctx, { x: charge.x + Math.cos(angle) * 18, y: charge.y + Math.sin(angle) * 18 }, charges, sign, viewport.zoom, now, i, sign > 0 ? "#ef4444" : "#2563eb");
       }
     });
-    magnets.forEach((magnet) => {
+    if (visible.magnetic) magnets.forEach((magnet) => {
       for (let i = -3; i <= 3; i += 1) {
         ctx.strokeStyle = "rgba(167,139,250,0.34)";
         ctx.lineWidth = 1.4 / viewport.zoom;
+        const rx = 80;
+        const ry = 28 + Math.abs(i) * 10;
         ctx.beginPath();
-        ctx.ellipse(magnet.x, magnet.y + i * 7, 80, 28 + Math.abs(i) * 10, 0, 0, Math.PI * 2);
+        ctx.ellipse(magnet.x, magnet.y + i * 7, rx, ry, 0, 0, Math.PI * 2);
         ctx.stroke();
+        const phase = ((now / 900 + i * 0.13) % 1) * Math.PI * 2;
+        drawFieldDot(ctx, magnet.x + Math.cos(phase) * rx, magnet.y + i * 7 + Math.sin(phase) * ry, "#a78bfa", viewport.zoom);
       }
     });
-    masses.slice(0, 4).forEach((mass) => {
+    if (visible.gravity) masses.slice(0, 4).forEach((mass) => {
       ctx.strokeStyle = "rgba(245,158,11,0.2)";
       ctx.lineWidth = 1 / viewport.zoom;
       for (let i = 0; i < 12; i += 1) {
         const angle = (i / 12) * Math.PI * 2;
+        const alpha = clamp(mass.mass / 8, 0.16, 0.5);
+        ctx.strokeStyle = `rgba(245,158,11,${alpha})`;
         ctx.beginPath();
         ctx.moveTo(mass.x + Math.cos(angle) * 145, mass.y + Math.sin(angle) * 145);
         ctx.lineTo(mass.x, mass.y);
         ctx.stroke();
+        const flow = 145 - ((now / 12 + i * 9) % 120);
+        drawFieldDot(ctx, mass.x + Math.cos(angle) * flow, mass.y + Math.sin(angle) * flow, "#f59e0b", viewport.zoom);
       }
     });
-    optics.forEach((optic) => {
+    if (visible.optics) optics.forEach((optic) => {
       ctx.strokeStyle = "rgba(0,229,255,0.32)";
       ctx.lineWidth = 1.5 / viewport.zoom;
       for (let i = -3; i <= 3; i += 1) {
@@ -1707,8 +1738,9 @@ function drawFieldLines(ctx: CanvasRenderingContext2D, objects: PhysicsObjectIns
   });
 }
 
-function traceFieldLine(ctx: CanvasRenderingContext2D, start: { x: number; y: number }, charges: PhysicsObjectInstance[], sign: number, zoom: number) {
+function traceFieldLine(ctx: CanvasRenderingContext2D, start: { x: number; y: number }, charges: PhysicsObjectInstance[], sign: number, zoom: number, now: number, seed: number, dotColor: string) {
   let point = { ...start };
+  const points: { x: number; y: number }[] = [point];
   ctx.strokeStyle = sign > 0 ? "rgba(250,204,21,0.34)" : "rgba(124,58,237,0.34)";
   ctx.lineWidth = 1.2 / zoom;
   ctx.beginPath();
@@ -1723,9 +1755,23 @@ function traceFieldLine(ctx: CanvasRenderingContext2D, start: { x: number; y: nu
     }, { x: 0, y: 0 });
     const mag = Math.hypot(field.x, field.y) || 1;
     point = { x: point.x + (field.x / mag) * 9 * sign, y: point.y + (field.y / mag) * 9 * sign };
+    points.push(point);
     ctx.lineTo(point.x, point.y);
   }
   ctx.stroke();
+  const index = Math.floor(((now / 45 + seed * 11) % Math.max(1, points.length)));
+  drawFieldDot(ctx, points[index].x, points[index].y, dotColor, zoom);
+}
+
+function drawFieldDot(ctx: CanvasRenderingContext2D, x: number, y: number, color: string, zoom: number) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 8 / zoom;
+  ctx.beginPath();
+  ctx.arc(x, y, 3.5 / zoom, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
 }
 
 function applyEnergyGlow(ctx: CanvasRenderingContext2D, object: PhysicsObjectInstance, maxEnergy: number, canvasTheme: CanvasTheme) {
@@ -1939,7 +1985,7 @@ function Sparkline({ values }: { values: number[] }) {
   );
 }
 
-function FormulaOverlay({ objects, viewport, time }: { objects: PhysicsObjectInstance[]; viewport: ViewportState; time: number }) {
+function FormulaOverlay({ objects, viewport, time, onOpen }: { objects: PhysicsObjectInstance[]; viewport: ViewportState; time: number; onOpen: (detail: { name: string; expression: string; derivation: string }) => void }) {
   return (
     <>
       {objects.filter((object) => !object.isStatic || isCircuitObject(object)).slice(0, 8).map((object) => {
@@ -1947,9 +1993,14 @@ function FormulaOverlay({ objects, viewport, time }: { objects: PhysicsObjectIns
         const formula = formulaForObject(object, time);
         if (!formula) return null;
         return (
-          <div key={object.id} className="canvas-formula-pill" style={{ left: p.x + 12, top: p.y - 42 }} title="Tap for equation details">
-            {formula}
-          </div>
+          <button
+            key={object.id}
+            className="canvas-formula-pill"
+            style={{ left: p.x + 12, top: p.y - 42 }}
+            title="Open equation details"
+            onClick={() => onOpen(formula)}
+            dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }}
+          />
         );
       })}
     </>
@@ -1957,11 +2008,51 @@ function FormulaOverlay({ objects, viewport, time }: { objects: PhysicsObjectIns
 }
 
 function formulaForObject(object: PhysicsObjectInstance, time: number) {
-  if (object.kind === "ball" || object.kind === "block") return `y = v0t - 1/2gt^2 | ${object.vy.toFixed(1)}x${time.toFixed(1)} - 4.9x${(time * time).toFixed(1)}`;
-  if (object.kind === "pendulum") return `T = 2pi sqrt(L/g) | L=${((object.length ?? 120) / 100).toFixed(2)}m`;
-  if (object.kind === "spring") return `F = -kx | k=${(object.springConstant ?? 10).toFixed(1)}`;
-  if (isCircuitObject(object)) return `V = IR | ${(object.voltageDiff ?? 0).toFixed(2)}=${(object.current ?? 0).toFixed(2)}R`;
-  return "";
+  if (object.kind === "ball" || object.kind === "block") {
+    return {
+      name: "Projectile height",
+      expression: `y = v_0t - \\frac{1}{2}gt^2 = ${object.vy.toFixed(1)}(${time.toFixed(1)}) - 4.9(${(time * time).toFixed(1)})`,
+      derivation: "Vertical motion is constant acceleration motion. Substitute acceleration -g into s = ut + 1/2 at^2.",
+    };
+  }
+  if (object.kind === "pendulum") {
+    return {
+      name: "Pendulum period",
+      expression: `T = 2\\pi\\sqrt{\\frac{L}{g}},\\ L=${((object.length ?? 120) / 100).toFixed(2)}m`,
+      derivation: "For small oscillations, restoring torque is proportional to angular displacement, producing SHM.",
+    };
+  }
+  if (object.kind === "spring") {
+    return {
+      name: "Hooke force",
+      expression: `F = -kx,\\ k=${(object.springConstant ?? 10).toFixed(1)}`,
+      derivation: "An ideal spring force is proportional and opposite to extension or compression from equilibrium.",
+    };
+  }
+  if (isCircuitObject(object)) {
+    return {
+      name: "Ohm relation",
+      expression: `V = IR,\\ ${(object.voltageDiff ?? 0).toFixed(2)} = ${(object.current ?? 0).toFixed(2)}R`,
+      derivation: "For an ohmic element, current is proportional to voltage; resistance is the proportionality constant.",
+    };
+  }
+  return undefined;
+}
+
+function FormulaDetailCard({ detail, onClose }: { detail: { name: string; expression: string; derivation: string }; onClose: () => void }) {
+  return (
+    <div className="formula-detail-card">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="ui-label">Equation link</p>
+          <h3>{detail.name}</h3>
+        </div>
+        <button onClick={onClose}>Close</button>
+      </div>
+      <div className="formula-detail-expression" dangerouslySetInnerHTML={{ __html: renderFormula(detail.expression) }} />
+      <p>{detail.derivation}</p>
+    </div>
+  );
 }
 
 function FreeBodyDiagramPanel({ object, onClose }: { object: PhysicsObjectInstance; onClose: () => void }) {
@@ -2033,22 +2124,32 @@ function makeFbdSvg(object: PhysicsObjectInstance, forces: ReturnType<typeof for
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210"><rect width="520" height="210" fill="#050c18"/><rect x="232" y="78" width="56" height="48" rx="10" fill="#0f172a" stroke="#e2e8f0"/><text x="260" y="106" text-anchor="middle" fill="#e2e8f0" font-weight="800">${object.name}</text>${arrows}</svg>`;
 }
 
-function SystemStatsBar({ objects }: { objects: PhysicsObjectInstance[] }) {
+function SystemStatsBar({ objects, baseline }: { objects: PhysicsObjectInstance[]; baseline: { px: number; py: number } | null }) {
   const mass = objects.reduce((sum, object) => sum + object.mass, 0);
-  const px = objects.reduce((sum, object) => sum + object.mass * object.vx, 0);
-  const py = objects.reduce((sum, object) => sum + object.mass * object.vy, 0);
+  const { px, py } = totalMomentum(objects);
   const ke = objects.reduce((sum, object) => sum + 0.5 * object.mass * Math.hypot(object.vx, object.vy) ** 2, 0);
   const com = mass ? { x: objects.reduce((sum, object) => sum + object.mass * object.x, 0) / mass, y: objects.reduce((sum, object) => sum + object.mass * object.y, 0) / mass } : { x: 0, y: 0 };
   const p = Math.hypot(px, py);
+  const baselineP = baseline ? Math.hypot(baseline.px, baseline.py) : p;
+  const delta = baseline ? Math.hypot(px - baseline.px, py - baseline.py) : 0;
+  const conserved = delta < Math.max(0.5, baselineP * 0.08);
   return (
     <div className="system-stats-bar">
-      <span>Σm <strong>{mass.toFixed(2)} kg</strong></span>
-      <span>Σp <strong>{p.toFixed(2)} kg m/s @{((Math.atan2(py, px) * 180) / Math.PI).toFixed(0)}deg</strong></span>
-      <span>ΣKE <strong>{ke.toFixed(2)} J</strong></span>
+      <span>sum m <strong>{mass.toFixed(2)} kg</strong></span>
+      <span>sum p <strong>{p.toFixed(2)} kg m/s @{((Math.atan2(py, px) * 180) / Math.PI).toFixed(0)}deg</strong></span>
+      <span>sum KE <strong>{ke.toFixed(2)} J</strong></span>
       <span>COM <strong>{meters(com.x).toFixed(2)}, {meters(com.y).toFixed(2)} m</strong></span>
-      <span className={p < 0.5 ? "momentum-ok" : "momentum-watch"}>momentum</span>
+      <span className={conserved ? "momentum-ok" : "momentum-watch"}>dp {delta.toFixed(2)}</span>
+      <span className="momentum-balance"><i style={{ width: `${clamp(100 - (delta / Math.max(1, baselineP)) * 100, 0, 100)}%` }} /></span>
     </div>
   );
+}
+
+function totalMomentum(objects: PhysicsObjectInstance[]) {
+  return {
+    px: objects.reduce((sum, object) => sum + object.mass * object.vx, 0),
+    py: objects.reduce((sum, object) => sum + object.mass * object.vy, 0),
+  };
 }
 
 function drawCenterOfMass(ctx: CanvasRenderingContext2D, objects: PhysicsObjectInstance[], viewport: ViewportState) {

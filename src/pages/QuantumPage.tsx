@@ -10,7 +10,7 @@ export function QuantumPage() {
     <div className="min-h-screen">
       <Toolbar />
       <main className="mx-auto grid max-w-7xl gap-4 px-5 py-6">
-        <h1 className="text-3xl font-bold">Quantum Simulations</h1>
+        <h1 className="text-3xl font-bold text-gradient-quantum">Quantum Simulations</h1>
         <div className="grid gap-3 lg:grid-cols-3">
           <GuidePanel guide={guideForQuantumTool("photoelectric")} compact />
           <GuidePanel guide={guideForQuantumTool("tunneling")} compact />

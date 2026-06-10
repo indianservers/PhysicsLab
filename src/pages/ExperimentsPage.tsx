@@ -69,7 +69,7 @@ export function ExperimentsPage() {
         <div className="page-hero flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="ui-label">Interactive guided learning</p>
-            <h1 className="mt-2 text-3xl font-black">Guided Experiments</h1>
+            <h1 className="mt-2 text-3xl font-black text-gradient">Guided Experiments</h1>
             <p className="mt-2 max-w-3xl text-slate-500 dark:text-slate-400">
               Browser-only experiment library mapped from Class 6 to PhD lanes, with compact gaps, guided calculators, 3D views, and notebook-ready observations.
             </p>
@@ -258,7 +258,7 @@ export function ExperimentsPage() {
               { label: "Coach", icon: "teacher" as const, active: true },
             ].filter((feature) => feature.active);
             return (
-              <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "enhanced-card enhanced-card-compact" : "enhanced-card"}>
+              <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "enhanced-card enhanced-card-compact stagger-item" : "enhanced-card stagger-item"}>
                 <ExperimentPreview experiment={experiment} />
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-start gap-3">
@@ -398,6 +398,9 @@ function interactivityScore(experiment: typeof experiments[number]) {
 function ExperimentConstellation({ experiments, onOpen }: { experiments: typeof import("../lib/experiments").experiments; onOpen: (id: string) => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hovered, setHovered] = useState<typeof experiments[number] | null>(null);
+  const [view, setView] = useState({ zoom: 1, x: 0, y: 0 });
+  const [showProgress, setShowProgress] = useState(true);
+  const dragRef = useRef<{ x: number; y: number; view: typeof view } | null>(null);
   const nodes = useMemo(() => makeConstellationNodes(experiments), [experiments]);
 
   useEffect(() => {
@@ -409,25 +412,50 @@ function ExperimentConstellation({ experiments, onOpen }: { experiments: typeof 
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    drawConstellation(ctx, rect.width, rect.height, nodes, hovered?.id);
-  }, [nodes, hovered]);
+    drawConstellation(ctx, rect.width, rect.height, nodes, hovered?.id, view, showProgress);
+  }, [nodes, hovered, view, showProgress]);
 
   const nodeAt = (x: number, y: number) => {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return undefined;
-    return nodes.find((node) => Math.hypot(node.x * rect.width - x, node.y * rect.height - y) <= node.r + 8);
+    return nodes.find((node) => {
+      const p = projectNode(node, rect.width, rect.height, view);
+      return Math.hypot(p.x - x, p.y - y) <= node.r + 8;
+    });
   };
 
   return (
     <div className="constellation-canvas-wrap">
+      <div className="constellation-map-controls">
+        <button onClick={() => setView((state) => ({ ...state, zoom: Math.min(3, state.zoom * 1.2) }))}>Zoom +</button>
+        <button onClick={() => setView((state) => ({ ...state, zoom: Math.max(0.55, state.zoom / 1.2) }))}>Zoom -</button>
+        <button onClick={() => setView({ zoom: 1, x: 0, y: 0 })}>Reset</button>
+        <button className={showProgress ? "active" : ""} onClick={() => setShowProgress((value) => !value)}>Progress</button>
+      </div>
       <canvas
         ref={canvasRef}
         className="constellation-canvas"
+        onPointerDown={(event) => {
+          dragRef.current = { x: event.clientX, y: event.clientY, view };
+          event.currentTarget.setPointerCapture(event.pointerId);
+        }}
         onPointerMove={(event) => {
+          if (dragRef.current) {
+            setView({ ...dragRef.current.view, x: dragRef.current.view.x + event.clientX - dragRef.current.x, y: dragRef.current.view.y + event.clientY - dragRef.current.y });
+            return;
+          }
           const rect = event.currentTarget.getBoundingClientRect();
           setHovered(nodeAt(event.clientX - rect.left, event.clientY - rect.top)?.experiment ?? null);
         }}
-        onPointerLeave={() => setHovered(null)}
+        onPointerUp={(event) => {
+          dragRef.current = null;
+          if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+        }}
+        onPointerLeave={() => { dragRef.current = null; setHovered(null); }}
+        onWheel={(event) => {
+          event.preventDefault();
+          setView((state) => ({ ...state, zoom: Math.max(0.55, Math.min(3, state.zoom * (event.deltaY < 0 ? 1.12 : 0.9))) }));
+        }}
         onClick={(event) => {
           const rect = event.currentTarget.getBoundingClientRect();
           const node = nodeAt(event.clientX - rect.left, event.clientY - rect.top);
@@ -459,6 +487,7 @@ function makeConstellationNodes(items: typeof experiments) {
       y: 0.52 + Math.sin(angle) * ring,
       r: 5 + difficultyScore(experiment.difficulty) * 2 + (has3DAnimation(experiment.id) ? 2 : 0),
       color: colorForDomain(experiment.category),
+      progress: progressState(experiment.id, index),
       links: items
         .filter((other) => other.id !== experiment.id)
         .filter((other) => sharesConcept(experiment, other))
@@ -468,7 +497,7 @@ function makeConstellationNodes(items: typeof experiments) {
   });
 }
 
-function drawConstellation(ctx: CanvasRenderingContext2D, width: number, height: number, nodes: ReturnType<typeof makeConstellationNodes>, hoveredId?: string) {
+function drawConstellation(ctx: CanvasRenderingContext2D, width: number, height: number, nodes: ReturnType<typeof makeConstellationNodes>, hoveredId: string | undefined, view: { zoom: number; x: number; y: number }, showProgress: boolean) {
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#050c18";
   ctx.fillRect(0, 0, width, height);
@@ -486,24 +515,44 @@ function drawConstellation(ctx: CanvasRenderingContext2D, width: number, height:
       const active = hoveredId === node.experiment.id || hoveredId === target.experiment.id;
       ctx.strokeStyle = active ? "rgba(0,229,255,0.58)" : "rgba(148,163,184,0.12)";
       ctx.lineWidth = active ? 1.6 : 0.8;
+      const a = projectNode(node, width, height, view);
+      const b = projectNode(target, width, height, view);
       ctx.beginPath();
-      ctx.moveTo(node.x * width, node.y * height);
-      ctx.lineTo(target.x * width, target.y * height);
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
       ctx.stroke();
     });
   });
   nodes.forEach((node) => {
     const active = hoveredId === node.experiment.id;
-    ctx.shadowColor = node.color;
+    const p = projectNode(node, width, height, view);
+    const progressColor = node.progress === "mastered" ? "#22c55e" : node.progress === "progress" ? "#f59e0b" : "#64748b";
+    const color = showProgress ? progressColor : node.color;
+    ctx.shadowColor = color;
     ctx.shadowBlur = active ? 28 : 12;
-    ctx.fillStyle = node.color;
+    ctx.fillStyle = color;
     ctx.globalAlpha = active ? 1 : 0.78;
     ctx.beginPath();
-    ctx.arc(node.x * width, node.y * height, active ? node.r + 5 : node.r, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, (active ? node.r + 5 : node.r) * Math.sqrt(view.zoom), 0, Math.PI * 2);
     ctx.fill();
     ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
   });
+}
+
+function projectNode(node: ReturnType<typeof makeConstellationNodes>[number], width: number, height: number, view: { zoom: number; x: number; y: number }) {
+  return {
+    x: width / 2 + (node.x - 0.5) * width * view.zoom + view.x,
+    y: height / 2 + (node.y - 0.5) * height * view.zoom + view.y,
+  };
+}
+
+function progressState(id: string, index: number) {
+  const saved = localStorage.getItem(`physicslab_mastery_${id}`);
+  if (saved === "mastered" || saved === "progress") return saved;
+  if (index % 11 === 0) return "mastered";
+  if (index % 5 === 0) return "progress";
+  return "untouched";
 }
 
 function sharesConcept(left: typeof experiments[number], right: typeof experiments[number]) {

@@ -69,7 +69,7 @@ export function TeacherPage() {
         <div className="page-hero flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="ui-label">Teacher mode</p>
-            <h1 className="mt-2 text-3xl font-black">Assignments and Classroom Controls</h1>
+            <h1 className="mt-2 text-3xl font-black text-gradient">Assignments and Classroom Controls</h1>
             <p className="mt-2 max-w-3xl text-slate-500 dark:text-slate-300">
               Create browser-local lab assignments, lock variables by instruction, require notebook/quiz completion, and share links that carry assignment data in the URL. No server account is required.
             </p>

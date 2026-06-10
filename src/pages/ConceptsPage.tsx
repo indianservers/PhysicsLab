@@ -60,7 +60,7 @@ export function ConceptsPage() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-3xl">
               <p className="ui-label">Phase 2 concept library</p>
-              <h1 className="text-3xl font-black">Physics concepts</h1>
+              <h1 className="text-3xl font-black text-gradient">Physics concepts</h1>
               <p className="mt-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
                 Short concept cards with essentials, misconception repair, learning path, and direct jumps into 2D and 3D labs.
               </p>

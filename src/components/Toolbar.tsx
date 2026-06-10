@@ -55,6 +55,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation();
   const location = useLocation();
   const inputRef = useRef<HTMLInputElement>(null);
+  const themeToggleRef = useRef<HTMLButtonElement>(null);
   const [toast, setToast] = useState("");
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showShortcuts, setShowShortcuts] = useState(false);
@@ -169,8 +170,31 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
           </button>
         )}
         {!compact && (
-          <button className="theme-toggle" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} title={t("toolbar.theme")}>
-            <span className={theme === "dark" ? "theme-orb dark" : "theme-orb"}><PhysicsIcon name={theme === "dark" ? "moon" : "sun"} className="h-4 w-4" /></span>
+          <button
+            ref={themeToggleRef}
+            className="theme-toggle"
+            title={t("toolbar.theme")}
+            onClick={(e) => {
+              const btn = themeToggleRef.current;
+              const nextTheme = theme === "dark" ? "light" : "dark";
+              if (btn && !document.getElementById("theme-reveal-overlay")) {
+                const rect = btn.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top  + rect.height / 2;
+                const overlay = document.createElement("div");
+                overlay.id = "theme-reveal-overlay";
+                overlay.className = `theme-transition-overlay ${nextTheme === "light" ? "bg-slate-50" : "bg-space-900"}`;
+                overlay.style.setProperty("--reveal-x", `${x}px`);
+                overlay.style.setProperty("--reveal-y", `${y}px`);
+                document.body.appendChild(overlay);
+                overlay.addEventListener("animationend", () => overlay.remove(), { once: true });
+              }
+              setTheme(nextTheme);
+            }}
+          >
+            <span className={theme === "dark" ? "theme-orb dark" : "theme-orb"}>
+              <PhysicsIcon name={theme === "dark" ? "moon" : "sun"} className="h-4 w-4" />
+            </span>
           </button>
         )}
       </header>

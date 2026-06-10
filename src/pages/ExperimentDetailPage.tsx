@@ -43,7 +43,7 @@ export function ExperimentDetailPage() {
             </span>
             <div>
             <Link to="/experiments" className="text-sm font-bold text-cyan-500">Experiments</Link>
-            <h1 className="text-3xl font-black">{experiment.title}</h1>
+            <h1 className="text-3xl font-black text-gradient">{experiment.title}</h1>
             {experiment.curriculumTags && (
               <div className="mt-2 flex flex-wrap gap-2">
                 {experiment.curriculumTags.classes.map((grade) => <span key={grade} className="status-chip status-chip-cyan">Class {grade}</span>)}

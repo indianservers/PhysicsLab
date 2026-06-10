@@ -30,7 +30,7 @@ export function TopicPage({ topic }: { topic: string }) {
         <section className="page-hero grid gap-5 lg:grid-cols-[1fr_320px]">
           <div>
             <p className="ui-label">Syllabus learning path</p>
-            <h1 className="mt-2 text-3xl font-black md:text-5xl">{title}</h1>
+            <h1 className="mt-2 text-3xl font-black md:text-5xl text-gradient">{title}</h1>
             <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
               Topic-wise Class 6 to PhD map with compact outcomes, browser-based tools, guided labs, and gaps ready for expansion.
             </p>

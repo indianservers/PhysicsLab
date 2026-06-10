@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { Component, ReactNode, useEffect, useState } from "react";
+import { Component, ReactNode, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HomePage } from "./pages/HomePage";
 import { WorkspacePage } from "./pages/WorkspacePage";
@@ -20,6 +20,7 @@ import { QuizPage } from "./pages/QuizPage";
 import { FormulasPage } from "./pages/FormulasPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement, initXAPISync } from "./lib/xapi";
+import { ToastProvider } from "./components/ToastSystem";
 
 const topics = [
   "mechanics",
@@ -43,6 +44,8 @@ export default function App() {
   const [online, setOnline] = useState(navigator.onLine);
   const theme = useLabStore((state) => state.theme);
   const accessibility = useLabStore((state) => state.accessibility);
+  const cursorRafRef = useRef<number | null>(null);
+
   useEffect(() => {
     sendStatement("launched", window.location.pathname);
     initXAPISync();
@@ -54,6 +57,24 @@ export default function App() {
       window.removeEventListener("offline", update);
     };
   }, []);
+
+  /* Cursor-reactive ambient light — updates CSS custom properties at 60fps */
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (cursorRafRef.current !== null) return;
+      cursorRafRef.current = requestAnimationFrame(() => {
+        document.body.style.setProperty("--cursor-x", `${e.clientX}px`);
+        document.body.style.setProperty("--cursor-y", `${e.clientY}px`);
+        cursorRafRef.current = null;
+      });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (cursorRafRef.current !== null) cancelAnimationFrame(cursorRafRef.current);
+    };
+  }, []);
+
   const classes = [
     theme === "dark" ? "dark" : "",
     accessibility.highContrast ? "high-contrast" : "",
@@ -61,41 +82,48 @@ export default function App() {
     accessibility.colorBlindSafe ? "color-blind-safe" : "",
     accessibility.reducedMotion ? "reduced-motion" : "",
   ].join(" ");
+
   return (
     <div className={classes}>
-      <a href="#content" className="skip-link">Skip to content</a>
-      <main className="min-h-screen bg-space-900 text-space-50">
-        {!online && <div className="bg-warning-500 px-4 py-2 text-center text-sm font-semibold text-space-900">{t("offline")}</div>}
-        <div key={location.pathname} className="route-transition-shell">
-        <Routes location={location}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/lab" element={<WorkspacePage mode="guided" />} />
-          <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
-          <Route path="/experiments" element={<ExperimentsPage />} />
-          <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />
-          <Route path="/syllabus" element={<SyllabusPage />} />
-          <Route path="/concepts" element={<ConceptsPage />} />
-          <Route path="/roadmap" element={<RoadmapPage />} />
-          <Route path="/solver" element={<SolverPage />} />
-          <Route path="/formulas" element={<FormulasPage />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/video" element={<VideoAnalysisPage />} />
-          <Route path="/quantum" element={<QuantumPage />} />
-          <Route path="/teacher" element={<TeacherPage />} />
-          <Route path="/lms-config" element={<LMSConfigPage />} />
-          <Route path="/topics" element={<Navigate to="/topics/mechanics" replace />} />
-          {topics.map((topic) => (
-            <Route key={topic} path={`/topics/${topic}`} element={<TopicPage topic={topic} />} />
-          ))}
-          <Route path="/graphs" element={<GraphsPage />} />
-          <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
-          <Route path="/settings" element={<SimplePage title="Settings" />} />
-          <Route path="/help" element={<SimplePage title="Help" />} />
-          <Route path="/privacy" element={<SimplePage title="Privacy" />} />
-          <Route path="/terms" element={<SimplePage title="Terms" />} />
-        </Routes>
-        </div>
-      </main>
+      <ToastProvider>
+        <a href="#content" className="skip-link">Skip to content</a>
+        <main className="min-h-screen bg-space-900 text-space-50">
+          {!online && (
+            <div className="bg-warning-500 px-4 py-2 text-center text-sm font-semibold text-space-900">
+              {t("offline")}
+            </div>
+          )}
+          <div key={location.pathname} className="route-fade">
+            <Routes location={location}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/lab" element={<WorkspacePage mode="guided" />} />
+              <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
+              <Route path="/experiments" element={<ExperimentsPage />} />
+              <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />
+              <Route path="/syllabus" element={<SyllabusPage />} />
+              <Route path="/concepts" element={<ConceptsPage />} />
+              <Route path="/roadmap" element={<RoadmapPage />} />
+              <Route path="/solver" element={<SolverPage />} />
+              <Route path="/formulas" element={<FormulasPage />} />
+              <Route path="/quiz" element={<QuizPage />} />
+              <Route path="/video" element={<VideoAnalysisPage />} />
+              <Route path="/quantum" element={<QuantumPage />} />
+              <Route path="/teacher" element={<TeacherPage />} />
+              <Route path="/lms-config" element={<LMSConfigPage />} />
+              <Route path="/topics" element={<Navigate to="/topics/mechanics" replace />} />
+              {topics.map((topic) => (
+                <Route key={topic} path={`/topics/${topic}`} element={<TopicPage topic={topic} />} />
+              ))}
+              <Route path="/graphs" element={<GraphsPage />} />
+              <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
+              <Route path="/settings" element={<SimplePage title="Settings" />} />
+              <Route path="/help" element={<SimplePage title="Help" />} />
+              <Route path="/privacy" element={<SimplePage title="Privacy" />} />
+              <Route path="/terms" element={<SimplePage title="Terms" />} />
+            </Routes>
+          </div>
+        </main>
+      </ToastProvider>
     </div>
   );
 }

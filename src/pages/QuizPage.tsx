@@ -105,7 +105,7 @@ export function QuizPage() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="ui-label">Interactive quiz</p>
-              <h1 className="mt-2 text-3xl font-black md:text-5xl">Physics MCQ Challenge</h1>
+              <h1 className="mt-2 text-3xl font-black md:text-5xl text-gradient">Physics MCQ Challenge</h1>
               <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
                 A {quizStats.questions}-question browser-only quiz bank for Class 7-12 physics. Pick category, subcategory, class, and level, then play a fast 12-question round with instant feedback and explanations.
               </p>
