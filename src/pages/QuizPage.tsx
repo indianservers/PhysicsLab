@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
@@ -21,6 +22,7 @@ export function QuizPage() {
   const [runSeed, setRunSeed] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [animatingOption, setAnimatingOption] = useState<{ option: string; type: "correct" | "wrong" } | null>(null);
   const [elapsed, setElapsed] = useState(0);
   const [bestScore, setBestScore] = useState(() => Number(localStorage.getItem(bestScoreKey) ?? 0));
   const [weakConcepts, setWeakConcepts] = useState<WeakConceptMap>(() => readWeakConcepts());
@@ -67,8 +69,10 @@ export function QuizPage() {
 
   const chooseOption = (option: string, trackConcept = true) => {
     if (!currentQuestion || answers[currentQuestion.id]) return;
-    setAnswers((state) => ({ ...state, [currentQuestion.id]: option }));
     const correct = option === currentQuestion.correctOption;
+    setAnimatingOption({ option, type: correct ? "correct" : "wrong" });
+    window.setTimeout(() => setAnimatingOption(null), 600);
+    setAnswers((state) => ({ ...state, [currentQuestion.id]: option }));
     if (!trackConcept) return;
     setWeakConcepts((state) => {
       const next = { ...state };
@@ -234,7 +238,9 @@ export function QuizPage() {
                     const selected = answers[currentQuestion.id] === option;
                     const answered = Boolean(answers[currentQuestion.id]);
                     const correct = option === currentQuestion.correctOption;
-                    const className = answered && correct ? "quiz-option quiz-option-correct" : answered && selected ? "quiz-option quiz-option-wrong" : selected ? "quiz-option quiz-option-selected" : "quiz-option";
+                    const isAnimating = animatingOption?.option === option;
+                    const animClass = isAnimating ? (animatingOption?.type === "correct" ? " quiz-option-animating-correct" : " quiz-option-animating-wrong") : "";
+                    const className = (answered && correct ? "quiz-option quiz-option-correct" : answered && selected ? "quiz-option quiz-option-wrong" : selected ? "quiz-option quiz-option-selected" : "quiz-option") + animClass;
                     return (
                       <button key={option} className={className} onClick={() => chooseOption(option)}>
                         <span className="quiz-option-letter">{String.fromCharCode(65 + optionIndex)}</span>
