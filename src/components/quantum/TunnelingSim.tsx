@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export function TunnelingSim() {
   const [energy, setEnergy] = useState(2);
@@ -18,12 +18,11 @@ export function TunnelingSim() {
       <div className="mt-3 h-64">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
-            <CartesianGrid stroke="rgba(148,163,184,0.18)" />
             <XAxis dataKey="x" stroke="#94a3b8" />
             <YAxis stroke="#94a3b8" />
-            <Tooltip />
-            <Area dataKey="probability" stroke="#22d3ee" fill="#22d3ee55" />
-            <Area dataKey="barrier" stroke="#f43f5e" fill="#f43f5e33" />
+            <Tooltip contentStyle={{ background: "rgba(5,12,24,0.94)", border: "1px solid rgba(124,58,237,0.35)", color: "#e2e8f0", borderRadius: 10 }} />
+            <Area dataKey="probability" stroke="#22d3ee" fill="#22d3ee55" isAnimationActive animationDuration={700} />
+            <Area dataKey="barrier" stroke="#7c3aed" fill="#7c3aed33" isAnimationActive animationDuration={700} />
           </AreaChart>
         </ResponsiveContainer>
       </div>

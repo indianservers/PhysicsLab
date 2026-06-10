@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Toolbar } from "../components/Toolbar";
 import { GuidePanel } from "../components/GuidePanel";
 import { videoGuide } from "../lib/guides";
@@ -163,9 +163,9 @@ export function VideoAnalysisPage() {
             <Metric label="Scale" value={calibration ? `${calibration.pixelsPerMeter.toFixed(1)} px/m` : "-"} />
             <Metric label="Points" value={String(points.length)} />
           </div>
-          <table className="w-full text-left text-xs">
+          <table className="notebook-table data-table w-full text-left text-xs">
             <thead className="text-slate-400"><tr><th>Frame</th><th>t</th><th>x</th><th>y</th></tr></thead>
-            <tbody>{analysis.map((point) => <tr key={`${point.frame}-${point.xPx}`} className="border-t border-slate-300/40 dark:border-lab-line"><td>{point.frame}</td><td>{point.timeSeconds.toFixed(3)}</td><td>{point.xM.toFixed(3)}</td><td>{point.yM.toFixed(3)}</td></tr>)}</tbody>
+            <tbody>{analysis.map((point) => <tr key={`${point.frame}-${point.xPx}`} className="data-row"><td>{point.frame}</td><td>{point.timeSeconds.toFixed(3)}</td><td>{point.xM.toFixed(3)}</td><td>{point.yM.toFixed(3)}</td></tr>)}</tbody>
           </table>
         </aside>
       </div>
@@ -198,12 +198,11 @@ function Chart({ data, keys }: { data: ReturnType<typeof analyze>; keys: string[
     <div className="h-48 min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
-          <CartesianGrid stroke="rgba(148,163,184,0.18)" />
           <XAxis dataKey="timeSeconds" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" />
-          <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid rgba(148,163,184,0.25)", color: "#e2e8f0" }} />
+          <Tooltip contentStyle={{ background: "rgba(5,12,24,0.94)", border: "1px solid rgba(0,229,255,0.28)", color: "#e2e8f0", borderRadius: 10 }} />
           <Legend />
-          {keys.map((key, index) => <Line key={key} type="monotone" dataKey={key} stroke={index ? "#34d399" : "#22d3ee"} dot={false} />)}
+          {keys.map((key, index) => <Line key={key} type="monotone" dataKey={key} stroke={index ? "#34d399" : "#22d3ee"} strokeWidth={2.4} dot={false} isAnimationActive animationDuration={700} />)}
         </LineChart>
       </ResponsiveContainer>
     </div>

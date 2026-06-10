@@ -23,6 +23,7 @@ export function ExperimentDetailPage() {
   const location = useLocation();
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
   const assignment = getAssignmentFromSearch(location.search);
+  const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : "simulate");
   useEffect(() => {
     if (!location.hash) return undefined;
     const targetId = location.hash.slice(1);
@@ -54,20 +55,108 @@ export function ExperimentDetailPage() {
           </div>
           <Link to="/lab" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
         </div>
-        <nav className="experiment-jump-strip mb-4 flex gap-2 overflow-x-auto" aria-label="Experiment sections">
-          <a className="quick-jump" href="#guide" title="Open the guided learning notes"><PhysicsIcon name="book" className="h-4 w-4" />Guide</a>
-          <a className="quick-jump" href="#toolkit" title="Jump to concept tools and quick checks"><PhysicsIcon name="spark" className="h-4 w-4" />Toolkit</a>
-          <a className="quick-jump" href="#unit-converter" title="Jump to the unit converter"><PhysicsIcon name="ruler" className="h-4 w-4" />Units</a>
-          {has3DAnimation(experiment.id) && <a className="quick-jump" href="#three-d" title="Jump to the 3D interactive view"><PhysicsIcon name="orbit" className="h-4 w-4" />3D</a>}
-          <a className="quick-jump" href="#simulation" title="Jump to sliders and calculated outputs"><PhysicsIcon name="calculator" className="h-4 w-4" />Sim</a>
-          <a className="quick-jump" href="#coach" title="Jump to guided compare-and-predict coach"><PhysicsIcon name="teacher" className="h-4 w-4" />Coach</a>
-          <a className="quick-jump" href="#notebook" title="Jump to observation table"><PhysicsIcon name="clipboard" className="h-4 w-4" />Notebook</a>
-        </nav>
-        <LabCommandStrip experiment={experiment} />
-        <InteractionModePanel experiment={experiment} compact />
         {assignment && <AssignmentBanner assignment={assignment} />}
-        {experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} />}
-        <LearningResourceDock experiment={experiment} />
+        <div className="experiment-tab-shell">
+          <div className="experiment-tab-strip" aria-label="Experiment panes">
+            {[
+              { id: "guide" as const, label: "Guide", icon: "book" as const },
+              { id: "simulate" as const, label: "Simulate", icon: "calculator" as const },
+              { id: "three" as const, label: "3D", icon: "orbit" as const, disabled: !has3DAnimation(experiment.id) },
+              { id: "quiz" as const, label: "Quiz", icon: "check" as const },
+              { id: "coach" as const, label: "Coach", icon: "teacher" as const },
+            ].map((pane) => (
+              <button
+                key={pane.id}
+                className={activePane === pane.id ? "experiment-tab experiment-tab-active" : "experiment-tab"}
+                type="button"
+                disabled={pane.disabled}
+                onClick={() => setActivePane(pane.id)}
+              >
+                <PhysicsIcon name={pane.icon} className="h-4 w-4" />
+                {pane.label}
+              </button>
+            ))}
+          </div>
+          <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
+            {activePane === "guide" && <ExperimentGuidePane experiment={experiment} />}
+            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} />)}
+            {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
+            {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} />}
+            {activePane === "coach" && <ExperimentCoachPane experiment={experiment} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExperimentGuidePane({ experiment }: { experiment: typeof experiments[number] }) {
+  return (
+    <div className="experiment-bento-pane experiment-guide-pane">
+      <GuidePanel guide={guideForExperiment(experiment)} compact />
+      <CoreLearningToolkit experiment={experiment} />
+      <LearningPanel experiment={experiment} />
+      <LabReferenceStack experiment={experiment} values={defaultLabValues(experiment.id)} />
+    </div>
+  );
+}
+
+function ExperimentThreePane({ experiment }: { experiment: typeof experiments[number] }) {
+  const values = defaultLabValues(experiment.id);
+  const result = calculateStarterLab(experiment.id, values[0], values[1], values[2]);
+  return (
+    <div className="experiment-bento-pane">
+      {has3DAnimation(experiment.id) ? (
+        <Experiment3DAnimation experiment={experiment} values={values} outputs={result.outputs} fixedShell />
+      ) : (
+        <div className="panel p-5">This experiment uses a 2D guided visualization.</div>
+      )}
+    </div>
+  );
+}
+
+function ExperimentQuizPane({ experiment }: { experiment: typeof experiments[number] }) {
+  return (
+    <div className="experiment-bento-pane experiment-quiz-pane">
+      <div className="panel p-5">
+        <p className="ui-label">Quick check</p>
+        <h2 className="mt-1 text-2xl font-black">{experiment.title} quiz</h2>
+        <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">Practice the concepts behind this lab in the full quiz interface.</p>
+        <Link className="hero-btn mt-4 inline-flex" to={`/quiz?focus=${encodeURIComponent(experiment.title)}`} viewTransition>
+          <PhysicsIcon name="check" className="h-4 w-4" />
+          Start focused quiz
+        </Link>
+      </div>
+      <div className="panel p-5">
+        <p className="ui-label">Viva prompts</p>
+        <div className="mt-3 grid gap-2">
+          {experiment.vivaQuestions.slice(0, 4).map((question) => (
+            <details key={question.prompt} className="mini-disclosure">
+              <summary>{question.prompt}</summary>
+              <p className="mt-2 text-cyan-300">{question.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExperimentCoachPane({ experiment }: { experiment: typeof experiments[number] }) {
+  const values = defaultLabValues(experiment.id);
+  const result = calculateStarterLab(experiment.id, values[0], values[1], values[2]);
+  return (
+    <div className="experiment-bento-pane">
+      <div className="panel p-4">
+        <ExperimentLearningCoach
+          experiment={experiment}
+          controls={result.controls}
+          values={values}
+          outputs={result.outputs}
+          formula={result.formula}
+          onSetValues={() => undefined}
+          makeTrialOutputs={(trial) => calculateStarterLab(experiment.id, trial[0], trial[1], trial[2]).outputs}
+        />
       </div>
     </div>
   );

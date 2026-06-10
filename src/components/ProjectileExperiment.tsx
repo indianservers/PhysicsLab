@@ -1,5 +1,5 @@
 import { ReactNode, useMemo, useRef, useState } from "react";
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useLabStore } from "../store/useLabStore";
 import { ExperimentDefinition } from "../types";
 import { ExperimentLearningCoach } from "./ExperimentLearningCoach";
@@ -134,13 +134,12 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
           <div className="projectile-graph-frame mt-3">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={points}>
-                <CartesianGrid stroke="rgba(148,163,184,0.18)" />
                 <XAxis dataKey="t" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" />
-                <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid rgba(148,163,184,0.25)", color: "#e2e8f0" }} />
+                <Tooltip contentStyle={{ background: "rgba(5,12,24,0.94)", border: "1px solid rgba(0,229,255,0.28)", color: "#e2e8f0", borderRadius: 10 }} />
                 <Legend />
-                <Line dataKey="x" name="x-time" stroke="#22d3ee" dot={false} />
-                <Line dataKey="y" name="y-time" stroke="#34d399" dot={false} />
+                <Line dataKey="x" name="x-time" stroke="#22d3ee" strokeWidth={2.4} dot={false} isAnimationActive animationDuration={700} />
+                <Line dataKey="y" name="y-time" stroke="#34d399" strokeWidth={2.4} dot={false} isAnimationActive animationDuration={700} />
               </LineChart>
             </ResponsiveContainer>
           </div>

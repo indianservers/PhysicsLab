@@ -7,7 +7,7 @@ export function PropertiesPanel() {
   const selected = objects.find((object) => object.id === selectedId);
   if (!selected) {
     return (
-      <aside className="panel p-4">
+      <aside className="properties-drawer properties-drawer-empty">
         <h2 className="panel-title">Properties</h2>
         <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">Select an object to inspect mass, position, velocity, energy, material, and constraints.</p>
       </aside>
@@ -41,71 +41,78 @@ export function PropertiesPanel() {
   };
 
   return (
-    <aside className="panel min-h-0 overflow-auto p-4">
+    <aside className="properties-drawer properties-drawer-open">
       <h2 className="ui-title">{selected.name}</h2>
-      <div className="mt-3 grid gap-2 text-xs">
-        <Metric label="Velocity" value={`${speed.toFixed(2)} m/s`} ratio={speed / 20} />
-        <Metric label="Momentum" value={`${momentum.toFixed(2)} kg m/s`} ratio={momentum / 50} />
-        <Metric label="Kinetic Energy" value={`${ke.toFixed(2)} J`} ratio={ke / 120} />
-        <Metric label="Potential Energy" value={`${pe.toFixed(2)} J`} ratio={pe / 120} />
-        {isCircuit && <Metric label="Current" value={`${(selected.current ?? 0).toFixed(3)} A`} ratio={Math.abs(selected.current ?? 0) / 5} />}
-        {isCircuit && <Metric label="Voltage" value={`${(selected.voltageDiff ?? selected.voltage ?? 0).toFixed(3)} V`} ratio={Math.abs(selected.voltageDiff ?? selected.voltage ?? 0) / 20} />}
-        {selected.kind === "bulb" && <Metric label="Brightness" value={`${Math.round((selected.brightness ?? 0) * 100)}%`} ratio={selected.brightness ?? 0} />}
-        {selected.kind === "double-pendulum" && <Metric label="Omega 1" value={`${(selected.omega1 ?? 0).toFixed(3)} rad/s`} ratio={Math.abs(selected.omega1 ?? 0) / 10} />}
-        {selected.kind === "double-pendulum" && <Metric label="Omega 2" value={`${(selected.omega2 ?? 0).toFixed(3)} rad/s`} ratio={Math.abs(selected.omega2 ?? 0) / 10} />}
-      </div>
-      <div className="mt-4 space-y-3">
-        {selected.kind === "fluid-region" && (
-          <label className="property-row">
-            <span>Preset</span>
-            <select className="rounded bg-slate-100 px-2 py-1 dark:bg-slate-800" onChange={(event) => setFluidPreset(event.target.value)} defaultValue="Water">
-              <option>Water</option>
-              <option>Oil</option>
-              <option>Honey</option>
-              <option>Air</option>
-            </select>
-          </label>
-        )}
-        {definition?.editableProperties.map((property) => {
-          const value = selected[property.key as keyof PhysicsObjectInstance];
-          if (property.type === "select" && property.key === "material") {
-            return (
-              <label key={property.key} className="property-row">
-                <span>{property.label}</span>
-                <select className="rounded bg-slate-100 px-2 py-1 dark:bg-slate-800" value={String(selected.material ?? "glass")} onChange={(event) => setMaterial(event.target.value)}>
-                  <option value="glass">glass n=1.5</option>
-                  <option value="water">water n=1.33</option>
-                  <option value="diamond">diamond n=2.42</option>
-                </select>
-              </label>
-            );
-          }
-          if (property.type === "boolean") {
-            return (
-              <label key={property.key} className="property-row">
-                <span>{property.label}</span>
-                <input type="checkbox" checked={Boolean(value)} onChange={(event) => setValue(property.key as keyof PhysicsObjectInstance, event.target.checked)} />
-              </label>
-            );
-          }
-          return (
-            <label key={property.key} className="property-row">
-              <span>{property.label}</span>
-              <input
-                type="number"
-                min={property.min}
-                max={property.max}
-                step={property.step ?? 0.1}
-                value={Number(value ?? 0)}
-                onChange={(event) => setValue(property.key as keyof PhysicsObjectInstance, event.target.value)}
-              />
+      <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">{definition?.name ?? selected.kind}</p>
+      <details className="property-section mt-4" open>
+        <summary>Motion metrics</summary>
+        <div className="property-section-body grid gap-2 text-xs">
+          <Metric label="Velocity" value={`${speed.toFixed(2)} m/s`} ratio={speed / 20} />
+          <Metric label="Momentum" value={`${momentum.toFixed(2)} kg m/s`} ratio={momentum / 50} />
+          <Metric label="Kinetic Energy" value={`${ke.toFixed(2)} J`} ratio={ke / 120} />
+          <Metric label="Potential Energy" value={`${pe.toFixed(2)} J`} ratio={pe / 120} />
+          {isCircuit && <Metric label="Current" value={`${(selected.current ?? 0).toFixed(3)} A`} ratio={Math.abs(selected.current ?? 0) / 5} />}
+          {isCircuit && <Metric label="Voltage" value={`${(selected.voltageDiff ?? selected.voltage ?? 0).toFixed(3)} V`} ratio={Math.abs(selected.voltageDiff ?? selected.voltage ?? 0) / 20} />}
+          {selected.kind === "bulb" && <Metric label="Brightness" value={`${Math.round((selected.brightness ?? 0) * 100)}%`} ratio={selected.brightness ?? 0} />}
+          {selected.kind === "double-pendulum" && <Metric label="Omega 1" value={`${(selected.omega1 ?? 0).toFixed(3)} rad/s`} ratio={Math.abs(selected.omega1 ?? 0) / 10} />}
+          {selected.kind === "double-pendulum" && <Metric label="Omega 2" value={`${(selected.omega2 ?? 0).toFixed(3)} rad/s`} ratio={Math.abs(selected.omega2 ?? 0) / 10} />}
+        </div>
+      </details>
+      <details className="property-section mt-3" open>
+        <summary>Editable properties</summary>
+        <div className="property-section-body space-y-3">
+          {selected.kind === "fluid-region" && (
+            <label className="property-row">
+              <span>Preset</span>
+              <select className="rounded bg-slate-100 px-2 py-1 dark:bg-slate-800" onChange={(event) => setFluidPreset(event.target.value)} defaultValue="Water">
+                <option>Water</option>
+                <option>Oil</option>
+                <option>Honey</option>
+                <option>Air</option>
+              </select>
             </label>
-          );
-        })}
-      </div>
-      <div className="mt-4 grid grid-cols-2 gap-2">
-        <button className="rounded bg-cyan-400 px-3 py-2 text-sm font-semibold text-slate-950" onClick={duplicateSelected}>Duplicate</button>
-        <button className="rounded bg-rose-500 px-3 py-2 text-sm font-semibold text-white" onClick={removeSelected}>Delete</button>
+          )}
+          {definition?.editableProperties.map((property) => {
+            const value = selected[property.key as keyof PhysicsObjectInstance];
+            if (property.type === "select" && property.key === "material") {
+              return (
+                <label key={property.key} className="property-row">
+                  <span>{property.label}</span>
+                  <select className="rounded bg-slate-100 px-2 py-1 dark:bg-slate-800" value={String(selected.material ?? "glass")} onChange={(event) => setMaterial(event.target.value)}>
+                    <option value="glass">glass n=1.5</option>
+                    <option value="water">water n=1.33</option>
+                    <option value="diamond">diamond n=2.42</option>
+                  </select>
+                </label>
+              );
+            }
+            if (property.type === "boolean") {
+              return (
+                <label key={property.key} className="property-row">
+                  <span>{property.label}</span>
+                  <input type="checkbox" checked={Boolean(value)} onChange={(event) => setValue(property.key as keyof PhysicsObjectInstance, event.target.checked)} />
+                </label>
+              );
+            }
+            return (
+              <label key={property.key} className="property-row">
+                <span>{property.label}</span>
+                <input
+                  type="number"
+                  min={property.min}
+                  max={property.max}
+                  step={property.step ?? 0.1}
+                  value={Number(value ?? 0)}
+                  onChange={(event) => setValue(property.key as keyof PhysicsObjectInstance, event.target.value)}
+                />
+              </label>
+            );
+          })}
+        </div>
+      </details>
+      <div className="property-drawer-actions">
+        <button className="tool-btn justify-center" onClick={duplicateSelected}>Duplicate</button>
+        <button className="tool-btn justify-center text-rose-300" onClick={removeSelected}>Delete</button>
       </div>
     </aside>
   );

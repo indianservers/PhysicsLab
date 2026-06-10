@@ -1,11 +1,10 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CartesianGrid, ErrorBar, Legend, Line, LineChart, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { fft } from "../lib/fft";
 import { coreFormulae, evaluateFormula, renderFormula } from "../lib/formulas";
 import { formatValue, percentageError, validateUnit } from "../lib/units";
 import { useLabStore } from "../store/useLabStore";
-import { GraphPoint, GraphVariable } from "../types";
+import { GraphPoint, GraphTraceConfig, GraphVariable } from "../types";
 import { sendStatement } from "../lib/xapi";
 import { GuidePanel } from "./GuidePanel";
 import { graphGuide } from "../lib/guides";
@@ -98,23 +97,14 @@ export function BottomPanel() {
             ))}
           </div>
           <div ref={graphRef} className={state.graphSplit ? "h-[calc(100vh-190px)] min-w-0" : "h-56 min-w-0"}>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={domain === "frequency" ? frequencyAnalysis?.data ?? [] : graphData}>
-                <CartesianGrid stroke="rgba(148,163,184,0.18)" />
-                <XAxis dataKey={domain === "frequency" ? "frequency" : activeTrace?.xKey ?? "t"} stroke="#94a3b8" />
-                <YAxis stroke="#94a3b8" />
-                <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid rgba(148,163,184,0.25)", color: "#e2e8f0" }} />
-                <Legend />
-                {domain === "time" && enabledTraces.map((trace) => (
-                    <Line key={trace.id} type="monotone" dataKey={trace.yKey} stroke={trace.color} dot={false} name={trace.label}>
-                      {(trace.errorPercent ?? 0) > 0 && <ErrorBar dataKey={`error.${String(trace.yKey)}`} width={4} stroke={trace.color} />}
-                    </Line>
-                  ))}
-                {domain === "frequency" && <Line type="monotone" dataKey="magnitude" stroke={activeTrace?.color ?? "#22d3ee"} dot={false} name="Magnitude" />}
-                {domain === "frequency" && frequencyAnalysis?.dominant && <ReferenceLine x={frequencyAnalysis.dominant.frequency} stroke="#facc15" strokeDasharray="4 4" label={`f = ${frequencyAnalysis.dominant.frequency.toFixed(2)} Hz`} />}
-                {domain === "time" && cursor && activeTrace && <ReferenceDot x={cursor[activeTrace.xKey] as number} y={cursor[activeTrace.yKey] as number} r={5} fill="#facc15" stroke="none" />}
-              </LineChart>
-            </ResponsiveContainer>
+            <CanvasGraph
+              data={domain === "frequency" ? frequencyAnalysis?.data ?? [] : graphData}
+              traces={domain === "frequency" ? [{ id: "frequency", xKey: "frequency" as GraphVariable, yKey: "magnitude" as GraphVariable, label: "Magnitude vs frequency", color: activeTrace?.color ?? "#22d3ee", enabled: true }] : enabledTraces}
+              cursorIndex={state.cursorIndex}
+              onCursorIndex={state.setCursorIndex}
+              phaseData={graphData}
+              showPhase={domain === "time"}
+            />
             {domain === "frequency" && (
               <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                 Peak Frequencies: {frequencyAnalysis?.peaks.length ? frequencyAnalysis.peaks.map((peak) => `${peak.frequency.toFixed(2)} Hz (${peak.magnitude.toFixed(3)})`).join(", ") : "-"}
@@ -166,6 +156,255 @@ function analyzeFrequency(data: GraphPoint[], yKey: GraphVariable) {
   return { data: dataPoints, peaks, dominant: peaks[0] };
 }
 
+function CanvasGraph({
+  data,
+  traces,
+  cursorIndex,
+  onCursorIndex,
+  phaseData,
+  showPhase,
+}: {
+  data: Array<Record<string, unknown>>;
+  traces: GraphTraceConfig[];
+  cursorIndex: number;
+  onCursorIndex: (index: number) => void;
+  phaseData: GraphPoint[];
+  showPhase: boolean;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [view, setView] = useState({ xZoom: 1, yZoom: 1, xPan: 0, yPan: 0 });
+  const [hover, setHover] = useState<{ x: number; y: number; index: number } | null>(null);
+  const dragRef = useRef<{ x: number; y: number; view: typeof view } | null>(null);
+  const enabled = traces.filter((trace) => trace.enabled);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawCanvasGraph(ctx, rect.width, rect.height, data, enabled, view, hover, cursorIndex, phaseData, showPhase);
+  }, [data, enabled, view, hover, cursorIndex, phaseData, showPhase]);
+
+  const updateHover = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const index = Math.round((x / Math.max(1, rect.width)) * Math.max(0, data.length - 1));
+    setHover({ x, y, index });
+    onCursorIndex(clampIndex(index, data.length));
+  };
+
+  return (
+    <div className="canvas-graph-shell">
+      <canvas
+        ref={canvasRef}
+        className="canvas-graph"
+        onPointerDown={(event) => { dragRef.current = { x: event.clientX, y: event.clientY, view }; event.currentTarget.setPointerCapture(event.pointerId); }}
+        onPointerMove={(event) => {
+          if (dragRef.current) {
+            const dx = event.clientX - dragRef.current.x;
+            const dy = event.clientY - dragRef.current.y;
+            setView({ ...dragRef.current.view, xPan: dragRef.current.view.xPan + dx, yPan: dragRef.current.view.yPan + dy });
+          } else updateHover(event);
+        }}
+        onPointerUp={(event) => { dragRef.current = null; if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId); }}
+        onPointerLeave={() => { dragRef.current = null; setHover(null); }}
+        onWheel={(event) => {
+          event.preventDefault();
+          const factor = event.deltaY < 0 ? 1.12 : 0.9;
+          setView((current) => ({ ...current, xZoom: Math.max(0.35, Math.min(8, current.xZoom * factor)), yZoom: Math.max(0.35, Math.min(8, current.yZoom * factor)) }));
+        }}
+        aria-label="Interactive canvas graph"
+      />
+      {hover && enabled[0] && data[hover.index] && (
+        <div className="canvas-graph-tooltip" style={{ left: hover.x + 12, top: hover.y + 12 }}>
+          <strong>{enabled[0].label}</strong>
+          <span>{String(enabled[0].xKey)}: {formatGraphNumber(Number(data[hover.index][enabled[0].xKey]))}</span>
+          <span>{String(enabled[0].yKey)}: {formatGraphNumber(Number(data[hover.index][enabled[0].yKey]))}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function drawCanvasGraph(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  data: Array<Record<string, unknown>>,
+  traces: GraphTraceConfig[],
+  view: { xZoom: number; yZoom: number; xPan: number; yPan: number },
+  hover: { x: number; y: number; index: number } | null,
+  cursorIndex: number,
+  phaseData: GraphPoint[],
+  showPhase: boolean,
+) {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "rgba(5, 12, 24, 0.94)";
+  ctx.fillRect(0, 0, width, height);
+  const plot = { x: 54, y: 18, w: width - (showPhase ? 230 : 76), h: height - 52 };
+  drawDotGrid(ctx, plot);
+  if (!data.length || !traces.length) {
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "700 13px Inter, sans-serif";
+    ctx.fillText("Run a simulation to stream graph data.", plot.x + 16, plot.y + 28);
+    return;
+  }
+  const xKey = traces[0].xKey;
+  const allX = data.map((point) => Number(point[xKey])).filter(Number.isFinite);
+  const yValues = traces.flatMap((trace) => data.map((point) => Number(point[trace.yKey])).filter(Number.isFinite));
+  const xRange = paddedRange(allX);
+  const yRange = paddedRange(yValues);
+  const toX = (value: number) => plot.x + ((value - xRange.min) / (xRange.max - xRange.min || 1)) * plot.w * view.xZoom + view.xPan;
+  const toY = (value: number) => plot.y + plot.h - ((value - yRange.min) / (yRange.max - yRange.min || 1)) * plot.h * view.yZoom + view.yPan;
+
+  ctx.strokeStyle = "rgba(226, 232, 240, 0.58)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(plot.x, plot.y);
+  ctx.lineTo(plot.x, plot.y + plot.h);
+  ctx.lineTo(plot.x + plot.w, plot.y + plot.h);
+  ctx.stroke();
+  ctx.fillStyle = "#cbd5e1";
+  ctx.font = "800 11px Inter, sans-serif";
+  ctx.fillText(`${String(traces[0].yKey)} (${unitForGraphKey(traces[0].yKey)})`, plot.x + 4, plot.y + 12);
+  ctx.fillText(`${String(xKey)} (${unitForGraphKey(xKey)})`, plot.x + plot.w - 90, plot.y + plot.h + 32);
+
+  traces.forEach((trace) => {
+    const points = data.map((point) => ({ x: Number(point[xKey]), y: Number(point[trace.yKey]) })).filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
+    if (points.length < 2) return;
+    ctx.strokeStyle = trace.color;
+    ctx.shadowColor = trace.color;
+    ctx.shadowBlur = 9;
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    points.forEach((point, index) => {
+      const sx = toX(point.x);
+      const sy = toY(point.y);
+      if (index === 0) ctx.moveTo(sx, sy);
+      else ctx.lineTo(sx, sy);
+    });
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = trace.color;
+    points.forEach((point, index) => {
+      if (index % Math.max(1, Math.floor(points.length / 90)) !== 0) return;
+      ctx.beginPath();
+      ctx.arc(toX(point.x), toY(point.y), 2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    const fit = calculateStats(points.map((point) => ({ t: point.x, x: 0, y: point.y, vx: 0, vy: 0, speed: 0, kineticEnergy: 0, potentialEnergy: 0 } as GraphPoint)), "t", "y");
+    if (fit) {
+      ctx.strokeStyle = "rgba(245, 158, 11, 0.9)";
+      ctx.setLineDash([8, 6]);
+      ctx.beginPath();
+      ctx.moveTo(toX(xRange.min), toY(fit.slope * xRange.min + fit.intercept));
+      ctx.lineTo(toX(xRange.max), toY(fit.slope * xRange.max + fit.intercept));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  });
+
+  const active = data[clampIndex(cursorIndex, data.length)];
+  if (active) {
+    const cx = toX(Number(active[xKey]));
+    ctx.strokeStyle = "rgba(245, 158, 11, 0.76)";
+    ctx.setLineDash([4, 8]);
+    ctx.beginPath();
+    ctx.moveTo(cx, plot.y);
+    ctx.lineTo(cx, plot.y + plot.h);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  if (hover) {
+    ctx.strokeStyle = "rgba(0, 229, 255, 0.45)";
+    ctx.beginPath();
+    ctx.moveTo(hover.x, plot.y);
+    ctx.lineTo(hover.x, plot.y + plot.h);
+    ctx.moveTo(plot.x, hover.y);
+    ctx.lineTo(plot.x + plot.w, hover.y);
+    ctx.stroke();
+  }
+  if (showPhase) drawPhasePortrait(ctx, width - 180, 30, 150, height - 78, phaseData);
+}
+
+function drawDotGrid(ctx: CanvasRenderingContext2D, plot: { x: number; y: number; w: number; h: number }) {
+  ctx.fillStyle = "rgba(148, 163, 184, 0.18)";
+  for (let x = plot.x; x <= plot.x + plot.w; x += 18) {
+    for (let y = plot.y; y <= plot.y + plot.h; y += 18) {
+      ctx.fillRect(x, y, 1, 1);
+    }
+  }
+}
+
+function drawPhasePortrait(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, data: GraphPoint[]) {
+  ctx.save();
+  ctx.fillStyle = "rgba(15, 23, 42, 0.82)";
+  ctx.strokeStyle = "rgba(124, 58, 237, 0.45)";
+  roundCanvasRect(ctx, x, y, width, height, 12);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = "#c4b5fd";
+  ctx.font = "900 11px Inter, sans-serif";
+  ctx.fillText("Phase Portrait", x + 12, y + 18);
+  const points = data.map((point) => ({ x: point.x, y: point.vx })).filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
+  if (points.length > 1) {
+    const xr = paddedRange(points.map((point) => point.x));
+    const yr = paddedRange(points.map((point) => point.y));
+    const sx = (value: number) => x + 16 + ((value - xr.min) / (xr.max - xr.min || 1)) * (width - 28);
+    const sy = (value: number) => y + height - 16 - ((value - yr.min) / (yr.max - yr.min || 1)) * (height - 42);
+    ctx.strokeStyle = "#a78bfa";
+    ctx.shadowColor = "#7c3aed";
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    points.forEach((point, index) => index === 0 ? ctx.moveTo(sx(point.x), sy(point.y)) : ctx.lineTo(sx(point.x), sy(point.y)));
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function paddedRange(values: number[]) {
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const pad = Math.max(1e-6, (max - min) * 0.08);
+  return { min: min - pad, max: max + pad };
+}
+
+function roundCanvasRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.arcTo(x + width, y, x + width, y + height, radius);
+  ctx.arcTo(x + width, y + height, x, y + height, radius);
+  ctx.arcTo(x, y + height, x, y, radius);
+  ctx.arcTo(x, y, x + width, y, radius);
+  ctx.closePath();
+}
+
+function unitForGraphKey(key: string) {
+  if (key === "t") return "s";
+  if (["x", "y"].includes(key)) return "m";
+  if (["vx", "vy", "speed"].includes(key)) return "m/s";
+  if (key.toLowerCase().includes("energy")) return "J";
+  if (key === "force") return "N";
+  if (key === "momentum") return "kg m/s";
+  if (key === "voltage") return "V";
+  if (key === "current") return "A";
+  if (key === "frequency") return "Hz";
+  return "";
+}
+
+function formatGraphNumber(value: number) {
+  return Number.isFinite(value) ? value.toPrecision(4) : "-";
+}
+
+function clampIndex(index: number, length: number) {
+  return Math.max(0, Math.min(Math.max(0, length - 1), index));
+}
+
 function ObservationTable() {
   const state = useLabStore();
   const rows = state.observationRows.length ? state.observationRows : state.graphData.slice(-6).map((point, index) => ({
@@ -197,13 +436,13 @@ function ObservationTable() {
           <input className="w-12 rounded bg-slate-100 dark:bg-slate-800" type="number" value={state.significantFigures} onChange={(event) => state.setSignificantFigures(Number(event.target.value))} />
         </label>
       </div>
-      <table className="w-full text-left text-xs">
+      <table className="notebook-table data-table w-full text-left text-xs">
         <thead className="text-slate-400">
           <tr><th>Label</th><th>Measured</th><th>Expected</th><th>Error %</th><th>Unit</th><th>Note</th><th></th></tr>
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-t border-slate-300/40 dark:border-lab-line">
+            <tr key={row.id} className="data-row">
               <td><Editable value={row.label} onChange={(value) => !row.id.startsWith("auto-") && state.updateObservationRow(row.id, { label: value })} /></td>
               <td><NumberEdit value={row.measured} onChange={(value) => !row.id.startsWith("auto-") && state.updateObservationRow(row.id, { measured: value })} /></td>
               <td><NumberEdit value={row.expected} onChange={(value) => !row.id.startsWith("auto-") && state.updateObservationRow(row.id, { expected: value })} /></td>

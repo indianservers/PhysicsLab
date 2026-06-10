@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Legend, Line, LineChart, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
 import { Toolbar } from "../components/Toolbar";
 import { useLabStore } from "../store/useLabStore";
 import { PhysicsIcon } from "../lib/icons";
@@ -319,13 +319,12 @@ export function GraphsPage() {
               <ResponsiveContainer width="100%" height={420}>
                 {chartType === "scatter" ? (
                   <ScatterChart margin={{ top: 10, right: 24, bottom: 24, left: 10 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                     <XAxis dataKey="x" type="number" name={activeSeries.xLabel} domain={[xMin - xPad, xMax + xPad]} tick={{ fontSize: 11, fill: "#94a3b8" }} label={{ value: activeSeries.xLabel, position: "insideBottom", offset: -14, fill: "#94a3b8", fontSize: 12 }} />
                     <YAxis dataKey="y" type="number" name={activeSeries.yLabel} domain={[yMin - yPad, yMax + yPad]} tick={{ fontSize: 11, fill: "#94a3b8" }} label={{ value: activeSeries.yLabel, angle: -90, position: "insideLeft", offset: 10, fill: "#94a3b8", fontSize: 12 }} />
-                    <Tooltip cursor={{ strokeDasharray: "3 3" }} contentStyle={{ background: "#0f172a", border: "1px solid #334155", borderRadius: 6, fontSize: 12 }} />
+                    <Tooltip cursor={{ strokeDasharray: "3 3" }} contentStyle={{ background: "rgba(5,12,24,0.94)", border: "1px solid rgba(0,229,255,0.28)", color: "#e2e8f0", borderRadius: 10, fontSize: 12 }} />
                     <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
                     {allChartData.map((s, si) => (
-                      <Scatter key={s.id} name={s.label} data={s.points} fill={COLORS[si % COLORS.length]} opacity={0.85} />
+                      <Scatter key={s.id} name={s.label} data={s.points} fill={COLORS[si % COLORS.length]} opacity={0.9} isAnimationActive animationDuration={700} />
                     ))}
                     {showBestFit && bestFitLine.length === 2 && (
                       <Scatter name="Best-fit" data={bestFitLine} line={{ stroke: "#f43f5e", strokeWidth: 2, strokeDasharray: "6 3" }} shape={() => null as unknown as React.ReactElement} fill="transparent" legendType="line" />
@@ -333,16 +332,15 @@ export function GraphsPage() {
                   </ScatterChart>
                 ) : (
                   <LineChart margin={{ top: 10, right: 24, bottom: 24, left: 10 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.2)" />
                     <XAxis dataKey="x" type="number" domain={[xMin - xPad, xMax + xPad]} tick={{ fontSize: 11, fill: "#94a3b8" }} label={{ value: activeSeries.xLabel, position: "insideBottom", offset: -14, fill: "#94a3b8", fontSize: 12 }} />
                     <YAxis domain={[yMin - yPad, yMax + yPad]} tick={{ fontSize: 11, fill: "#94a3b8" }} label={{ value: activeSeries.yLabel, angle: -90, position: "insideLeft", offset: 10, fill: "#94a3b8", fontSize: 12 }} />
-                    <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #334155", borderRadius: 6, fontSize: 12 }} />
+                    <Tooltip contentStyle={{ background: "rgba(5,12,24,0.94)", border: "1px solid rgba(0,229,255,0.28)", color: "#e2e8f0", borderRadius: 10, fontSize: 12 }} />
                     <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
                     {allChartData.map((s, si) => (
-                      <Line key={s.id} data={s.points} dataKey="y" name={s.label} dot={{ r: 4 }} stroke={COLORS[si % COLORS.length]} strokeWidth={2} connectNulls />
+                      <Line key={s.id} data={s.points} dataKey="y" name={s.label} dot={{ r: 4 }} stroke={COLORS[si % COLORS.length]} strokeWidth={2.4} connectNulls isAnimationActive animationDuration={700} />
                     ))}
                     {showBestFit && bestFitLine.length === 2 && (
-                      <Line data={bestFitLine} dataKey="y" name="Best-fit" stroke="#f43f5e" strokeWidth={2} strokeDasharray="6 3" dot={false} />
+                      <Line data={bestFitLine} dataKey="y" name="Best-fit" stroke="#f43f5e" strokeWidth={2.4} strokeDasharray="6 3" dot={false} isAnimationActive animationDuration={700} />
                     )}
                   </LineChart>
                 )}
@@ -353,7 +351,7 @@ export function GraphsPage() {
             {allChartData.some((s) => s.points.length > 0) && (
               <div className="panel p-3 overflow-x-auto">
                 <span className="ui-label">Series statistics</span>
-                <table className="mt-2 w-full text-sm">
+                <table className="notebook-table data-table mt-2 w-full text-sm">
                   <thead>
                     <tr className="text-left text-xs text-slate-500">
                       <th className="pb-1 pr-4">Series</th>
@@ -370,7 +368,7 @@ export function GraphsPage() {
                       const ys = s.points.map((p) => p.y);
                       const mean = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
                       return (
-                        <tr key={s.id} className="border-t border-slate-300/30 dark:border-lab-line">
+                        <tr key={s.id} className="data-row">
                           <td className="py-1 pr-4 font-semibold" style={{ color: COLORS[si % COLORS.length] }}>{s.label}</td>
                           <td className="py-1 pr-4 font-mono">{s.points.length}</td>
                           <td className="py-1 pr-4 font-mono">{mean(xs).toFixed(3)}</td>

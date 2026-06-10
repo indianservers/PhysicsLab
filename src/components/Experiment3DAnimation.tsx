@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { ExperimentDefinition } from "../types";
 import { iconForExperiment, PhysicsIcon } from "../lib/icons";
 import { FullscreenButton } from "./FullscreenButton";
@@ -135,6 +139,17 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
     const scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0x020617, config.cinematic ? 9 : 8, config.cinematic ? 22 : 18);
     const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 100);
+    const composer = config.cinematic ? new EffectComposer(renderer) : null;
+    const bloomPass = config.cinematic ? new UnrealBloomPass(new THREE.Vector2(1, 1), 0.72, 0.6, 0.18) : null;
+    const ssaoPass = config.cinematic ? new SSAOPass(scene, camera, 1, 1) : null;
+    if (composer && bloomPass && ssaoPass) {
+      ssaoPass.kernelRadius = 10;
+      ssaoPass.minDistance = 0.001;
+      ssaoPass.maxDistance = 0.12;
+      composer.addPass(new RenderPass(scene, camera));
+      composer.addPass(ssaoPass);
+      composer.addPass(bloomPass);
+    }
     const cameraTarget = new THREE.Vector3(0, -0.12, 0);
     const orbit = {
       theta: 0.58,
@@ -248,6 +263,11 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
       const width = Math.max(320, mount.clientWidth);
       const height = Math.max(300, mount.clientHeight);
       renderer.setSize(width, height, false);
+      composer?.setSize(width, height);
+      if (ssaoPass) {
+        ssaoPass.width = width;
+        ssaoPass.height = height;
+      }
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
     };
@@ -263,7 +283,8 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
       warmLight.intensity = (config.cinematic ? 16 : 5) + Math.cos(t * 0.9) * (config.cinematic ? 4 : 0.8);
       updateObjects(root, t, values);
       setCameraFromOrbit();
-      renderer.render(scene, camera);
+      if (composer) composer.render();
+      else renderer.render(scene, camera);
       frame = requestAnimationFrame(animate);
     };
     animate();
@@ -278,6 +299,7 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
       mount.removeEventListener("contextmenu", onContextMenu);
       mount.removeEventListener("three-view-command", onViewCommand);
       resizeObserver.disconnect();
+      composer?.dispose();
       renderer.dispose();
       scene.traverse((object) => {
         const mesh = object as THREE.Mesh;

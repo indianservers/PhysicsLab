@@ -10,6 +10,7 @@ import { useLabStore } from "../store/useLabStore";
 import { sendStatement } from "../lib/xapi";
 import { GuidePanel } from "../components/GuidePanel";
 import { workspaceGuide } from "../lib/guides";
+import { PhysicsIcon } from "../lib/icons";
 import {
   loadExperimentState,
   saveExperimentState,
@@ -26,9 +27,12 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">("idle");
   const [hasSave, setHasSave] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareObjects, setCompareObjects] = useState<ReturnType<typeof useLabStore.getState>["objects"]>([]);
   const graphSplit = useLabStore((state) => state.graphSplit);
   const running = useLabStore((state) => state.running);
   const timeScale = useLabStore((state) => state.timeScale);
+  const liveObjects = useLabStore((state) => state.objects);
   const params = new URLSearchParams(window.location.search);
   const embedded = params.get("embed") === "1" || window.parent !== window;
   const experimentName = params.get("experiment") ?? (mode === "sandbox" ? "sandbox" : "lab");
@@ -183,6 +187,16 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
     window.parent?.postMessage({ type: "physicslab_submit", score, answers }, "*");
   };
 
+  const toggleCompareMode = () => {
+    if (compareMode) {
+      setCompareMode(false);
+      return;
+    }
+    const snapshot = useLabStore.getState().objects.map((object) => ({ ...object, trail: [...object.trail] }));
+    setCompareObjects(snapshot);
+    setCompareMode(true);
+  };
+
   useEffect(() => {
     let timer: number | undefined;
     let lastSignature = "";
@@ -231,7 +245,7 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
       ) : (
         <Toolbar />
       )}
-      <div className="relative grid min-h-0 flex-1 grid-cols-1 gap-3 p-3 lg:grid-cols-[280px_minmax(0,1fr)_300px]">
+      <div className="relative grid min-h-0 flex-1 grid-cols-1 gap-3 p-3 lg:grid-cols-[280px_minmax(0,1fr)]">
         {onboardingStep < 4 && (
           <Onboarding step={onboardingStep} onDone={completeOnboarding} />
         )}
@@ -250,6 +264,8 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
               hasSave={hasSave}
               savedAt={savedAt}
               saveStatus={saveStatus}
+              compareMode={compareMode}
+              onToggleCompare={toggleCompareMode}
               onRestoreSaved={restoreSaved}
               onResetDefaults={resetToDefaults}
             />
@@ -266,7 +282,23 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
             <div className="mb-2 px-2">
               <GuidePanel guide={workspaceGuide} compact />
             </div>
-            <PhysicsCanvas />
+            {compareMode ? (
+              <div className="compare-workspace">
+                <div className="compare-pane">
+                  <div className="compare-pane-badge">A live setup</div>
+                  <PhysicsCanvas />
+                </div>
+                <div className="compare-divider">
+                  <CompareDiff baseline={compareObjects} current={liveObjects} />
+                </div>
+                <div className="compare-pane compare-pane-frozen">
+                  <div className="compare-pane-badge">B captured baseline</div>
+                  <CompareCanvasSnapshot objects={compareObjects} />
+                </div>
+              </div>
+            ) : (
+              <PhysicsCanvas />
+            )}
           </section>
           <BottomPanel />
         </main>
@@ -289,6 +321,8 @@ function FloatingCanvasToolbar({
   hasSave,
   savedAt,
   saveStatus,
+  compareMode,
+  onToggleCompare,
   onRestoreSaved,
   onResetDefaults,
 }: {
@@ -297,6 +331,8 @@ function FloatingCanvasToolbar({
   hasSave: boolean;
   savedAt: string | null;
   saveStatus: "idle" | "saving" | "saved";
+  compareMode: boolean;
+  onToggleCompare: () => void;
   onRestoreSaved: () => void;
   onResetDefaults: () => void;
 }) {
@@ -317,12 +353,16 @@ function FloatingCanvasToolbar({
 
   return (
     <div className="floating-canvas-toolbar">
-      <button onClick={store.toggleRunning}>{running ? "Pause" : "Play"}</button>
+      <button onClick={store.toggleRunning} title={running ? "Pause simulation" : "Play simulation"} aria-label={running ? "Pause simulation" : "Play simulation"}>
+        <PhysicsIcon name="play" className="h-4 w-4" />
+        <span>{running ? "Pause" : "Play"}</span>
+      </button>
 
       {/* Reset — single button when no save, dropdown when save exists */}
       <div ref={resetRef} className="relative">
-        <button onClick={() => (hasSave ? setShowReset((v) => !v) : onResetDefaults())}>
-          Reset{hasSave ? " ▾" : ""}
+        <button onClick={() => (hasSave ? setShowReset((v) => !v) : onResetDefaults())} title="Reset simulation" aria-label="Reset simulation">
+          <PhysicsIcon name="spark" className="h-4 w-4" />
+          <span>Reset{hasSave ? " menu" : ""}</span>
         </button>
         {showReset && (
           <div className="absolute left-0 top-full z-50 mt-1 min-w-[172px] rounded border border-slate-300/50 bg-white/95 text-xs shadow-xl dark:border-slate-600 dark:bg-slate-800">
@@ -354,16 +394,26 @@ function FloatingCanvasToolbar({
       </div>
 
       <button
+        title="Cycle simulation speed"
+        aria-label={`Cycle simulation speed. Current speed ${timeScale}x`}
         onClick={() =>
           store.setTimeScale(
             speeds[(speeds.indexOf(timeScale) + 1 + speeds.length) % speeds.length],
           )
         }
       >
-        {timeScale}x
+        <PhysicsIcon name="gauge" className="h-4 w-4" />
+        <span>{timeScale}x</span>
       </button>
-      <button onClick={() => store.addObject("ball", 280, 140)}>+ Add</button>
-      <button onClick={() => store.addObject("ruler", 340, 220)}>Measure</button>
+
+      <button
+        title={compareMode ? "Exit comparison mode" : "Capture current setup for comparison"}
+        aria-label={compareMode ? "Exit comparison mode" : "Compare current setup"}
+        onClick={onToggleCompare}
+      >
+        <PhysicsIcon name="chart" className="h-4 w-4" />
+        <span>{compareMode ? "Exit compare" : "Compare"}</span>
+      </button>
 
       {/* Save status indicator */}
       {saveStatus !== "idle" && (
@@ -401,6 +451,78 @@ function Onboarding({ step, onDone }: { step: number; onDone: () => void }) {
       </div>
     </div>
   );
+}
+
+function CompareDiff({ baseline, current }: { baseline: ReturnType<typeof useLabStore.getState>["objects"]; current: ReturnType<typeof useLabStore.getState>["objects"] }) {
+  const baselineDynamic = baseline.filter((object) => !object.isStatic);
+  const currentDynamic = current.filter((object) => !object.isStatic);
+  const baselineSpeed = averageSpeed(baselineDynamic);
+  const currentSpeed = averageSpeed(currentDynamic);
+  const baselineMass = baselineDynamic.reduce((sum, object) => sum + object.mass, 0);
+  const currentMass = currentDynamic.reduce((sum, object) => sum + object.mass, 0);
+  const speedDelta = currentSpeed - baselineSpeed;
+  const massDelta = currentMass - baselineMass;
+  const main = Math.abs(speedDelta) >= Math.abs(massDelta) ? `Δspeed ${speedDelta.toFixed(2)} m/s` : `Δmass ${massDelta.toFixed(2)} kg`;
+  return (
+    <div className="compare-diff-chip">
+      <span>Largest diff</span>
+      <strong>{main}</strong>
+      <small>A: {baselineDynamic.length} objects · B: {currentDynamic.length} objects</small>
+    </div>
+  );
+}
+
+function CompareCanvasSnapshot({ objects }: { objects: ReturnType<typeof useLabStore.getState>["objects"] }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    const gradient = ctx.createRadialGradient(rect.width / 2, rect.height / 2, 0, rect.width / 2, rect.height / 2, Math.max(rect.width, rect.height) * 0.7);
+    gradient.addColorStop(0, "#0b1b31");
+    gradient.addColorStop(1, "#020611");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.strokeStyle = "rgba(0,229,255,0.14)";
+    for (let x = 0; x < rect.width; x += 40) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, rect.height); ctx.stroke();
+    }
+    for (let y = 0; y < rect.height; y += 40) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(rect.width, y); ctx.stroke();
+    }
+    objects.forEach((object) => {
+      const x = Math.max(24, Math.min(rect.width - 24, object.x));
+      const y = Math.max(24, Math.min(rect.height - 24, object.y));
+      const color = object.color ?? (object.isStatic ? "#64748b" : "#00e5ff");
+      ctx.fillStyle = color;
+      ctx.strokeStyle = "rgba(226,232,240,0.72)";
+      ctx.shadowColor = color;
+      ctx.shadowBlur = object.isStatic ? 2 : 12;
+      if (object.radius) {
+        ctx.beginPath();
+        ctx.arc(x, y, Math.max(7, Math.min(28, object.radius)), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        const w = Math.min(90, object.width ?? 42);
+        const h = Math.min(70, object.height ?? 34);
+        ctx.fillRect(x - w / 2, y - h / 2, w, h);
+        ctx.strokeRect(x - w / 2, y - h / 2, w, h);
+      }
+      ctx.shadowBlur = 0;
+    });
+  }, [objects]);
+  return <canvas ref={canvasRef} className="compare-snapshot-canvas" aria-label="Captured baseline comparison canvas" />;
+}
+
+function averageSpeed(objects: ReturnType<typeof useLabStore.getState>["objects"]) {
+  return objects.length ? objects.reduce((sum, object) => sum + Math.hypot(object.vx, object.vy), 0) / objects.length : 0;
 }
 
 function circuitSignature(

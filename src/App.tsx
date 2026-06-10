@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Component, ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HomePage } from "./pages/HomePage";
@@ -17,6 +17,7 @@ import { QuantumPage } from "./pages/QuantumPage";
 import { TeacherPage } from "./pages/TeacherPage";
 import { SolverPage } from "./pages/SolverPage";
 import { QuizPage } from "./pages/QuizPage";
+import { FormulasPage } from "./pages/FormulasPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement, initXAPISync } from "./lib/xapi";
 
@@ -38,6 +39,7 @@ const topics = [
 
 export default function App() {
   const { t } = useTranslation();
+  const location = useLocation();
   const [online, setOnline] = useState(navigator.onLine);
   const theme = useLabStore((state) => state.theme);
   const accessibility = useLabStore((state) => state.accessibility);
@@ -62,9 +64,10 @@ export default function App() {
   return (
     <div className={classes}>
       <a href="#content" className="skip-link">Skip to content</a>
-      <main className="min-h-screen bg-slate-100 text-slate-950 dark:bg-lab-ink dark:text-slate-100">
-        {!online && <div className="bg-amber-300 px-4 py-2 text-center text-sm font-semibold text-slate-950">{t("offline")}</div>}
-        <Routes>
+      <main className="min-h-screen bg-space-900 text-space-50">
+        {!online && <div className="bg-warning-500 px-4 py-2 text-center text-sm font-semibold text-space-900">{t("offline")}</div>}
+        <div key={location.pathname} className="route-transition-shell">
+        <Routes location={location}>
           <Route path="/" element={<HomePage />} />
           <Route path="/lab" element={<WorkspacePage mode="guided" />} />
           <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
@@ -74,6 +77,7 @@ export default function App() {
           <Route path="/concepts" element={<ConceptsPage />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/solver" element={<SolverPage />} />
+          <Route path="/formulas" element={<FormulasPage />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/video" element={<VideoAnalysisPage />} />
           <Route path="/quantum" element={<QuantumPage />} />
@@ -90,6 +94,7 @@ export default function App() {
           <Route path="/privacy" element={<SimplePage title="Privacy" />} />
           <Route path="/terms" element={<SimplePage title="Terms" />} />
         </Routes>
+        </div>
       </main>
     </div>
   );
@@ -106,10 +111,10 @@ class RouteErrorBoundary extends Component<{ children: ReactNode }, { message: s
     if (this.state.message) {
       return (
         <section className="mx-auto max-w-3xl p-6">
-          <div className="panel border-amber-300/60 p-5">
-            <p className="ui-label text-amber-600 dark:text-amber-200">Lab view recovered</p>
+          <div className="panel border-warning-400/60 p-5">
+            <p className="ui-label text-warning-300">Lab view recovered</p>
             <h1 className="mt-2 text-2xl font-black">This experiment needs a refresh</h1>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{this.state.message}</p>
+            <p className="mt-2 text-sm text-space-200">{this.state.message}</p>
             <a className="hero-btn-secondary mt-4 inline-flex" href="/experiments">Back to experiments</a>
           </div>
         </section>

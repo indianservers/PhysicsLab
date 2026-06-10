@@ -10,6 +10,7 @@ interface GlobalSearchProps {
 }
 
 const typeLabels: Record<SearchResult["type"], string> = {
+  action: "Actions",
   experiment: "Experiments",
   topic: "Syllabus",
   formula: "Formulae",
@@ -19,6 +20,7 @@ const typeLabels: Record<SearchResult["type"], string> = {
 };
 
 const typeTint: Record<SearchResult["type"], string> = {
+  action: "from-cyan-200 to-violet-500",
   experiment: "from-cyan-300 to-blue-500",
   topic: "from-emerald-300 to-teal-500",
   formula: "from-amber-200 to-orange-500",
@@ -125,7 +127,7 @@ export function GlobalSearch({ open, onClose }: GlobalSearchProps) {
               Close
             </button>
           </div>
-          <div className="mt-4 grid gap-2 text-xs font-bold uppercase tracking-wide text-slate-300 sm:grid-cols-6">
+          <div className="mt-4 grid gap-2 text-xs font-bold uppercase tracking-wide text-slate-300 sm:grid-cols-7">
             {Object.entries(counts).map(([type, count]) => (
               <div key={type} className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2">
                 <span className={`mr-2 inline-block h-2 w-2 rounded-full bg-gradient-to-r ${typeTint[type as SearchResult["type"]]}`} />

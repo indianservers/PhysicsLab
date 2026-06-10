@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { allCurriculumTopics, classOptions, curriculum } from "../lib/curriculum";
@@ -16,7 +16,9 @@ export function ExperimentsPage() {
   const [sortBy, setSortBy] = useState("interactive");
   const [viewMode, setViewMode] = useState<"cards" | "compact">("compact");
   const [beginnerMode, setBeginnerMode] = useState(false);
-  const [activeTab, setActiveTab] = useState<"library" | "syllabus">("library");
+  const [activeTab, setActiveTab] = useState<"library" | "syllabus" | "map">("library");
+  const [mapGrade, setMapGrade] = useState(12);
+  const navigate = useNavigate();
   const topics = useMemo(() => allCurriculumTopics(), []);
   const selectedGrade = selectedClass === "all" ? null : Number(selectedClass.replace("class-", ""));
   const selectedGradeExperimentIds = useMemo(() => new Set(
@@ -85,6 +87,7 @@ export function ExperimentsPage() {
           {[
             { id: "library" as const, label: "Library", icon: "flask" as const },
             { id: "syllabus" as const, label: "Syllabus", icon: "book" as const },
+            { id: "map" as const, label: "Constellation", icon: "orbit" as const },
           ].map((tab) => (
             <button key={tab.id} className={activeTab === tab.id ? "tab-active" : "tab-btn"} type="button" onClick={() => setActiveTab(tab.id)}>
               <span className="inline-flex items-center gap-1.5"><PhysicsIcon name={tab.icon} className="h-3.5 w-3.5" />{tab.label}</span>
@@ -93,6 +96,25 @@ export function ExperimentsPage() {
         </div>
 
         <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
+          {activeTab === "map" && (
+            <div className="constellation-shell">
+              <div className="constellation-toolbar">
+                <div>
+                  <p className="ui-label">Experiment constellation map</p>
+                  <h2>Prerequisites, clusters, and progress as a physics sky map</h2>
+                </div>
+                <label>
+                  Class ceiling
+                  <input type="range" min={6} max={12} value={mapGrade} onChange={(event) => setMapGrade(Number(event.target.value))} />
+                  <strong>Class {mapGrade}</strong>
+                </label>
+              </div>
+              <ExperimentConstellation
+                experiments={experiments.filter((experiment) => (experiment.curriculumTags?.classes[0] ?? 12) <= mapGrade)}
+                onOpen={(id) => navigate(`/experiments/${id}`)}
+              />
+            </div>
+          )}
           {activeTab === "syllabus" && (
             <div className="grid gap-4">
         <div className="class-progress-panel">
@@ -237,6 +259,7 @@ export function ExperimentsPage() {
             ].filter((feature) => feature.active);
             return (
               <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "enhanced-card enhanced-card-compact" : "enhanced-card"}>
+                <ExperimentPreview experiment={experiment} />
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-start gap-3">
                     <span className="card-icon">
@@ -293,6 +316,43 @@ export function ExperimentsPage() {
   );
 }
 
+function ExperimentPreview({ experiment }: { experiment: typeof experiments[number] }) {
+  const kind = previewKind(experiment);
+  return (
+    <div className={`experiment-preview experiment-preview-${kind}`} aria-hidden="true">
+      <svg className="experiment-preview-svg" viewBox="0 0 240 112" role="img">
+        <defs>
+          <radialGradient id={`preview-glow-${experiment.id}`} cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.52" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <rect className="preview-grid" width="240" height="112" rx="14" />
+        <path className="preview-wave" d="M8 68 C35 24 58 24 84 68 S132 112 160 68 207 24 232 68" />
+        <path className="preview-orbit preview-orbit-a" d="M72 56 C72 27 168 27 168 56 S72 85 72 56" />
+        <path className="preview-orbit preview-orbit-b" d="M120 16 C151 16 151 96 120 96 S89 16 120 16" />
+        <circle className="preview-core" cx="120" cy="56" r="9" />
+        <circle className="preview-particle preview-particle-a" cx="168" cy="56" r="5" />
+        <circle className="preview-particle preview-particle-b" cx="84" cy="68" r="4" />
+        <path className="preview-trace" d="M24 88 L72 72 L116 36 L158 52 L216 20" />
+        <rect className="preview-block preview-block-a" x="32" y="78" width="34" height="12" rx="3" />
+        <rect className="preview-block preview-block-b" x="174" y="30" width="34" height="12" rx="3" />
+        <circle className="preview-glow" cx="120" cy="56" r="48" fill={`url(#preview-glow-${experiment.id})`} />
+      </svg>
+    </div>
+  );
+}
+
+function previewKind(experiment: typeof experiments[number]) {
+  if (has3DAnimation(experiment.id)) return "orbit";
+  if (experiment.category.includes("Optics")) return "optics";
+  if (experiment.category.includes("Electric")) return "circuit";
+  if (experiment.category.includes("Wave")) return "wave";
+  if (experiment.category.includes("Thermo")) return "thermal";
+  if (experiment.category.includes("Modern") || experiment.category.includes("Quantum")) return "quantum";
+  return "mechanics";
+}
+
 function topicIcon(domain: string): PhysicsIconName {
   if (domain.includes("Optics")) return "prism";
   if (domain.includes("Electric")) return "battery";
@@ -333,6 +393,131 @@ function difficultyScore(difficulty: string) {
 function interactivityScore(experiment: typeof experiments[number]) {
   const modeScore = interactionModes(experiment).filter((mode) => mode.active).length;
   return (has3DAnimation(experiment.id) ? 4 : 0) + modeScore + (experiment.vivaQuestions.length > 0 ? 1 : 0);
+}
+
+function ExperimentConstellation({ experiments, onOpen }: { experiments: typeof import("../lib/experiments").experiments; onOpen: (id: string) => void }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [hovered, setHovered] = useState<typeof experiments[number] | null>(null);
+  const nodes = useMemo(() => makeConstellationNodes(experiments), [experiments]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawConstellation(ctx, rect.width, rect.height, nodes, hovered?.id);
+  }, [nodes, hovered]);
+
+  const nodeAt = (x: number, y: number) => {
+    const rect = canvasRef.current?.getBoundingClientRect();
+    if (!rect) return undefined;
+    return nodes.find((node) => Math.hypot(node.x * rect.width - x, node.y * rect.height - y) <= node.r + 8);
+  };
+
+  return (
+    <div className="constellation-canvas-wrap">
+      <canvas
+        ref={canvasRef}
+        className="constellation-canvas"
+        onPointerMove={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          setHovered(nodeAt(event.clientX - rect.left, event.clientY - rect.top)?.experiment ?? null);
+        }}
+        onPointerLeave={() => setHovered(null)}
+        onClick={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          const node = nodeAt(event.clientX - rect.left, event.clientY - rect.top);
+          if (node) onOpen(node.experiment.id);
+        }}
+        aria-label="Experiment constellation map"
+      />
+      {hovered && (
+        <div className="constellation-preview">
+          <span className="card-icon"><PhysicsIcon name={iconForExperiment(hovered)} /></span>
+          <strong>{hovered.title}</strong>
+          <small>{hovered.category} - {hovered.classLevel}</small>
+          <p>{hovered.aim}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function makeConstellationNodes(items: typeof experiments) {
+  const domains = Array.from(new Set(items.map((item) => item.category))).sort();
+  return items.map((experiment, index) => {
+    const domainIndex = domains.indexOf(experiment.category);
+    const angle = (index / Math.max(1, items.length)) * Math.PI * 2 + domainIndex * 0.28;
+    const ring = 0.18 + (domainIndex % 5) * 0.08 + (index % 7) * 0.008;
+    return {
+      experiment,
+      x: 0.5 + Math.cos(angle) * ring,
+      y: 0.52 + Math.sin(angle) * ring,
+      r: 5 + difficultyScore(experiment.difficulty) * 2 + (has3DAnimation(experiment.id) ? 2 : 0),
+      color: colorForDomain(experiment.category),
+      links: items
+        .filter((other) => other.id !== experiment.id)
+        .filter((other) => sharesConcept(experiment, other))
+        .slice(0, 3)
+        .map((other) => other.id),
+    };
+  });
+}
+
+function drawConstellation(ctx: CanvasRenderingContext2D, width: number, height: number, nodes: ReturnType<typeof makeConstellationNodes>, hoveredId?: string) {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#050c18";
+  ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = "rgba(148,163,184,0.24)";
+  for (let i = 0; i < 130; i += 1) {
+    const x = (Math.sin(i * 91.7) * 0.5 + 0.5) * width;
+    const y = (Math.cos(i * 53.1) * 0.5 + 0.5) * height;
+    ctx.fillRect(x, y, 1, 1);
+  }
+  const byId = new Map(nodes.map((node) => [node.experiment.id, node]));
+  nodes.forEach((node) => {
+    node.links.forEach((id) => {
+      const target = byId.get(id);
+      if (!target) return;
+      const active = hoveredId === node.experiment.id || hoveredId === target.experiment.id;
+      ctx.strokeStyle = active ? "rgba(0,229,255,0.58)" : "rgba(148,163,184,0.12)";
+      ctx.lineWidth = active ? 1.6 : 0.8;
+      ctx.beginPath();
+      ctx.moveTo(node.x * width, node.y * height);
+      ctx.lineTo(target.x * width, target.y * height);
+      ctx.stroke();
+    });
+  });
+  nodes.forEach((node) => {
+    const active = hoveredId === node.experiment.id;
+    ctx.shadowColor = node.color;
+    ctx.shadowBlur = active ? 28 : 12;
+    ctx.fillStyle = node.color;
+    ctx.globalAlpha = active ? 1 : 0.78;
+    ctx.beginPath();
+    ctx.arc(node.x * width, node.y * height, active ? node.r + 5 : node.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+  });
+}
+
+function sharesConcept(left: typeof experiments[number], right: typeof experiments[number]) {
+  const leftTags = new Set([left.category, ...(left.curriculumTags?.topicIds ?? []), ...(left.curriculumTags?.domains ?? [])]);
+  return [right.category, ...(right.curriculumTags?.topicIds ?? []), ...(right.curriculumTags?.domains ?? [])].some((tag) => leftTags.has(tag));
+}
+
+function colorForDomain(domain: string) {
+  if (domain.includes("Optics")) return "#f59e0b";
+  if (domain.includes("Wave")) return "#a78bfa";
+  if (domain.includes("Electric")) return "#22c55e";
+  if (domain.includes("Modern") || domain.includes("Quantum")) return "#7c3aed";
+  if (domain.includes("Thermo")) return "#ef4444";
+  return "#00e5ff";
 }
 
 function Metric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {
