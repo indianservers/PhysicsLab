@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useCountUp } from "../hooks/useCountUp";
 import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
@@ -282,10 +283,11 @@ export function SolverPage() {
 }
 
 function Metric({ label, value }: { label: string; value: number }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card">
       <div className="ui-label">{label}</div>
-      <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+      <div className="mt-1 text-2xl font-black text-cyan-500 count-up">{animated}</div>
     </div>
   );
 }

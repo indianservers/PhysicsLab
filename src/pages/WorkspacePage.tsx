@@ -270,7 +270,7 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
               onResetDefaults={resetToDefaults}
             />
             <div className="mb-2 flex items-center justify-between px-2">
-              <h1 className="panel-title">
+              <h1 className="panel-title text-gradient">
                 {mode === "sandbox" ? "Free Sandbox" : "Guided Lab Workspace"}
               </h1>
               <div className="flex gap-2 text-xs">
