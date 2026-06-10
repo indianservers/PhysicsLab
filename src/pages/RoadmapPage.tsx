@@ -31,7 +31,7 @@ export function RoadmapPage() {
     <div className="min-h-screen">
       <Toolbar />
       <div id="content" className="mx-auto max-w-[1500px] px-3 py-4">
-        <section className="page-hero">
+        <section className="page-hero mesh-bg">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-3xl">
               <p className="ui-label">Phase 7 student roadmap</p>

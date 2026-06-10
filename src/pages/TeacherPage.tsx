@@ -66,7 +66,7 @@ export function TeacherPage() {
     <div className="min-h-screen">
       <Toolbar />
       <div id="content" className="desktop-page">
-        <div className="page-hero flex flex-wrap items-start justify-between gap-4">
+        <div className="page-hero mesh-bg flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="ui-label">Teacher mode</p>
             <h1 className="mt-2 text-3xl font-black text-gradient">Assignments and Classroom Controls</h1>

@@ -44,7 +44,7 @@ export function SyllabusPage() {
     <div className="min-h-screen bg-slate-100 text-slate-950 dark:bg-lab-ink dark:text-slate-100">
       <Toolbar />
       <div id="content" className="desktop-page">
-        <section className="page-hero">
+        <section className="page-hero mesh-bg">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-3xl">
               <p className="ui-label">Phase 1 syllabus spine</p>

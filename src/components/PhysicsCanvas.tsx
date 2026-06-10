@@ -792,11 +792,21 @@ function drawObject(ctx: CanvasRenderingContext2D, object: PhysicsObjectInstance
       return;
     }
     if (trails && object.trail.length > 1) {
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.55)";
-      ctx.lineWidth = 2 / viewport.zoom;
-      ctx.beginPath();
-      object.trail.forEach((point, index) => (index ? ctx.lineTo(point.x, point.y) : ctx.moveTo(point.x, point.y)));
-      ctx.stroke();
+      const base = object.color ?? "#22d3ee";
+      const r = parseInt(base.slice(1, 3), 16) || 34;
+      const g = parseInt(base.slice(3, 5), 16) || 211;
+      const b = parseInt(base.slice(5, 7), 16) || 238;
+      const len = object.trail.length;
+      for (let i = 1; i < len; i++) {
+        const t = i / len;
+        ctx.beginPath();
+        ctx.moveTo(object.trail[i - 1].x, object.trail[i - 1].y);
+        ctx.lineTo(object.trail[i].x, object.trail[i].y);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${(t * 0.85).toFixed(2)})`;
+        ctx.lineWidth = (0.8 + t * 2.4) / viewport.zoom;
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
     }
     if (object.kind === "pendulum" || object.kind === "spring") {
       ctx.strokeStyle = object.kind === "pendulum" ? "rgba(251, 146, 60, 0.85)" : "rgba(167, 139, 250, 0.85)";
