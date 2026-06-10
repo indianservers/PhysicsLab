@@ -67,7 +67,7 @@ export function SolverPage() {
     <div className="min-h-screen">
       <Toolbar />
       <div id="content" className="desktop-page solver-page">
-        <section className="page-hero solver-hero">
+        <section className="page-hero solver-hero mesh-bg">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="ui-label">Solver module</p>

@@ -105,7 +105,7 @@ export function QuizPage() {
     <div className="min-h-screen">
       <Toolbar />
       <div id="content" className="desktop-page">
-        <section className="page-hero quiz-hero">
+        <section className="page-hero quiz-hero mesh-bg">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="ui-label">Interactive quiz</p>
@@ -318,10 +318,11 @@ export function QuizPage() {
 }
 
 function Metric({ label, value }: { label: string; value: number }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card">
       <div className="ui-label">{label}</div>
-      <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+      <div className="mt-1 text-2xl font-black text-cyan-500 count-up">{animated}</div>
     </div>
   );
 }

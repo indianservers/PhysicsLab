@@ -6,6 +6,7 @@ import { listProjects } from "../lib/storage";
 import { ProjectFile } from "../types";
 import { classOptions, curriculumCoverageStats } from "../lib/curriculum";
 import { iconForCategory, iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
+import { useCountUp } from "../hooks/useCountUp";
 
 const labs = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics", "Measurement", "Electronics", "Energy"];
 
@@ -230,11 +231,12 @@ function FeatureCard({ icon, to, title, body, className = "" }: { icon: PhysicsI
 }
 
 function HomeMetric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card">
       <PhysicsIcon name={icon} className="h-5 w-5 text-cyan-500" />
       <div className="mt-2 ui-label">{label}</div>
-      <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+      <div className="mt-1 text-2xl font-black text-cyan-500 count-up">{animated}</div>
     </div>
   );
 }

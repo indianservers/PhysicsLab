@@ -60,7 +60,7 @@ export function FormulasPage() {
     <div className="min-h-screen">
       <Toolbar />
       <main id="content" className="desktop-page formula-page">
-        <section className="formula-hero page-hero">
+        <section className="formula-hero page-hero mesh-bg">
           <div className="formula-hero-copy">
             <p className="ui-label">Formula module</p>
             <h1 className="text-gradient">Physics Formula Bank</h1>
