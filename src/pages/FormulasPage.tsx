@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { allPhysicsFormulas, formulaBankStats, formulaCategories, FormulaAccent } from "../lib/formulaBank";
@@ -166,10 +167,11 @@ export function FormulasPage() {
 }
 
 function FormulaMetric({ label, value }: { label: string; value: number }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card">
       <div className="ui-label">{label}</div>
-      <div className="mt-1 font-mono text-2xl font-black text-science-300">{value}</div>
+      <div className="mt-1 font-mono text-2xl font-black text-science-300 count-up">{animated}</div>
     </div>
   );
 }

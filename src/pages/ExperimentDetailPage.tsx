@@ -36,7 +36,7 @@ export function ExperimentDetailPage() {
     <div className="experiment-detail-page min-h-screen">
       <Toolbar />
       <div id="content" className="mx-auto max-w-[1600px] px-3 py-3">
-        <div className="page-hero mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="page-hero mesh-bg mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex min-w-0 items-start gap-3">
             <span className="card-icon mt-1 h-12 w-12">
               <PhysicsIcon name={iconForExperiment(experiment)} className="h-6 w-6" />
