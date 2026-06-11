@@ -296,6 +296,13 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
     setC(values[2] ?? c);
   };
   const resetValues = () => setAll(defaultValues);
+  const applyMeasuredTarget = (outputIndex: number, controlIndex: number, target: number) => {
+    const control = results.controls[controlIndex];
+    if (!control || !Number.isFinite(target)) return;
+    const current = [a, b, c];
+    const nextValue = solveControlForOutput(experiment.id, current, outputIndex, controlIndex, target);
+    setters[controlIndex]?.(nextValue);
+  };
   const stepValues = () => {
     if (classroomPaused) return;
     const first = results.controls[0];
@@ -304,80 +311,89 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
     setA(next >= first.max ? first.min : next);
   };
   return (
-    <div id="simulation" className="desktop-lab-workspace">
-      <section className="desktop-control-rail panel p-3">
-        <WatchCue experiment={experiment} result={results} />
-        <ClassroomControlBar paused={classroomPaused} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
-        <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          <InfoTile icon="book" label="Level" value={experiment.classLevel} />
-          <InfoTile icon="flask" label="Tools" value={`${experiment.apparatus.length} items`} />
-        </div>
-        <CollapsibleSection icon="calculator" title="Controls" hint="Change one variable at a time to see the cleanest physics pattern" defaultOpen>
-          <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">{results.description}</p>
-          <div className="focus-control-strip mt-3">
-            <div className="min-w-0">
-              <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Focus</div>
-              <div className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Show one slider for pattern discovery.</div>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              <button className={focusIndex === null ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(null)}>All</button>
-              {results.controls.map((control, index) => (
-                <button key={control.label} className={focusIndex === index ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(index)}>
-                  {index + 1}
-                </button>
-              ))}
-            </div>
+    <div id="simulation" className="experiment-live-shell">
+      <div className="desktop-lab-workspace">
+        <section className="desktop-control-rail panel p-3">
+          <LiveExperimentControls
+            result={results}
+            values={[a, b, c]}
+            disabled={classroomPaused}
+            onChange={(index, value) => setters[index]?.(value)}
+            onSetAll={setAll}
+            onReset={resetValues}
+            onStep={stepValues}
+            onApplyMeasuredTarget={applyMeasuredTarget}
+          />
+          <WatchCue experiment={experiment} result={results} />
+          <div className="mt-3 grid gap-2">
+            {results.outputs.slice(0, 3).map((output) => (
+              <div key={output.label} className="result-card" title={explainOutput(output.label)}>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{output.label}</div>
+                <div className="result-card-value">{output.value}</div>
+              </div>
+            ))}
           </div>
-          <div className="mt-3 grid gap-2 md:grid-cols-3">
-            <MiniAction label="Low" icon="ruler" onClick={() => setAll(results.controls.map((control) => control.min))} />
-            <MiniAction label="Mid" icon="gauge" onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
-            <MiniAction label="High" icon="spark" onClick={() => setAll(results.controls.map((control) => control.max))} />
-          </div>
-          {experiment.id === "prism-dispersion" && (
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {prismMaterials.map((material) => (
-                <MiniAction
-                  key={material.id}
-                  label={material.name}
-                  icon="prism"
-                  onClick={() => setAll([a, material.meanIndex, material.dispersion])}
+          <CollapsibleSection icon="calculator" title="Controls" hint="Change one variable at a time to see the cleanest physics pattern" defaultOpen>
+            <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">{results.description}</p>
+            <div className="focus-control-strip mt-3">
+              <div className="min-w-0">
+                <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Focus</div>
+                <div className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Show one slider for pattern discovery.</div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <button className={focusIndex === null ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(null)}>All</button>
+                {results.controls.map((control, index) => (
+                  <button key={control.label} className={focusIndex === index ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(index)}>
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mt-3 grid gap-2 md:grid-cols-3">
+              <MiniAction label="Low" icon="ruler" onClick={() => setAll(results.controls.map((control) => control.min))} />
+              <MiniAction label="Mid" icon="gauge" onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
+              <MiniAction label="High" icon="spark" onClick={() => setAll(results.controls.map((control) => control.max))} />
+            </div>
+            {experiment.id === "prism-dispersion" && (
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                {prismMaterials.map((material) => (
+                  <MiniAction
+                    key={material.id}
+                    label={material.name}
+                    icon="prism"
+                    onClick={() => setAll([a, material.meanIndex, material.dispersion])}
+                  />
+                ))}
+              </div>
+            )}
+            <div className="mt-4 grid gap-3">
+              {shownControls.map((control, index) => (focusIndex === null || focusIndex === index) && (
+                <LabSlider
+                  key={control.label}
+                  label={control.label}
+                  value={index === 0 ? a : index === 1 ? b : c}
+                  min={control.min}
+                  max={control.max}
+                  step={control.step}
+                  onChange={setters[index]}
+                  disabled={classroomPaused}
                 />
               ))}
             </div>
-          )}
-          <div className="mt-4 grid gap-3">
-            {shownControls.map((control, index) => (focusIndex === null || focusIndex === index) && (
-              <LabSlider
-                key={control.label}
-                label={control.label}
-                value={index === 0 ? a : index === 1 ? b : c}
-                min={control.min}
-                max={control.max}
-                step={control.step}
-                onChange={setters[index]}
-                disabled={classroomPaused}
-              />
-            ))}
-          </div>
-          <ChangeWatchBecause result={results} focusIndex={focusIndex} />
-        </CollapsibleSection>
-        <div className="mt-3 grid gap-2 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
-          {results.outputs.slice(0, 3).map((output) => (
-            <div key={output.label} className="result-card" title={explainOutput(output.label)}>
-              <div className="text-xs text-slate-500 dark:text-slate-400">{output.label}</div>
-              <div className="result-card-value">{output.value}</div>
-            </div>
-          ))}
-        </div>
-        <CollapsibleSection icon="ruler" title="Formula" hint="Model used by the calculator">
-          <div className="font-mono text-sm">{results.formula}</div>
-          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
-          <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
-          <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
-        </CollapsibleSection>
-      </section>
-      <section className="desktop-stage-panel panel p-3">
+            <ChangeWatchBecause result={results} focusIndex={focusIndex} />
+          </CollapsibleSection>
+          <CollapsibleSection icon="ruler" title="Formula" hint="Model used by the calculator">
+            <div className="font-mono text-sm">{results.formula}</div>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
+            <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
+            <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
+          </CollapsibleSection>
+          <CollapsibleSection icon="flask" title="Guided steps" hint="Use this when you want lab-assistant mode">
+            <ClassroomControlBar paused={classroomPaused} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
+            <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
+          </CollapsibleSection>
+        </section>
+        <section className="desktop-stage-panel panel p-3">
         <div className="desktop-stage-header">
           <div className="min-w-0">
             <p className="ui-label">Workbench</p>
@@ -401,11 +417,15 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
         <div className="desktop-stage-body">
           {workspaceView === "visual" && (
             <>
-              <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />
+              <ConceptFocusPanel experiment={experiment} result={results} learningLevel={learningLevel} />
               <div className="lab-visual-grid">
                 <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
                 {has3DAnimation(experiment.id) && <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />}
               </div>
+              <details className="concept-support-drawer">
+                <summary><PhysicsIcon name="spark" className="h-4 w-4" />Animation checkpoints</summary>
+                <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />
+              </details>
             </>
           )}
           {workspaceView === "graphs" && (
@@ -438,9 +458,198 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
             <LabReferenceStack experiment={experiment} values={[a, b, c]} result={results} />
           )}
         </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
+}
+
+function LiveExperimentControls({
+  result,
+  values,
+  disabled,
+  onChange,
+  onSetAll,
+  onReset,
+  onStep,
+  onApplyMeasuredTarget,
+}: {
+  result: LabResult;
+  values: number[];
+  disabled: boolean;
+  onChange: (index: number, value: number) => void;
+  onSetAll: (values: number[]) => void;
+  onReset: () => void;
+  onStep: () => void;
+  onApplyMeasuredTarget: (outputIndex: number, controlIndex: number, target: number) => void;
+}) {
+  const [targetOutputIndex, setTargetOutputIndex] = useState(0);
+  const [targetControlIndex, setTargetControlIndex] = useState(0);
+  const selectedOutput = result.outputs[targetOutputIndex] ?? result.outputs[0];
+  const [targetValue, setTargetValue] = useState(() => parseOutputNumber(selectedOutput?.value ?? "0").toString());
+
+  useEffect(() => {
+    setTargetValue(parseOutputNumber(selectedOutput?.value ?? "0").toString());
+  }, [selectedOutput?.value, targetOutputIndex]);
+
+  return (
+    <section className="live-controls-panel" aria-label="Live experiment controls">
+      <div className="live-controls-head">
+        <div>
+          <p className="ui-label">Live controls</p>
+          <h2>Change the inputs here</h2>
+        </div>
+        <div className="live-control-actions">
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.min))}>Low</button>
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => midpoint(control)))}>Mid</button>
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.max))}>High</button>
+          <button type="button" onClick={onStep} disabled={disabled}>Step</button>
+          <button type="button" onClick={onReset}>Reset</button>
+        </div>
+      </div>
+      <div className="live-control-grid">
+        {result.controls.map((control, index) => {
+          const value = values[index] ?? control.min;
+          const progress = ((value - control.min) / Math.max(control.step, control.max - control.min)) * 100;
+          const digits = control.step < 0.1 ? 2 : 1;
+          return (
+            <label key={control.label} className="live-control-card">
+              <span>{control.label}</span>
+              <strong>{value.toFixed(digits)}</strong>
+              <input
+                type="range"
+                min={control.min}
+                max={control.max}
+                step={control.step}
+                value={value}
+                disabled={disabled}
+                onChange={(event) => onChange(index, Number(event.target.value))}
+                style={{ backgroundSize: `${clampNumber(progress, 0, 100)}% 100%` }}
+              />
+              <small><b>{control.min}</b><b>{control.max}</b></small>
+            </label>
+          );
+        })}
+      </div>
+      <div className="measured-target-panel">
+        <div>
+          <p className="ui-label">Measured value editor</p>
+          <h3>Set a target reading</h3>
+          <p>Choose a measured output and the input you want the simulator to adjust.</p>
+        </div>
+        <label>
+          <span>Measured output</span>
+          <select value={targetOutputIndex} onChange={(event) => setTargetOutputIndex(Number(event.target.value))}>
+            {result.outputs.map((output, index) => <option key={output.label} value={index}>{output.label}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Adjust input</span>
+          <select value={targetControlIndex} onChange={(event) => setTargetControlIndex(Number(event.target.value))}>
+            {result.controls.map((control, index) => <option key={control.label} value={index}>{control.label}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Target</span>
+          <input type="number" value={targetValue} onChange={(event) => setTargetValue(event.target.value)} />
+        </label>
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={() => onApplyMeasuredTarget(targetOutputIndex, targetControlIndex, Number(targetValue))}
+        >
+          Apply target
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function InteractiveConceptControls({ controls, values, disabled, onChange, onReset, onStep }: { controls: LabControl[]; values: number[]; disabled: boolean; onChange: (index: number, value: number) => void; onReset: () => void; onStep: () => void }) {
+  return (
+    <section className="concept-interaction-panel" aria-label="Interactive experiment controls">
+      <div className="concept-interaction-head">
+        <div>
+          <p className="ui-label">Interact</p>
+          <h3>Change values and watch the concept update</h3>
+        </div>
+        <div className="concept-interaction-actions">
+          <button type="button" onClick={onReset}><PhysicsIcon name="download" className="h-4 w-4" />Reset</button>
+          <button type="button" onClick={onStep} disabled={disabled}><PhysicsIcon name="step" className="h-4 w-4" />Step</button>
+        </div>
+      </div>
+      <div className="concept-control-grid">
+        {controls.map((control, index) => {
+          const value = values[index] ?? control.min;
+          const progress = ((value - control.min) / Math.max(control.step, control.max - control.min)) * 100;
+          const digits = control.step < 0.1 ? 2 : 1;
+          return (
+            <label key={control.label} className="concept-control-card">
+              <span>{control.label}</span>
+              <strong>{value.toFixed(digits)}</strong>
+              <input
+                type="range"
+                min={control.min}
+                max={control.max}
+                step={control.step}
+                value={value}
+                disabled={disabled}
+                onChange={(event) => onChange(index, Number(event.target.value))}
+                style={{ backgroundSize: `${clampNumber(progress, 0, 100)}% 100%` }}
+              />
+              <small><b>{control.min}</b><b>{control.max}</b></small>
+            </label>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function ConceptFocusPanel({ experiment, result, learningLevel }: { experiment: typeof experiments[number]; result: LabResult; learningLevel: LearningLevel }) {
+  const firstControl = result.controls[0];
+  const firstOutput = result.outputs[0];
+  const profile = learningLevelProfiles[learningLevel];
+  return (
+    <section className="concept-focus-panel">
+      <div className="concept-focus-main">
+        <p className="ui-label">Core concept</p>
+        <h2>{experiment.title}</h2>
+        <p>{conceptSummary(experiment, result)}</p>
+        <div className="concept-equation-strip">
+          <span>Formula</span>
+          <strong>{result.formula}</strong>
+        </div>
+      </div>
+      <div className="concept-focus-cards">
+        <ConceptMiniCard title="Change" value={firstControl?.label ?? "one variable"} icon="ruler" />
+        <ConceptMiniCard title="Watch" value={firstOutput ? `${firstOutput.label}: ${firstOutput.value}` : "main output"} icon="orbit" />
+        <ConceptMiniCard title="Level" value={`${learningLevel} view, ${profile.sliderCount} controls`} icon="teacher" />
+      </div>
+    </section>
+  );
+}
+
+function ConceptMiniCard({ title, value, icon }: { title: string; value: string; icon: Parameters<typeof PhysicsIcon>[0]["name"] }) {
+  return (
+    <div className="concept-mini-card">
+      <PhysicsIcon name={icon} className="h-4 w-4" />
+      <span>{title}</span>
+      <strong>{value}</strong>
+    </div>
+  );
+}
+
+function conceptSummary(experiment: typeof experiments[number], result: LabResult) {
+  const firstControl = result.controls[0]?.label ?? "the input";
+  const firstOutput = result.outputs[0]?.label ?? "the output";
+  const topic = `${experiment.id} ${experiment.title}`.toLowerCase();
+  if (topic.includes("pendulum")) return "A pendulum is a repeating motion model: for small angles, length changes the period clearly, while mass should not change the period.";
+  if (topic.includes("projectile")) return "Projectile motion separates into horizontal and vertical motion: horizontal speed carries the object forward while gravity bends the path downward.";
+  if (topic.includes("ohm") || topic.includes("circuit") || topic.includes("resistance")) return "This circuit model shows how voltage, current, and resistance trade off in a predictable way.";
+  if (topic.includes("lens") || topic.includes("mirror")) return "The concept is image formation: object distance, image distance, and focal length must agree with the ray diagram.";
+  if (topic.includes("buoyancy") || topic.includes("pressure") || topic.includes("fluid")) return "The concept is force from fluids: depth, density, area, and displaced volume decide pressure or upthrust.";
+  return `Change ${firstControl} and watch ${firstOutput}. The goal is to connect the visible change, the formula, and the measured result in one idea.`;
 }
 
 function ClassroomControlBar({ paused, onPauseToggle, onReset, onStep }: { paused: boolean; onPauseToggle: () => void; onReset: () => void; onStep: () => void }) {
@@ -976,6 +1185,33 @@ const degreeToRad = (value: number) => (value * Math.PI) / 180;
 const roundIfInteger = (value: number, tolerance = 1e-9) => Math.abs(value - Math.round(value)) < tolerance;
 const midpoint = (control: LabControl) => Number(((control.min + control.max) / 2).toFixed(control.step < 0.1 ? 2 : 1));
 const unitFromLabel = (label: string) => label.match(/\(([^)]+)\)/)?.[1] ?? "";
+
+function solveControlForOutput(id: string, values: number[], outputIndex: number, controlIndex: number, target: number) {
+  const base = calculateStarterLab(id, values[0], values[1], values[2]);
+  const control = base.controls[controlIndex];
+  if (!control) return values[controlIndex] ?? 0;
+  let bestValue = values[controlIndex] ?? control.min;
+  let bestError = Number.POSITIVE_INFINITY;
+  const steps = Math.max(60, Math.min(360, Math.ceil((control.max - control.min) / Math.max(control.step, 1e-9))));
+  for (let index = 0; index <= steps; index += 1) {
+    const candidate = snapToStep(control.min + ((control.max - control.min) * index) / steps, control);
+    const trial = [...values];
+    trial[controlIndex] = candidate;
+    const output = calculateStarterLab(id, trial[0], trial[1], trial[2]).outputs[outputIndex];
+    const measured = parseOutputNumber(output?.value ?? "0");
+    const error = Math.abs(measured - target);
+    if (error < bestError) {
+      bestError = error;
+      bestValue = candidate;
+    }
+  }
+  return clampNumber(bestValue, control.min, control.max);
+}
+
+function snapToStep(value: number, control: LabControl) {
+  const snapped = control.min + Math.round((value - control.min) / control.step) * control.step;
+  return Number(snapped.toFixed(control.step < 0.01 ? 3 : control.step < 0.1 ? 2 : 1));
+}
 
 function buildLabReportHtml(experiment: typeof experiments[number], result: LabResult, readings: Array<{ label: string; value: number }>) {
   const graphPoints = makeReportPoints(result);
@@ -1765,5 +2001,83 @@ function calculateStarterLab(id: string, a: number, b: number, c: number): LabRe
       };
     },
   };
-  return (calculators[id] ?? calculators["uniform-motion"])();
+  return calculators[id]?.() ?? genericInteractiveLab(id, a, b, c);
+}
+
+function genericInteractiveLab(id: string, a: number, b: number, c: number): LabResult {
+  const readable = id.split("-").filter(Boolean).map((word) => word[0]?.toUpperCase() + word.slice(1)).join(" ");
+  if (/(ohm|resistance|circuit|current|voltage|electric|cell|bridge|generator|transformer|diode|capacitor|kirchhoff)/.test(id)) {
+    const voltage = Math.max(0, a);
+    const resistance = Math.max(0.1, b);
+    const scale = Math.max(0, c);
+    const current = voltage / resistance;
+    return {
+      description: `${readable}: change voltage, resistance, and scale to study the electrical relationship.`,
+      controls: controls("Voltage (V)", "Resistance (ohm)", "Scale factor", { a: { min: 0, max: 240, step: 1 }, b: { min: 0.1, max: 1000, step: 0.1 }, c: { min: 0, max: 10, step: 0.1 } }),
+      formula: "I = V/R, P = VI",
+      outputs: [{ label: "Current", value: `${current.toFixed(3)} A` }, { label: "Power", value: `${(voltage * current).toFixed(2)} W` }, { label: "Scaled output", value: `${(current * scale).toFixed(3)}` }],
+    };
+  }
+  if (/(lens|mirror|ray|snell|refraction|reflection|prism|optical|polarization|slit|diffraction|shadow)/.test(id)) {
+    const angle = clampNumber(a, 0, 89);
+    const n = Math.max(1, b);
+    const distance = Math.max(0.1, c);
+    const refracted = Math.asin(clampNumber(Math.sin(degreeToRad(angle)) / n, -0.999, 0.999)) * 180 / Math.PI;
+    return {
+      description: `${readable}: adjust angle, material index, and distance to see the ray-optics result.`,
+      controls: controls("Incidence angle (deg)", "Refractive index", "Distance (cm)", { a: { min: 0, max: 89, step: 1 }, b: { min: 1, max: 2.5, step: 0.01 }, c: { min: 1, max: 160, step: 1 } }),
+      formula: "n1 sin i = n2 sin r",
+      outputs: [{ label: "Refracted angle", value: `${refracted.toFixed(2)} deg` }, { label: "Bending", value: `${Math.abs(angle - refracted).toFixed(2)} deg` }, { label: "Path length", value: `${distance.toFixed(1)} cm` }],
+    };
+  }
+  if (/(wave|sound|echo|frequency|oscillation|pendulum|spring|chladni)/.test(id)) {
+    const frequency = Math.max(0.1, a);
+    const amplitude = Math.max(0, b);
+    const speed = Math.max(0.1, c || 343);
+    return {
+      description: `${readable}: change frequency, amplitude, and wave speed to observe wavelength and intensity.`,
+      controls: controls("Frequency (Hz)", "Amplitude", "Wave speed (m/s)", { a: { min: 0.1, max: 2000, step: 1 }, b: { min: 0, max: 5, step: 0.1 }, c: { min: 1, max: 1000, step: 1 } }),
+      formula: "v = f lambda, intensity proportional to amplitude^2",
+      outputs: [{ label: "Wavelength", value: `${(speed / frequency).toFixed(3)} m` }, { label: "Relative intensity", value: `${(amplitude * amplitude).toFixed(2)}` }, { label: "Cycle time", value: `${(1 / frequency).toFixed(4)} s` }],
+    };
+  }
+  if (/(fluid|pressure|buoy|bernoulli|density|float|hydrostatic)/.test(id)) {
+    const density = Math.max(1, a);
+    const depth = Math.max(0, b);
+    const volume = Math.max(0, c);
+    return {
+      description: `${readable}: adjust density, depth, and volume to connect pressure with buoyancy.`,
+      controls: controls("Density (kg/m3)", "Depth (m)", "Volume (L)", { a: { min: 100, max: 1400, step: 10 }, b: { min: 0, max: 50, step: 0.1 }, c: { min: 0, max: 50, step: 0.1 } }),
+      formula: "P = rho gh, Fb = rho gV",
+      outputs: [{ label: "Gauge pressure", value: `${(density * 9.81 * depth / 1000).toFixed(2)} kPa` }, { label: "Buoyant force", value: `${(density * 9.81 * volume / 1000).toFixed(2)} N` }, { label: "Displaced mass", value: `${(density * volume / 1000).toFixed(2)} kg` }],
+    };
+  }
+  if (/(heat|thermal|temperature|gas|calor|thermo)/.test(id)) {
+    const mass = Math.max(0.01, a);
+    const deltaT = b;
+    const cSpecific = Math.max(0.01, c);
+    return {
+      description: `${readable}: vary mass, temperature change, and specific heat to study thermal energy.`,
+      controls: controls("Mass (kg)", "Delta T (C)", "Specific heat (kJ/kg C)", { a: { min: 0.01, max: 20, step: 0.01 }, b: { min: -100, max: 300, step: 1 }, c: { min: 0.1, max: 5, step: 0.1 } }),
+      formula: "Q = mc DeltaT",
+      outputs: [{ label: "Heat transfer", value: `${(mass * cSpecific * deltaT).toFixed(2)} kJ` }, { label: "Temperature change", value: `${deltaT.toFixed(1)} C` }, { label: "Heat capacity", value: `${(mass * cSpecific).toFixed(2)} kJ/C` }],
+    };
+  }
+  if (/(photoelectric|nuclear|bohr|quantum|relativity|broglie|decay)/.test(id)) {
+    const input = Math.max(0, a);
+    const threshold = Math.max(0, b);
+    const scale = Math.max(0, c);
+    return {
+      description: `${readable}: compare input energy with a threshold and observe the remaining available energy.`,
+      controls: controls("Input energy", "Threshold energy", "Intensity / scale", { a: { min: 0, max: 100, step: 0.1 }, b: { min: 0, max: 100, step: 0.1 }, c: { min: 0, max: 10, step: 0.1 } }),
+      formula: "Available energy = max(0, input - threshold)",
+      outputs: [{ label: "Available energy", value: `${Math.max(0, input - threshold).toFixed(2)}` }, { label: "Emission?", value: input > threshold && scale > 0 ? "Yes" : "No" }, { label: "Scaled signal", value: `${(Math.max(0, input - threshold) * scale).toFixed(2)}` }],
+    };
+  }
+  return {
+    description: `${readable}: change the input, duration, and loss factor to see the measured result update.`,
+    controls: controls("Input value", "Time / distance", "Loss factor", { a: { min: 0, max: 100, step: 0.1 }, b: { min: 0, max: 100, step: 0.1 }, c: { min: 0, max: 1, step: 0.01 } }),
+    formula: "Measured output = input x time x (1 - loss)",
+    outputs: [{ label: "Measured output", value: `${(a * b * (1 - c)).toFixed(2)}` }, { label: "Loss", value: `${(a * b * c).toFixed(2)}` }, { label: "Efficiency", value: `${((1 - c) * 100).toFixed(1)} %` }],
+  };
 }

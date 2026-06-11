@@ -261,20 +261,35 @@ function CircularForceScene({ a, b, c }: { a: number; b: number; c: number }) {
 
 function OscillationScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
   const isSpring = id === "shm-spring";
-  const amp = clamp(c * 45, 18, 95);
+  const amp = isSpring ? clamp(c * 45, 18, 95) : clamp(42 * (1 - c * 1.2), 14, 42);
+  const length = isSpring ? 128 : clamp(82 + a * 30, 85, 220);
+  const pivotX = 380;
+  const pivotY = 54;
+  const bobX = pivotX + Math.sin((amp * Math.PI) / 180) * length;
+  const bobY = pivotY + Math.cos((amp * Math.PI) / 180) * length;
+  const shadowY = clamp(pivotY + length + 34, 190, 276);
   return (
     <g>
-      <line x1="100" y1="150" x2="680" y2="150" stroke="#475569" strokeWidth="3" />
-      <line x1="380" y1="78" x2="380" y2="236" stroke="#64748b" strokeWidth="2" strokeDasharray="6 5" />
+      <line x1="100" y1={isSpring ? 150 : shadowY} x2="680" y2={isSpring ? 150 : shadowY} stroke="#475569" strokeWidth="3" />
+      <line x1={pivotX} y1={pivotY} x2={pivotX} y2={isSpring ? 236 : pivotY + length + 8} stroke="#64748b" strokeWidth="2" strokeDasharray="6 5" />
       {isSpring ? (
         <path d={`M 120 150 ${Array.from({ length: 24 }, (_, i) => `L ${130 + i * 10} ${150 + (i % 2 ? -22 : 22)}`).join(" ")} L ${370 + amp} 150`} fill="none" stroke="#67e8f9" strokeWidth="4" />
       ) : (
-        <g><line x1="380" y1="70" x2={380 + amp} y2="198" stroke="#e2e8f0" strokeWidth="3" /><circle cx={380 + amp} cy="198" r="24" fill="#facc15" /></g>
+        <g>
+          <circle cx={pivotX} cy={pivotY} r="7" fill="#67e8f9" />
+          <path d={`M ${pivotX - Math.sin((amp * Math.PI) / 180) * length} ${pivotY + Math.cos((amp * Math.PI) / 180) * length} Q ${pivotX} ${pivotY + length + 26} ${bobX} ${bobY}`} fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
+          <line x1={pivotX} y1={pivotY} x2={bobX} y2={bobY} stroke="#0f172a" strokeWidth="5" />
+          <line x1={pivotX} y1={pivotY} x2={bobX} y2={bobY} stroke="#e2e8f0" strokeWidth="3" />
+          <circle cx={bobX} cy={bobY} r={clamp(14 + b * 12, 14, 34)} fill="#facc15" stroke="#f59e0b" strokeWidth="3" className="lab-anim-glow" />
+          <path d={`M ${pivotX - 42} ${pivotY + length + 18} Q ${pivotX} ${pivotY + length + 34} ${pivotX + 42} ${pivotY + length + 18}`} fill="none" stroke="#22d3ee" strokeWidth="4" />
+          <text x={pivotX + 22} y={pivotY + length / 2} fill="#67e8f9" fontSize="13" fontWeight="900">L = {a.toFixed(2)} m</text>
+          <text x={bobX + 18} y={bobY + 8} fill="#facc15" fontSize="13" fontWeight="900">mass</text>
+        </g>
       )}
-      <path d={`M ${380 - amp} 230 Q 380 260 ${380 + amp} 230`} fill="none" stroke="#22d3ee" strokeWidth="4" />
+      {isSpring && <path d={`M ${380 - amp} 230 Q 380 260 ${380 + amp} 230`} fill="none" stroke="#22d3ee" strokeWidth="4" />}
       <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">{isSpring ? "spring-mass SHM" : "simple pendulum small-angle SHM"}</text>
-      <text x="82" y="70" fill="#94a3b8" fontSize="13">Amplitude is maximum displacement; period is one complete cycle.</text>
-      <text x="408" y="143" fill="#34d399" fontSize="13" fontWeight="900">mean position</text>
+      <text x="82" y="70" fill="#94a3b8" fontSize="13">{isSpring ? "Amplitude is maximum displacement; period is one complete cycle." : "Drag Length: longer string means a longer period; mass should not change the ideal period."}</text>
+      <text x="408" y={isSpring ? 143 : pivotY + length + 6} fill="#34d399" fontSize="13" fontWeight="900">mean position</text>
     </g>
   );
 }

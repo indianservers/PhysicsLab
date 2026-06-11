@@ -15,6 +15,8 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
   const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
   const hasThreeD = has3DAnimation(experiment.id);
   const [view, setView] = useState<ProjectileView>(hasThreeD ? "three" : "trajectory");
+  const [targetMetric, setTargetMetric] = useState(0);
+  const [targetValue, setTargetValue] = useState("25");
   const angleRad = (projectile.angle * Math.PI) / 180;
   const dragFactor = projectile.airResistance ? 0.86 : 1;
   const range = ((projectile.speed ** 2 * Math.sin(2 * angleRad)) / projectile.gravity) * dragFactor;
@@ -36,6 +38,21 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
     { label: "Gravity (m/s^2)", min: 1, max: 25, step: 0.1 },
   ];
   const outputs = projectileOutputs(projectile.speed, projectile.angle, projectile.gravity, projectile.airResistance);
+  const applyTarget = () => {
+    const target = Number(targetValue);
+    if (!Number.isFinite(target)) return;
+    let bestSpeed = projectile.speed;
+    let bestError = Number.POSITIVE_INFINITY;
+    for (let speed = 1; speed <= 60; speed += 0.25) {
+      const measured = parseMetricNumber(projectileOutputs(speed, projectile.angle, projectile.gravity, projectile.airResistance)[targetMetric]?.value ?? "0");
+      const error = Math.abs(measured - target);
+      if (error < bestError) {
+        bestError = error;
+        bestSpeed = speed;
+      }
+    }
+    updateProjectile({ speed: Number(bestSpeed.toFixed(2)) });
+  };
   const views: Array<{ id: ProjectileView; label: string; icon: Parameters<typeof PhysicsIcon>[0]["name"] }> = [
     ...(hasThreeD ? [{ id: "three" as const, label: "3D", icon: "orbit" as const }] : []),
     { id: "trajectory", label: "Trajectory", icon: "rocket" },
@@ -60,6 +77,23 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
         </div>
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs">
           {outputs.map((output) => <Metric key={output.label} label={output.label} value={output.value} />)}
+        </div>
+        <div className="projectile-target-editor mt-4">
+          <div>
+            <p className="ui-label">Measured value editor</p>
+            <h3>Set a target result</h3>
+          </div>
+          <label>
+            <span>Measured output</span>
+            <select value={targetMetric} onChange={(event) => setTargetMetric(Number(event.target.value))}>
+              {outputs.map((output, index) => <option key={output.label} value={index}>{output.label}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>Target</span>
+            <input type="number" value={targetValue} onChange={(event) => setTargetValue(event.target.value)} />
+          </label>
+          <button type="button" onClick={applyTarget}>Adjust speed</button>
         </div>
         <div className="mt-5 rounded border border-slate-300/60 p-3 text-sm dark:border-lab-line">
           <div className="flex items-center gap-2 font-semibold text-cyan-500"><PhysicsIcon name="ruler" className="h-4 w-4" />Formula</div>
@@ -149,6 +183,11 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
       </section>
     </div>
   );
+}
+
+function parseMetricNumber(value: string) {
+  const match = value.replace(/,/g, "").match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/i);
+  return match ? Number(match[0]) : 0;
 }
 
 function ProjectilePanel({ title, icon, className, children }: { title: string; icon: Parameters<typeof PhysicsIcon>[0]["name"]; className: string; children: ReactNode }) {

@@ -257,49 +257,34 @@ export function ExperimentsPage() {
               { label: "3D", icon: "orbit" as const, active: has3DAnimation(experiment.id) },
               { label: "Coach", icon: "teacher" as const, active: true },
             ].filter((feature) => feature.active);
+            const tagLabels = [
+              experiment.category,
+              ...mappedTopics.map((topic) => topic.title),
+              ...experiment.formulae.map((formula) => formula.name),
+            ];
             return (
               <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "experiment-library-card experiment-library-card-compact stagger-item" : "experiment-library-card stagger-item"}>
-                {viewMode === "cards" && <ExperimentPreview experiment={experiment} />}
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex min-w-0 items-start gap-3">
-                    <span className="card-icon">
-                      <PhysicsIcon name={iconForExperiment(experiment)} />
-                    </span>
-                    <div className="min-w-0">
-                      <h2 className="experiment-card-title">{experiment.title}</h2>
-                      <div className="experiment-card-category">{experiment.category}</div>
-                    </div>
-                  </div>
-                  <span className="status-chip shrink-0">{experiment.difficulty}</span>
+                <div className="experiment-card-actions" aria-hidden="true">
+                  <span><PhysicsIcon name="spark" className="h-3.5 w-3.5" /></span>
+                  <span><PhysicsIcon name="upload" className="h-3.5 w-3.5" /></span>
+                  <strong>{experiment.trustLevel ?? 0}%</strong>
                 </div>
-                <div className="experiment-trust-strip">
-                  <span>{experiment.modelClass}</span>
-                  <strong>{experiment.trustLevel}% trust</strong>
+                <div className="experiment-card-head">
+                  <span className="card-icon">
+                      <PhysicsIcon name={iconForExperiment(experiment)} />
+                  </span>
+                  <h2 className="experiment-card-title">{experiment.title}</h2>
                 </div>
                 <p className="experiment-card-aim">{experiment.aim}</p>
-                <div className="experiment-learn-box">
-                  <span>Learn</span> {primaryOutcome}
+                <div className="experiment-card-tags">
+                  {tagLabels.slice(0, viewMode === "compact" ? 3 : 5).map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {features.map((feature) => (
-                    <span key={feature.label} className={feature.label === "3D" ? "status-chip status-chip-cyan" : "status-chip"}>
-                      <PhysicsIcon name={feature.icon} className="h-3.5 w-3.5" />{feature.label}
-                    </span>
-                  ))}
+                <div className="experiment-card-meta">
+                  <span><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />~{estimatedMinutes(experiment.difficulty)} min</span>
+                  <span>{experiment.difficulty}</span>
                 </div>
-                <div className="experiment-card-level">{experiment.classLevel}</div>
-                {experiment.curriculumTags && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {experiment.curriculumTags.classes.map((grade) => <span key={grade} className="status-chip status-chip-cyan">Class {grade}</span>)}
-                  </div>
-                )}
-                {mappedTopics.length > 0 && (
-                  <div className="experiment-topic-list">
-                    {mappedTopics.slice(0, 3).map((topic) => (
-                      <div key={`${topic.classId}-${topic.id}`}>{topic.classLabel}: {topic.title}</div>
-                    ))}
-                  </div>
-                )}
+                <div className="experiment-card-launch">Launch <span aria-hidden="true">-&gt;</span></div>
+                <div className="sr-only">Learn: {primaryOutcome}. Includes {features.map((feature) => feature.label).join(", ")}. {experiment.classLevel}. Model: {experiment.modelClass}. Trust {experiment.trustLevel}%.</div>
               </Link>
             );
           })}
@@ -374,6 +359,12 @@ function topicIcon(domain: string): PhysicsIconName {
 function countClassLabs(grade: number) {
   const topicLabIds = new Set(allCurriculumTopics().filter((topic) => topic.grade === grade).flatMap((topic) => topic.experimentIds));
   return experiments.filter((item) => item.curriculumTags?.classes.includes(grade) || topicLabIds.has(item.id)).length;
+}
+
+function estimatedMinutes(difficulty: string) {
+  if (difficulty === "Advanced") return 65;
+  if (difficulty === "Intermediate") return 45;
+  return 35;
 }
 
 function sortExperiments(left: typeof experiments[number], right: typeof experiments[number], sortBy: string) {

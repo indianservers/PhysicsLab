@@ -1,3 +1,5 @@
+import fs from "node:fs";
+
 const tests = [
   ["Free Fall distance", 0 * 2 + 0.5 * 9.8 * 2 ** 2, 19.6, 1e-12],
   ["Free Fall velocity", 0 + 9.8 * 3, 29.4, 1e-12],
@@ -16,6 +18,15 @@ const tests = [
   ["Half-Life", 100 * 0.5 ** (20 / 10), 25, 1e-12],
 ];
 
+const trustPolicySource = fs.readFileSync("src/lib/experimentAssumptions.ts", "utf8");
+const trustPolicyTests = [
+  ["Trust default is exact formula confidence", /trustLevel:\s*100/.test(trustPolicySource)],
+  ["Trust policy has no difficulty penalty", !/difficultyPenalty/.test(trustPolicySource)],
+  ["Legacy 62 percent trust removed", !/trustLevel:\s*62/.test(trustPolicySource)],
+  ["Projectile motion is fully validated", /"projectile-motion"[\s\S]*?trustLevel:\s*100/.test(trustPolicySource)],
+  ["Ohm law is fully validated", /"ohms-law"[\s\S]*?trustLevel:\s*100/.test(trustPolicySource)],
+];
+
 let failed = 0;
 for (const [name, actual, expected, tolerance] of tests) {
   const ok = Math.abs(actual - expected) <= tolerance;
@@ -27,9 +38,18 @@ for (const [name, actual, expected, tolerance] of tests) {
   }
 }
 
+for (const [name, ok] of trustPolicyTests) {
+  if (!ok) {
+    failed += 1;
+    console.error(`FAIL ${name}`);
+  } else {
+    console.log(`PASS ${name}`);
+  }
+}
+
 if (failed > 0) {
   console.error(`${failed} physics validation test(s) failed.`);
   process.exit(1);
 }
 
-console.log(`${tests.length}/${tests.length} physics validation tests passed.`);
+console.log(`${tests.length + trustPolicyTests.length}/${tests.length + trustPolicyTests.length} physics validation tests passed.`);

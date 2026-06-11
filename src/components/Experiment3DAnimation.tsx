@@ -130,7 +130,7 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x020617, 0);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = config.cinematic ? 1.35 : 1;
+    renderer.toneMappingExposure = config.cinematic ? 0.92 : 0.86;
     const hint = document.createElement("div");
     hint.className = "three-control-hint";
     hint.textContent = "Drag rotate | Wheel zoom | Shift/right-drag pan";
@@ -140,7 +140,7 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
     scene.fog = new THREE.Fog(0x020617, config.cinematic ? 9 : 8, config.cinematic ? 22 : 18);
     const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 100);
     const composer = config.cinematic ? new EffectComposer(renderer) : null;
-    const bloomPass = config.cinematic ? new UnrealBloomPass(new THREE.Vector2(1, 1), 0.72, 0.6, 0.18) : null;
+    const bloomPass = config.cinematic ? new UnrealBloomPass(new THREE.Vector2(1, 1), 0.16, 0.28, 0.42) : null;
     const ssaoPass = config.cinematic ? new SSAOPass(scene, camera, 1, 1) : null;
     if (composer && bloomPass && ssaoPass) {
       ssaoPass.kernelRadius = 10;
@@ -164,14 +164,14 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
     };
     setCameraFromOrbit();
 
-    scene.add(new THREE.HemisphereLight(0xcffafe, 0x0f172a, 1.5));
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.1);
+    scene.add(new THREE.HemisphereLight(0xcffafe, 0x0f172a, 1.08));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.28);
     keyLight.position.set(3, 5, 5);
     scene.add(keyLight);
-    const rimLight = new THREE.PointLight(0x22d3ee, config.cinematic ? 32 : 8, 12);
+    const rimLight = new THREE.PointLight(0x22d3ee, config.cinematic ? 12 : 6, 12);
     rimLight.position.set(-3, 2.5, 3);
     scene.add(rimLight);
-    const warmLight = new THREE.PointLight(0xfacc15, config.cinematic ? 18 : 5, 10);
+    const warmLight = new THREE.PointLight(0xfacc15, config.cinematic ? 8 : 4, 10);
     warmLight.position.set(3.2, 1.8, -2.8);
     scene.add(warmLight);
 
@@ -1359,7 +1359,7 @@ function material(color: number, opacity = 1) {
   return new THREE.MeshStandardMaterial({
     color,
     emissive: color,
-    emissiveIntensity: opacity < 1 ? 0.25 : 0.1,
+    emissiveIntensity: opacity < 1 ? 0.08 : 0.025,
     metalness: 0.18,
     roughness: 0.38,
     opacity,
@@ -1395,27 +1395,31 @@ function roundedFluxLoop(width: number, height: number, color: number) {
 
 function label(text: string, position: THREE.Vector3, color = 0x67e8f9) {
   const canvas = document.createElement("canvas");
-  canvas.width = 512;
-  canvas.height = 128;
+  canvas.width = 640;
+  canvas.height = 144;
   const context = canvas.getContext("2d");
   if (context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = "rgba(15, 23, 42, 0.72)";
-    roundRect(context, 8, 24, 496, 74, 18);
+    context.fillStyle = "rgba(15, 23, 42, 0.94)";
+    roundRect(context, 10, 24, 620, 88, 16);
     context.fill();
-    context.strokeStyle = `#${color.toString(16).padStart(6, "0")}`;
-    context.lineWidth = 4;
+    context.strokeStyle = "rgba(203, 213, 225, 0.62)";
+    context.lineWidth = 2;
     context.stroke();
-    context.fillStyle = "#e2e8f0";
-    context.font = "800 34px Inter, Arial, sans-serif";
+    context.fillStyle = `#${color.toString(16).padStart(6, "0")}`;
+    roundRect(context, 28, 42, 10, 52, 5);
+    context.fill();
+    context.fillStyle = "#f8fafc";
+    context.font = "800 30px Inter, Arial, sans-serif";
     context.textAlign = "center";
     context.textBaseline = "middle";
-    context.fillText(text, 256, 62);
+    context.fillText(text, 330, 68, 540);
   }
   const texture = new THREE.CanvasTexture(canvas);
-  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false }));
+  texture.colorSpace = THREE.SRGBColorSpace;
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false, toneMapped: false }));
   sprite.position.copy(position);
-  sprite.scale.set(1.25, 0.32, 1);
+  sprite.scale.set(1.55, 0.35, 1);
   return sprite;
 }
 
