@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
@@ -6,6 +6,7 @@ import { PhysicsIcon } from "../lib/icons";
 import { allSolverQuestions, solverCategories, solverStats, SolverDifficulty } from "../lib/solver";
 import { FormulaGlossaryPanel, RevisionModePanel, SolverGraphWorkspace, symbolsFromText, UnitConverterPanel } from "../components/LearningTools";
 import { experiments } from "../lib/experiments";
+import { trackSolverUse } from "../lib/achievements";
 
 const difficultyOptions: Array<"all" | SolverDifficulty> = ["all", "Basic", "Intermediate", "Difficult"];
 const classOptions = ["all", "7", "8", "9", "10", "11", "12"];
@@ -31,6 +32,7 @@ const formulaSearchEntries = [
 ];
 
 export function SolverPage() {
+  useEffect(() => { trackSolverUse(); }, []);
   const [searchParams] = useSearchParams();
   const initialTag = searchParams.get("tag") ?? "all";
   const [query, setQuery] = useState(searchParams.get("q") ?? "");

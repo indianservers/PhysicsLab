@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useCountUp } from "../hooks/useCountUp";
 import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { classOptions, curriculum } from "../lib/curriculum";
@@ -122,6 +123,7 @@ export function RoadmapPage() {
 }
 
 function RoadMetric({ icon, label, value, suffix = "" }: { icon: Parameters<typeof PhysicsIcon>[0]["name"]; label: string; value: number; suffix?: string }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card flex items-center gap-3">
       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-cyan-400/10 text-cyan-500">
@@ -129,7 +131,7 @@ function RoadMetric({ icon, label, value, suffix = "" }: { icon: Parameters<type
       </span>
       <span>
         <span className="ui-label">{label}</span>
-        <strong className="mt-1 block text-2xl font-black text-cyan-500">{value}{suffix}</strong>
+        <strong className="mt-1 block text-2xl font-black text-cyan-500 count-up">{animated}{suffix}</strong>
       </span>
     </div>
   );

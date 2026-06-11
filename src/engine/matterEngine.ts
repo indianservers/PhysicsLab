@@ -2,6 +2,7 @@ import Matter from "matter-js";
 import { EngineSnapshot, PhysicsObjectInstance, SimulationSettings } from "../types";
 import { playTone, stopTone } from "../lib/audioEngine";
 import { stepDoublePendulum } from "./doublePendulumSolver";
+import { sanitizeGraphPoint } from "./measurementAdapters";
 
 const SCALE = 50;
 const FLOOR_Y = 560;
@@ -224,7 +225,7 @@ export class MatterSimulationEngine {
     this.objects = objects;
     const tracked = objects.find((object) => !object.isStatic);
     const graphPoint = tracked
-      ? {
+      ? sanitizeGraphPoint({
           t: Number(this.simulationTime.toFixed(3)),
           x: tracked.x / SCALE,
           y: Math.max(0, (FLOOR_Y - tracked.y) / SCALE),
@@ -237,16 +238,10 @@ export class MatterSimulationEngine {
           kineticEnergy: 0.5 * tracked.mass * (tracked.vx ** 2 + tracked.vy ** 2),
           potentialEnergy: tracked.mass * settings.gravity * Math.max(0, (FLOOR_Y - tracked.y) / SCALE),
           totalEnergy: 0.5 * tracked.mass * (tracked.vx ** 2 + tracked.vy ** 2) + tracked.mass * settings.gravity * Math.max(0, (FLOOR_Y - tracked.y) / SCALE),
-          pressure: 101325 + tracked.mass * settings.gravity * 2,
-          volume: Math.max(0.1, (tracked.width ?? tracked.radius ?? 50) / 50),
-          temperature: tracked.temperature ?? 293.15,
-          voltage: Math.abs(tracked.charge ?? 0) * 5,
-          current: Math.abs(tracked.charge ?? 0) * 0.5,
-          intensity: Math.max(0, 100 - Math.hypot(tracked.x - 400, tracked.y - 300) / 5),
+          volume: tracked.density ? tracked.mass / tracked.density : undefined,
+          temperature: tracked.temperature,
           angle: (tracked.angle * 180) / Math.PI,
-          wavelength: 0.5 + Math.abs(tracked.vx) * 0.02,
-          frequency: Math.max(0.1, Math.hypot(tracked.vx, tracked.vy)),
-        }
+        })
       : undefined;
     return { objects, graphPoint, simulationTime: this.simulationTime, warnings: [...new Set(this.warnings)] };
   }

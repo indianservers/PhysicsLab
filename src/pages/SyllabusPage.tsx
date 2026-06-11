@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useCountUp } from "../hooks/useCountUp";
 import { Link } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon, PhysicsIconName } from "../lib/icons";
@@ -235,6 +236,7 @@ function statusClass(status: BandStatus) {
 }
 
 function Metric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {
+  const animated = useCountUp(value);
   return (
     <div className="metric-card flex items-center gap-3">
       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-cyan-400/10 text-cyan-500">
@@ -242,7 +244,7 @@ function Metric({ icon, label, value }: { icon: PhysicsIconName; label: string; 
       </span>
       <div>
         <div className="ui-label">{label}</div>
-        <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+        <div className="mt-1 text-2xl font-black text-cyan-500 count-up">{animated}</div>
       </div>
     </div>
   );

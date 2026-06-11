@@ -2,6 +2,7 @@
 const tokenColor = (name) => `rgb(var(${name}) / <alpha-value>)`;
 
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {

@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import { experiments } from "../lib/experiments";
 import { Toolbar } from "../components/Toolbar";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { listProjects } from "../lib/storage";
 import { ProjectFile } from "../types";
 import { classOptions, curriculumCoverageStats } from "../lib/curriculum";
 import { iconForCategory, iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { useCountUp } from "../hooks/useCountUp";
+import { WebGLHero } from "../components/WebGLHero";
+import { initScrollReveal } from "../hooks/useScrollReveal";
+import { getTotalXP, getUnlocked, ACHIEVEMENTS } from "../lib/achievements";
+import { useMagnetic } from "../hooks/useMagnetic";
 
 const labs = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics", "Measurement", "Electronics", "Energy"];
 
@@ -14,8 +18,11 @@ export function HomePage() {
   const [recentProjects, setRecentProjects] = useState<ProjectFile[]>([]);
   const [projectsReady, setProjectsReady] = useState(false);
   const [experimentQuery, setExperimentQuery] = useState("");
+  const pageRef = useRef<HTMLElement>(null);
   const stats = curriculumCoverageStats();
   const showcase = experiments.slice(0, 14);
+  const totalXp = getTotalXP();
+  const unlockedCount = getUnlocked().size;
   const filteredExperiments = experiments
     .filter((experiment) => {
       const query = experimentQuery.trim().toLowerCase();
@@ -33,28 +40,36 @@ export function HomePage() {
       .finally(() => setProjectsReady(true));
   }, []);
 
+  useEffect(() => {
+    const cleanup = initScrollReveal();
+    const t = window.setTimeout(cleanup, 8000);
+    return () => window.clearTimeout(t);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Toolbar />
       <main id="content" className="home-bento-page desktop-page">
-        <section className="home-bento-hero mesh-bg">
+        <section className="home-bento-hero mesh-bg" style={{ position: "relative", overflow: "hidden" }}>
+          <WebGLHero />
           <LiveHeroPhysics />
-          <div className="home-hero-content">
-            <p className="ui-label">Browser-only STEM lab</p>
-            <h1 className="text-gradient">PhysicsLab 100</h1>
-            <p>
-              A cinematic dark-mode physics workspace with guided labs, a Matter.js sandbox, 3D explainers, live vectors, graphing, quizzes, and project storage that stays in the browser.
+          <div className="home-hero-content" style={{ position: "relative", zIndex: 2 }}>
+            <p className="hero-display-tagline">Browser-only STEM Lab</p>
+            <h1 className="hero-display-title">PhysicsLab 100</h1>
+            <p className="hero-sub-text">
+              The most cinematic physics workspace for Class 6–PhD. Matter.js sandbox, 3D explainers, guided experiments, live vectors, graphing, quizzes — all running in your browser.
             </p>
             <div className="home-hero-actions">
-              <Link className="hero-btn" to="/sandbox" viewTransition><PhysicsIcon name="flask" className="h-4 w-4" />Start simulation</Link>
-              <Link className="hero-btn-secondary" to="/experiments/projectile-motion" viewTransition><PhysicsIcon name="rocket" className="h-4 w-4" />Projectile lab</Link>
-              <Link className="hero-btn-secondary" to="/quiz" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Quiz challenge</Link>
+              <MagneticWrapper><Link className="hero-btn" to="/sandbox" viewTransition><PhysicsIcon name="flask" className="h-4 w-4" />Start simulation</Link></MagneticWrapper>
+              <MagneticWrapper><Link className="hero-btn-secondary" to="/experiments/projectile-motion" viewTransition><PhysicsIcon name="rocket" className="h-4 w-4" />Projectile lab</Link></MagneticWrapper>
+              <MagneticWrapper><Link className="hero-btn-secondary" to="/quiz" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Quiz challenge</Link></MagneticWrapper>
             </div>
           </div>
-          <div className="home-hero-metrics">
+          <div className="home-hero-metrics" style={{ position: "relative", zIndex: 2 }}>
             <HomeMetric icon="teacher" label="Classes" value={stats.classes} />
             <HomeMetric icon="book" label="Units" value={stats.units} />
             <HomeMetric icon="compass" label="Topics" value={stats.topics} />
+            {totalXp > 0 && <HomeMetric icon="spark" label="Your XP" value={totalXp} />}
           </div>
         </section>
 
@@ -93,13 +108,131 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="home-feature-grid" aria-label="PhysicsLab feature grid">
-          <FeatureCard className="home-feature-large stagger-item" icon="orbit" to="/experiments" title="Guided Experiment Library" body="Classroom-ready labs mapped to topics, with calculators, explainers, viva questions, and animated previews." />
-          <FeatureCard className="stagger-item" icon="calculator" to="/solver" title="Solver Bank" body="Practice formulas by category, reveal reasoning, and jump into the connected experiment." />
-          <FeatureCard className="stagger-item" icon="chart" to="/graphs" title="Graph Studio" body="Plot, fit, compare, and export lab data on a dark dot-grid canvas." />
-          <FeatureCard className="stagger-item" icon="eye" to="/video" title="Video Analysis" body="Track motion from uploaded clips with calibration and frame-step tools." />
-          <FeatureCard className="home-feature-tall stagger-item" icon="teacher" to="/teacher" title="Teacher Mode" body="Create assignments, lock variables, build lesson packs, and review student artifacts locally." />
-          <FeatureCard className="stagger-item" icon="spark" to="/quantum" title="Quantum Lab" body="Explore Bohr jumps, tunneling, photoelectric emission, and modern physics bridges." />
+        <section className="bento-section" aria-label="PhysicsLab feature grid">
+          <div className="bento-section-header scroll-reveal">
+            <p className="ui-label">The Complete Physics Suite</p>
+            <h2 className="section-heading-gradient">Every tool a physicist needs</h2>
+          </div>
+          <div className="bento-feature-grid">
+            <Link className="bento-card bento-hero-large scroll-reveal" to="/experiments" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="orbit" className="h-8 w-8" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">100+ Labs</span>
+                <h2 className="bento-card-title">Guided Experiment Library</h2>
+                <p className="bento-card-body">Classroom-ready labs mapped to topics, with calculators, explainers, viva questions, and animated previews. Class 6 to PhD level.</p>
+              </div>
+              <div className="bento-card-preview exp-preview-orbital" aria-hidden="true" />
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-tall scroll-reveal-scale" to="/teacher" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="teacher" className="h-8 w-8" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">For Educators</span>
+                <h2 className="bento-card-title">Teacher Mode</h2>
+                <p className="bento-card-body">Create assignments, lock variables, build lesson packs, and review student artifacts — fully local.</p>
+              </div>
+              <div className="bento-card-preview exp-preview-circuit" aria-hidden="true" />
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-wide scroll-reveal-left" to="/sandbox" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="flask" className="h-7 w-7" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">Interactive</span>
+                <h2 className="bento-card-title">Matter.js Sandbox</h2>
+                <p className="bento-card-body">Drop objects, apply forces, observe collisions in real-time 2D physics. Save & share sessions locally.</p>
+              </div>
+              <div className="bento-card-preview exp-preview-pendulum" aria-hidden="true" />
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-wide scroll-reveal" to="/graphs" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="chart" className="h-7 w-7" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">Data Studio</span>
+                <h2 className="bento-card-title">Graph Studio</h2>
+                <p className="bento-card-body">Plot, fit, compare, and export lab data on a dark dot-grid canvas with curve fitting and annotations.</p>
+              </div>
+              <div className="bento-card-preview exp-preview-wave" aria-hidden="true" />
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-sm scroll-reveal-scale" to="/solver" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="calculator" className="h-6 w-6" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">Formula AI</span>
+                <h2 className="bento-card-title">Solver Bank</h2>
+                <p className="bento-card-body">Practice formulas by category with full reasoning.</p>
+              </div>
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-sm scroll-reveal" to="/quantum" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="spark" className="h-6 w-6" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">Modern Physics</span>
+                <h2 className="bento-card-title">Quantum Lab</h2>
+                <p className="bento-card-body">Bohr jumps, tunneling, photoelectric emission.</p>
+              </div>
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-sm scroll-reveal-left" to="/video" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="eye" className="h-6 w-6" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">Kinematics</span>
+                <h2 className="bento-card-title">Video Analysis</h2>
+                <p className="bento-card-body">Track motion from uploaded clips with frame-step tools.</p>
+              </div>
+              <span className="bento-card-arrow">→</span>
+            </Link>
+
+            <Link className="bento-card bento-sm scroll-reveal" to="/graph" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="orbit" className="h-6 w-6" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">AI Map</span>
+                <h2 className="bento-card-title">Knowledge Graph</h2>
+                <p className="bento-card-body">Interactive force-directed map of all physics experiments.</p>
+              </div>
+              <span className="bento-card-arrow">→</span>
+            </Link>
+          </div>
+        </section>
+
+        <section className="home-learning-path-section scroll-reveal" aria-label="Your adaptive learning path">
+          <div className="bento-section-header">
+            <p className="ui-label">Personalized to you</p>
+            <h2 className="section-heading-gradient">Your Learning Path</h2>
+          </div>
+          <div className="learning-path-track">
+            {[
+              { label: "Measurement & SI Units", tag: "Foundation", to: "/topics/measurement", mastered: true },
+              { label: "Kinematics & Motion", tag: "Class 9", to: "/topics/mechanics", mastered: true },
+              { label: "Newton's Laws", tag: "Class 9", to: "/experiments/newtons-second-law", mastered: true },
+              { label: "Work, Energy & Power", tag: "Class 9", to: "/topics/energy", mastered: false, isNext: true },
+              { label: "Waves & Oscillations", tag: "Class 11", to: "/topics/waves", mastered: false },
+              { label: "Electrostatics", tag: "Class 12", to: "/topics/electricity", mastered: false },
+              { label: "Quantum Physics", tag: "Advanced", to: "/quantum", mastered: false },
+            ].map((node) => (
+              <Link
+                key={node.label}
+                className={`learning-path-node${node.mastered ? " mastered" : ""}${node.isNext ? " next" : ""}`}
+                to={node.to}
+                viewTransition
+              >
+                <span className="learning-path-node-dot" />
+                <span className="learning-path-node-label">{node.label}</span>
+                <span className="bento-card-tag">{node.tag}</span>
+              </Link>
+            ))}
+          </div>
+          {unlockedCount > 0 && (
+            <p className="learning-path-xp-summary">
+              <PhysicsIcon name="spark" className="h-4 w-4" />
+              {unlockedCount} achievement{unlockedCount !== 1 ? "s" : ""} unlocked · {totalXp} XP earned
+            </p>
+          )}
         </section>
 
         <section className="home-showcase-section">
@@ -220,15 +353,6 @@ function LiveHeroPhysics() {
   );
 }
 
-function FeatureCard({ icon, to, title, body, className = "" }: { icon: PhysicsIconName; to: string; title: string; body: string; className?: string }) {
-  return (
-    <Link className={`enhanced-card home-feature-card ${className}`} to={to} viewTransition>
-      <span className="card-icon"><PhysicsIcon name={icon} /></span>
-      <h2>{title}</h2>
-      <p>{body}</p>
-    </Link>
-  );
-}
 
 function HomeMetric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {
   const animated = useCountUp(value);
@@ -239,4 +363,10 @@ function HomeMetric({ icon, label, value }: { icon: PhysicsIconName; label: stri
       <div className="mt-1 text-2xl font-black text-cyan-500 count-up">{animated}</div>
     </div>
   );
+}
+
+function MagneticWrapper({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useMagnetic(ref);
+  return <div ref={ref} style={{ display: "inline-flex" }}>{children}</div>;
 }

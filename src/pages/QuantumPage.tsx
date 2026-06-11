@@ -1,11 +1,14 @@
+import { useEffect } from "react";
 import { Toolbar } from "../components/Toolbar";
 import { BohrModelSim } from "../components/quantum/BohrModelSim";
 import { PhotoelectricSim } from "../components/quantum/PhotoelectricSim";
 import { TunnelingSim } from "../components/quantum/TunnelingSim";
 import { GuidePanel } from "../components/GuidePanel";
 import { guideForQuantumTool } from "../lib/guides";
+import { trackQuantumVisit } from "../lib/achievements";
 
 export function QuantumPage() {
+  useEffect(() => { trackQuantumVisit(); }, []);
   return (
     <div className="min-h-screen">
       <Toolbar />

@@ -1,5 +1,6 @@
 import { ExperimentDefinition, FormulaDefinition } from "../types";
 import { createObject } from "./objectRegistry";
+import { withScientificTrust } from "./experimentAssumptions";
 
 export const projectileDefaults = {
   speed: 28,
@@ -1330,7 +1331,7 @@ const advancedCompletionExperiments: ExperimentDefinition[] = [
   },
 ];
 
-export const experiments: ExperimentDefinition[] = [
+const experimentCatalog: ExperimentDefinition[] = [
   {
     id: "projectile-motion",
     title: "Projectile Motion",
@@ -1506,3 +1507,5 @@ export const experiments: ExperimentDefinition[] = [
     commonMistakes: ["Using inconsistent units", "Running too large a time step", "Ignoring friction or restitution settings"],
   })) as ExperimentDefinition[],
 ];
+
+export const experiments: ExperimentDefinition[] = experimentCatalog.map(withScientificTrust);

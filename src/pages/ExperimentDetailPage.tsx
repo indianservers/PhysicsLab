@@ -17,6 +17,17 @@ import { AnimationExplanationTimeline, AnimationMoment } from "../components/Ani
 import { FullscreenButton } from "../components/FullscreenButton";
 import { makePrismModel, prismMaterials } from "../lib/prism";
 import { InteractionModePanel } from "../components/InteractionModePanel";
+import { ReadingProgress } from "../components/ReadingProgress";
+import { FocusMode } from "../components/FocusMode";
+import { trackExperimentVisit, trackThreeD } from "../lib/achievements";
+import { ConceptExplainer } from "../components/ConceptExplainer";
+import { FormulaDerivationPanel } from "../components/FormulaDerivationPanel";
+import { GuidedExperimentMode } from "../components/GuidedExperimentMode";
+import { PhysicsCoachPanel } from "../components/PhysicsCoachPanel";
+import { defaultLearningLevelForClass, LearningLevel, learningLevelProfiles, learningLevels } from "../lib/learningLevels";
+import { generateAdaptiveQuestions } from "../lib/questionEngine";
+import { commonMistakesForExperiment } from "../lib/commonMistakes";
+import { downloadMarkdownReport, generateExperimentMarkdownReport } from "../lib/reportGenerator";
 
 export function ExperimentDetailPage() {
   const { id } = useParams();
@@ -24,6 +35,8 @@ export function ExperimentDetailPage() {
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
   const assignment = getAssignmentFromSearch(location.search);
   const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : "simulate");
+  const [learningLevel, setLearningLevel] = useState<LearningLevel>(() => defaultLearningLevelForClass(experiment.classLevel));
+  const [classroomMode, setClassroomMode] = useState(false);
   useEffect(() => {
     if (!location.hash) return undefined;
     const targetId = location.hash.slice(1);
@@ -32,8 +45,15 @@ export function ExperimentDetailPage() {
     }, 450);
     return () => window.clearTimeout(timer);
   }, [location.hash, experiment.id]);
+
+  useEffect(() => { trackExperimentVisit(experiment.id, experiment.category); }, [experiment.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (activePane === "three") trackThreeD(); }, [activePane]);
+  useEffect(() => { setLearningLevel(defaultLearningLevelForClass(experiment.classLevel)); }, [experiment.id, experiment.classLevel]);
+
   return (
-    <div className="experiment-detail-page min-h-screen">
+    <div className={classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"}>
+      <ReadingProgress />
+      <FocusMode />
       <Toolbar />
       <div id="content" className="mx-auto max-w-[1600px] px-3 py-3">
         <div className="page-hero mesh-bg mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -49,11 +69,31 @@ export function ExperimentDetailPage() {
                 {experiment.curriculumTags.classes.map((grade) => <span key={grade} className="status-chip status-chip-cyan">Class {grade}</span>)}
                 {experiment.curriculumTags.domains.map((domain) => <span key={domain} className="status-chip">{domain}</span>)}
                 <span className="status-chip">{experiment.difficulty}</span>
+                <span className="status-chip status-chip-cyan">{experiment.modelClass}</span>
+                <span className="status-chip">{experiment.trustLevel}% trust</span>
               </div>
             )}
             </div>
           </div>
-          <Link to="/lab" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="learning-level-selector">
+              <span>Learning Level</span>
+              <select value={learningLevel} onChange={(event) => setLearningLevel(event.target.value as LearningLevel)}>
+                {learningLevels.map((level) => <option key={level} value={level}>{level}</option>)}
+              </select>
+            </label>
+            <button className={classroomMode ? "hero-btn inline-flex items-center gap-2 no-print" : "hero-btn-secondary inline-flex items-center gap-2 no-print"} type="button" onClick={() => setClassroomMode((value) => !value)}>
+              <PhysicsIcon name="teacher" className="h-4 w-4" />Classroom Mode
+            </button>
+            <button
+              className="hero-btn-secondary inline-flex items-center gap-2 no-print"
+              onClick={() => window.print()}
+              title="Print lab report"
+            >
+              <PhysicsIcon name="book" className="h-4 w-4" />Lab Report
+            </button>
+            <Link to="/lab" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
+          </div>
         </div>
         {assignment && <AssignmentBanner assignment={assignment} />}
         <div className="experiment-tab-shell">
@@ -78,11 +118,11 @@ export function ExperimentDetailPage() {
             ))}
           </div>
           <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
-            {activePane === "guide" && <ExperimentGuidePane experiment={experiment} />}
-            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} />)}
+            {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={learningLevel} />}
+            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} learningLevel={learningLevel} />)}
             {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
-            {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} />}
-            {activePane === "coach" && <ExperimentCoachPane experiment={experiment} />}
+            {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={learningLevel} />}
+            {activePane === "coach" && <ExperimentCoachPane experiment={experiment} learningLevel={learningLevel} />}
           </div>
         </div>
       </div>
@@ -90,9 +130,11 @@ export function ExperimentDetailPage() {
   );
 }
 
-function ExperimentGuidePane({ experiment }: { experiment: typeof experiments[number] }) {
+function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   return (
     <div className="experiment-bento-pane experiment-guide-pane">
+      <ConceptExplainer experiment={experiment} level={learningLevel} />
+      <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
       <GuidePanel guide={guideForExperiment(experiment)} compact />
       <CoreLearningToolkit experiment={experiment} />
       <LearningPanel experiment={experiment} />
@@ -115,7 +157,8 @@ function ExperimentThreePane({ experiment }: { experiment: typeof experiments[nu
   );
 }
 
-function ExperimentQuizPane({ experiment }: { experiment: typeof experiments[number] }) {
+function ExperimentQuizPane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
+  const adaptiveQuestions = generateAdaptiveQuestions(experiment, learningLevel);
   return (
     <div className="experiment-bento-pane experiment-quiz-pane">
       <div className="panel p-5">
@@ -128,12 +171,12 @@ function ExperimentQuizPane({ experiment }: { experiment: typeof experiments[num
         </Link>
       </div>
       <div className="panel p-5">
-        <p className="ui-label">Viva prompts</p>
+        <p className="ui-label">Adaptive questions</p>
         <div className="mt-3 grid gap-2">
-          {experiment.vivaQuestions.slice(0, 4).map((question) => (
-            <details key={question.prompt} className="mini-disclosure">
+          {adaptiveQuestions.map((question) => (
+            <details key={question.id} className="mini-disclosure">
               <summary>{question.prompt}</summary>
-              <p className="mt-2 text-cyan-300">{question.answer}</p>
+              <p className="mt-2 text-cyan-300"><strong>{question.type}:</strong> {question.answer}</p>
             </details>
           ))}
         </div>
@@ -142,11 +185,13 @@ function ExperimentQuizPane({ experiment }: { experiment: typeof experiments[num
   );
 }
 
-function ExperimentCoachPane({ experiment }: { experiment: typeof experiments[number] }) {
+function ExperimentCoachPane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   const values = defaultLabValues(experiment.id);
   const result = calculateStarterLab(experiment.id, values[0], values[1], values[2]);
+  const variables = result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? 0 }));
   return (
     <div className="experiment-bento-pane">
+      <PhysicsCoachPanel experiment={experiment} level={learningLevel} variables={variables} outputs={result.outputs} formula={result.formula} />
       <div className="panel p-4">
         <ExperimentLearningCoach
           experiment={experiment}
@@ -231,7 +276,7 @@ function AssignmentBanner({ assignment }: { assignment: NonNullable<ReturnType<t
   );
 }
 
-function GenericExperiment({ experiment }: { experiment: typeof experiments[number] }) {
+function GenericExperiment({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   const defaultValues = defaultLabValues(experiment.id);
   const [a, setA] = useState(defaultValues[0]);
   const [b, setB] = useState(defaultValues[1]);
@@ -239,17 +284,31 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
   const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
   const [workspaceView, setWorkspaceView] = useState<"visual" | "graphs" | "report" | "coach" | "notes">("visual");
+  const [classroomPaused, setClassroomPaused] = useState(false);
   const results = calculateStarterLab(experiment.id, a, b, c);
+  const levelSliderCount = learningLevelProfiles[learningLevel].sliderCount;
+  const shownControls = results.controls.slice(0, levelSliderCount);
+  const variables = results.controls.map((control, index) => ({ label: control.label, value: [a, b, c][index] ?? 0 }));
   const setters = [setA, setB, setC];
   const setAll = (values: number[]) => {
     setA(values[0] ?? a);
     setB(values[1] ?? b);
     setC(values[2] ?? c);
   };
+  const resetValues = () => setAll(defaultValues);
+  const stepValues = () => {
+    if (classroomPaused) return;
+    const first = results.controls[0];
+    if (!first) return;
+    const next = Number(Math.min(first.max, a + first.step).toFixed(first.step < 0.1 ? 2 : 1));
+    setA(next >= first.max ? first.min : next);
+  };
   return (
     <div id="simulation" className="desktop-lab-workspace">
       <section className="desktop-control-rail panel p-3">
         <WatchCue experiment={experiment} result={results} />
+        <ClassroomControlBar paused={classroomPaused} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
+        <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           <InfoTile icon="book" label="Level" value={experiment.classLevel} />
           <InfoTile icon="flask" label="Tools" value={`${experiment.apparatus.length} items`} />
@@ -288,7 +347,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
             </div>
           )}
           <div className="mt-4 grid gap-3">
-            {results.controls.map((control, index) => (focusIndex === null || focusIndex === index) && (
+            {shownControls.map((control, index) => (focusIndex === null || focusIndex === index) && (
               <LabSlider
                 key={control.label}
                 label={control.label}
@@ -297,6 +356,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
                 max={control.max}
                 step={control.step}
                 onChange={setters[index]}
+                disabled={classroomPaused}
               />
             ))}
           </div>
@@ -314,6 +374,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
           <div className="font-mono text-sm">{results.formula}</div>
           <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
           <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
+          <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
         </CollapsibleSection>
       </section>
       <section className="desktop-stage-panel panel p-3">
@@ -349,6 +410,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
           )}
           {workspaceView === "graphs" && (
             <LabGraphingWorkspace
+              experiment={experiment}
               result={results}
               values={[a, b, c]}
               makeTrialOutputs={(values) => calculateStarterLab(experiment.id, values[0], values[1], values[2]).outputs}
@@ -358,6 +420,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
           {workspaceView === "report" && <LabReportGenerator experiment={experiment} result={results} values={[a, b, c]} defaultOpen />}
           {workspaceView === "coach" && (
             <div id="coach">
+              <PhysicsCoachPanel experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} formula={results.formula} />
               <CollapsibleSection icon="teacher" title="Guided Coach" hint="Compare low, middle, and high setups before drawing a conclusion" defaultOpen>
                 <ExperimentLearningCoach
                   experiment={experiment}
@@ -372,7 +435,7 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
             </div>
           )}
           {workspaceView === "notes" && (
-            <LabReferenceStack experiment={experiment} values={[a, b, c]} />
+            <LabReferenceStack experiment={experiment} values={[a, b, c]} result={results} />
           )}
         </div>
       </section>
@@ -380,11 +443,37 @@ function GenericExperiment({ experiment }: { experiment: typeof experiments[numb
   );
 }
 
-function LabReferenceStack({ experiment, values }: { experiment: typeof experiments[number]; values: [number, number, number] }) {
+function ClassroomControlBar({ paused, onPauseToggle, onReset, onStep }: { paused: boolean; onPauseToggle: () => void; onReset: () => void; onStep: () => void }) {
+  return (
+    <div className="classroom-control-bar">
+      <button className="tool-btn" type="button" onClick={onReset}><PhysicsIcon name="download" className="h-4 w-4" />Reset</button>
+      <button className={paused ? "tool-btn-primary" : "tool-btn"} type="button" onClick={onPauseToggle}><PhysicsIcon name="play" className="h-4 w-4" />{paused ? "Resume" : "Pause"}</button>
+      <button className="tool-btn-primary" type="button" onClick={onStep}><PhysicsIcon name="step" className="h-4 w-4" />Step</button>
+      <span>Use Step for frame-by-frame discussion; use Reset before a fresh trial.</span>
+    </div>
+  );
+}
+
+function LabReferenceStack({ experiment, values, result }: { experiment: typeof experiments[number]; values: [number, number, number]; result?: LabResult }) {
   return (
     <div className="desktop-reference-stack">
       <CollapsibleSection icon="compass" title="Aim" hint="What you are trying to prove or observe" defaultOpen>
         <p className="text-sm text-slate-500 dark:text-slate-300">{experiment.aim}</p>
+      </CollapsibleSection>
+      <CollapsibleSection icon="check" title="Scientific Trust" hint="Model class, confidence, assumptions, limits, and failure conditions" defaultOpen>
+        <div className="grid gap-3 text-sm">
+          <div className="rounded-md border border-cyan-300/25 bg-cyan-400/5 p-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="status-chip status-chip-cyan">{experiment.modelClass}</span>
+              <span className="status-chip">{experiment.trustLevel}% trust</span>
+            </div>
+            <p className="mt-2 text-slate-600 dark:text-slate-300">{experiment.confidenceReason}</p>
+          </div>
+          <TrustList title="Assumptions" items={experiment.assumptions ?? []} />
+          <TrustList title="Limitations" items={experiment.limitations ?? []} />
+          <TrustList title="Valid ranges" items={experiment.validRanges ?? []} />
+          <TrustList title="Failure conditions" items={experiment.failureConditions ?? []} />
+        </div>
       </CollapsibleSection>
       <CollapsibleSection icon="clipboard" title="Procedure" hint="Step-by-step method, collapsed to keep the lab compact">
         <ol className="list-decimal space-y-2 pl-5 text-sm">
@@ -424,10 +513,46 @@ function LabReferenceStack({ experiment, values }: { experiment: typeof experime
       </CollapsibleSection>
       <CollapsibleSection icon="spark" title="Common Mistakes" hint="Known traps that cause wrong readings">
         <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-300">
-          {experiment.commonMistakes.slice(0, 3).map((mistake) => <li key={mistake}>{mistake}</li>)}
+          {commonMistakesForExperiment(experiment).slice(0, 5).map((mistake) => <li key={mistake}>{mistake}</li>)}
         </ul>
       </CollapsibleSection>
+      {result && <MarkdownReportButton experiment={experiment} result={result} values={values} />}
       <Link to="/lab" className="hero-btn-secondary mt-4 inline-flex items-center gap-2" title="Open this concept in the full drag-and-drop physics canvas"><PhysicsIcon name="flask" className="h-4 w-4" />Full canvas</Link>
+    </div>
+  );
+}
+
+function MarkdownReportButton({ experiment, result, values }: { experiment: typeof experiments[number]; result: LabResult; values: number[] }) {
+  return (
+    <button
+      className="hero-btn mt-4 inline-flex items-center gap-2"
+      type="button"
+      onClick={() => {
+        const markdown = generateExperimentMarkdownReport({
+          experiment,
+          formula: result.formula,
+          variables: result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? "-", unit: unitFromLabel(control.label) })),
+          observations: result.outputs.map((output) => ({ label: output.label, value: output.value })),
+          graphSummary: "Use the Graphs workspace to compare the independent variable with the main output.",
+          result: result.outputs[0] ? `${result.outputs[0].label}: ${result.outputs[0].value}` : experiment.expectedResult,
+          conclusion: experiment.expectedResult,
+        });
+        downloadMarkdownReport(markdown, `${slugify(experiment.title)}-lab-report.md`);
+      }}
+    >
+      <PhysicsIcon name="printer" className="h-4 w-4" />Generate Lab Report
+    </button>
+  );
+}
+
+function TrustList({ title, items }: { title: string; items: string[] }) {
+  if (!items.length) return null;
+  return (
+    <div>
+      <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">{title}</div>
+      <ul className="mt-1 list-disc space-y-1 pl-5 text-slate-600 dark:text-slate-300">
+        {items.map((item) => <li key={item}>{item}</li>)}
+      </ul>
     </div>
   );
 }
@@ -647,7 +772,7 @@ function ChangeWatchBecause({ result, focusIndex }: { result: LabResult; focusIn
   );
 }
 
-function LabGraphingWorkspace({ result, values, makeTrialOutputs, defaultOpen = false }: { result: LabResult; values: number[]; makeTrialOutputs: (values: number[]) => LabResult["outputs"]; defaultOpen?: boolean }) {
+function LabGraphingWorkspace({ experiment, result, values, makeTrialOutputs, defaultOpen = false }: { experiment: typeof experiments[number]; result: LabResult; values: number[]; makeTrialOutputs: (values: number[]) => LabResult["outputs"]; defaultOpen?: boolean }) {
   const [inputIndex, setInputIndex] = useState(0);
   const [outputIndex, setOutputIndex] = useState(0);
   const input = result.controls[inputIndex] ?? result.controls[0];
@@ -682,6 +807,20 @@ function LabGraphingWorkspace({ result, values, makeTrialOutputs, defaultOpen = 
         </label>
       </div>
       <PlotSvg points={points} xLabel={input.label} yLabel={output.label} />
+      <div className="graph-trust-card mt-3">
+        <div className="graph-trust-title">
+          <strong>{output.label}</strong>
+          <span>Calculated from {result.formula}</span>
+        </div>
+        <div className="graph-trust-grid">
+          <span>Source</span><b>Formula Calculation</b>
+          <span>Trust</span><b>{experiment.trustLevel ?? 0}%</b>
+          <span>Model</span><b>{experiment.modelClass ?? "Calculator"}</b>
+        </div>
+        <ul>
+          {(experiment.assumptions ?? []).slice(0, 3).map((assumption) => <li key={assumption}>{assumption}</li>)}
+        </ul>
+      </div>
       <div className="mt-3 rounded-md border border-cyan-400/30 bg-cyan-400/10 p-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
         Hold the other sliders constant, then vary <strong>{input.label}</strong> to see the pattern in <strong>{output.label}</strong>.
       </div>
@@ -779,7 +918,7 @@ function InfoTile({ icon, label, value }: { icon: Parameters<typeof PhysicsIcon>
   );
 }
 
-function LabSlider({ label, value, min, max, step, onChange }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void }) {
+function LabSlider({ label, value, min, max, step, onChange, disabled = false }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void; disabled?: boolean }) {
   const hint = explainControl(label);
   const progress = ((value - min) / Math.max(step, max - min)) * 100;
   const displayDigits = step < 0.1 ? 2 : 1;
@@ -790,15 +929,15 @@ function LabSlider({ label, value, min, max, step, onChange }: { label: string; 
         <span className="font-mono text-cyan-500">{value.toFixed(displayDigits)}</span>
       </div>
       <div className="slider-fill" aria-hidden="true"><span style={{ width: `${clampNumber(progress, 0, 100)}%` }} /></div>
-      <input className="mt-2 w-full accent-cyan-400" type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} />
+      <input className="mt-2 w-full accent-cyan-400" type="range" min={min} max={max} step={step} value={value} disabled={disabled} onChange={(event) => onChange(Number(event.target.value))} />
       <div className="mt-2 flex items-center justify-between gap-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
         <span>{min}</span>
         <span>{max}</span>
       </div>
       <div className="mt-2 grid grid-cols-3 gap-1">
-        <button className="slider-mini-btn" type="button" onClick={() => onChange(min)}>Low</button>
-        <button className="slider-mini-btn" type="button" onClick={() => onChange(midpoint({ min, max, step, label }))}>Mid</button>
-        <button className="slider-mini-btn" type="button" onClick={() => onChange(max)}>High</button>
+        <button className="slider-mini-btn" type="button" disabled={disabled} onClick={() => onChange(min)}>Low</button>
+        <button className="slider-mini-btn" type="button" disabled={disabled} onClick={() => onChange(midpoint({ min, max, step, label }))}>Mid</button>
+        <button className="slider-mini-btn" type="button" disabled={disabled} onClick={() => onChange(max)}>High</button>
       </div>
     </label>
   );
@@ -836,14 +975,18 @@ const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-
 const degreeToRad = (value: number) => (value * Math.PI) / 180;
 const roundIfInteger = (value: number, tolerance = 1e-9) => Math.abs(value - Math.round(value)) < tolerance;
 const midpoint = (control: LabControl) => Number(((control.min + control.max) / 2).toFixed(control.step < 0.1 ? 2 : 1));
+const unitFromLabel = (label: string) => label.match(/\(([^)]+)\)/)?.[1] ?? "";
 
 function buildLabReportHtml(experiment: typeof experiments[number], result: LabResult, readings: Array<{ label: string; value: number }>) {
   const graphPoints = makeReportPoints(result);
   const graphSvg = makeReportGraphSvg(graphPoints, result.controls[0]?.label ?? "Input", result.outputs[0]?.label ?? "Output");
   const rows = readings.map((reading) => `<tr><td>${escapeHtml(reading.label)}</td><td>${escapeHtml(formatReportNumber(reading.value))}</td></tr>`).join("");
   const outputRows = result.outputs.map((output) => `<tr><td>${escapeHtml(output.label)}</td><td>${escapeHtml(output.value)}</td></tr>`).join("");
+  const unitRows = result.controls.map((control) => `<tr><td>${escapeHtml(control.label)}</td><td>${escapeHtml(unitFromLabel(control.label) || "unitless / stated in label")}</td></tr>`).join("");
   const procedure = experiment.procedure.map((step) => `<li>${escapeHtml(step)}</li>`).join("");
   const apparatus = experiment.apparatus.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const assumptions = (experiment.assumptions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const limitations = (experiment.limitations ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   const mistakes = experiment.commonMistakes.slice(0, 5).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   const viva = experiment.vivaQuestions.slice(0, 5).map((item) => `<li><strong>${escapeHtml(item.prompt)}</strong><br/>${escapeHtml(item.answer)}</li>`).join("");
   return `<!doctype html>
@@ -867,8 +1010,15 @@ function buildLabReportHtml(experiment: typeof experiments[number], result: LabR
 <body>
   <h1>${escapeHtml(experiment.title)}</h1>
   <div class="meta">${escapeHtml(experiment.classLevel)} | ${escapeHtml(experiment.category)} | ${escapeHtml(experiment.difficulty)}</div>
+  <div class="meta">Generated By: PhysicsLab Scientific Trust Export | Model Class: ${escapeHtml(experiment.modelClass ?? "Unclassified")} | Trust Level: ${experiment.trustLevel ?? 0}%</div>
   <h2>Aim</h2>
   <p>${escapeHtml(experiment.aim)}</p>
+  <h2>Scientific Trust</h2>
+  <p>${escapeHtml(experiment.confidenceReason ?? "No confidence reason recorded.")}</p>
+  <h3>Assumptions</h3>
+  <ul>${assumptions}</ul>
+  <h3>Limitations</h3>
+  <ul>${limitations}</ul>
   <h2>Theory</h2>
   <p>${escapeHtml(result.description)}</p>
   <p><strong>Formula:</strong> ${escapeHtml(result.formula)}</p>
@@ -878,6 +1028,8 @@ function buildLabReportHtml(experiment: typeof experiments[number], result: LabR
   <ol>${procedure}</ol>
   <h2>Readings</h2>
   <table><thead><tr><th>Quantity</th><th>Reading</th></tr></thead><tbody>${rows}</tbody></table>
+  <h2>Units</h2>
+  <table><thead><tr><th>Quantity</th><th>Unit</th></tr></thead><tbody>${unitRows}</tbody></table>
   <h2>Calculated Outputs</h2>
   <table><thead><tr><th>Output</th><th>Value</th></tr></thead><tbody>${outputRows}</tbody></table>
   <h2>Graph</h2>

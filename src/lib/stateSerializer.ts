@@ -29,7 +29,25 @@ export async function deserializeState(encoded: string): Promise<SharedLabState>
 }
 
 export function rawStateJson(objects: PhysicsObjectInstance[], settings: SharedLabSettings) {
-  return JSON.stringify({ objects, settings }, null, 2);
+  return JSON.stringify({
+    generatedBy: "PhysicsLab Scientific Trust Export",
+    modelClass: "Dynamic Simulation",
+    trustLevel: 78,
+    assumptions: [
+      "Workspace exports preserve state; quantitative interpretation depends on registered graph measurement adapters.",
+      "Matter.js dynamics use educational SI conversion assumptions.",
+    ],
+    units: {
+      position: "m",
+      velocity: "m/s",
+      acceleration: "m/s^2",
+      force: "N",
+      energy: "J",
+    },
+    formulaUsed: "Live workspace formulas are attached to graph adapters and selected-object formula cards.",
+    objects,
+    settings,
+  }, null, 2);
 }
 
 function bytesToBase64(bytes: Uint8Array) {

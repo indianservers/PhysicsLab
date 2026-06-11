@@ -14,7 +14,7 @@ export function ExperimentsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [sortBy, setSortBy] = useState("interactive");
-  const [viewMode, setViewMode] = useState<"cards" | "compact">("compact");
+  const [viewMode, setViewMode] = useState<"cards" | "compact">("cards");
   const [beginnerMode, setBeginnerMode] = useState(false);
   const [activeTab, setActiveTab] = useState<"library" | "syllabus" | "map">("library");
   const [mapGrade, setMapGrade] = useState(12);
@@ -65,7 +65,7 @@ export function ExperimentsPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <div id="content" className="desktop-page">
+      <div id="content" className="desktop-page experiments-page">
         <div className="page-hero mesh-bg flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="ui-label">Interactive guided learning</p>
@@ -95,7 +95,7 @@ export function ExperimentsPage() {
           ))}
         </div>
 
-        <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel">
+        <div className="desktop-tab-panel desktop-tab-panel-tall desktop-scroll-panel experiments-panel">
           {activeTab === "map" && (
             <div className="constellation-shell">
               <div className="constellation-toolbar">
@@ -197,7 +197,7 @@ export function ExperimentsPage() {
 
           {activeTab === "library" && (
             <div className="grid min-h-0 gap-3">
-        <div className="filter-bar">
+        <div className="filter-bar experiment-filter-bar">
           <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto_auto]">
             <label>
               <span className="sr-only">Search experiments</span>
@@ -247,7 +247,7 @@ export function ExperimentsPage() {
           </div>
         </div>
 
-        <div className={viewMode === "compact" ? "grid gap-2" : "grid gap-4 md:grid-cols-2 xl:grid-cols-3"}>
+        <div className={viewMode === "compact" ? "experiment-card-grid-catalog experiment-card-grid-catalog-compact" : "experiment-card-grid-catalog"}>
           {filtered.map((experiment) => {
             const mappedTopics = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id));
             const primaryOutcome = mappedTopics[0]?.outcomes[0] ?? experiment.expectedResult;
@@ -258,23 +258,27 @@ export function ExperimentsPage() {
               { label: "Coach", icon: "teacher" as const, active: true },
             ].filter((feature) => feature.active);
             return (
-              <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "enhanced-card enhanced-card-compact stagger-item" : "enhanced-card stagger-item"}>
-                <ExperimentPreview experiment={experiment} />
+              <Link key={experiment.id} to={`/experiments/${experiment.id}`} className={viewMode === "compact" ? "experiment-library-card experiment-library-card-compact stagger-item" : "experiment-library-card stagger-item"}>
+                {viewMode === "cards" && <ExperimentPreview experiment={experiment} />}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-start gap-3">
                     <span className="card-icon">
                       <PhysicsIcon name={iconForExperiment(experiment)} />
                     </span>
                     <div className="min-w-0">
-                      <h2 className="truncate text-lg font-black">{experiment.title}</h2>
-                      <div className="mt-1 text-xs font-bold text-cyan-500">{experiment.category}</div>
+                      <h2 className="experiment-card-title">{experiment.title}</h2>
+                      <div className="experiment-card-category">{experiment.category}</div>
                     </div>
                   </div>
                   <span className="status-chip shrink-0">{experiment.difficulty}</span>
                 </div>
-                <p className={viewMode === "compact" ? "mt-2 line-clamp-1 text-sm text-slate-500 dark:text-slate-400" : "mt-2 text-sm text-slate-500 dark:text-slate-400"}>{experiment.aim}</p>
-                <div className="mt-3 rounded-md border border-cyan-300/25 bg-cyan-400/5 p-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                  <span className="font-black text-cyan-600 dark:text-cyan-300">Learn:</span> {primaryOutcome}
+                <div className="experiment-trust-strip">
+                  <span>{experiment.modelClass}</span>
+                  <strong>{experiment.trustLevel}% trust</strong>
+                </div>
+                <p className="experiment-card-aim">{experiment.aim}</p>
+                <div className="experiment-learn-box">
+                  <span>Learn</span> {primaryOutcome}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {features.map((feature) => (
@@ -283,14 +287,14 @@ export function ExperimentsPage() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-3 text-xs font-semibold text-slate-500 dark:text-slate-400">{experiment.classLevel}</div>
+                <div className="experiment-card-level">{experiment.classLevel}</div>
                 {experiment.curriculumTags && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {experiment.curriculumTags.classes.map((grade) => <span key={grade} className="status-chip status-chip-cyan">Class {grade}</span>)}
                   </div>
                 )}
                 {mappedTopics.length > 0 && (
-                  <div className="mt-4 space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                  <div className="experiment-topic-list">
                     {mappedTopics.slice(0, 3).map((topic) => (
                       <div key={`${topic.classId}-${topic.id}`}>{topic.classLabel}: {topic.title}</div>
                     ))}

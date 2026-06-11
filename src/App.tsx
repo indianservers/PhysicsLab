@@ -12,6 +12,7 @@ import { RoadmapPage } from "./pages/RoadmapPage";
 import { SimplePage } from "./pages/SimplePage";
 import { GraphsPage } from "./pages/GraphsPage";
 import { VideoAnalysisPage } from "./pages/VideoAnalysisPage";
+import { KnowledgeGraphPage } from "./pages/KnowledgeGraphPage";
 import { LMSConfigPage } from "./pages/LMSConfigPage";
 import { QuantumPage } from "./pages/QuantumPage";
 import { TeacherPage } from "./pages/TeacherPage";
@@ -21,6 +22,11 @@ import { FormulasPage } from "./pages/FormulasPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement, initXAPISync } from "./lib/xapi";
 import { ToastProvider } from "./components/ToastSystem";
+import { CursorTrail } from "./components/CursorTrail";
+import { SplashLoader } from "./components/SplashLoader";
+import { AchievementSystem } from "./components/AchievementSystem";
+import { ParticleConstellation } from "./components/ParticleConstellation";
+import { AmbientAudio } from "./components/AmbientAudio";
 
 const topics = [
   "mechanics",
@@ -49,6 +55,7 @@ export default function App() {
   useEffect(() => {
     sendStatement("launched", window.location.pathname);
     initXAPISync();
+    localStorage.removeItem("physicslab-theme-preset-v1");
     const update = () => setOnline(navigator.onLine);
     window.addEventListener("online", update);
     window.addEventListener("offline", update);
@@ -57,6 +64,14 @@ export default function App() {
       window.removeEventListener("offline", update);
     };
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    root.dataset.theme = theme;
+    root.removeAttribute("data-theme-preset");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#050c18" : "#f8fafc");
+  }, [theme]);
 
   /* Cursor-reactive ambient light — updates CSS custom properties at 60fps */
   useEffect(() => {
@@ -85,9 +100,14 @@ export default function App() {
 
   return (
     <div className={classes}>
+      <SplashLoader />
+      <ParticleConstellation />
+      <CursorTrail />
+      <AchievementSystem />
+      <AmbientAudio />
       <ToastProvider>
         <a href="#content" className="skip-link">Skip to content</a>
-        <main className="min-h-screen bg-space-900 text-space-50">
+        <main className="app-shell min-h-screen" style={{ position: "relative", zIndex: 1 }}>
           {!online && (
             <div className="bg-warning-500 px-4 py-2 text-center text-sm font-semibold text-space-900">
               {t("offline")}
@@ -115,6 +135,7 @@ export default function App() {
                 <Route key={topic} path={`/topics/${topic}`} element={<TopicPage topic={topic} />} />
               ))}
               <Route path="/graphs" element={<GraphsPage />} />
+              <Route path="/graph" element={<KnowledgeGraphPage />} />
               <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
               <Route path="/settings" element={<SimplePage title="Settings" />} />
               <Route path="/help" element={<SimplePage title="Help" />} />

@@ -133,13 +133,17 @@ export function FormulasPage() {
                 </div>
                 <div className="formula-card-grid">
                   {category.formulas.map((formula) => (
-                    <article key={formula.id} className="formula-card">
+                    <article key={formula.id} className="formula-card" data-accent={category.accent}>
                       <div className="formula-card-topline">
                         <h4>{formula.name}</h4>
                         <span>{category.domain}</span>
                       </div>
-                      <div className="formula-expression" dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }} />
+                      <div className="formula-expression-shell">
+                        <div className="formula-expression-label">Equation</div>
+                        <div className="formula-expression" dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }} />
+                      </div>
                       <div className="formula-variable-row" aria-label={`${formula.name} variables`}>
+                        <b>Symbols</b>
                         {formula.variables.slice(0, 8).map((variable) => <span key={variable}>{variable}</span>)}
                       </div>
                       <div className="formula-tag-row">

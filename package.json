@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "serve": "vite preview --host 0.0.0.0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:physics": "node scripts/runPhysicsTests.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.2.1",

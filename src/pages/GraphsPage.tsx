@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Legend, Line, LineChart, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
 import { Toolbar } from "../components/Toolbar";
 import { useLabStore } from "../store/useLabStore";
 import { PhysicsIcon } from "../lib/icons";
+import { trackGraphPlot } from "../lib/achievements";
 
 interface DataRow {
   id: string;
@@ -75,6 +76,7 @@ function makeSeries(label = "Series 1", xLabel = "x", yLabel = "y"): Series {
 }
 
 export function GraphsPage() {
+  useEffect(() => { trackGraphPlot(); }, []);
   const [series, setSeries] = useState<Series[]>([makeSeries()]);
   const [activeSid, setActiveSid] = useState<string>(series[0].id);
   const [chartType, setChartType] = useState<"scatter" | "line">("scatter");
@@ -138,7 +140,10 @@ export function GraphsPage() {
   const importLabData = () => {
     if (labGraphData.length === 0) return;
     const s = makeSeries("Lab simulation data", "Time (s)", "KE (J)");
-    s.rows = labGraphData.slice(0, 200).map((point) => ({ id: makeId(), x: String(point.t.toFixed(3)), y: String(point.kineticEnergy.toFixed(3)) }));
+    s.rows = labGraphData
+      .slice(0, 200)
+      .filter((point) => Number.isFinite(point.kineticEnergy))
+      .map((point) => ({ id: makeId(), x: String(point.t.toFixed(3)), y: String(Number(point.kineticEnergy).toFixed(3)) }));
     setSeries((prev) => [...prev, s]);
     setActiveSid(s.id);
   };

@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
 import { makeQuizSession, quizCategoryOptions, quizStats, QuizDifficulty } from "../lib/quiz";
 import { RemediationPanel } from "../components/RemediationPanel";
+import { trackQuizComplete, trackQuizStreak } from "../lib/achievements";
 
 const difficultyOptions: Array<"all" | QuizDifficulty> = ["all", "Basic", "Intermediate", "Difficult"];
 const classOptions = ["all", "6", "7", "8", "9", "10", "11", "12"];
@@ -63,13 +64,21 @@ export function QuizPage() {
     localStorage.setItem(bestScoreKey, String(score));
   }, [bestScore, isComplete, score]);
 
+  useEffect(() => {
+    if (!isComplete) return;
+    trackQuizComplete(score, session.length);
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const startFreshQuiz = () => {
     setRunSeed((value) => value + 1);
   };
 
+  const quizStreakRef = useRef(0);
   const chooseOption = (option: string, trackConcept = true) => {
     if (!currentQuestion || answers[currentQuestion.id]) return;
     const correct = option === currentQuestion.correctOption;
+    quizStreakRef.current = correct ? quizStreakRef.current + 1 : 0;
+    trackQuizStreak(quizStreakRef.current);
     setAnimatingOption({ option, type: correct ? "correct" : "wrong" });
     window.setTimeout(() => setAnimatingOption(null), 600);
     setAnswers((state) => ({ ...state, [currentQuestion.id]: option }));

@@ -1,14 +1,31 @@
+import { useEffect, useState } from "react";
 import { objectRegistry } from "../lib/objectRegistry";
 import { useLabStore } from "../store/useLabStore";
 import { PhysicsObjectInstance } from "../types";
 
 export function PropertiesPanel() {
-  const { objects, selectedId, updateObject, removeSelected, duplicateSelected } = useLabStore();
+  const { objects, selectedId, selectObject, updateObject, removeSelected, duplicateSelected } = useLabStore();
+  const [dismissed, setDismissed] = useState(false);
   const selected = objects.find((object) => object.id === selectedId);
+
+  useEffect(() => {
+    if (selected) setDismissed(false);
+  }, [selected?.id]);
+
+  const closeDrawer = () => {
+    selectObject(undefined);
+    setDismissed(true);
+  };
+
+  if (!selected && dismissed) return null;
+
   if (!selected) {
     return (
       <aside className="properties-drawer properties-drawer-empty">
-        <h2 className="panel-title">Properties</h2>
+        <div className="drawer-head">
+          <h2 className="panel-title">Properties</h2>
+          <button className="drawer-close-btn" type="button" onClick={closeDrawer} aria-label="Close properties panel">Close</button>
+        </div>
         <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">Select an object to inspect mass, position, velocity, energy, material, and constraints.</p>
       </aside>
     );
@@ -42,8 +59,13 @@ export function PropertiesPanel() {
 
   return (
     <aside className="properties-drawer properties-drawer-open">
-      <h2 className="ui-title">{selected.name}</h2>
-      <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">{definition?.name ?? selected.kind}</p>
+      <div className="drawer-head">
+        <div>
+          <h2 className="ui-title">{selected.name}</h2>
+          <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">{definition?.name ?? selected.kind}</p>
+        </div>
+        <button className="drawer-close-btn" type="button" onClick={closeDrawer} aria-label="Close properties panel">Close</button>
+      </div>
       <details className="property-section mt-4" open>
         <summary>Motion metrics</summary>
         <div className="property-section-body grid gap-2 text-xs">
@@ -112,6 +134,7 @@ export function PropertiesPanel() {
       </details>
       <div className="property-drawer-actions">
         <button className="tool-btn justify-center" onClick={duplicateSelected}>Duplicate</button>
+        <button className="tool-btn justify-center" onClick={closeDrawer}>Close</button>
         <button className="tool-btn justify-center text-rose-300" onClick={removeSelected}>Delete</button>
       </div>
     </aside>

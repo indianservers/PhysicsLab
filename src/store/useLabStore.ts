@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { AccessibilitySettings, GraphPoint, GraphTraceConfig, GraphVariable, ObservationRow, PhysicsObjectInstance, PhysicsObjectKind, ProjectFile, UnitSystem, ViewportState } from "../types";
 import { createObject } from "../lib/objectRegistry";
 import { projectileDefaults } from "../lib/experiments";
+import { getMeasurementAdapter, isGraphableVariable } from "../engine/measurementAdapters";
 
 interface ProjectileControls {
   speed: number;
@@ -102,18 +103,15 @@ export const useLabStore = create<LabState>((set, get) => ({
   showGrid: true,
   showVectors: true,
   showTrails: true,
-  theme: "dark",
+  theme: "light",
   graphData: [],
   graphPaused: false,
   graphSplit: false,
   graphTraces: [
-    { id: "x-time", xKey: "t", yKey: "x", label: "x vs t", color: "#22d3ee", enabled: true, errorPercent: 0 },
-    { id: "y-time", xKey: "t", yKey: "y", label: "y vs t", color: "#34d399", enabled: true, errorPercent: 0 },
-    { id: "speed-time", xKey: "t", yKey: "speed", label: "speed vs t", color: "#fb923c", enabled: true, errorPercent: 0 },
-    { id: "pv", xKey: "volume", yKey: "pressure", label: "pressure vs volume", color: "#facc15", enabled: false, errorPercent: 2 },
-    { id: "vi", xKey: "current", yKey: "voltage", label: "voltage vs current", color: "#a78bfa", enabled: false, errorPercent: 1 },
-    { id: "ia", xKey: "angle", yKey: "intensity", label: "intensity vs angle", color: "#f43f5e", enabled: false, errorPercent: 3 },
-    { id: "wf", xKey: "frequency", yKey: "wavelength", label: "wavelength vs frequency", color: "#38bdf8", enabled: false, errorPercent: 1 },
+    withTraceTrust({ id: "x-time", xKey: "t", yKey: "x", label: "x vs t", color: "#22d3ee", enabled: true, errorPercent: 0 }),
+    withTraceTrust({ id: "y-time", xKey: "t", yKey: "y", label: "y vs t", color: "#34d399", enabled: true, errorPercent: 0 }),
+    withTraceTrust({ id: "speed-time", xKey: "t", yKey: "speed", label: "speed vs t", color: "#fb923c", enabled: true, errorPercent: 0 }),
+    withTraceTrust({ id: "energy-time", xKey: "t", yKey: "totalEnergy", label: "totalEnergy vs t", color: "#facc15", enabled: false, errorPercent: 1 }),
   ],
   cursorIndex: 0,
   observationRows: [],
@@ -182,7 +180,13 @@ export const useLabStore = create<LabState>((set, get) => ({
   setGraphPaused: (graphPaused) => set({ graphPaused }),
   setGraphSplit: (graphSplit) => set({ graphSplit }),
   setGraphTrace: (id, patch) => set((state) => ({ graphTraces: state.graphTraces.map((trace) => trace.id === id ? { ...trace, ...patch } : trace) })),
-  addGraphTrace: (xKey, yKey) => set((state) => ({ graphTraces: [...state.graphTraces, { id: crypto.randomUUID(), xKey, yKey, label: `${String(yKey)} vs ${String(xKey)}`, color: "#22d3ee", enabled: true, errorPercent: 0 }] })),
+  addGraphTrace: (xKey, yKey) => set((state) => {
+    if (!isGraphableVariable(xKey) || !isGraphableVariable(yKey)) {
+      console.warn(`[graphs] Cannot add trace ${String(yKey)} vs ${String(xKey)} because one variable has no measurement adapter.`);
+      return state;
+    }
+    return { graphTraces: [...state.graphTraces, withTraceTrust({ id: crypto.randomUUID(), xKey, yKey, label: `${String(yKey)} vs ${String(xKey)}`, color: "#22d3ee", enabled: true, errorPercent: 0 })] };
+  }),
   setCursorIndex: (cursorIndex) => set({ cursorIndex }),
   addObservationRow: () => set((state) => ({ observationRows: [...state.observationRows, { id: crypto.randomUUID(), label: `Trial ${state.observationRows.length + 1}`, measured: 0, expected: 0, unit: "m", note: "" }] })),
   updateObservationRow: (id, patch) => set((state) => ({ observationRows: state.observationRows.map((row) => row.id === id ? { ...row, ...patch } : row) })),
@@ -244,3 +248,13 @@ export const useLabStore = create<LabState>((set, get) => ({
     };
   },
 }));
+
+function withTraceTrust(trace: GraphTraceConfig): GraphTraceConfig {
+  const yAdapter = getMeasurementAdapter(trace.yKey);
+  return {
+    ...trace,
+    sourceType: yAdapter?.sourceModel,
+    scientificConfidence: yAdapter?.confidence,
+    assumptions: yAdapter?.assumptions,
+  };
+}

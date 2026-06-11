@@ -17,6 +17,7 @@ import {
   deleteExperimentState,
   type ExperimentSnapshot,
 } from "../lib/offlineDB";
+import { trackSimRun, trackSaveProject } from "../lib/achievements";
 
 export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const loadedRef = useRef(false);
@@ -33,9 +34,14 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const running = useLabStore((state) => state.running);
   const timeScale = useLabStore((state) => state.timeScale);
   const liveObjects = useLabStore((state) => state.objects);
+  const simTrackedRef = useRef(false);
   const params = new URLSearchParams(window.location.search);
   const embedded = params.get("embed") === "1" || window.parent !== window;
   const experimentName = params.get("experiment") ?? (mode === "sandbox" ? "sandbox" : "lab");
+
+  useEffect(() => {
+    if (running && !simTrackedRef.current) { simTrackedRef.current = true; trackSimRun(); }
+  }, [running]);
 
   // Load saved state on mount (URL params take priority over IndexedDB)
   useEffect(() => {
@@ -116,6 +122,7 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
             setHasSave(true);
             setSavedAt(snapshot.savedAt);
             setSaveStatus("saved");
+            trackSaveProject();
             window.setTimeout(() => setSaveStatus("idle"), 3000);
           })
           .catch(() => setSaveStatus("idle"));

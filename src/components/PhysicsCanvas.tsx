@@ -141,7 +141,16 @@ export function PhysicsCanvas() {
       if (event.key === "Delete") store.removeSelected();
       if (event.key === "+") store.setViewport({ zoom: store.viewport.zoom * 1.1 });
       if (event.key === "-") store.setViewport({ zoom: store.viewport.zoom / 1.1 });
-      if (event.key === "Escape") store.selectObject(undefined);
+      if (event.key === "Escape") {
+        store.selectObject(undefined);
+        setContextMenu(null);
+        setTooltip(null);
+        setInspector(null);
+        setPinnedInspectors([]);
+        setFbdObject(null);
+        setFormulaDetail(null);
+        setGuide(null);
+      }
       if (event.ctrlKey && event.key.toLowerCase() === "c") {
         copiedRef.current = store.objects.find((object) => object.id === store.selectedId) ?? null;
       }
@@ -617,6 +626,10 @@ export function PhysicsCanvas() {
           histories={sparkHistoryRef.current}
           pinned={false}
           onPin={(object) => setPinnedInspectors((items) => [object, ...items.filter((item) => item.id !== object.id)].slice(0, 3))}
+          onClose={() => {
+            useLabStore.getState().selectObject(undefined);
+            setInspector(null);
+          }}
         />
       )}
       {pinnedInspectors.map((object, index) => (
@@ -627,6 +640,7 @@ export function PhysicsCanvas() {
           pinned
           offset={index}
           onUnpin={(id) => setPinnedInspectors((items) => items.filter((item) => item.id !== id))}
+          onClose={(id) => setPinnedInspectors((items) => items.filter((item) => item.id !== id))}
         />
       ))}
       {fbdObject && <FreeBodyDiagramPanel object={stateRef.current.objects.find((object) => object.id === fbdObject.id) ?? fbdObject} onClose={() => setFbdObject(null)} />}
@@ -645,6 +659,7 @@ export function PhysicsCanvas() {
         <button onClick={() => { useLabStore.getState().addObject("force-arrow", selectedContextObject.x + 55, selectedContextObject.y); setContextMenu(null); }}>Add Force</button>
         <button className="text-rose-300" onClick={() => { useLabStore.getState().removeSelected(); setContextMenu(null); }}>Delete</button>
       </div>}
+      {selectedId && !contextMenu && <SelectedObjectStrip objectId={selectedId} />}
     </div>
   );
 }
@@ -1903,24 +1918,71 @@ function energyFromState(objects: PhysicsObjectInstance[], totalEnergy?: number)
   return { kinetic, potential, thermal, total, stable };
 }
 
+const MAX_ENERGY_HISTORY = 50;
+
 function EnergyAuditPanel({ energy }: { energy: { kinetic: number; potential: number; thermal: number; total: number; stable: boolean } }) {
-  const max = Math.max(1, energy.kinetic, energy.potential, energy.thermal, Math.abs(energy.total));
+  const histRef = useRef<{ ke: number; pe: number; total: number }[]>([]);
+  const prevRef = useRef(energy);
+
+  if (prevRef.current !== energy) {
+    prevRef.current = energy;
+    histRef.current.push({ ke: energy.kinetic, pe: energy.potential, total: Math.abs(energy.total) });
+    if (histRef.current.length > MAX_ENERGY_HISTORY) histRef.current.shift();
+  }
+
+  const W = 120; const H = 40;
+  const hist = histRef.current;
+  const maxVal = Math.max(1, ...hist.map((h) => Math.max(h.ke, h.pe, h.total)));
+
+  const toPath = (key: keyof typeof hist[0]) => {
+    if (hist.length < 2) return "";
+    return hist.map((h, i) => {
+      const x = (i / (MAX_ENERGY_HISTORY - 1)) * W;
+      const y = H - (h[key] / maxVal) * H;
+      return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(" ");
+  };
+
   const rows = [
-    { label: "K", value: energy.kinetic, color: "cyan" },
-    { label: "U", value: energy.potential, color: "amber" },
-    { label: "Q", value: energy.thermal, color: "red" },
-    { label: "T", value: energy.total, color: "white" },
+    { label: "KE", value: energy.kinetic, color: "#22d3ee" },
+    { label: "PE", value: energy.potential, color: "#f59e0b" },
+    { label: "TE", value: energy.total, color: "#a78bfa" },
   ];
+
   return (
-    <div className="canvas-energy-panel">
-      <div className={energy.stable ? "energy-conservation stable" : "energy-conservation unstable"} title="Energy conservation indicator" />
-      {rows.map((row) => (
-        <div key={row.label} className={`energy-row energy-${row.color}`}>
-          <span>{row.label}</span>
-          <div><i style={{ height: `${clamp(Math.abs(row.value) / max, 0.03, 1) * 100}%` }} /></div>
-          <strong>{row.value.toFixed(1)}J</strong>
-        </div>
-      ))}
+    <div className="canvas-energy-panel canvas-energy-panel-v2">
+      <div className="energy-sparkline">
+        <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} aria-hidden="true">
+          <defs>
+            <linearGradient id="ke-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="pe-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {hist.length >= 2 && (
+            <>
+              <path d={`${toPath("pe")} L${W},${H} L0,${H} Z`} fill="url(#pe-fill)" />
+              <path d={`${toPath("ke")} L${W},${H} L0,${H} Z`} fill="url(#ke-fill)" />
+              <path d={toPath("pe")} fill="none" stroke="#f59e0b" strokeWidth="1.2" />
+              <path d={toPath("ke")} fill="none" stroke="#22d3ee" strokeWidth="1.5" />
+              <path d={toPath("total")} fill="none" stroke="#a78bfa" strokeWidth="1" strokeDasharray="3,2" />
+            </>
+          )}
+        </svg>
+      </div>
+      <div className="energy-values-v2">
+        {rows.map((row) => (
+          <div key={row.label} className="energy-val-row" style={{ "--ecolor": row.color } as React.CSSProperties}>
+            <span>{row.label}</span>
+            <strong>{Math.abs(row.value).toFixed(1)}J</strong>
+          </div>
+        ))}
+      </div>
+      <div className={energy.stable ? "energy-conservation stable" : "energy-conservation unstable"} title={energy.stable ? "Energy conserved" : "Energy not conserved"} />
     </div>
   );
 }
@@ -1942,6 +2004,7 @@ function HoverInspector({
   offset = 0,
   onPin,
   onUnpin,
+  onClose,
 }: {
   inspector: { x: number; y: number; object: PhysicsObjectInstance };
   histories: Map<string, { t: number; speed: number; ke: number; force: number; voltage: number; current: number }[]>;
@@ -1949,6 +2012,7 @@ function HoverInspector({
   offset?: number;
   onPin?: (object: PhysicsObjectInstance) => void;
   onUnpin?: (id: string) => void;
+  onClose?: (id: string) => void;
 }) {
   const object = inspector.object;
   const speed = Math.hypot(object.vx, object.vy);
@@ -1959,7 +2023,10 @@ function HoverInspector({
     <div className={pinned ? "hover-inspector hover-inspector-pinned" : "hover-inspector"} style={style}>
       <div className="hover-inspector-head">
         <strong>{object.name}</strong>
-        {pinned ? <button onClick={() => onUnpin?.(object.id)}>Unpin</button> : <button onClick={() => onPin?.(object)}>Pin</button>}
+        <span className="hover-inspector-actions">
+          {pinned ? <button onClick={() => onUnpin?.(object.id)}>Unpin</button> : <button onClick={() => onPin?.(object)}>Pin</button>}
+          <button onClick={() => onClose?.(object.id)}>Close</button>
+        </span>
       </div>
       <InspectorRow label="m" value={`${object.mass.toFixed(2)} kg`} data={history.map((item) => item.ke)} />
       <InspectorRow label="pos" value={`${meters(object.x).toFixed(2)}, ${meters(object.y).toFixed(2)} m`} data={history.map((item) => item.speed)} />
@@ -2181,14 +2248,16 @@ function drawCenterOfMass(ctx: CanvasRenderingContext2D, objects: PhysicsObjectI
   });
 }
 
-function makeTimelineBookmarks(data: { t: number; y: number; speed: number }[]) {
+function makeTimelineBookmarks(data: { t: number; y?: number; speed?: number }[]) {
   if (data.length < 6) return [];
-  const maxHeight = data.reduce((best, point, index) => (point.y < best.point.y ? { point, index } : best), { point: data[0], index: 0 });
-  const maxSpeed = data.reduce((best, point, index) => (point.speed > best.point.speed ? { point, index } : best), { point: data[0], index: 0 });
+  const heightPoints = data.map((point, index) => ({ point, index })).filter((item) => Number.isFinite(item.point.y));
+  const speedPoints = data.map((point, index) => ({ point, index })).filter((item) => Number.isFinite(item.point.speed));
+  const maxHeight = heightPoints.reduce((best, item) => (Number(item.point.y) > Number(best.point.y) ? item : best), heightPoints[0]);
+  const maxSpeed = speedPoints.reduce((best, item) => (Number(item.point.speed) > Number(best.point.speed) ? item : best), speedPoints[0]);
   return [
-    { index: maxHeight.index, kind: "peak", label: `Peak height at t=${maxHeight.point.t.toFixed(2)}s` },
-    { index: maxSpeed.index, kind: "speed", label: `Max speed ${maxSpeed.point.speed.toFixed(2)} m/s` },
-  ];
+    maxHeight ? { index: maxHeight.index, kind: "peak", label: `Peak height at t=${maxHeight.point.t.toFixed(2)}s` } : undefined,
+    maxSpeed ? { index: maxSpeed.index, kind: "speed", label: `Max speed ${Number(maxSpeed.point.speed).toFixed(2)} m/s` } : undefined,
+  ].filter(Boolean) as { index: number; kind: string; label: string }[];
 }
 
 function meters(px: number) {
@@ -2206,4 +2275,31 @@ function hitTest(object: PhysicsObjectInstance, x: number, y: number) {
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
+}
+
+function SelectedObjectStrip({ objectId }: { objectId: string }) {
+  const obj = useLabStore((state) => state.objects.find((o) => o.id === objectId));
+  if (!obj) return null;
+  const speed = Math.hypot(obj.vx, obj.vy);
+  const ke = (0.5 * obj.mass * speed * speed).toFixed(1);
+  return (
+    <div className="canvas-selected-strip">
+      <span className="canvas-selected-kind">{obj.kind}</span>
+      <span className="canvas-selected-divider" />
+      <span><span className="canvas-selected-label">m</span>{obj.mass.toFixed(2)} kg</span>
+      <span><span className="canvas-selected-label">v</span>{speed.toFixed(2)} m/s</span>
+      <span><span className="canvas-selected-label">KE</span>{ke} J</span>
+      <span className="canvas-selected-divider" />
+      <button
+        className="canvas-selected-btn"
+        title="Duplicate"
+        onClick={() => useLabStore.getState().duplicateSelected()}
+      >⧉</button>
+      <button
+        className="canvas-selected-btn canvas-selected-btn-danger"
+        title="Delete"
+        onClick={() => useLabStore.getState().removeSelected()}
+      >✕</button>
+    </div>
+  );
 }

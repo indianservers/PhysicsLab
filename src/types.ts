@@ -214,20 +214,41 @@ export interface ExperimentDefinition {
   expectedResult: string;
   vivaQuestions: Question[];
   commonMistakes: string[];
+  assumptions?: string[];
+  limitations?: string[];
+  validRanges?: string[];
+  failureConditions?: string[];
+  modelClass?: SimulationModelClass;
+  trustLevel?: number;
+  confidenceReason?: string;
 }
+
+export type SimulationModelClass =
+  | "Concept"
+  | "Calculator"
+  | "Visualization"
+  | "Dynamic Simulation"
+  | "Validated Simulation"
+  | "Research Prototype";
+
+export type GraphSourceType =
+  | "Validated Simulation"
+  | "Formula Calculation"
+  | "Educational Approximation"
+  | "Visual Metaphor";
 
 export interface GraphPoint {
   t: number;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  speed: number;
+  x?: number;
+  y?: number;
+  vx?: number;
+  vy?: number;
+  speed?: number;
   acceleration?: number;
   force?: number;
   momentum?: number;
-  kineticEnergy: number;
-  potentialEnergy: number;
+  kineticEnergy?: number;
+  potentialEnergy?: number;
   totalEnergy?: number;
   pressure?: number;
   volume?: number;
@@ -250,6 +271,9 @@ export interface GraphTraceConfig {
   color: string;
   enabled: boolean;
   errorPercent?: number;
+  sourceType?: GraphSourceType;
+  scientificConfidence?: number;
+  assumptions?: string[];
 }
 
 export interface ObservationRow {

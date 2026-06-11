@@ -36,6 +36,7 @@ const studyNavItems: NavItem[] = [
   { label: "All Topics", path: "/topics", icon: "book" },
   { label: "Graphs", path: "/graphs", icon: "chart" },
   { label: "Quantum", path: "/quantum", icon: "atom", accent: "quantum" },
+  { label: "Knowledge Graph", path: "/graph", icon: "orbit" },
 ];
 
 const toolNavItems: NavItem[] = [
@@ -154,8 +155,8 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
     <>
       <header className="app-toolbar">
         <RouterLink to="/" className="brand-mark" aria-label="PhysicsLab 100 home">
-          <PhysicsIcon name="atom" className="h-5 w-5" />
-          <span>PhysicsLab 100</span>
+          <span className="brand-atom-icon"><PhysicsIcon name="atom" className="h-5 w-5" /></span>
+          <span className="brand-wordmark">PhysicsLab 100</span>
         </RouterLink>
         {!compact && (
           <button className="command-trigger" title="Open command palette" data-tooltip="Open command palette" onClick={() => setSearchOpen(true)}>
@@ -173,7 +174,8 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
           <button
             ref={themeToggleRef}
             className="theme-toggle"
-            title={t("toolbar.theme")}
+            title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
             onClick={(e) => {
               const btn = themeToggleRef.current;
               const nextTheme = theme === "dark" ? "light" : "dark";

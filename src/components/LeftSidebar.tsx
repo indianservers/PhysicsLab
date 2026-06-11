@@ -36,10 +36,13 @@ export function LeftSidebar() {
     const definition = objectRegistry.find((object) => object.id === selected.kind);
     return (
       <aside className="panel flex min-h-0 flex-col overflow-auto p-4" aria-label="Selected object inspector">
-        <div className="mb-4">
-          <div className="ui-label">{definition?.category ?? selected.kind}</div>
-          <h2 className="ui-title mt-1">{selected.name}</h2>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Focused controls for the selected object.</p>
+        <div className="drawer-head mb-4">
+          <div>
+            <div className="ui-label">{definition?.category ?? selected.kind}</div>
+            <h2 className="ui-title mt-1">{selected.name}</h2>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Focused controls for the selected object.</p>
+          </div>
+          <button className="drawer-close-btn" type="button" onClick={() => selectObject(undefined)} aria-label="Close selected object controls">Close</button>
         </div>
         <GuidePanel guide={guideForTool(selected.name)} compact />
         <div className="space-y-3">
