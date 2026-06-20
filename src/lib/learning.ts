@@ -123,6 +123,22 @@ export function exportLearningPortfolio(experiments: ExperimentDefinition[]) {
   };
 }
 
+export function importLearningRecords(records: LearningRecord[]) {
+  const existing = readRecords();
+  let count = 0;
+  for (const record of records) {
+    if (!record.experimentId || !record.currentStage) continue;
+    existing[record.experimentId] = {
+      ...createEmptyRecord(record.experimentId),
+      ...record,
+      updatedAt: record.updatedAt || new Date().toISOString(),
+    };
+    count++;
+  }
+  localStorage.setItem(KEY, JSON.stringify(existing));
+  return count;
+}
+
 function readRecords(): Record<string, LearningRecord> {
   try {
     return JSON.parse(localStorage.getItem(KEY) ?? "{}") as Record<string, LearningRecord>;

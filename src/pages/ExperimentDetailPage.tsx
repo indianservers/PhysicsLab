@@ -28,6 +28,11 @@ import { defaultLearningLevelForClass, LearningLevel, learningLevelProfiles, lea
 import { generateAdaptiveQuestions } from "../lib/questionEngine";
 import { commonMistakesForExperiment } from "../lib/commonMistakes";
 import { downloadMarkdownReport, generateExperimentMarkdownReport } from "../lib/reportGenerator";
+import { evaluateFlagshipLab, getFlagshipDefaultValues, getFlagshipLabModel } from "../lib/flagshipLabModels";
+import { saveLocalArtifact } from "../lib/offlineDB";
+
+type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
+type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
 
 export function ExperimentDetailPage() {
   const { id } = useParams();
@@ -70,6 +75,8 @@ export function ExperimentDetailPage() {
                 {experiment.curriculumTags.domains.map((domain) => <span key={domain} className="status-chip">{domain}</span>)}
                 <span className="status-chip">{experiment.difficulty}</span>
                 <span className="status-chip status-chip-cyan">{experiment.modelClass}</span>
+                <span className="status-chip status-chip-amber">{experiment.evidenceType}</span>
+                <span className="status-chip">{experiment.maturityLevel}</span>
                 <span className="status-chip">{experiment.trustLevel}% trust</span>
               </div>
             )}
@@ -92,6 +99,7 @@ export function ExperimentDetailPage() {
             >
               <PhysicsIcon name="book" className="h-4 w-4" />Lab Report
             </button>
+            <Link to="/trust" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="check" className="h-4 w-4" />Trust guide</Link>
             <Link to="/lab" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
           </div>
         </div>
@@ -119,7 +127,7 @@ export function ExperimentDetailPage() {
           </div>
           <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
             {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={learningLevel} />}
-            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} learningLevel={learningLevel} />)}
+            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} learningLevel={learningLevel} assignment={assignment} />)}
             {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
             {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={learningLevel} />}
             {activePane === "coach" && <ExperimentCoachPane experiment={experiment} learningLevel={learningLevel} />}
@@ -138,14 +146,14 @@ function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof
       <GuidePanel guide={guideForExperiment(experiment)} compact />
       <CoreLearningToolkit experiment={experiment} />
       <LearningPanel experiment={experiment} />
-      <LabReferenceStack experiment={experiment} values={defaultLabValues(experiment.id)} />
+      <LabReferenceStack experiment={experiment} values={labValuesFor(experiment.id)} />
     </div>
   );
 }
 
 function ExperimentThreePane({ experiment }: { experiment: typeof experiments[number] }) {
-  const values = defaultLabValues(experiment.id);
-  const result = calculateStarterLab(experiment.id, values[0], values[1], values[2]);
+  const values = labValuesFor(experiment.id);
+  const result = calculateLab(experiment.id, values[0], values[1], values[2]);
   return (
     <div className="experiment-bento-pane">
       {has3DAnimation(experiment.id) ? (
@@ -186,8 +194,8 @@ function ExperimentQuizPane({ experiment, learningLevel }: { experiment: typeof 
 }
 
 function ExperimentCoachPane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
-  const values = defaultLabValues(experiment.id);
-  const result = calculateStarterLab(experiment.id, values[0], values[1], values[2]);
+  const values = labValuesFor(experiment.id);
+  const result = calculateLab(experiment.id, values[0], values[1], values[2]);
   const variables = result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? 0 }));
   return (
     <div className="experiment-bento-pane">
@@ -200,7 +208,7 @@ function ExperimentCoachPane({ experiment, learningLevel }: { experiment: typeof
           outputs={result.outputs}
           formula={result.formula}
           onSetValues={() => undefined}
-          makeTrialOutputs={(trial) => calculateStarterLab(experiment.id, trial[0], trial[1], trial[2]).outputs}
+          makeTrialOutputs={(trial) => calculateLab(experiment.id, trial[0], trial[1], trial[2]).outputs}
         />
       </div>
     </div>
@@ -256,7 +264,7 @@ function LabCommandStrip({ experiment }: { experiment: typeof experiments[number
   );
 }
 
-function AssignmentBanner({ assignment }: { assignment: NonNullable<ReturnType<typeof getAssignmentFromSearch>> }) {
+function AssignmentBanner({ assignment }: { assignment: ActiveAssignment }) {
   return (
     <section className="panel mb-4 border-cyan-400/60 p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -268,35 +276,61 @@ function AssignmentBanner({ assignment }: { assignment: NonNullable<ReturnType<t
         <div className="flex flex-wrap gap-2">
           {assignment.dueDate && <span className="badge">Due {assignment.dueDate}</span>}
           {assignment.lockVariables && <span className="badge">Variables locked</span>}
+          {assignment.snapshotData && <span className="badge">Snapshot setup</span>}
           {assignment.requireNotebook && <span className="badge">Notebook required</span>}
           {assignment.requireQuiz && <span className="badge">Quiz required</span>}
         </div>
       </div>
+      {assignment.snapshotData && (
+        <p className="mt-3 rounded-md border border-cyan-300/35 bg-cyan-400/10 p-2 text-xs font-bold text-slate-600 dark:text-cyan-100">
+          This assignment opens with a teacher-provided browser snapshot. Use Reset if your teacher asks for a fresh baseline.
+        </p>
+      )}
     </section>
   );
 }
 
-function GenericExperiment({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
-  const defaultValues = defaultLabValues(experiment.id);
-  const [a, setA] = useState(defaultValues[0]);
-  const [b, setB] = useState(defaultValues[1]);
-  const [c, setC] = useState(defaultValues[2]);
-  const [focusIndex, setFocusIndex] = useState<number | null>(null);
+function GenericExperiment({ experiment, learningLevel, assignment }: { experiment: typeof experiments[number]; learningLevel: LearningLevel; assignment?: ActiveAssignment }) {
+  const defaultValues = labValuesFor(experiment.id);
+  const initialSnapshot = readLabSnapshotFromSearch(experiment.id);
+  const flagshipModel = getFlagshipLabModel(experiment.id);
+  const [a, setA] = useState(initialSnapshot?.values[0] ?? defaultValues[0]);
+  const [b, setB] = useState(initialSnapshot?.values[1] ?? defaultValues[1]);
+  const [c, setC] = useState(initialSnapshot?.values[2] ?? defaultValues[2]);
+  const [focusIndex, setFocusIndex] = useState<number | null>(initialSnapshot?.focusIndex ?? null);
   const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
-  const [workspaceView, setWorkspaceView] = useState<"visual" | "graphs" | "report" | "coach" | "notes">("visual");
-  const [classroomPaused, setClassroomPaused] = useState(false);
-  const results = calculateStarterLab(experiment.id, a, b, c);
+  const [workspaceView, setWorkspaceView] = useState<LabWorkspaceView>(initialSnapshot?.view ?? "visual");
+  const [classroomPaused, setClassroomPaused] = useState(initialSnapshot?.paused ?? false);
+  const [presentationStep, setPresentationStep] = useState(initialSnapshot?.presentationStep ?? 0);
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [snapshotState, setSnapshotState] = useState(initialSnapshot ? "Snapshot loaded from this link" : "Ready to share current setup");
+  const results = calculateLab(experiment.id, a, b, c);
+  const variablesLocked = Boolean(assignment?.lockVariables);
   const levelSliderCount = learningLevelProfiles[learningLevel].sliderCount;
   const shownControls = results.controls.slice(0, levelSliderCount);
   const variables = results.controls.map((control, index) => ({ label: control.label, value: [a, b, c][index] ?? 0 }));
   const setters = [setA, setB, setC];
   const setAll = (values: number[]) => {
+    if (variablesLocked) return;
     setA(values[0] ?? a);
     setB(values[1] ?? b);
     setC(values[2] ?? c);
   };
   const resetValues = () => setAll(defaultValues);
+  const currentSnapshot = useMemo(() => buildLabSnapshot(experiment.id, [a, b, c], workspaceView, focusIndex, presentationStep, classroomPaused), [experiment.id, a, b, c, workspaceView, focusIndex, presentationStep, classroomPaused]);
+  const snapshotUrl = useMemo(() => buildLabSnapshotUrl(currentSnapshot), [currentSnapshot]);
+  const copyLabSnapshot = async () => {
+    await navigator.clipboard.writeText(snapshotUrl);
+    setSnapshotState("Snapshot link copied");
+    window.setTimeout(() => setSnapshotState("Ready to share current setup"), 1800);
+  };
+  const pinLabSnapshot = () => {
+    window.history.replaceState(null, "", snapshotUrl);
+    setSnapshotState("This setup is pinned in the address bar");
+    window.setTimeout(() => setSnapshotState("Ready to share current setup"), 1800);
+  };
   const applyMeasuredTarget = (outputIndex: number, controlIndex: number, target: number) => {
+    if (variablesLocked) return;
     const control = results.controls[controlIndex];
     if (!control || !Number.isFinite(target)) return;
     const current = [a, b, c];
@@ -304,11 +338,30 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
     setters[controlIndex]?.(nextValue);
   };
   const stepValues = () => {
-    if (classroomPaused) return;
+    if (classroomPaused || variablesLocked) return;
     const first = results.controls[0];
     if (!first) return;
     const next = Number(Math.min(first.max, a + first.step).toFixed(first.step < 0.1 ? 2 : 1));
     setA(next >= first.max ? first.min : next);
+  };
+  const applyPresentationStep = (index: number) => {
+    const steps = classroomPresentationSteps(experiment, results, flagshipModel?.predictionPrompt);
+    const bounded = Math.max(0, Math.min(steps.length - 1, index));
+    const next = steps[bounded];
+    setPresentationStep(bounded);
+    setWorkspaceView(next.view);
+    if (typeof next.focusIndex !== "undefined") setFocusIndex(next.focusIndex);
+    if (variablesLocked) return;
+    if (next.valueMode === "reset") resetValues();
+    if (next.valueMode === "low") setAll(results.controls.map((control) => control.min));
+    if (next.valueMode === "mid") setAll(results.controls.map((control) => midpoint(control)));
+    if (next.valueMode === "high") setAll(results.controls.map((control) => control.max));
+  };
+  const copyPresentationPrompt = async () => {
+    const step = classroomPresentationSteps(experiment, results, flagshipModel?.predictionPrompt)[presentationStep];
+    await navigator.clipboard.writeText(`${experiment.title}: ${step.title}\n${step.prompt}\nWatch: ${step.watch}`);
+    setCopiedPrompt(true);
+    window.setTimeout(() => setCopiedPrompt(false), 1600);
   };
   return (
     <div id="simulation" className="experiment-live-shell">
@@ -317,7 +370,8 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
           <LiveExperimentControls
             result={results}
             values={[a, b, c]}
-            disabled={classroomPaused}
+            disabled={classroomPaused || variablesLocked}
+            lockReason={variablesLocked ? "Teacher locked variables for this assignment." : undefined}
             onChange={(index, value) => setters[index]?.(value)}
             onSetAll={setAll}
             onReset={resetValues}
@@ -350,9 +404,9 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
               </div>
             </div>
             <div className="mt-3 grid gap-2 md:grid-cols-3">
-              <MiniAction label="Low" icon="ruler" onClick={() => setAll(results.controls.map((control) => control.min))} />
-              <MiniAction label="Mid" icon="gauge" onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
-              <MiniAction label="High" icon="spark" onClick={() => setAll(results.controls.map((control) => control.max))} />
+              <MiniAction label="Low" icon="ruler" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.min))} />
+              <MiniAction label="Mid" icon="gauge" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
+              <MiniAction label="High" icon="spark" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.max))} />
             </div>
             {experiment.id === "prism-dispersion" && (
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -361,6 +415,7 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
                     key={material.id}
                     label={material.name}
                     icon="prism"
+                    disabled={variablesLocked}
                     onClick={() => setAll([a, material.meanIndex, material.dispersion])}
                   />
                 ))}
@@ -376,7 +431,7 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
                   max={control.max}
                   step={control.step}
                   onChange={setters[index]}
-                  disabled={classroomPaused}
+                  disabled={classroomPaused || variablesLocked}
                 />
               ))}
             </div>
@@ -389,7 +444,7 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
             <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
           </CollapsibleSection>
           <CollapsibleSection icon="flask" title="Guided steps" hint="Use this when you want lab-assistant mode">
-            <ClassroomControlBar paused={classroomPaused} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
+            <ClassroomControlBar paused={classroomPaused} locked={variablesLocked} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
             <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
           </CollapsibleSection>
         </section>
@@ -414,7 +469,36 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
             ))}
           </div>
         </div>
+        <LabPresentationPanel
+          experiment={experiment}
+          result={results}
+          activeIndex={presentationStep}
+          copiedPrompt={copiedPrompt}
+          modelPrompt={flagshipModel?.predictionPrompt}
+          onSelect={applyPresentationStep}
+          onPrevious={() => applyPresentationStep(presentationStep - 1)}
+          onNext={() => applyPresentationStep(presentationStep + 1)}
+          onCopy={copyPresentationPrompt}
+        />
+        <LabSnapshotPanel
+          result={results}
+          values={[a, b, c]}
+          snapshotState={snapshotState}
+          onCopy={copyLabSnapshot}
+          onPin={pinLabSnapshot}
+          onReset={resetValues}
+        />
         <div className="desktop-stage-body">
+          {flagshipModel && (
+            <div className="rounded-md border border-emerald-400/30 bg-emerald-400/10 p-3 text-sm text-slate-700 dark:text-slate-200">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="status-chip status-chip-cyan">Flagship model</span>
+                <span className="status-chip">{flagshipModel.modelVersion}</span>
+                <span className="status-chip">{flagshipModel.maturityTarget}</span>
+              </div>
+              <p className="mt-2 font-semibold">{flagshipModel.predictionPrompt}</p>
+            </div>
+          )}
           {workspaceView === "visual" && (
             <>
               <ConceptFocusPanel experiment={experiment} result={results} learningLevel={learningLevel} />
@@ -433,11 +517,16 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
               experiment={experiment}
               result={results}
               values={[a, b, c]}
-              makeTrialOutputs={(values) => calculateStarterLab(experiment.id, values[0], values[1], values[2]).outputs}
+              makeTrialOutputs={(values) => calculateLab(experiment.id, values[0], values[1], values[2]).outputs}
               defaultOpen
             />
           )}
-          {workspaceView === "report" && <LabReportGenerator experiment={experiment} result={results} values={[a, b, c]} defaultOpen />}
+          {workspaceView === "report" && (
+            <div className="grid gap-3">
+              <ScientificNotebook experiment={experiment} result={results} values={[a, b, c]} assignment={assignment} snapshot={currentSnapshot} defaultOpen />
+              <LabReportGenerator experiment={experiment} result={results} values={[a, b, c]} defaultOpen />
+            </div>
+          )}
           {workspaceView === "coach" && (
             <div id="coach">
               <PhysicsCoachPanel experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} formula={results.formula} />
@@ -449,7 +538,7 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
                   outputs={results.outputs}
                   formula={results.formula}
                   onSetValues={setAll}
-                  makeTrialOutputs={(values) => calculateStarterLab(experiment.id, values[0], values[1], values[2]).outputs}
+                  makeTrialOutputs={(values) => calculateLab(experiment.id, values[0], values[1], values[2]).outputs}
                 />
               </CollapsibleSection>
             </div>
@@ -464,10 +553,177 @@ function GenericExperiment({ experiment, learningLevel }: { experiment: typeof e
   );
 }
 
+interface ClassroomPresentationStep {
+  title: string;
+  prompt: string;
+  watch: string;
+  view: LabWorkspaceView;
+  focusIndex?: number | null;
+  valueMode?: "reset" | "low" | "mid" | "high";
+}
+
+function LabPresentationPanel({
+  experiment,
+  result,
+  activeIndex,
+  copiedPrompt,
+  modelPrompt,
+  onSelect,
+  onPrevious,
+  onNext,
+  onCopy,
+}: {
+  experiment: typeof experiments[number];
+  result: LabResult;
+  activeIndex: number;
+  copiedPrompt: boolean;
+  modelPrompt?: string;
+  onSelect: (index: number) => void;
+  onPrevious: () => void;
+  onNext: () => void;
+  onCopy: () => void;
+}) {
+  const steps = classroomPresentationSteps(experiment, result, modelPrompt);
+  const active = steps[activeIndex] ?? steps[0];
+  const progress = Math.round(((activeIndex + 1) / steps.length) * 100);
+  return (
+    <section className="lab-presentation-panel">
+      <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="ui-label">Classroom run</p>
+          <h3 className="mt-1 text-lg font-black text-slate-800 dark:text-slate-100">{active.title}</h3>
+          <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">{active.prompt}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button className="tool-btn" type="button" onClick={onPrevious} disabled={activeIndex === 0}><PhysicsIcon name="step" className="h-4 w-4" />Back</button>
+          <button className="tool-btn-primary" type="button" onClick={onNext} disabled={activeIndex >= steps.length - 1}><PhysicsIcon name="play" className="h-4 w-4" />Next</button>
+          <button className="tool-btn" type="button" onClick={onCopy}><PhysicsIcon name="clipboard" className="h-4 w-4" />{copiedPrompt ? "Copied" : "Copy prompt"}</button>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div className="grid gap-2 sm:grid-cols-3 xl:grid-cols-6">
+          {steps.map((step, index) => (
+            <button key={step.title} className={index === activeIndex ? "presentation-step presentation-step-active" : "presentation-step"} type="button" onClick={() => onSelect(index)}>
+              <span>{index + 1}</span>
+              <strong>{step.title}</strong>
+            </button>
+          ))}
+        </div>
+        <div className="rounded-md border border-cyan-300/25 bg-cyan-400/10 p-3 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <div className="flex items-center justify-between gap-3">
+            <span className="ui-label">Watch</span>
+            <span className="status-chip status-chip-cyan">{progress}%</span>
+          </div>
+          <p className="mt-1">{active.watch}</p>
+          <div className="mini-progress mt-3"><span style={{ width: `${progress}%` }} /></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LabSnapshotPanel({
+  result,
+  values,
+  snapshotState,
+  onCopy,
+  onPin,
+  onReset,
+}: {
+  result: LabResult;
+  values: number[];
+  snapshotState: string;
+  onCopy: () => void;
+  onPin: () => void;
+  onReset: () => void;
+}) {
+  const previewItems = result.controls.slice(0, 3).map((control, index) => ({
+    label: control.label,
+    value: formatReportNumber(values[index] ?? control.min),
+  }));
+  return (
+    <section className="lab-snapshot-panel">
+      <div className="min-w-0">
+        <p className="ui-label">Browser-only snapshot</p>
+        <h3>Freeze this setup in a link</h3>
+        <p>{snapshotState}</p>
+      </div>
+      <div className="snapshot-value-strip" aria-label="Snapshot values">
+        {previewItems.map((item) => (
+          <span key={item.label} title={`${item.label}: ${item.value}`}>
+            <strong>{item.value}</strong>
+            <em>{item.label}</em>
+          </span>
+        ))}
+      </div>
+      <div className="snapshot-actions">
+        <button className="tool-btn-primary" type="button" onClick={onCopy}><PhysicsIcon name="clipboard" className="h-4 w-4" />Copy link</button>
+        <button className="tool-btn" type="button" onClick={onPin}><PhysicsIcon name="check" className="h-4 w-4" />Pin URL</button>
+        <button className="tool-btn" type="button" onClick={onReset}><PhysicsIcon name="download" className="h-4 w-4" />Reset</button>
+      </div>
+    </section>
+  );
+}
+
+function classroomPresentationSteps(experiment: typeof experiments[number], result: LabResult, modelPrompt?: string): ClassroomPresentationStep[] {
+  const firstControl = result.controls[0]?.label ?? "the first variable";
+  const secondControl = result.controls[1]?.label ?? "another variable";
+  const firstOutput = result.outputs[0]?.label ?? "the main result";
+  return [
+    {
+      title: "Predict",
+      prompt: modelPrompt ?? `Before touching sliders, predict how ${firstOutput} changes when ${firstControl} changes.`,
+      watch: "Ask for one written prediction. Do not run the simulation yet.",
+      view: "visual",
+      focusIndex: 0,
+      valueMode: "reset",
+    },
+    {
+      title: "Baseline",
+      prompt: `Reset to a clean starting point and name the formula: ${result.formula}.`,
+      watch: `Read ${firstControl}, ${secondControl}, and ${firstOutput} out loud.`,
+      view: "visual",
+      focusIndex: null,
+      valueMode: "reset",
+    },
+    {
+      title: "Vary",
+      prompt: `Change only ${firstControl}. Keep every other input fixed.`,
+      watch: `Watch whether ${firstOutput} rises, falls, curves, or stays constant.`,
+      view: "visual",
+      focusIndex: 0,
+      valueMode: "high",
+    },
+    {
+      title: "Graph",
+      prompt: `Plot ${firstOutput} against ${firstControl} and describe the shape.`,
+      watch: "Use the graph to decide whether the relationship is direct, inverse, squared, or square-root.",
+      view: "graphs",
+      focusIndex: 0,
+    },
+    {
+      title: "Explain",
+      prompt: `Use the coach to connect the observation back to ${experiment.aim.toLowerCase()}`,
+      watch: "Look for a conclusion that mentions the changed variable, the measured output, and the formula.",
+      view: "coach",
+      focusIndex: null,
+      valueMode: "mid",
+    },
+    {
+      title: "Evidence",
+      prompt: "Capture a notebook trial, write uncertainty, and export progress + evidence if this is assigned work.",
+      watch: "A complete submission should include prediction, trials, observation, uncertainty, and conclusion.",
+      view: "report",
+      focusIndex: null,
+    },
+  ];
+}
+
 function LiveExperimentControls({
   result,
   values,
   disabled,
+  lockReason,
   onChange,
   onSetAll,
   onReset,
@@ -477,6 +733,7 @@ function LiveExperimentControls({
   result: LabResult;
   values: number[];
   disabled: boolean;
+  lockReason?: string;
   onChange: (index: number, value: number) => void;
   onSetAll: (values: number[]) => void;
   onReset: () => void;
@@ -500,13 +757,14 @@ function LiveExperimentControls({
           <h2>Change the inputs here</h2>
         </div>
         <div className="live-control-actions">
-          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.min))}>Low</button>
-          <button type="button" onClick={() => onSetAll(result.controls.map((control) => midpoint(control)))}>Mid</button>
-          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.max))}>High</button>
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.min))} disabled={disabled}>Low</button>
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => midpoint(control)))} disabled={disabled}>Mid</button>
+          <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.max))} disabled={disabled}>High</button>
           <button type="button" onClick={onStep} disabled={disabled}>Step</button>
-          <button type="button" onClick={onReset}>Reset</button>
+          <button type="button" onClick={onReset} disabled={disabled}>Reset</button>
         </div>
       </div>
+      {lockReason && <p className="mt-2 rounded-md border border-amber-300/40 bg-amber-300/10 p-2 text-xs font-bold text-slate-600 dark:text-amber-100">{lockReason}</p>}
       <div className="live-control-grid">
         {result.controls.map((control, index) => {
           const value = values[index] ?? control.min;
@@ -652,20 +910,22 @@ function conceptSummary(experiment: typeof experiments[number], result: LabResul
   return `Change ${firstControl} and watch ${firstOutput}. The goal is to connect the visible change, the formula, and the measured result in one idea.`;
 }
 
-function ClassroomControlBar({ paused, onPauseToggle, onReset, onStep }: { paused: boolean; onPauseToggle: () => void; onReset: () => void; onStep: () => void }) {
+function ClassroomControlBar({ paused, locked, onPauseToggle, onReset, onStep }: { paused: boolean; locked?: boolean; onPauseToggle: () => void; onReset: () => void; onStep: () => void }) {
   return (
     <div className="classroom-control-bar">
-      <button className="tool-btn" type="button" onClick={onReset}><PhysicsIcon name="download" className="h-4 w-4" />Reset</button>
+      <button className="tool-btn" type="button" onClick={onReset} disabled={locked}><PhysicsIcon name="download" className="h-4 w-4" />Reset</button>
       <button className={paused ? "tool-btn-primary" : "tool-btn"} type="button" onClick={onPauseToggle}><PhysicsIcon name="play" className="h-4 w-4" />{paused ? "Resume" : "Pause"}</button>
-      <button className="tool-btn-primary" type="button" onClick={onStep}><PhysicsIcon name="step" className="h-4 w-4" />Step</button>
-      <span>Use Step for frame-by-frame discussion; use Reset before a fresh trial.</span>
+      <button className="tool-btn-primary" type="button" onClick={onStep} disabled={locked}><PhysicsIcon name="step" className="h-4 w-4" />Step</button>
+      <span>{locked ? "Variables are locked by the teacher assignment; capture evidence from this setup." : "Use Step for frame-by-frame discussion; use Reset before a fresh trial."}</span>
     </div>
   );
 }
 
 function LabReferenceStack({ experiment, values, result }: { experiment: typeof experiments[number]; values: [number, number, number]; result?: LabResult }) {
+  const flagshipModel = getFlagshipLabModel(experiment.id);
   return (
     <div className="desktop-reference-stack">
+      {flagshipModel && <FlagshipModelCard experimentId={experiment.id} />}
       <CollapsibleSection icon="compass" title="Aim" hint="What you are trying to prove or observe" defaultOpen>
         <p className="text-sm text-slate-500 dark:text-slate-300">{experiment.aim}</p>
       </CollapsibleSection>
@@ -674,10 +934,14 @@ function LabReferenceStack({ experiment, values, result }: { experiment: typeof 
           <div className="rounded-md border border-cyan-300/25 bg-cyan-400/5 p-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="status-chip status-chip-cyan">{experiment.modelClass}</span>
+              <span className="status-chip status-chip-amber">{experiment.evidenceType}</span>
+              <span className="status-chip">{experiment.maturityLevel}</span>
               <span className="status-chip">{experiment.trustLevel}% trust</span>
             </div>
             <p className="mt-2 text-slate-600 dark:text-slate-300">{experiment.confidenceReason}</p>
+            <p className="mt-2 text-xs font-bold text-slate-500 dark:text-slate-400">{experiment.validationStatus}</p>
           </div>
+          <TrustList title="Sources and references" items={experiment.sourceRefs ?? []} />
           <TrustList title="Assumptions" items={experiment.assumptions ?? []} />
           <TrustList title="Limitations" items={experiment.limitations ?? []} />
           <TrustList title="Valid ranges" items={experiment.validRanges ?? []} />
@@ -702,18 +966,7 @@ function LabReferenceStack({ experiment, values, result }: { experiment: typeof 
           ))}
         </div>
       </CollapsibleSection>
-      <CollapsibleSection id="notebook" icon="ruler" title="Notebook" hint="Observation columns for manual lab record">
-        <div className="overflow-x-auto">
-          <table className="notebook-table">
-            <thead>
-              <tr>{experiment.observationColumns.slice(0, 5).map((column) => <th key={column} title={`Record ${column}`}>{column}</th>)}</tr>
-            </thead>
-            <tbody>
-              <tr>{experiment.observationColumns.slice(0, 5).map((column, index) => <td key={column}>{index === 0 ? "Trial 1" : "-"}</td>)}</tr>
-            </tbody>
-          </table>
-        </div>
-      </CollapsibleSection>
+      {result ? <ScientificNotebook experiment={experiment} result={result} values={values} /> : <StaticNotebookTable experiment={experiment} />}
       <CollapsibleSection icon="check" title="Expected Result" hint="What a correct experiment should show">
         <p className="text-sm text-slate-600 dark:text-slate-300">{experiment.expectedResult}</p>
       </CollapsibleSection>
@@ -728,6 +981,227 @@ function LabReferenceStack({ experiment, values, result }: { experiment: typeof 
       {result && <MarkdownReportButton experiment={experiment} result={result} values={values} />}
       <Link to="/lab" className="hero-btn-secondary mt-4 inline-flex items-center gap-2" title="Open this concept in the full drag-and-drop physics canvas"><PhysicsIcon name="flask" className="h-4 w-4" />Full canvas</Link>
     </div>
+  );
+}
+
+function FlagshipModelCard({ experimentId }: { experimentId: string }) {
+  const model = getFlagshipLabModel(experimentId);
+  if (!model) return null;
+  return (
+    <CollapsibleSection icon="flask" title="Flagship Lab Model" hint="Prediction, measurement plan, graph choices, and uncertainty" defaultOpen>
+      <div className="grid gap-3 text-sm">
+        <div className="rounded-md border border-emerald-400/30 bg-emerald-400/10 p-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="status-chip status-chip-cyan">{model.modelVersion}</span>
+            <span className="status-chip">{model.maturityTarget}</span>
+          </div>
+          <p className="mt-2 font-semibold text-slate-700 dark:text-slate-200">{model.predictionPrompt}</p>
+          <p className="mt-2 text-xs font-bold text-slate-500 dark:text-slate-400">{model.uncertaintyNote}</p>
+        </div>
+        <div>
+          <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Measurement plan</div>
+          <ol className="mt-1 list-decimal space-y-1 pl-5 text-slate-600 dark:text-slate-300">
+            {model.measurementPlan.map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </div>
+        <div>
+          <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Graph presets</div>
+          <div className="mt-2 grid gap-2">
+            {model.graphPresets.map((preset) => (
+              <div key={`${preset.xLabel}-${preset.yLabel}`} className="rounded-md border border-cyan-300/20 bg-cyan-400/5 p-2">
+                <strong>{preset.yLabel}</strong> vs <strong>{preset.xLabel}</strong>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{preset.reason}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </CollapsibleSection>
+  );
+}
+
+interface NotebookTrial {
+  id: string;
+  createdAt: string;
+  inputs: Array<{ label: string; value: number | string }>;
+  outputs: Array<{ label: string; value: string }>;
+  note: string;
+}
+
+interface NotebookRecord {
+  prediction: string;
+  observation: string;
+  conclusion: string;
+  uncertainty: string;
+  trials: NotebookTrial[];
+  updatedAt: string;
+}
+
+const emptyNotebookRecord = (): NotebookRecord => ({
+  prediction: "",
+  observation: "",
+  conclusion: "",
+  uncertainty: "",
+  trials: [],
+  updatedAt: new Date().toISOString(),
+});
+
+function StaticNotebookTable({ experiment }: { experiment: typeof experiments[number] }) {
+  return (
+    <CollapsibleSection id="notebook" icon="ruler" title="Notebook" hint="Observation columns for manual lab record">
+      <div className="overflow-x-auto">
+        <table className="notebook-table">
+          <thead>
+            <tr>{experiment.observationColumns.slice(0, 5).map((column) => <th key={column} title={`Record ${column}`}>{column}</th>)}</tr>
+          </thead>
+          <tbody>
+            <tr>{experiment.observationColumns.slice(0, 5).map((column, index) => <td key={column}>{index === 0 ? "Trial 1" : "-"}</td>)}</tr>
+          </tbody>
+        </table>
+      </div>
+    </CollapsibleSection>
+  );
+}
+
+function ScientificNotebook({ experiment, result, values, assignment, snapshot, defaultOpen = false }: { experiment: typeof experiments[number]; result: LabResult; values: number[]; assignment?: ActiveAssignment; snapshot?: LabSnapshot; defaultOpen?: boolean }) {
+  const storageKey = `physicslab-notebook-${experiment.id}`;
+  const [record, setRecord] = useState<NotebookRecord>(() => readNotebookRecord(storageKey));
+  const [saveState, setSaveState] = useState("Autosaved on this device");
+  const model = getFlagshipLabModel(experiment.id);
+  const updateRecord = (patch: Partial<NotebookRecord>) => {
+    setRecord((current) => ({ ...current, ...patch, updatedAt: new Date().toISOString() }));
+  };
+  const captureTrial = () => {
+    const nextTrial: NotebookTrial = {
+      id: safeId(),
+      createdAt: new Date().toISOString(),
+      inputs: result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? "-" })),
+      outputs: result.outputs,
+      note: "",
+    };
+    updateRecord({ trials: [nextTrial, ...record.trials].slice(0, 12) });
+  };
+  const updateTrialNote = (id: string, note: string) => {
+    updateRecord({ trials: record.trials.map((trial) => trial.id === id ? { ...trial, note } : trial) });
+  };
+  const removeTrial = (id: string) => {
+    updateRecord({ trials: record.trials.filter((trial) => trial.id !== id) });
+  };
+  const assignmentMeta = assignment ? assignmentEvidenceMeta(assignment, snapshot) : undefined;
+  const notebookMarkdown = () => buildNotebookMarkdown(experiment, result, values, record, model?.predictionPrompt, assignmentMeta);
+  const exportNotebook = () => downloadMarkdownReport(notebookMarkdown(), `${slugify(experiment.title)}-notebook.md`);
+  const exportSubmission = () => {
+    if (!assignment) return;
+    const payload = buildAssignmentSubmissionPayload(experiment, result, values, record, assignment, snapshot, model?.modelVersion ?? "starter", notebookMarkdown());
+    downloadJson(payload, `physicslab-submission-${slugify(assignment.title)}.json`);
+  };
+  const saveNotebookArtifact = async () => {
+    setSaveState("Saving...");
+    try {
+      await saveLocalArtifact("student-progress", {
+        id: `notebook-${experiment.id}`,
+        title: `${experiment.title} notebook`,
+        payload: {
+          kind: "experiment-notebook",
+          experimentId: experiment.id,
+          experimentTitle: experiment.title,
+          modelVersion: model?.modelVersion ?? "starter",
+          assignment: assignmentMeta,
+          result: result.outputs,
+          record,
+        },
+      });
+      await saveLocalArtifact("reports", {
+        id: `notebook-report-${experiment.id}`,
+        title: `${experiment.title} notebook report`,
+        payload: {
+          kind: "markdown-report",
+          experimentId: experiment.id,
+          assignment: assignmentMeta,
+          markdown: notebookMarkdown(),
+        },
+      });
+      setSaveState("Saved to browser backup");
+    } catch {
+      setSaveState("Could not save to browser backup");
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(record));
+  }, [record, storageKey]);
+
+  return (
+    <CollapsibleSection id="notebook" icon="ruler" title="Investigation Notebook" hint="Prediction, trials, observations, uncertainty, and conclusion" defaultOpen={defaultOpen}>
+      <div className="grid gap-3">
+        <div className="rounded-md border border-cyan-300/25 bg-cyan-400/5 p-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div className="ui-label">Prompt</div>
+              <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">{model?.predictionPrompt ?? `Predict how ${result.outputs[0]?.label ?? "the output"} changes when ${result.controls[0]?.label ?? "the first input"} changes.`}</p>
+              {assignment && <p className="mt-2 text-xs font-bold text-cyan-600 dark:text-cyan-300">Assignment: {assignment.title}</p>}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button className="hero-btn-secondary" type="button" onClick={captureTrial}><PhysicsIcon name="clipboard" className="h-4 w-4" />Capture trial</button>
+              <button className="hero-btn-secondary" type="button" onClick={saveNotebookArtifact}><PhysicsIcon name="download" className="h-4 w-4" />Save local</button>
+              {assignment && <button className="hero-btn-secondary" type="button" onClick={exportSubmission}><PhysicsIcon name="printer" className="h-4 w-4" />Submission JSON</button>}
+              <button className="hero-btn" type="button" onClick={exportNotebook}><PhysicsIcon name="printer" className="h-4 w-4" />Export</button>
+            </div>
+          </div>
+          <p className="mt-2 text-xs font-bold text-slate-500 dark:text-slate-400">{saveState}</p>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-2">
+          <NotebookTextArea label="Prediction" value={record.prediction} onChange={(prediction) => updateRecord({ prediction })} placeholder="I expect..." />
+          <NotebookTextArea label="Observation" value={record.observation} onChange={(observation) => updateRecord({ observation })} placeholder="The main pattern I see is..." />
+          <NotebookTextArea label="Uncertainty / limits" value={record.uncertainty} onChange={(uncertainty) => updateRecord({ uncertainty })} placeholder="Sources of error, model limits, range limits..." />
+          <NotebookTextArea label="Conclusion" value={record.conclusion} onChange={(conclusion) => updateRecord({ conclusion })} placeholder="The result supports / does not support..." />
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="notebook-table">
+            <thead>
+              <tr>
+                <th>Trial</th>
+                {result.controls.slice(0, 3).map((control) => <th key={control.label}>{control.label}</th>)}
+                {result.outputs.slice(0, 3).map((output) => <th key={output.label}>{output.label}</th>)}
+                <th>Note</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {record.trials.length === 0 ? (
+                <tr><td colSpan={result.controls.slice(0, 3).length + result.outputs.slice(0, 3).length + 3}>Capture a trial from the current slider values.</td></tr>
+              ) : record.trials.map((trial, index) => (
+                <tr key={trial.id}>
+                  <td>{record.trials.length - index}</td>
+                  {result.controls.slice(0, 3).map((control) => <td key={control.label}>{trial.inputs.find((item) => item.label === control.label)?.value ?? "-"}</td>)}
+                  {result.outputs.slice(0, 3).map((output) => <td key={output.label}>{trial.outputs.find((item) => item.label === output.label)?.value ?? "-"}</td>)}
+                  <td>
+                    <input
+                      className="search-field"
+                      value={trial.note}
+                      onChange={(event) => updateTrialNote(trial.id, event.target.value)}
+                      placeholder="Pattern or anomaly"
+                    />
+                  </td>
+                  <td><button className="segment-chip" type="button" onClick={() => removeTrial(trial.id)}>Remove</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </CollapsibleSection>
+  );
+}
+
+function NotebookTextArea({ label, value, onChange, placeholder }: { label: string; value: string; onChange: (value: string) => void; placeholder: string }) {
+  return (
+    <label className="text-sm font-black">
+      {label}
+      <textarea className="mt-1 min-h-24 w-full rounded-md border border-slate-300/70 bg-white p-3 text-sm font-semibold text-slate-700 outline-none focus:border-cyan-400 dark:border-lab-line dark:bg-slate-950 dark:text-slate-200" value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} />
+    </label>
   );
 }
 
@@ -1089,9 +1563,9 @@ function LabReportGenerator({ experiment, result, values, defaultOpen = false }:
   );
 }
 
-function MiniAction({ label, icon, onClick }: { label: string; icon: Parameters<typeof PhysicsIcon>[0]["name"]; onClick: () => void }) {
+function MiniAction({ label, icon, disabled = false, onClick }: { label: string; icon: Parameters<typeof PhysicsIcon>[0]["name"]; disabled?: boolean; onClick: () => void }) {
   return (
-    <button className="mini-action-btn" onClick={onClick} type="button">
+    <button className="mini-action-btn" onClick={onClick} type="button" disabled={disabled}>
       <PhysicsIcon name={icon} className="h-4 w-4" />{label}
     </button>
   );
@@ -1166,6 +1640,17 @@ interface LabResult {
   outputs: { label: string; value: string }[];
 }
 
+interface LabSnapshot {
+  version: "phase-11-snapshot";
+  experimentId: string;
+  values: [number, number, number];
+  view: LabWorkspaceView;
+  focusIndex: number | null;
+  presentationStep: number;
+  paused: boolean;
+  createdAt: string;
+}
+
 const controls = (one: string, two: string, three: string, ranges?: Partial<Record<"a" | "b" | "c", Partial<LabControl>>>): LabControl[] => [
   { label: one, min: 0.1, max: 20, step: 0.1, ...ranges?.a },
   { label: two, min: 0.1, max: 20, step: 0.1, ...ranges?.b },
@@ -1185,9 +1670,208 @@ const degreeToRad = (value: number) => (value * Math.PI) / 180;
 const roundIfInteger = (value: number, tolerance = 1e-9) => Math.abs(value - Math.round(value)) < tolerance;
 const midpoint = (control: LabControl) => Number(((control.min + control.max) / 2).toFixed(control.step < 0.1 ? 2 : 1));
 const unitFromLabel = (label: string) => label.match(/\(([^)]+)\)/)?.[1] ?? "";
+const safeId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+const labSnapshotParam = "snapshot";
+const labWorkspaceViews: LabWorkspaceView[] = ["visual", "graphs", "report", "coach", "notes"];
+
+function buildLabSnapshot(experimentId: string, values: number[], view: LabWorkspaceView, focusIndex: number | null, presentationStep: number, paused: boolean): LabSnapshot {
+  return {
+    version: "phase-11-snapshot",
+    experimentId,
+    values: [
+      Number.isFinite(values[0]) ? values[0] : 0,
+      Number.isFinite(values[1]) ? values[1] : 0,
+      Number.isFinite(values[2]) ? values[2] : 0,
+    ],
+    view,
+    focusIndex,
+    presentationStep,
+    paused,
+    createdAt: new Date().toISOString(),
+  };
+}
+
+function buildLabSnapshotUrl(snapshot: LabSnapshot) {
+  if (typeof window === "undefined") return "";
+  const url = new URL(window.location.href);
+  url.searchParams.set(labSnapshotParam, encodeLabSnapshot(snapshot));
+  url.hash = "simulation";
+  return url.toString();
+}
+
+function readLabSnapshotFromSearch(experimentId: string): LabSnapshot | undefined {
+  if (typeof window === "undefined") return undefined;
+  const encoded = new URLSearchParams(window.location.search).get(labSnapshotParam);
+  if (!encoded) return undefined;
+  const snapshot = decodeLabSnapshot(encoded);
+  return snapshot?.experimentId === experimentId ? snapshot : undefined;
+}
+
+function encodeLabSnapshot(snapshot: LabSnapshot) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(snapshot))))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+function decodeLabSnapshot(encoded: string): LabSnapshot | undefined {
+  try {
+    const normalized = encoded.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+    const parsed = JSON.parse(decodeURIComponent(escape(atob(padded)))) as Partial<LabSnapshot>;
+    if (parsed.version !== "phase-11-snapshot" || !parsed.experimentId || !Array.isArray(parsed.values)) return undefined;
+    const values = parsed.values.map((value) => Number(value));
+    if (values.length < 3 || values.some((value) => !Number.isFinite(value))) return undefined;
+    return {
+      version: "phase-11-snapshot",
+      experimentId: parsed.experimentId,
+      values: [values[0], values[1], values[2]],
+      view: labWorkspaceViews.includes(parsed.view as LabWorkspaceView) ? parsed.view as LabWorkspaceView : "visual",
+      focusIndex: typeof parsed.focusIndex === "number" ? clampNumber(Math.round(parsed.focusIndex), 0, 2) : null,
+      presentationStep: typeof parsed.presentationStep === "number" ? clampNumber(Math.round(parsed.presentationStep), 0, 5) : 0,
+      paused: Boolean(parsed.paused),
+      createdAt: parsed.createdAt ?? new Date().toISOString(),
+    };
+  } catch {
+    return undefined;
+  }
+}
+
+function readNotebookRecord(storageKey: string): NotebookRecord {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(storageKey) ?? "null") as Partial<NotebookRecord> | null;
+    if (!parsed || !Array.isArray(parsed.trials)) return emptyNotebookRecord();
+    return {
+      prediction: parsed.prediction ?? "",
+      observation: parsed.observation ?? "",
+      conclusion: parsed.conclusion ?? "",
+      uncertainty: parsed.uncertainty ?? "",
+      trials: parsed.trials as NotebookTrial[],
+      updatedAt: parsed.updatedAt ?? new Date().toISOString(),
+    };
+  } catch {
+    return emptyNotebookRecord();
+  }
+}
+
+function buildNotebookMarkdown(experiment: typeof experiments[number], result: LabResult, values: number[], record: NotebookRecord, prompt?: string, assignment?: AssignmentEvidenceMeta) {
+  const trialLines = record.trials.length
+    ? record.trials.map((trial, index) => {
+      const inputs = trial.inputs.map((item) => `${item.label}: ${item.value}`).join("; ");
+      const outputs = trial.outputs.map((item) => `${item.label}: ${item.value}`).join("; ");
+      return `| ${record.trials.length - index} | ${inputs} | ${outputs} | ${trial.note || "-"} |`;
+    })
+    : ["| 1 | Current setup | No captured trial yet | - |"];
+  const report = generateExperimentMarkdownReport({
+    experiment,
+    formula: result.formula,
+    variables: result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? "-", unit: unitFromLabel(control.label) })),
+    observations: result.outputs.map((output) => ({ label: output.label, value: output.value })),
+    graphSummary: "Use captured trials and the Graphs workspace to compare the independent variable with the main output.",
+    result: result.outputs[0] ? `${result.outputs[0].label}: ${result.outputs[0].value}` : experiment.expectedResult,
+    conclusion: record.conclusion || experiment.expectedResult,
+  });
+  return [
+    report,
+    assignment ? [
+      "",
+      "## Assignment",
+      `**Title:** ${assignment.title}`,
+      `**Assignment ID:** ${assignment.id}`,
+      `**Due:** ${assignment.dueDate || "Not set"}`,
+      `**Requirements:** ${assignment.requirements.join(", ") || "None specified"}`,
+      `**Snapshot:** ${assignment.snapshotIncluded ? "Included" : "Not included"}`,
+    ].join("\n") : "",
+    "",
+    "## Investigation Notebook",
+    `**Prediction prompt:** ${prompt ?? "Predict the relationship before changing variables."}`,
+    "",
+    "### Prediction",
+    record.prediction || "_Not written yet._",
+    "",
+    "### Captured Trials",
+    "| Trial | Inputs | Outputs | Note |",
+    "|---:|---|---|---|",
+    ...trialLines,
+    "",
+    "### Observation",
+    record.observation || "_Not written yet._",
+    "",
+    "### Uncertainty / Limits",
+    record.uncertainty || "_Not written yet._",
+    "",
+    "### Notebook Conclusion",
+    record.conclusion || "_Not written yet._",
+  ].join("\n");
+}
+
+interface AssignmentEvidenceMeta {
+  id: string;
+  title: string;
+  dueDate: string;
+  requirements: string[];
+  snapshotIncluded: boolean;
+  snapshot?: LabSnapshot;
+}
+
+function assignmentEvidenceMeta(assignment: ActiveAssignment, snapshot?: LabSnapshot): AssignmentEvidenceMeta {
+  return {
+    id: assignment.id,
+    title: assignment.title,
+    dueDate: assignment.dueDate,
+    requirements: [
+      assignment.lockVariables ? "locked variables" : "",
+      assignment.requireNotebook ? "notebook" : "",
+      assignment.requireQuiz ? "quiz" : "",
+    ].filter(Boolean),
+    snapshotIncluded: Boolean(assignment.snapshotData || snapshot),
+    snapshot,
+  };
+}
+
+function buildAssignmentSubmissionPayload(
+  experiment: typeof experiments[number],
+  result: LabResult,
+  values: number[],
+  record: NotebookRecord,
+  assignment: ActiveAssignment,
+  snapshot: LabSnapshot | undefined,
+  modelVersion: string,
+  markdown: string,
+) {
+  return {
+    kind: "physicslab-assignment-submission",
+    version: "1.0.0",
+    browserOnly: true,
+    exportedAt: new Date().toISOString(),
+    assignment: assignmentEvidenceMeta(assignment, snapshot),
+    experiment: {
+      id: experiment.id,
+      title: experiment.title,
+      modelClass: experiment.modelClass,
+      trustLevel: experiment.trustLevel,
+    },
+    modelVersion,
+    values: result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? 0 })),
+    outputs: result.outputs,
+    notebook: record,
+    markdown,
+    notes: ["Submission was exported from the browser. No server upload or account lookup is used."],
+  };
+}
+
+function downloadJson(payload: unknown, filename: string) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
 
 function solveControlForOutput(id: string, values: number[], outputIndex: number, controlIndex: number, target: number) {
-  const base = calculateStarterLab(id, values[0], values[1], values[2]);
+  const base = calculateLab(id, values[0], values[1], values[2]);
   const control = base.controls[controlIndex];
   if (!control) return values[controlIndex] ?? 0;
   let bestValue = values[controlIndex] ?? control.min;
@@ -1197,7 +1881,7 @@ function solveControlForOutput(id: string, values: number[], outputIndex: number
     const candidate = snapToStep(control.min + ((control.max - control.min) * index) / steps, control);
     const trial = [...values];
     trial[controlIndex] = candidate;
-    const output = calculateStarterLab(id, trial[0], trial[1], trial[2]).outputs[outputIndex];
+    const output = calculateLab(id, trial[0], trial[1], trial[2]).outputs[outputIndex];
     const measured = parseOutputNumber(output?.value ?? "0");
     const error = Math.abs(measured - target);
     if (error < bestError) {
@@ -1413,6 +2097,15 @@ function defaultLabValues(id: string): [number, number, number] {
   if (id === "bernoulli-fluid-flow") return [1000, 18, 3];
   if (id === "photoelectric-equation") return [4, 2.5, 0.8];
   return [5, 2, 0.2];
+}
+
+function labValuesFor(id: string): [number, number, number] {
+  return getFlagshipDefaultValues(id) ?? defaultLabValues(id);
+}
+
+function calculateLab(id: string, a: number, b: number, c: number): LabResult {
+  const modeled = evaluateFlagshipLab(id, [a, b, c]);
+  return modeled ?? calculateStarterLab(id, a, b, c);
 }
 
 function calculateStarterLab(id: string, a: number, b: number, c: number): LabResult {

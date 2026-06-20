@@ -6,6 +6,8 @@ import { allCurriculumTopics, classOptions, curriculum } from "../lib/curriculum
 import { iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { has3DAnimation } from "../components/Experiment3DAnimation";
 import { interactionModes } from "../components/InteractionModePanel";
+import { ExperimentMaturityLevel, ModelEvidenceType } from "../types";
+import { flagshipLabModelIds } from "../lib/flagshipLabModels";
 
 export function ExperimentsPage() {
   const [searchParams] = useSearchParams();
@@ -13,6 +15,9 @@ export function ExperimentsPage() {
   const [selectedClass, setSelectedClass] = useState(searchParams.get("class") ?? "all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
+  const [selectedMaturity, setSelectedMaturity] = useState<"all" | ExperimentMaturityLevel>("all");
+  const [selectedEvidence, setSelectedEvidence] = useState<"all" | ModelEvidenceType>("all");
+  const [flagshipOnly, setFlagshipOnly] = useState(false);
   const [sortBy, setSortBy] = useState("interactive");
   const [viewMode, setViewMode] = useState<"cards" | "compact">("cards");
   const [beginnerMode, setBeginnerMode] = useState(false);
@@ -27,7 +32,10 @@ export function ExperimentsPage() {
       : topics.filter((topic) => topic.grade === selectedGrade).flatMap((topic) => topic.experimentIds)
   ), [selectedGrade, topics]);
   const categories = useMemo(() => ["all", ...Array.from(new Set(experiments.map((experiment) => experiment.category))).sort()], []);
+  const flagshipIds = useMemo(() => new Set(flagshipLabModelIds), []);
   const difficulties = useMemo(() => ["all", "Beginner", "Intermediate", "Advanced"], []);
+  const maturityLevels: Array<"all" | ExperimentMaturityLevel> = ["all", "Flagship", "Classroom Ready", "Validated", "Starter"];
+  const evidenceTypes: Array<"all" | ModelEvidenceType> = ["all", "Exact Formula", "Educational Approximation", "Visual Model", "Sandbox Only"];
   const classTopicHighlights = useMemo(() => {
     return topics
       .filter((topic) => topic.experimentIds.length > 0)
@@ -38,23 +46,31 @@ export function ExperimentsPage() {
     const classMatch = selectedGrade === null || experiment.curriculumTags?.classes.includes(selectedGrade) || selectedGradeExperimentIds.has(experiment.id);
     const categoryMatch = selectedCategory === "all" || experiment.category === selectedCategory;
     const difficultyMatch = (selectedDifficulty === "all" || experiment.difficulty === selectedDifficulty) && (!beginnerMode || experiment.difficulty !== "Advanced");
+    const maturityMatch = selectedMaturity === "all" || experiment.maturityLevel === selectedMaturity;
+    const evidenceMatch = selectedEvidence === "all" || experiment.evidenceType === selectedEvidence;
+    const flagshipMatch = !flagshipOnly || flagshipIds.has(experiment.id);
     const topicText = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id)).map((topic) => `${topic.title} ${topic.domain} ${topic.outcomes.join(" ")}`).join(" ");
     const formulaText = experiment.formulae.map((formula) => `${formula.name} ${formula.expression}`).join(" ");
-    const searchText = `${experiment.title} ${experiment.aim} ${experiment.category} ${experiment.classLevel} ${experiment.curriculumTags?.domains.join(" ") ?? ""} ${topicText} ${formulaText}`.toLowerCase();
+    const trustText = `${experiment.modelClass ?? ""} ${experiment.evidenceType ?? ""} ${experiment.maturityLevel ?? ""} ${experiment.validationStatus ?? ""} ${experiment.sourceRefs?.join(" ") ?? ""} ${flagshipIds.has(experiment.id) ? "flagship lab model prediction measurement graph presets" : ""}`;
+    const searchText = `${experiment.title} ${experiment.aim} ${experiment.category} ${experiment.classLevel} ${experiment.curriculumTags?.domains.join(" ") ?? ""} ${topicText} ${formulaText} ${trustText}`.toLowerCase();
     const queryMatch = !query.trim() || searchText.includes(query.trim().toLowerCase());
-    return classMatch && categoryMatch && difficultyMatch && queryMatch;
+    return classMatch && categoryMatch && difficultyMatch && maturityMatch && evidenceMatch && flagshipMatch && queryMatch;
   });
   const filtered = [...filteredBase].sort((left, right) => sortExperiments(left, right, sortBy));
   const activeFilters = [
     selectedClass !== "all" ? classOptions.find((item) => item.id === selectedClass)?.label ?? selectedClass : null,
     selectedCategory !== "all" ? selectedCategory : null,
     selectedDifficulty !== "all" ? selectedDifficulty : null,
+    selectedMaturity !== "all" ? selectedMaturity : null,
+    selectedEvidence !== "all" ? selectedEvidence : null,
+    flagshipOnly ? "Flagship lab models" : null,
     beginnerMode ? "Beginner focus" : null,
     query.trim() ? `Search: ${query.trim()}` : null,
   ].filter(Boolean) as string[];
   const mappedTopicCount = topics.filter((topic) => topic.experimentIds.length > 0).length;
   const coveragePercent = Math.round((mappedTopicCount / Math.max(1, topics.length)) * 100);
   const interactiveCount = experiments.filter((item) => has3DAnimation(item.id)).length;
+  const flagshipCount = experiments.filter((item) => flagshipIds.has(item.id)).length;
   const syllabusSpine = curriculum.map((level) => ({
     label: level.label,
     expected: level.units.flatMap((unit) => unit.topics.map((topic) => topic.title)).slice(0, 5),
@@ -71,7 +87,7 @@ export function ExperimentsPage() {
             <p className="ui-label">Interactive guided learning</p>
             <h1 className="mt-2 text-3xl font-black text-gradient">Guided Experiments</h1>
             <p className="mt-2 max-w-3xl text-slate-500 dark:text-slate-400">
-              Browser-only experiment library mapped from Class 6 to PhD lanes, with compact gaps, guided calculators, 3D views, and notebook-ready observations.
+              Browser-only physics labs for school to undergraduate learning, with visible model limits, local reports, guided calculators, 3D views, and notebook-ready observations.
             </p>
           </div>
           <div className="min-w-52">
@@ -198,7 +214,7 @@ export function ExperimentsPage() {
           {activeTab === "library" && (
             <div className="grid min-h-0 gap-3">
         <div className="filter-bar experiment-filter-bar">
-          <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto_auto]">
+          <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto_auto_auto_auto]">
             <label>
               <span className="sr-only">Search experiments</span>
               <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by topic, class, formula, domain..." />
@@ -213,8 +229,17 @@ export function ExperimentsPage() {
             <select className="select-field" value={selectedDifficulty} onChange={(event) => setSelectedDifficulty(event.target.value)} aria-label="Filter by difficulty">
               {difficulties.map((difficulty) => <option key={difficulty} value={difficulty}>{difficulty === "all" ? "All levels" : difficulty}</option>)}
             </select>
+            <select className="select-field" value={selectedMaturity} onChange={(event) => setSelectedMaturity(event.target.value as "all" | ExperimentMaturityLevel)} aria-label="Filter by maturity">
+              {maturityLevels.map((level) => <option key={level} value={level}>{level === "all" ? "All maturity" : level}</option>)}
+            </select>
+            <select className="select-field" value={selectedEvidence} onChange={(event) => setSelectedEvidence(event.target.value as "all" | ModelEvidenceType)} aria-label="Filter by evidence type">
+              {evidenceTypes.map((type) => <option key={type} value={type}>{type === "all" ? "All evidence" : type}</option>)}
+            </select>
             <select className="select-field" value={sortBy} onChange={(event) => setSortBy(event.target.value)} aria-label="Sort experiments">
               <option value="interactive">Most interactive</option>
+              <option value="flagship">Flagship first</option>
+              <option value="maturity">Maturity</option>
+              <option value="trust">Trust score</option>
               <option value="title">Title A-Z</option>
               <option value="class">Class level</option>
               <option value="difficulty">Difficulty</option>
@@ -231,16 +256,19 @@ export function ExperimentsPage() {
             ))}
             </div>
             <div className="inline-flex rounded-md border border-slate-300/70 bg-white p-1 dark:border-lab-line dark:bg-slate-900">
+              <button className={flagshipOnly ? "view-toggle-active" : "view-toggle"} onClick={() => setFlagshipOnly((value) => !value)} title="Show only labs with a flagship model"><PhysicsIcon name="spark" className="h-4 w-4" />Flagship</button>
               <button className={viewMode === "cards" ? "view-toggle-active" : "view-toggle"} onClick={() => setViewMode("cards")} title="Rich card view"><PhysicsIcon name="flask" className="h-4 w-4" />Cards</button>
               <button className={viewMode === "compact" ? "view-toggle-active" : "view-toggle"} onClick={() => setViewMode("compact")} title="Compact scan view"><PhysicsIcon name="menu" className="h-4 w-4" />Compact</button>
             </div>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <span className="ui-label">Showing {filtered.length} of {experiments.length}</span>
+            <span className="status-chip status-chip-cyan"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />{flagshipCount} flagship models</span>
             <span className="status-chip status-chip-cyan"><PhysicsIcon name="orbit" className="h-3.5 w-3.5" />{interactiveCount} 3D labs</span>
+            <Link className="status-chip status-chip-amber" to="/trust"><PhysicsIcon name="check" className="h-3.5 w-3.5" />Scientific trust</Link>
             {activeFilters.map((filter) => <span key={filter} className="active-filter-chip">{filter}</span>)}
             {activeFilters.length > 0 && (
-              <button className="segment-chip" onClick={() => { setQuery(""); setSelectedClass("all"); setSelectedCategory("all"); setSelectedDifficulty("all"); setBeginnerMode(false); }}>
+              <button className="segment-chip" onClick={() => { setQuery(""); setSelectedClass("all"); setSelectedCategory("all"); setSelectedDifficulty("all"); setSelectedMaturity("all"); setSelectedEvidence("all"); setFlagshipOnly(false); setBeginnerMode(false); }}>
                 <PhysicsIcon name="settings" className="h-3.5 w-3.5" />Clear
               </button>
             )}
@@ -250,6 +278,7 @@ export function ExperimentsPage() {
         <div className={viewMode === "compact" ? "experiment-card-grid-catalog experiment-card-grid-catalog-compact" : "experiment-card-grid-catalog"}>
           {filtered.map((experiment) => {
             const mappedTopics = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id));
+            const hasFlagshipModel = flagshipIds.has(experiment.id);
             const primaryOutcome = mappedTopics[0]?.outcomes[0] ?? experiment.expectedResult;
             const features = [
               { label: "Guide", icon: "clipboard" as const, active: true },
@@ -277,11 +306,15 @@ export function ExperimentsPage() {
                 </div>
                 <p className="experiment-card-aim">{experiment.aim}</p>
                 <div className="experiment-card-tags">
+                  {hasFlagshipModel && <span>Flagship model</span>}
+                  <span>{experiment.maturityLevel ?? "Starter"}</span>
+                  <span>{experiment.evidenceType ?? "Exact Formula"}</span>
                   {tagLabels.slice(0, viewMode === "compact" ? 3 : 5).map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
                 <div className="experiment-card-meta">
                   <span><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />~{estimatedMinutes(experiment.difficulty)} min</span>
                   <span>{experiment.difficulty}</span>
+                  <span>{experiment.modelClass}</span>
                 </div>
                 <div className="experiment-card-launch">Launch <span aria-hidden="true">-&gt;</span></div>
                 <div className="sr-only">Learn: {primaryOutcome}. Includes {features.map((feature) => feature.label).join(", ")}. {experiment.classLevel}. Model: {experiment.modelClass}. Trust {experiment.trustLevel}%.</div>
@@ -294,7 +327,7 @@ export function ExperimentsPage() {
             <PhysicsIcon name="compass" className="mx-auto h-8 w-8 text-cyan-500" />
             <h2 className="mt-3 text-xl font-black">No matching experiments</h2>
             <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Clear the search or choose a broader class/category filter.</p>
-            <button className="hero-btn-secondary mt-4" onClick={() => { setQuery(""); setSelectedClass("all"); setSelectedCategory("all"); setSelectedDifficulty("all"); setBeginnerMode(false); }}>Reset filters</button>
+            <button className="hero-btn-secondary mt-4" onClick={() => { setQuery(""); setSelectedClass("all"); setSelectedCategory("all"); setSelectedDifficulty("all"); setSelectedMaturity("all"); setSelectedEvidence("all"); setFlagshipOnly(false); setBeginnerMode(false); }}>Reset filters</button>
           </div>
         )}
             </div>
@@ -372,7 +405,14 @@ function sortExperiments(left: typeof experiments[number], right: typeof experim
   if (sortBy === "category") return left.category.localeCompare(right.category) || left.title.localeCompare(right.title);
   if (sortBy === "class") return firstClass(left) - firstClass(right) || left.title.localeCompare(right.title);
   if (sortBy === "difficulty") return difficultyScore(left.difficulty) - difficultyScore(right.difficulty) || left.title.localeCompare(right.title);
+  if (sortBy === "flagship") return flagshipScore(right) - flagshipScore(left) || maturityScore(right.maturityLevel) - maturityScore(left.maturityLevel) || left.title.localeCompare(right.title);
+  if (sortBy === "maturity") return maturityScore(right.maturityLevel) - maturityScore(left.maturityLevel) || left.title.localeCompare(right.title);
+  if (sortBy === "trust") return (right.trustLevel ?? 0) - (left.trustLevel ?? 0) || maturityScore(right.maturityLevel) - maturityScore(left.maturityLevel);
   return interactivityScore(right) - interactivityScore(left) || left.title.localeCompare(right.title);
+}
+
+function flagshipScore(experiment: typeof experiments[number]) {
+  return flagshipLabModelIds.includes(experiment.id) ? 1 : 0;
 }
 
 function firstClass(experiment: typeof experiments[number]) {
@@ -383,6 +423,13 @@ function difficultyScore(difficulty: string) {
   if (difficulty === "Beginner") return 1;
   if (difficulty === "Intermediate") return 2;
   return 3;
+}
+
+function maturityScore(level: string | undefined) {
+  if (level === "Flagship") return 4;
+  if (level === "Classroom Ready") return 3;
+  if (level === "Validated") return 2;
+  return 1;
 }
 
 function interactivityScore(experiment: typeof experiments[number]) {

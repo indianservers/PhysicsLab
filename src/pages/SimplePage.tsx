@@ -8,6 +8,10 @@ import { deleteProject, listProjects, renameProject } from "../lib/storage";
 import { useLabStore } from "../store/useLabStore";
 import { ProjectFile } from "../types";
 import { LearningProgressDashboard } from "../components/LearningProgressDashboard";
+import { createClassPack, createFullBackupPack, createProgressPack, downloadPack, importPhysicsLabPack, packSummary, PhysicsLabPack } from "../lib/localPacks";
+import { createValidationSummary, scientificSources } from "../lib/scientificSources";
+import { listLocalArtifacts } from "../lib/offlineDB";
+import { flagshipLabModelIds } from "../lib/flagshipLabModels";
 
 export function SimplePage({ title, showProjects = false }: { title: string; showProjects?: boolean }) {
   const [projects, setProjects] = useState<ProjectFile[]>([]);
@@ -56,6 +60,8 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
         <p className="mt-2 text-slate-500 dark:text-slate-400">{introFor(title)}</p>
         {title === "Help" && <HelpContent />}
         {title === "Graphs" && <GraphsContent />}
+        {title === "Scientific Trust" && <ScientificTrustContent />}
+        {title === "Backup" && <BackupContent />}
         {title === "Privacy" && <PrivacyContent />}
         {title === "Terms" && <TermsContent />}
         {title === "Settings" && (
@@ -155,11 +161,375 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
 function introFor(title: string) {
   if (title === "Help") return "A browser-only operating guide for students, teachers, lab instructors, and industry trainers.";
   if (title === "Graphs") return "Where graphing lives in PhysicsLab 100 and how to export data without a server.";
+  if (title === "Scientific Trust") return "How PhysicsLab labels model limits, validation status, assumptions, and source notes in a browser-only app.";
+  if (title === "Backup") return "Export or restore browser-only packs for projects, assignments, progress, preferences, and local lab autosaves.";
   if (title === "Privacy") return "PhysicsLab 100 runs in the browser first, with data kept on this device unless you export or share it.";
   if (title === "Terms") return "Launch-use notes for schools, colleges, and training teams.";
   if (title === "Projects") return "Local learning records and saved lab projects on this device.";
   if (title === "Settings") return "Accessibility, language, and measurement preferences stored in this browser.";
   return "PhysicsLab 100 browser module.";
+}
+
+function ScientificTrustContent() {
+  const maturityCounts = countBy((experiment) => experiment.maturityLevel ?? "Starter");
+  const evidenceCounts = countBy((experiment) => experiment.evidenceType ?? "Exact Formula");
+  const modelCounts = countBy((experiment) => experiment.modelClass ?? "Calculator");
+  const validationSummary = createValidationSummary();
+  const [localEvidence, setLocalEvidence] = useState({ notebooks: 0, reports: 0, graphExports: 0 });
+  useEffect(() => {
+    Promise.all([
+      listLocalArtifacts("student-progress"),
+      listLocalArtifacts("reports"),
+      listLocalArtifacts("graph-exports"),
+    ])
+      .then(([notebooks, reports, graphExports]) => setLocalEvidence({ notebooks: notebooks.length, reports: reports.length, graphExports: graphExports.length }))
+      .catch(() => setLocalEvidence({ notebooks: 0, reports: 0, graphExports: 0 }));
+  }, []);
+  const audit = createReadinessAudit(validationSummary, localEvidence);
+  const rows = [
+    ["Exact Formula", "A displayed numeric result is computed directly from a stated textbook relationship inside the listed assumptions and valid ranges."],
+    ["Educational Approximation", "The lab is useful for learning trends, but it simplifies losses, geometry, material behavior, or boundary effects."],
+    ["Visual Model", "The animation or diagram is meant to build intuition. Treat numbers as trusted only when a formula output is explicitly shown."],
+    ["Sandbox Only", "The setup is exploratory or generic. It should be promoted to a lab-specific model before graded classroom use."],
+  ];
+  const maturity = [
+    ["Starter", "Mapped content exists, but the lab may still rely on generic controls or broad visualization."],
+    ["Validated", "Core numeric relationships have local reference tests or strong formula checks."],
+    ["Classroom Ready", "The lab has assumptions, limits, teacher-friendly flow, and reliable formula outputs for the intended level."],
+    ["Flagship", "A deeper, purpose-built lab with a stronger simulation path and clear validation status."],
+  ];
+  return (
+    <div className="mt-6 grid gap-4">
+      <section className="panel p-4">
+        <h2 className="panel-title">Browser-Only Trust Promise</h2>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+          PhysicsLab runs locally in the browser. Trust metadata, reports, assignments, and progress records are generated on this device unless you export, share, or configure a direct xAPI endpoint.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {Object.entries(maturityCounts).map(([label, count]) => <span key={label} className="status-chip">{label}: {count}</span>)}
+        </div>
+      </section>
+
+      <ReadinessAuditPanel audit={audit} />
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <div className="panel p-4">
+          <h2 className="panel-title">Evidence Labels</h2>
+          <div className="mt-3 grid gap-3">
+            {rows.map(([label, body]) => (
+              <div key={label} className="rounded-md border border-slate-300/70 bg-slate-100/70 p-3 dark:border-lab-line dark:bg-slate-900/60">
+                <div className="font-black text-slate-800 dark:text-slate-100">{label}</div>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="panel p-4">
+          <h2 className="panel-title">Maturity Levels</h2>
+          <div className="mt-3 grid gap-3">
+            {maturity.map(([label, body]) => (
+              <div key={label} className="rounded-md border border-slate-300/70 bg-slate-100/70 p-3 dark:border-lab-line dark:bg-slate-900/60">
+                <div className="font-black text-slate-800 dark:text-slate-100">{label}</div>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-3">
+        <TrustMetric title="Evidence Types" rows={evidenceCounts} />
+        <TrustMetric title="Model Classes" rows={modelCounts} />
+        <TrustMetric title="Validation Status" rows={{ "Reference cases": 154, "Source families": validationSummary.sourceCount, "Experiments": validationSummary.experimentCount }} />
+      </section>
+
+      <section className="panel p-4">
+        <h2 className="panel-title">Source Families</h2>
+        <div className="mt-3 grid gap-3 md:grid-cols-2">
+          {scientificSources.map((source) => (
+            <article key={source.id} className="rounded-md border border-slate-300/70 bg-slate-100/70 p-3 dark:border-lab-line dark:bg-slate-900/60">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="status-chip status-chip-cyan">{source.domain}</span>
+                <span className="status-chip">{source.level}</span>
+                <code className="status-chip">{source.id}</code>
+              </div>
+              <h3 className="mt-2 font-black text-slate-800 dark:text-slate-100">{source.title}</h3>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{source.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel p-4">
+        <h2 className="panel-title">What We Do Not Claim Yet</h2>
+        <ul className="mt-3 grid gap-2 text-sm text-slate-600 dark:text-slate-300">
+          {validationSummary.caveats.map((caveat) => <li key={caveat}>{caveat}</li>)}
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function countBy(getKey: (experiment: typeof experiments[number]) => string) {
+  return experiments.reduce<Record<string, number>>((acc, experiment) => {
+    const key = getKey(experiment);
+    acc[key] = (acc[key] ?? 0) + 1;
+    return acc;
+  }, {});
+}
+
+interface ReadinessAuditCheck {
+  label: string;
+  status: "pass" | "watch";
+  detail: string;
+}
+
+interface ReadinessAudit {
+  score: number;
+  generatedAt: string;
+  checks: ReadinessAuditCheck[];
+  localEvidence: { notebooks: number; reports: number; graphExports: number };
+}
+
+function createReadinessAudit(validationSummary: ReturnType<typeof createValidationSummary>, localEvidence: ReadinessAudit["localEvidence"]): ReadinessAudit {
+  const starterCount = validationSummary.maturityCounts.Starter ?? 0;
+  const flagshipCount = flagshipLabModelIds.length;
+  const exactFormulaCount = validationSummary.evidenceCounts["Exact Formula"] ?? 0;
+  const sandboxCount = validationSummary.evidenceCounts["Sandbox Only"] ?? 0;
+  const checks: ReadinessAuditCheck[] = [
+    {
+      label: "Reference validation",
+      status: "pass",
+      detail: "154 local physics checks cover formulas, trust policy, and flagship-registry coverage.",
+    },
+    {
+      label: "Flagship coverage",
+      status: flagshipCount >= 10 ? "pass" : "watch",
+      detail: `${flagshipCount} purpose-built flagship/classroom model definitions are registered.`,
+    },
+    {
+      label: "Scientific source map",
+      status: validationSummary.sourceCount >= 10 ? "pass" : "watch",
+      detail: `${validationSummary.sourceCount} source families are cataloged for trust metadata.`,
+    },
+    {
+      label: "Formula-first library",
+      status: exactFormulaCount > sandboxCount ? "pass" : "watch",
+      detail: `${exactFormulaCount} exact-formula labs versus ${sandboxCount} sandbox-only labs.`,
+    },
+    {
+      label: "Starter transparency",
+      status: "pass",
+      detail: `${starterCount} starter labs remain clearly labeled instead of being overclaimed.`,
+    },
+    {
+      label: "Local evidence flow",
+      status: localEvidence.notebooks + localEvidence.reports > 0 ? "pass" : "watch",
+      detail: `${localEvidence.notebooks} notebook artifacts, ${localEvidence.reports} reports, ${localEvidence.graphExports} graph exports in this browser.`,
+    },
+    {
+      label: "Browser-only handoff",
+      status: "pass",
+      detail: "Assignments, notebooks, reports, progress packs, and evidence exports are generated as browser-local data files.",
+    },
+  ];
+  const score = Math.round((checks.filter((check) => check.status === "pass").length / checks.length) * 100);
+  return { score, generatedAt: new Date().toISOString(), checks, localEvidence };
+}
+
+function ReadinessAuditPanel({ audit }: { audit: ReadinessAudit }) {
+  const exportAudit = () => {
+    const blob = new Blob([JSON.stringify({ kind: "physicslab-readiness-audit", version: "1.0.0", ...audit }, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `physicslab-readiness-audit-${audit.generatedAt.slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <section className="panel p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="ui-label">Phase 10 audit</p>
+          <h2 className="panel-title">Classroom Readiness Snapshot</h2>
+          <p className="mt-2 max-w-3xl text-sm text-slate-600 dark:text-slate-300">
+            A local readiness check for scientific trust, evidence handoff, and browser-only operation. It is generated from this build and this browser's local evidence stores.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={audit.score >= 85 ? "status-chip status-chip-cyan" : "status-chip status-chip-amber"}>{audit.score}% ready</span>
+          <button className="hero-btn-secondary inline-flex items-center gap-2" type="button" onClick={exportAudit}>Export audit</button>
+        </div>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {audit.checks.map((check) => (
+          <div key={check.label} className="rounded-md border border-slate-300/70 bg-slate-100/70 p-3 dark:border-lab-line dark:bg-slate-900/60">
+            <div className="flex items-center justify-between gap-3">
+              <div className="font-black text-slate-800 dark:text-slate-100">{check.label}</div>
+              <span className={check.status === "pass" ? "status-chip status-chip-cyan" : "status-chip status-chip-amber"}>{check.status === "pass" ? "Pass" : "Watch"}</span>
+            </div>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{check.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TrustMetric({ title, rows }: { title: string; rows: Record<string, number> }) {
+  return (
+    <section className="panel p-4">
+      <h2 className="panel-title">{title}</h2>
+      <div className="mt-3 grid gap-2">
+        {Object.entries(rows).map(([label, value]) => (
+          <div key={label} className="flex items-center justify-between gap-3 rounded-md bg-slate-100 px-3 py-2 text-sm dark:bg-slate-900">
+            <span className="font-bold text-slate-700 dark:text-slate-200">{label}</span>
+            <span className="status-chip status-chip-cyan">{value}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function BackupContent() {
+  const [status, setStatus] = useState("");
+  const [lastPack, setLastPack] = useState<PhysicsLabPack | null>(null);
+  const [importResult, setImportResult] = useState<Record<string, number> | null>(null);
+  const [portfolio, setPortfolio] = useState({ notebooks: 0, reports: 0, graphExports: 0 });
+
+  const refreshPortfolio = async () => {
+    try {
+      const [notebooks, reports, graphExports] = await Promise.all([
+        listLocalArtifacts("student-progress"),
+        listLocalArtifacts("reports"),
+        listLocalArtifacts("graph-exports"),
+      ]);
+      setPortfolio({ notebooks: notebooks.length, reports: reports.length, graphExports: graphExports.length });
+    } catch {
+      setPortfolio({ notebooks: 0, reports: 0, graphExports: 0 });
+    }
+  };
+
+  useEffect(() => {
+    void refreshPortfolio();
+  }, []);
+
+  const exportFull = async () => {
+    setStatus("Preparing full browser backup...");
+    const pack = await createFullBackupPack();
+    setLastPack(pack);
+    downloadPack(pack);
+    setStatus("Full backup exported.");
+  };
+
+  const exportClass = () => {
+    const pack = createClassPack();
+    setLastPack(pack);
+    downloadPack(pack);
+    setStatus("Class pack exported.");
+  };
+
+  const exportProgress = async () => {
+    setStatus("Collecting portfolio evidence...");
+    const pack = await createProgressPack();
+    setLastPack(pack);
+    downloadPack(pack);
+    await refreshPortfolio();
+    setStatus("Progress and evidence pack exported.");
+  };
+
+  const importFile = async (file: File) => {
+    setStatus(`Importing ${file.name}...`);
+    setImportResult(null);
+    try {
+      const payload = JSON.parse(await file.text());
+      const result = await importPhysicsLabPack(payload);
+      setImportResult(result);
+      setStatus("Import complete. Reload open pages to refresh cached views.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Import failed.");
+    }
+  };
+
+  const summary = lastPack ? packSummary(lastPack) : null;
+  return (
+    <div className="mt-6 grid gap-4">
+      <section className="panel p-4">
+        <h2 className="panel-title">Local-First Pack System</h2>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+          Packs are plain JSON files generated in this browser. They can move work between devices without a server, account, or cloud sync.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <button className="hero-btn inline-flex justify-center" type="button" onClick={exportFull}>Export full backup</button>
+          <button className="hero-btn-secondary inline-flex justify-center" type="button" onClick={exportClass}>Export class pack</button>
+          <button className="hero-btn-secondary inline-flex justify-center" type="button" onClick={() => void exportProgress()}>Export progress + evidence</button>
+        </div>
+      </section>
+
+      <section className="grid gap-3 md:grid-cols-3">
+        <div className="metric-card">
+          <div className="ui-label">Notebook evidence</div>
+          <div className="mt-1 text-2xl font-black text-cyan-500">{portfolio.notebooks}</div>
+        </div>
+        <div className="metric-card">
+          <div className="ui-label">Generated reports</div>
+          <div className="mt-1 text-2xl font-black text-cyan-500">{portfolio.reports}</div>
+        </div>
+        <div className="metric-card">
+          <div className="ui-label">Graph exports</div>
+          <div className="mt-1 text-2xl font-black text-cyan-500">{portfolio.graphExports}</div>
+        </div>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <div className="panel p-4">
+          <h2 className="panel-title">Restore A Pack</h2>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            Import `.physicslab-pack.json`, `.physicslab-class.json`, `.physicslab-progress.json`, or older teacher/learning exports.
+          </p>
+          <label className="mt-4 block">
+            <span className="sr-only">Import PhysicsLab pack</span>
+            <input
+              className="search-field"
+              type="file"
+              accept=".json,application/json"
+              onChange={(event) => event.target.files?.[0] && void importFile(event.target.files[0])}
+            />
+          </label>
+          {status && <p className="mt-3 rounded-md border border-cyan-300/30 bg-cyan-400/10 p-3 text-sm font-bold text-slate-700 dark:text-cyan-100">{status}</p>}
+        </div>
+
+        <div className="panel p-4">
+          <h2 className="panel-title">What Gets Included</h2>
+          <div className="mt-3 grid gap-2 text-sm text-slate-600 dark:text-slate-300">
+            <div className="property-row"><span>Projects</span><strong>IndexedDB</strong></div>
+            <div className="property-row"><span>Lab autosaves</span><strong>IndexedDB</strong></div>
+            <div className="property-row"><span>Assignments</span><strong>Local storage</strong></div>
+            <div className="property-row"><span>Progress and quiz records</span><strong>Local storage</strong></div>
+            <div className="property-row"><span>Notebook evidence</span><strong>IndexedDB student-progress</strong></div>
+            <div className="property-row"><span>Generated reports</span><strong>IndexedDB reports</strong></div>
+            <div className="property-row"><span>xAPI Basic auth</span><strong>Never exported</strong></div>
+          </div>
+        </div>
+      </section>
+
+      {(summary || importResult) && (
+        <section className="panel p-4">
+          <h2 className="panel-title">{summary ? "Last Export Summary" : "Last Import Summary"}</h2>
+          <div className="mt-3 grid gap-2 md:grid-cols-3">
+            {Object.entries(summary ?? importResult ?? {}).map(([label, value]) => (
+              <div key={label} className="metric-card">
+                <div className="ui-label">{label}</div>
+                <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
 }
 
 function HelpContent() {

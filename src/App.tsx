@@ -138,7 +138,9 @@ export default function App() {
               <Route path="/graph" element={<KnowledgeGraphPage />} />
               <Route path="/projects" element={<SimplePage title="Projects" showProjects />} />
               <Route path="/settings" element={<SimplePage title="Settings" />} />
+              <Route path="/backup" element={<SimplePage title="Backup" />} />
               <Route path="/help" element={<SimplePage title="Help" />} />
+              <Route path="/trust" element={<SimplePage title="Scientific Trust" />} />
               <Route path="/privacy" element={<SimplePage title="Privacy" />} />
               <Route path="/terms" element={<SimplePage title="Terms" />} />
             </Routes>

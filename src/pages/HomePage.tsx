@@ -57,11 +57,12 @@ export function HomePage() {
             <p className="hero-display-tagline">Browser-only STEM Lab</p>
             <h1 className="hero-display-title">PhysicsLab 100</h1>
             <p className="hero-sub-text">
-              The most cinematic physics workspace for Class 6–PhD. Matter.js sandbox, 3D explainers, guided experiments, live vectors, graphing, quizzes — all running in your browser.
+              A browser-only physics lab for school to undergraduate learning: transparent model limits, guided experiments, live vectors, graphing, quizzes, and local reports.
             </p>
             <div className="home-hero-actions">
               <MagneticWrapper><Link className="hero-btn" to="/sandbox" viewTransition><PhysicsIcon name="flask" className="h-4 w-4" />Start simulation</Link></MagneticWrapper>
               <MagneticWrapper><Link className="hero-btn-secondary" to="/experiments/projectile-motion" viewTransition><PhysicsIcon name="rocket" className="h-4 w-4" />Projectile lab</Link></MagneticWrapper>
+              <MagneticWrapper><Link className="hero-btn-secondary" to="/trust" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Trust guide</Link></MagneticWrapper>
               <MagneticWrapper><Link className="hero-btn-secondary" to="/quiz" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Quiz challenge</Link></MagneticWrapper>
             </div>
           </div>

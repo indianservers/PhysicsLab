@@ -9,6 +9,7 @@ export interface TeacherAssignment {
   experimentId: string;
   instructions: string;
   dueDate: string;
+  snapshotData?: string;
   lockVariables: boolean;
   requireNotebook: boolean;
   requireQuiz: boolean;
@@ -65,7 +66,12 @@ export function deleteAssignment(id: string) {
 }
 
 export function assignmentSharePath(assignment: TeacherAssignment) {
-  return `/experiments/${assignment.experimentId}?assignment=${assignment.id}&assignmentData=${encodeAssignment(assignment)}`;
+  const params = new URLSearchParams({
+    assignment: assignment.id,
+    assignmentData: encodeAssignment(assignment),
+  });
+  if (assignment.snapshotData) params.set("snapshot", assignment.snapshotData);
+  return `/experiments/${assignment.experimentId}?${params.toString()}`;
 }
 
 export function assignmentShareUrl(assignment: TeacherAssignment) {
@@ -85,7 +91,7 @@ export function importAssignments(payload: unknown) {
   if (!Array.isArray(parsed.assignments)) return 0;
   const existing = readAssignments();
   for (const assignment of parsed.assignments) {
-    if (assignment.id && assignment.experimentId) existing[assignment.id] = assignment;
+    if (assignment.id && assignment.experimentId) existing[assignment.id] = { ...assignment, snapshotData: extractSnapshotData(assignment.snapshotData ?? "") };
   }
   localStorage.setItem(KEY, JSON.stringify(existing));
   return parsed.assignments.length;
@@ -102,10 +108,23 @@ export function defaultAssignmentDraft(): Omit<TeacherAssignment, "id" | "create
     experimentId: firstExperimentId,
     instructions: "Complete the concept, prediction, experiment, notebook, and quiz stages.",
     dueDate: "",
+    snapshotData: "",
     lockVariables: false,
     requireNotebook: true,
     requireQuiz: true,
   };
+}
+
+export function extractSnapshotData(input: string) {
+  const trimmed = input.trim();
+  if (!trimmed) return "";
+  try {
+    const parsed = new URL(trimmed);
+    return parsed.searchParams.get("snapshot") ?? "";
+  } catch {
+    const params = new URLSearchParams(trimmed.startsWith("?") ? trimmed : `snapshot=${trimmed}`);
+    return params.get("snapshot") ?? "";
+  }
 }
 
 function readAssignments(): Record<string, TeacherAssignment> {
@@ -129,6 +148,7 @@ function decodeAssignment(encoded: string): TeacherAssignment | undefined {
     const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
     const parsed = JSON.parse(decodeURIComponent(escape(atob(padded)))) as TeacherAssignment;
     if (!parsed.id || !parsed.experimentId || !parsed.title) return undefined;
+    parsed.snapshotData = extractSnapshotData(parsed.snapshotData ?? "");
     return parsed;
   } catch {
     return undefined;

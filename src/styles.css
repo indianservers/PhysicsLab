@@ -1218,6 +1218,62 @@ body {
     @apply sticky top-16 z-20 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-cyan-300/25 bg-white/90 p-3 shadow-sm backdrop-blur-xl dark:border-cyan-300/20 dark:bg-slate-950/90;
   }
 
+  .lab-presentation-panel {
+    @apply mb-3 rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-3 shadow-sm;
+  }
+
+  .lab-snapshot-panel {
+    @apply mb-3 grid gap-3 rounded-lg border border-cyan-300/25 bg-cyan-400/10 p-3 shadow-sm lg:grid-cols-[minmax(0,1fr)_minmax(18rem,30rem)_auto] lg:items-center;
+  }
+
+  .lab-snapshot-panel h3 {
+    @apply mt-1 text-lg font-black text-slate-800 dark:text-slate-100;
+  }
+
+  .lab-snapshot-panel p {
+    @apply mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300;
+  }
+
+  .snapshot-value-strip {
+    @apply grid gap-2 sm:grid-cols-3;
+  }
+
+  .snapshot-value-strip span {
+    @apply min-w-0 rounded-md border border-slate-300/70 bg-white/80 p-2 dark:border-lab-line dark:bg-slate-950/55;
+  }
+
+  .snapshot-value-strip strong {
+    @apply block truncate text-sm font-black text-cyan-600 dark:text-cyan-300;
+  }
+
+  .snapshot-value-strip em {
+    @apply mt-1 block truncate text-[11px] not-italic font-bold text-slate-500 dark:text-slate-400;
+  }
+
+  .snapshot-actions {
+    @apply flex flex-wrap gap-2 lg:justify-end;
+  }
+
+  .presentation-step {
+    @apply grid min-h-20 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 rounded-md border border-slate-300/70 bg-white/80 p-2 text-left transition hover:border-emerald-400 hover:bg-emerald-400/10 dark:border-lab-line dark:bg-slate-950/60;
+  }
+
+  .presentation-step span {
+    @apply grid h-7 w-7 place-items-center rounded-full bg-slate-200 text-xs font-black text-slate-700 dark:bg-slate-800 dark:text-slate-200;
+  }
+
+  .presentation-step strong {
+    @apply truncate text-sm font-black text-slate-700 dark:text-slate-200;
+  }
+
+  .presentation-step-active {
+    @apply border-emerald-400 bg-emerald-400/15 shadow-sm;
+  }
+
+  .presentation-step-active span {
+    @apply bg-emerald-400 text-slate-950;
+  }
+
   .one-variable-note {
     @apply inline-flex items-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-400/10 px-3 py-2 text-xs font-black text-slate-700 dark:text-cyan-100;
   }

@@ -221,6 +221,10 @@ export interface ExperimentDefinition {
   modelClass?: SimulationModelClass;
   trustLevel?: number;
   confidenceReason?: string;
+  evidenceType?: ModelEvidenceType;
+  maturityLevel?: ExperimentMaturityLevel;
+  sourceRefs?: string[];
+  validationStatus?: string;
 }
 
 export type SimulationModelClass =
@@ -230,6 +234,18 @@ export type SimulationModelClass =
   | "Dynamic Simulation"
   | "Validated Simulation"
   | "Research Prototype";
+
+export type ModelEvidenceType =
+  | "Exact Formula"
+  | "Educational Approximation"
+  | "Visual Model"
+  | "Sandbox Only";
+
+export type ExperimentMaturityLevel =
+  | "Starter"
+  | "Validated"
+  | "Classroom Ready"
+  | "Flagship";
 
 export type GraphSourceType =
   | "Validated Simulation"

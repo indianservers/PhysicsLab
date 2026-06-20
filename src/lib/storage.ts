@@ -37,6 +37,24 @@ export async function listProjects(): Promise<ProjectFile[]> {
   return projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
+export async function importProjects(projects: ProjectFile[]): Promise<number> {
+  const db = await openDb();
+  let count = 0;
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(STORE, "readwrite");
+    const store = tx.objectStore(STORE);
+    for (const project of projects) {
+      if (!project.name || !Array.isArray(project.objects)) continue;
+      store.put(project);
+      count++;
+    }
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  db.close();
+  return count;
+}
+
 export async function deleteProject(name: string) {
   const db = await openDb();
   await new Promise<void>((resolve, reject) => {

@@ -35,6 +35,7 @@ const studyNavItems: NavItem[] = [
   { label: "Roadmap", path: "/roadmap", icon: "compass" },
   { label: "All Topics", path: "/topics", icon: "book" },
   { label: "Graphs", path: "/graphs", icon: "chart" },
+  { label: "Trust", path: "/trust", icon: "check", accent: "warning" },
   { label: "Quantum", path: "/quantum", icon: "atom", accent: "quantum" },
   { label: "Knowledge Graph", path: "/graph", icon: "orbit" },
 ];
@@ -44,6 +45,7 @@ const toolNavItems: NavItem[] = [
   { label: "Video Analysis", path: "/video", icon: "eye" },
   { label: "Quantum Lab", path: "/quantum", icon: "atom", accent: "quantum" },
   { label: "Projects", path: "/projects", icon: "folder" },
+  { label: "Backup", path: "/backup", icon: "download" },
 ];
 
 const railNavGroups = [
