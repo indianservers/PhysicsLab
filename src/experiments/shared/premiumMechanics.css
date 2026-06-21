@@ -1,0 +1,100 @@
+.mechanics-cinema {
+  min-height: 520px;
+  position: relative;
+}
+
+.mechanics-cinema svg {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 420px;
+}
+
+.mechanics-vector {
+  color: var(--premium-accent);
+}
+
+.mechanics-vector-cyan {
+  color: #22d3ee;
+  stroke: #22d3ee;
+}
+
+.mechanics-vector-rose {
+  color: #fb7185;
+  stroke: #fb7185;
+}
+
+.mechanics-vector-amber {
+  color: #facc15;
+  stroke: #facc15;
+}
+
+.mechanics-vector-green {
+  color: #34d399;
+  stroke: #34d399;
+}
+
+.mechanics-premium-controls {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.mechanics-control-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.mechanics-control-head button {
+  min-height: 44px;
+  border: 1px solid color-mix(in srgb, var(--premium-accent) 38%, transparent);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  font-weight: 900;
+  padding: 0.55rem 0.85rem;
+}
+
+.mechanics-control-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mechanics-premium-control {
+  display: grid;
+  gap: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.75rem;
+}
+
+.mechanics-premium-control span {
+  color: #b6c7d8;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.mechanics-premium-control strong {
+  color: var(--premium-accent);
+  font-size: 1.1rem;
+}
+
+.mechanics-premium-control input {
+  min-height: 44px;
+  accent-color: var(--premium-accent);
+}
+
+.premium-orbiting-body {
+  filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.72));
+}
+
+@media (max-width: 640px) {
+  .mechanics-cinema {
+    min-height: 390px;
+  }
+
+  .mechanics-cinema svg {
+    min-block-size: 360px;
+  }
+}

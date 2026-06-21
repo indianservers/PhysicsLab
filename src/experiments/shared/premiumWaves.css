@@ -1,0 +1,95 @@
+.wave-canvas-card,
+.premium-wave-controls {
+  border: 1px solid rgba(147, 197, 253, 0.34);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(7, 17, 47, 0.9), rgba(15, 23, 42, 0.82));
+  padding: 1rem;
+}
+
+.wave-canvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.wave-canvas-head h3 {
+  margin: 0.2rem 0 0;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 950;
+}
+
+.wave-canvas-head span {
+  border: 1px solid rgba(250, 204, 21, 0.38);
+  border-radius: 999px;
+  color: #fde68a;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.4rem 0.7rem;
+}
+
+.wave-canvas-svg {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 420px;
+}
+
+.wave-canvas-caption {
+  color: #c7d2fe;
+  font-weight: 800;
+  margin: 0.8rem 0 0;
+}
+
+.premium-wave-controls {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.premium-wave-control {
+  display: grid;
+  gap: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.75rem;
+}
+
+.premium-wave-control span {
+  color: #bfdbfe;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.premium-wave-control strong {
+  color: #facc15;
+  font-size: 1.1rem;
+}
+
+.premium-wave-control input {
+  min-height: 44px;
+  accent-color: #60a5fa;
+}
+
+.premium-shell--waves button,
+.premium-shell--waves .preset-strip-buttons button {
+  min-height: 44px;
+}
+
+.premium-wave-status {
+  display: inline-grid;
+  min-height: 44px;
+  place-items: center;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 999px;
+  color: #dbeafe;
+  font-weight: 900;
+  padding: 0.45rem 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .wave-canvas-svg {
+    min-block-size: 360px;
+  }
+}

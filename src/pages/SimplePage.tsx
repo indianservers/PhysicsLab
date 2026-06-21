@@ -215,10 +215,10 @@ function ScientificTrustContent() {
           PhysicsLab runs locally in the browser. Trust metadata, reports, assignments, and progress records are generated on this device unless you export, share, or configure a direct xAPI endpoint.
         </p>
         <div className="mt-3 grid gap-3 md:grid-cols-5">
-          <TrustStat label="Executable checks" value={`${accuracyAuditStats.executableChecks}/165`} />
+          <TrustStat label="Executable checks" value={accuracyAuditStats.executableChecks} />
           <TrustStat label="Formula cases" value={`${accuracyAuditStats.passing}/${accuracyAuditStats.cases}`} />
           <TrustStat label="Pass rate" value={`${validationRate}%`} />
-          <TrustStat label="Validated labs" value={accuracyAuditStats.validatedProfiles} />
+          <TrustStat label="Benchmarked labs" value={accuracyAuditStats.validatedProfiles} />
           <TrustStat label="Pending items" value={accuracyAuditStats.pendingProfiles} />
         </div>
         <div className="mt-4 flex flex-wrap gap-2">

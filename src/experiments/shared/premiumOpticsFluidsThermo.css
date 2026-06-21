@@ -1,0 +1,81 @@
+.ray-stage-card,
+.premium-oft-controls {
+  border: 1px solid rgba(147, 197, 253, 0.34);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.86));
+  padding: 1rem;
+}
+
+.ray-stage-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ray-stage-head h3 {
+  margin: 0.2rem 0 0;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 950;
+}
+
+.ray-stage-head span,
+.premium-oft-status {
+  display: inline-grid;
+  place-items: center;
+  min-height: 44px;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  border-radius: 999px;
+  color: #fde68a;
+  font-weight: 900;
+  padding: 0.45rem 0.75rem;
+}
+
+.ray-stage-svg {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 420px;
+}
+
+.premium-oft-controls {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.premium-oft-control {
+  display: grid;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.75rem;
+}
+
+.premium-oft-control span {
+  color: #bfdbfe;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.premium-oft-control strong {
+  color: #facc15;
+}
+
+.premium-oft-control input {
+  min-height: 44px;
+  accent-color: #22d3ee;
+}
+
+.premium-experiment-shell[data-domain="optics"] button,
+.premium-experiment-shell[data-domain="fluids"] button,
+.premium-experiment-shell[data-domain="thermodynamics"] button {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .ray-stage-svg {
+    min-block-size: 360px;
+  }
+}

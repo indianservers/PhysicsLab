@@ -8,6 +8,7 @@ import { has3DAnimation } from "../components/Experiment3DAnimation";
 import { interactionModes } from "../components/InteractionModePanel";
 import { ExperimentMaturityLevel, ModelEvidenceType } from "../types";
 import { flagshipLabModelIds } from "../lib/flagshipLabModels";
+import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
 
 export function ExperimentsPage() {
   const [searchParams] = useSearchParams();
@@ -279,6 +280,8 @@ export function ExperimentsPage() {
           {filtered.map((experiment) => {
             const mappedTopics = topics.filter((topic) => experiment.curriculumTags?.topicIds.includes(topic.id));
             const hasFlagshipModel = flagshipIds.has(experiment.id);
+            const validationStatus = getExperimentValidationMetadata(experiment.id)?.status;
+            const modelLabel = displayModelClassLabel(experiment, validationStatus);
             const primaryOutcome = mappedTopics[0]?.outcomes[0] ?? experiment.expectedResult;
             const features = [
               { label: "Guide", icon: "clipboard" as const, active: true },
@@ -309,15 +312,15 @@ export function ExperimentsPage() {
                   {hasFlagshipModel && <span>Flagship model</span>}
                   <span>{experiment.maturityLevel ?? "Starter"}</span>
                   <span>{experiment.evidenceType ?? "Exact Formula"}</span>
-                  {tagLabels.slice(0, viewMode === "compact" ? 3 : 5).map((tag) => <span key={tag}>{tag}</span>)}
+                  {tagLabels.slice(0, viewMode === "compact" ? 3 : 5).map((tag, index) => <span key={`${tag}-${index}`}>{tag}</span>)}
                 </div>
                 <div className="experiment-card-meta">
                   <span><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />~{estimatedMinutes(experiment.difficulty)} min</span>
                   <span>{experiment.difficulty}</span>
-                  <span>{experiment.modelClass}</span>
+                  <span>{modelLabel}</span>
                 </div>
                 <div className="experiment-card-launch">Launch <span aria-hidden="true">-&gt;</span></div>
-                <div className="sr-only">Learn: {primaryOutcome}. Includes {features.map((feature) => feature.label).join(", ")}. {experiment.classLevel}. Model: {experiment.modelClass}. Trust {experiment.trustLevel}%.</div>
+                <div className="sr-only">Learn: {primaryOutcome}. Includes {features.map((feature) => feature.label).join(", ")}. {experiment.classLevel}. Model: {modelLabel}. Trust {experiment.trustLevel}%.</div>
               </Link>
             );
           })}
@@ -336,6 +339,13 @@ export function ExperimentsPage() {
       </div>
     </div>
   );
+}
+
+function displayModelClassLabel(experiment: typeof experiments[number], validationStatus?: string) {
+  if (experiment.modelClass === "Validated Simulation" && validationStatus !== "validated") {
+    return "Formula shown";
+  }
+  return experiment.modelClass ?? "Calculator";
 }
 
 function ExperimentPreview({ experiment }: { experiment: typeof experiments[number] }) {

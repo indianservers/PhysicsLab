@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
+import { canonicalAccuracyStatus, type AccuracyStatus, type ValidationClaimStatus } from "./validation";
 
-export type FormulaStatus = "validated" | "benchmark-pending" | "qualitative-only";
+export type FormulaStatus = AccuracyStatus;
 
 export interface FormulaSymbol {
   symbol: string;
@@ -16,21 +17,25 @@ export interface FormulaAssumptionBoxProps {
   statusNote?: ReactNode;
 }
 
-const statusLabels: Record<FormulaStatus, string> = {
+const statusLabels: Record<ValidationClaimStatus, string> = {
   validated: "Quantitative benchmark passed",
-  "benchmark-pending": "Benchmark required before accuracy claim",
-  "qualitative-only": "Qualitative visual only",
+  "formula-only": "Formula shown, validation pending",
+  "qualitative-visual": "Qualitative visual model",
+  "needs-benchmark": "Benchmark required before accuracy claim",
+  "unsafe-claim": "Unsafe quantitative claim",
 };
 
 export function FormulaAssumptionBox({ formula, symbols = [], assumptions = [], status, statusNote }: FormulaAssumptionBoxProps) {
+  const normalizedStatus = canonicalAccuracyStatus(status);
+
   return (
-    <section className={`formula-assumption-box formula-assumption-box-${status}`} aria-label="Formula assumptions and status">
+    <section className={`formula-assumption-box formula-assumption-box-${normalizedStatus}`} aria-label="Formula assumptions and status">
       <div className="formula-assumption-head">
         <div>
           <p className="ui-label">Model formula</p>
           <strong>{formula}</strong>
         </div>
-        <span>{statusLabels[status]}</span>
+        <span>{statusLabels[normalizedStatus]}</span>
       </div>
       {symbols.length > 0 && (
         <div className="formula-symbol-grid">

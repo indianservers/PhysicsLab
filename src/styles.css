@@ -19988,7 +19988,7 @@ html:not(.dark) .modules-search-panel input {
 .dedicated-control-presets button,
 .dedicated-replay-step,
 .mobile-experiment-sheet-toggle {
-  min-height: 2.45rem;
+  min-height: 44px;
   border: 1px solid rgb(var(--color-science-500) / 0.35);
   border-radius: 999px;
   padding: 0.45rem 0.75rem;

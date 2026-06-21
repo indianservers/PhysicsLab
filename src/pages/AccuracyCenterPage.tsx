@@ -32,7 +32,7 @@ export function AccuracyCenterPage() {
             <p className="ui-label">Phase 2 / Simulation engine accuracy</p>
             <h1 className="mt-2 text-3xl font-black text-gradient">Accuracy Center</h1>
             <p className="mt-2 max-w-4xl text-sm font-semibold text-slate-600 dark:text-slate-300">
-              Numeric benchmark cases, domain pass rates, model guardrails, and solver-vs-visual separation for every experiment.
+              Numeric benchmark cases, graph expectations, unit guardrails, model assumptions, and solver-vs-visual separation for every experiment.
             </p>
           </div>
           <div className="accuracy-pass-orb">
@@ -47,6 +47,7 @@ export function AccuracyCenterPage() {
           <Metric label="Domains" value={accuracyAuditStats.domains} />
           <Metric label="Flagship models" value={accuracyAuditStats.flagshipModels} />
           <Metric label="Validated solvers" value={accuracyAuditStats.validatedProfiles} />
+          <Metric label="Metadata profiles" value={accuracyAuditStats.metadataProfiles} />
           <Metric label="Avg grade" value={accuracyAuditStats.averageGrade} suffix="%" />
         </section>
 
@@ -80,9 +81,9 @@ export function AccuracyCenterPage() {
               </div>
             </div>
             <div className="accuracy-contract-list">
-              <Contract label="Validated solver" text="Has direct benchmark coverage or a flagship model with guardrails. Numeric outputs can be trusted inside stated ranges." />
-              <Contract label="Formula calculator" text="Uses textbook formula metadata but still needs experiment-specific reference cases before flagship promotion." />
-              <Contract label="Visual illustration" text="Visuals teach intuition. Numeric claims must be shown separately by formulas or solver checks." />
+              <Contract label="Validated solver" text="Has executable benchmark cases, unit labels, assumptions, and graph expectations passing inside stated ranges." />
+              <Contract label="Formula calculator" text="Formula is shown, but validation is pending until executable benchmark cases pass." />
+              <Contract label="Visual illustration" text="Visuals teach intuition. They must not be labelled as validated calculators." />
               <Contract label="Sandbox starter" text="Exploration workspace only. Do not market it as a validated simulation until promoted." />
             </div>
           </aside>
@@ -198,12 +199,18 @@ function AccuracyProfileCard({ profile }: { profile: ExperimentAccuracyProfile }
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         <span className="status-chip status-chip-cyan">{profile.mode}</span>
+        <span className={profile.validationStatus === "validated" ? "status-chip status-chip-cyan" : "status-chip status-chip-amber"}>{profile.validationStatus}</span>
         <span className="status-chip">{profile.passedCases}/{profile.validationCases} cases</span>
       </div>
       <div className="quality-score-bar mt-3"><i style={{ width: `${profile.modelGrade}%` }} /></div>
       <div className="accuracy-card-section">
         <strong>Guardrails</strong>
         {profile.guardrails.length ? profile.guardrails.map((item) => <p key={item}>{item}</p>) : <p>No explicit guardrails yet.</p>}
+      </div>
+      <div className="accuracy-card-section">
+        <strong>Units and graph</strong>
+        <p>{profile.inputUnits[0] ?? "Input units not registered yet."}</p>
+        <p>{profile.graphExpectations[0] ?? "Graph expectation not registered yet."}</p>
       </div>
       <div className="accuracy-card-section">
         <strong>Next action</strong>

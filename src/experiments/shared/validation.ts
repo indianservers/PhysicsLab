@@ -2,7 +2,9 @@ import type { GraphShape } from "./GraphPanel";
 
 export type BenchmarkToleranceMode = "absolute" | "relative";
 export type GraphDirection = "increasing" | "decreasing" | "constant" | "non-monotonic";
-export type AccuracyStatus = "validated" | "benchmark-pending" | "qualitative-only";
+export type ValidationClaimStatus = "validated" | "formula-only" | "qualitative-visual" | "needs-benchmark" | "unsafe-claim";
+export type LegacyAccuracyStatus = "benchmark-pending" | "qualitative-only";
+export type AccuracyStatus = ValidationClaimStatus | LegacyAccuracyStatus;
 
 export interface BenchmarkCase<TInput = unknown> {
   id: string;
@@ -24,6 +26,48 @@ export interface BenchmarkResult<TInput = unknown> extends Omit<BenchmarkCase<TI
   toleranceMode: BenchmarkToleranceMode;
 }
 
+export interface ValidationRange {
+  id: string;
+  label: string;
+  min?: number;
+  max?: number;
+  unit?: string;
+  warning?: string;
+}
+
+export interface UnitGuardrail {
+  id: string;
+  label: string;
+  displayUnit: string;
+  siUnit: string;
+  toSi?: (value: number) => number;
+}
+
+export interface GraphExpectation {
+  id: string;
+  label: string;
+  xLabel: string;
+  yLabel: string;
+  shape?: GraphShape;
+  direction?: GraphDirection;
+  notes?: string;
+}
+
+export interface ExperimentValidationMetadata {
+  experimentId: string;
+  formulaName: string;
+  formula: string;
+  status: ValidationClaimStatus;
+  assumptions: string[];
+  inputUnits: UnitGuardrail[];
+  outputUnits: UnitGuardrail[];
+  validRanges: ValidationRange[];
+  benchmarkCases: BenchmarkResult[];
+  tolerance: number;
+  graphExpectations: GraphExpectation[];
+  warnings: string[];
+}
+
 export interface UnitGuardResult {
   ok: boolean;
   unit: string;
@@ -41,7 +85,7 @@ export interface GraphShapeMetadata {
   shape: GraphShape;
   qualitative: boolean;
   description: string;
-  accuracyStatus: AccuracyStatus;
+  accuracyStatus: ValidationClaimStatus;
 }
 
 export function approximatelyEqual(
@@ -90,6 +134,18 @@ export function allBenchmarksPassed(results: BenchmarkResult[]) {
   return results.length > 0 && results.every((result) => result.pass);
 }
 
+export function canonicalAccuracyStatus(status: AccuracyStatus): ValidationClaimStatus {
+  if (status === "benchmark-pending") return "needs-benchmark";
+  if (status === "qualitative-only") return "qualitative-visual";
+  return status;
+}
+
+export function statusForBenchmarks(results: BenchmarkResult[], qualitative = false): ValidationClaimStatus {
+  if (qualitative) return "qualitative-visual";
+  if (results.length === 0) return "needs-benchmark";
+  return results.every((result) => result.pass) ? "validated" : "unsafe-claim";
+}
+
 export function detectGraphDirection(values: number[], tolerance = 1e-9): GraphDirection {
   if (values.length < 2) {
     return "constant";
@@ -132,7 +188,7 @@ export function graphShapeMetadata(
     shape,
     qualitative: options.qualitative ?? false,
     description: options.description ?? `${shape} response`,
-    accuracyStatus: options.accuracyStatus ?? (options.qualitative ? "qualitative-only" : "benchmark-pending"),
+    accuracyStatus: canonicalAccuracyStatus(options.accuracyStatus ?? (options.qualitative ? "qualitative-visual" : "needs-benchmark")),
   };
 }
 
@@ -148,7 +204,7 @@ export function guardUnit(unit: string, allowedUnits: string[]): UnitGuardResult
 
 export function qualitativeOnlyWarning(reason = "This visual is a conceptual model, not an exact calculator.") {
   return {
-    status: "qualitative-only" as const,
+    status: "qualitative-visual" as const,
     message:
       `${reason} Do not label qualitative visuals as validated accuracy unless benchmark cases pass.`,
   };

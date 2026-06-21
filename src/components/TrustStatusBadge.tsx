@@ -8,7 +8,7 @@ export function TrustStatusBadge() {
     <details className="trust-status-badge">
       <summary title="Open validation and trust summary">
         <PhysicsIcon name="check" className="h-4 w-4" />
-        <span>{accuracyAuditStats.executableChecks}/165 validated</span>
+        <span>{accuracyAuditStats.executableChecks} local checks</span>
       </summary>
       <div className="trust-status-panel">
         <div>
@@ -16,7 +16,7 @@ export function TrustStatusBadge() {
           <p>{accuracyAuditStats.passing}/{accuracyAuditStats.cases} formula benchmark cases pass across {accuracyAuditStats.domains} domains.</p>
         </div>
         <div className="trust-status-grid">
-          <span><b>{accuracyAuditStats.validatedProfiles}</b> validated labs</span>
+          <span><b>{accuracyAuditStats.validatedProfiles}</b> benchmarked labs</span>
           <span><b>{accuracyAuditStats.flagshipModels}</b> flagship models</span>
           <span><b>{accuracyAuditStats.pendingProfiles}</b> pending accuracy items</span>
         </div>

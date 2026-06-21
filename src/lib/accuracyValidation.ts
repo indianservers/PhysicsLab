@@ -1,5 +1,7 @@
 import { experiments } from "./experiments";
 import { getFlagshipLabModel, flagshipLabModels } from "./flagshipLabModels";
+import { experimentValidationRegistry, getExperimentValidationMetadata } from "./experimentValidationRegistry";
+import type { ValidationClaimStatus } from "../experiments/shared/validation";
 import {
   buoyantForce,
   freeFallDistance,
@@ -66,6 +68,12 @@ export interface ExperimentAccuracyProfile {
   failedCases: number;
   passRate: number;
   modelGrade: number;
+  validationStatus: ValidationClaimStatus;
+  benchmarkSummary: string;
+  graphExpectations: string[];
+  inputUnits: string[];
+  outputUnits: string[];
+  warnings: string[];
   guardrails: string[];
   nextAccuracyActions: string[];
 }
@@ -119,11 +127,15 @@ export const accuracyAuditStats = {
   cases: accuracyValidationResults.length,
   passing: accuracyValidationResults.filter((item) => item.status === "pass").length,
   failing: accuracyValidationResults.filter((item) => item.status === "fail").length,
-  executableChecks: 165,
+  executableChecks: 201,
   domains: accuracyDomainSummaries.length,
   flagshipModels: flagshipLabModels.length,
   validatedProfiles: experimentAccuracyProfiles.filter((item) => item.mode === "Validated solver").length,
   visualOnlyProfiles: experimentAccuracyProfiles.filter((item) => item.mode === "Visual illustration").length,
+  formulaOnlyProfiles: experimentAccuracyProfiles.filter((item) => item.validationStatus === "formula-only").length,
+  qualitativeProfiles: experimentAccuracyProfiles.filter((item) => item.validationStatus === "qualitative-visual").length,
+  unsafeClaims: experimentAccuracyProfiles.filter((item) => item.validationStatus === "unsafe-claim").length,
+  metadataProfiles: Object.keys(experimentValidationRegistry).length,
   averageGrade: Math.round(experimentAccuracyProfiles.reduce((sum, item) => sum + item.modelGrade, 0) / Math.max(1, experimentAccuracyProfiles.length)),
   pendingProfiles: experimentAccuracyProfiles.filter((item) => item.modelGrade < 70 || item.validationCases === 0).length,
 };
@@ -159,37 +171,68 @@ function summarizeByDomain(results: AccuracyValidationResult[]) {
 
 function profileForExperiment(experiment: typeof experiments[number]): ExperimentAccuracyProfile {
   const cases = accuracyValidationResults.filter((item) => item.experimentId === experiment.id);
-  const passedCases = cases.filter((item) => item.status === "pass").length;
-  const passRate = cases.length ? Math.round((passedCases / cases.length) * 100) : 0;
-  const mode = modeForExperiment(experiment, cases.length);
+  const metadata = getExperimentValidationMetadata(experiment.id);
+  const metadataCases = metadata?.benchmarkCases ?? [];
+  const totalCaseCount = cases.length + metadataCases.length;
+  const passedCases = cases.filter((item) => item.status === "pass").length + metadataCases.filter((item) => item.pass).length;
+  const failedCases = totalCaseCount - passedCases;
+  const passRate = totalCaseCount ? Math.round((passedCases / totalCaseCount) * 100) : 0;
+  const validationStatus = validationStatusForExperiment(experiment, cases.length, passedCases, failedCases);
+  const mode = modeForExperiment(experiment, validationStatus);
   return {
     experimentId: experiment.id,
     title: experiment.title,
     category: experiment.category,
     mode,
-    validationCases: cases.length,
+    validationCases: totalCaseCount,
     passedCases,
-    failedCases: cases.length - passedCases,
+    failedCases,
     passRate,
-    modelGrade: modelGradeFor(experiment, mode, passRate, cases.length),
-    guardrails: guardrailsFor(experiment),
-    nextAccuracyActions: nextActionsFor(experiment, mode, cases.length, passRate),
+    modelGrade: modelGradeFor(experiment, mode, passRate, totalCaseCount, validationStatus),
+    validationStatus,
+    benchmarkSummary: metadata
+      ? `${metadata.benchmarkCases.filter((item) => item.pass).length}/${metadata.benchmarkCases.length} metadata benchmarks, ${metadata.status}`
+      : "No central validation metadata yet",
+    graphExpectations: metadata?.graphExpectations.map((item) => `${item.label}: ${item.shape ?? item.direction ?? "documented"}`) ?? [],
+    inputUnits: metadata?.inputUnits.map((item) => `${item.label}: ${item.displayUnit}${item.displayUnit !== item.siUnit ? ` -> ${item.siUnit}` : ""}`) ?? [],
+    outputUnits: metadata?.outputUnits.map((item) => `${item.label}: ${item.displayUnit}`) ?? [],
+    warnings: metadata?.warnings ?? [],
+    guardrails: guardrailsFor(experiment, metadata),
+    nextAccuracyActions: nextActionsFor(experiment, mode, totalCaseCount, passRate, validationStatus),
   };
 }
 
-function modeForExperiment(experiment: typeof experiments[number], caseCount: number): ModelAccuracyMode {
-  if (caseCount > 0 || experiment.modelClass === "Validated Simulation" || getFlagshipLabModel(experiment.id)) return "Validated solver";
+function validationStatusForExperiment(
+  experiment: typeof experiments[number],
+  legacyCaseCount: number,
+  passedCases: number,
+  failedCases: number,
+): ValidationClaimStatus {
+  const metadata = getExperimentValidationMetadata(experiment.id);
+  if (metadata) return metadata.status;
+  if (legacyCaseCount > 0) return failedCases === 0 && passedCases > 0 ? "validated" : "unsafe-claim";
+  if (experiment.evidenceType === "Visual Model" || experiment.modelClass === "Visualization") return "qualitative-visual";
+  if (experiment.evidenceType === "Exact Formula" || experiment.modelClass === "Calculator") return "formula-only";
+  return "needs-benchmark";
+}
+
+function modeForExperiment(experiment: typeof experiments[number], validationStatus: ValidationClaimStatus): ModelAccuracyMode {
+  if (validationStatus === "validated") return "Validated solver";
+  if (validationStatus === "formula-only") return "Formula calculator";
+  if (validationStatus === "qualitative-visual") return "Visual illustration";
   if (experiment.evidenceType === "Exact Formula" || experiment.modelClass === "Calculator") return "Formula calculator";
   if (experiment.evidenceType === "Visual Model" || experiment.modelClass === "Visualization") return "Visual illustration";
   return "Sandbox starter";
 }
 
-function modelGradeFor(experiment: typeof experiments[number], mode: ModelAccuracyMode, passRate: number, caseCount: number) {
+function modelGradeFor(experiment: typeof experiments[number], mode: ModelAccuracyMode, passRate: number, caseCount: number, validationStatus: ValidationClaimStatus) {
   let score = 45;
   if (mode === "Validated solver") score += 25;
   if (mode === "Formula calculator") score += 15;
   if (mode === "Visual illustration") score += 4;
   if (mode === "Sandbox starter") score -= 10;
+  if (validationStatus === "unsafe-claim") score -= 28;
+  if (validationStatus === "needs-benchmark") score -= 10;
   score += Math.min(18, caseCount * 6);
   score += Math.round((passRate / 100) * 12);
   if (experiment.assumptions?.length) score += 4;
@@ -199,19 +242,24 @@ function modelGradeFor(experiment: typeof experiments[number], mode: ModelAccura
   return Math.max(0, Math.min(100, score));
 }
 
-function guardrailsFor(experiment: typeof experiments[number]) {
+function guardrailsFor(experiment: typeof experiments[number], metadata?: ReturnType<typeof getExperimentValidationMetadata>) {
   const model = getFlagshipLabModel(experiment.id);
   const rangeGuardrails = model?.controls.map((control) => `${control.label}: ${control.min} to ${control.max}`) ?? [];
   return [
+    ...(metadata?.assumptions.slice(0, 2) ?? []),
+    ...(metadata?.validRanges.slice(0, 2).map((item) => `${item.label}: ${item.min ?? "-∞"} to ${item.max ?? "+∞"} ${item.unit ?? ""}`) ?? []),
     ...(experiment.assumptions?.slice(0, 2) ?? []),
     ...(experiment.validRanges?.slice(0, 2) ?? []),
     ...rangeGuardrails.slice(0, 3),
   ].slice(0, 5);
 }
 
-function nextActionsFor(experiment: typeof experiments[number], mode: ModelAccuracyMode, caseCount: number, passRate: number) {
+function nextActionsFor(experiment: typeof experiments[number], mode: ModelAccuracyMode, caseCount: number, passRate: number, validationStatus: ValidationClaimStatus) {
   const actions: string[] = [];
   if (caseCount === 0) actions.push("Add at least two numeric benchmark cases with expected outputs and tolerance.");
+  if (validationStatus === "formula-only") actions.push("Keep this labelled as formula-only until executable benchmark cases pass.");
+  if (validationStatus === "needs-benchmark") actions.push("Do not display validated or accurate-calculator claims yet.");
+  if (validationStatus === "unsafe-claim") actions.push("Remove quantitative accuracy claims until failed benchmarks are fixed.");
   if (passRate < 100 && caseCount > 0) actions.push("Fix failing benchmark cases before promoting the model.");
   if (mode === "Visual illustration") actions.push("Mark visuals as qualitative and separate them from numeric solver claims.");
   if (mode === "Sandbox starter") actions.push("Promote this starter to a lab-specific model or keep it out of flagship claims.");
