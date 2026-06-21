@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
 import {
@@ -13,6 +13,7 @@ const tiers = ["All", "Flagship cinematic", "Interactive model", "Guided visual"
 
 export function SimulationDepthPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedFromUrl = new URLSearchParams(location.search).get("simulation");
   const [query, setQuery] = useState("");
   const [tier, setTier] = useState("All");
@@ -34,6 +35,7 @@ export function SimulationDepthPage() {
     });
   }, [category, query, tier]);
   const selected = simulationDepthProfiles.find((item) => item.experimentId === selectedId) ?? filtered[0] ?? simulationDepthProfiles[0];
+  const launchSimulation = (experimentId: string) => navigate(`/experiments/${experimentId}`);
 
   return (
     <div className="min-h-screen simulation-depth-page">
@@ -70,24 +72,34 @@ export function SimulationDepthPage() {
                   <p className="ui-label">Pending items</p>
                   <h2>{pendingProfiles.length} simulations need a depth pass</h2>
                 </div>
-                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${pendingProfiles[0].experimentId}`} target="_blank" rel="noreferrer">
+                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${pendingProfiles[0].experimentId}`}>
                   <PhysicsIcon name="play" className="h-4 w-4" />
                   Launch first pending
                 </Link>
               </div>
               <div className="depth-pending-grid">
                 {pendingProfiles.slice(0, 8).map((profile) => (
-                  <article key={profile.experimentId} className="depth-pending-card">
+                  <article
+                    key={profile.experimentId}
+                    className="depth-pending-card depth-clickable-card"
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => launchSimulation(profile.experimentId)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") launchSimulation(profile.experimentId);
+                    }}
+                    aria-label={`Launch ${profile.title} simulator`}
+                  >
                     <div>
                       <p className="ui-label">{profile.category} / {profile.classLevel}</p>
                       <strong>{profile.title}</strong>
                       <p>{profile.missingLayers.length > 0 ? `Needs ${profile.missingLayers.join(", ")}.` : profile.visualPromise}</p>
                     </div>
                     <div className="depth-card-actions">
-                      <button type="button" className="depth-detail-button" onClick={() => setSelectedId(profile.experimentId)}>
+                      <button type="button" className="depth-detail-button" onClick={(event) => { event.stopPropagation(); setSelectedId(profile.experimentId); }}>
                         Review plan
                       </button>
-                      <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} target="_blank" rel="noreferrer">
+                      <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} onClick={(event) => event.stopPropagation()}>
                         <PhysicsIcon name="play" className="h-4 w-4" />
                         Launch
                       </Link>
@@ -156,7 +168,13 @@ export function SimulationDepthPage() {
             </div>
             <div className="depth-profile-grid">
               {filtered.map((profile) => (
-                <DepthProfileCard key={profile.experimentId} profile={profile} active={selected.experimentId === profile.experimentId} onSelect={() => setSelectedId(profile.experimentId)} />
+                <DepthProfileCard
+                  key={profile.experimentId}
+                  profile={profile}
+                  active={selected.experimentId === profile.experimentId}
+                  onSelect={() => setSelectedId(profile.experimentId)}
+                  onLaunch={() => launchSimulation(profile.experimentId)}
+                />
               ))}
             </div>
           </div>
@@ -170,7 +188,7 @@ export function SimulationDepthPage() {
                   <p className="ui-label">Selected simulation upgrade</p>
                   <h2>{selected.title}</h2>
                 </div>
-                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${selected.experimentId}`} target="_blank" rel="noreferrer">
+                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${selected.experimentId}`}>
                   <PhysicsIcon name="play" className="h-4 w-4" />
                   Launch simulator
                 </Link>
@@ -194,7 +212,7 @@ export function SimulationDepthPage() {
                 <div className="depth-missing-list">
                   <strong>Missing next</strong>
                   {selected.missingLayers.map((layer) => <span key={layer}>{layer}</span>)}
-                  <Link className="depth-launch-mini" to={`/experiments/${selected.experimentId}`} target="_blank" rel="noreferrer">
+                  <Link className="depth-launch-mini" to={`/experiments/${selected.experimentId}`}>
                     <PhysicsIcon name="play" className="h-4 w-4" />
                     Launch this simulator
                   </Link>
@@ -217,10 +235,19 @@ function Metric({ label, value }: { label: string; value: number }) {
   );
 }
 
-function DepthProfileCard({ profile, active, onSelect }: { profile: SimulationDepthProfile; active: boolean; onSelect: () => void }) {
+function DepthProfileCard({ profile, active, onSelect, onLaunch }: { profile: SimulationDepthProfile; active: boolean; onSelect: () => void; onLaunch: () => void }) {
   return (
-    <article className={active ? "depth-profile-card depth-profile-card-active" : "depth-profile-card"}>
-      <button type="button" onClick={onSelect}>
+    <article
+      className={active ? "depth-profile-card depth-profile-card-active depth-clickable-card" : "depth-profile-card depth-clickable-card"}
+      role="link"
+      tabIndex={0}
+      onClick={onLaunch}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") onLaunch();
+      }}
+      aria-label={`Launch ${profile.title} simulator`}
+    >
+      <div className="depth-profile-main">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 text-left">
             <p className="ui-label">{profile.category} / {profile.classLevel}</p>
@@ -235,12 +262,12 @@ function DepthProfileCard({ profile, active, onSelect }: { profile: SimulationDe
           <span className="status-chip">{profile.layers.length} layers</span>
           {profile.missingLayers.length > 0 && <span className="status-chip status-chip-warning">{profile.missingLayers.length} pending</span>}
         </div>
-      </button>
+      </div>
       <div className="depth-card-actions">
-        <button type="button" className="depth-detail-button" onClick={onSelect}>
-          Details
+        <button type="button" className="depth-detail-button" onClick={(event) => { event.stopPropagation(); onSelect(); }}>
+          Review plan
         </button>
-        <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} target="_blank" rel="noreferrer">
+        <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} onClick={(event) => event.stopPropagation()}>
           <PhysicsIcon name="play" className="h-4 w-4" />
           Launch
         </Link>

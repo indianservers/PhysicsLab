@@ -108,7 +108,7 @@ function renderScene(experiment: ExperimentDefinition, a: number, b: number, c: 
   if (["heat-and-temperature", "heat-transfer", "gas-laws", "thermodynamic-process"].includes(experiment.id)) return <ThermalScene id={experiment.id} a={a} b={b} c={c} />;
   if (["force-and-pressure", "fluid-pressure", "buoyancy", "bernoulli-fluid-flow"].includes(experiment.id)) return <FluidScene id={experiment.id} a={a} b={b} c={c} />;
   if (["static-electricity", "electrostatic-field-potential", "lorentz-force", "emi-faraday", "magnetic-field-current", "electromagnet"].includes(experiment.id)) return <FieldScene id={experiment.id} a={a} b={b} c={c} />;
-  if (["photoelectric-equation", "nuclear-decay", "de-broglie-wavelength", "bohr-model", "special-relativity-bridge"].includes(experiment.id)) return <ModernScene id={experiment.id} a={a} b={b} c={c} />;
+  if (["photoelectric-equation", "nuclear-decay", "de-broglie-wavelength", "bohr-model", "special-relativity-bridge", "advanced-quantum-operators"].includes(experiment.id)) return <ModernScene id={experiment.id} a={a} b={b} c={c} />;
   return <MechanicsScene id={experiment.id} a={a} b={b} c={c} />;
 }
 
@@ -412,22 +412,66 @@ function RayOpticsBench({ id, a, b, c }: { id: string; a: number; b: number; c: 
 
 function EyeDefectScene({ a, b, c }: { a: number; b: number; c: number }) {
   const mode = Math.round(c);
-  const focusX = mode === 1 ? 545 : mode === 2 ? 665 : 610 + clamp((a - b) * 18, -40, 40);
+  const retinaX = 606;
+  const uncorrectedFocusX = mode === 0 ? retinaX + clamp((a - b) * 44, -46, 46) : retinaX + clamp((a - b) * 76, -88, 88);
+  const correctedFocusX = mode === 0 ? uncorrectedFocusX : retinaX;
+  const focusStatus = uncorrectedFocusX < retinaX - 18 ? "focus before retina" : uncorrectedFocusX > retinaX + 18 ? "focus behind retina" : "clear on retina";
+  const defectName = mode === 1 ? "myopia" : mode === 2 ? "hypermetropia" : "normal vision";
+  const correctionName = mode === 1 ? "concave correction" : mode === 2 ? "convex correction" : "no correction lens";
+  const correctionPower = mode === 0 ? 0 : (1 / Math.max(0.01, b / 100)) - (1 / Math.max(0.01, a / 100));
   const lensColor = mode === 1 ? "#a78bfa" : mode === 2 ? "#34d399" : "#67e8f9";
   return (
     <g>
-      <ellipse cx="430" cy="150" rx="190" ry="96" fill="rgba(103,232,249,.12)" stroke="#67e8f9" strokeWidth="4" />
-      <path d="M 590 72 Q 632 150 590 228" fill="none" stroke="#f43f5e" strokeWidth="6" />
-      <ellipse cx="315" cy="150" rx="24" ry="72" fill="rgba(250,204,21,.25)" stroke="#facc15" strokeWidth="4" />
-      {mode > 0 && <ellipse cx="230" cy="150" rx={mode === 1 ? 15 : 28} ry="74" fill="rgba(167,139,250,.2)" stroke={lensColor} strokeWidth="4" />}
-      {[112, 150, 188].map((y) => (
-        <line key={y} className="lab-anim-dash" x1="85" y1={y} x2="315" y2="150" stroke="#fde047" strokeWidth="3" />
-      ))}
-      <line className="lab-anim-dash-fast" x1="315" y1="150" x2={focusX} y2="150" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-optics)" />
-      <circle cx={focusX} cy="150" r="8" fill={Math.abs(focusX - 590) < 20 ? "#34d399" : "#f43f5e"} className="lab-anim-glow" />
-      <text x="575" y="62" fill="#f43f5e" fontSize="13" fontWeight="900">retina</text>
-      <text x="84" y="44" fill="#e2e8f0" fontSize="16" fontWeight="900">{mode === 1 ? "myopia: concave correction" : mode === 2 ? "hypermetropia: convex correction" : "normal eye focus"}</text>
-      <text x="84" y="268" fill="#94a3b8" fontSize="13">The correction lens shifts the focus back onto the retina.</text>
+      <clipPath id="eye-realistic-clip">
+        <rect x="42" y="36" width="676" height="228" rx="18" />
+      </clipPath>
+      <image
+        href="/assets/experiments/human-eye-defects/realistic-eye-cutaway.png"
+        x="42"
+        y="36"
+        width="676"
+        height="228"
+        preserveAspectRatio="xMidYMid slice"
+        clipPath="url(#eye-realistic-clip)"
+        opacity="0.78"
+      />
+      <rect x="42" y="36" width="676" height="228" rx="18" fill="rgba(2,6,23,.28)" stroke="#67e8f9" strokeWidth="2" />
+      <rect x="60" y="50" width="190" height="74" rx="12" fill="rgba(2,6,23,.82)" stroke="#22d3ee" strokeWidth="1.5" />
+      <text x="76" y="76" fill="#e2e8f0" fontSize="17" fontWeight="900">{defectName}</text>
+      <text x="76" y="99" fill="#94a3b8" fontSize="12" fontWeight="700">{correctionName}</text>
+      <text x="76" y="116" fill={mode === 0 ? "#34d399" : "#facc15"} fontSize="11" fontWeight="900">P approx {correctionPower.toFixed(2)} D</text>
+
+      {mode > 0 && (
+        <g>
+          <ellipse cx="192" cy="150" rx={mode === 1 ? 14 : 28} ry="77" fill="rgba(15,23,42,.52)" stroke={lensColor} strokeWidth="4" />
+          <text x="134" y="249" fill={lensColor} fontSize="12" fontWeight="900">{mode === 1 ? "diverging lens" : "converging lens"}</text>
+        </g>
+      )}
+
+      <path d="M 606 59 Q 658 150 606 241" fill="none" stroke="#f43f5e" strokeWidth="6" opacity="0.88" />
+      <text x="584" y="54" fill="#fecdd3" fontSize="13" fontWeight="900">retina</text>
+      <ellipse cx="333" cy="150" rx="22" ry="68" fill="rgba(250,204,21,.16)" stroke="#facc15" strokeWidth="3.5" />
+      <text x="306" y="230" fill="#fde68a" fontSize="12" fontWeight="900">eye lens</text>
+
+      {[108, 150, 192].map((y, index) => {
+        const midY = mode === 1 ? 150 + (y - 150) * 0.54 : mode === 2 ? 150 + (y - 150) * 0.18 : 150 + (y - 150) * 0.35;
+        return (
+          <g key={y}>
+            <path className="lab-anim-dash" d={`M 76 ${y} C 124 ${y} 148 ${midY} 192 ${midY}`} fill="none" stroke="#fde047" strokeWidth="3.5" />
+            <path d={`M 192 ${midY} C 248 ${midY} 292 150 333 150`} fill="none" stroke={mode > 0 ? lensColor : "#fde047"} strokeWidth="3.5" opacity="0.9" />
+            <path d={`M 333 150 C 415 ${128 + index * 22} ${uncorrectedFocusX - 48} 150 ${uncorrectedFocusX} 150`} fill="none" stroke="#fb7185" strokeWidth="2.4" strokeDasharray="8 7" opacity="0.8" />
+            <path className="lab-anim-dash-fast" d={`M 333 150 C 421 ${122 + index * 28} ${correctedFocusX - 48} 150 ${correctedFocusX} 150`} fill="none" stroke="#22d3ee" strokeWidth="3.8" markerEnd="url(#arrow-optics)" />
+          </g>
+        );
+      })}
+
+      <circle cx={uncorrectedFocusX} cy="150" r="8" fill={Math.abs(uncorrectedFocusX - retinaX) < 18 ? "#34d399" : "#fb7185"} opacity="0.9" />
+      <circle cx={correctedFocusX} cy="150" r="11" fill={Math.abs(correctedFocusX - retinaX) < 18 ? "#34d399" : "#f43f5e"} className="lab-anim-glow" />
+      <text x={Math.min(626, uncorrectedFocusX - 54)} y="133" fill="#fecdd3" fontSize="12" fontWeight="900">uncorrected</text>
+      <text x="508" y="181" fill="#67e8f9" fontSize="12" fontWeight="900">corrected image</text>
+      <rect x="430" y="204" width="266" height="42" rx="10" fill="rgba(2,6,23,.78)" stroke="#334155" />
+      <text x="445" y="225" fill="#e2e8f0" fontSize="12" fontWeight="900">{focusStatus}</text>
+      <text x="445" y="241" fill="#94a3b8" fontSize="11">Retina {b.toFixed(1)} cm, eye focus {a.toFixed(1)} cm</text>
     </g>
   );
 }
@@ -989,6 +1033,7 @@ function FieldScene({ id, a, b, c }: { id: string; a: number; b: number; c: numb
 }
 
 function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
+  if (id === "advanced-quantum-operators") return <AdvancedQuantumOperatorsScene a={a} b={b} c={c} />;
   if (id === "photoelectric-equation") return <PhotoelectricScene a={a} b={b} c={c} />;
   if (id === "special-relativity-bridge") return <RelativityScene a={a} b={b} c={c} />;
   const emitted = a > b;
@@ -1002,6 +1047,65 @@ function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
       {id === "nuclear-decay" ? <rect x="90" y="220" width={remaining} height="18" rx="9" fill="#f43f5e" /> : null}
       <text x="82" y="45" fill="#e2e8f0" fontSize="16">{id === "nuclear-decay" ? "Half-life model" : "Photoelectric model"}</text>
       <text x="82" y="265" fill="#94a3b8" fontSize="13">Quantum inputs determine emission, energy, or remaining nuclei.</text>
+    </g>
+  );
+}
+
+function AdvancedQuantumOperatorsScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const stateAngle = ((clamp(a, 0, 100) / 100) * 120 + 20) * Math.PI / 180;
+  const operatorAngle = ((clamp(c, 0, 10) / 10) * 75 + 18) * Math.PI / 180;
+  const barrier = clamp(b, 0, 100);
+  const projection = Math.cos(stateAngle - operatorAngle);
+  const p1 = clamp(projection * projection, 0, 1);
+  const p2 = 1 - p1;
+  const transmission = clamp(Math.exp(-barrier / 32) * (0.35 + 0.65 * clamp(a, 1, 100) / 100), 0.02, 0.98);
+  const cx = 250;
+  const cy = 160;
+  const r = 96;
+  const sx = cx + Math.cos(stateAngle) * r;
+  const sy = cy - Math.sin(stateAngle) * r;
+  const ox = cx + Math.cos(operatorAngle) * (r + 36);
+  const oy = cy - Math.sin(operatorAngle) * (r + 36);
+  const p1Height = 125 * p1;
+  const p2Height = 125 * p2;
+  return (
+    <g>
+      <rect x="52" y="42" width="656" height="218" rx="18" fill="rgba(15,23,42,.72)" stroke="rgba(34,211,238,.35)" />
+      <circle cx={cx} cy={cy} r={r} fill="rgba(34,211,238,.06)" stroke="rgba(148,163,184,.35)" strokeWidth="2" />
+      <line x1={cx - 122} y1={cy} x2={cx + 134} y2={cy} stroke="#475569" strokeWidth="2" markerEnd="url(#arrow-modern)" />
+      <line x1={cx} y1={cy + 116} x2={cx} y2={cy - 128} stroke="#475569" strokeWidth="2" markerEnd="url(#arrow-modern)" />
+      <line x1={cx} y1={cy} x2={sx} y2={sy} stroke="#22d3ee" strokeWidth="6" markerEnd="url(#arrow-modern)" />
+      <line x1={cx} y1={cy} x2={ox} y2={oy} stroke="#facc15" strokeWidth="5" strokeDasharray="8 6" markerEnd="url(#arrow-modern)" />
+      <circle cx={sx} cy={sy} r="10" fill="#22d3ee" className="lab-anim-glow" />
+      <circle cx={ox} cy={oy} r="7" fill="#facc15" />
+      <path d={`M ${sx} ${sy} C ${sx + 55} ${sy - 50}, ${ox - 40} ${oy + 45}, ${ox} ${oy}`} fill="none" stroke="#a78bfa" strokeWidth="3" strokeDasharray="6 5" />
+      <text x="74" y="72" fill="#e2e8f0" fontSize="16" fontWeight="900">operator action in state space</text>
+      <text x="74" y="96" fill="#94a3b8" fontSize="13">A quantum operator transforms a state; measurement reads projection onto allowed eigenstates.</text>
+      <text x={sx + 10} y={sy - 8} fill="#67e8f9" fontSize="13" fontWeight="900">state psi</text>
+      <text x={ox + 8} y={oy + 5} fill="#fde68a" fontSize="13" fontWeight="900">A psi</text>
+      <text x={cx + 90} y={cy - 18} fill="#c4b5fd" fontSize="12">basis |a1&gt;</text>
+      <text x={cx + 8} y={cy - 104} fill="#c4b5fd" fontSize="12">basis |a2&gt;</text>
+
+      <g transform="translate(430 82)">
+        <text x="0" y="0" fill="#67e8f9" fontSize="13" fontWeight="900">measurement probabilities</text>
+        <rect x="0" y="36" width="42" height="132" rx="8" fill="#1e293b" stroke="#334155" />
+        <rect x="62" y="36" width="42" height="132" rx="8" fill="#1e293b" stroke="#334155" />
+        <rect x="0" y={168 - p1Height} width="42" height={p1Height} rx="8" fill="#22d3ee" />
+        <rect x="62" y={168 - p2Height} width="42" height={p2Height} rx="8" fill="#a78bfa" />
+        <text x="5" y="190" fill="#e2e8f0" fontSize="12">P(a1)</text>
+        <text x="66" y="190" fill="#e2e8f0" fontSize="12">P(a2)</text>
+        <text x="126" y="66" fill="#f8fafc" fontSize="12" fontWeight="900">{Math.round(p1 * 100)}% aligned</text>
+        <text x="126" y="88" fill="#94a3b8" fontSize="12">projection = |&lt;a|psi&gt;|^2</text>
+      </g>
+
+      <g transform="translate(548 190)">
+        <line x1="0" y1="34" x2="138" y2="34" stroke="#64748b" strokeWidth="5" strokeLinecap="round" />
+        <rect x="50" y={34 - clamp(barrier, 18, 82)} width="34" height={clamp(barrier, 18, 82)} fill="rgba(244,63,94,.46)" stroke="#fb7185" />
+        <path className="lab-anim-dash" d="M 0 34 C 24 6, 48 62, 72 34 S 120 34, 138 34" fill="none" stroke="#22d3ee" strokeWidth="4" />
+        <line x1="88" y1="16" x2={88 + 45 * transmission} y2="16" stroke="#34d399" strokeWidth="4" markerEnd="url(#arrow-modern)" />
+        <text x="-4" y="-6" fill="#fbbf24" fontSize="12" fontWeight="900">barrier / scattering</text>
+        <text x="88" y="64" fill="#34d399" fontSize="12" fontWeight="900">T ~ {Math.round(transmission * 100)}%</text>
+      </g>
     </g>
   );
 }
@@ -1034,6 +1138,7 @@ function RelativityScene({ a, b, c }: { a: number; b: number; c: number }) {
 }
 
 function visualizationTitle(experiment: ExperimentDefinition) {
+  if (experiment.id === "advanced-quantum-operators") return "Operator and state-space model";
   if (experiment.category === "Optics") return "Ray and image model";
   if (experiment.category === "Electricity") return "Circuit response model";
   if (experiment.category === "Waves") return "Wave pattern model";
@@ -1044,6 +1149,7 @@ function visualizationTitle(experiment: ExperimentDefinition) {
 }
 
 function animationPlan(experiment: ExperimentDefinition) {
+  if (experiment.id === "advanced-quantum-operators") return { title: "operator projection", cue: "The blue state vector is transformed by the operator, then projected onto eigenbasis bars; the barrier cue shows scattering/tunneling probability." };
   if (experiment.category === "Optics") return { title: "ray animation", cue: "Follow the moving photon and dashed ray path to see reflection, refraction, focus, or dispersion." };
   if (experiment.category === "Electricity" || experiment.category === "Electronics") return { title: "charge flow", cue: "Moving dots show conventional current; bulb glow and arrow speed show stronger electrical response." };
   if (experiment.category === "Waves") return { title: "wave phase", cue: "The traveling marker follows the crest pattern, making wavelength and amplitude easier to compare." };

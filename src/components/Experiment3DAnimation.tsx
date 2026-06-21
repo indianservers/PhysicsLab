@@ -30,6 +30,7 @@ type AnimationKind =
   | "generator"
   | "transformer"
   | "lens"
+  | "eye"
   | "prism"
   | "interference"
   | "photoelectric"
@@ -75,7 +76,7 @@ const animationConfigs: Record<string, AnimationConfig> = {
   "transformer-lab": { kind: "transformer", title: "Cinematic transformer", cue: "Primary AC creates changing core flux, the secondary coil receives it, and the voltage bars compare the turns ratio.", cinematic: true, steps: ["Primary AC drives flux", "Core links both coils", "Turns ratio sets secondary voltage"] },
   "lens-formula": { kind: "lens", title: "Cinematic lens bench", cue: "Object rays, focal planes, and image screen line up in 3D so the lens equation becomes a spatial story.", cinematic: true, steps: ["Send principal rays", "Bend through lens", "Form real or virtual image"] },
   "mirror-formula": { kind: "lens", title: "3D ray bench", cue: "Rays reflect or focus so object distance and focal length become spatial." },
-  "human-eye-defects": { kind: "lens", title: "3D eye focus", cue: "The lens focuses rays toward the retina; correction shifts the focus back into place." },
+  "human-eye-defects": { kind: "eye", title: "3D realistic eye focus", cue: "Trace rays through the corrective lens, cornea, eye lens, and retina. Myopia focuses before the retina; hypermetropia focuses behind it.", cinematic: true, steps: ["Choose the defect", "Watch the uncorrected focus", "Add the correct lens type"] },
   "prism-dispersion": { kind: "prism", title: "3D prism dispersion", cue: "White light separates into colored rays after refraction through the prism." },
   "total-internal-reflection": { kind: "prism", title: "3D total internal reflection", cue: "The ray reflects inside the denser medium after crossing the critical angle." },
   "young-double-slit": { kind: "interference", title: "3D interference fringes", cue: "Two coherent sources make bright and dark bands on a distant screen." },
@@ -448,7 +449,8 @@ function fallback3DKind(experiment: ExperimentDefinition): AnimationKind {
   if (id.includes("circuit") || id.includes("current") || id.includes("ohm") || id.includes("resistance") || id.includes("capacitor") || category.includes("electric")) return "circuit";
   if (id.includes("logic") || id.includes("diode") || category.includes("electronics")) return "logic";
   if (id.includes("prism") || id.includes("dispersion") || id.includes("internal") || id.includes("polarization") || id.includes("reflection")) return "prism";
-  if (id.includes("lens") || id.includes("mirror") || id.includes("eye") || category.includes("optic")) return "lens";
+  if (id.includes("eye")) return "eye";
+  if (id.includes("lens") || id.includes("mirror") || category.includes("optic")) return "lens";
   if (id.includes("photoelectric")) return "photoelectric";
   if (id.includes("relativity")) return "graph3d";
   if (id.includes("bohr") || id.includes("nuclear")) return "bohr";
@@ -462,6 +464,7 @@ function fallback3DKind(experiment: ExperimentDefinition): AnimationKind {
 }
 
 function fallback3DSteps(category: string, kind: AnimationKind) {
+  if (kind === "eye") return ["Compare focus with retina", "Add a concave or convex correction", "Check clear-image formation"];
   if (kind === "lens" || kind === "prism") return ["Follow the incoming ray", "Watch the interaction surface", "Locate the image or pattern"];
   if (kind === "circuit" || kind === "logic") return ["Set the source/input", "Watch carriers or states move", "Read the output response"];
   if (kind === "electromagnet" || kind === "induction" || kind === "generator" || kind === "transformer") return ["Create changing current or flux", "Watch the field link the device", "Compare the induced response"];
@@ -495,6 +498,7 @@ function buildScene(kind: AnimationKind, root: THREE.Group, values: [number, num
   if (kind === "generator") return buildGenerator(root, a, b, c);
   if (kind === "transformer") return buildTransformer(root, a, b, c);
   if (kind === "lens") return buildLens(root, a, b, c);
+  if (kind === "eye") return buildEyeFocus(root, a, b, c);
   if (kind === "prism") return buildPrism(root, a, b, c);
   if (kind === "interference") return buildInterference(root, a, b, c);
   if (kind === "photoelectric") return buildPhotoelectric(root, a, b, c);
@@ -566,7 +570,7 @@ function addCinematicSet(root: THREE.Group, kind: AnimationKind, cinematic: bool
 function paletteForKind(kind: AnimationKind) {
   if (kind === "thermal" || kind === "calorimetry") return { primary: 0xf97316, secondary: 0x38bdf8, hot: 0xfacc15 };
   if (kind === "circuit" || kind === "electromagnet" || kind === "induction" || kind === "generator" || kind === "transformer") return { primary: 0x22d3ee, secondary: 0xfacc15, hot: 0xf97316 };
-  if (kind === "lens" || kind === "prism" || kind === "interference") return { primary: 0x67e8f9, secondary: 0xa78bfa, hot: 0xfacc15 };
+  if (kind === "lens" || kind === "eye" || kind === "prism" || kind === "interference") return { primary: 0x67e8f9, secondary: 0xa78bfa, hot: 0xfacc15 };
   if (kind === "gravity" || kind === "bohr" || kind === "photoelectric") return { primary: 0xa78bfa, secondary: 0x22d3ee, hot: 0xfacc15 };
   if (kind === "buoyancy" || kind === "densityTank" || kind === "fluid") return { primary: 0x38bdf8, secondary: 0x0ea5e9, hot: 0xa3e635 };
   if (kind === "force" || kind === "forceBalance" || kind === "incline") return { primary: 0x38bdf8, secondary: 0xf43f5e, hot: 0xfacc15 };
@@ -719,19 +723,63 @@ function buildForceBalance(root: THREE.Group, leftForce: number, rightForce: num
 }
 
 function buildIncline(root: THREE.Group, mass: number, angle: number, friction: number) {
-  const theta = THREE.MathUtils.degToRad(clamp(angle, 10, 55));
-  const ramp = box(4.3, 0.16, 1.7, 0x475569);
+  root.userData.hasInclineBlock = true;
+  const g = 9.81;
+  const m = Math.max(0.1, mass);
+  const theta = THREE.MathUtils.degToRad(clamp(angle, 1, 80));
+  const mu = clamp(friction, 0, 2);
+  const rampLength = 4.6;
+  const rampThickness = 0.18;
+  const rampDepth = 1.7;
+  const blockHeight = 0.44;
+  const blockWidth = 0.65;
+  const rampCenter = new THREE.Vector3(0, -0.55, 0);
+  const tangent = new THREE.Vector3(Math.cos(theta), -Math.sin(theta), 0).normalize();
+  const normal = new THREE.Vector3(Math.sin(theta), Math.cos(theta), 0).normalize();
+  const clearance = rampThickness / 2 + blockHeight / 2 + 0.035;
+  const slideStart = -rampLength * 0.34;
+  const slideEnd = rampLength * 0.34;
+  const normalForce = m * g * Math.cos(theta);
+  const gravityDownPlane = m * g * Math.sin(theta);
+  const frictionForce = mu * normalForce;
+  const netDownPlane = gravityDownPlane - frictionForce;
+  const acceleration = Math.max(0, netDownPlane / m);
+  const moving = acceleration > 0.015;
+
+  const ramp = box(rampLength, rampThickness, rampDepth, 0x475569);
   ramp.rotation.z = -theta;
-  ramp.position.set(0, -0.55, 0);
+  ramp.position.copy(rampCenter);
   root.add(ramp);
-  const block = box(0.65, 0.44, 0.62, 0x22d3ee);
+
+  const contactStrip = box(rampLength * 0.94, 0.018, rampDepth * 0.86, moving ? 0x22d3ee : 0xfacc15);
+  contactStrip.rotation.z = -theta;
+  contactStrip.position.copy(rampCenter.clone().addScaledVector(normal, rampThickness / 2 + 0.018));
+  root.add(contactStrip);
+
+  const block = box(blockWidth, blockHeight, 0.62, moving ? 0x22d3ee : 0xfacc15);
   block.rotation.z = -theta;
-  block.position.set(-0.55, 0.18, 0);
-  block.userData.role = "slide";
+  block.position.copy(pointOnIncline(rampCenter, tangent, normal, slideStart, clearance));
+  block.userData.role = "incline-block";
+  block.userData.rampCenter = rampCenter;
+  block.userData.tangent = tangent;
+  block.userData.normal = normal;
+  block.userData.clearance = clearance;
+  block.userData.slideStart = slideStart;
+  block.userData.slideEnd = slideEnd;
+  block.userData.speed = moving ? clamp(Math.sqrt(acceleration) * 0.42, 0.32, 2.8) : 0;
+  block.userData.moving = moving;
   block.userData.theta = theta;
-  block.userData.speed = clamp(mass - friction, 0.2, 4);
   root.add(block);
-  addArrow(root, new THREE.Vector3(-0.55, 0.65, 0), new THREE.Vector3(-0.55 + Math.sin(theta), 0.65 - Math.cos(theta), 0), 0xf43f5e);
+
+  const samplePosition = pointOnIncline(rampCenter, tangent, normal, -0.2, clearance + 0.42);
+  addArrow(root, samplePosition, samplePosition.clone().add(new THREE.Vector3(0, -clamp(m * g / 55, 0.45, 1.3), 0)), 0xf43f5e);
+  addArrow(root, samplePosition, samplePosition.clone().addScaledVector(normal, clamp(normalForce / 55, 0.35, 1.25)), 0x38bdf8);
+  addArrow(root, samplePosition, samplePosition.clone().addScaledVector(tangent, -clamp(frictionForce / 55, 0.25, 1.1)), 0xfacc15);
+  if (moving) {
+    addArrow(root, samplePosition.clone().addScaledVector(normal, -0.2), samplePosition.clone().addScaledVector(tangent, clamp(netDownPlane / 55, 0.35, 1.45)), 0x34d399);
+  }
+  root.add(label(`a = ${acceleration.toFixed(2)} m/s^2`, samplePosition.clone().add(new THREE.Vector3(0.15, 0.55, 0.08)), moving ? 0x34d399 : 0xfacc15));
+  root.add(label(moving ? "block stays on ramp surface" : "static friction holds", pointOnIncline(rampCenter, tangent, normal, slideEnd - 0.35, clearance + 0.26), moving ? 0x22d3ee : 0xfacc15));
 }
 
 function buildEnergy(root: THREE.Group, mass: number, height: number, loss: number) {
@@ -1102,6 +1150,96 @@ function buildLens(root: THREE.Group, a: number, b: number, _unused = 0) {
   root.add(label("F", new THREE.Vector3(objectDistance, -0.45, 0), 0xfacc15));
 }
 
+function buildEyeFocus(root: THREE.Group, focusCm: number, retinaCm: number, defectMode: number) {
+  const mode = Math.round(defectMode);
+  const retinaX = 2.15;
+  const focusOffset = mode === 0 ? clamp((focusCm - retinaCm) * 0.42, -0.42, 0.42) : clamp((focusCm - retinaCm) * 0.72, -0.9, 0.9);
+  const uncorrectedFocusX = retinaX + focusOffset;
+  const correctedFocusX = mode === 0 ? uncorrectedFocusX : retinaX;
+  const lensColor = mode === 1 ? 0xa78bfa : mode === 2 ? 0x34d399 : 0x67e8f9;
+  addPlatform(root);
+
+  const eyeShell = sphere(1.42, 0xf8fafc, 0.18);
+  eyeShell.scale.set(1.48, 0.86, 0.82);
+  eyeShell.position.set(0.95, 0.12, 0);
+  root.add(eyeShell);
+
+  const vitreousGlow = sphere(1.28, 0xf97316, 0.12);
+  vitreousGlow.scale.set(1.36, 0.74, 0.72);
+  vitreousGlow.position.set(1.02, 0.12, 0);
+  root.add(vitreousGlow);
+
+  const cornea = sphere(0.52, 0x67e8f9, 0.26);
+  cornea.scale.set(0.34, 0.96, 0.86);
+  cornea.position.set(-0.92, 0.12, 0);
+  root.add(cornea);
+
+  const iris = ring(0.42, 0x38bdf8);
+  iris.rotation.y = Math.PI / 2;
+  iris.position.set(-0.64, 0.12, 0);
+  root.add(iris);
+  const pupil = sphere(0.16, 0x020617, 0.92);
+  pupil.scale.set(0.32, 1, 1);
+  pupil.position.set(-0.66, 0.12, 0);
+  root.add(pupil);
+
+  const eyeLens = sphere(0.42, 0xfacc15, 0.34);
+  eyeLens.scale.set(0.42, 1.18, 0.88);
+  eyeLens.position.set(-0.18, 0.12, 0);
+  root.add(eyeLens);
+
+  const retina = new THREE.Mesh(
+    new THREE.SphereGeometry(1.18, 48, 24, -Math.PI / 4.3, Math.PI / 2.15, Math.PI / 4, Math.PI / 2),
+    material(0xfb7185, 0.34)
+  );
+  retina.scale.set(0.38, 1.02, 0.92);
+  retina.position.set(retinaX + 0.08, 0.12, 0);
+  retina.rotation.y = Math.PI / 2;
+  root.add(retina);
+
+  const opticNerve = box(1.1, 0.22, 0.28, 0xf97316, 0.58);
+  opticNerve.position.set(2.95, 0.06, 0.04);
+  opticNerve.rotation.z = -0.08;
+  root.add(opticNerve);
+
+  if (mode > 0) {
+    const correctiveLens = sphere(0.5, lensColor, 0.3);
+    correctiveLens.scale.set(mode === 1 ? 0.14 : 0.34, 1.36, 1.02);
+    correctiveLens.position.set(-2.15, 0.12, 0);
+    root.add(correctiveLens);
+    root.add(label(mode === 1 ? "concave lens" : "convex lens", new THREE.Vector3(-2.62, 1.42, 0), lensColor));
+  }
+
+  [-0.44, 0, 0.44].forEach((y, index) => {
+    const z = (index - 1) * 0.18;
+    const start = new THREE.Vector3(-3.25, y + 0.12, z);
+    const correction = new THREE.Vector3(mode > 0 ? -2.15 : -1.74, mode === 1 ? y * 0.42 + 0.12 : mode === 2 ? y * 0.16 + 0.12 : y * 0.32 + 0.12, z * 0.58);
+    const crystalline = new THREE.Vector3(-0.18, 0.12, z * 0.28);
+    const uncorrectedEnd = new THREE.Vector3(uncorrectedFocusX, 0.12, z * -0.12);
+    const correctedEnd = new THREE.Vector3(correctedFocusX, 0.12, z * -0.12);
+    root.add(tube([start, correction, crystalline, uncorrectedEnd], 0.012, 0xfb7185, 0.42));
+    root.add(tube([start.clone().add(new THREE.Vector3(0, 0.02, 0)), correction, crystalline, correctedEnd], 0.018, index === 1 ? 0xffffff : 0xfacc15, 0.92));
+  });
+
+  const photon = sphere(0.075, 0xfacc15);
+  photon.userData.role = "path";
+  photon.userData.path = [
+    new THREE.Vector3(-3.25, 0.12, 0),
+    new THREE.Vector3(mode > 0 ? -2.15 : -1.74, 0.12, 0),
+    new THREE.Vector3(-0.18, 0.12, 0),
+    new THREE.Vector3(correctedFocusX, 0.12, 0),
+  ];
+  root.add(photon);
+
+  addMarker(root, new THREE.Vector3(uncorrectedFocusX, 0.12, -0.42), Math.abs(uncorrectedFocusX - retinaX) < 0.14 ? 0x34d399 : 0xfb7185);
+  addMarker(root, new THREE.Vector3(correctedFocusX, 0.12, 0.42), Math.abs(correctedFocusX - retinaX) < 0.14 ? 0x34d399 : 0xfb7185);
+  addArrow(root, new THREE.Vector3(-0.18, 1.06, 0), new THREE.Vector3(correctedFocusX, 0.34, 0), 0x22d3ee);
+  root.add(label("cornea", new THREE.Vector3(-1.23, -0.72, 0), 0x67e8f9));
+  root.add(label("eye lens", new THREE.Vector3(-0.54, 1.32, 0), 0xfacc15));
+  root.add(label("retina screen", new THREE.Vector3(1.66, 1.42, 0), 0xfb7185));
+  root.add(label(mode === 1 ? "myopia: before retina" : mode === 2 ? "hypermetropia: behind retina" : "normal: on retina", new THREE.Vector3(-2.55, -1.0, 0), mode === 0 ? 0x34d399 : 0xfacc15));
+}
+
 function buildPrism(root: THREE.Group, prismAngle: number, meanIndex: number, dispersion: number) {
   const model = makePrismModel(prismAngle, meanIndex, dispersion);
   const prism = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 0.95, 1.2, 3), material(0xa78bfa, 0.32));
@@ -1254,6 +1392,20 @@ function updateObjects(root: THREE.Group, t: number, values: [number, number, nu
       object.position.x = -1.45 + phase * 2.4;
       object.position.y = 0.55 - phase * 0.95;
     }
+    if (object.userData.role === "incline-block") {
+      const start = object.userData.slideStart as number;
+      const end = object.userData.slideEnd as number;
+      const rampCenter = object.userData.rampCenter as THREE.Vector3;
+      const tangent = object.userData.tangent as THREE.Vector3;
+      const normal = object.userData.normal as THREE.Vector3;
+      const clearance = object.userData.clearance as number;
+      const speed = object.userData.speed as number;
+      const moving = Boolean(object.userData.moving);
+      const cycle = moving ? (t * speed) % 1 : 0.12 + Math.sin(t * 1.4) * 0.015;
+      const progress = moving ? cycle * cycle : cycle;
+      const alongRamp = start + (end - start) * progress;
+      object.position.copy(pointOnIncline(rampCenter, tangent, normal, alongRamp, clearance));
+    }
     if (object.userData.role === "pendulum") {
       const damping = 1 - object.userData.damping;
       object.rotation.z = Math.sin(t * 1.8) * 0.55 * damping;
@@ -1313,7 +1465,8 @@ function updateObjects(root: THREE.Group, t: number, values: [number, number, nu
     if (object.userData.role === "electron") object.position.set(-0.35 + ((object.userData.offset + t * 0.32) % 1) * 2.65, -0.6 + object.userData.offset * 0.38, 0.25);
   });
   root.position.y = Math.sin(t * 0.7) * 0.035;
-  if (values[2] > 50) root.rotation.z = Math.sin(t * 0.2) * 0.02;
+  const hasInclineBlock = root.userData.hasInclineBlock === true;
+  if (!hasInclineBlock && values[2] > 50) root.rotation.z = Math.sin(t * 0.2) * 0.02;
 }
 
 function addPlatform(root: THREE.Group) {
@@ -1341,6 +1494,10 @@ function addMarker(root: THREE.Group, position: THREE.Vector3, color: number) {
   halo.userData.role = "field";
   halo.userData.power = 1.2;
   root.add(halo);
+}
+
+function pointOnIncline(center: THREE.Vector3, tangent: THREE.Vector3, normal: THREE.Vector3, alongRamp: number, normalOffset: number) {
+  return center.clone().addScaledVector(tangent, alongRamp).addScaledVector(normal, normalOffset);
 }
 
 function box(width: number, height: number, depth: number, color: number, opacity = 1) {

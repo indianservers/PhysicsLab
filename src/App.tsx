@@ -19,6 +19,7 @@ import { TeacherPage } from "./pages/TeacherPage";
 import { SolverPage } from "./pages/SolverPage";
 import { QuizPage } from "./pages/QuizPage";
 import { FormulasPage } from "./pages/FormulasPage";
+import { FormulaRevisionGridPage } from "./pages/FormulaRevisionGridPage";
 import { DictionaryPage } from "./pages/DictionaryPage";
 import { AstroPhysicsPage } from "./pages/AstroPhysicsPage";
 import { ParticlePhysicsPage } from "./pages/ParticlePhysicsPage";
@@ -146,6 +147,7 @@ export default function App() {
               <Route path="/roadmap" element={<RoadmapPage />} />
               <Route path="/solver" element={<SolverPage />} />
               <Route path="/formulas" element={<FormulasPage />} />
+              <Route path="/formulas/revision-grid" element={<FormulaRevisionGridPage />} />
               <Route path="/dictionary" element={<DictionaryPage />} />
               <Route path="/astrophysics" element={<AstroPhysicsPage />} />
               <Route path="/particle-physics" element={<ParticlePhysicsPage />} />

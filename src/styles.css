@@ -4080,11 +4080,84 @@ body {
 
 .concept-card {
   border-color: rgba(148, 163, 184, 0.35);
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
 .concept-card-active {
   border-color: rgba(34, 211, 238, 0.78);
   box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.12);
+}
+
+.concept-card-main {
+  display: block;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.concept-card-main:focus-visible,
+.concept-card-action:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.5);
+  outline-offset: 3px;
+}
+
+.concept-card-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.55rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+  padding-top: 0.75rem;
+}
+
+.concept-card-action {
+  display: inline-flex;
+  min-height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.38);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 900;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.concept-card-action:hover {
+  transform: translateY(-1px);
+}
+
+.concept-card-action-secondary {
+  background: rgba(248, 250, 252, 0.74);
+  color: #0f172a;
+}
+
+.concept-card-action-secondary:hover {
+  border-color: rgba(34, 211, 238, 0.62);
+  color: #0369a1;
+}
+
+.concept-card-action-primary {
+  border-color: rgba(34, 211, 238, 0.58);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.96), rgba(14, 165, 233, 0.9));
+  color: #02131c;
+  box-shadow: 0 10px 24px rgba(6, 182, 212, 0.16);
+}
+
+.concept-card-action-primary:hover {
+  border-color: rgba(103, 232, 249, 0.9);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 1), rgba(56, 189, 248, 0.96));
+}
+
+.dark .concept-card-action-secondary {
+  background: rgba(15, 23, 42, 0.72);
+  color: #e2e8f0;
+}
+
+.dark .concept-card-action-secondary:hover {
+  color: #67e8f9;
 }
 
 .concept-journey-step {
@@ -6450,6 +6523,62 @@ details[open] > :not(summary) {
   backdrop-filter: blur(20px);
 }
 
+.formula-page,
+.formula-revision-page {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.formula-revision-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(14, 165, 233, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.16), transparent 22rem),
+    rgba(var(--space-900), 0.78);
+  padding: clamp(1rem, 2vw, 1.25rem);
+  box-shadow: var(--shadow-float);
+}
+
+.formula-revision-entry h2 {
+  margin-top: 0.25rem;
+  color: rgb(var(--space-50));
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  font-weight: 950;
+  line-height: 1.08;
+}
+
+.formula-revision-entry p:not(.ui-label) {
+  margin-top: 0.45rem;
+  max-width: 68ch;
+  color: rgb(var(--space-200));
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.formula-revision-actions,
+.formula-revision-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.formula-revision-actions {
+  justify-content: flex-end;
+}
+
+.formula-revision-topbar {
+  justify-content: space-between;
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: 16px;
+  background: rgba(var(--space-900), 0.64);
+  padding: 0.75rem;
+}
+
 .formula-sheet-panel {
   overflow: hidden;
   border: 1px solid rgba(14, 165, 233, 0.24);
@@ -6549,6 +6678,7 @@ details[open] > :not(summary) {
   color: #f8fafc;
   text-align: left;
   background: color-mix(in srgb, var(--sheet-accent) 15%, rgba(15, 23, 42, 0.74));
+  text-decoration: none;
 }
 
 .formula-sheet-title span {
@@ -6576,7 +6706,8 @@ details[open] > :not(summary) {
   line-height: 1.2;
 }
 
-button.formula-sheet-title:hover {
+button.formula-sheet-title:hover,
+a.formula-sheet-title:hover {
   background: color-mix(in srgb, var(--sheet-accent) 24%, rgba(15, 23, 42, 0.78));
 }
 
@@ -6597,10 +6728,12 @@ button.formula-sheet-title:hover {
   padding: 0.48rem 0.55rem;
   color: #e2e8f0;
   text-align: left;
+  text-decoration: none;
   background: rgba(15, 23, 42, 0.58);
 }
 
-button.formula-sheet-row:hover {
+button.formula-sheet-row:hover,
+a.formula-sheet-row:hover {
   border-color: color-mix(in srgb, var(--sheet-accent) 54%, transparent);
   background: var(--sheet-soft);
 }
@@ -6615,7 +6748,10 @@ button.formula-sheet-row:hover {
 
 .formula-sheet-row b {
   min-width: 0;
-  overflow-x: auto;
+  max-width: 100%;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
   border-radius: 7px;
   padding: 0.3rem 0.38rem;
   color: #0f172a;
@@ -6627,7 +6763,16 @@ button.formula-sheet-row:hover {
 
 .formula-sheet-row .katex {
   color: #0f172a;
-  font-size: 0.94em;
+  max-width: 100%;
+  white-space: normal;
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.35;
+}
+
+.formula-sheet-row .katex-html {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .formula-sheet-row .katex-mathml {
@@ -6692,17 +6837,17 @@ button.formula-sheet-row:hover {
 
 .interactive-formula-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  overflow-x: auto;
+  overflow: hidden;
   padding-bottom: 0.15rem;
-  scrollbar-color: #06b6d4 rgba(14, 165, 233, 0.14);
-  scrollbar-width: thin;
 }
 
 .interactive-formula-tab {
   display: inline-flex;
-  flex: 0 0 auto;
+  flex: 1 1 170px;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
   min-height: 2.65rem;
   border: 1px solid rgba(148, 163, 184, 0.24);
@@ -6808,10 +6953,20 @@ button.formula-sheet-row:hover {
 }
 
 .interactive-equation-box b {
-  overflow-x: auto;
+  max-width: 100%;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
   color: #0f172a;
   font-size: 1.05rem;
   font-weight: 1000;
+}
+
+.interactive-equation-box .katex,
+.interactive-equation-box .katex-html {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .dark .interactive-equation-box b {
@@ -7459,15 +7614,29 @@ button.formula-sheet-row:hover {
   min-height: 84px;
   align-items: center;
   justify-content: center;
-  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
   padding: 18px 16px;
   color: rgb(var(--space-50));
-  font-size: 1.18rem;
+  font-size: clamp(1.18rem, 2.1vw, 1.48rem);
+  line-height: 1.45;
+  text-align: center;
 }
 
 .formula-expression .katex {
+  max-width: 100%;
   color: rgb(var(--space-50));
+  white-space: normal;
   text-shadow: 0 0 26px rgba(var(--science-300), 0.55);
+}
+
+.formula-expression .katex-html {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .formula-card[data-accent="quantum"] .formula-expression .katex {
@@ -7629,6 +7798,144 @@ button.formula-sheet-row:hover {
   font-size: 0.86rem;
   font-weight: 650;
   line-height: 1.55;
+}
+
+.formula-example-strip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+  margin: 0.75rem 1rem 0;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 0.65rem;
+  background: rgba(251, 191, 36, 0.08);
+  padding: 0.66rem 0.75rem;
+}
+
+.formula-example-strip b {
+  color: rgb(var(--warning-300));
+  font-size: 0.66rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.formula-example-strip span {
+  min-width: 0;
+  color: rgb(var(--space-200));
+  font-size: 0.8rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.formula-know-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: fit-content;
+  min-height: 2.25rem;
+  margin: 0.85rem 1rem 0;
+  border: 1px solid rgba(var(--science-300), 0.34);
+  border-radius: 999px;
+  background: rgba(var(--science-500), 0.14);
+  padding: 0.45rem 0.8rem;
+  color: rgb(var(--science-100));
+  font-size: 0.76rem;
+  font-weight: 950;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.formula-know-more:hover {
+  background: rgba(var(--science-500), 0.2);
+  box-shadow: 0 12px 24px rgba(8, 145, 178, 0.14);
+  transform: translateY(-1px);
+}
+
+.formula-info-panel {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0.85rem 1rem 0;
+  border: 1px solid rgba(var(--science-300), 0.2);
+  border-radius: 0.95rem;
+  background: rgba(var(--space-800), 0.64);
+  padding: 0.95rem;
+}
+
+.formula-info-panel h5 {
+  margin: 0 0 0.28rem;
+  color: rgb(var(--science-200));
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.formula-info-panel p {
+  margin: 0;
+  color: rgb(var(--space-200));
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.formula-variable-table {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.formula-variable-table div {
+  display: grid;
+  grid-template-columns: minmax(3.4rem, auto) minmax(8rem, 1fr) minmax(4.8rem, auto) minmax(7rem, 0.9fr);
+  gap: 0.55rem;
+  align-items: start;
+  border-radius: 0.75rem;
+  background: rgba(var(--space-700), 0.44);
+  padding: 0.5rem 0.6rem;
+}
+
+.formula-variable-table b,
+.formula-variable-table small,
+.formula-variable-table em {
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.formula-variable-table b {
+  color: rgb(var(--science-200));
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 950;
+}
+
+.formula-variable-table span {
+  color: rgb(var(--space-200));
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.formula-variable-table small {
+  color: rgb(var(--warning-200));
+  font-weight: 900;
+}
+
+.formula-variable-table em {
+  color: rgb(var(--space-300));
+  font-style: normal;
+  font-weight: 700;
+}
+
+.formula-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.formula-info-grid > div {
+  border-radius: 0.8rem;
+  background: rgba(var(--space-900), 0.56);
+  padding: 0.75rem;
+  box-shadow: inset 0 0 0 1px rgba(var(--space-400), 0.18);
 }
 
 .formula-page .formula-tag-row {
@@ -11745,13 +12052,22 @@ html:not(.dark) .home-bento-hero .hero-display-tagline::after {
   }
 
   .formula-expression {
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    white-space: normal;
     max-width: 100%;
-    justify-content: flex-start;
-    min-height: 74px;
-    padding: 0.85rem;
-    font-size: 1rem;
+    justify-content: center;
+    min-height: 88px;
+    padding: 1rem;
+    font-size: 1.18rem;
+    text-align: center;
+  }
+
+  .formula-expression .katex,
+  .formula-expression .katex-html {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .formula-expression-shell,
@@ -11766,15 +12082,26 @@ html:not(.dark) .home-bento-hero .hero-display-tagline::after {
     padding: 0.75rem;
   }
 
+  .formula-example-strip,
+  .formula-info-panel {
+    margin-inline: 0 !important;
+  }
+
+  .formula-example-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .formula-know-more {
     width: 100%;
     justify-content: center;
+    margin-inline: 0 !important;
   }
 
   .formula-variable-row,
   .formula-tag-row,
   .formula-info-grid,
-  .formula-symbol-list div {
+  .formula-symbol-list div,
+  .formula-variable-table div {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }
@@ -12856,12 +13183,25 @@ html:not(.dark) .learning-readiness-orb {
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
 }
 
-.depth-profile-card button {
+.depth-profile-main {
   display: block;
   width: 100%;
   min-height: 100%;
   padding: 0.85rem;
   text-align: left;
+}
+
+.depth-clickable-card {
+  cursor: pointer;
+}
+
+.depth-clickable-card:focus-visible {
+  outline: 3px solid rgb(var(--color-science-300) / 0.68);
+  outline-offset: 3px;
+}
+
+.depth-clickable-card:hover strong {
+  color: rgb(var(--color-science-200));
 }
 
 .depth-pending-panel {
@@ -14284,10 +14624,10 @@ html:not(.dark) .formula-page .formula-expression-label {
 
 html:not(.dark) .formula-page .formula-expression {
   min-height: 98px;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 1rem 1.05rem 1.2rem;
   color: #0f172a !important;
-  font-size: 1.22rem;
+  font-size: clamp(1.18rem, 2.2vw, 1.5rem);
 }
 
 html:not(.dark) .formula-page .formula-expression .katex,
@@ -15424,6 +15764,327 @@ html:not(.dark) .lab-visual-grid > div:first-child svg {
   align-content: center;
 }
 
+.particle-page-menu,
+.particle-concept-page-banner {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  border: 1px solid var(--particle-border);
+  border-radius: 1rem;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.13), transparent 16rem),
+    var(--particle-panel);
+  box-shadow: 0 18px 42px rgba(2, 6, 23, 0.16);
+}
+
+.particle-page-menu {
+  grid-template-columns: minmax(240px, 0.55fr) minmax(0, 1.45fr);
+  align-items: center;
+}
+
+.particle-page-menu h2,
+.particle-concept-page-banner h2 {
+  margin-top: 0.25rem;
+  color: var(--particle-text);
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.particle-page-menu-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.particle-page-menu-link {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 999px;
+  padding: 0.45rem 0.72rem;
+  color: var(--particle-muted);
+  background: rgba(15, 23, 42, 0.5);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.particle-page-menu-link:hover,
+.particle-page-menu-link-active {
+  border-color: #22d3ee;
+  color: #cffafe;
+  background: rgba(14, 165, 233, 0.14);
+}
+
+.particle-explorer-shell {
+  display: grid;
+  grid-template-columns: minmax(250px, 310px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.particle-explorer-shell-collapsed {
+  grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.particle-main-panel {
+  min-width: 0;
+}
+
+.particle-doc-menu {
+  position: sticky;
+  top: 5.25rem;
+  z-index: 8;
+  display: grid;
+  gap: 0.85rem;
+  max-height: calc(100dvh - 6rem);
+  overflow: auto;
+  border: 1px solid var(--particle-border);
+  border-radius: 1rem;
+  padding: 0.9rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.14), transparent 16rem),
+    var(--particle-panel);
+  box-shadow: 0 18px 42px rgba(2, 6, 23, 0.18);
+  scrollbar-color: #22d3ee rgba(15, 23, 42, 0.42);
+  scrollbar-width: thin;
+}
+
+.particle-doc-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.particle-doc-menu::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.42);
+}
+
+.particle-doc-menu::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #22d3ee;
+}
+
+.particle-explorer-shell-collapsed .particle-doc-menu {
+  justify-items: center;
+  padding: 0.65rem;
+}
+
+.particle-doc-menu-head {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.particle-doc-menu-head h2 {
+  margin-top: 0.22rem;
+  color: var(--particle-text);
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.particle-menu-collapse {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  border-radius: 999px;
+  color: #cffafe;
+  background: rgba(14, 165, 233, 0.14);
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
+.particle-menu-collapse:hover,
+.particle-menu-collapse:focus {
+  border-color: #22d3ee;
+  outline: none;
+}
+
+.particle-menu-search {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.particle-menu-search span {
+  color: var(--particle-muted);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.particle-menu-search input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 0.78rem;
+  padding: 0.65rem 0.75rem;
+  color: var(--particle-text);
+  background: rgba(15, 23, 42, 0.52);
+  font-size: 0.85rem;
+  font-weight: 850;
+}
+
+.particle-menu-search input:focus {
+  border-color: #22d3ee;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.16);
+}
+
+.particle-menu-nav,
+.particle-menu-section,
+.particle-menu-submenu {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.particle-menu-main-link,
+.particle-menu-section-toggle,
+.particle-menu-sub-link {
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  color: var(--particle-muted);
+  background: rgba(15, 23, 42, 0.5);
+  font-weight: 900;
+  text-align: left;
+}
+
+.particle-menu-main-link {
+  display: flex;
+  min-height: 44px;
+  gap: 0.55rem;
+  align-items: center;
+  border-radius: 0.8rem;
+  padding: 0.62rem 0.7rem;
+}
+
+.particle-menu-section-toggle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.45rem;
+  align-items: center;
+  min-height: 42px;
+  border-radius: 0.8rem;
+  padding: 0.58rem 0.65rem;
+}
+
+.particle-menu-section-toggle span {
+  color: var(--particle-text);
+  font-size: 0.83rem;
+  font-weight: 950;
+}
+
+.particle-menu-section-toggle small,
+.particle-menu-section-toggle b {
+  display: grid;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border-radius: 999px;
+  color: #082f49;
+  background: #67e8f9;
+  font-size: 0.72rem;
+  font-weight: 1000;
+}
+
+.particle-menu-section-toggle b {
+  background: rgba(250, 204, 21, 0.9);
+}
+
+.particle-menu-submenu {
+  padding-left: 0.55rem;
+}
+
+.particle-menu-sub-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: center;
+  min-height: 44px;
+  border-radius: 0.8rem;
+  padding: 0.52rem 0.58rem;
+  font-size: 0.78rem;
+}
+
+.particle-menu-sub-link .particle-icon-compact {
+  width: 2.15rem;
+  height: 2.15rem;
+}
+
+.particle-menu-sub-link span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.particle-menu-main-link:hover,
+.particle-menu-main-link-active,
+.particle-menu-section-toggle:hover,
+.particle-menu-sub-link:hover,
+.particle-menu-sub-link-active {
+  border-color: #22d3ee;
+  color: #cffafe;
+  background: rgba(14, 165, 233, 0.16);
+}
+
+.particle-menu-foot {
+  display: grid;
+  gap: 0.55rem;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 0.85rem;
+  padding: 0.75rem;
+  color: var(--particle-muted);
+  background: rgba(14, 165, 233, 0.08);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.particle-menu-foot a {
+  color: #67e8f9;
+  font-weight: 950;
+}
+
+.particle-concept-page-banner {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.58fr);
+  align-items: center;
+}
+
+.particle-concept-page-title {
+  display: flex;
+  min-width: 0;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.particle-concept-page-title p:not(.ui-label) {
+  margin-top: 0.35rem;
+  color: var(--particle-muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.particle-interaction-list {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.particle-interaction-list span {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  color: var(--particle-muted);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
 .particle-workspace {
   display: grid;
   grid-template-columns: minmax(220px, 280px) minmax(0, 1.3fr) minmax(280px, 360px);
@@ -15949,10 +16610,28 @@ html:not(.dark) .particle-filter-panel,
 html:not(.dark) .particle-map-card,
 html:not(.dark) .particle-detail-panel,
 html:not(.dark) .particle-lab-panel,
-html:not(.dark) .particle-concept-card {
+html:not(.dark) .particle-concept-card,
+html:not(.dark) .particle-doc-menu {
   background:
     radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.12), transparent 16rem),
     #ffffff;
+}
+
+html:not(.dark) .particle-menu-search input,
+html:not(.dark) .particle-menu-main-link,
+html:not(.dark) .particle-menu-section-toggle,
+html:not(.dark) .particle-menu-sub-link {
+  color: #334155;
+  background: rgba(248, 250, 252, 0.92);
+}
+
+html:not(.dark) .particle-menu-main-link:hover,
+html:not(.dark) .particle-menu-main-link-active,
+html:not(.dark) .particle-menu-section-toggle:hover,
+html:not(.dark) .particle-menu-sub-link:hover,
+html:not(.dark) .particle-menu-sub-link-active {
+  color: #075985;
+  background: rgba(14, 165, 233, 0.1);
 }
 
 html:not(.dark) .particle-hero {
@@ -16764,6 +17443,26 @@ html:not(.dark) .atmosphere-reading strong {
 }
 
 @media (max-width: 1180px) {
+  .particle-explorer-shell,
+  .particle-explorer-shell-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .particle-doc-menu {
+    position: sticky;
+    top: 0.5rem;
+    max-height: min(72dvh, 520px);
+  }
+
+  .particle-explorer-shell-collapsed .particle-doc-menu {
+    justify-items: stretch;
+  }
+
+  .particle-page-menu,
+  .particle-concept-page-banner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .particle-workspace {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -16792,6 +17491,33 @@ html:not(.dark) .atmosphere-reading strong {
 @media (max-width: 760px) {
   .particle-hero {
     grid-template-columns: 1fr;
+  }
+
+  .particle-explorer-shell {
+    gap: 0.75rem;
+  }
+
+  .particle-doc-menu {
+    border-radius: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  .particle-menu-submenu {
+    padding-left: 0;
+  }
+
+  .particle-page-menu,
+  .particle-concept-page-banner {
+    padding: 0.85rem;
+  }
+
+  .particle-page-menu-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .particle-concept-page-title {
+    align-items: flex-start;
   }
 
   .particle-workspace,
@@ -17462,6 +18188,23 @@ html:not(.dark) .formula-sheet-panel {
   box-shadow: 0 18px 44px rgba(15, 23, 42, 0.09);
 }
 
+html:not(.dark) .formula-revision-entry,
+html:not(.dark) .formula-revision-topbar {
+  border-color: rgba(14, 165, 233, 0.22);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.14), transparent 22rem),
+    #ffffff;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+}
+
+html:not(.dark) .formula-revision-entry h2 {
+  color: #0f172a;
+}
+
+html:not(.dark) .formula-revision-entry p:not(.ui-label) {
+  color: #334155;
+}
+
 html:not(.dark) .formula-sheet-head {
   border-bottom-color: rgba(15, 23, 42, 0.12);
 }
@@ -17501,11 +18244,20 @@ html:not(.dark) .formula-sheet-row b {
   background: #ffffff;
 }
 
-html:not(.dark) button.formula-sheet-row:hover {
+html:not(.dark) button.formula-sheet-row:hover,
+html:not(.dark) a.formula-sheet-row:hover {
   background: color-mix(in srgb, var(--sheet-accent) 10%, #ffffff);
 }
 
 @media (max-width: 980px) {
+  .formula-revision-entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .formula-revision-actions {
+    justify-content: flex-start;
+  }
+
   .formula-sheet-grid {
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
@@ -17521,6 +18273,12 @@ html:not(.dark) button.formula-sheet-row:hover {
 }
 
 @media (max-width: 640px) {
+  .formula-revision-actions .hero-btn-primary,
+  .formula-revision-topbar .hero-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
   .formula-sheet-head {
     align-items: start;
   }
@@ -18922,4 +19680,508 @@ html:not(.dark) .modules-search-panel input {
   .modules-search-panel {
     grid-template-columns: 1fr;
   }
+}
+
+.dedicated-experiment-shell,
+.formula-assumption-box,
+.control-group,
+.observation-panel,
+.graph-panel,
+.teacher-replay,
+.mobile-experiment-sheet {
+  color: var(--text-primary);
+}
+
+.dedicated-experiment-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.dedicated-experiment-head,
+.dedicated-experiment-layout,
+.formula-assumption-box,
+.control-group,
+.observation-panel,
+.graph-panel,
+.teacher-replay {
+  border: 1px solid var(--line-soft);
+  border-radius: 0.85rem;
+  background: var(--surface-card);
+}
+
+.dedicated-experiment-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.dedicated-experiment-head h2,
+.formula-assumption-box h3,
+.control-group h3,
+.observation-panel h3,
+.graph-panel h3,
+.teacher-replay h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 1000;
+  line-height: 1.15;
+}
+
+.dedicated-experiment-head p,
+.formula-assumption-box p,
+.control-group p,
+.observation-panel p,
+.graph-panel p,
+.teacher-replay p {
+  color: var(--text-secondary);
+}
+
+.dedicated-experiment-badges,
+.formula-status,
+.graph-panel-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.dedicated-experiment-badges span,
+.formula-status span,
+.graph-panel-meta span,
+.teacher-replay-progress {
+  border: 1px solid rgb(var(--color-science-500) / 0.26);
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem;
+  color: rgb(var(--color-science-300));
+  background: rgb(var(--color-science-500) / 0.08);
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.dedicated-experiment-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2.2fr) minmax(220px, 0.9fr);
+  gap: 0.85rem;
+  padding: 0.85rem;
+}
+
+.dedicated-experiment-main {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.dedicated-experiment-visual,
+.dedicated-experiment-graph,
+.dedicated-experiment-controls,
+.dedicated-experiment-observations {
+  min-width: 0;
+}
+
+.formula-assumption-box,
+.control-group,
+.observation-panel,
+.graph-panel,
+.teacher-replay {
+  padding: 0.95rem;
+}
+
+.formula-expression {
+  margin: 0.8rem 0;
+  border: 1px solid rgb(var(--color-science-500) / 0.25);
+  border-radius: 0.65rem;
+  padding: 0.8rem;
+  color: rgb(var(--color-science-200));
+  background: rgb(var(--color-space-900) / 0.72);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.formula-symbol-grid,
+.control-group-fields,
+.teacher-replay-steps {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.formula-symbol,
+.control-field,
+.observation-item {
+  border: 1px solid var(--line-soft);
+  border-radius: 0.7rem;
+  padding: 0.7rem;
+  background: rgb(var(--color-space-900) / 0.24);
+}
+
+.formula-symbol strong,
+.control-field label,
+.observation-item strong {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 950;
+}
+
+.formula-symbol small,
+.control-field small,
+.observation-item small {
+  color: var(--text-secondary);
+  font-weight: 750;
+}
+
+.formula-assumptions ul,
+.observation-list {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 750;
+}
+
+.control-group-head,
+.observation-panel-head,
+.graph-panel-head,
+.teacher-replay-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.control-group-actions,
+.teacher-replay-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.control-group button,
+.teacher-replay button,
+.mobile-experiment-sheet-toggle {
+  border: 1px solid rgb(var(--color-science-500) / 0.36);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  font-weight: 900;
+}
+
+.control-group button:hover,
+.teacher-replay button:hover,
+.control-group button:focus-visible,
+.teacher-replay button:focus-visible,
+.teacher-replay-step-active {
+  border-color: rgb(var(--color-science-400));
+  background: rgb(var(--color-science-500) / 0.14);
+  outline: none;
+}
+
+.control-field input[type="range"] {
+  width: 100%;
+  accent-color: rgb(var(--color-science-400));
+}
+
+.control-field-value {
+  color: rgb(var(--color-science-300));
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 1.25rem;
+  font-weight: 1000;
+}
+
+.control-field-range {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+
+.observation-panel {
+  position: sticky;
+  top: 1rem;
+}
+
+.observation-panel-why {
+  margin-top: 0.8rem;
+  border-left: 3px solid rgb(var(--color-science-400));
+  padding-left: 0.75rem;
+}
+
+.graph-panel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: 0.65rem;
+  background: rgb(var(--color-space-900) / 0.64);
+}
+
+.graph-axis-label,
+.graph-unit-caption {
+  fill: rgb(var(--color-slate-300));
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.graph-empty-state {
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.mobile-experiment-sheet {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .dedicated-experiment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .observation-panel {
+    position: static;
+  }
+
+  .mobile-experiment-sheet {
+    display: block;
+  }
+
+.mobile-experiment-sheet-panel {
+    margin-top: 0.65rem;
+    border: 1px solid var(--line-soft);
+    border-radius: 0.85rem;
+    padding: 0.85rem;
+    background: var(--surface-card);
+  }
+}
+
+.dedicated-control-group,
+.dedicated-observation-panel,
+.dedicated-graph-panel,
+.dedicated-teacher-replay {
+  border: 1px solid var(--line-soft);
+  border-radius: 0.85rem;
+  background: var(--surface-card);
+  padding: 0.95rem;
+}
+
+.dedicated-control-head,
+.dedicated-graph-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dedicated-control-head h3,
+.dedicated-observation-panel h3,
+.dedicated-graph-head h3,
+.dedicated-teacher-replay h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 1000;
+}
+
+.dedicated-control-head button,
+.dedicated-control-presets button,
+.dedicated-replay-step,
+.mobile-experiment-sheet-toggle {
+  min-height: 2.45rem;
+  border: 1px solid rgb(var(--color-science-500) / 0.35);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  font-weight: 900;
+}
+
+.dedicated-control-presets,
+.dedicated-replay-steps,
+.dedicated-observation-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.dedicated-control-presets {
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  margin-bottom: 0.75rem;
+}
+
+.dedicated-control-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dedicated-control {
+  display: grid;
+  gap: 0.35rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: rgb(var(--color-space-900) / 0.2);
+}
+
+.dedicated-control > span,
+.dedicated-observation-list span {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.dedicated-control strong,
+.dedicated-observation-list strong {
+  color: rgb(var(--color-science-300));
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 1000;
+}
+
+.dedicated-control input[type="range"] {
+  width: 100%;
+  min-height: 30px;
+  accent-color: rgb(var(--color-science-400));
+}
+
+.dedicated-control small {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.dedicated-observation-list div {
+  border: 1px solid var(--line-soft);
+  border-radius: 0.7rem;
+  padding: 0.7rem;
+  background: rgb(var(--color-space-900) / 0.22);
+}
+
+.dedicated-observation-list small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.dedicated-graph-head span {
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem;
+  color: rgb(var(--color-science-200));
+  background: rgb(var(--color-science-500) / 0.12);
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.dedicated-graph-panel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: 0.65rem;
+  background: rgb(var(--color-space-900) / 0.64);
+}
+
+.dedicated-graph-panel line {
+  stroke: rgb(var(--color-slate-400));
+}
+
+.dedicated-graph-panel polyline {
+  fill: none;
+  stroke: rgb(var(--color-science-300));
+  stroke-width: 4;
+}
+
+.dedicated-graph-panel circle {
+  fill: rgb(var(--color-warning-300));
+}
+
+.dedicated-graph-panel text {
+  fill: rgb(var(--color-slate-300));
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.dedicated-replay-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.25rem 0.5rem;
+  border-radius: 0.75rem;
+  text-align: left;
+}
+
+.dedicated-replay-step span {
+  display: grid;
+  width: 1.6rem;
+  height: 1.6rem;
+  place-items: center;
+  border-radius: 999px;
+  color: #082f49;
+  background: rgb(var(--color-science-300));
+  font-weight: 1000;
+}
+
+.dedicated-replay-step small {
+  grid-column: 2;
+  color: var(--text-secondary);
+  font-weight: 750;
+}
+
+.dedicated-replay-step-active,
+.dedicated-control-presets button:hover,
+.dedicated-control-head button:hover {
+  border-color: rgb(var(--color-science-300));
+  background: rgb(var(--color-science-500) / 0.16);
+}
+
+.formula-assumption-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.formula-assumption-head strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: rgb(var(--color-science-200));
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.formula-assumption-head > span {
+  height: fit-content;
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem;
+  color: rgb(var(--color-warning-200));
+  background: rgb(var(--color-warning-500) / 0.12);
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.formula-symbol-grid > div {
+  border: 1px solid var(--line-soft);
+  border-radius: 0.65rem;
+  padding: 0.6rem;
+  background: rgb(var(--color-space-900) / 0.24);
+}
+
+.formula-symbol-grid b,
+.formula-symbol-grid span,
+.formula-symbol-grid small {
+  display: block;
+}
+
+.formula-symbol-grid b {
+  color: rgb(var(--color-science-300));
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+
+.formula-symbol-grid span,
+.formula-assumption-list,
+.formula-assumption-note {
+  color: var(--text-secondary);
+  font-weight: 750;
 }

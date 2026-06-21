@@ -692,6 +692,46 @@
   outline: none;
 }
 
+.scale-object-count-control {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.42fr) minmax(220px, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.85rem;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.scale-object-count-control label {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+  color: #dbeafe;
+  font-weight: 950;
+}
+
+.scale-object-count-control span {
+  color: #bfdbfe;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scale-object-count-control strong {
+  color: #67e8f9;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: nowrap;
+}
+
+.scale-object-count-control input {
+  width: 100%;
+  min-height: 44px;
+  accent-color: #22d3ee;
+}
+
 .scale-slider {
   display: grid;
   gap: 0.45rem;
@@ -961,6 +1001,16 @@
     flex: 0 0 auto;
     min-width: 44px;
     padding: 0.5rem 0.7rem;
+  }
+
+  .scale-object-count-control {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .scale-object-count-control label {
+    flex-wrap: wrap;
   }
 
   .scale-slider-track {

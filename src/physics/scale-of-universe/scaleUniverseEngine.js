@@ -106,6 +106,13 @@ export function createScaleUniverseExplorer(host) {
           <button type="button" data-action="fullscreen">Fullscreen</button>
           <button type="button" data-action="sound">Sound Coming Soon</button>
         </div>
+        <div class="scale-object-count-control" aria-label="Displayed object count control">
+          <label for="scale-object-count">
+            <span>Objects shown on pane</span>
+            <strong><output data-object-count-output>30</output> / ${objects.length}</strong>
+          </label>
+          <input id="scale-object-count" type="range" min="30" max="${objects.length}" step="1" value="30" />
+        </div>
         <div class="scale-slider" aria-label="Logarithmic scale slider">
           <div class="scale-slider-track">
             <div class="scale-slider-ticks" aria-hidden="true"></div>
@@ -129,6 +136,8 @@ export function createScaleUniverseExplorer(host) {
   const helpPanel = host.querySelector(".scale-help-panel");
   const unitsPanel = host.querySelector(".scale-units-panel");
   const scalePath = host.querySelector(".scale-path-panel");
+  const objectCountInput = host.querySelector("#scale-object-count");
+  const objectCountOutput = host.querySelector("[data-object-count-output]");
 
   const state = {
     minLog: SCALE_MIN_LOG,
@@ -146,6 +155,7 @@ export function createScaleUniverseExplorer(host) {
     prefersReducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     objects,
     visibleObjects: [],
+    objectDisplayLimit: Math.min(30, objects.length),
   };
 
   let raf = 0;
@@ -160,6 +170,14 @@ export function createScaleUniverseExplorer(host) {
 
   const markDirty = () => {
     dirty = true;
+  };
+
+  const updateObjectLimit = (value) => {
+    const next = Math.round(clamp(Number(value), 30, objects.length));
+    state.objectDisplayLimit = next;
+    objectCountInput.value = String(next);
+    objectCountOutput.textContent = String(next);
+    markDirty();
   };
 
   const resize = () => {
@@ -280,6 +298,10 @@ export function createScaleUniverseExplorer(host) {
       quiz.close();
       closeInfo();
     }
+  };
+
+  const onObjectCountInput = (event) => {
+    updateObjectLimit(event.target.value);
   };
 
   const onPointerDown = (event) => {
@@ -436,6 +458,7 @@ export function createScaleUniverseExplorer(host) {
   };
 
   resize();
+  updateObjectLimit(30);
   updateScalePath(scalePath, 0);
   openHelp();
   raf = requestAnimationFrame(animate);
@@ -452,6 +475,7 @@ export function createScaleUniverseExplorer(host) {
   panel.addEventListener("pointermove", onSheetPointerMove);
   panel.addEventListener("pointerup", onSheetPointerUp);
   panel.addEventListener("pointercancel", onSheetPointerUp);
+  objectCountInput.addEventListener("input", onObjectCountInput);
   host.addEventListener("click", onButtonClick);
 
   return {
@@ -469,6 +493,7 @@ export function createScaleUniverseExplorer(host) {
       panel.removeEventListener("pointermove", onSheetPointerMove);
       panel.removeEventListener("pointerup", onSheetPointerUp);
       panel.removeEventListener("pointercancel", onSheetPointerUp);
+      objectCountInput.removeEventListener("input", onObjectCountInput);
       host.removeEventListener("click", onButtonClick);
       slider.destroy();
       search.destroy();

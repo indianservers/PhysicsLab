@@ -20,7 +20,7 @@ export function renderScaleUniverse(ctx, state) {
   const labels = [];
   const selectedObject = objects.find((object) => object.id === selectedObjectId);
   const responsiveRange = getResponsiveVisibleRange(width);
-  const objectLimit = getResponsiveObjectLimit(width);
+  const objectLimit = Math.round(clamp(state.objectDisplayLimit ?? getResponsiveObjectLimit(width), 30, objects.length));
   ctx.clearRect(0, 0, width, height);
   drawBackground(ctx, width, height, currentLog);
   drawScaleGrid(ctx, width, height, currentLog);

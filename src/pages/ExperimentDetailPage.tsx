@@ -30,6 +30,7 @@ import { commonMistakesForExperiment } from "../lib/commonMistakes";
 import { downloadMarkdownReport, generateExperimentMarkdownReport } from "../lib/reportGenerator";
 import { evaluateFlagshipLab, getFlagshipDefaultValues, getFlagshipLabModel } from "../lib/flagshipLabModels";
 import { saveLocalArtifact } from "../lib/offlineDB";
+import { getDedicatedExperimentLab } from "../experiments/shared/experimentRegistry";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
@@ -38,6 +39,7 @@ export function ExperimentDetailPage() {
   const { id } = useParams();
   const location = useLocation();
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
+  const DedicatedExperimentLab = getDedicatedExperimentLab(experiment.id);
   const assignment = getAssignmentFromSearch(location.search);
   const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : "simulate");
   const [learningLevel, setLearningLevel] = useState<LearningLevel>(() => defaultLearningLevelForClass(experiment.classLevel));
@@ -127,7 +129,15 @@ export function ExperimentDetailPage() {
           </div>
           <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
             {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={learningLevel} />}
-            {activePane === "simulate" && (experiment.id === "projectile-motion" ? <ProjectileExperiment experiment={experiment} /> : <GenericExperiment experiment={experiment} learningLevel={learningLevel} assignment={assignment} />)}
+            {activePane === "simulate" && (
+              DedicatedExperimentLab ? (
+                <DedicatedExperimentLab experiment={experiment} learningLevel={learningLevel} assignment={assignment} />
+              ) : experiment.id === "projectile-motion" ? (
+                <ProjectileExperiment experiment={experiment} />
+              ) : (
+                <GenericExperiment experiment={experiment} learningLevel={learningLevel} assignment={assignment} />
+              )
+            )}
             {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
             {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={learningLevel} />}
             {activePane === "coach" && <ExperimentCoachPane experiment={experiment} learningLevel={learningLevel} />}
@@ -2253,8 +2263,20 @@ function calculateStarterLab(id: string, a: number, b: number, c: number): LabRe
     "inclined-plane": () => ({
       description: "Gravity splits into parallel and normal components on an incline.",
       controls: controls("Mass (kg)", "Angle (deg)", "Coefficient μ", { b: { min: 1, max: 80, step: 1 } }),
-      formula: "a_down = g(sin theta - μ cos theta)",
-      outputs: [{ label: "Normal force", value: `${(a * g * Math.cos(degreeToRad(b))).toFixed(2)} N` }, { label: "Friction", value: `${(c * a * g * Math.cos(degreeToRad(b))).toFixed(2)} N` }, { label: "Acceleration", value: `${Math.max(0, g * (Math.sin(degreeToRad(b)) - c * Math.cos(degreeToRad(b)))).toFixed(2)} m/s^2` }],
+      formula: "a_down = max(0, g(sin theta - μ cos theta))",
+      outputs: (() => {
+        const theta = degreeToRad(b);
+        const normal = a * g * Math.cos(theta);
+        const downhill = a * g * Math.sin(theta);
+        const maxFriction = c * normal;
+        const actualFriction = Math.min(maxFriction, downhill);
+        const acceleration = Math.max(0, (downhill - actualFriction) / a);
+        return [
+          { label: "Normal force", value: `${normal.toFixed(2)} N` },
+          { label: "Friction used", value: `${actualFriction.toFixed(2)} N` },
+          { label: "Acceleration", value: `${acceleration.toFixed(2)} m/s^2` },
+        ];
+      })(),
     }),
     "elastic-collision": () => ({
       description: "One-dimensional collision outputs momentum and energy checks.",
@@ -2644,11 +2666,13 @@ function calculateStarterLab(id: string, a: number, b: number, c: number): LabRe
       const focusM = Math.max(0.01, a / 100);
       const retinaM = Math.max(0.01, b / 100);
       const correction = defectIndex === 0 ? 0 : (1 / retinaM) - (1 / focusM);
+      const focusStatus = Math.abs(focalError) < 0.08 ? "Image on retina" : focalError < 0 ? "Image before retina" : "Image behind retina";
+      const lensType = defectIndex === 1 ? "Concave / diverging" : defectIndex === 2 ? "Convex / converging" : "No correction";
       return {
-        description: "Adjust eye focus and correction lens power until the image falls on the retina.",
-        controls: controls("Eye focus distance (cm)", "Retina distance (cm)", "Defect mode", { a: { min: 1, max: 5, step: 0.1 }, b: { min: 1.5, max: 3.5, step: 0.1 }, c: { min: 0, max: 2, step: 1 } }),
-        formula: "P = 1/f, correction trend = 1/d_retina - 1/d_focus",
-        outputs: [{ label: "Defect", value: defectIndex === 0 ? "Normal" : defectIndex === 1 ? "Myopia" : "Hypermetropia" }, { label: "Focus error", value: `${focalError.toFixed(2)} cm` }, { label: "Lens type", value: defectIndex === 1 ? "Concave" : defectIndex === 2 ? "Convex" : "None" }, { label: "Power trend", value: `${correction.toFixed(3)} D` }],
+        description: "Adjust eye focus and correction lens power until the final image forms on the retina.",
+        controls: controls("Eye focus point (cm)", "Retina position (cm)", "Defect mode", { a: { min: 1, max: 5, step: 0.1 }, b: { min: 1.5, max: 3.5, step: 0.1 }, c: { min: 0, max: 2, step: 1 } }),
+        formula: "P = 1/f, correction = 1/d_retina - 1/d_focus",
+        outputs: [{ label: "Condition", value: defectIndex === 0 ? "Normal vision" : defectIndex === 1 ? "Myopia" : "Hypermetropia" }, { label: "Focus status", value: focusStatus }, { label: "Correction lens", value: lensType }, { label: "Approx power", value: `${correction.toFixed(2)} D` }],
       };
     },
     "sources-of-energy": () => {

@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { ConceptThreeScene } from "../components/ConceptThreeScene";
 import { ParticlePhysicsConcept, ParticleVisual, particleConceptLabs, particlePhysicsCategories, particlePhysicsConcepts, particlePhysicsStats } from "../lib/particlePhysics";
@@ -22,9 +22,12 @@ const orbitPositions = [
 
 export function ParticlePhysicsPage() {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const { conceptId } = useParams();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => new Set(particlePhysicsCategories));
   const [threeMode, setThreeMode] = useState(0);
   const [interactionEnergy, setInteractionEnergy] = useState(0.58);
   const requestedConcept = conceptId ?? searchParams.get("concept");
@@ -50,9 +53,34 @@ export function ParticlePhysicsPage() {
     });
   }, [category, query]);
 
+  const menuConcepts = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return particlePhysicsConcepts.filter((concept) => {
+      const text = [
+        concept.title,
+        concept.category,
+        concept.summary,
+        concept.explanation,
+        concept.equation ?? "",
+        concept.misconception,
+        concept.classroomPrompt,
+        ...concept.keyIdeas,
+      ].join(" ").toLowerCase();
+      return !q || text.includes(q);
+    });
+  }, [query]);
+
+  const menuSections = useMemo(() => particlePhysicsCategories
+    .map((item) => ({
+      category: item,
+      concepts: menuConcepts.filter((concept) => concept.category === item),
+    }))
+    .filter((section) => section.concepts.length > 0), [menuConcepts]);
+
   const selected = particlePhysicsConcepts.find((concept) => concept.id === selectedId) ?? filtered[0] ?? particlePhysicsConcepts[0];
   const selectedLab = particleConceptLabs[selected.id] ?? particleConceptLabs["standard-model"];
   const labReadouts = useMemo(() => computeParticleReadouts(selected.id, labValues), [selected.id, labValues]);
+  const conceptPageActive = Boolean(conceptId);
 
   useEffect(() => {
     if (requestedConcept && particlePhysicsConcepts.some((concept) => concept.id === requestedConcept)) {
@@ -64,8 +92,26 @@ export function ParticlePhysicsPage() {
     setLabValues(defaultLabValues(selectedLab));
   }, [selectedLab]);
 
+  useEffect(() => {
+    if (!location.hash) return undefined;
+    const targetId = location.hash.slice(1);
+    const timer = window.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+    return () => window.clearTimeout(timer);
+  }, [location.hash, selected.id]);
+
   const updateLabValue = (id: string, value: number) => {
     setLabValues((state) => ({ ...state, [id]: value }));
+  };
+
+  const toggleMenuCategory = (item: string) => {
+    setExpandedCategories((current) => {
+      const next = new Set(current);
+      if (next.has(item)) next.delete(item);
+      else next.add(item);
+      return next;
+    });
   };
 
   return (
@@ -86,6 +132,108 @@ export function ParticlePhysicsPage() {
             <Metric icon="check" label="Checks" value={particlePhysicsStats.misconceptionChecks} />
           </div>
         </section>
+
+        <section className={menuCollapsed ? "particle-explorer-shell particle-explorer-shell-collapsed" : "particle-explorer-shell"}>
+          <aside className="particle-doc-menu" aria-label="Particle physics documentation menu">
+            <div className="particle-doc-menu-head">
+              <div>
+                <p className="ui-label">Documentation</p>
+                {!menuCollapsed && <h2>Particle menu</h2>}
+              </div>
+              <button
+                className="particle-menu-collapse"
+                type="button"
+                aria-label={menuCollapsed ? "Expand particle menu" : "Collapse particle menu"}
+                aria-expanded={!menuCollapsed}
+                onClick={() => setMenuCollapsed((value) => !value)}
+              >
+                {menuCollapsed ? ">" : "<"}
+              </button>
+            </div>
+
+            {!menuCollapsed && (
+              <>
+                <label className="particle-menu-search">
+                  <span>Search main menu</span>
+                  <input
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Search Higgs, quarks, bosons..."
+                  />
+                </label>
+
+                <nav className="particle-menu-nav" aria-label="Particle physics main and submenu">
+                  <Link
+                    className={!conceptPageActive ? "particle-menu-main-link particle-menu-main-link-active" : "particle-menu-main-link"}
+                    to="/particle-physics"
+                    onClick={() => setSelectedId(particlePhysicsConcepts[0]?.id ?? "")}
+                  >
+                    <PhysicsIcon name="atom" className="h-4 w-4" />
+                    Main overview
+                  </Link>
+
+                  {menuSections.map((section) => {
+                    const expanded = expandedCategories.has(section.category);
+                    return (
+                      <div key={section.category} className="particle-menu-section">
+                        <button
+                          className="particle-menu-section-toggle"
+                          type="button"
+                          aria-expanded={expanded}
+                          onClick={() => toggleMenuCategory(section.category)}
+                        >
+                          <span>{section.category}</span>
+                          <small>{section.concepts.length}</small>
+                          <b>{expanded ? "-" : "+"}</b>
+                        </button>
+                        {expanded && (
+                          <div className="particle-menu-submenu">
+                            {section.concepts.map((concept) => (
+                              <Link
+                                key={concept.id}
+                                className={selected.id === concept.id ? "particle-menu-sub-link particle-menu-sub-link-active" : "particle-menu-sub-link"}
+                                to={`/particle-physics/${concept.id}`}
+                                onClick={() => setSelectedId(concept.id)}
+                              >
+                                <ParticleConceptIcon visual={concept.visual} compact />
+                                <span>{concept.title}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </nav>
+
+                <div className="particle-menu-foot">
+                  <span>{menuConcepts.length} concept pages</span>
+                  <Link to={`/particle-physics/${selected.id}#particle-lab`}>Launch selected lab</Link>
+                </div>
+              </>
+            )}
+          </aside>
+
+          <div className="particle-main-panel">
+
+        {conceptPageActive && (
+          <section className="particle-concept-page-banner" aria-label={`${selected.title} concept page`}>
+            <div className="particle-concept-page-title">
+              <ParticleConceptIcon visual={selected.visual} compact />
+              <div>
+                <p className="ui-label">{selected.category} concept page</p>
+                <h2>{selected.title}</h2>
+                <p>{selected.summary}</p>
+              </div>
+            </div>
+            <div className="particle-interaction-list">
+              <span><PhysicsIcon name="check" className="h-3.5 w-3.5" />Interactive controls included</span>
+              <span><PhysicsIcon name="check" className="h-3.5 w-3.5" />Live readouts included</span>
+              <span><PhysicsIcon name="check" className="h-3.5 w-3.5" />Misconception check included</span>
+              <Link className="particle-page-link" to={`/particle-physics/${selected.id}#particle-lab`}>Launch interactive lab</Link>
+            </div>
+          </section>
+        )}
 
         <section className="particle-three-lab" aria-label="Interactive 3D particle physics blueprint">
           <div className="particle-three-copy">
@@ -161,25 +309,25 @@ export function ParticlePhysicsPage() {
                   return <line key={concept.id} x1="50" y1="50" x2={position.x} y2={position.y} />;
                 })}
               </svg>
-              <button className="particle-core-node" type="button" onClick={() => setSelectedId("standard-model")}>
+              <Link className="particle-core-node" to="/particle-physics/standard-model" onClick={() => setSelectedId("standard-model")}>
                 <ParticleConceptIcon visual="standard-model" compact />
                 <span>Standard Model</span>
-              </button>
+              </Link>
               {particlePhysicsConcepts.map((concept, index) => {
                 const position = orbitPositions[index % orbitPositions.length];
                 const visible = filtered.some((item) => item.id === concept.id);
                 return (
-                  <button
+                  <Link
                     key={concept.id}
-                    type="button"
                     className={`particle-map-node${selected.id === concept.id ? " particle-map-node-active" : ""}${visible ? "" : " particle-map-node-muted"}`}
+                    to={`/particle-physics/${concept.id}`}
                     style={{ left: `${position.x}%`, top: `${position.y}%` }}
                     onClick={() => setSelectedId(concept.id)}
                     title={concept.title}
                   >
                     <ParticleConceptIcon visual={concept.visual} compact />
                     <span>{concept.title}</span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -211,7 +359,7 @@ export function ParticlePhysicsPage() {
           </aside>
         </section>
 
-        <section className="particle-lab-panel" aria-label={`${selected.title} interactive knowledge and experiment lab`}>
+        <section id="particle-lab" className="particle-lab-panel" aria-label={`${selected.title} interactive knowledge and experiment lab`}>
           <div className="particle-lab-head">
             <div>
               <p className="ui-label">Interactive knowledge explorer</p>
@@ -220,6 +368,7 @@ export function ParticlePhysicsPage() {
             </div>
             <span className="status-chip"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />Concept lab active</span>
             <Link className="status-chip" to={`/particle-physics/${selected.id}`}>Open concept page</Link>
+            <Link className="status-chip" to={`/particle-physics/${selected.id}#particle-lab`}>Launch lab</Link>
           </div>
 
           <div className="particle-lab-grid">
@@ -298,8 +447,13 @@ export function ParticlePhysicsPage() {
               <Link className="particle-page-link" to={`/particle-physics/${concept.id}`} onClick={(event) => event.stopPropagation()}>
                 Open interactive page
               </Link>
+              <Link className="particle-page-link" to={`/particle-physics/${concept.id}#particle-lab`} onClick={(event) => event.stopPropagation()}>
+                Launch lab
+              </Link>
             </article>
           ))}
+        </section>
+          </div>
         </section>
       </main>
     </div>

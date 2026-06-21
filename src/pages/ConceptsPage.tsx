@@ -51,6 +51,15 @@ export function ConceptsPage() {
     if (classFilter !== "all") next.set("class", classFilter);
     setParams(next);
   };
+  const conceptHref = (id: string) => {
+    const next = new URLSearchParams(params);
+    next.set("concept", id);
+    if (domain !== "all") next.set("domain", domain);
+    else next.delete("domain");
+    if (classFilter !== "all") next.set("class", classFilter);
+    else next.delete("class");
+    return `/concepts?${next.toString()}`;
+  };
 
   return (
     <div className="min-h-screen">
@@ -109,25 +118,38 @@ export function ConceptsPage() {
             )}
             {filtered.map((card) => {
               const firstLab = card.experimentIds[0] ? experimentById.get(card.experimentIds[0]) : undefined;
+              const launchTarget = firstLab ? `/experiments/${firstLab.id}` : card.topicPath;
               return (
-                <button key={card.id} className={selected?.id === card.id ? "enhanced-card concept-card concept-card-active text-left" : "enhanced-card concept-card text-left"} type="button" onClick={() => selectConcept(card.id)}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="ui-label">{card.classLabel} / {card.domain}</p>
-                      <h2 className="mt-1 text-lg font-black text-slate-800 dark:text-slate-100">{card.title}</h2>
+                <article key={card.id} className={selected?.id === card.id ? "enhanced-card concept-card concept-card-active" : "enhanced-card concept-card"}>
+                  <button className="concept-card-main text-left" type="button" onClick={() => selectConcept(card.id)} aria-label={`Open ${card.title} concept details`}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="ui-label">{card.classLabel} / {card.domain}</p>
+                        <h2 className="mt-1 text-lg font-black text-slate-800 dark:text-slate-100">{card.title}</h2>
+                      </div>
+                      <span className="status-chip">{depthLabels[card.depth]}</span>
                     </div>
-                    <span className="status-chip">{depthLabels[card.depth]}</span>
+                    <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">{card.summary}</p>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {card.essentials.map((item) => <span key={item} className="status-chip">{item}</span>)}
+                    </div>
+                    {firstLab && (
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-black text-cyan-600 dark:text-cyan-300">
+                        <PhysicsIcon name={iconForExperiment(firstLab)} className="h-3.5 w-3.5" />{firstLab.title}
+                      </span>
+                    )}
+                  </button>
+                  <div className="concept-card-actions" aria-label={`${card.title} actions`}>
+                    <Link to={conceptHref(card.id)} className="concept-card-action concept-card-action-secondary" onClick={() => selectConcept(card.id)}>
+                      <PhysicsIcon name="book" className="h-4 w-4" />
+                      Open
+                    </Link>
+                    <Link to={launchTarget} className="concept-card-action concept-card-action-primary">
+                      <PhysicsIcon name={firstLab ? "flask" : "spark"} className="h-4 w-4" />
+                      Launch
+                    </Link>
                   </div>
-                  <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">{card.summary}</p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {card.essentials.map((item) => <span key={item} className="status-chip">{item}</span>)}
-                  </div>
-                  {firstLab && (
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-black text-cyan-600 dark:text-cyan-300">
-                      <PhysicsIcon name={iconForExperiment(firstLab)} className="h-3.5 w-3.5" />{firstLab.title}
-                    </span>
-                  )}
-                </button>
+                </article>
               );
             })}
           </div>

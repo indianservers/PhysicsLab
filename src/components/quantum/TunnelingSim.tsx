@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { QuantumControlSlider } from "../../physics/quantum/components/QuantumControlSlider";
+import { QuantumSimulationCard } from "../../physics/quantum/components/QuantumSimulationCard";
+import { quantumSimulationById, QuantumLearningMode } from "../../physics/quantum/quantumLabData";
+import { formatScientific, tunnelingKappaPerMeter, tunnelingTransmissionEstimate } from "../../physics/quantum/quantumUtils";
 
-export function TunnelingSim() {
+export function TunnelingSim({ mode = "normal", highlighted = false }: { mode?: QuantumLearningMode; highlighted?: boolean }) {
   const [energy, setEnergy] = useState(2);
   const [height, setHeight] = useState(5);
   const [width, setWidth] = useState(1);
@@ -11,11 +15,48 @@ export function TunnelingSim() {
     const id = window.setInterval(() => setPhase((value) => value + 0.15), 50);
     return () => window.clearInterval(id);
   }, []);
-  const { data, t, r } = useMemo(() => solve(energy, height, width, mass, phase), [energy, height, width, mass, phase]);
+  const info = quantumSimulationById("tunneling");
+  const { data, t, r, kappa } = useMemo(() => solve(energy, height, width, mass, phase), [energy, height, width, mass, phase]);
+  const reset = () => {
+    setEnergy(2);
+    setHeight(5);
+    setWidth(1);
+    setMass(1);
+  };
+  const observation = energy < height
+    ? mode === "advanced"
+      ? `E < V0, so the WKB-style estimate gives T = ${t.toExponential(2)}. Wider barriers and larger mass increase kappa and suppress tunneling.`
+      : `Classically the particle should not cross this barrier, but the quantum wave leaves a small transmission probability.`
+    : `The particle energy is above the barrier height, so transmission is high in this simplified classroom model.`;
   return (
-    <div className="panel p-4">
-      <h2 className="panel-title">Quantum Tunneling</h2>
-      <div className="mt-3 h-64">
+    <QuantumSimulationCard
+      info={info}
+      mode={mode}
+      className={`quantum-tunneling ${highlighted ? "quantum-sim-highlight" : ""}`}
+      observation={observation}
+      onReset={reset}
+      outputs={[
+        { label: "Transmission T", value: t.toExponential(2), detail: "0 to 1" },
+        { label: "Reflection R", value: r.toFixed(3), detail: "1 - T" },
+        { label: "Classical", value: energy < height ? "No crossing" : "Allowed" },
+        { label: "kappa", value: formatScientific(kappa, "m^-1") },
+      ]}
+      controls={(
+        <>
+          <QuantumControlSlider label="Energy E" value={energy} min={0.1} max={10} step={0.1} unit="eV" onChange={setEnergy} />
+          <QuantumControlSlider label="Barrier V0" value={height} min={0.1} max={10} step={0.1} unit="eV" onChange={setHeight} />
+          <QuantumControlSlider label="Width L" value={width} min={0.1} max={5} step={0.1} unit="nm" onChange={setWidth} />
+          <label className="quantum-select-control">
+            <span>Particle mass</span>
+            <select value={mass} onChange={(event) => setMass(Number(event.target.value))}>
+              <option value={1}>electron</option>
+              <option value={1836}>proton</option>
+            </select>
+          </label>
+        </>
+      )}
+    >
+      <div className="quantum-chart">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <XAxis dataKey="x" stroke="#94a3b8" />
@@ -26,35 +67,19 @@ export function TunnelingSim() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <div className="mt-3 grid gap-3 md:grid-cols-4">
-        <label className="property-row"><span>E eV</span><input type="range" min={0.1} max={10} step={0.1} value={energy} onChange={(event) => setEnergy(Number(event.target.value))} /></label>
-        <label className="property-row"><span>V0 eV</span><input type="range" min={0.1} max={10} step={0.1} value={height} onChange={(event) => setHeight(Number(event.target.value))} /></label>
-        <label className="property-row"><span>L nm</span><input type="range" min={0.1} max={5} step={0.1} value={width} onChange={(event) => setWidth(Number(event.target.value))} /></label>
-        <label className="property-row"><span>Mass</span><select value={mass} onChange={(event) => setMass(Number(event.target.value))}><option value={1}>electron</option><option value={1836}>proton</option></select></label>
-      </div>
-      <div className="mt-3 grid gap-2 md:grid-cols-2">
-        <Readout label="Transmission T" value={t.toFixed(3)} />
-        <Readout label="Reflection R" value={r.toFixed(3)} />
-      </div>
-    </div>
+    </QuantumSimulationCard>
   );
 }
 
 function solve(e: number, v0: number, widthNm: number, mass: number, phase: number) {
-  const alpha = 5.12 * widthNm * Math.sqrt(Math.max(0.0001, mass * Math.abs(v0 - e)));
-  const t = e > v0
-    ? 1 / (1 + ((v0 * v0 * Math.sin(alpha) ** 2) / (4 * e * Math.max(0.0001, e - v0))))
-    : 1 / (1 + ((v0 * v0 * Math.sinh(alpha) ** 2) / (4 * e * Math.max(0.0001, v0 - e))));
-  const clampedT = Math.max(0, Math.min(1, t));
+  const kappa = tunnelingKappaPerMeter(e, v0, mass);
+  const clampedT = tunnelingTransmissionEstimate(e, v0, widthNm, mass);
+  const visualAlpha = 5.12 * widthNm * Math.sqrt(Math.max(0.0001, mass * Math.abs(v0 - e)));
   const data = Array.from({ length: 220 }, (_, i) => {
     const x = -3 + (i / 219) * 6;
     const inBarrier = Math.abs(x) < widthNm / 2;
-    const amp = x < -widthNm / 2 ? 1 + (1 - clampedT) * Math.cos(8 * x - phase) : inBarrier ? Math.exp(-Math.abs(x) * alpha / 4) : Math.sqrt(clampedT);
+    const amp = x < -widthNm / 2 ? 1 + (1 - clampedT) * Math.cos(8 * x - phase) : inBarrier ? Math.exp(-Math.abs(x) * visualAlpha / 4) : Math.sqrt(clampedT);
     return { x: Number(x.toFixed(2)), probability: Math.max(0, amp * amp * (0.75 + 0.25 * Math.cos(7 * x - phase))), barrier: inBarrier ? v0 / 5 : 0 };
   });
-  return { data, t: clampedT, r: 1 - clampedT };
-}
-
-function Readout({ label, value }: { label: string; value: string }) {
-  return <div className="rounded border border-slate-300/60 p-2 dark:border-lab-line"><div className="text-slate-500">{label}</div><div className="font-mono text-cyan-500">{value}</div></div>;
+  return { data, t: clampedT, r: 1 - clampedT, kappa };
 }

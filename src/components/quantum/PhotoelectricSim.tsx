@@ -1,15 +1,31 @@
 import { useEffect, useRef, useState } from "react";
+import { ELECTRON_CHARGE, PHOTOELECTRIC_METALS, PhotoelectricMetal, PLANCK_CONSTANT } from "../../physics/quantum/quantumConstants";
+import { QuantumControlSlider } from "../../physics/quantum/components/QuantumControlSlider";
+import { QuantumSimulationCard } from "../../physics/quantum/components/QuantumSimulationCard";
+import { quantumSimulationById, QuantumLearningMode } from "../../physics/quantum/quantumLabData";
+import { formatEnergyEv, formatScientific, frequencyToPhotonEnergyEv } from "../../physics/quantum/quantumUtils";
 
-const metals = { Sodium: 2.3, Zinc: 4.3, Gold: 5.1 };
-const hEv = 4.135667696e-15;
-
-export function PhotoelectricSim() {
+export function PhotoelectricSim({ mode = "normal", highlighted = false }: { mode?: QuantumLearningMode; highlighted?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [frequency, setFrequency] = useState(8e14);
   const [intensity, setIntensity] = useState(0.6);
-  const [metal, setMetal] = useState<keyof typeof metals>("Sodium");
-  const photonEnergy = hEv * frequency;
-  const ke = Math.max(0, photonEnergy - metals[metal]);
+  const [metal, setMetal] = useState<PhotoelectricMetal>("Sodium");
+  const info = quantumSimulationById("photoelectric");
+  const workFunction = PHOTOELECTRIC_METALS[metal];
+  const photonEnergy = frequencyToPhotonEnergyEv(frequency);
+  const ke = Math.max(0, photonEnergy - workFunction);
+  const thresholdFrequency = (workFunction * ELECTRON_CHARGE) / PLANCK_CONSTANT;
+  const current = ke > 0 ? intensity * Math.max(0.05, ke) : 0;
+  const reset = () => {
+    setFrequency(8e14);
+    setIntensity(0.6);
+    setMetal("Sodium");
+  };
+  const observation = ke <= 0
+    ? `Photon energy ${formatEnergyEv(photonEnergy)} is below ${metal}'s work function ${formatEnergyEv(workFunction)}, so no electrons are emitted.`
+    : mode === "advanced"
+      ? `Emission occurs. Kmax = hf - phi = ${formatEnergyEv(ke)}, so stopping potential is ${ke.toFixed(2)} V. Intensity changes relative current, not Kmax.`
+      : `Electrons are emitted. Increasing intensity now increases current, while frequency controls maximum kinetic energy.`;
 
   useEffect(() => {
     let frame = 0;
@@ -58,24 +74,34 @@ export function PhotoelectricSim() {
   }, [frequency, intensity, metal, ke]);
 
   return (
-    <div className="panel p-4">
-      <h2 className="panel-title">Photoelectric Effect</h2>
-      <canvas ref={canvasRef} className="mt-3 h-64 w-full rounded bg-slate-950" />
-      <div className="mt-3 grid gap-3 md:grid-cols-3">
-        <label className="property-row"><span>Frequency</span><input type="range" min={1e14} max={2e15} step={1e13} value={frequency} onChange={(event) => setFrequency(Number(event.target.value))} /></label>
-        <label className="property-row"><span>Intensity</span><input type="range" min={0} max={1} step={0.01} value={intensity} onChange={(event) => setIntensity(Number(event.target.value))} /></label>
-        <label className="property-row"><span>Metal</span><select value={metal} onChange={(event) => setMetal(event.target.value as keyof typeof metals)}><option>Sodium</option><option>Zinc</option><option>Gold</option></select></label>
-      </div>
-      <div className="mt-3 grid gap-2 text-sm md:grid-cols-4">
-        <Metric label="Photon E" value={`${photonEnergy.toFixed(2)} eV`} />
-        <Metric label="Max KE" value={`${ke.toFixed(2)} eV`} />
-        <Metric label="Stopping V" value={`${ke.toFixed(2)} V`} />
-        <Metric label="Current" value={ke > 0 ? (intensity * ke).toFixed(2) : "0.00"} />
-      </div>
-    </div>
+    <QuantumSimulationCard
+      info={info}
+      mode={mode}
+      className={`quantum-photoelectric ${highlighted ? "quantum-sim-highlight" : ""}`}
+      observation={observation}
+      onReset={reset}
+      outputs={[
+        { label: "Photon E", value: formatEnergyEv(photonEnergy), detail: "from frequency" },
+        { label: "Work phi", value: formatEnergyEv(workFunction), detail: metal },
+        { label: "Max KE", value: formatEnergyEv(ke), detail: ke > 0 ? "emission" : "blocked" },
+        { label: "Stopping V", value: `${ke.toFixed(2)} V`, detail: "Vs = Kmax/e" },
+        { label: "Threshold f", value: formatScientific(thresholdFrequency, "Hz") },
+        { label: "Current", value: current.toFixed(2), detail: "relative" },
+      ]}
+      controls={(
+        <>
+          <QuantumControlSlider label="Frequency" value={frequency} min={1e14} max={2e15} step={1e13} unit="Hz" onChange={setFrequency} />
+          <QuantumControlSlider label="Intensity" value={intensity} min={0} max={1} step={0.01} onChange={setIntensity} />
+          <label className="quantum-select-control">
+            <span>Metal</span>
+            <select value={metal} onChange={(event) => setMetal(event.target.value as PhotoelectricMetal)}>
+              {Object.keys(PHOTOELECTRIC_METALS).map((name) => <option key={name}>{name}</option>)}
+            </select>
+          </label>
+        </>
+      )}
+    >
+      <canvas ref={canvasRef} className="quantum-canvas quantum-photoelectric-canvas" />
+    </QuantumSimulationCard>
   );
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded border border-slate-300/60 p-2 dark:border-lab-line"><div className="text-slate-500">{label}</div><div className="font-mono text-cyan-500">{value}</div></div>;
 }

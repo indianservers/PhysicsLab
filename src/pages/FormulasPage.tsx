@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
-import { allPhysicsFormulas, formulaBankStats, formulaCategories, FormulaAccent, PhysicsFormulaCategory, PhysicsFormulaEntry } from "../lib/formulaBank";
+import { formulaBankStats, formulaCategories, FormulaAccent, PhysicsFormulaCategory, PhysicsFormulaEntry } from "../lib/formulaBank";
 import { renderFormula } from "../lib/formulas";
 import { PhysicsIcon } from "../lib/icons";
 
@@ -149,7 +149,7 @@ const interactiveFormulaConfigs: InteractiveFormulaConfig[] = [
   },
 ];
 
-const formulaSheetSections: FormulaSheetSection[] = [
+export const formulaSheetSections: FormulaSheetSection[] = [
   { id: "physical-world-units", title: "Physical World & Units", categoryId: "measurements-units", icon: "ruler", formulaIds: ["average-speed", "average-velocity", "percentage-error", "dimensional-formula-force", "relative-density", "scientific-notation"] },
   { id: "kinematics-sheet", title: "Kinematics", categoryId: "kinematics", icon: "rocket", formulaIds: ["first-equation-motion", "second-equation-motion", "third-equation-motion", "average-velocity", "projectile-range-basic", "projectile-time-flight"] },
   { id: "laws-motion-sheet", title: "Laws of Motion", categoryId: "dynamics", icon: "gauge", formulaIds: ["newton-second-law", "weight", "friction-limiting", "kinetic-friction", "centripetal-force", "normal-incline"] },
@@ -173,7 +173,7 @@ const formulaSheetSections: FormulaSheetSection[] = [
   { id: "semiconductor-sheet", title: "Semiconductor Devices", categoryId: "electronics-logic", icon: "spark", formulaIds: ["pn-junction-diode", "transistor-current-gain-beta", "transistor-current-gain-alpha", "transistor-current-relation", "logic-or", "logic-nand", "logic-nor", "laser-photon-energy"] },
 ];
 
-const importantConstants = [
+export const importantConstants = [
   ["Speed of light", "c=3.00\\times10^8\\,m\\,s^{-1}"],
   ["Planck constant", "h=6.626\\times10^{-34}\\,J\\,s"],
   ["Elementary charge", "e=1.602\\times10^{-19}\\,C"],
@@ -206,13 +206,6 @@ export function FormulasPage() {
 
   const domains = useMemo(() => ["all", ...Array.from(new Set(formulaCategories.map((category) => category.domain))).sort()], []);
   const categoryById = useMemo(() => new Map(formulaCategories.map((category) => [category.id, category])), []);
-  const formulaById = useMemo(() => new Map(allPhysicsFormulas.map((formula) => [formula.id, formula])), []);
-  const referenceSections = useMemo(() => (
-    formulaSheetSections.map((section) => ({
-      ...section,
-      formulas: section.formulaIds.map((id) => formulaById.get(id)).filter((formula): formula is PhysicsFormulaEntry & { category: PhysicsFormulaCategory } => Boolean(formula)),
-    }))
-  ), [formulaById]);
   const filteredCategories = useMemo(() => {
     const q = normalize(query);
     return formulaCategories
@@ -444,51 +437,21 @@ export function FormulasPage() {
           </div>
         </section>
 
-        <section className="formula-sheet-panel" aria-label="Complete physics formula sheet">
-          <div className="formula-sheet-head">
-            <div>
-              <p className="ui-label">Complete formula sheet</p>
-              <h2>All major concepts in one revision grid</h2>
-              <p>Dense topic cards for fast scan and exam practice, powered by the same searchable formula bank below.</p>
-            </div>
-            <div className="formula-sheet-actions">
-              <span className="status-chip status-chip-cyan">{referenceSections.length} concept cards</span>
-              <span className="status-chip">{importantConstants.length} constants</span>
-            </div>
+        <section className="formula-revision-entry" aria-label="Formula revision grid entry">
+          <div>
+            <p className="ui-label">Focused revision view</p>
+            <h2>Open the categorized formula grid</h2>
+            <p>
+              The dense all-concept grid now lives on its own page so this page stays easier to browse on phones and tablets.
+            </p>
           </div>
-          <div className="formula-sheet-grid">
-            {referenceSections.map((section, index) => (
-              <article key={section.id} className="formula-sheet-card" data-tone={index % 5}>
-                <button className="formula-sheet-title" type="button" onClick={() => setCategory(section.categoryId)}>
-                  <span>{index + 1}</span>
-                  <PhysicsIcon name={section.icon} className="h-4 w-4" />
-                  <strong>{section.title}</strong>
-                </button>
-                <div className="formula-sheet-list">
-                  {section.formulas.slice(0, 8).map((formula) => (
-                    <button key={formula.id} className="formula-sheet-row" type="button" onClick={() => setCategory(formula.category.id)}>
-                      <span>{formula.name}</span>
-                      <b dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }} />
-                    </button>
-                  ))}
-                </div>
-              </article>
-            ))}
-            <article className="formula-sheet-card formula-constants-card" data-tone="constants">
-              <div className="formula-sheet-title">
-                <span>{referenceSections.length + 1}</span>
-                <PhysicsIcon name="ruler" className="h-4 w-4" />
-                <strong>Important Constants</strong>
-              </div>
-              <div className="formula-sheet-list">
-                {importantConstants.map(([name, expression]) => (
-                  <div key={name} className="formula-sheet-row formula-constant-row">
-                    <span>{name}</span>
-                    <b dangerouslySetInnerHTML={{ __html: renderFormula(expression) }} />
-                  </div>
-                ))}
-              </div>
-            </article>
+          <div className="formula-revision-actions">
+            <span className="status-chip status-chip-cyan">{formulaSheetSections.length} concept cards</span>
+            <span className="status-chip">{importantConstants.length} constants</span>
+            <Link className="hero-btn-primary" to="/formulas/revision-grid">
+              <PhysicsIcon name="book" className="h-4 w-4" />
+              Open revision grid
+            </Link>
           </div>
         </section>
 
@@ -822,6 +785,10 @@ function FormulaCard({ category, formula, expanded, onToggle }: { category: Phys
         <h5>Explanation</h5>
         <p>{explanation.purpose}</p>
       </div>
+      <div className="formula-example-strip">
+        <b>Example</b>
+        <span>{explanation.example}</span>
+      </div>
       <div className="formula-variable-row" aria-label={`${formula.name} variables`}>
         <b>Symbols</b>
         {formula.variables.slice(0, 8).map((variable) => <span key={variable}>{variable}</span>)}
@@ -837,21 +804,22 @@ function FormulaCard({ category, formula, expanded, onToggle }: { category: Phys
             <p>{explanation.whatItTells}</p>
           </div>
           <div>
-            <h5>Symbols</h5>
-            <dl className="formula-symbol-list">
-              {formula.variables.slice(0, 8).map((variable) => {
-                const detail = describeSymbol(variable, category.domain);
-                return (
-                  <div key={variable}>
-                    <dt>{variable}</dt>
-                    <dd>{detail}</dd>
-                  </div>
-                );
-              })}
-            </dl>
+            <h5>Variables, units, and typical values</h5>
+            <div className="formula-variable-table">
+              {explanation.variables.map((variable) => (
+                <div key={variable.symbol}>
+                  <b>{variable.symbol}</b>
+                  <span>{variable.meaning}</span>
+                  <small>{variable.unit}</small>
+                  <em>{variable.typicalValue}</em>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="formula-info-grid">
             <InfoBlock title="Use when" text={explanation.useWhen} />
+            <InfoBlock title="Applications" text={explanation.applications} />
+            <InfoBlock title="Assumptions" text={explanation.assumptions} />
             <InfoBlock title="Remember" text={explanation.remember} />
           </div>
         </div>
@@ -889,7 +857,16 @@ function explainFormula(formula: PhysicsFormulaEntry, category: PhysicsFormulaCa
     purpose,
     whatItTells: whatItTells(text, formula, category),
     useWhen: useWhen(text, category),
+    applications: applicationsFor(text, category),
+    assumptions: assumptionsFor(text, category),
     remember: rememberFor(text, category),
+    variables: formula.variables.slice(0, 10).map((symbol) => ({
+      symbol,
+      meaning: describeSymbol(symbol, category.domain),
+      unit: unitForSymbol(symbol, text, category.domain),
+      typicalValue: typicalValueForSymbol(symbol, text, category.domain),
+    })),
+    example: exampleForFormula(text, formula, category),
   };
 }
 
@@ -930,6 +907,38 @@ function useWhen(text: string, category: PhysicsFormulaCategory) {
   return `Use it in ${category.domain.toLowerCase()} problems when the listed symbols match the given information.`;
 }
 
+function applicationsFor(text: string, category: PhysicsFormulaCategory) {
+  if (text.includes("projectile")) return "Sports throws, water jets, rescue drops, ballistics, and launch-angle comparisons.";
+  if (text.includes("constant acceleration") || text.includes("velocity") || text.includes("speed")) return "Vehicle motion, falling objects, elevators, timing tracks, and graph interpretation.";
+  if (text.includes("force") || text.includes("friction") || text.includes("incline")) return "Ramps, brakes, elevators, pulleys, contact surfaces, and safety-factor checks.";
+  if (text.includes("energy") || text.includes("work") || text.includes("power")) return "Machines, motors, lifting systems, springs, batteries, engines, and efficiency estimates.";
+  if (text.includes("momentum") || text.includes("collision") || text.includes("impulse")) return "Crashes, recoil, ball impacts, airbags, sports equipment, and rocket staging.";
+  if (text.includes("rotation") || text.includes("torque") || text.includes("angular")) return "Wheels, gears, doors, turbines, flywheels, rotating machinery, and circular rides.";
+  if (text.includes("gravity") || text.includes("orbit") || text.includes("escape")) return "Satellite motion, planetary fields, black holes, escape speed, and astronomy estimates.";
+  if (text.includes("wave") || text.includes("sound") || text.includes("frequency")) return "Musical instruments, ultrasound, antennas, resonance tubes, optics, and signal timing.";
+  if (text.includes("pressure") || text.includes("buoyancy") || text.includes("bernoulli")) return "Hydraulic lifts, dams, barometers, ships, aircraft lift, pipes, and blood-flow models.";
+  if (text.includes("heat") || text.includes("gas") || text.includes("temperature")) return "Calorimetry, engines, refrigerators, weather balloons, insulation, and thermal expansion.";
+  if (text.includes("current") || text.includes("voltage") || text.includes("resistance") || text.includes("capacitor")) return "Circuit design, batteries, sensors, household wiring, heating elements, and electronics labs.";
+  if (text.includes("magnetic") || text.includes("induction") || text.includes("emf")) return "Motors, generators, transformers, speakers, MRI coils, and induction cooktops.";
+  if (text.includes("lens") || text.includes("mirror") || text.includes("refraction")) return "Cameras, spectacles, microscopes, telescopes, fiber optics, and image-location problems.";
+  if (text.includes("photon") || text.includes("photoelectric") || text.includes("quantum")) return "Solar cells, LEDs, lasers, spectroscopy, electron microscopes, and quantum experiments.";
+  if (text.includes("nuclear") || text.includes("radioactive") || text.includes("decay")) return "Medical tracers, radiometric dating, nuclear power, detector calibration, and safety estimates.";
+  return `Real ${category.domain.toLowerCase()} problem solving, quick revision, and checking whether measured values are reasonable.`;
+}
+
+function assumptionsFor(text: string, category: PhysicsFormulaCategory) {
+  if (text.includes("projectile")) return "Air resistance is ignored; gravity is constant; many school formulas assume launch and landing heights are equal.";
+  if (text.includes("constant acceleration")) return "Acceleration stays constant during the time interval and motion is along the chosen axis.";
+  if (text.includes("friction")) return "Coefficient of friction is treated as constant and the normal reaction is already known or can be calculated.";
+  if (text.includes("gas")) return "Gas behaves ideally; use absolute temperature in kelvin and consistent SI units.";
+  if (text.includes("lens") || text.includes("mirror")) return "Paraxial rays, thin lenses or spherical mirrors, and one stated sign convention.";
+  if (text.includes("ohm") || text.includes("resistance")) return "Ohmic conductor at nearly constant temperature unless the problem says otherwise.";
+  if (text.includes("orbit") || text.includes("gravity")) return "Masses are treated as point or spherical bodies and non-gravitational forces are neglected.";
+  if (text.includes("wave") || text.includes("sound")) return "Medium is uniform and wave speed is constant for the chosen conditions.";
+  if (text.includes("quantum") || text.includes("photon") || text.includes("nuclear")) return "Use the stated microscopic model; constants and units must match eV/J, Hz, metre, or MeV carefully.";
+  return `The ${category.domain.toLowerCase()} model is idealized; check units, signs, and whether outside effects are being ignored.`;
+}
+
 function rememberFor(text: string, category: PhysicsFormulaCategory) {
   if (text.includes("temperature") || text.includes("gas")) return "Convert temperature to kelvin before calculating.";
   if (text.includes("angle") || text.includes("theta") || text.includes("sin") || text.includes("cos")) return "Check whether your calculator is in degrees or radians.";
@@ -939,6 +948,44 @@ function rememberFor(text: string, category: PhysicsFormulaCategory) {
   if (text.includes("current") || text.includes("voltage") || text.includes("power")) return "Use amperes, volts, ohms, and watts consistently.";
   if (text.includes("momentum") || text.includes("collision")) return "Choose one direction as positive and keep signs consistent.";
   return `Write units beside every value; this prevents most ${category.domain.toLowerCase()} mistakes.`;
+}
+
+function exampleForFormula(text: string, formula: PhysicsFormulaEntry, category: PhysicsFormulaCategory) {
+  const examples: Record<string, string> = {
+    "average-speed": "A cyclist covers 120 m in 10 s, so v_avg = 12 m/s.",
+    "first-equation-motion": "A car starts at 5 m/s and accelerates at 2 m/s^2 for 4 s, so v = 13 m/s.",
+    "second-equation-motion": "With u = 0, a = 3 m/s^2, t = 4 s, displacement is 24 m.",
+    "third-equation-motion": "For u = 0, a = 2 m/s^2, s = 9 m, final speed is 6 m/s.",
+    "projectile-range-basic": "At u = 20 m/s and theta = 45 deg, range is about 40.8 m on Earth.",
+    "newton-second-law": "A 5 kg cart accelerating at 2 m/s^2 needs 10 N net force.",
+    "weight": "A 60 kg student weighs about 588 N near Earth.",
+    "friction-limiting": "If N = 100 N and mu_s = 0.4, static friction can rise up to 40 N.",
+    "work-done": "A 50 N push over 4 m in the direction of motion does 200 J of work.",
+    "kinetic-energy": "A 2 kg object moving at 3 m/s has 9 J of kinetic energy.",
+    "potential-energy": "A 10 kg mass raised 2 m gains about 196 J of gravitational potential energy.",
+    "power": "Doing 600 J of work in 3 s means power is 200 W.",
+    "linear-momentum": "A 0.15 kg cricket ball at 30 m/s has 4.5 kg m/s momentum.",
+    "torque": "A 20 N force applied 0.5 m from a hinge at 90 deg gives 10 N m torque.",
+    "universal-gravitation": "Doubling separation makes gravitational force one-fourth as large.",
+    "wave-speed": "A 50 Hz wave with wavelength 6 m travels at 300 m/s.",
+    "pressure": "A 200 N force over 0.5 m^2 gives pressure 400 Pa.",
+    "heat-capacity": "Heating 1 kg water by 10 K needs about 42 kJ.",
+    "ideal-gas": "Use P in Pa, V in m^3, T in K to find moles or pressure.",
+    "ohms-law": "A 12 V battery across 6 ohm gives 2 A current.",
+    "electric-power": "A 230 V, 2 A appliance uses about 460 W.",
+    "lorentz-force": "A charge moving parallel to B has zero magnetic force because sin theta = 0.",
+    "faraday-law": "Faster flux change gives larger induced emf in a coil.",
+    "mirror-formula": "Use signed u, v, and f before substitution to avoid image-location mistakes.",
+    "lens-formula": "A convex lens with f = 20 cm and u = -30 cm forms v = 60 cm.",
+    "photon-energy": "Green light around 5.5e14 Hz has energy about 3.6e-19 J per photon.",
+    "mass-energy": "A tiny mass defect can release large energy because c^2 is enormous.",
+    "half-life": "After 3 half-lives, 1/8 of the original sample remains.",
+    "schwarzschild-radius": "More mass gives a larger event-horizon radius.",
+  };
+  if (examples[formula.id]) return examples[formula.id];
+  if (text.includes("propto")) return "Try doubling one quantity and predict how the proportional quantity changes.";
+  const output = formula.variables[0] ?? formula.name;
+  return `Given suitable values for ${formula.variables.slice(1, 4).join(", ") || "the known quantities"}, calculate ${output} and report the SI unit.`;
 }
 
 function describeSymbol(symbol: string, domain: string) {
@@ -1032,6 +1079,89 @@ function describeSymbol(symbol: string, domain: string) {
   if (normalized === "rd") return "relative density, a unitless comparison of densities";
   if (normalized === "rp") return "resolving power";
   return `${key}, a quantity used in this ${domain.toLowerCase()} formula`;
+}
+
+function unitForSymbol(symbol: string, text: string, domain: string) {
+  const normalized = symbol.replace(/\\/g, "").trim().toLowerCase();
+  const dictionary: Record<string, string> = {
+    a: "m/s^2",
+    alpha: text.includes("expansion") ? "K^-1" : "rad/s^2",
+    beta: text.includes("sound") || text.includes("level") ? "dB" : "varies",
+    c: text.includes("light") || text.includes("photon") || text.includes("relativity") ? "m/s" : "J/(kg K)",
+    d: "m",
+    e: text.includes("charge") || text.includes("diode") ? "C" : "unitless",
+    eta: text.includes("viscos") ? "Pa s" : "unitless or %",
+    f: text.includes("frequency") || text.includes("wave") || text.includes("sound") ? "Hz" : text.includes("lens") || text.includes("mirror") ? "m or cm" : "N",
+    g: "m/s^2",
+    h: text.includes("photon") || text.includes("planck") ? "J s" : "m",
+    i: domain === "Electricity" || text.includes("current") ? "A" : "degree or rad",
+    j: "N s",
+    k: text.includes("spring") ? "N/m" : text.includes("boltzmann") ? "J/K" : "varies",
+    l: "m",
+    lambda: "m",
+    m: text.includes("magnification") ? "unitless" : "kg",
+    mu: "unitless, H/m, or kg/m",
+    n: text.includes("mole") || text.includes("gas") ? "mol" : "unitless",
+    p: text.includes("pressure") ? "Pa" : text.includes("power") ? "W" : "kg m/s",
+    phi: "rad, Wb, or J",
+    q: text.includes("heat") ? "J" : "C",
+    r: text.includes("resistance") ? "ohm" : "m",
+    rho: text.includes("resistivity") ? "ohm m" : "kg/m^3",
+    s: "m",
+    sigma: "W m^-2 K^-4 or Pa",
+    t: text.includes("temperature") ? "K or deg C" : "s",
+    tau: text.includes("time constant") ? "s" : "N m",
+    theta: "degree or rad",
+    u: text.includes("energy") ? "J" : "m/s or m",
+    v: domain === "Electricity" || text.includes("voltage") ? "V" : text.includes("volume") || text.includes("gas") ? "m^3" : "m/s or m",
+    "v_avg": "m/s",
+    w: text.includes("power") || text.includes("work") ? "J" : "N",
+    omega: "rad/s",
+    x: "m",
+    y: "m",
+    z: "ohm",
+  };
+  if (dictionary[normalized]) return dictionary[normalized];
+  if (normalized.includes("delta t")) return "s";
+  if (normalized.includes("delta x") || normalized.includes("delta l") || normalized.includes("delta v")) return normalized.includes("delta v") ? "m/s" : "m";
+  if (normalized.includes("delta p")) return "kg m/s";
+  if (normalized.includes("rms") && normalized.includes("v")) return "V";
+  if (normalized.includes("rms") && normalized.includes("i")) return "A";
+  if (/^m_\d/.test(normalized)) return "kg";
+  if (/^v_\d|^u_\d|v_[xy]|u_[xy]/.test(normalized)) return "m/s";
+  if (/^q_\d/.test(normalized)) return "C";
+  if (/^r_\d/.test(normalized)) return "ohm";
+  return "context unit";
+}
+
+function typicalValueForSymbol(symbol: string, text: string, domain: string) {
+  const normalized = symbol.replace(/\\/g, "").trim().toLowerCase();
+  const values: Record<string, string> = {
+    a: "0 to 10 m/s^2 in many school problems",
+    c: text.includes("light") || text.includes("relativity") || text.includes("photon") ? "3.00 x 10^8 m/s" : "water: 4200 J/(kg K)",
+    e: text.includes("charge") || text.includes("diode") ? "1.60 x 10^-19 C" : "0 to 1",
+    f: text.includes("frequency") || text.includes("wave") ? "50 Hz, 440 Hz, or optical THz" : "problem value",
+    g: "9.8 m/s^2 near Earth",
+    h: text.includes("photon") || text.includes("planck") ? "6.626 x 10^-34 J s" : "problem value",
+    i: domain === "Electricity" || text.includes("current") ? "mA to A in circuits" : "0 to 90 deg",
+    lambda: "sound: metres; light: hundreds of nm",
+    m: "grams to kilograms, depending on object",
+    mu: "0 to 1 for many surfaces",
+    n: "air about 1.00; glass about 1.5",
+    q: "microcoulombs in electrostatics",
+    r: text.includes("resistance") ? "ohms to kilo-ohms" : "metres to astronomical scales",
+    rho: text.includes("water") || text.includes("density") ? "water about 1000 kg/m^3" : "material value",
+    t: "seconds unless it is temperature",
+    theta: "0 to 90 deg common",
+    v: domain === "Electricity" || text.includes("voltage") ? "1.5 V, 12 V, 230 V" : "m/s scale depends on motion",
+    "v_avg": "walking: 1.5 m/s; car: 15 to 30 m/s",
+    omega: "2 pi f",
+  };
+  if (values[normalized]) return values[normalized];
+  if (normalized.includes("delta")) return "small measured change";
+  if (/^m_\d/.test(normalized)) return "mass of that body";
+  if (/^v_\d|^u_\d/.test(normalized)) return "signed velocity";
+  return "use the value given in the problem";
 }
 
 function normalize(value: string) {
