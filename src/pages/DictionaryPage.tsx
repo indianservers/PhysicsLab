@@ -1,10 +1,50 @@
-import { useMemo, useState } from "react";
+import { CSSProperties, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { dictionaryCategories, dictionaryStats, DictionaryCategory, PhysicsDictionaryTerm, physicsDictionary, normalizeDictionaryText } from "../lib/dictionary";
-import { PhysicsIcon } from "../lib/icons";
+import { PhysicsIcon, PhysicsIconName } from "../lib/icons";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const visualSpotlightIds = [
+  "standard-model-particle-physics",
+  "quantum-field-theory",
+  "atom",
+  "nuclear-fission",
+  "photoelectric-effect",
+  "de-broglie-wave",
+  "blackbody-radiation",
+  "compton-effect",
+  "schrodinger-equation",
+  "total-internal-reflection",
+  "electromagnetic-induction",
+  "black-hole",
+];
+
+const categoryTone: Record<DictionaryCategory, { accent: string; soft: string; scene: VisualSceneKind }> = {
+  Measurement: { accent: "#2563eb", soft: "rgba(37, 99, 235, 0.12)", scene: "measurement" },
+  Mechanics: { accent: "#ea580c", soft: "rgba(234, 88, 12, 0.13)", scene: "mechanics" },
+  Waves: { accent: "#0891b2", soft: "rgba(8, 145, 178, 0.14)", scene: "waves" },
+  Optics: { accent: "#7c3aed", soft: "rgba(124, 58, 237, 0.13)", scene: "optics" },
+  "Thermal Physics": { accent: "#dc2626", soft: "rgba(220, 38, 38, 0.12)", scene: "thermal" },
+  Electricity: { accent: "#ca8a04", soft: "rgba(202, 138, 4, 0.15)", scene: "electricity" },
+  Magnetism: { accent: "#0d9488", soft: "rgba(13, 148, 136, 0.13)", scene: "magnetism" },
+  "Modern Physics": { accent: "#9333ea", soft: "rgba(147, 51, 234, 0.13)", scene: "modern" },
+  Fluids: { accent: "#0284c7", soft: "rgba(2, 132, 199, 0.13)", scene: "fluids" },
+  Astronomy: { accent: "#4f46e5", soft: "rgba(79, 70, 229, 0.14)", scene: "astronomy" },
+};
+
+type VisualSceneKind =
+  | "measurement"
+  | "mechanics"
+  | "waves"
+  | "optics"
+  | "thermal"
+  | "electricity"
+  | "magnetism"
+  | "modern"
+  | "fluids"
+  | "astronomy";
 
 export function DictionaryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,6 +61,7 @@ export function DictionaryPage() {
   }, []);
 
   const availableLetters = useMemo(() => new Set(physicsDictionary.map((term) => term.term[0]?.toUpperCase()).filter(Boolean)), []);
+
   const filteredTerms = useMemo(() => {
     const q = normalizeDictionaryText(query);
     return physicsDictionary
@@ -49,6 +90,26 @@ export function DictionaryPage() {
     ?? physicsDictionary.find((term) => term.id === selectedId)
     ?? physicsDictionary[0];
 
+  const spotlightTerms = useMemo(() => {
+    const preferred = visualSpotlightIds
+      .map((id) => physicsDictionary.find((term) => term.id === id || term.id.includes(id)))
+      .filter(Boolean) as PhysicsDictionaryTerm[];
+    const fallback = physicsDictionary.filter((term) => term.category === "Modern Physics").slice(0, 12);
+    return uniqueTerms([...preferred, ...fallback]).slice(0, 12);
+  }, []);
+
+  const topicPanels = useMemo(() => {
+    return dictionaryCategories.map((item) => {
+      const terms = physicsDictionary.filter((term) => term.category === item);
+      return {
+        category: item,
+        count: terms.length,
+        formulas: terms.filter((term) => term.formula).length,
+        sample: terms.slice(0, 4),
+      };
+    });
+  }, []);
+
   const updateParams = (next: { q?: string; category?: DictionaryCategory | "all"; letter?: string; term?: string }) => {
     const merged = {
       q: next.q ?? query,
@@ -66,7 +127,8 @@ export function DictionaryPage() {
 
   const chooseCategory = (nextCategory: DictionaryCategory | "all") => {
     setCategory(nextCategory);
-    updateParams({ category: nextCategory });
+    updateParams({ category: nextCategory, letter: "all" });
+    setLetter("all");
   };
 
   const chooseLetter = (nextLetter: string) => {
@@ -94,53 +156,135 @@ export function DictionaryPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <main id="content" className="desktop-page">
-        <section className="page-hero mesh-bg">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-3xl">
-              <p className="ui-label">Dictionary module</p>
-              <h1 className="text-3xl font-black text-gradient">Dictionary & Visual Dictionary</h1>
-              <p className="mt-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                Search {dictionaryStats.terms} physics terms by name, formula, example, topic category, or alphabet. Each entry includes a compact visual cue for faster recall.
-              </p>
+      <main id="content" className="desktop-page visual-dictionary-page">
+        <section className="visual-dictionary-hero">
+          <div className="visual-hero-copy">
+            <p className="ui-label">Visual dictionary module</p>
+            <h1>Physics Visual Dictionary</h1>
+            <p>
+              A searchable illustrated atlas of physics terms, grouped by topic and alphabet, with formulas,
+              memory cues, examples, and strong visual anchors for fast recall.
+            </p>
+            <div className="visual-hero-actions">
+              <a className="hero-btn-primary" href="#visual-dictionary-search">
+                <PhysicsIcon name="search" className="h-4 w-4" />
+                Explore terms
+              </a>
+              <a className="hero-btn-secondary" href="#visual-dictionary-atlas">
+                <PhysicsIcon name="eye" className="h-4 w-4" />
+                View atlas
+              </a>
             </div>
-            <div className="grid min-w-[280px] gap-2 sm:grid-cols-3">
-              <Metric label="Terms" value={dictionaryStats.terms} icon="book" />
-              <Metric label="Topics" value={dictionaryStats.categories} icon="compass" />
-              <Metric label="Formulas" value={dictionaryStats.formulas} icon="calculator" />
+          </div>
+          <div className="visual-hero-board" aria-hidden="true">
+            <div className="visual-hero-orbit visual-hero-orbit-a" />
+            <div className="visual-hero-orbit visual-hero-orbit-b" />
+            <div className="visual-hero-core">
+              <PhysicsIcon name="atom" className="h-16 w-16" />
             </div>
+            <div className="visual-hero-badge visual-hero-badge-a">Quantum</div>
+            <div className="visual-hero-badge visual-hero-badge-b">Forces</div>
+            <div className="visual-hero-badge visual-hero-badge-c">Fields</div>
+          </div>
+          <div className="visual-hero-stats">
+            <Metric label="Terms" value={dictionaryStats.terms} icon="book" />
+            <Metric label="Topics" value={dictionaryStats.categories} icon="compass" />
+            <Metric label="Formulas" value={dictionaryStats.formulas} icon="calculator" />
           </div>
         </section>
 
-        <section className="topic-lens-panel mt-4">
-          <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px_auto]">
-            <label className="grid gap-1">
-              <span className="ui-label">Search</span>
-              <div className="formula-search-wrap">
-                <PhysicsIcon name="search" className="h-4 w-4" />
-                <input value={query} onChange={(event) => updateQuery(event.target.value)} placeholder="Search velocity, TIR, photon, heat, formula..." />
-              </div>
+        <section id="visual-dictionary-atlas" className="visual-atlas-panel">
+          <div className="visual-section-head">
+            <div>
+              <p className="ui-label">Illustrated concept atlas</p>
+              <h2>High-memory visual cards</h2>
+            </div>
+            <div className="formula-chip-row">
+              <span className="status-chip status-chip-cyan"><PhysicsIcon name="eye" className="h-3.5 w-3.5" />Diagram cues</span>
+              <span className="status-chip"><PhysicsIcon name="search" className="h-3.5 w-3.5" />Search linked</span>
+            </div>
+          </div>
+          <div className="visual-spotlight-grid">
+            {spotlightTerms.map((term, index) => (
+              <button
+                key={term.id}
+                className={selected?.id === term.id ? "visual-poster-card visual-poster-card-active" : "visual-poster-card"}
+                type="button"
+                style={{ "--term-accent": categoryTone[term.category].accent, "--term-soft": categoryTone[term.category].soft } as CSSProperties}
+                onClick={() => selectTerm(term)}
+              >
+                <span className="visual-poster-number">{String(index + 1).padStart(2, "0")}</span>
+                <VisualScene kind={categoryTone[term.category].scene} icon={term.visual} />
+                <span className="visual-poster-topic">{term.category}</span>
+                <strong>{term.term}</strong>
+                <span>{term.definition}</span>
+                {term.formula && <code>{term.formula}</code>}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="visual-topic-panel">
+          <div className="visual-section-head">
+            <div>
+              <p className="ui-label">Topic wise category</p>
+              <h2>Physics domains at a glance</h2>
+            </div>
+          </div>
+          <div className="visual-topic-grid">
+            <button
+              className={category === "all" ? "visual-topic-card visual-topic-card-active" : "visual-topic-card"}
+              type="button"
+              onClick={() => chooseCategory("all")}
+            >
+              <span className="visual-topic-icon"><PhysicsIcon name="book" /></span>
+              <strong>All terms</strong>
+              <small>{physicsDictionary.length} entries across every topic</small>
+            </button>
+            {topicPanels.map((panel) => (
+              <button
+                key={panel.category}
+                className={category === panel.category ? "visual-topic-card visual-topic-card-active" : "visual-topic-card"}
+                type="button"
+                style={{ "--term-accent": categoryTone[panel.category].accent, "--term-soft": categoryTone[panel.category].soft } as CSSProperties}
+                onClick={() => chooseCategory(panel.category)}
+              >
+                <span className="visual-topic-icon"><PhysicsIcon name={iconForDictionaryCategory(panel.category)} /></span>
+                <strong>{panel.category}</strong>
+                <small>{panel.count} terms, {panel.formulas} formulas</small>
+                <span className="visual-topic-samples">{panel.sample.map((term) => term.term).join(" / ")}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section id="visual-dictionary-search" className="visual-search-panel">
+          <div className="visual-search-row">
+            <label className="visual-search-box">
+              <span className="ui-label">Search visual dictionary</span>
+              <span className="visual-search-input">
+                <PhysicsIcon name="search" className="h-5 w-5" />
+                <input value={query} onChange={(event) => updateQuery(event.target.value)} placeholder="Search velocity, photon, TIR, heat, black hole..." />
+              </span>
             </label>
-            <label className="grid gap-1">
+            <label className="visual-filter-box">
               <span className="ui-label">Topic category</span>
               <select className="select-field" value={category} onChange={(event) => chooseCategory(event.target.value as DictionaryCategory | "all")}>
                 <option value="all">All categories</option>
                 {dictionaryCategories.map((item) => <option key={item} value={item}>{item}</option>)}
               </select>
             </label>
-            <div className="flex items-end">
-              <button className="hero-btn-secondary min-h-[44px]" type="button" onClick={resetFilters}>
-                <PhysicsIcon name="step" className="h-4 w-4" />
-                Reset
-              </button>
-            </div>
+            <button className="hero-btn-secondary" type="button" onClick={resetFilters}>
+              <PhysicsIcon name="step" className="h-4 w-4" />
+              Reset
+            </button>
           </div>
-          <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Alphabetical filter">
-            <button className={letter === "all" ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => chooseLetter("all")}>All</button>
+          <div className="visual-alphabet-row" aria-label="Alphabetical filter">
+            <button className={letter === "all" ? "visual-letter active" : "visual-letter"} type="button" onClick={() => chooseLetter("all")}>All</button>
             {alphabet.map((item) => (
               <button
                 key={item}
-                className={letter === item ? "focus-pill focus-pill-active" : "focus-pill"}
+                className={letter === item ? "visual-letter active" : "visual-letter"}
                 type="button"
                 disabled={!availableLetters.has(item)}
                 onClick={() => chooseLetter(item)}
@@ -151,30 +295,12 @@ export function DictionaryPage() {
           </div>
         </section>
 
-        <section className="mt-4 grid gap-4 xl:grid-cols-[250px_minmax(0,1fr)_390px]">
-          <aside className="panel h-fit p-3 xl:sticky xl:top-20">
-            <p className="ui-label px-2 pb-2">Topic wise category</p>
-            <div className="grid gap-1">
-              <button className={category === "all" ? "formula-category-link active" : "formula-category-link"} type="button" onClick={() => chooseCategory("all")}>
-                <PhysicsIcon name="book" className="h-4 w-4" />
-                <span>All terms</span>
-                <strong>{physicsDictionary.length}</strong>
-              </button>
-              {dictionaryCategories.map((item) => (
-                <button key={item} className={category === item ? "formula-category-link active" : "formula-category-link"} type="button" onClick={() => chooseCategory(item)}>
-                  <PhysicsIcon name={iconForDictionaryCategory(item)} className="h-4 w-4" />
-                  <span>{item}</span>
-                  <strong>{categoryCounts[item]}</strong>
-                </button>
-              ))}
-            </div>
-          </aside>
-
-          <div className="desktop-main-scroll">
+        <section className="visual-dictionary-workspace">
+          <div className="visual-term-wall">
             <div className="formula-results-header mb-3">
               <div>
                 <p className="ui-label">{filteredTerms.length} terms shown</p>
-                <h2>{category === "all" ? "Alphabetical dictionary" : category}</h2>
+                <h2>{category === "all" ? "Alphabetical visual dictionary" : category}</h2>
               </div>
               <div className="formula-chip-row">
                 <span className="status-chip status-chip-cyan"><PhysicsIcon name="search" className="h-3.5 w-3.5" />Searchable</span>
@@ -191,34 +317,29 @@ export function DictionaryPage() {
               </div>
             )}
 
-            <div className="grid gap-4">
+            <div className="visual-letter-groups">
               {groupedTerms.map(([groupLetter, terms]) => (
-                <section key={groupLetter} className="panel p-3">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <h2 className="grid h-10 w-10 place-items-center rounded-md bg-cyan-400/10 text-xl font-black text-cyan-500">{groupLetter}</h2>
-                    <span className="status-chip">{terms.length} terms</span>
+                <section key={groupLetter} className="visual-letter-section">
+                  <div className="visual-letter-head">
+                    <h2>{groupLetter}</h2>
+                    <span>{terms.length} terms</span>
                   </div>
-                  <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
+                  <div className="visual-term-grid">
                     {terms.map((term) => (
                       <button
                         key={term.id}
-                        className={selected?.id === term.id ? "enhanced-card concept-card concept-card-active text-left" : "enhanced-card concept-card text-left"}
+                        className={selected?.id === term.id ? "visual-term-card visual-term-card-active" : "visual-term-card"}
                         type="button"
+                        style={{ "--term-accent": categoryTone[term.category].accent, "--term-soft": categoryTone[term.category].soft } as CSSProperties}
                         onClick={() => selectTerm(term)}
                       >
-                        <div className="flex items-start gap-3">
-                          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md border border-cyan-300/25 bg-cyan-400/10 text-cyan-500">
-                            <PhysicsIcon name={term.visual} className="h-6 w-6" />
-                          </span>
-                          <span className="min-w-0">
-                            <span className="ui-label">{term.category}</span>
-                            <strong className="mt-1 block text-base font-black text-slate-800 dark:text-slate-100">{term.term}</strong>
-                          </span>
-                        </div>
-                        <p className="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">{term.definition}</p>
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          {term.tags.slice(0, 3).map((tag) => <span key={tag} className="status-chip">{tag}</span>)}
-                        </div>
+                        <VisualScene kind={categoryTone[term.category].scene} icon={term.visual} compact />
+                        <span className="visual-card-category">{term.category}</span>
+                        <strong>{term.term}</strong>
+                        <p>{term.definition}</p>
+                        <span className="visual-tag-row">
+                          {term.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
+                        </span>
                       </button>
                     ))}
                   </div>
@@ -228,29 +349,27 @@ export function DictionaryPage() {
           </div>
 
           {selected && (
-            <aside className="panel h-fit p-4 xl:sticky xl:top-20">
-              <p className="ui-label">Visual dictionary card</p>
-              <div className="mt-3 rounded-md border border-cyan-300/25 bg-[radial-gradient(circle_at_35%_25%,rgba(34,211,238,.16),transparent_45%),linear-gradient(135deg,rgba(15,23,42,.08),rgba(14,165,233,.08))] p-5 text-center dark:bg-[radial-gradient(circle_at_35%_25%,rgba(34,211,238,.20),transparent_45%),linear-gradient(135deg,rgba(15,23,42,.92),rgba(14,165,233,.12))]">
-                <span className="mx-auto grid h-24 w-24 place-items-center rounded-md border border-cyan-200/30 bg-cyan-300/10 text-cyan-300 shadow-glow">
-                  <PhysicsIcon name={selected.visual} className="h-12 w-12" />
-                </span>
-                <h2 className="mt-4 text-2xl font-black">{selected.term}</h2>
-                <p className="mt-1 text-xs font-black uppercase tracking-widest text-cyan-500">{selected.category}</p>
+            <aside className="visual-detail-panel">
+              <div className="visual-detail-stage" style={{ "--term-accent": categoryTone[selected.category].accent, "--term-soft": categoryTone[selected.category].soft } as CSSProperties}>
+                <VisualScene kind={categoryTone[selected.category].scene} icon={selected.visual} large />
+                <p className="ui-label">Selected visual card</p>
+                <h2>{selected.term}</h2>
+                <span>{selected.category}</span>
               </div>
-              <div className="mt-4 space-y-3">
+              <div className="visual-detail-copy">
                 <InfoBlock label="Definition" text={selected.definition} />
                 <InfoBlock label="Example" text={selected.example} />
                 {selected.formula && (
-                  <div className="rounded-md border border-amber-400/30 bg-amber-400/10 p-3">
-                    <p className="ui-label text-amber-600 dark:text-amber-200">Formula</p>
-                    <p className="mt-1 font-mono text-sm font-black text-slate-800 dark:text-amber-100">{selected.formula}</p>
+                  <div className="visual-formula-box">
+                    <p className="ui-label">Formula</p>
+                    <code>{selected.formula}</code>
                   </div>
                 )}
-              </div>
-              <div className="mt-4">
-                <p className="ui-label">Tags</p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {selected.tags.map((tag) => <span key={tag} className="status-chip">{tag}</span>)}
+                <div>
+                  <p className="ui-label">Tags</p>
+                  <div className="visual-detail-tags">
+                    {selected.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                  </div>
                 </div>
               </div>
             </aside>
@@ -263,13 +382,11 @@ export function DictionaryPage() {
 
 function Metric({ icon, label, value }: { icon: "book" | "compass" | "calculator"; label: string; value: number }) {
   return (
-    <div className="metric-card flex items-center gap-3">
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-cyan-400/10 text-cyan-500">
-        <PhysicsIcon name={icon} />
-      </span>
+    <div className="visual-metric-card">
+      <span><PhysicsIcon name={icon} /></span>
       <div>
-        <div className="ui-label">{label}</div>
-        <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+        <small>{label}</small>
+        <strong>{value}</strong>
       </div>
     </div>
   );
@@ -277,14 +394,40 @@ function Metric({ icon, label, value }: { icon: "book" | "compass" | "calculator
 
 function InfoBlock({ label, text }: { label: string; text: string }) {
   return (
-    <div className="rounded-md border border-slate-200/70 bg-white/60 p-3 dark:border-white/10 dark:bg-white/[0.04]">
+    <div className="visual-info-block">
       <p className="ui-label">{label}</p>
-      <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">{text}</p>
+      <p>{text}</p>
     </div>
   );
 }
 
-function iconForDictionaryCategory(category: DictionaryCategory) {
+function VisualScene({ kind, icon, compact = false, large = false }: { kind: VisualSceneKind; icon: PhysicsIconName; compact?: boolean; large?: boolean }) {
+  return (
+    <span className={large ? `visual-scene visual-scene-${kind} visual-scene-large` : compact ? `visual-scene visual-scene-${kind} visual-scene-compact` : `visual-scene visual-scene-${kind}`}>
+      <span className="visual-scene-grid" />
+      <span className="visual-scene-orbit visual-scene-orbit-a" />
+      <span className="visual-scene-orbit visual-scene-orbit-b" />
+      <span className="visual-scene-wave" />
+      <span className="visual-scene-ray visual-scene-ray-a" />
+      <span className="visual-scene-ray visual-scene-ray-b" />
+      <span className="visual-scene-dot visual-scene-dot-a" />
+      <span className="visual-scene-dot visual-scene-dot-b" />
+      <span className="visual-scene-dot visual-scene-dot-c" />
+      <span className="visual-scene-icon"><PhysicsIcon name={icon} /></span>
+    </span>
+  );
+}
+
+function uniqueTerms(terms: PhysicsDictionaryTerm[]) {
+  const seen = new Set<string>();
+  return terms.filter((term) => {
+    if (seen.has(term.id)) return false;
+    seen.add(term.id);
+    return true;
+  });
+}
+
+function iconForDictionaryCategory(category: DictionaryCategory): PhysicsIconName {
   switch (category) {
     case "Measurement": return "ruler";
     case "Mechanics": return "gauge";

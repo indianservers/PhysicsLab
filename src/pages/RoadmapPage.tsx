@@ -5,13 +5,11 @@ import { Toolbar } from "../components/Toolbar";
 import { classOptions } from "../lib/curriculum";
 import {
   masteryClassSummaries,
-  masteryDomainSummaries,
   masteryRoadmapProfiles,
   masteryRoadmapStats,
   type MasteryRoadmapProfile,
 } from "../lib/masteryRoadmap";
-import { PhysicsIcon, iconForCategory, iconForExperiment } from "../lib/icons";
-import { experiments } from "../lib/experiments";
+import { PhysicsIcon, iconForCategory } from "../lib/icons";
 
 const schoolClasses = classOptions.filter((item) => item.grade >= 6 && item.grade <= 12);
 const tierOrder = ["All", "Mastery ready", "Guided practice", "Needs support", "Build prerequisite"];
@@ -38,7 +36,6 @@ export function RoadmapPage() {
   }, [classProfiles, query, tier]);
   const selectedProfile = visibleProfiles.find((profile) => profile.topicId === initialTopic) ?? visibleProfiles[0] ?? classProfiles[0] ?? masteryRoadmapProfiles[0];
   const classSummary = masteryClassSummaries.find((item) => item.classId === classId) ?? masteryClassSummaries[0];
-  const classDomains = masteryDomainSummaries.filter((summary) => classProfiles.some((profile) => profile.domain === summary.domain)).slice(0, 6);
   const units = Array.from(new Set(visibleProfiles.map((profile) => profile.unitId))).map((unitId) => ({
     id: unitId,
     title: visibleProfiles.find((profile) => profile.unitId === unitId)?.unitTitle ?? unitId,
@@ -53,13 +50,6 @@ export function RoadmapPage() {
     setParams(next);
   };
 
-  const selectProfile = (profile: MasteryRoadmapProfile) => {
-    const next = new URLSearchParams(params);
-    next.set("class", profile.classId);
-    next.set("topic", profile.topicId);
-    setParams(next);
-  };
-
   return (
     <div className="roadmap-page min-h-screen">
       <Toolbar />
@@ -69,7 +59,7 @@ export function RoadmapPage() {
             <p className="ui-label">Phase 7 / Adaptive mastery roadmap</p>
             <h1>Student Mastery Roadmap</h1>
             <p>
-              A class-wise path that connects curriculum topics to validated labs, evidence tasks, accessibility readiness, and the next best learning action.
+              Pick a topic and open the validated interactive lab or concept explorer directly.
             </p>
           </div>
           <div className="roadmap-score-card">
@@ -112,70 +102,26 @@ export function RoadmapPage() {
           </div>
         </section>
 
-        <section className="roadmap-layout">
-          <div className="roadmap-left-column">
-            <section className="roadmap-panel">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="ui-label">Weakest domains first</p>
-                  <h2>Domain repair queue</h2>
-                </div>
-                <span className="status-chip status-chip-cyan">{classDomains.length} domains</span>
-              </div>
-              <div className="roadmap-domain-list">
-                {classDomains.map((domain) => (
-                  <div key={domain.domain}>
-                    <span><PhysicsIcon name={iconForCategory(domain.domain)} />{domain.domain}</span>
-                    <strong>{domain.averageReadiness}%</strong>
-                    <em>Repair: {domain.weakestTopic}</em>
-                    <div className="mini-progress"><span style={{ width: `${domain.averageReadiness}%` }} /></div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="roadmap-panel roadmap-selected-panel">
-              <p className="ui-label">Selected mastery plan</p>
-              <h2>{selectedProfile.title}</h2>
-              <div className="roadmap-selected-score">
-                <strong>{selectedProfile.readinessScore}%</strong>
-                <span>{selectedProfile.tier}</span>
-                <em>{selectedProfile.priority}</em>
-              </div>
-              <ScoreBars profile={selectedProfile} />
-              <div className="roadmap-action-grid">
-                <PlanList title="Mastery evidence" icon="clipboard" items={selectedProfile.masteryEvidence} />
-                <PlanList title="Next actions" icon="step" items={selectedProfile.nextActions} />
-                <PlanList title="Practice prompts" icon="spark" items={selectedProfile.practicePrompts} />
-                <PlanList title="Blockers" icon="gauge" items={selectedProfile.blockers.length ? selectedProfile.blockers : ["No major blocker for this topic."]} />
-              </div>
-              <div className="roadmap-link-row">
-                <Link className="tool-btn inline-flex items-center gap-2" to={`/concepts?concept=${selectedProfile.topicId}`}>
-                  <PhysicsIcon name="book" className="h-4 w-4" /> Concept
-                </Link>
-                <Link className="tool-btn inline-flex items-center gap-2" to={`/quiz?focus=${encodeURIComponent(selectedProfile.title)}`}>
-                  <PhysicsIcon name="check" className="h-4 w-4" /> Practice
-                </Link>
-                {selectedProfile.experimentIds.map((id) => {
-                  const experiment = experiments.find((item) => item.id === id);
-                  if (!experiment) return null;
-                  return (
-                    <Link key={id} className="tool-btn-primary inline-flex items-center gap-2" to={`/experiments/${id}`}>
-                      <PhysicsIcon name={iconForExperiment(experiment)} className="h-4 w-4" /> {experiment.title}
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
+        <section className="roadmap-launch-strip">
+          <div>
+            <p className="ui-label">Selected launch</p>
+            <h2>{selectedProfile.title}</h2>
+            <p>{launchDescription(selectedProfile)}</p>
           </div>
+          <Link className="tool-btn-primary inline-flex items-center justify-center gap-2" to={interactivePath(selectedProfile)}>
+            <PhysicsIcon name={selectedProfile.experimentIds[0] ? "flask" : "book"} className="h-4 w-4" />
+            Launch interactive tool
+          </Link>
+        </section>
 
+        <section className="roadmap-layout roadmap-layout-compact">
           <section className="roadmap-panel roadmap-topic-panel">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="ui-label">{visibleProfiles.length} topics shown</p>
-                <h2>Learning path</h2>
+                <h2>Choose a topic to launch</h2>
               </div>
-              <span className="status-chip status-chip-cyan">{classSummary.labs} lab links</span>
+              <span className="status-chip status-chip-cyan">{classSummary.labs} direct lab links</span>
             </div>
             <div className="roadmap-unit-stack">
               {units.map((unit) => (
@@ -186,15 +132,15 @@ export function RoadmapPage() {
                   </div>
                   <div className="roadmap-profile-grid">
                     {unit.profiles.map((profile) => (
-                      <button key={profile.topicId} type="button" className={profile.topicId === selectedProfile.topicId ? "roadmap-profile-card roadmap-profile-card-active" : "roadmap-profile-card"} onClick={() => selectProfile(profile)}>
+                      <Link key={profile.topicId} className={profile.topicId === selectedProfile.topicId ? "roadmap-profile-card roadmap-profile-card-active" : "roadmap-profile-card"} to={interactivePath(profile)}>
                         <span className="roadmap-profile-icon"><PhysicsIcon name={iconForCategory(profile.domain)} /></span>
                         <span>
                           <em>{profile.domain}</em>
                           <strong>{profile.title}</strong>
-                          <small>{profile.tier} - {profile.readinessScore}%</small>
+                          <small>{cardLaunchLabel(profile)}</small>
                         </span>
                         <span className="roadmap-profile-meter"><i style={{ width: `${profile.readinessScore}%` }} /></span>
-                      </button>
+                      </Link>
                     ))}
                   </div>
                 </article>
@@ -205,6 +151,22 @@ export function RoadmapPage() {
       </div>
     </div>
   );
+}
+
+function interactivePath(profile: MasteryRoadmapProfile) {
+  return profile.experimentIds[0] ? `/experiments/${profile.experimentIds[0]}` : `/concepts?concept=${profile.topicId}`;
+}
+
+function launchDescription(profile: MasteryRoadmapProfile) {
+  return profile.labTitles[0]
+    ? `Opens ${profile.labTitles[0]} as a full interactive workspace.`
+    : "Opens the concept explorer for this topic.";
+}
+
+function cardLaunchLabel(profile: MasteryRoadmapProfile) {
+  return profile.labTitles[0]
+    ? `Launch lab - ${profile.readinessScore}% ready`
+    : `Open concept - ${profile.readinessScore}% ready`;
 }
 
 function RoadMetric({ icon, label, value }: { icon: Parameters<typeof PhysicsIcon>[0]["name"]; label: string; value: number }) {
@@ -223,36 +185,4 @@ function RoadMetric({ icon, label, value }: { icon: Parameters<typeof PhysicsIco
 
 function Count({ value }: { value: number }) {
   return <>{useCountUp(value)}</>;
-}
-
-function ScoreBars({ profile }: { profile: MasteryRoadmapProfile }) {
-  const rows = [
-    ["Concept", profile.conceptScore],
-    ["Simulation", profile.simulationScore],
-    ["Validation", profile.validationScore],
-    ["Evidence", profile.evidenceScore],
-    ["Access", profile.accessibilityScore],
-  ] as const;
-  return (
-    <div className="roadmap-score-bars">
-      {rows.map(([label, value]) => (
-        <div key={label}>
-          <span>{label}</span>
-          <strong>{value}%</strong>
-          <i><b style={{ width: `${value}%` }} /></i>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function PlanList({ title, icon, items }: { title: string; icon: Parameters<typeof PhysicsIcon>[0]["name"]; items: string[] }) {
-  return (
-    <article>
-      <h3><PhysicsIcon name={icon} />{title}</h3>
-      <ul>
-        {items.map((item) => <li key={item}>{item}</li>)}
-      </ul>
-    </article>
-  );
 }

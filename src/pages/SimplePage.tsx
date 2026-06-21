@@ -12,6 +12,7 @@ import { createClassPack, createFullBackupPack, createProgressPack, downloadPack
 import { createValidationSummary, scientificSources } from "../lib/scientificSources";
 import { listLocalArtifacts } from "../lib/offlineDB";
 import { flagshipLabModelIds } from "../lib/flagshipLabModels";
+import { accuracyAuditStats, accuracyDomainSummaries, experimentAccuracyProfiles } from "../lib/accuracyValidation";
 
 export function SimplePage({ title, showProjects = false }: { title: string; showProjects?: boolean }) {
   const [projects, setProjects] = useState<ProjectFile[]>([]);
@@ -175,6 +176,8 @@ function ScientificTrustContent() {
   const evidenceCounts = countBy((experiment) => experiment.evidenceType ?? "Exact Formula");
   const modelCounts = countBy((experiment) => experiment.modelClass ?? "Calculator");
   const validationSummary = createValidationSummary();
+  const pendingAccuracy = experimentAccuracyProfiles.filter((profile) => profile.modelGrade < 70 || profile.validationCases === 0);
+  const validationRate = Math.round((accuracyAuditStats.passing / Math.max(1, accuracyAuditStats.cases)) * 100);
   const [localEvidence, setLocalEvidence] = useState({ notebooks: 0, reports: 0, graphExports: 0 });
   useEffect(() => {
     Promise.all([
@@ -201,11 +204,24 @@ function ScientificTrustContent() {
   return (
     <div className="mt-6 grid gap-4">
       <section className="panel p-4">
-        <h2 className="panel-title">Browser-Only Trust Promise</h2>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="ui-label">Current build accuracy</p>
+            <h2 className="panel-title">Browser-Only Trust Promise</h2>
+          </div>
+          <Link className="hero-btn-secondary inline-flex" to="/accuracy-center">Open accuracy center</Link>
+        </div>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
           PhysicsLab runs locally in the browser. Trust metadata, reports, assignments, and progress records are generated on this device unless you export, share, or configure a direct xAPI endpoint.
         </p>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3 grid gap-3 md:grid-cols-5">
+          <TrustStat label="Executable checks" value={`${accuracyAuditStats.executableChecks}/165`} />
+          <TrustStat label="Formula cases" value={`${accuracyAuditStats.passing}/${accuracyAuditStats.cases}`} />
+          <TrustStat label="Pass rate" value={`${validationRate}%`} />
+          <TrustStat label="Validated labs" value={accuracyAuditStats.validatedProfiles} />
+          <TrustStat label="Pending items" value={accuracyAuditStats.pendingProfiles} />
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
           {Object.entries(maturityCounts).map(([label, count]) => <span key={label} className="status-chip">{label}: {count}</span>)}
         </div>
       </section>
@@ -240,7 +256,50 @@ function ScientificTrustContent() {
       <section className="grid gap-4 md:grid-cols-3">
         <TrustMetric title="Evidence Types" rows={evidenceCounts} />
         <TrustMetric title="Model Classes" rows={modelCounts} />
-        <TrustMetric title="Validation Status" rows={{ "Reference cases": 154, "Source families": validationSummary.sourceCount, "Experiments": validationSummary.experimentCount }} />
+        <TrustMetric title="Validation Status" rows={{ "Executable checks": accuracyAuditStats.executableChecks, "Formula benchmark cases": accuracyAuditStats.cases, "Source families": validationSummary.sourceCount, "Experiments": validationSummary.experimentCount }} />
+      </section>
+
+      <section className="panel p-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="ui-label">Module accuracy coverage</p>
+            <h2 className="panel-title">What is validated right now</h2>
+          </div>
+          <span className="status-chip status-chip-cyan">{accuracyAuditStats.domains} physics domains</span>
+        </div>
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
+          {accuracyDomainSummaries.map((domain) => (
+            <div key={domain.domain} className="rounded-md border border-slate-300/70 bg-slate-100/70 p-3 dark:border-lab-line dark:bg-slate-900/60">
+              <div className="flex items-center justify-between gap-3">
+                <strong className="text-slate-800 dark:text-slate-100">{domain.domain}</strong>
+                <span className="status-chip status-chip-cyan">{domain.passRate}%</span>
+              </div>
+              <div className="metric-bar mt-2"><span style={{ width: `${domain.passRate}%` }} /></div>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{domain.passing}/{domain.cases} benchmark cases passing.</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel p-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="ui-label">Pending accuracy items</p>
+            <h2 className="panel-title">Do not overclaim these modules</h2>
+          </div>
+          <span className="status-chip status-chip-amber">{pendingAccuracy.length} need review</span>
+        </div>
+        <div className="mt-3 grid gap-3 md:grid-cols-2">
+          {pendingAccuracy.slice(0, 10).map((profile) => (
+            <article key={profile.experimentId} className="rounded-md border border-amber-300/40 bg-amber-100/40 p-3 dark:border-amber-300/20 dark:bg-amber-400/10">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <Link className="font-black text-slate-800 dark:text-slate-100" to={`/experiments/${profile.experimentId}`}>{profile.title}</Link>
+                <span className="status-chip">{profile.modelGrade}% accuracy</span>
+              </div>
+              <p className="mt-2 text-sm font-semibold text-slate-600 dark:text-slate-300">{profile.nextAccuracyActions[0]}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="panel p-4">
@@ -300,7 +359,7 @@ function createReadinessAudit(validationSummary: ReturnType<typeof createValidat
     {
       label: "Reference validation",
       status: "pass",
-      detail: "154 local physics checks cover formulas, trust policy, and flagship-registry coverage.",
+      detail: `${accuracyAuditStats.executableChecks} local physics checks cover formulas, trust policy, source metadata, and flagship-registry coverage.`,
     },
     {
       label: "Flagship coverage",
@@ -335,6 +394,15 @@ function createReadinessAudit(validationSummary: ReturnType<typeof createValidat
   ];
   const score = Math.round((checks.filter((check) => check.status === "pass").length / checks.length) * 100);
   return { score, generatedAt: new Date().toISOString(), checks, localEvidence };
+}
+
+function TrustStat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="metric-card">
+      <div className="ui-label">{label}</div>
+      <div className="mt-1 text-2xl font-black text-cyan-500">{value}</div>
+    </div>
+  );
 }
 
 function ReadinessAuditPanel({ audit }: { audit: ReadinessAudit }) {

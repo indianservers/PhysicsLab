@@ -19,6 +19,7 @@ import { excellenceBenchmarkPillars, excellenceSprintItems } from "./excellenceB
 import { objectRegistry } from "./objectRegistry";
 import { quizQuestions } from "./quiz";
 import { allSolverQuestions } from "./solver";
+import { allPhysicsModules, physicsModuleGroups } from "./physicsModules";
 
 export type SearchResultType = "experiment" | "topic" | "solver" | "quiz" | "formula" | "dictionary" | "object" | "action";
 
@@ -111,6 +112,7 @@ const index: SearchRecord[] = [
     { id: "action-sandbox", title: "Open sandbox", subtitle: "Action · Simulation workspace", path: "/sandbox", icon: "spark" as const, tags: ["sandbox", "lab", "simulation", "free workspace"] },
     { id: "action-guided-lab", title: "Open guided lab", subtitle: "Action · Lab workspace", path: "/lab", icon: "compass" as const, tags: ["guided", "lab", "workspace"] },
     { id: "action-experiments", title: "Browse experiments", subtitle: "Action - Experiment library", path: "/experiments", icon: "flask" as const, tags: ["experiments", "library", "demos", "practicals"] },
+    { id: "action-modules", title: "Open all physics modules", subtitle: "Action - Searchable physics module directory", path: "/modules", icon: "menu" as const, tags: ["modules", "physics", "submenu", "directory", "all physics", "search"] },
     { id: "action-formulas", title: "Open formula bank", subtitle: "Action - Formula reference", path: "/formulas", icon: "book" as const, tags: ["formula", "equation", "reference", "physics formulas"] },
     { id: "action-dictionary", title: "Open dictionary", subtitle: "Action - Visual term reference", path: "/dictionary", icon: "clipboard" as const, tags: ["dictionary", "visual dictionary", "terms", "glossary", "physics definitions"] },
     { id: "action-astrophysics", title: "Open AstroPhysics", subtitle: "Action - Space physics concepts", path: "/astrophysics", icon: "orbit" as const, tags: ["astrophysics", "astronomy", "space", "stars", "cosmology"] },
@@ -118,6 +120,7 @@ const index: SearchRecord[] = [
     { id: "action-atmosphere", title: "Open Earth Atmosphere", subtitle: "Action - Interactive layer visual", path: "/atmosphere", icon: "orbit" as const, tags: ["earth atmosphere", "layers", "troposphere", "stratosphere", "mesosphere", "thermosphere", "exosphere", "aurora", "satellite"] },
     { id: "action-string-theory", title: "Open String Theory Lab", subtitle: "Action - Interactive 3D theoretical physics", path: "/string-theory", icon: "wave" as const, tags: ["string theory", "vibrating strings", "extra dimensions", "quantum gravity", "theory of everything", "graviton"] },
     { id: "action-physics-innovations", title: "Open Physics Inventions & Discoveries", subtitle: "Action - Explore 100+ physics milestones", path: "/physics-innovations", icon: "spark" as const, tags: ["physics inventions", "discoveries", "innovations", "instruments", "technology", "timeline", "explore"] },
+    { id: "action-scale-of-universe", title: "Open Scale of Universe Explorer", subtitle: "Action - Powers of ten size explorer", path: "/physics/scale-of-universe", icon: "ruler" as const, tags: ["scale of universe", "powers of ten", "particles", "atoms", "cells", "galaxies", "observable universe", "meters"] },
     { id: "action-comparison", title: "Compare physics tools", subtitle: "Action - App benchmark", path: "/comparison", icon: "chart" as const, tags: ["comparison", "ranking", "phet", "labster", "algodoo", "pivot"] },
     { id: "action-quality-audit", title: "Open quality audit", subtitle: "Action - Simulation quality baseline", path: "/quality-audit", icon: "chart" as const, tags: ["quality", "audit", "phase 1", "phet", "accuracy", "visual depth", "simulation validation"] },
     { id: "action-accuracy-center", title: "Open accuracy center", subtitle: "Action - Validated physics benchmarks", path: "/accuracy-center", icon: "check" as const, tags: ["accuracy", "phase 2", "validation", "benchmarks", "solver", "model guardrails", "physics tests"] },
@@ -141,6 +144,28 @@ const index: SearchRecord[] = [
     type: "action" as const,
     titleText: [action.title, action.subtitle, ...action.tags].join(" "),
     bodyText: action.tags.join(" "),
+  })),
+  ...physicsModuleGroups.map((group) => ({
+    id: `module-group-${group.id}`,
+    type: "action" as const,
+    title: `${group.title} modules`,
+    subtitle: "Physics module group",
+    path: `/modules#${group.id}`,
+    icon: group.icon,
+    tags: [group.title, group.summary, "modules", "physics", "submenu"],
+    titleText: [group.title, group.summary].join(" "),
+    bodyText: group.modules.map((module) => `${module.title} ${module.description} ${module.keywords.join(" ")}`).join(" "),
+  })),
+  ...allPhysicsModules.map((module) => ({
+    id: `module-${module.id}`,
+    type: "action" as const,
+    title: module.title,
+    subtitle: `${module.groupTitle} - Physics module`,
+    path: module.path,
+    icon: module.icon,
+    tags: [module.groupTitle, ...module.keywords, "modules", "physics"],
+    titleText: [module.title, module.groupTitle, ...module.keywords].join(" "),
+    bodyText: module.description,
   })),
   ...experiments.map((experiment) => {
     const tags = [
@@ -221,7 +246,7 @@ const index: SearchRecord[] = [
     type: "topic" as const,
     title: concept.title,
     subtitle: `${concept.category} - Particle Physics`,
-    path: `/particle-physics?concept=${concept.id}`,
+    path: `/particle-physics/${concept.id}`,
     icon: "atom" as const,
     tags: [concept.category, ...concept.keyIdeas, "particle physics", "standard model"],
     titleText: [concept.title, concept.category, ...concept.keyIdeas].join(" "),

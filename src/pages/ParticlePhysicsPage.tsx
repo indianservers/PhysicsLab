@@ -1,8 +1,8 @@
-import { ReactNode, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { ReactNode, useEffect, useMemo, useState } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { ConceptThreeScene } from "../components/ConceptThreeScene";
-import { ParticlePhysicsConcept, ParticleVisual, particlePhysicsCategories, particlePhysicsConcepts, particlePhysicsStats } from "../lib/particlePhysics";
+import { ParticlePhysicsConcept, ParticleVisual, particleConceptLabs, particlePhysicsCategories, particlePhysicsConcepts, particlePhysicsStats } from "../lib/particlePhysics";
 import { PhysicsIcon } from "../lib/icons";
 
 const orbitPositions = [
@@ -22,13 +22,15 @@ const orbitPositions = [
 
 export function ParticlePhysicsPage() {
   const [searchParams] = useSearchParams();
+  const { conceptId } = useParams();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [threeMode, setThreeMode] = useState(0);
   const [interactionEnergy, setInteractionEnergy] = useState(0.58);
-  const requestedConcept = searchParams.get("concept");
+  const requestedConcept = conceptId ?? searchParams.get("concept");
   const initialConcept = particlePhysicsConcepts.some((concept) => concept.id === requestedConcept) ? requestedConcept ?? "" : particlePhysicsConcepts[0]?.id ?? "";
   const [selectedId, setSelectedId] = useState(initialConcept);
+  const [labValues, setLabValues] = useState<Record<string, number>>(() => defaultLabValues(particleConceptLabs[initialConcept] ?? particleConceptLabs["standard-model"]));
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -49,6 +51,22 @@ export function ParticlePhysicsPage() {
   }, [category, query]);
 
   const selected = particlePhysicsConcepts.find((concept) => concept.id === selectedId) ?? filtered[0] ?? particlePhysicsConcepts[0];
+  const selectedLab = particleConceptLabs[selected.id] ?? particleConceptLabs["standard-model"];
+  const labReadouts = useMemo(() => computeParticleReadouts(selected.id, labValues), [selected.id, labValues]);
+
+  useEffect(() => {
+    if (requestedConcept && particlePhysicsConcepts.some((concept) => concept.id === requestedConcept)) {
+      setSelectedId(requestedConcept);
+    }
+  }, [requestedConcept]);
+
+  useEffect(() => {
+    setLabValues(defaultLabValues(selectedLab));
+  }, [selectedLab]);
+
+  const updateLabValue = (id: string, value: number) => {
+    setLabValues((state) => ({ ...state, [id]: value }));
+  };
 
   return (
     <div className="min-h-screen">
@@ -193,6 +211,76 @@ export function ParticlePhysicsPage() {
           </aside>
         </section>
 
+        <section className="particle-lab-panel" aria-label={`${selected.title} interactive knowledge and experiment lab`}>
+          <div className="particle-lab-head">
+            <div>
+              <p className="ui-label">Interactive knowledge explorer</p>
+              <h2>{selected.title}: learn, test, explain</h2>
+              <p>{selectedLab.knowledgeQuestion}</p>
+            </div>
+            <span className="status-chip"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />Concept lab active</span>
+            <Link className="status-chip" to={`/particle-physics/${selected.id}`}>Open concept page</Link>
+          </div>
+
+          <div className="particle-lab-grid">
+            <article className="particle-lab-card">
+              <p className="ui-label">Know</p>
+              <h3>Core idea</h3>
+              <p>{selected.explanation}</p>
+              <div className="particle-chip-row">
+                {selected.keyIdeas.map((idea) => <span key={idea} className="status-chip">{idea}</span>)}
+              </div>
+              <div className="particle-teaching-card">
+                <span>Misconception repair</span>
+                <p>{selected.misconception}</p>
+              </div>
+            </article>
+
+            <article className="particle-lab-card">
+              <p className="ui-label">Explore</p>
+              <h3>{selectedLab.experimentTitle}</h3>
+              <p>{selectedLab.explorerFocus}</p>
+              <div className="particle-control-stack">
+                {selectedLab.controls.map((control) => (
+                  <label key={control.id} className="particle-lab-control">
+                    <span>{control.label}</span>
+                    <input
+                      type="range"
+                      min={control.min}
+                      max={control.max}
+                      step={control.step}
+                      value={labValues[control.id] ?? control.defaultValue}
+                      onInput={(event) => updateLabValue(control.id, Number(event.currentTarget.value))}
+                      onChange={(event) => updateLabValue(control.id, Number(event.target.value))}
+                    />
+                    <strong>{formatLabNumber(labValues[control.id] ?? control.defaultValue)} {control.unit}</strong>
+                  </label>
+                ))}
+              </div>
+            </article>
+
+            <article className="particle-lab-card particle-experiment-card">
+              <p className="ui-label">Experiment</p>
+              <h3>Live readouts</h3>
+              <p>{selectedLab.experimentPrompt}</p>
+              <div className="particle-readout-grid">
+                {labReadouts.map((readout) => (
+                  <div key={readout.label} className="particle-readout">
+                    <span>{readout.label}</span>
+                    <strong>{readout.value}</strong>
+                    <small>{readout.detail}</small>
+                  </div>
+                ))}
+              </div>
+              <div className="particle-evidence-list">
+                {selectedLab.evidence.map((item) => (
+                  <div key={item}><PhysicsIcon name="check" className="h-3.5 w-3.5" />{item}</div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section className="particle-concept-grid" aria-label="Particle physics concept cards">
           {filtered.map((concept) => (
             <article key={concept.id} className="particle-concept-card" onClick={() => setSelectedId(concept.id)}>
@@ -207,12 +295,177 @@ export function ParticlePhysicsPage() {
               <div className="particle-chip-row">
                 {concept.keyIdeas.slice(0, 3).map((idea) => <span key={idea} className="status-chip">{idea}</span>)}
               </div>
+              <Link className="particle-page-link" to={`/particle-physics/${concept.id}`} onClick={(event) => event.stopPropagation()}>
+                Open interactive page
+              </Link>
             </article>
           ))}
         </section>
       </main>
     </div>
   );
+}
+
+type ParticleLab = (typeof particleConceptLabs)[string];
+
+interface ParticleReadout {
+  label: string;
+  value: string;
+  detail: string;
+}
+
+function defaultLabValues(lab: ParticleLab) {
+  return Object.fromEntries(lab.controls.map((control) => [control.id, control.defaultValue]));
+}
+
+function computeParticleReadouts(conceptId: string, values: Record<string, number>): ParticleReadout[] {
+  const v = (id: string, fallback: number) => values[id] ?? fallback;
+  switch (conceptId) {
+    case "standard-model": {
+      const generations = v("generations", 3);
+      const includeHiggs = v("includeHiggs", 1) >= 0.5;
+      return [
+        readout("Matter flavor groups", generations * 4, "2 quarks + charged lepton + neutrino per generation"),
+        readout("Quark flavors", generations * 2, "up/down pairs repeat across generations"),
+        readout("Boson sectors", includeHiggs ? 5 : 4, includeHiggs ? "photon, W, Z, gluon, Higgs" : "gauge carriers only"),
+      ];
+    }
+    case "quantum-field-theory": {
+      const mass = v("mass", 0.511);
+      const momentum = v("momentum", 2);
+      const energy = Math.sqrt(momentum * momentum + mass * mass);
+      const beta = energy === 0 ? 0 : momentum / energy;
+      return [
+        readout("Total energy", energy, "GeV"),
+        readout("Speed beta", beta, "v/c"),
+        readout("Rest-energy share", energy === 0 ? 0 : mass / energy, "mass term fraction"),
+      ];
+    }
+    case "higgs-field": {
+      const coupling = v("coupling", 0.01);
+      const vev = v("vev", 246);
+      const mass = (coupling * vev) / Math.SQRT2;
+      return [
+        readout("Generated mass", mass, "GeV/c^2"),
+        readout("Electron-like scale", mass * 1000, "MeV/c^2"),
+        readout("Coupling strength", coupling * 100, "% of y = 1"),
+      ];
+    }
+    case "higgs-boson": {
+      const events = v("events", 400);
+      const resolution = v("resolution", 2);
+      const background = v("background", 55) / 100;
+      const signal = events * (1 - background);
+      const significance = signal / Math.sqrt(Math.max(events * background, 1));
+      return [
+        readout("Signal events", signal, "estimated above background"),
+        readout("Mass window", resolution * 2, "GeV around 125 GeV"),
+        readout("Confidence cue", significance, "sigma-like classroom estimate"),
+      ];
+    }
+    case "quarks": {
+      const up = v("up", 2);
+      const down = v("down", 1);
+      const total = up + down;
+      const charge = (2 * up - down) / 3;
+      const baryon = total / 3;
+      return [
+        readout("Net charge", charge, "multiples of e"),
+        readout("Baryon number", baryon, total === 3 ? "baryon-like combination" : "not a normal three-quark baryon"),
+        readout("Hadron guess", total === 3 ? (charge === 1 ? "proton-like" : charge === 0 ? "neutron-like" : "exotic charge") : "adjust to 3 quarks", "classification"),
+      ];
+    }
+    case "leptons": {
+      const energy = v("energy", 5);
+      const thickness = v("thickness", 100);
+      const relative = energy * thickness / 100000;
+      return [
+        readout("Neutrino catch cue", relative * 100, "% relative classroom model"),
+        readout("Charged-track energy", energy, "GeV visible in detector"),
+        readout("Detector scale", thickness, "m of target material"),
+      ];
+    }
+    case "gluons-color-charge": {
+      const separation = v("separation", 1);
+      const tension = v("tension", 1);
+      const energy = separation * tension;
+      return [
+        readout("Field energy", energy, "GeV"),
+        readout("Pair creation cue", energy / 0.7, "threshold units"),
+        readout("Confinement state", energy > 0.7 ? "new hadrons likely" : "bound flux tube", "qualitative outcome"),
+      ];
+    }
+    case "gauge-bosons": {
+      const mass = Math.max(v("mediatorMass", 80.4), 0.001);
+      const coupling = v("coupling", 1);
+      const range = 0.1973269804 / mass;
+      return [
+        readout("Estimated range", range, "fm"),
+        readout("Interaction strength", coupling * coupling, "relative coupling squared"),
+        readout("Mediator behavior", mass < 0.01 ? "photon-like long range" : "massive short range", "range cue"),
+      ];
+    }
+    case "neutrino-oscillation": {
+      const baseline = v("baseline", 295);
+      const energy = v("energy", 0.6);
+      const theta = (v("theta", 33) * Math.PI) / 180;
+      const deltaM = v("deltaM", 2.5);
+      const phase = (1.27 * deltaM * baseline) / energy / 1000;
+      const probability = (Math.sin(2 * theta) ** 2) * (Math.sin(phase) ** 2);
+      return [
+        readout("Flavor-change chance", probability * 100, "%"),
+        readout("Oscillation phase", phase, "radians"),
+        readout("L / E", baseline / energy, "km/GeV"),
+      ];
+    }
+    case "antimatter": {
+      const massMicrogram = v("mass", 1);
+      const efficiency = v("efficiency", 35) / 100;
+      const totalJ = 2 * massMicrogram * 1e-9 * 299792458 ** 2;
+      return [
+        readout("Total energy", totalJ / 1e6, "MJ"),
+        readout("Captured energy", (totalJ * efficiency) / 1e6, "MJ"),
+        readout("Equivalent TNT", totalJ / 4.184e6, "kg TNT"),
+      ];
+    }
+    case "symmetry-breaking": {
+      const temperature = v("temperature", 0.6);
+      const lambda = v("lambda", 1);
+      const order = Math.sqrt(Math.max(0, 1 - temperature * temperature));
+      const barrier = lambda * (1 - order * order) ** 2;
+      return [
+        readout("Order parameter", order, "relative field value"),
+        readout("Potential cue", barrier, "relative V"),
+        readout("Phase", temperature < 1 ? "broken-symmetry state" : "symmetric state", "critical comparison"),
+      ];
+    }
+    case "confinement": {
+      const separation = v("separation", 1.5);
+      const threshold = v("threshold", 0.7);
+      const energy = separation;
+      const pairs = Math.floor(energy / threshold);
+      return [
+        readout("Stored field energy", energy, "GeV"),
+        readout("Possible new pairs", pairs, "integer estimate"),
+        readout("Detector signature", pairs > 0 ? "hadron jet" : "bound hadron", "qualitative outcome"),
+      ];
+    }
+    default:
+      return [readout("Explorer status", "Ready", "select any concept")];
+  }
+}
+
+function readout(label: string, value: number | string, detail: string): ParticleReadout {
+  return { label, value: typeof value === "number" ? formatLabNumber(value) : value, detail };
+}
+
+function formatLabNumber(value: number) {
+  if (!Number.isFinite(value)) return "0";
+  if (Math.abs(value) >= 1000) return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
+  if (Math.abs(value) >= 100) return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
+  if (Math.abs(value) >= 10) return value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  if (Math.abs(value) >= 1) return value.toLocaleString(undefined, { maximumFractionDigits: 3 });
+  return value.toLocaleString(undefined, { maximumFractionDigits: 5 });
 }
 
 function Metric({ icon, label, value }: { icon: "atom" | "book" | "check"; label: string; value: number }) {

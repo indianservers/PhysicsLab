@@ -25,6 +25,25 @@ export interface ParticlePhysicsConcept {
   classroomPrompt: string;
 }
 
+export interface ParticleExperimentControl {
+  id: string;
+  label: string;
+  unit: string;
+  min: number;
+  max: number;
+  step: number;
+  defaultValue: number;
+}
+
+export interface ParticleConceptLab {
+  knowledgeQuestion: string;
+  explorerFocus: string;
+  experimentTitle: string;
+  experimentPrompt: string;
+  evidence: string[];
+  controls: ParticleExperimentControl[];
+}
+
 export const particlePhysicsConcepts: ParticlePhysicsConcept[] = [
   {
     id: "standard-model",
@@ -170,4 +189,142 @@ export const particlePhysicsStats = {
   categories: particlePhysicsCategories.length,
   misconceptionChecks: particlePhysicsConcepts.length,
   prompts: particlePhysicsConcepts.length,
+};
+
+export const particleConceptLabs: Record<string, ParticleConceptLab> = {
+  "standard-model": {
+    knowledgeQuestion: "How does the Standard Model separate matter particles, force carriers, and the Higgs sector?",
+    explorerFocus: "Change how many generations are shown and watch the particle families scale without changing the force-carrier families.",
+    experimentTitle: "Particle family counter",
+    experimentPrompt: "Use the controls to build the Standard Model table from first principles.",
+    evidence: ["Each generation adds two quark flavors, one charged lepton, and one neutrino.", "Gauge boson families do not multiply by generation.", "The Higgs boson is a scalar sector, not a fourth matter generation."],
+    controls: [
+      { id: "generations", label: "Generations", unit: "", min: 1, max: 3, step: 1, defaultValue: 3 },
+      { id: "includeHiggs", label: "Include Higgs", unit: "0/1", min: 0, max: 1, step: 1, defaultValue: 1 },
+    ],
+  },
+  "quantum-field-theory": {
+    knowledgeQuestion: "Why is a detected particle better described as a field excitation than a tiny bead?",
+    explorerFocus: "Tune rest mass and momentum to see how relativistic energy and speed follow the field excitation relation.",
+    experimentTitle: "Relativistic energy explorer",
+    experimentPrompt: "Compare mass-dominated and momentum-dominated particles using E^2 = p^2c^2 + m^2c^4.",
+    evidence: ["For p = 0, total energy equals rest energy.", "For p much larger than m, beta approaches 1.", "Massless particles follow E = pc."],
+    controls: [
+      { id: "mass", label: "Rest mass", unit: "GeV/c^2", min: 0, max: 5, step: 0.05, defaultValue: 0.511 },
+      { id: "momentum", label: "Momentum", unit: "GeV/c", min: 0, max: 10, step: 0.1, defaultValue: 2 },
+    ],
+  },
+  "higgs-field": {
+    knowledgeQuestion: "How can empty space have a field value that changes particle masses?",
+    explorerFocus: "Vary coupling to the Higgs field and estimate the rest mass from m = yv/sqrt(2).",
+    experimentTitle: "Higgs coupling mass lab",
+    experimentPrompt: "Treat the Higgs vacuum value as 246 GeV and compare weak versus strong coupling.",
+    evidence: ["The same vacuum value can produce very different masses.", "A zero coupling gives no Higgs-generated rest mass.", "Most proton mass is not from this direct coupling."],
+    controls: [
+      { id: "coupling", label: "Yukawa coupling y", unit: "", min: 0, max: 1.1, step: 0.01, defaultValue: 0.01 },
+      { id: "vev", label: "Higgs vacuum value", unit: "GeV", min: 200, max: 300, step: 1, defaultValue: 246 },
+    ],
+  },
+  "higgs-boson": {
+    knowledgeQuestion: "How can a short-lived Higgs boson be inferred from detector data?",
+    explorerFocus: "Adjust event count and detector resolution to see why statistical peaks matter.",
+    experimentTitle: "Invariant-mass bump hunt",
+    experimentPrompt: "Model the 125 GeV Higgs as a signal peak sitting inside background events.",
+    evidence: ["More events improve statistical confidence roughly as sqrt(N).", "Better mass resolution narrows the search window.", "Discovery requires a repeatable excess over background."],
+    controls: [
+      { id: "events", label: "Candidate events", unit: "", min: 20, max: 2000, step: 20, defaultValue: 400 },
+      { id: "resolution", label: "Mass resolution", unit: "GeV", min: 0.5, max: 8, step: 0.1, defaultValue: 2 },
+      { id: "background", label: "Background level", unit: "%", min: 10, max: 95, step: 1, defaultValue: 55 },
+    ],
+  },
+  quarks: {
+    knowledgeQuestion: "How do fractional quark charges build integer proton and neutron charges?",
+    explorerFocus: "Combine up and down quarks and read charge, baryon number, and hadron type.",
+    experimentTitle: "Build a hadron",
+    experimentPrompt: "Create charge-neutral or charged hadrons by choosing quark counts.",
+    evidence: ["Up quark charge is +2/3 e.", "Down quark charge is -1/3 e.", "Three quarks form a baryon with baryon number 1."],
+    controls: [
+      { id: "up", label: "Up quarks", unit: "", min: 0, max: 3, step: 1, defaultValue: 2 },
+      { id: "down", label: "Down quarks", unit: "", min: 0, max: 3, step: 1, defaultValue: 1 },
+    ],
+  },
+  leptons: {
+    knowledgeQuestion: "What separates charged leptons from neutrinos in the way they interact?",
+    explorerFocus: "Compare charged-lepton tracks with neutrino-like weak interaction probabilities.",
+    experimentTitle: "Lepton interaction contrast",
+    experimentPrompt: "Raise energy and detector thickness to estimate how hard neutrinos are to catch.",
+    evidence: ["Charged leptons leave electromagnetic tracks.", "Neutrinos mainly interact weakly.", "Detection probability rises with energy and detector size but remains tiny."],
+    controls: [
+      { id: "energy", label: "Lepton energy", unit: "GeV", min: 0.1, max: 50, step: 0.1, defaultValue: 5 },
+      { id: "thickness", label: "Detector thickness", unit: "m", min: 1, max: 1000, step: 1, defaultValue: 100 },
+    ],
+  },
+  "gluons-color-charge": {
+    knowledgeQuestion: "Why does the strong force behave differently from electromagnetism?",
+    explorerFocus: "Stretch the color field and watch stored energy rise until pair creation becomes plausible.",
+    experimentTitle: "Color flux tube",
+    experimentPrompt: "Model confinement with an approximate string tension of about 1 GeV/fm.",
+    evidence: ["Gluons carry color charge, so they self-interact.", "The color field does not simply fade like electricity.", "Large separation energy can become new hadrons."],
+    controls: [
+      { id: "separation", label: "Quark separation", unit: "fm", min: 0.1, max: 3, step: 0.05, defaultValue: 1 },
+      { id: "tension", label: "String tension", unit: "GeV/fm", min: 0.6, max: 1.4, step: 0.05, defaultValue: 1 },
+    ],
+  },
+  "gauge-bosons": {
+    knowledgeQuestion: "How does mediator mass affect force range?",
+    explorerFocus: "Change mediator mass to compare photon-like long range with W/Z-like short range.",
+    experimentTitle: "Force range estimator",
+    experimentPrompt: "Use range about hbar c / mc^2 with hbar c = 0.197 GeV fm.",
+    evidence: ["Massless photon exchange gives electromagnetic long range.", "Massive W and Z exchange is short range.", "Gluons are massless but confinement changes the observed strong-force range."],
+    controls: [
+      { id: "mediatorMass", label: "Mediator mass", unit: "GeV/c^2", min: 0.001, max: 100, step: 0.1, defaultValue: 80.4 },
+      { id: "coupling", label: "Relative coupling", unit: "", min: 0.1, max: 2, step: 0.05, defaultValue: 1 },
+    ],
+  },
+  "neutrino-oscillation": {
+    knowledgeQuestion: "How can a neutrino born as one flavor be detected as another?",
+    explorerFocus: "Tune baseline, energy, and mixing angle to see oscillation probability change.",
+    experimentTitle: "Neutrino flavor oscillation",
+    experimentPrompt: "Use P = sin^2(2theta) sin^2(1.27 Delta m^2 L/E) for a two-flavor model.",
+    evidence: ["Flavor states are mixtures of mass states.", "Probability depends on L/E.", "Oscillation proves neutrinos are not all massless."],
+    controls: [
+      { id: "baseline", label: "Baseline L", unit: "km", min: 1, max: 1300, step: 1, defaultValue: 295 },
+      { id: "energy", label: "Energy E", unit: "GeV", min: 0.1, max: 10, step: 0.1, defaultValue: 0.6 },
+      { id: "theta", label: "Mixing angle", unit: "deg", min: 1, max: 45, step: 1, defaultValue: 33 },
+      { id: "deltaM", label: "Delta m^2", unit: "10^-3 eV^2", min: 0.1, max: 5, step: 0.1, defaultValue: 2.5 },
+    ],
+  },
+  antimatter: {
+    knowledgeQuestion: "What must be conserved when matter and antimatter annihilate?",
+    explorerFocus: "Set equal matter and antimatter masses and calculate available annihilation energy.",
+    experimentTitle: "Annihilation energy balance",
+    experimentPrompt: "Use E = 2mc^2 when equal masses of matter and antimatter annihilate.",
+    evidence: ["Charge, energy, momentum, and quantum numbers must be conserved.", "Antimatter has positive mass-energy.", "Pair production reverses the idea when enough energy is available."],
+    controls: [
+      { id: "mass", label: "Antimatter mass", unit: "microgram", min: 0.001, max: 10, step: 0.001, defaultValue: 1 },
+      { id: "efficiency", label: "Captured energy", unit: "%", min: 1, max: 100, step: 1, defaultValue: 35 },
+    ],
+  },
+  "symmetry-breaking": {
+    knowledgeQuestion: "How can symmetric laws produce an asymmetric observed state?",
+    explorerFocus: "Lower the temperature parameter and watch the order parameter settle away from zero.",
+    experimentTitle: "Mexican-hat field model",
+    experimentPrompt: "Explore a simplified order parameter that appears below a critical temperature.",
+    evidence: ["Above the critical point the symmetric state is favored.", "Below it the field chooses one equivalent direction.", "The laws can stay symmetric while the state is not."],
+    controls: [
+      { id: "temperature", label: "Temperature / critical", unit: "", min: 0, max: 1.5, step: 0.01, defaultValue: 0.6 },
+      { id: "lambda", label: "Potential stiffness", unit: "", min: 0.1, max: 3, step: 0.05, defaultValue: 1 },
+    ],
+  },
+  confinement: {
+    knowledgeQuestion: "Why do collider events show jets instead of isolated quarks?",
+    explorerFocus: "Pull quarks apart and compare stored field energy with pair-creation thresholds.",
+    experimentTitle: "Jet formation predictor",
+    experimentPrompt: "Use color-field energy to estimate when new quark pairs can form.",
+    evidence: ["Separation stores energy in the color field.", "Enough energy creates new quark-antiquark pairs.", "Detector signatures become hadron jets, not free quarks."],
+    controls: [
+      { id: "separation", label: "Attempted separation", unit: "fm", min: 0.1, max: 5, step: 0.05, defaultValue: 1.5 },
+      { id: "threshold", label: "Pair threshold", unit: "GeV", min: 0.3, max: 2, step: 0.05, defaultValue: 0.7 },
+    ],
+  },
 };

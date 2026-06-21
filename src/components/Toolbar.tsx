@@ -7,6 +7,9 @@ import { useLabStore } from "../store/useLabStore";
 import { ProjectFile } from "../types";
 import { PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { GlobalSearch } from "./GlobalSearch";
+import { particlePhysicsConcepts } from "../lib/particlePhysics";
+import { TrustStatusBadge } from "./TrustStatusBadge";
+import { physicsModuleGroups } from "../lib/physicsModules";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -17,11 +20,13 @@ type NavItem = {
   path: string;
   icon: PhysicsIconName;
   accent?: "science" | "quantum" | "warning";
+  keywords?: string[];
   children?: NavItem[];
 };
 
 const primaryNavItems: NavItem[] = [
   { label: "Home", path: "/", icon: "atom" },
+  { label: "Modules", path: "/modules", icon: "menu", accent: "quantum" },
   { label: "Experiments", path: "/experiments", icon: "flask" },
   { label: "Solver", path: "/solver", icon: "calculator" },
   { label: "Formulas", path: "/formulas", icon: "book", accent: "warning" },
@@ -34,8 +39,29 @@ const primaryNavItems: NavItem[] = [
 ];
 
 const studyNavItems: NavItem[] = [
+  { label: "Scale of Universe", path: "/physics/scale-of-universe", icon: "ruler", accent: "quantum", keywords: ["powers of ten", "scale", "objects", "galaxies", "particles"] },
   { label: "Roadmap", path: "/roadmap", icon: "compass" },
   { label: "All Topics", path: "/topics", icon: "book" },
+  {
+    label: "Physics Modules",
+    path: "/modules",
+    icon: "menu",
+    accent: "quantum",
+    children: physicsModuleGroups.map((group) => ({
+      label: group.title,
+      path: `/modules#${group.id}`,
+      icon: group.icon,
+      accent: group.accent ?? "science",
+      keywords: [group.summary],
+      children: group.modules.map((module) => ({
+        label: module.title,
+        path: module.path,
+        icon: module.icon,
+        accent: module.accent ?? group.accent ?? "science",
+        keywords: [module.description, ...module.keywords],
+      })),
+    })),
+  },
   {
     label: "Visual Modules",
     path: "/atmosphere",
@@ -47,6 +73,12 @@ const studyNavItems: NavItem[] = [
       { label: "Atmosphere", path: "/atmosphere", icon: "orbit", accent: "quantum" },
       { label: "AstroPhysics", path: "/astrophysics", icon: "orbit", accent: "quantum" },
       { label: "Particle", path: "/particle-physics", icon: "atom", accent: "quantum" },
+      ...particlePhysicsConcepts.map((concept) => ({
+        label: concept.title,
+        path: `/particle-physics/${concept.id}`,
+        icon: "atom" as const,
+        accent: "quantum" as const,
+      })),
     ],
   },
   { label: "Learning Studio", path: "/learning-studio", icon: "teacher", accent: "science" },
@@ -88,6 +120,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [navFilter, setNavFilter] = useState("");
   const { objects, gravity, timeScale, airResistance, showGrid, showVectors, theme, setTheme, toProject, loadProject } = useLabStore();
 
   const save = async () => {
@@ -192,6 +225,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
             <kbd>Ctrl K</kbd>
           </button>
         )}
+        {!compact && <TrustStatusBadge />}
         {!compact && installPrompt && (
           <button className="shell-icon-btn" title={t("toolbar.install")} onClick={() => { void installPrompt.prompt(); setInstallPrompt(null); }}>
             <PhysicsIcon name="download" className="h-4 w-4" />
@@ -229,11 +263,15 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
       </header>
       {!compact && (
         <aside className="app-nav-rail" aria-label="Primary navigation">
-          {railNavGroups.map((group) => (
+          <label className="rail-search-box">
+            <PhysicsIcon name="search" className="h-4 w-4" />
+            <input value={navFilter} onChange={(event) => setNavFilter(event.target.value)} placeholder="Search menu" />
+          </label>
+          {filterNavGroups(railNavGroups, navFilter).map((group) => (
             <div key={group.label} className="rail-nav-group">
               <span className="rail-nav-label">{group.label}</span>
               {group.items.map((item) => (
-                <NavLinkItem key={`${group.label}-${item.path}`} item={item} navClass={navClass} />
+                <NavLinkItem key={`${group.label}-${item.path}`} item={item} navClass={navClass} forceOpen={Boolean(navFilter.trim())} />
               ))}
             </div>
           ))}
@@ -247,20 +285,17 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function NavLinkItem({ item, navClass }: { item: NavItem; navClass: (path: string) => string }) {
+function NavLinkItem({ item, navClass, forceOpen = false }: { item: NavItem; navClass: (path: string) => string; forceOpen?: boolean }) {
   if (item.children?.length) {
     return (
-      <details className="rail-submenu">
+      <details className="rail-submenu" open={forceOpen || undefined}>
         <summary className={navClass(item.path)} data-accent={item.accent ?? "science"} title={item.label}>
           <PhysicsIcon name={item.icon} className="h-4 w-4" />
           <span>{item.label}</span>
         </summary>
         <div className="rail-submenu-panel">
           {item.children.map((child) => (
-            <RouterLink key={child.path} to={child.path} className={navClass(child.path)} data-accent={child.accent ?? "science"} title={child.label}>
-              <PhysicsIcon name={child.icon} className="h-4 w-4" />
-              <span>{child.label}</span>
-            </RouterLink>
+            <NavLinkItem key={child.path} item={child} navClass={navClass} forceOpen={forceOpen} />
           ))}
         </div>
       </details>
@@ -273,6 +308,26 @@ function NavLinkItem({ item, navClass }: { item: NavItem; navClass: (path: strin
       <span>{item.label}</span>
     </RouterLink>
   );
+}
+
+function filterNavGroups(groups: { label: string; items: NavItem[] }[], query: string) {
+  const search = query.trim().toLowerCase();
+  if (!search) return groups;
+  return groups
+    .map((group) => ({
+      ...group,
+      items: filterNavItems(group.items, search),
+    }))
+    .filter((group) => group.items.length > 0);
+}
+
+function filterNavItems(items: NavItem[], search: string): NavItem[] {
+  return items.reduce<NavItem[]>((filtered, item) => {
+    const children = item.children ? filterNavItems(item.children, search) : undefined;
+    const ownMatch = [item.label, item.path, ...(item.keywords ?? [])].join(" ").toLowerCase().includes(search);
+    if (ownMatch || children?.length) filtered.push({ ...item, children });
+    return filtered;
+  }, []);
 }
 
 function ShortcutOverlay({ onClose }: { onClose: () => void }) {

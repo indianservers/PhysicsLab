@@ -23,10 +23,10 @@ export function PropertiesPanel() {
     return (
       <aside className="properties-drawer properties-drawer-empty">
         <div className="drawer-head">
-          <h2 className="panel-title">Properties</h2>
+          <h2 className="panel-title">No object selected</h2>
           <button className="drawer-close-btn" type="button" onClick={closeDrawer} aria-label="Close properties panel">Close</button>
         </div>
-        <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">Select an object to inspect mass, position, velocity, energy, material, and constraints.</p>
+        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Click any object on the canvas to open mass, velocity, energy, and material controls here.</p>
       </aside>
     );
   }

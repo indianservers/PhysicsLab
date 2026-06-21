@@ -16,10 +16,17 @@ const circuitKinds = ["battery", "resistor", "bulb", "switch", "ammeter", "voltm
 export function LeftSidebar() {
   const { t } = useTranslation();
   const [tab, setTab] = useState("Objects");
+  const [query, setQuery] = useState("");
   const { addObject, selectedTool, setSelectedTool, setObjects, objects, selectedId, selectObject, updateObject, removeSelected, duplicateSelected } = useLabStore();
   const selected = objects.find((object) => object.id === selectedId);
   const circuitObjects = objectRegistry.filter((object) => circuitKinds.includes(object.id));
   const otherObjects = objectRegistry.filter((object) => !circuitKinds.includes(object.id));
+  const normalizedQuery = query.trim().toLowerCase();
+  const matches = (...parts: string[]) => !normalizedQuery || parts.join(" ").toLowerCase().includes(normalizedQuery);
+  const visibleOtherObjects = otherObjects.filter((object) => matches(object.name, object.category, object.id));
+  const visibleCircuitObjects = circuitObjects.filter((object) => matches(object.name, object.category, object.id));
+  const visibleExperiments = experiments.filter((experiment) => matches(experiment.title, experiment.category, experiment.aim)).slice(0, 16);
+  const visibleFormulae = coreFormulae.filter((formula) => matches(formula.name, formula.expression)).slice(0, 18);
 
   const spawnChaosDemo = () => {
     const left = createObject("double-pendulum", 0, 0);
@@ -66,7 +73,30 @@ export function LeftSidebar() {
   }
 
   return (
-    <aside className="panel flex min-h-0 flex-col overflow-hidden" aria-label="Physics lab library">
+    <aside className="panel lab-left-menu flex min-h-0 flex-col overflow-hidden" aria-label="Physics lab library">
+      <div className="lab-left-menu-head">
+        <div>
+          <p className="ui-label">Main menu</p>
+          <h2>Build a lab</h2>
+        </div>
+        <Link to="/experiments" className="lab-menu-link">All labs</Link>
+      </div>
+      <input
+        className="lab-menu-search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Search objects, formulas, labs..."
+        aria-label="Search sandbox menu"
+      />
+      <details className="lab-menu-doc" open>
+        <summary>Quick start doc</summary>
+        <ol>
+          <li>Add one object from Objects.</li>
+          <li>Press Play in the floating control bar.</li>
+          <li>Select an object to edit properties.</li>
+          <li>Use Graphs or Export for evidence.</li>
+        </ol>
+      </details>
       <div className="grid grid-cols-3 gap-1 border-b border-slate-300/60 p-2 dark:border-lab-line">
         {tabs.map((item) => (
           <button key={item} title={`${item} library`} className={item === tab ? "tab-active" : "tab-btn"} onClick={() => setTab(item)}>
@@ -81,11 +111,11 @@ export function LeftSidebar() {
         {tab === "Topics" && <TileLinks items={topics.map((topic) => ({ label: topic, href: `/topics/${topic.toLowerCase().replace(/\s+/g, "-")}` }))} />}
         {tab === "Objects" && (
           <div className="space-y-4">
-            <ObjectGrid objects={otherObjects} onAdd={(id) => addObject(id)} />
+            <ObjectGrid objects={visibleOtherObjects} onAdd={(id) => addObject(id)} />
             <div>
               <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{t("sidebar.circuits")}</div>
               <div className="grid grid-cols-2 gap-2">
-                {circuitObjects.map((object) => (
+                {visibleCircuitObjects.map((object) => (
                   <button
                     key={object.id}
                     title={object.id === "wire" ? "Wire tool" : `Add ${object.name}`}
@@ -111,7 +141,7 @@ export function LeftSidebar() {
         {tab === "Graphs" && <ActionTiles items={["x-time", "y-time", "velocity-time", "energy-time", "P-V", "V-I", "Intensity-Angle", "Wavelength-Frequency"]} />}
         {tab === "Experiments" && (
           <div className="space-y-2">
-            {experiments.slice(0, 10).map((experiment) => (
+            {visibleExperiments.map((experiment) => (
               <Link key={experiment.id} to={`/experiments/${experiment.id}`} className="block rounded border border-slate-300/60 p-2 text-sm hover:border-cyan-400 dark:border-lab-line">
                 {experiment.title}
               </Link>
@@ -130,7 +160,7 @@ export function LeftSidebar() {
         )}
         {tab === "Formulas" && (
           <div className="space-y-2 text-sm">
-            {coreFormulae.map((formula) => (
+            {visibleFormulae.map((formula) => (
               <div key={formula.id} className="rounded border border-slate-300/60 p-2 dark:border-lab-line">
                 <div className="font-semibold text-cyan-500">{formula.name}</div>
                 <code className="text-xs">{formula.expression}</code>

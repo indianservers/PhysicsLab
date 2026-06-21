@@ -48,6 +48,107 @@ type FormulaSheetSection = {
   formulaIds: string[];
 };
 
+type InteractiveFormulaId = "projectile" | "motion" | "newton" | "work" | "ohm" | "circular";
+
+type InteractiveFormulaConfig = {
+  id: InteractiveFormulaId;
+  title: string;
+  subtitle: string;
+  categoryId: string;
+  icon: PhysicsFormulaCategory["icon"];
+  formula: string;
+  variables: Array<{
+    id: string;
+    label: string;
+    unit: string;
+    min: number;
+    max: number;
+    step: number;
+    defaultValue: number;
+  }>;
+};
+
+const interactiveFormulaConfigs: InteractiveFormulaConfig[] = [
+  {
+    id: "projectile",
+    title: "Projectile Motion",
+    subtitle: "Explore range, time of flight, height, and trajectory.",
+    categoryId: "kinematics",
+    icon: "rocket",
+    formula: "R=\\frac{u^2\\sin 2\\theta}{g}",
+    variables: [
+      { id: "speed", label: "Initial speed", unit: "m/s", min: 5, max: 80, step: 1, defaultValue: 32 },
+      { id: "angle", label: "Launch angle", unit: "deg", min: 5, max: 85, step: 1, defaultValue: 42 },
+      { id: "gravity", label: "Gravity", unit: "m/s^2", min: 1.6, max: 12, step: 0.1, defaultValue: 9.8 },
+    ],
+  },
+  {
+    id: "motion",
+    title: "Constant Acceleration",
+    subtitle: "Change initial velocity, acceleration, and time.",
+    categoryId: "kinematics",
+    icon: "gauge",
+    formula: "s=ut+\\frac{1}{2}at^2",
+    variables: [
+      { id: "initialVelocity", label: "Initial velocity", unit: "m/s", min: -20, max: 60, step: 1, defaultValue: 12 },
+      { id: "acceleration", label: "Acceleration", unit: "m/s^2", min: -10, max: 12, step: 0.2, defaultValue: 3.2 },
+      { id: "time", label: "Time", unit: "s", min: 0.5, max: 12, step: 0.1, defaultValue: 5 },
+    ],
+  },
+  {
+    id: "newton",
+    title: "Newton's Second Law",
+    subtitle: "See force as mass and acceleration change.",
+    categoryId: "dynamics",
+    icon: "gauge",
+    formula: "F=ma",
+    variables: [
+      { id: "mass", label: "Mass", unit: "kg", min: 0.2, max: 80, step: 0.2, defaultValue: 10 },
+      { id: "acceleration", label: "Acceleration", unit: "m/s^2", min: -15, max: 15, step: 0.2, defaultValue: 4 },
+      { id: "friction", label: "Opposing force", unit: "N", min: 0, max: 120, step: 1, defaultValue: 12 },
+    ],
+  },
+  {
+    id: "work",
+    title: "Work, Energy & Power",
+    subtitle: "Explore work done, kinetic energy, and power.",
+    categoryId: "work-energy-power",
+    icon: "flame",
+    formula: "W=Fs\\cos\\theta",
+    variables: [
+      { id: "force", label: "Force", unit: "N", min: 0, max: 300, step: 1, defaultValue: 85 },
+      { id: "distance", label: "Displacement", unit: "m", min: 0, max: 40, step: 0.2, defaultValue: 12 },
+      { id: "angle", label: "Force angle", unit: "deg", min: 0, max: 180, step: 1, defaultValue: 30 },
+      { id: "time", label: "Time", unit: "s", min: 0.5, max: 30, step: 0.5, defaultValue: 6 },
+    ],
+  },
+  {
+    id: "ohm",
+    title: "Ohm's Law Circuit",
+    subtitle: "Adjust voltage and resistance to inspect current and power.",
+    categoryId: "current-electricity",
+    icon: "battery",
+    formula: "V=IR",
+    variables: [
+      { id: "voltage", label: "Voltage", unit: "V", min: 0, max: 240, step: 1, defaultValue: 12 },
+      { id: "resistance", label: "Resistance", unit: "\\Omega", min: 0.5, max: 200, step: 0.5, defaultValue: 24 },
+    ],
+  },
+  {
+    id: "circular",
+    title: "Uniform Circular Motion",
+    subtitle: "Explore angular speed, centripetal acceleration, and force.",
+    categoryId: "rotational-motion",
+    icon: "orbit",
+    formula: "a_c=\\frac{v^2}{r}=\\omega^2r",
+    variables: [
+      { id: "speed", label: "Speed", unit: "m/s", min: 1, max: 80, step: 1, defaultValue: 24 },
+      { id: "radius", label: "Radius", unit: "m", min: 0.5, max: 40, step: 0.5, defaultValue: 8 },
+      { id: "mass", label: "Mass", unit: "kg", min: 0.2, max: 50, step: 0.2, defaultValue: 5 },
+    ],
+  },
+];
+
 const formulaSheetSections: FormulaSheetSection[] = [
   { id: "physical-world-units", title: "Physical World & Units", categoryId: "measurements-units", icon: "ruler", formulaIds: ["average-speed", "average-velocity", "percentage-error", "dimensional-formula-force", "relative-density", "scientific-notation"] },
   { id: "kinematics-sheet", title: "Kinematics", categoryId: "kinematics", icon: "rocket", formulaIds: ["first-equation-motion", "second-equation-motion", "third-equation-motion", "average-velocity", "projectile-range-basic", "projectile-time-flight"] },
@@ -95,6 +196,13 @@ export function FormulasPage() {
   const [expandedNavGroupIds, setExpandedNavGroupIds] = useState<Set<string>>(() => new Set(initialCategory === "all" ? ["mechanics"] : [groupIdForCategory(initialCategory) ?? "mechanics"]));
   const [expandedResultGroupIds, setExpandedResultGroupIds] = useState<Set<string>>(() => new Set(initialCategory === "all" ? ["mechanics"] : [groupIdForCategory(initialCategory) ?? "mechanics"]));
   const [expandedResultCategoryIds, setExpandedResultCategoryIds] = useState<Set<string>>(() => new Set(initialCategory === "all" ? ["kinematics"] : [initialCategory]));
+  const [activeInteractiveId, setActiveInteractiveId] = useState<InteractiveFormulaId>("projectile");
+  const [interactiveValues, setInteractiveValues] = useState<Record<InteractiveFormulaId, Record<string, number>>>(() => (
+    Object.fromEntries(interactiveFormulaConfigs.map((config) => [
+      config.id,
+      Object.fromEntries(config.variables.map((variable) => [variable.id, variable.defaultValue])),
+    ])) as Record<InteractiveFormulaId, Record<string, number>>
+  ));
 
   const domains = useMemo(() => ["all", ...Array.from(new Set(formulaCategories.map((category) => category.domain))).sort()], []);
   const categoryById = useMemo(() => new Map(formulaCategories.map((category) => [category.id, category])), []);
@@ -180,6 +288,26 @@ export function FormulasPage() {
 
   const activeGroupId = groupIdForCategory(categoryId);
   const hasSearch = Boolean(query.trim());
+  const activeInteractive = interactiveFormulaConfigs.find((config) => config.id === activeInteractiveId) ?? interactiveFormulaConfigs[0];
+  const activeInteractiveValues = interactiveValues[activeInteractive.id];
+  const activeInteractiveResults = calculateInteractiveFormula(activeInteractive.id, activeInteractiveValues);
+
+  const updateInteractiveValue = (formulaId: InteractiveFormulaId, variableId: string, value: number) => {
+    setInteractiveValues((current) => ({
+      ...current,
+      [formulaId]: {
+        ...current[formulaId],
+        [variableId]: value,
+      },
+    }));
+  };
+
+  const resetInteractiveFormula = (formula: InteractiveFormulaConfig) => {
+    setInteractiveValues((current) => ({
+      ...current,
+      [formula.id]: Object.fromEntries(formula.variables.map((variable) => [variable.id, variable.defaultValue])),
+    }));
+  };
 
   return (
     <div className="min-h-screen">
@@ -213,6 +341,107 @@ export function FormulasPage() {
             <PhysicsIcon name="step" className="h-4 w-4" />
             Reset
           </button>
+        </section>
+
+        <section className="interactive-formula-lab" aria-label="Interactive formula explorer">
+          <div className="interactive-formula-head">
+            <div>
+              <p className="ui-label">Interactive formula explorer</p>
+              <h2>Change values and watch the formula respond</h2>
+              <p>Use the sliders to test motion, force, work, circuits, and circular motion. Each setup links back into the full formula bank.</p>
+            </div>
+            <div className="formula-chip-row">
+              <span className="status-chip status-chip-cyan"><PhysicsIcon name="settings" className="h-3.5 w-3.5" />Live values</span>
+              <span className="status-chip"><PhysicsIcon name="chart" className="h-3.5 w-3.5" />Visual model</span>
+            </div>
+          </div>
+
+          <div className="interactive-formula-tabs" role="tablist" aria-label="Formula simulations">
+            {interactiveFormulaConfigs.map((formula) => (
+              <button
+                key={formula.id}
+                className={formula.id === activeInteractive.id ? "interactive-formula-tab active" : "interactive-formula-tab"}
+                type="button"
+                role="tab"
+                aria-selected={formula.id === activeInteractive.id}
+                onClick={() => setActiveInteractiveId(formula.id)}
+              >
+                <PhysicsIcon name={formula.icon} className="h-4 w-4" />
+                <span>{formula.title}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="interactive-formula-workspace">
+            <div className="interactive-formula-controls">
+              <div className="interactive-formula-title">
+                <span><PhysicsIcon name={activeInteractive.icon} className="h-5 w-5" /></span>
+                <div>
+                  <p className="ui-label">{activeInteractive.subtitle}</p>
+                  <h3>{activeInteractive.title}</h3>
+                </div>
+              </div>
+              <div className="interactive-equation-box">
+                <span>Formula</span>
+                <b dangerouslySetInnerHTML={{ __html: renderFormula(activeInteractive.formula) }} />
+              </div>
+              <div className="interactive-slider-grid">
+                {activeInteractive.variables.map((variable) => (
+                  <label key={variable.id} className="interactive-slider-card">
+                    <span>{variable.label}</span>
+                    <div className="interactive-value-row">
+                      <strong>{formatNumber(activeInteractiveValues[variable.id])} {variable.unit}</strong>
+                      <input
+                        className="interactive-number-input"
+                        type="number"
+                        min={variable.min}
+                        max={variable.max}
+                        step={variable.step}
+                        value={activeInteractiveValues[variable.id]}
+                        onChange={(event) => updateInteractiveValue(activeInteractive.id, variable.id, clamp(Number(event.target.value), variable.min, variable.max))}
+                        aria-label={`${variable.label} value`}
+                      />
+                    </div>
+                    <input
+                      type="range"
+                      min={variable.min}
+                      max={variable.max}
+                      step={variable.step}
+                      value={activeInteractiveValues[variable.id]}
+                      onChange={(event) => updateInteractiveValue(activeInteractive.id, variable.id, Number(event.target.value))}
+                    />
+                    <small>{variable.min} {variable.unit} - {variable.max} {variable.unit}</small>
+                  </label>
+                ))}
+              </div>
+              <div className="interactive-action-row">
+                <button className="hero-btn-primary" type="button" onClick={() => setCategory(activeInteractive.categoryId)}>
+                  <PhysicsIcon name="book" className="h-4 w-4" />
+                  Explore formulas
+                </button>
+                <button className="hero-btn-secondary" type="button" onClick={() => resetInteractiveFormula(activeInteractive)}>
+                  <PhysicsIcon name="step" className="h-4 w-4" />
+                  Reset values
+                </button>
+              </div>
+            </div>
+
+            <div className="interactive-formula-visual">
+              <InteractiveFormulaVisual id={activeInteractive.id} values={activeInteractiveValues} results={activeInteractiveResults} />
+              <div className="interactive-result-grid">
+                {activeInteractiveResults.outputs.map((output) => (
+                  <div key={output.label} className="interactive-result-card">
+                    <span>{output.label}</span>
+                    <strong>{formatNumber(output.value)} {output.unit}</strong>
+                  </div>
+                ))}
+              </div>
+              <div className="interactive-insight-card">
+                <p className="ui-label">What changes?</p>
+                <strong>{activeInteractiveResults.insight}</strong>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="formula-sheet-panel" aria-label="Complete physics formula sheet">
@@ -378,6 +607,190 @@ export function FormulasPage() {
       </main>
     </div>
   );
+}
+
+type InteractiveFormulaResults = {
+  outputs: Array<{ label: string; value: number; unit: string }>;
+  insight: string;
+};
+
+function calculateInteractiveFormula(id: InteractiveFormulaId, values: Record<string, number>): InteractiveFormulaResults {
+  switch (id) {
+    case "projectile": {
+      const speed = values.speed;
+      const angle = degreesToRadians(values.angle);
+      const gravity = values.gravity;
+      const range = (speed ** 2 * Math.sin(2 * angle)) / gravity;
+      const time = (2 * speed * Math.sin(angle)) / gravity;
+      const height = (speed ** 2 * Math.sin(angle) ** 2) / (2 * gravity);
+      return {
+        outputs: [
+          { label: "Range", value: range, unit: "m" },
+          { label: "Time of flight", value: time, unit: "s" },
+          { label: "Max height", value: height, unit: "m" },
+        ],
+        insight: `At ${formatNumber(values.angle)} degrees, the horizontal and vertical components balance to give about ${formatNumber(range)} m of range.`,
+      };
+    }
+    case "motion": {
+      const u = values.initialVelocity;
+      const a = values.acceleration;
+      const t = values.time;
+      const displacement = u * t + 0.5 * a * t ** 2;
+      const finalVelocity = u + a * t;
+      const averageVelocity = (u + finalVelocity) / 2;
+      return {
+        outputs: [
+          { label: "Displacement", value: displacement, unit: "m" },
+          { label: "Final velocity", value: finalVelocity, unit: "m/s" },
+          { label: "Average velocity", value: averageVelocity, unit: "m/s" },
+        ],
+        insight: a >= 0 ? "Positive acceleration bends the motion graph upward and increases final velocity." : "Negative acceleration reduces final velocity and can reverse direction if time is long enough.",
+      };
+    }
+    case "newton": {
+      const applied = values.mass * values.acceleration;
+      const net = applied - values.friction * Math.sign(applied || 1);
+      const netAcceleration = net / values.mass;
+      return {
+        outputs: [
+          { label: "Applied force", value: applied, unit: "N" },
+          { label: "Net force", value: net, unit: "N" },
+          { label: "Net acceleration", value: netAcceleration, unit: "m/s^2" },
+        ],
+        insight: "Mass resists acceleration; opposing force subtracts from the push before motion changes.",
+      };
+    }
+    case "work": {
+      const angle = degreesToRadians(values.angle);
+      const work = values.force * values.distance * Math.cos(angle);
+      const power = work / values.time;
+      return {
+        outputs: [
+          { label: "Work done", value: work, unit: "J" },
+          { label: "Power", value: power, unit: "W" },
+          { label: "Useful force", value: values.force * Math.cos(angle), unit: "N" },
+        ],
+        insight: "Only the component of force along displacement does work; at 90 degrees, work becomes zero.",
+      };
+    }
+    case "ohm": {
+      const current = values.voltage / values.resistance;
+      const power = values.voltage * current;
+      return {
+        outputs: [
+          { label: "Current", value: current, unit: "A" },
+          { label: "Power", value: power, unit: "W" },
+          { label: "Conductance", value: 1 / values.resistance, unit: "S" },
+        ],
+        insight: "Higher resistance narrows current flow; power rises quickly when voltage increases.",
+      };
+    }
+    case "circular": {
+      const acceleration = values.speed ** 2 / values.radius;
+      const force = values.mass * acceleration;
+      const omega = values.speed / values.radius;
+      return {
+        outputs: [
+          { label: "Centripetal acceleration", value: acceleration, unit: "m/s^2" },
+          { label: "Centripetal force", value: force, unit: "N" },
+          { label: "Angular speed", value: omega, unit: "rad/s" },
+        ],
+        insight: "Doubling speed makes centripetal acceleration four times larger because speed is squared.",
+      };
+    }
+  }
+}
+
+function InteractiveFormulaVisual({ id, values, results }: { id: InteractiveFormulaId; values: Record<string, number>; results: InteractiveFormulaResults }) {
+  const primary = results.outputs[0]?.value ?? 0;
+  const normalized = Math.max(0.08, Math.min(1, Math.abs(primary) / (Math.abs(primary) + 40)));
+  const projectileAngle = id === "projectile" ? values.angle : 35;
+  const arcPeak = 104 - normalized * 76;
+  const motionEnd = 42 + normalized * 276;
+  const forceOffset = id === "newton" ? Math.max(-92, Math.min(92, (results.outputs[1]?.value ?? 0) * 1.2)) : 86;
+  const circuitGlow = id === "ohm" ? Math.min(1, (results.outputs[1]?.value ?? 0) / 180) : 0.55;
+  const circularRadius = id === "circular" ? Math.max(34, Math.min(92, values.radius * 2.3)) : 64;
+
+  return (
+    <div className={`interactive-visual-scene interactive-visual-${id}`}>
+      <svg viewBox="0 0 360 220" role="img" aria-label={`${id} interactive formula visual`}>
+        <defs>
+          <linearGradient id={`formulaGlow-${id}`} x1="0" x2="1">
+            <stop offset="0%" stopColor="#22d3ee" />
+            <stop offset="55%" stopColor="#fbbf24" />
+            <stop offset="100%" stopColor="#a78bfa" />
+          </linearGradient>
+        </defs>
+        <path className="interactive-grid-line" d="M28 178H332M40 42V190" />
+        {id === "projectile" && (
+          <>
+            <path className="interactive-trajectory" d={`M42 174 Q180 ${arcPeak} 318 174`} />
+            <line className="interactive-vector" x1="42" y1="174" x2={42 + Math.cos(degreesToRadians(projectileAngle)) * 72} y2={174 - Math.sin(degreesToRadians(projectileAngle)) * 72} />
+            <circle className="interactive-body" cx={42 + normalized * 276} cy={174 - Math.sin(normalized * Math.PI) * (174 - arcPeak)} r="9" />
+            <text x="54" y="158">theta {formatNumber(values.angle)} deg</text>
+          </>
+        )}
+        {id === "motion" && (
+          <>
+            <path className="interactive-trajectory" d={`M42 170 C110 ${170 - normalized * 40}, 210 ${170 - normalized * 100}, ${motionEnd} 72`} />
+            <circle className="interactive-body" cx={motionEnd} cy="72" r="10" />
+            <line className="interactive-vector" x1="42" y1="170" x2={motionEnd} y2="170" />
+            <text x="56" y="156">s = {formatNumber(results.outputs[0].value)} m</text>
+          </>
+        )}
+        {id === "newton" && (
+          <>
+            <rect className="interactive-block" x="140" y="112" width="72" height="48" rx="8" />
+            <line className="interactive-vector push" x1="212" y1="136" x2={212 + Math.abs(forceOffset)} y2="136" />
+            <line className="interactive-vector drag" x1="140" y1="148" x2={140 - Math.min(88, values.friction)} y2="148" />
+            <text x="132" y="96">F = ma</text>
+          </>
+        )}
+        {id === "work" && (
+          <>
+            <path className="interactive-ramp" d="M62 172H318L318 82Z" />
+            <rect className="interactive-block" x="158" y="118" width="56" height="40" rx="7" transform="rotate(-19 186 138)" />
+            <line className="interactive-vector push" x1="192" y1="114" x2="282" y2={114 - Math.sin(degreesToRadians(values.angle)) * 70} />
+            <text x="72" y="68">W = F s cos theta</text>
+          </>
+        )}
+        {id === "ohm" && (
+          <>
+            <rect className="interactive-circuit" x="72" y="62" width="216" height="116" rx="18" />
+            <circle className="interactive-bulb" style={{ opacity: 0.35 + circuitGlow * 0.65 }} cx="180" cy="120" r="34" />
+            <path className="interactive-resistor" d="M90 120h38l8-16 16 32 16-32 16 32 16-32 16 32 8-16h48" />
+            <text x="118" y="48">I = V / R</text>
+          </>
+        )}
+        {id === "circular" && (
+          <>
+            <circle className="interactive-orbit" cx="180" cy="118" r={circularRadius} />
+            <circle className="interactive-body" cx={180 + circularRadius} cy="118" r="10" />
+            <line className="interactive-vector drag" x1={180 + circularRadius} y1="118" x2="180" y2="118" />
+            <line className="interactive-vector push" x1={180 + circularRadius} y1="118" x2={180 + circularRadius} y2="58" />
+            <text x="94" y="44">a = v^2 / r</text>
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
+
+function degreesToRadians(degrees: number) {
+  return (degrees * Math.PI) / 180;
+}
+
+function formatNumber(value: number) {
+  if (!Number.isFinite(value)) return "0";
+  if (Math.abs(value) >= 100) return value.toFixed(0);
+  if (Math.abs(value) >= 10) return value.toFixed(1);
+  return value.toFixed(2).replace(/\.?0+$/, "");
+}
+
+function clamp(value: number, min: number, max: number) {
+  if (!Number.isFinite(value)) return min;
+  return Math.min(max, Math.max(min, value));
 }
 
 function toggleSetValue(current: Set<string>, value: string) {

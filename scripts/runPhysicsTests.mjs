@@ -25,7 +25,7 @@ const policyTests = [
   ["Flagship model registry has broad coverage", new Set(flagshipIds).size >= 10],
   ["Flagship model registry spans core domains", ["free-fall", "ohms-law", "lens-formula", "buoyancy", "gas-laws", "young-double-slit", "photoelectric-equation"].every((id) => flagshipIds.includes(id))],
   ["Trust page exposes readiness audit", /Phase 10 audit/.test(simplePageSource) && /createReadinessAudit/.test(simplePageSource)],
-  ["Trust page reference case count is current", /Reference cases":\s*154/.test(simplePageSource) && /154 local physics checks/.test(simplePageSource)],
+  ["Trust page reference case count is current", /Executable checks":\s*accuracyAuditStats\.executableChecks/.test(simplePageSource) && /accuracyAuditStats\.executableChecks\} local physics checks/.test(simplePageSource)],
   ["Lab page exposes browser-only snapshots", /Browser-only snapshot/.test(experimentDetailSource) && /buildLabSnapshotUrl/.test(experimentDetailSource)],
   ["Lab snapshot URL contract is versioned", /phase-11-snapshot/.test(experimentDetailSource) && /snapshot/.test(experimentDetailSource)],
   ["Teacher assignments can carry snapshots", /snapshotData\?:\s*string/.test(teacherSource) && /params\.set\("snapshot"/.test(teacherSource)],

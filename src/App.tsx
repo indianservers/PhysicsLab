@@ -25,6 +25,7 @@ import { ParticlePhysicsPage } from "./pages/ParticlePhysicsPage";
 import { AtmospherePage } from "./pages/AtmospherePage";
 import { StringTheoryPage } from "./pages/StringTheoryPage";
 import { PhysicsInnovationsPage } from "./pages/PhysicsInnovationsPage";
+import { PhysicsModulesPage } from "./pages/PhysicsModulesPage";
 import { ComparisonPage } from "./pages/ComparisonPage";
 import { QualityAuditPage } from "./pages/QualityAuditPage";
 import { AccuracyCenterPage } from "./pages/AccuracyCenterPage";
@@ -36,6 +37,7 @@ import { InsightsCenterPage } from "./pages/InsightsCenterPage";
 import { ReleaseGovernancePage } from "./pages/ReleaseGovernancePage";
 import { ExcellenceBenchmarkPage } from "./pages/ExcellenceBenchmarkPage";
 import { useLabStore } from "./store/useLabStore";
+import { ScaleOfUniversePage } from "./physics/scale-of-universe/ScaleOfUniversePage";
 import { sendStatement, initXAPISync } from "./lib/xapi";
 import { ToastProvider } from "./components/ToastSystem";
 import { CursorTrail } from "./components/CursorTrail";
@@ -140,15 +142,18 @@ export default function App() {
               <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />
               <Route path="/syllabus" element={<SyllabusPage />} />
               <Route path="/concepts" element={<ConceptsPage />} />
+              <Route path="/modules" element={<PhysicsModulesPage />} />
               <Route path="/roadmap" element={<RoadmapPage />} />
               <Route path="/solver" element={<SolverPage />} />
               <Route path="/formulas" element={<FormulasPage />} />
               <Route path="/dictionary" element={<DictionaryPage />} />
               <Route path="/astrophysics" element={<AstroPhysicsPage />} />
               <Route path="/particle-physics" element={<ParticlePhysicsPage />} />
+              <Route path="/particle-physics/:conceptId" element={<ParticlePhysicsPage />} />
               <Route path="/atmosphere" element={<AtmospherePage />} />
               <Route path="/string-theory" element={<StringTheoryPage />} />
               <Route path="/physics-innovations" element={<PhysicsInnovationsPage />} />
+              <Route path="/physics/scale-of-universe" element={<ScaleOfUniversePage />} />
               <Route path="/comparison" element={<ComparisonPage />} />
               <Route path="/quality-audit" element={<QualityAuditPage />} />
               <Route path="/accuracy-center" element={<AccuracyCenterPage />} />

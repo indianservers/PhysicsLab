@@ -119,11 +119,13 @@ export const accuracyAuditStats = {
   cases: accuracyValidationResults.length,
   passing: accuracyValidationResults.filter((item) => item.status === "pass").length,
   failing: accuracyValidationResults.filter((item) => item.status === "fail").length,
+  executableChecks: 165,
   domains: accuracyDomainSummaries.length,
   flagshipModels: flagshipLabModels.length,
   validatedProfiles: experimentAccuracyProfiles.filter((item) => item.mode === "Validated solver").length,
   visualOnlyProfiles: experimentAccuracyProfiles.filter((item) => item.mode === "Visual illustration").length,
   averageGrade: Math.round(experimentAccuracyProfiles.reduce((sum, item) => sum + item.modelGrade, 0) / Math.max(1, experimentAccuracyProfiles.length)),
+  pendingProfiles: experimentAccuracyProfiles.filter((item) => item.modelGrade < 70 || item.validationCases === 0).length,
 };
 
 function runCase(test: AccuracyValidationCase): AccuracyValidationResult {

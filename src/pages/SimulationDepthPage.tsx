@@ -18,6 +18,13 @@ export function SimulationDepthPage() {
   const [tier, setTier] = useState("All");
   const [selectedId, setSelectedId] = useState(selectedFromUrl ?? simulationDepthProfiles[0]?.experimentId ?? "");
   const categories = useMemo(() => ["All", ...Array.from(new Set(simulationDepthProfiles.map((item) => item.category))).sort()], []);
+  const pendingProfiles = useMemo(
+    () =>
+      simulationDepthProfiles
+        .filter((profile) => profile.missingLayers.length > 0)
+        .sort((a, b) => b.missingLayers.length - a.missingLayers.length || a.depthScore - b.depthScore),
+    [],
+  );
   const [category, setCategory] = useState("All");
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -50,10 +57,47 @@ export function SimulationDepthPage() {
           <Metric label="Simulations" value={simulationDepthStats.profiles} />
           <Metric label="Flagship cinematic" value={simulationDepthStats.flagship} />
           <Metric label="Interactive models" value={simulationDepthStats.interactive} />
-          <Metric label="Need depth pass" value={simulationDepthStats.needsDepthPass} />
+          <Metric label="Pending depth items" value={pendingProfiles.length} />
           <Metric label="Probe gaps" value={simulationDepthStats.probesNeeded} />
           <Metric label="Visual layers" value={visualDepthGaps.length} />
         </section>
+
+        {pendingProfiles.length > 0 && (
+          <section className="depth-board depth-board-wide">
+            <div className="depth-panel depth-pending-panel">
+              <div className="quality-section-head">
+                <div>
+                  <p className="ui-label">Pending items</p>
+                  <h2>{pendingProfiles.length} simulations need a depth pass</h2>
+                </div>
+                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${pendingProfiles[0].experimentId}`} target="_blank" rel="noreferrer">
+                  <PhysicsIcon name="play" className="h-4 w-4" />
+                  Launch first pending
+                </Link>
+              </div>
+              <div className="depth-pending-grid">
+                {pendingProfiles.slice(0, 8).map((profile) => (
+                  <article key={profile.experimentId} className="depth-pending-card">
+                    <div>
+                      <p className="ui-label">{profile.category} / {profile.classLevel}</p>
+                      <strong>{profile.title}</strong>
+                      <p>{profile.missingLayers.length > 0 ? `Needs ${profile.missingLayers.join(", ")}.` : profile.visualPromise}</p>
+                    </div>
+                    <div className="depth-card-actions">
+                      <button type="button" className="depth-detail-button" onClick={() => setSelectedId(profile.experimentId)}>
+                        Review plan
+                      </button>
+                      <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} target="_blank" rel="noreferrer">
+                        <PhysicsIcon name="play" className="h-4 w-4" />
+                        Launch
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="depth-board">
           <div className="depth-panel">
@@ -126,9 +170,9 @@ export function SimulationDepthPage() {
                   <p className="ui-label">Selected simulation upgrade</p>
                   <h2>{selected.title}</h2>
                 </div>
-                <Link className="hero-btn-secondary" to={`/experiments/${selected.experimentId}`}>
-                  <PhysicsIcon name="flask" className="h-4 w-4" />
-                  Open simulation
+                <Link className="hero-btn-primary depth-launch-button" to={`/experiments/${selected.experimentId}`} target="_blank" rel="noreferrer">
+                  <PhysicsIcon name="play" className="h-4 w-4" />
+                  Launch simulator
                 </Link>
               </div>
               <div className="depth-upgrade-grid">
@@ -150,6 +194,10 @@ export function SimulationDepthPage() {
                 <div className="depth-missing-list">
                   <strong>Missing next</strong>
                   {selected.missingLayers.map((layer) => <span key={layer}>{layer}</span>)}
+                  <Link className="depth-launch-mini" to={`/experiments/${selected.experimentId}`} target="_blank" rel="noreferrer">
+                    <PhysicsIcon name="play" className="h-4 w-4" />
+                    Launch this simulator
+                  </Link>
                 </div>
               )}
             </aside>
@@ -185,8 +233,18 @@ function DepthProfileCard({ profile, active, onSelect }: { profile: SimulationDe
         <div className="mt-3 flex flex-wrap gap-2">
           <span className="status-chip status-chip-cyan">{profile.tier}</span>
           <span className="status-chip">{profile.layers.length} layers</span>
+          {profile.missingLayers.length > 0 && <span className="status-chip status-chip-warning">{profile.missingLayers.length} pending</span>}
         </div>
       </button>
+      <div className="depth-card-actions">
+        <button type="button" className="depth-detail-button" onClick={onSelect}>
+          Details
+        </button>
+        <Link className="depth-launch-mini" to={`/experiments/${profile.experimentId}`} target="_blank" rel="noreferrer">
+          <PhysicsIcon name="play" className="h-4 w-4" />
+          Launch
+        </Link>
+      </div>
     </article>
   );
 }

@@ -30,6 +30,8 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const [hasSave, setHasSave] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [compareMode, setCompareMode] = useState(false);
+  const [leftDockOpen, setLeftDockOpen] = useState(true);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [compareObjects, setCompareObjects] = useState<ReturnType<typeof useLabStore.getState>["objects"]>([]);
   const graphSplit = useLabStore((state) => state.graphSplit);
   const running = useLabStore((state) => state.running);
@@ -271,11 +273,21 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
       ) : (
         <Toolbar />
       )}
-      <div className="relative grid min-h-0 flex-1 grid-cols-1 gap-3 p-3 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <div className={leftDockOpen ? "workspace-shell workspace-shell-open" : "workspace-shell workspace-shell-collapsed"}>
         {onboardingStep < 4 && (
           <Onboarding step={onboardingStep} onDone={completeOnboarding} />
         )}
-        <LeftSidebar />
+        <aside className="workspace-left-dock">
+          <div className="workspace-dock-actions">
+            <button className="tool-btn-primary" type="button" onClick={() => setLeftDockOpen((value) => !value)}>
+              {leftDockOpen ? "Hide menu" : "Show menu"}
+            </button>
+            <button className="tool-btn" type="button" onClick={() => setGuideOpen((value) => !value)}>
+              {guideOpen ? "Hide doc" : "Show doc"}
+            </button>
+          </div>
+          {leftDockOpen && <LeftSidebar />}
+        </aside>
         <main
           className={
             graphSplit
@@ -299,13 +311,15 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
               <h1 className="panel-title text-gradient">
                 {mode === "sandbox" ? "Free Sandbox" : "Guided Lab Workspace"}
               </h1>
-              <div className="flex gap-2 text-xs">
+              <div className="flex flex-wrap gap-2 text-xs">
+                {!leftDockOpen && <button className="badge" type="button" onClick={() => setLeftDockOpen(true)}>Open menu</button>}
+                {!guideOpen && <button className="badge" type="button" onClick={() => setGuideOpen(true)}>Open guide</button>}
                 <span className="badge">Matter.js</span>
                 <span className="badge">SI Units</span>
                 <span className="badge">Vectors</span>
               </div>
             </div>
-            <div className="mb-2 px-2">
+            <div className={guideOpen ? "mb-2 px-2" : "hidden"}>
               <GuidePanel guide={workspaceGuide} compact />
             </div>
             {compareMode ? (
