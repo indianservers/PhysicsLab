@@ -100,7 +100,7 @@ export function ExperimentDetailPage() {
               <PhysicsIcon name="book" className="h-4 w-4" />Lab Report
             </button>
             <Link to="/trust" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="check" className="h-4 w-4" />Trust guide</Link>
-            <Link to="/lab" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
+            <Link to={`/lab?experiment=${encodeURIComponent(experiment.id)}`} className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
           </div>
         </div>
         {assignment && <AssignmentBanner assignment={assignment} />}
@@ -300,16 +300,22 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
   const [focusIndex, setFocusIndex] = useState<number | null>(initialSnapshot?.focusIndex ?? null);
   const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
   const [workspaceView, setWorkspaceView] = useState<LabWorkspaceView>(initialSnapshot?.view ?? "visual");
+  const [visualPane, setVisualPane] = useState<"two" | "three">("two");
+  const [controlsCollapsed, setControlsCollapsed] = useState(false);
   const [classroomPaused, setClassroomPaused] = useState(initialSnapshot?.paused ?? false);
   const [presentationStep, setPresentationStep] = useState(initialSnapshot?.presentationStep ?? 0);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
   const [snapshotState, setSnapshotState] = useState(initialSnapshot ? "Snapshot loaded from this link" : "Ready to share current setup");
   const results = calculateLab(experiment.id, a, b, c);
+  const supportsThreeD = has3DAnimation(experiment.id);
   const variablesLocked = Boolean(assignment?.lockVariables);
   const levelSliderCount = learningLevelProfiles[learningLevel].sliderCount;
   const shownControls = results.controls.slice(0, levelSliderCount);
   const variables = results.controls.map((control, index) => ({ label: control.label, value: [a, b, c][index] ?? 0 }));
   const setters = [setA, setB, setC];
+  useEffect(() => {
+    if (!supportsThreeD && visualPane === "three") setVisualPane("two");
+  }, [supportsThreeD, visualPane]);
   const setAll = (values: number[]) => {
     if (variablesLocked) return;
     setA(values[0] ?? a);
@@ -366,87 +372,92 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
   return (
     <div id="simulation" className="experiment-live-shell">
       <div className="desktop-lab-workspace">
-        <section className="desktop-control-rail panel p-3">
-          <LiveExperimentControls
-            result={results}
-            values={[a, b, c]}
-            disabled={classroomPaused || variablesLocked}
-            lockReason={variablesLocked ? "Teacher locked variables for this assignment." : undefined}
-            onChange={(index, value) => setters[index]?.(value)}
-            onSetAll={setAll}
-            onReset={resetValues}
-            onStep={stepValues}
-            onApplyMeasuredTarget={applyMeasuredTarget}
-          />
-          <WatchCue experiment={experiment} result={results} />
-          <div className="mt-3 grid gap-2">
-            {results.outputs.slice(0, 3).map((output) => (
-              <div key={output.label} className="result-card" title={explainOutput(output.label)}>
-                <div className="text-xs text-slate-500 dark:text-slate-400">{output.label}</div>
-                <div className="result-card-value">{output.value}</div>
-              </div>
-            ))}
+        <section className={controlsCollapsed ? "desktop-control-rail desktop-control-rail-collapsed panel p-3" : "desktop-control-rail panel p-3"}>
+          <div className="lab-rail-titlebar">
+            <div className="min-w-0">
+              <p className="ui-label">Left controls</p>
+              <h3>Controls</h3>
+            </div>
+            <button className="tool-btn" type="button" onClick={() => setControlsCollapsed((value) => !value)} aria-expanded={!controlsCollapsed}>
+              <PhysicsIcon name={controlsCollapsed ? "book" : "check"} className="h-4 w-4" />
+              {controlsCollapsed ? "Open" : "Collapse"}
+            </button>
           </div>
-          <CollapsibleSection icon="calculator" title="Controls" hint="Change one variable at a time to see the cleanest physics pattern" defaultOpen>
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">{results.description}</p>
-            <div className="focus-control-strip mt-3">
-              <div className="min-w-0">
-                <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Focus</div>
-                <div className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Show one slider for pattern discovery.</div>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                <button className={focusIndex === null ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(null)}>All</button>
-                {results.controls.map((control, index) => (
-                  <button key={control.label} className={focusIndex === index ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(index)}>
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="mt-3 grid gap-2 md:grid-cols-3">
-              <MiniAction label="Low" icon="ruler" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.min))} />
-              <MiniAction label="Mid" icon="gauge" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
-              <MiniAction label="High" icon="spark" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.max))} />
-            </div>
-            {experiment.id === "prism-dispersion" && (
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {prismMaterials.map((material) => (
-                  <MiniAction
-                    key={material.id}
-                    label={material.name}
-                    icon="prism"
-                    disabled={variablesLocked}
-                    onClick={() => setAll([a, material.meanIndex, material.dispersion])}
-                  />
-                ))}
-              </div>
-            )}
-            <div className="mt-4 grid gap-3">
-              {shownControls.map((control, index) => (focusIndex === null || focusIndex === index) && (
-                <LabSlider
-                  key={control.label}
-                  label={control.label}
-                  value={index === 0 ? a : index === 1 ? b : c}
-                  min={control.min}
-                  max={control.max}
-                  step={control.step}
-                  onChange={setters[index]}
-                  disabled={classroomPaused || variablesLocked}
-                />
-              ))}
-            </div>
-            <ChangeWatchBecause result={results} focusIndex={focusIndex} />
-          </CollapsibleSection>
-          <CollapsibleSection icon="ruler" title="Formula" hint="Model used by the calculator">
-            <div className="font-mono text-sm">{results.formula}</div>
-            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
-            <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
-            <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
-          </CollapsibleSection>
-          <CollapsibleSection icon="flask" title="Guided steps" hint="Use this when you want lab-assistant mode">
-            <ClassroomControlBar paused={classroomPaused} locked={variablesLocked} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
-            <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
-          </CollapsibleSection>
+          {!controlsCollapsed && (
+            <>
+              <LiveExperimentControls
+                result={results}
+                values={[a, b, c]}
+                disabled={classroomPaused || variablesLocked}
+                lockReason={variablesLocked ? "Teacher locked variables for this assignment." : undefined}
+                onChange={(index, value) => setters[index]?.(value)}
+                onSetAll={setAll}
+                onReset={resetValues}
+                onStep={stepValues}
+                onApplyMeasuredTarget={applyMeasuredTarget}
+              />
+              <CollapsibleSection icon="calculator" title="Controls" hint="Change one variable at a time to see the cleanest physics pattern" defaultOpen>
+                <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">{results.description}</p>
+                <div className="focus-control-strip mt-3">
+                  <div className="min-w-0">
+                    <div className="text-xs font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-300">Focus</div>
+                    <div className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Show one slider for pattern discovery.</div>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <button className={focusIndex === null ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(null)}>All</button>
+                    {results.controls.map((control, index) => (
+                      <button key={control.label} className={focusIndex === index ? "focus-pill focus-pill-active" : "focus-pill"} type="button" onClick={() => setFocusIndex(index)}>
+                        {index + 1}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-3 grid gap-2 md:grid-cols-3">
+                  <MiniAction label="Low" icon="ruler" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.min))} />
+                  <MiniAction label="Mid" icon="gauge" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => midpoint(control)))} />
+                  <MiniAction label="High" icon="spark" disabled={variablesLocked} onClick={() => setAll(results.controls.map((control) => control.max))} />
+                </div>
+                {experiment.id === "prism-dispersion" && (
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {prismMaterials.map((material) => (
+                      <MiniAction
+                        key={material.id}
+                        label={material.name}
+                        icon="prism"
+                        disabled={variablesLocked}
+                        onClick={() => setAll([a, material.meanIndex, material.dispersion])}
+                      />
+                    ))}
+                  </div>
+                )}
+                <div className="mt-4 grid gap-3">
+                  {shownControls.map((control, index) => (focusIndex === null || focusIndex === index) && (
+                    <LabSlider
+                      key={control.label}
+                      label={control.label}
+                      value={index === 0 ? a : index === 1 ? b : c}
+                      min={control.min}
+                      max={control.max}
+                      step={control.step}
+                      onChange={setters[index]}
+                      disabled={classroomPaused || variablesLocked}
+                    />
+                  ))}
+                </div>
+                <ChangeWatchBecause result={results} focusIndex={focusIndex} />
+              </CollapsibleSection>
+              <CollapsibleSection icon="ruler" title="Formula" hint="Model used by the calculator">
+                <div className="font-mono text-sm">{results.formula}</div>
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
+                <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
+                <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
+              </CollapsibleSection>
+              <CollapsibleSection icon="flask" title="Guided steps" hint="Use this when you want lab-assistant mode">
+                <ClassroomControlBar paused={classroomPaused} locked={variablesLocked} onPauseToggle={() => setClassroomPaused((value) => !value)} onReset={resetValues} onStep={stepValues} />
+                <GuidedExperimentMode experiment={experiment} level={learningLevel} variables={variables} outputs={results.outputs} />
+              </CollapsibleSection>
+            </>
+          )}
         </section>
         <section className="desktop-stage-panel panel p-3">
         <div className="desktop-stage-header">
@@ -469,25 +480,6 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
             ))}
           </div>
         </div>
-        <LabPresentationPanel
-          experiment={experiment}
-          result={results}
-          activeIndex={presentationStep}
-          copiedPrompt={copiedPrompt}
-          modelPrompt={flagshipModel?.predictionPrompt}
-          onSelect={applyPresentationStep}
-          onPrevious={() => applyPresentationStep(presentationStep - 1)}
-          onNext={() => applyPresentationStep(presentationStep + 1)}
-          onCopy={copyPresentationPrompt}
-        />
-        <LabSnapshotPanel
-          result={results}
-          values={[a, b, c]}
-          snapshotState={snapshotState}
-          onCopy={copyLabSnapshot}
-          onPin={pinLabSnapshot}
-          onReset={resetValues}
-        />
         <div className="desktop-stage-body">
           {flagshipModel && (
             <div className="rounded-md border border-emerald-400/30 bg-emerald-400/10 p-3 text-sm text-slate-700 dark:text-slate-200">
@@ -501,11 +493,27 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
           )}
           {workspaceView === "visual" && (
             <>
-              <ConceptFocusPanel experiment={experiment} result={results} learningLevel={learningLevel} />
-              <div className="lab-visual-grid">
-                <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
-                {has3DAnimation(experiment.id) && <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />}
+              <div className="visual-pane-window">
+                <div className="visual-pane-tabs" role="tablist" aria-label="Visual workbench panes">
+                  <button className={visualPane === "two" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "two"} onClick={() => setVisualPane("two")}>
+                    <PhysicsIcon name="eye" className="h-4 w-4" />
+                    2D Visual
+                  </button>
+                  <button className={visualPane === "three" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "three"} disabled={!supportsThreeD} onClick={() => setVisualPane("three")}>
+                    <PhysicsIcon name="orbit" className="h-4 w-4" />
+                    3D Visual
+                  </button>
+                </div>
+                <div className="visual-pane-canvas">
+                  {visualPane === "two" && (
+                    <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
+                  )}
+                  {visualPane === "three" && supportsThreeD && (
+                    <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />
+                  )}
+                </div>
               </div>
+              <ConceptFocusPanel experiment={experiment} result={results} learningLevel={learningLevel} />
               <details className="concept-support-drawer">
                 <summary><PhysicsIcon name="spark" className="h-4 w-4" />Animation checkpoints</summary>
                 <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />
@@ -548,6 +556,69 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
           )}
         </div>
         </section>
+        <aside className="desktop-properties-rail panel p-3">
+          <div className="lab-rail-titlebar">
+            <div className="min-w-0">
+              <p className="ui-label">Right side</p>
+              <h3>Properties</h3>
+            </div>
+            <span className="status-chip status-chip-cyan">{visualPane === "two" ? "2D" : "3D"}</span>
+          </div>
+          <WatchCue experiment={experiment} result={results} />
+          <LabPresentationPanel
+            experiment={experiment}
+            result={results}
+            activeIndex={presentationStep}
+            copiedPrompt={copiedPrompt}
+            modelPrompt={flagshipModel?.predictionPrompt}
+            onSelect={applyPresentationStep}
+            onPrevious={() => applyPresentationStep(presentationStep - 1)}
+            onNext={() => applyPresentationStep(presentationStep + 1)}
+            onCopy={copyPresentationPrompt}
+          />
+          <LabSnapshotPanel
+            result={results}
+            values={[a, b, c]}
+            snapshotState={snapshotState}
+            onCopy={copyLabSnapshot}
+            onPin={pinLabSnapshot}
+            onReset={resetValues}
+          />
+          <div className="property-section">
+            <p className="ui-label">Output readings</p>
+            <div className="mt-2 grid gap-2">
+              {results.outputs.slice(0, 5).map((output) => (
+                <div key={output.label} className="result-card" title={explainOutput(output.label)}>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">{output.label}</div>
+                  <div className="result-card-value">{output.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="property-section">
+            <p className="ui-label">Current inputs</p>
+            <div className="property-value-list">
+              {results.controls.slice(0, 3).map((control, index) => (
+                <div key={control.label}>
+                  <span>{control.label}</span>
+                  <strong>{formatReportNumber([a, b, c][index] ?? control.min)}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="property-section">
+            <p className="ui-label">Formula</p>
+            <code>{results.formula}</code>
+            <p>{formulaNote(experiment.id)}</p>
+          </div>
+          {flagshipModel && (
+            <div className="property-section">
+              <p className="ui-label">Model</p>
+              <strong>{flagshipModel.modelVersion}</strong>
+              <p>{flagshipModel.maturityTarget}</p>
+            </div>
+          )}
+        </aside>
       </div>
     </div>
   );
@@ -2096,6 +2167,7 @@ function defaultLabValues(id: string): [number, number, number] {
   if (id === "buoyancy" || id === "density-float-sink") return [800, 1000, 700];
   if (id === "bernoulli-fluid-flow") return [1000, 18, 3];
   if (id === "photoelectric-equation") return [4, 2.5, 0.8];
+  if (id === "shadows-eclipses") return [5, 40, 100];
   return [5, 2, 0.2];
 }
 

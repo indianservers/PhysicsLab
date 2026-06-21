@@ -11,6 +11,7 @@ import { sendStatement } from "../lib/xapi";
 import { GuidePanel } from "../components/GuidePanel";
 import { workspaceGuide } from "../lib/guides";
 import { PhysicsIcon } from "../lib/icons";
+import { experiments } from "../lib/experiments";
 import {
   loadExperimentState,
   saveExperimentState,
@@ -37,7 +38,8 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
   const simTrackedRef = useRef(false);
   const params = new URLSearchParams(window.location.search);
   const embedded = params.get("embed") === "1" || window.parent !== window;
-  const experimentName = params.get("experiment") ?? (mode === "sandbox" ? "sandbox" : "lab");
+  const experimentId = params.get("experiment");
+  const experimentName = experimentId ?? (mode === "sandbox" ? "sandbox" : "lab");
 
   useEffect(() => {
     if (running && !simTrackedRef.current) { simTrackedRef.current = true; trackSimRun(); }
@@ -76,7 +78,24 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
     // Restore from IndexedDB if available
     loadExperimentState(experimentName)
       .then((snap) => {
-        if (!snap) return;
+        if (!snap) {
+          const experiment = experimentId
+            ? experiments.find((item) => item.id === experimentId)
+            : undefined;
+          if (!experiment) return;
+          useLabStore.setState({
+            objects: cloneLabObjects(experiment.simulationSetup.objects),
+            gravity: experiment.simulationSetup.gravity,
+            graphData: [],
+            observationRows: [],
+            simulationTime: 0,
+            running: false,
+            selectedId: undefined,
+            engineWarnings: [],
+            viewport: { offsetX: 0, offsetY: 0, zoom: 1 },
+          });
+          return;
+        }
         useLabStore.setState({
           objects: snap.objects,
           gravity: snap.settings.gravity,
@@ -530,6 +549,13 @@ function CompareCanvasSnapshot({ objects }: { objects: ReturnType<typeof useLabS
 
 function averageSpeed(objects: ReturnType<typeof useLabStore.getState>["objects"]) {
   return objects.length ? objects.reduce((sum, object) => sum + Math.hypot(object.vx, object.vy), 0) / objects.length : 0;
+}
+
+function cloneLabObjects(objects: ReturnType<typeof useLabStore.getState>["objects"]) {
+  return objects.map((object) => ({
+    ...object,
+    trail: [...object.trail],
+  }));
 }
 
 function circuitSignature(

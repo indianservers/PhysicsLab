@@ -19,6 +19,22 @@ import { TeacherPage } from "./pages/TeacherPage";
 import { SolverPage } from "./pages/SolverPage";
 import { QuizPage } from "./pages/QuizPage";
 import { FormulasPage } from "./pages/FormulasPage";
+import { DictionaryPage } from "./pages/DictionaryPage";
+import { AstroPhysicsPage } from "./pages/AstroPhysicsPage";
+import { ParticlePhysicsPage } from "./pages/ParticlePhysicsPage";
+import { AtmospherePage } from "./pages/AtmospherePage";
+import { StringTheoryPage } from "./pages/StringTheoryPage";
+import { PhysicsInnovationsPage } from "./pages/PhysicsInnovationsPage";
+import { ComparisonPage } from "./pages/ComparisonPage";
+import { QualityAuditPage } from "./pages/QualityAuditPage";
+import { AccuracyCenterPage } from "./pages/AccuracyCenterPage";
+import { LearningStudioPage } from "./pages/LearningStudioPage";
+import { SimulationDepthPage } from "./pages/SimulationDepthPage";
+import { ClassroomDeploymentPage } from "./pages/ClassroomDeploymentPage";
+import { AccessibilityCenterPage } from "./pages/AccessibilityCenterPage";
+import { InsightsCenterPage } from "./pages/InsightsCenterPage";
+import { ReleaseGovernancePage } from "./pages/ReleaseGovernancePage";
+import { ExcellenceBenchmarkPage } from "./pages/ExcellenceBenchmarkPage";
 import { useLabStore } from "./store/useLabStore";
 import { sendStatement, initXAPISync } from "./lib/xapi";
 import { ToastProvider } from "./components/ToastSystem";
@@ -27,6 +43,7 @@ import { SplashLoader } from "./components/SplashLoader";
 import { AchievementSystem } from "./components/AchievementSystem";
 import { ParticleConstellation } from "./components/ParticleConstellation";
 import { AmbientAudio } from "./components/AmbientAudio";
+import { AppFooter } from "./components/AppFooter";
 
 const topics = [
   "mechanics",
@@ -39,6 +56,7 @@ const topics = [
   "fluid-mechanics",
   "oscillations",
   "astronomy",
+  "astrophysics",
   "measurement",
   "electronics",
   "energy",
@@ -125,6 +143,22 @@ export default function App() {
               <Route path="/roadmap" element={<RoadmapPage />} />
               <Route path="/solver" element={<SolverPage />} />
               <Route path="/formulas" element={<FormulasPage />} />
+              <Route path="/dictionary" element={<DictionaryPage />} />
+              <Route path="/astrophysics" element={<AstroPhysicsPage />} />
+              <Route path="/particle-physics" element={<ParticlePhysicsPage />} />
+              <Route path="/atmosphere" element={<AtmospherePage />} />
+              <Route path="/string-theory" element={<StringTheoryPage />} />
+              <Route path="/physics-innovations" element={<PhysicsInnovationsPage />} />
+              <Route path="/comparison" element={<ComparisonPage />} />
+              <Route path="/quality-audit" element={<QualityAuditPage />} />
+              <Route path="/accuracy-center" element={<AccuracyCenterPage />} />
+              <Route path="/learning-studio" element={<LearningStudioPage />} />
+              <Route path="/simulation-depth" element={<SimulationDepthPage />} />
+              <Route path="/classroom-deployment" element={<ClassroomDeploymentPage />} />
+              <Route path="/accessibility-center" element={<AccessibilityCenterPage />} />
+              <Route path="/insights-center" element={<InsightsCenterPage />} />
+              <Route path="/release-governance" element={<ReleaseGovernancePage />} />
+              <Route path="/excellence-benchmark" element={<ExcellenceBenchmarkPage />} />
               <Route path="/quiz" element={<QuizPage />} />
               <Route path="/video" element={<VideoAnalysisPage />} />
               <Route path="/quantum" element={<QuantumPage />} />
@@ -145,6 +179,7 @@ export default function App() {
               <Route path="/terms" element={<SimplePage title="Terms" />} />
             </Routes>
           </div>
+          <AppFooter />
         </main>
       </ToastProvider>
     </div>

@@ -143,6 +143,19 @@ export const formulaCategories: PhysicsFormulaCategory[] = [
     ]
   ),
   makeCategory(
+    { id: "mechanical-properties-solids", title: "Mechanical Properties of Solids", domain: "Mechanics", classRange: "Class 11-12", icon: "spring", accent: "science" },
+    [
+      ["stress", "Stress", "\\sigma=\\frac{F}{A}", ["sigma", "F", "A"], ["elasticity", "solid"]],
+      ["strain", "Longitudinal strain", "\\epsilon=\\frac{\\Delta L}{L}", ["epsilon", "Delta L", "L"], ["elasticity", "strain"]],
+      ["young-modulus", "Young's modulus", "Y=\\frac{\\sigma}{\\epsilon}=\\frac{FL}{A\\Delta L}", ["Y", "sigma", "epsilon", "F", "L", "A", "Delta L"], ["elasticity", "modulus"]],
+      ["bulk-modulus", "Bulk modulus", "K=-\\frac{\\Delta P}{\\Delta V/V}", ["K", "Delta P", "Delta V", "V"], ["elasticity", "pressure"]],
+      ["shear-modulus", "Shear modulus", "G=\\frac{\\text{shear stress}}{\\text{shear strain}}", ["G"], ["elasticity", "shear"]],
+      ["poisson-ratio", "Poisson ratio", "\\nu=-\\frac{\\text{lateral strain}}{\\text{longitudinal strain}}", ["nu"], ["elasticity", "strain"]],
+      ["elastic-energy-density", "Elastic energy density", "u=\\frac{1}{2}\\sigma\\epsilon", ["u", "sigma", "epsilon"], ["elastic energy"]],
+      ["spring-elastic-energy", "Elastic potential energy", "U=\\frac{1}{2}kx^2", ["U", "k", "x"], ["spring", "elastic energy"]],
+    ]
+  ),
+  makeCategory(
     { id: "fluid-mechanics", title: "Fluid Mechanics", domain: "Fluid Mechanics", classRange: "Class 9-12", icon: "drop", accent: "science" },
     [
       ["pressure", "Pressure", "P=\\frac{F}{A}", ["P", "F", "A"], ["pressure"]],
@@ -339,6 +352,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["friction-angle", "Angle of friction", "\\tan\\phi=\\mu", ["phi", "mu"], ["friction"]],
     ["drag-linear", "Linear drag", "F_d=bv", ["F_d", "b", "v"], ["drag"]],
     ["terminal-speed-simple", "Terminal speed with linear drag", "v_t=\\frac{mg}{b}", ["v_t", "m", "g", "b"], ["drag"]],
+    ["spring-scale-force", "Spring scale force balance", "T=mg+ma", ["T", "m", "g", "a"], ["tension", "elevator"]],
+    ["banked-road-speed", "Banked road speed", "v=\\sqrt{rg\\tan\\theta}", ["v", "r", "g", "theta"], ["circular motion", "banking"]],
   ],
   "work-energy-power": [
     ["spring-potential-energy", "Spring potential energy", "U_s=\\frac{1}{2}kx^2", ["U_s", "k", "x"], ["spring", "energy"]],
@@ -369,6 +384,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["moment-inertia-disc", "Moment of inertia - disc", "I=\\frac{1}{2}MR^2", ["I", "M", "R"], ["inertia"]],
     ["moment-inertia-rod-center", "Moment of inertia - rod center", "I=\\frac{1}{12}ML^2", ["I", "M", "L"], ["inertia"]],
     ["rotational-work", "Rotational work", "W=\\tau\\theta", ["W", "tau", "theta"], ["work"]],
+    ["angular-impulse", "Angular impulse", "\\tau\\Delta t=\\Delta L", ["tau", "Delta t", "Delta L"], ["angular momentum", "impulse"]],
+    ["rotational-power", "Rotational power", "P=\\tau\\omega", ["P", "tau", "omega"], ["power", "rotation"]],
   ],
   gravitation: [
     ["surface-gravity", "Surface gravity", "g=\\frac{GM}{R^2}", ["g", "G", "M", "R"], ["gravity"]],
@@ -419,6 +436,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["poiseuille", "Poiseuille law", "Q=\\frac{\\pi r^4\\Delta P}{8\\eta L}", ["Q", "r", "Delta P", "eta", "L"], ["viscosity"]],
     ["terminal-speed-stokes", "Terminal speed in viscous fluid", "v_t=\\frac{2r^2(\\rho_s-\\rho_f)g}{9\\eta}", ["v_t", "r", "rho", "g", "eta"], ["viscosity"]],
     ["reynolds-number", "Reynolds number", "Re=\\frac{\\rho vD}{\\eta}", ["Re", "rho", "v", "D", "eta"], ["flow"]],
+    ["surface-tension-force", "Surface tension force", "F=\\gamma L", ["F", "gamma", "L"], ["surface tension"]],
+    ["capillary-rise", "Capillary rise", "h=\\frac{2\\gamma\\cos\\theta}{\\rho gr}", ["h", "gamma", "theta", "rho", "g", "r"], ["capillarity"]],
   ],
   "thermal-physics": [
     ["heat-mixture", "Heat balance", "m_1c_1(T_f-T_1)+m_2c_2(T_f-T_2)=0", ["m", "c", "T_f", "T"], ["calorimetry"]],
@@ -429,6 +448,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["heat-engine-efficiency", "Heat engine efficiency", "\\eta=1-\\frac{Q_c}{Q_h}", ["eta", "Q_c", "Q_h"], ["engine"]],
     ["carnot-efficiency", "Carnot efficiency", "\\eta=1-\\frac{T_c}{T_h}", ["eta", "T_c", "T_h"], ["engine"]],
     ["radiation-net", "Net radiation power", "P=\\sigma eA(T^4-T_s^4)", ["P", "sigma", "e", "A", "T", "T_s"], ["radiation"]],
+    ["coefficient-performance-refrigerator", "Refrigerator COP", "COP=\\frac{Q_c}{W}", ["COP", "Q_c", "W"], ["refrigerator", "thermodynamics"]],
+    ["first-law-thermodynamics", "First law of thermodynamics", "\\Delta U=Q-W", ["Delta U", "Q", "W"], ["thermodynamics", "internal energy"]],
   ],
   "kinetic-theory-gases": [
     ["combined-gas-law", "Combined gas law", "\\frac{P_1V_1}{T_1}=\\frac{P_2V_2}{T_2}", ["P", "V", "T"], ["gas"]],
@@ -449,6 +470,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["capacitors-series", "Capacitors in series", "\\frac{1}{C_s}=\\frac{1}{C_1}+\\frac{1}{C_2}", ["C_s", "C"], ["capacitor"]],
     ["capacitors-parallel", "Capacitors in parallel", "C_p=C_1+C_2+\\cdots", ["C_p", "C"], ["capacitor"]],
     ["energy-density-electric", "Electric field energy density", "u=\\frac{1}{2}\\epsilon_0E^2", ["u", "epsilon_0", "E"], ["energy"]],
+    ["electric-dipole-moment", "Electric dipole moment", "p=qd", ["p", "q", "d"], ["dipole"]],
+    ["dipole-torque", "Torque on electric dipole", "\\tau=pE\\sin\\theta", ["tau", "p", "E", "theta"], ["dipole", "torque"]],
   ],
   "current-electricity": [
     ["drift-current", "Current by drift", "I=nAev_d", ["I", "n", "A", "e", "v_d"], ["drift"]],
@@ -499,6 +522,9 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["lens-makers", "Lens maker formula", "\\frac{1}{f}=(n-1)\\left(\\frac{1}{R_1}-\\frac{1}{R_2}\\right)", ["f", "n", "R"], ["lens"]],
     ["combination-lenses", "Lens combination", "P=P_1+P_2", ["P", "P_1", "P_2"], ["lens"]],
     ["simple-microscope", "Simple microscope magnification", "M=1+\\frac{D}{f}", ["M", "D", "f"], ["instrument"]],
+    ["compound-microscope", "Compound microscope magnification", "M=\\frac{L}{f_o}\\left(1+\\frac{D}{f_e}\\right)", ["M", "L", "f_o", "D", "f_e"], ["microscope", "instrument"]],
+    ["mirror-magnification", "Mirror magnification", "m=-\\frac{v}{u}", ["m", "v", "u"], ["mirror", "image"]],
+    ["telescope-magnification", "Astronomical telescope magnification", "M=\\frac{f_o}{f_e}", ["M", "f_o", "f_e"], ["telescope", "instrument"]],
   ],
   "wave-optics": [
     ["constructive-interference", "Constructive interference", "\\Delta x=n\\lambda", ["Delta x", "n", "lambda"], ["interference"]],
@@ -519,6 +545,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["matter-wave-voltage", "Electron de Broglie wavelength", "\\lambda=\\frac{h}{\\sqrt{2meV}}", ["lambda", "h", "m", "e", "V"], ["matter wave"]],
     ["blackbody-wien", "Wien displacement law", "\\lambda_{max}T=b", ["lambda_max", "T", "b"], ["blackbody"]],
     ["planck-radiation", "Planck quantum relation", "E=n h\\nu", ["E", "n", "h", "nu"], ["quantum"]],
+    ["relativistic-kinetic-energy", "Relativistic kinetic energy", "K=(\\gamma-1)mc^2", ["K", "gamma", "m", "c"], ["relativity"]],
+    ["photon-momentum", "Photon momentum", "p=\\frac{h}{\\lambda}", ["p", "h", "lambda"], ["photon", "momentum"]],
   ],
   "atomic-physics": [
     ["atomic-transition-energy", "Atomic transition energy", "\\Delta E=E_i-E_f", ["Delta E", "E_i", "E_f"], ["spectrum"]],
@@ -541,6 +569,11 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["fission-energy", "Fission energy", "E=(m_{reactants}-m_{products})c^2", ["E", "m", "c"], ["fission"]],
   ],
   "electronics-logic": [
+    ["pn-junction-diode", "P-N junction diode equation", "I=I_s\\left(e^{\\frac{eV}{\\eta kT}}-1\\right)", ["I", "I_s", "e", "V", "eta", "k", "T"], ["diode", "semiconductor"]],
+    ["transistor-current-gain-beta", "Transistor current gain", "\\beta=\\frac{I_C}{I_B}", ["beta", "I_C", "I_B"], ["transistor", "semiconductor"]],
+    ["transistor-current-gain-alpha", "Common-base current gain", "\\alpha=\\frac{I_C}{I_E}", ["alpha", "I_C", "I_E"], ["transistor", "semiconductor"]],
+    ["transistor-current-relation", "Transistor current relation", "I_E=I_B+I_C", ["I_E", "I_B", "I_C"], ["transistor"]],
+    ["laser-photon-energy", "Laser photon energy", "E=h\\nu=\\frac{hc}{\\lambda}", ["E", "h", "nu", "c", "lambda"], ["laser", "photon"]],
     ["logic-or", "OR gate", "Y=A+B", ["Y", "A", "B"], ["logic"]],
     ["logic-nand", "NAND gate", "Y=\\overline{A\\cdot B}", ["Y", "A", "B"], ["logic"]],
     ["logic-nor", "NOR gate", "Y=\\overline{A+B}", ["Y", "A", "B"], ["logic"]],
@@ -559,6 +592,8 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["distance-modulus", "Distance modulus", "m-M=5\\log_{10}d-5", ["m", "M", "d"], ["astronomy"]],
     ["stefan-luminosity-star", "Star luminosity", "L=4\\pi R^2\\sigma T^4", ["L", "R", "sigma", "T"], ["star"]],
     ["kepler-binary-mass", "Binary mass relation", "M_1+M_2=\\frac{4\\pi^2a^3}{GT^2}", ["M", "a", "G", "T"], ["binary star"]],
+    ["eddington-luminosity", "Eddington luminosity", "L_E=\\frac{4\\pi GMm_pc}{\\sigma_T}", ["L_E", "G", "M", "m_p", "c", "sigma_T"], ["star", "radiation pressure"]],
+    ["parallax-distance", "Parallax distance", "d=\\frac{1}{p}", ["d", "p"], ["parallax", "distance"]],
   ],
 };
 

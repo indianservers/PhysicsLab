@@ -39,6 +39,7 @@ const QUICK_ACTIONS = [
   { label: "Open Sandbox", icon: "flask" as const, path: "/sandbox", hint: "S" },
   { label: "Quiz Challenge", icon: "check" as const, path: "/quiz", hint: "Q" },
   { label: "Graph Studio", icon: "chart" as const, path: "/graphs", hint: "G" },
+  { label: "Dictionary", icon: "clipboard" as const, path: "/dictionary", hint: "D" },
   { label: "Knowledge Graph", icon: "orbit" as const, path: "/graph", hint: "N" },
   { label: "All Experiments", icon: "orbit" as const, path: "/experiments", hint: "E" },
   { label: "Solver Bank", icon: "calculator" as const, path: "/solver", hint: "L" },
@@ -49,6 +50,7 @@ const typeLabels: Record<SearchResult["type"], string> = {
   experiment: "Experiments",
   topic: "Syllabus",
   formula: "Formulae",
+  dictionary: "Dictionary",
   solver: "Solver",
   quiz: "Quiz",
   object: "Lab objects",
@@ -59,6 +61,7 @@ const typeTint: Record<SearchResult["type"], string> = {
   experiment: "from-cyan-300 to-blue-500",
   topic: "from-emerald-300 to-teal-500",
   formula: "from-amber-200 to-orange-500",
+  dictionary: "from-sky-200 to-cyan-500",
   solver: "from-violet-300 to-fuchsia-500",
   quiz: "from-lime-200 to-emerald-500",
   object: "from-rose-200 to-cyan-400",
@@ -167,7 +170,7 @@ export function GlobalSearch({ open, onClose }: GlobalSearchProps) {
           </div>
 
           {/* Type counts */}
-          <div className="mt-4 grid gap-2 text-xs font-bold uppercase tracking-wide text-slate-300 sm:grid-cols-7">
+          <div className="mt-4 grid gap-2 text-xs font-bold uppercase tracking-wide text-slate-300 sm:grid-cols-4 lg:grid-cols-8">
             {Object.entries(counts).map(([type, count]) => (
               <div key={type} className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2">
                 <span className={`mr-2 inline-block h-2 w-2 rounded-full bg-gradient-to-r ${typeTint[type as SearchResult["type"]]}`} />
@@ -251,6 +254,7 @@ export function GlobalSearch({ open, onClose }: GlobalSearchProps) {
               <div className="mt-3 space-y-3 text-sm text-slate-300">
                 <SearchStat label="Experiment demos" value={counts.experiment} color="from-cyan-300 to-blue-500" />
                 <SearchStat label="Physics formulae" value={counts.formula} color="from-amber-200 to-orange-500" />
+                <SearchStat label="Dictionary terms" value={counts.dictionary} color="from-sky-200 to-cyan-500" />
                 <SearchStat label="Solver paths" value={counts.solver} color="from-violet-300 to-fuchsia-500" />
                 <SearchStat label="Lab tools" value={counts.object} color="from-rose-200 to-cyan-400" />
               </div>

@@ -17,6 +17,7 @@ type NavItem = {
   path: string;
   icon: PhysicsIconName;
   accent?: "science" | "quantum" | "warning";
+  children?: NavItem[];
 };
 
 const primaryNavItems: NavItem[] = [
@@ -24,6 +25,7 @@ const primaryNavItems: NavItem[] = [
   { label: "Experiments", path: "/experiments", icon: "flask" },
   { label: "Solver", path: "/solver", icon: "calculator" },
   { label: "Formulas", path: "/formulas", icon: "book", accent: "warning" },
+  { label: "Dictionary", path: "/dictionary", icon: "clipboard" },
   { label: "Quiz", path: "/quiz", icon: "check" },
   { label: "Syllabus", path: "/syllabus", icon: "book" },
   { label: "Concepts", path: "/concepts", icon: "spark" },
@@ -34,16 +36,39 @@ const primaryNavItems: NavItem[] = [
 const studyNavItems: NavItem[] = [
   { label: "Roadmap", path: "/roadmap", icon: "compass" },
   { label: "All Topics", path: "/topics", icon: "book" },
+  {
+    label: "Visual Modules",
+    path: "/atmosphere",
+    icon: "spark",
+    accent: "quantum",
+    children: [
+      { label: "Inventions", path: "/physics-innovations", icon: "spark", accent: "warning" },
+      { label: "String Theory", path: "/string-theory", icon: "wave", accent: "quantum" },
+      { label: "Atmosphere", path: "/atmosphere", icon: "orbit", accent: "quantum" },
+      { label: "AstroPhysics", path: "/astrophysics", icon: "orbit", accent: "quantum" },
+      { label: "Particle", path: "/particle-physics", icon: "atom", accent: "quantum" },
+    ],
+  },
+  { label: "Learning Studio", path: "/learning-studio", icon: "teacher", accent: "science" },
   { label: "Graphs", path: "/graphs", icon: "chart" },
   { label: "Trust", path: "/trust", icon: "check", accent: "warning" },
   { label: "Quantum", path: "/quantum", icon: "atom", accent: "quantum" },
   { label: "Knowledge Graph", path: "/graph", icon: "orbit" },
+  { label: "Compare", path: "/comparison", icon: "chart" },
 ];
 
 const toolNavItems: NavItem[] = [
   { label: "Sandbox", path: "/sandbox", icon: "spark" },
   { label: "Video Analysis", path: "/video", icon: "eye" },
   { label: "Quantum Lab", path: "/quantum", icon: "atom", accent: "quantum" },
+  { label: "Quality Audit", path: "/quality-audit", icon: "chart", accent: "warning" },
+  { label: "Accuracy Center", path: "/accuracy-center", icon: "check", accent: "science" },
+  { label: "Sim Depth", path: "/simulation-depth", icon: "eye", accent: "science" },
+  { label: "Deploy", path: "/classroom-deployment", icon: "teacher", accent: "warning" },
+  { label: "Access", path: "/accessibility-center", icon: "settings", accent: "science" },
+  { label: "Insights", path: "/insights-center", icon: "chart", accent: "warning" },
+  { label: "Release", path: "/release-governance", icon: "check", accent: "science" },
+  { label: "Excellence", path: "/excellence-benchmark", icon: "gauge", accent: "warning" },
   { label: "Projects", path: "/projects", icon: "folder" },
   { label: "Backup", path: "/backup", icon: "download" },
 ];
@@ -223,6 +248,25 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
 }
 
 function NavLinkItem({ item, navClass }: { item: NavItem; navClass: (path: string) => string }) {
+  if (item.children?.length) {
+    return (
+      <details className="rail-submenu">
+        <summary className={navClass(item.path)} data-accent={item.accent ?? "science"} title={item.label}>
+          <PhysicsIcon name={item.icon} className="h-4 w-4" />
+          <span>{item.label}</span>
+        </summary>
+        <div className="rail-submenu-panel">
+          {item.children.map((child) => (
+            <RouterLink key={child.path} to={child.path} className={navClass(child.path)} data-accent={child.accent ?? "science"} title={child.label}>
+              <PhysicsIcon name={child.icon} className="h-4 w-4" />
+              <span>{child.label}</span>
+            </RouterLink>
+          ))}
+        </div>
+      </details>
+    );
+  }
+
   return (
     <RouterLink to={item.path} className={navClass(item.path)} data-accent={item.accent ?? "science"} title={item.label}>
       <PhysicsIcon name={item.icon} className="h-4 w-4" />

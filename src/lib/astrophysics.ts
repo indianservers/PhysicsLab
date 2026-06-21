@@ -1,0 +1,35 @@
+import { PhysicsIconName } from "./icons";
+
+export interface AstroConcept {
+  id: string;
+  title: string;
+  category: string;
+  icon: PhysicsIconName;
+  summary: string;
+  explanation: string;
+  keyIdeas: string[];
+  formula?: string;
+}
+
+export const astrophysicsConcepts: AstroConcept[] = [
+  { id: "gravity-orbits", title: "Gravity & Orbits", category: "Celestial Mechanics", icon: "orbit", summary: "How masses attract and move around each other.", explanation: "Astrophysics begins with gravity: planets orbit stars, moons orbit planets, and galaxies hold together because mass curves motion into orbital paths.", keyIdeas: ["Newtonian gravity", "Kepler laws", "escape speed"], formula: "F = GMm / r^2" },
+  { id: "stellar-luminosity", title: "Stellar Luminosity", category: "Stars", icon: "sun", summary: "The total energy a star emits every second.", explanation: "Luminosity lets astronomers compare stars even when they are at different distances. A star's radius and surface temperature strongly control its brightness.", keyIdeas: ["blackbody radiation", "stellar radius", "temperature"], formula: "L = 4 pi R^2 sigma T^4" },
+  { id: "main-sequence", title: "Main Sequence Stars", category: "Stars", icon: "sun", summary: "Stable stars that fuse hydrogen in their cores.", explanation: "Most stars spend the majority of their lives on the main sequence, balancing inward gravity with outward pressure from nuclear fusion.", keyIdeas: ["hydrogen fusion", "hydrostatic equilibrium", "mass-luminosity relation"] },
+  { id: "stellar-evolution", title: "Stellar Evolution", category: "Stars", icon: "flame", summary: "The life cycle from nebula to remnant.", explanation: "A star's mass decides whether it becomes a white dwarf, neutron star, or black hole after its fuel changes and the core can no longer support itself.", keyIdeas: ["protostar", "red giant", "supernova", "remnant"] },
+  { id: "black-holes", title: "Black Holes", category: "Relativity", icon: "orbit", summary: "Regions where escape speed exceeds light speed.", explanation: "A black hole forms when gravity compresses mass inside an event horizon. Outside it, motion can still be described by gravity and orbital dynamics.", keyIdeas: ["event horizon", "Schwarzschild radius", "accretion disk"], formula: "R_s = 2GM / c^2" },
+  { id: "redshift", title: "Redshift", category: "Cosmology", icon: "wave", summary: "Stretching of light toward longer wavelengths.", explanation: "Redshift reveals motion, gravity, and cosmic expansion. Distant galaxies are redshifted because space itself has expanded while their light travelled.", keyIdeas: ["Doppler shift", "cosmic expansion", "spectral lines"], formula: "z = Delta lambda / lambda" },
+  { id: "hubble-law", title: "Hubble's Law", category: "Cosmology", icon: "chart", summary: "Distant galaxies recede faster on average.", explanation: "Hubble's law is one of the central observational clues that the universe is expanding and that distance can be estimated from recession speed.", keyIdeas: ["expanding universe", "galaxy distance", "Hubble constant"], formula: "v = H_0 d" },
+  { id: "dark-matter", title: "Dark Matter", category: "Cosmology", icon: "field", summary: "Invisible mass inferred from gravity.", explanation: "Galaxy rotation curves and gravitational lensing show more gravity than visible matter can explain, suggesting a non-luminous matter component.", keyIdeas: ["rotation curves", "lensing", "missing mass"] },
+  { id: "dark-energy", title: "Dark Energy", category: "Cosmology", icon: "spark", summary: "The driver of accelerated cosmic expansion.", explanation: "Observations of distant supernovae indicate that cosmic expansion is accelerating, commonly modeled as dark energy or a cosmological constant.", keyIdeas: ["accelerating universe", "supernova evidence", "cosmological constant"] },
+  { id: "cosmic-microwave-background", title: "Cosmic Microwave Background", category: "Cosmology", icon: "volume", summary: "Ancient afterglow from the early universe.", explanation: "The CMB is cooled radiation from when the universe became transparent, carrying a map of tiny density variations that grew into galaxies.", keyIdeas: ["early universe", "recombination", "temperature anisotropy"] },
+  { id: "exoplanets", title: "Exoplanets", category: "Planetary Systems", icon: "orbit", summary: "Planets orbiting stars beyond the Sun.", explanation: "Astrophysicists find exoplanets using transits, radial velocity shifts, imaging, and gravitational microlensing.", keyIdeas: ["transit method", "radial velocity", "habitable zone"] },
+  { id: "spectroscopy", title: "Astronomical Spectroscopy", category: "Observation", icon: "prism", summary: "Using spectra to decode objects in space.", explanation: "Spectral lines reveal composition, temperature, motion, magnetic fields, and pressure in distant stars and galaxies.", keyIdeas: ["absorption lines", "emission lines", "chemical composition"] },
+  { id: "gravitational-lensing", title: "Gravitational Lensing", category: "Relativity", icon: "eye", summary: "Light bends around mass.", explanation: "Massive objects curve spacetime, bending light from objects behind them. Lensing can magnify galaxies and map dark matter.", keyIdeas: ["spacetime curvature", "Einstein ring", "mass mapping"] },
+  { id: "neutron-stars", title: "Neutron Stars", category: "Compact Objects", icon: "atom", summary: "Ultra-dense stellar remnants.", explanation: "After some supernovae, the collapsed core becomes a neutron star, packing stellar mass into a city-sized sphere.", keyIdeas: ["degenerate matter", "pulsars", "strong magnetic fields"] },
+  { id: "supernovae", title: "Supernovae", category: "Stars", icon: "flame", summary: "Explosive deaths of massive or compact stars.", explanation: "Supernovae forge and spread heavy elements, trigger new star formation, and act as distance markers in cosmology.", keyIdeas: ["core collapse", "Type Ia", "heavy elements"] },
+  { id: "galaxy-structure", title: "Galaxy Structure", category: "Galaxies", icon: "orbit", summary: "How stars, gas, dust, and dark matter organize.", explanation: "Galaxies may be spiral, elliptical, or irregular, and their structure records formation history and environment.", keyIdeas: ["spiral arms", "bulge", "halo", "dark matter"] },
+  { id: "distance-ladder", title: "Cosmic Distance Ladder", category: "Observation", icon: "ruler", summary: "Linked methods for measuring astronomical distances.", explanation: "Nearby parallax measurements calibrate standard candles, which then calibrate farther distance methods.", keyIdeas: ["parallax", "Cepheids", "supernovae"], formula: "m - M = 5 log10(d) - 5" },
+  { id: "nucleosynthesis", title: "Nucleosynthesis", category: "Stars", icon: "atom", summary: "Formation of elements in stars and explosions.", explanation: "Light elements formed early, while stars and supernovae build heavier nuclei through fusion and neutron-capture processes.", keyIdeas: ["fusion", "heavy elements", "stellar cores"] },
+];
+
+export const astroCategories = Array.from(new Set(astrophysicsConcepts.map((concept) => concept.category))).sort();

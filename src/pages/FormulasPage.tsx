@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
-import { formulaBankStats, formulaCategories, FormulaAccent, PhysicsFormulaCategory, PhysicsFormulaEntry } from "../lib/formulaBank";
+import { allPhysicsFormulas, formulaBankStats, formulaCategories, FormulaAccent, PhysicsFormulaCategory, PhysicsFormulaEntry } from "../lib/formulaBank";
 import { renderFormula } from "../lib/formulas";
 import { PhysicsIcon } from "../lib/icons";
 
@@ -21,15 +21,68 @@ type FormulaCategoryGroup = {
 };
 
 const formulaCategoryGroups: FormulaCategoryGroup[] = [
-  { id: "measurement", title: "Measurement", description: "Units, errors, dimensions, and lab readings.", icon: "ruler", categoryIds: ["measurements-units"] },
-  { id: "mechanics", title: "Mechanics", description: "Motion, force, energy, collisions, rotation, gravity, and oscillations.", icon: "rocket", categoryIds: ["kinematics", "dynamics", "work-energy-power", "momentum-collisions", "rotational-motion", "gravitation", "oscillations"] },
-  { id: "waves-sound", title: "Waves & Sound", description: "Wave motion, sound, resonance, beats, and Doppler effect.", icon: "wave", categoryIds: ["waves", "sound"] },
-  { id: "fluids-thermal", title: "Fluids & Thermal", description: "Fluids, heat, thermodynamics, and gas laws.", icon: "thermometer", categoryIds: ["fluid-mechanics", "thermal-physics", "kinetic-theory-gases"] },
-  { id: "electricity", title: "Electricity", description: "Electrostatics, current electricity, AC circuits, and electronics.", icon: "battery", categoryIds: ["electrostatics", "current-electricity", "ac-circuits", "electronics-logic"] },
-  { id: "magnetism", title: "Magnetism & EMI", description: "Magnetic fields, forces, induction, generators, and transients.", icon: "magnet", categoryIds: ["magnetism", "electromagnetic-induction"] },
-  { id: "optics", title: "Optics", description: "Ray optics, wave optics, instruments, interference, and diffraction.", icon: "prism", categoryIds: ["ray-optics", "wave-optics"] },
-  { id: "modern", title: "Modern Physics", description: "Quantum, atomic, nuclear, and particle formulas.", icon: "atom", categoryIds: ["modern-physics", "atomic-physics", "nuclear-physics"] },
-  { id: "astro", title: "Relativity & Astro", description: "Relativity, cosmology, stars, redshift, and black holes.", icon: "orbit", categoryIds: ["relativity-astrophysics"] },
+  { id: "measurement", title: "Measurement & Data", description: "Units, uncertainty, graphs, density, dimensions, and lab readings.", icon: "ruler", categoryIds: ["measurements-units", "kinematics", "fluid-mechanics", "thermal-physics", "current-electricity"] },
+  { id: "motion", title: "Motion & Forces", description: "Linear motion, dynamics, circular motion, friction, impulse, and work.", icon: "rocket", categoryIds: ["kinematics", "dynamics", "mechanical-properties-solids", "momentum-collisions", "rotational-motion", "work-energy-power", "oscillations"] },
+  { id: "energy", title: "Energy Systems", description: "Work, power, thermal energy, fields, circuits, radiation, and engines.", icon: "flame", categoryIds: ["work-energy-power", "thermal-physics", "kinetic-theory-gases", "electrostatics", "current-electricity", "nuclear-physics"] },
+  { id: "rotation-gravity", title: "Rotation & Gravity", description: "Torque, angular momentum, satellites, Kepler laws, escape speed, and orbits.", icon: "orbit", categoryIds: ["rotational-motion", "gravitation", "oscillations", "momentum-collisions", "relativity-astrophysics"] },
+  { id: "waves", title: "Waves & Sound", description: "Wave motion, sound, resonance, beats, Doppler effect, and superposition.", icon: "wave", categoryIds: ["waves", "sound", "oscillations", "wave-optics", "modern-physics"] },
+  { id: "fluids-thermal", title: "Fluids & Thermal", description: "Solids, fluids, hydrostatics, flow, heat transfer, gas laws, and thermodynamics.", icon: "thermometer", categoryIds: ["mechanical-properties-solids", "fluid-mechanics", "thermal-physics", "kinetic-theory-gases", "work-energy-power", "measurements-units"] },
+  { id: "electricity", title: "Electricity & Circuits", description: "Charge, fields, current, resistance, AC, logic, power, and capacitors.", icon: "battery", categoryIds: ["electrostatics", "current-electricity", "ac-circuits", "electronics-logic", "electromagnetic-induction", "measurements-units"] },
+  { id: "magnetism", title: "Magnetism & EMI", description: "Magnetic fields, forces, induction, transformers, generators, and transients.", icon: "magnet", categoryIds: ["magnetism", "electromagnetic-induction", "ac-circuits", "current-electricity", "electrostatics"] },
+  { id: "optics", title: "Light & Optics", description: "Ray optics, wave optics, lenses, mirrors, prisms, instruments, and resolution.", icon: "prism", categoryIds: ["ray-optics", "wave-optics", "modern-physics", "measurements-units", "waves"] },
+  { id: "modern", title: "Modern & Quantum", description: "Photons, matter waves, atoms, nuclei, relativity, and quantum limits.", icon: "atom", categoryIds: ["modern-physics", "atomic-physics", "nuclear-physics", "relativity-astrophysics", "wave-optics"] },
+  { id: "electronics", title: "Electronics & Signals", description: "Logic gates, filters, AC response, circuit laws, sensors, and signal formulas.", icon: "spark", categoryIds: ["electronics-logic", "current-electricity", "ac-circuits", "electromagnetic-induction", "magnetism"] },
+  { id: "astro", title: "Astrophysics & Relativity", description: "Gravity, luminosity, redshift, stars, black holes, binaries, and relativistic energy.", icon: "orbit", categoryIds: ["relativity-astrophysics", "gravitation", "modern-physics", "nuclear-physics", "thermal-physics"] },
+];
+
+const formulaGroupStats = {
+  groups: formulaCategoryGroups.length,
+  minSubcategories: Math.min(...formulaCategoryGroups.map((group) => group.categoryIds.length)),
+};
+
+type FormulaSheetSection = {
+  id: string;
+  title: string;
+  categoryId: string;
+  icon: PhysicsFormulaCategory["icon"];
+  formulaIds: string[];
+};
+
+const formulaSheetSections: FormulaSheetSection[] = [
+  { id: "physical-world-units", title: "Physical World & Units", categoryId: "measurements-units", icon: "ruler", formulaIds: ["average-speed", "average-velocity", "percentage-error", "dimensional-formula-force", "relative-density", "scientific-notation"] },
+  { id: "kinematics-sheet", title: "Kinematics", categoryId: "kinematics", icon: "rocket", formulaIds: ["first-equation-motion", "second-equation-motion", "third-equation-motion", "average-velocity", "projectile-range-basic", "projectile-time-flight"] },
+  { id: "laws-motion-sheet", title: "Laws of Motion", categoryId: "dynamics", icon: "gauge", formulaIds: ["newton-second-law", "weight", "friction-limiting", "kinetic-friction", "centripetal-force", "normal-incline"] },
+  { id: "work-energy-sheet", title: "Work, Energy & Power", categoryId: "work-energy-power", icon: "flame", formulaIds: ["work-done", "kinetic-energy", "potential-energy", "spring-potential-energy", "work-energy-theorem", "conservation-energy", "power", "instantaneous-power"] },
+  { id: "rotation-sheet", title: "Rotational Motion", categoryId: "rotational-motion", icon: "orbit", formulaIds: ["angular-velocity", "angular-acceleration", "angular-displacement", "linear-angular-speed", "centripetal-acceleration", "torque", "rotational-second-law", "rotational-ke"] },
+  { id: "gravitation-sheet", title: "Gravitation", categoryId: "gravitation", icon: "orbit", formulaIds: ["universal-gravitation", "field-strength", "gravitational-potential", "orbital-speed", "escape-speed", "satellite-period", "kepler-newton-form", "orbital-energy"] },
+  { id: "electrostatics-sheet", title: "Electrostatics", categoryId: "electrostatics", icon: "field", formulaIds: ["coulomb-law", "electric-field", "point-charge-field", "electric-potential", "potential-energy-charges", "capacitance", "capacitor-parallel-plate", "capacitor-energy"] },
+  { id: "current-sheet", title: "Current Electricity", categoryId: "current-electricity", icon: "battery", formulaIds: ["ohms-law", "electric-current", "resistivity", "series-resistance", "parallel-resistance", "electric-power", "wheatstone-balance", "emf-terminal-voltage"] },
+  { id: "magnetism-sheet", title: "Magnetic Effects of Current", categoryId: "magnetism", icon: "magnet", formulaIds: ["field-long-wire", "field-circular-loop", "force-wire", "lorentz-force", "magnetic-force-moving-charge", "torque-current-loop", "magnetic-dipole-moment", "cyclotron-frequency"] },
+  { id: "emi-sheet", title: "Electromagnetic Induction", categoryId: "electromagnetic-induction", icon: "magnet", formulaIds: ["faraday-law", "flux-change-emf", "motional-emf", "self-inductance", "inductor-energy", "rotating-coil-emf", "peak-generator-emf", "transformer-ratio"] },
+  { id: "ac-sheet", title: "Alternating Current", categoryId: "ac-circuits", icon: "battery", formulaIds: ["rms-current", "rms-voltage", "capacitive-reactance", "inductive-reactance", "impedance-rlc", "phase-angle-rlc", "ac-power", "resonant-frequency"] },
+  { id: "waves-oscillations-sheet", title: "Waves & Oscillations", categoryId: "waves", icon: "wave", formulaIds: ["wave-speed", "period-frequency", "angular-frequency", "wave-number", "wave-equation", "shm-displacement", "spring-period", "pendulum-period"] },
+  { id: "solids-sheet", title: "Mechanical Properties of Solids", categoryId: "mechanical-properties-solids", icon: "spring", formulaIds: ["stress", "strain", "young-modulus", "bulk-modulus", "shear-modulus", "poisson-ratio", "elastic-energy-density", "spring-elastic-energy"] },
+  { id: "fluids-sheet", title: "Mechanical Properties of Fluids", categoryId: "fluid-mechanics", icon: "drop", formulaIds: ["pressure", "liquid-pressure", "pascal-law", "buoyant-force", "continuity", "bernoulli", "viscous-force", "reynolds-number"] },
+  { id: "thermo-sheet", title: "Heat & Thermodynamics", categoryId: "thermal-physics", icon: "thermometer", formulaIds: ["heat-capacity", "latent-heat", "first-law-thermodynamics", "ideal-gas", "internal-energy-ideal-gas", "heat-engine-efficiency", "carnot-efficiency", "coefficient-performance-refrigerator"] },
+  { id: "heat-transfer-sheet", title: "Transfer of Heat", categoryId: "thermal-physics", icon: "flame", formulaIds: ["thermal-conduction", "radiation-power", "radiation-net", "newton-cooling", "heat-mixture", "linear-expansion", "area-expansion", "volume-expansion"] },
+  { id: "ray-optics-sheet", title: "Ray Optics", categoryId: "ray-optics", icon: "prism", formulaIds: ["mirror-formula", "mirror-magnification", "lens-formula", "magnification", "lens-power", "snell-law", "critical-angle", "minimum-deviation-prism"] },
+  { id: "optical-instruments-sheet", title: "Optical Instruments", categoryId: "ray-optics", icon: "eye", formulaIds: ["simple-microscope", "compound-microscope", "telescope-magnification", "resolving-power", "rayleigh-criterion", "lens-makers", "combination-lenses", "apparent-depth"] },
+  { id: "wave-optics-sheet", title: "Wave Optics", categoryId: "wave-optics", icon: "wave", formulaIds: ["ydse-fringe-width", "ydse-bright-position", "path-difference", "constructive-interference", "destructive-interference", "single-slit-minima", "diffraction-grating", "malus-law"] },
+  { id: "modern-sheet", title: "Modern Physics", categoryId: "modern-physics", icon: "atom", formulaIds: ["photon-energy", "photoelectric", "work-function-threshold", "stopping-potential", "de-broglie", "matter-wave-voltage", "mass-energy", "uncertainty"] },
+  { id: "semiconductor-sheet", title: "Semiconductor Devices", categoryId: "electronics-logic", icon: "spark", formulaIds: ["pn-junction-diode", "transistor-current-gain-beta", "transistor-current-gain-alpha", "transistor-current-relation", "logic-or", "logic-nand", "logic-nor", "laser-photon-energy"] },
+];
+
+const importantConstants = [
+  ["Speed of light", "c=3.00\\times10^8\\,m\\,s^{-1}"],
+  ["Planck constant", "h=6.626\\times10^{-34}\\,J\\,s"],
+  ["Elementary charge", "e=1.602\\times10^{-19}\\,C"],
+  ["Vacuum permittivity", "\\epsilon_0=8.854\\times10^{-12}\\,C^2N^{-1}m^{-2}"],
+  ["Vacuum permeability", "\\mu_0=4\\pi\\times10^{-7}\\,N\\,A^{-2}"],
+  ["Gravitational constant", "G=6.674\\times10^{-11}\\,N\\,m^2kg^{-2}"],
+  ["Acceleration due to gravity", "g\\approx9.8\\,m\\,s^{-2}"],
+  ["Stefan-Boltzmann constant", "\\sigma=5.67\\times10^{-8}\\,W\\,m^{-2}K^{-4}"],
+  ["Boltzmann constant", "k_B=1.381\\times10^{-23}\\,J\\,K^{-1}"],
+  ["Avogadro constant", "N_A=6.022\\times10^{23}\\,mol^{-1}"],
 ];
 
 export function FormulasPage() {
@@ -45,6 +98,13 @@ export function FormulasPage() {
 
   const domains = useMemo(() => ["all", ...Array.from(new Set(formulaCategories.map((category) => category.domain))).sort()], []);
   const categoryById = useMemo(() => new Map(formulaCategories.map((category) => [category.id, category])), []);
+  const formulaById = useMemo(() => new Map(allPhysicsFormulas.map((formula) => [formula.id, formula])), []);
+  const referenceSections = useMemo(() => (
+    formulaSheetSections.map((section) => ({
+      ...section,
+      formulas: section.formulaIds.map((id) => formulaById.get(id)).filter((formula): formula is PhysicsFormulaEntry & { category: PhysicsFormulaCategory } => Boolean(formula)),
+    }))
+  ), [formulaById]);
   const filteredCategories = useMemo(() => {
     const q = normalize(query);
     return formulaCategories
@@ -130,14 +190,14 @@ export function FormulasPage() {
             <p className="ui-label">Formula module</p>
             <h1 className="text-gradient">Physics Formula Bank</h1>
             <p>
-              A searchable reference across {formulaBankStats.categories} categories with {formulaBankStats.formulas} core formulas. Every category starts with {formulaBankStats.minPerCategory} formulas and can scale up to deeper revision packs.
+              A searchable reference across {formulaGroupStats.groups} categories and {formulaBankStats.categories} subcategories with {formulaBankStats.formulas} physics formulas. Every category has at least {formulaGroupStats.minSubcategories} subcategories, and every formula includes an explanation panel.
             </p>
           </div>
           <div className="formula-stat-grid">
-            <FormulaMetric label="Categories" value={formulaBankStats.categories} />
+            <FormulaMetric label="Categories" value={formulaGroupStats.groups} />
+            <FormulaMetric label="Subcats" value={formulaBankStats.categories} />
             <FormulaMetric label="Formulas" value={formulaBankStats.formulas} />
             <FormulaMetric label="Min/Cat" value={formulaBankStats.minPerCategory} />
-            <FormulaMetric label="Max/Cat" value={formulaBankStats.maxPerCategory} />
           </div>
         </section>
 
@@ -153,6 +213,54 @@ export function FormulasPage() {
             <PhysicsIcon name="step" className="h-4 w-4" />
             Reset
           </button>
+        </section>
+
+        <section className="formula-sheet-panel" aria-label="Complete physics formula sheet">
+          <div className="formula-sheet-head">
+            <div>
+              <p className="ui-label">Complete formula sheet</p>
+              <h2>All major concepts in one revision grid</h2>
+              <p>Dense topic cards for fast scan and exam practice, powered by the same searchable formula bank below.</p>
+            </div>
+            <div className="formula-sheet-actions">
+              <span className="status-chip status-chip-cyan">{referenceSections.length} concept cards</span>
+              <span className="status-chip">{importantConstants.length} constants</span>
+            </div>
+          </div>
+          <div className="formula-sheet-grid">
+            {referenceSections.map((section, index) => (
+              <article key={section.id} className="formula-sheet-card" data-tone={index % 5}>
+                <button className="formula-sheet-title" type="button" onClick={() => setCategory(section.categoryId)}>
+                  <span>{index + 1}</span>
+                  <PhysicsIcon name={section.icon} className="h-4 w-4" />
+                  <strong>{section.title}</strong>
+                </button>
+                <div className="formula-sheet-list">
+                  {section.formulas.slice(0, 8).map((formula) => (
+                    <button key={formula.id} className="formula-sheet-row" type="button" onClick={() => setCategory(formula.category.id)}>
+                      <span>{formula.name}</span>
+                      <b dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }} />
+                    </button>
+                  ))}
+                </div>
+              </article>
+            ))}
+            <article className="formula-sheet-card formula-constants-card" data-tone="constants">
+              <div className="formula-sheet-title">
+                <span>{referenceSections.length + 1}</span>
+                <PhysicsIcon name="ruler" className="h-4 w-4" />
+                <strong>Important Constants</strong>
+              </div>
+              <div className="formula-sheet-list">
+                {importantConstants.map(([name, expression]) => (
+                  <div key={name} className="formula-sheet-row formula-constant-row">
+                    <span>{name}</span>
+                    <b dangerouslySetInnerHTML={{ __html: renderFormula(expression) }} />
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
         </section>
 
         <section className="formula-layout">
@@ -297,14 +405,17 @@ function FormulaCard({ category, formula, expanded, onToggle }: { category: Phys
         <div className="formula-expression-label">Equation</div>
         <div className="formula-expression" dangerouslySetInnerHTML={{ __html: renderFormula(formula.expression) }} />
       </div>
-      <p className="formula-purpose">{explanation.purpose}</p>
+      <div className="formula-explanation-summary">
+        <h5>Explanation</h5>
+        <p>{explanation.purpose}</p>
+      </div>
       <div className="formula-variable-row" aria-label={`${formula.name} variables`}>
         <b>Symbols</b>
         {formula.variables.slice(0, 8).map((variable) => <span key={variable}>{variable}</span>)}
       </div>
       <button className="formula-know-more" type="button" aria-expanded={expanded} aria-controls={panelId} onClick={(event) => { event.preventDefault(); onToggle(); }}>
         <PhysicsIcon name="book" className="h-3.5 w-3.5" />
-        {expanded ? "Show less" : "Know more"}
+        {expanded ? "Hide explanation" : "Full explanation"}
       </button>
       {expanded && (
         <div id={panelId} className="formula-info-panel">
