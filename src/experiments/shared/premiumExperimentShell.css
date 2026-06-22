@@ -69,18 +69,30 @@
 .premium-shell-badges,
 .premium-hud-grid,
 .preset-strip-buttons,
-.lab-mode-switcher {
+.lab-mode-switcher,
+.premium-control-actions,
+.premium-control-head {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
 }
 
+.premium-control-head {
+  justify-content: space-between;
+}
+
+.premium-control-head .premium-mini-label {
+  margin: 0;
+}
+
 .premium-shell-badge,
 .physics-hud-item,
 .preset-strip button,
 .lab-mode-switcher button,
-.replay-timeline button {
+.replay-timeline button,
+.premium-control-head button,
+.premium-control-actions button {
   min-height: 44px;
   border: 1px solid color-mix(in srgb, var(--premium-accent) 38%, transparent);
   border-radius: 999px;

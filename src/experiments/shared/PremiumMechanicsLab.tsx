@@ -100,6 +100,12 @@ export function PremiumMechanicsLab({ experiment, config, mode, compute }: Premi
     setValues((current) => ({ ...current, ...preset.values }));
   };
 
+  const resetLab = () => {
+    setActivePreset(config.presets[0]?.id);
+    setActiveStep("setup");
+    setValues(config.defaults);
+  };
+
   return (
     <PremiumExperimentShell
       experiment={experiment}
@@ -118,9 +124,12 @@ export function PremiumMechanicsLab({ experiment, config, mode, compute }: Premi
         <section className="premium-shell-card mechanics-premium-controls" aria-label={`${config.title} controls`}>
           <div className="mechanics-control-head">
             <p className="premium-mini-label">Controls</p>
-            <button type="button" aria-pressed={showVectors} onClick={() => setShowVectors((value) => !value)}>
-              {showVectors ? "Hide vectors" : "Show vectors"}
-            </button>
+            <div className="premium-control-actions">
+              <button type="button" aria-label={`Reset ${config.title} lab`} onClick={resetLab}>Reset</button>
+              <button type="button" aria-pressed={showVectors} onClick={() => setShowVectors((value) => !value)}>
+                {showVectors ? "Hide vectors" : "Show vectors"}
+              </button>
+            </div>
           </div>
           <div className="mechanics-control-list">
             {controls.map((control) => (

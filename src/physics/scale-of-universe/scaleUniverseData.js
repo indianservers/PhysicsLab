@@ -1,5 +1,6 @@
 import { formatBestUnit } from "./scaleUniverseUnits.js";
-import { localScaleObjectSpecs, scaleUniverseSpritePath } from "./scaleUniverseLocalObjects.js";
+import { localScaleObjectSpecs } from "./scaleUniverseLocalObjects.js";
+import { scaleUniverseSpriteSpec } from "./scaleUniverseSpriteCatalog.js";
 
 export const SCALE_MIN_LOG = -35;
 export const SCALE_MAX_LOG = 26;
@@ -35,12 +36,12 @@ const baseScaleUniverseObjects = [
   item("grain-of-sand", "Grain of Sand", "Human Scale", 5e-4, -70, 80, 8, "A grain of sand is about half a millimeter across.", ["Sand grains vary by rock type.", "They are enormous compared with cells.", "Granular materials have interesting physics."], "5 x 10^-4 m", "circle", "#f4c26b"),
   item("ant", "Ant", "Animal", 5e-3, 150, -40, 8, "An ant is millimeter scale.", ["Ant size depends on species.", "Its mass is small but its strength-to-weight ratio is high.", "Motion is strongly affected by friction and surface forces."], "5 x 10^-3 m", "animal", "#111827"),
   item("coin", "Coin", "Everyday Object", 2.4e-2, -220, 95, 7, "A coin is a few centimeters wide.", ["It is human-hand scale.", "Thickness is much smaller than diameter.", "Circular objects help introduce diameter and radius."], "2.4 x 10^-2 m", "circle", "#c0c7d2"),
-  item("football", "Football", "Everyday Object", 2.2e-1, 0, -110, 7, "A football is tens of centimeters across.", ["It is close to common classroom scale.", "Its shape is roughly spherical or ellipsoidal.", "It helps compare volume and diameter."], "2.2 x 10^-1 m", "ellipse", "#f97316"),
-  item("human", "Human", "Human Scale", 1.7, 220, 50, 10, "A human body is about meter scale.", ["A typical adult is around 1 to 2 meters tall.", "This scale is our everyday reference.", "Many classroom measurements start here."], "1.7 x 10^0 m", "human", "#111827"),
-  item("giraffe", "Giraffe", "Animal", 5.5, -260, -70, 8, "A giraffe is one of the tallest living animals.", ["Adult height can exceed 5 meters.", "It is several times taller than a human.", "Animal scale still sits near 10^0 meters."], "5.5 x 10^0 m", "animal", "#d69e2e"),
-  item("elephant", "Elephant", "Animal", 6, 40, 90, 8, "An elephant is several meters long.", ["It is one of the largest land animals.", "Its mass is far larger than a human's.", "Biological scaling affects bones and motion."], "6 x 10^0 m", "animal", "#7c8680"),
-  item("blue-whale", "Blue Whale", "Animal", 3e1, 250, -105, 9, "A blue whale is the largest known animal.", ["It can be around 30 meters long.", "It lives in the ocean.", "Large body size changes heat and motion constraints."], "3 x 10^1 m", "ellipse", "#2563eb"),
-  item("tyrannosaurus-rex", "Tyrannosaurus Rex", "Animal / Fossil", 1.2e1, -150, 110, 8, "Tyrannosaurus rex was a large predatory dinosaur.", ["It was about 12 meters long.", "Its fossils reveal extinct animal scale.", "It is much larger than a human."], "1.2 x 10^1 m", "animal", "#65a30d"),
+  item("football", "Football", "Everyday Object", 2.2e-1, 0, -110, 7, "A football is tens of centimeters across.", ["It is close to common classroom scale.", "Its shape is roughly spherical or ellipsoidal.", "It helps compare volume and diameter."], "2.2 x 10^-1 m", "ellipse", "#f97316", spriteOptions("football")),
+  item("human", "Human", "Human Scale", 1.7, 220, 50, 10, "A human body is about meter scale.", ["A typical adult is around 1 to 2 meters tall.", "This scale is our everyday reference.", "Many classroom measurements start here."], "1.7 x 10^0 m", "human", "#111827", spriteOptions("human")),
+  item("giraffe", "Giraffe", "Animal", 5.5, -260, -70, 8, "A giraffe is one of the tallest living animals.", ["Adult height can exceed 5 meters.", "It is several times taller than a human.", "Animal scale still sits near 10^0 meters."], "5.5 x 10^0 m", "animal", "#d69e2e", spriteOptions("giraffe")),
+  item("elephant", "Elephant", "Animal", 6, 40, 90, 8, "An elephant is several meters long.", ["It is one of the largest land animals.", "Its mass is far larger than a human's.", "Biological scaling affects bones and motion."], "6 x 10^0 m", "animal", "#7c8680", spriteOptions("elephant")),
+  item("blue-whale", "Blue Whale", "Animal", 3e1, 250, -105, 9, "A blue whale is the largest known animal.", ["It can be around 30 meters long.", "It lives in the ocean.", "Large body size changes heat and motion constraints."], "3 x 10^1 m", "ellipse", "#2563eb", spriteOptions("blue-whale")),
+  item("tyrannosaurus-rex", "Tyrannosaurus Rex", "Animal / Fossil", 1.2e1, -150, 110, 8, "Tyrannosaurus rex was a large predatory dinosaur.", ["It was about 12 meters long.", "Its fossils reveal extinct animal scale.", "It is much larger than a human."], "1.2 x 10^1 m", "animal", "#65a30d", spriteOptions("tyrannosaurus-rex")),
   item("mount-everest", "Mount Everest", "Planetary / Earth", 8.849e3, -40, -80, 9, "Mount Everest is Earth's highest mountain above sea level.", ["Its height is about 8.8 km.", "It is tiny compared with Earth's diameter.", "Mountains reveal geological scale."], "8.849 x 10^3 m", "mountain", "#94a3b8"),
   item("earth", "Earth", "Planet", 1.2742e7, -260, 70, 10, "Earth is the planet we live on.", ["Earth's diameter is about 12,742 km.", "Gravity holds its atmosphere and oceans.", "It is small compared with the Sun."], "1.2742 x 10^7 m", "planet", "#22c55e"),
   item("moon", "Moon", "Natural Satellite", 3.474e6, -15, -100, 9, "The Moon is Earth's natural satellite.", ["Its diameter is about 3,474 km.", "Its gravity causes tides with the Sun.", "It is much smaller than Earth."], "3.474 x 10^6 m", "planet", "#cbd5e1"),
@@ -171,7 +172,10 @@ const supplementalObjects = supplementalSpecs.map((spec, index) =>
     spec[7],
     renderStyleFor(spec[2], spec[4], spec[1]),
     colorFor(spec[4], index),
-    { categoryGroup: spec[4] },
+    {
+      categoryGroup: spec[4],
+      ...spriteOptions(spec[0]),
+    },
   ),
 );
 
@@ -195,7 +199,7 @@ const localScaleObjects = localScaleObjectSpecs.map((spec, index) =>
     colorFor(spec[4], index + supplementalSpecs.length),
     {
       categoryGroup: spec[4],
-      assetPath: scaleUniverseSpritePath(spec[0]),
+      ...spriteOptions(spec[0]),
       learningTags: ["local object", "everyday scale", spec[4].toLowerCase()],
     },
   ),
@@ -399,6 +403,8 @@ function item(id, name, category, sizeMeters, x, y, importance, summary, facts, 
     categoryGroup: options.categoryGroup,
     difficultyLevel: options.difficultyLevel,
     assetPath: options.assetPath,
+    assetAspect: options.assetAspect,
+    assetScale: options.assetScale,
     learningTags: options.learningTags,
     sizeMeters,
     logSize: Math.log10(sizeMeters),
@@ -411,6 +417,10 @@ function item(id, name, category, sizeMeters, x, y, importance, summary, facts, 
     renderStyle,
     color,
   };
+}
+
+function spriteOptions(assetKey) {
+  return scaleUniverseSpriteSpec(assetKey) ?? {};
 }
 
 function scaleBandForLog(log) {

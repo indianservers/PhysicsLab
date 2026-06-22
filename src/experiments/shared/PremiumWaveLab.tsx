@@ -32,6 +32,12 @@ export function PremiumWaveLab({ experiment, config, mode }: { experiment: Exper
     setValues((current) => ({ ...current, ...preset.values }));
   };
 
+  const resetLab = () => {
+    setActivePreset(config.presets[0]?.id);
+    setActiveStep("setup");
+    setValues(config.defaults);
+  };
+
   return (
     <PremiumExperimentShell
       experiment={experiment}
@@ -44,7 +50,10 @@ export function PremiumWaveLab({ experiment, config, mode }: { experiment: Exper
       stage={<PremiumWaveStage id={config.id} values={values} result={result} />}
       controls={(
         <section className="premium-wave-controls" aria-label={`${config.title} controls`}>
-          <p className="premium-mini-label">Wave controls</p>
+          <div className="premium-control-head">
+            <p className="premium-mini-label">Wave controls</p>
+            <button type="button" aria-label={`Reset ${config.title} lab`} onClick={resetLab}>Reset</button>
+          </div>
           <span className="premium-wave-status">{config.modelStatus}</span>
           {controls.map((control) => (
             <label className="premium-wave-control" key={control.id}>

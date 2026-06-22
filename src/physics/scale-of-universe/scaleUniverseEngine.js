@@ -18,6 +18,8 @@ import { renderUnitCards } from "./scaleUniverseUnits.js";
 
 export function createScaleUniverseExplorer(host) {
   const objects = normalizedScaleUniverseObjects();
+  const displayObjects = buildCuratedDisplayObjects(objects);
+  const defaultObjectDisplayLimit = Math.min(75, displayObjects.length);
   host.innerHTML = `
     <section class="scale-explorer" aria-label="Scale of Universe Explorer">
       <header class="scale-topbar">
@@ -108,10 +110,10 @@ export function createScaleUniverseExplorer(host) {
         </div>
         <div class="scale-object-count-control" aria-label="Displayed object count control">
           <label for="scale-object-count">
-            <span>Objects shown on pane</span>
-            <strong><output data-object-count-output>30</output> / ${objects.length}</strong>
+            <span>Total objects to display</span>
+            <strong><output data-object-count-output>${defaultObjectDisplayLimit}</output> / ${displayObjects.length}</strong>
           </label>
-          <input id="scale-object-count" type="range" min="30" max="${objects.length}" step="1" value="30" />
+          <input id="scale-object-count" type="range" min="30" max="${displayObjects.length}" step="1" value="${defaultObjectDisplayLimit}" />
         </div>
         <div class="scale-slider" aria-label="Logarithmic scale slider">
           <div class="scale-slider-track">
@@ -154,8 +156,9 @@ export function createScaleUniverseExplorer(host) {
     categoryFilters: new Set(),
     prefersReducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     objects,
+    displayObjects,
     visibleObjects: [],
-    objectDisplayLimit: Math.min(30, objects.length),
+    objectDisplayLimit: defaultObjectDisplayLimit,
   };
 
   let raf = 0;
@@ -173,7 +176,7 @@ export function createScaleUniverseExplorer(host) {
   };
 
   const updateObjectLimit = (value) => {
-    const next = Math.round(clamp(Number(value), 30, objects.length));
+    const next = Math.round(clamp(Number(value), 30, displayObjects.length));
     state.objectDisplayLimit = next;
     objectCountInput.value = String(next);
     objectCountOutput.textContent = String(next);
@@ -275,7 +278,7 @@ export function createScaleUniverseExplorer(host) {
 
   const onWheel = (event) => {
     event.preventDefault();
-    setTargetLog(state.targetLog + (event.deltaY < 0 ? 0.55 : -0.55));
+    setTargetLog(state.targetLog + (event.deltaY < 0 ? 0.32 : -0.32));
   };
 
   const onKey = (event) => {
@@ -441,7 +444,8 @@ export function createScaleUniverseExplorer(host) {
   const animate = () => {
     const diff = state.targetLog - state.currentLog;
     if (Math.abs(diff) > 0.004) {
-      state.currentLog += state.prefersReducedMotion ? diff : diff * 0.13;
+      const ease = Math.abs(diff) > 8 ? 0.075 : 0.145;
+      state.currentLog += state.prefersReducedMotion ? diff : diff * ease;
       state.currentLog = clamp(state.currentLog, SCALE_MIN_LOG, SCALE_MAX_LOG);
       dirty = true;
     }
@@ -458,7 +462,7 @@ export function createScaleUniverseExplorer(host) {
   };
 
   resize();
-  updateObjectLimit(30);
+  updateObjectLimit(defaultObjectDisplayLimit);
   updateScalePath(scalePath, 0);
   openHelp();
   raf = requestAnimationFrame(animate);
@@ -548,4 +552,139 @@ function updateLegend(legend, log, isMobile) {
 
 function point(event) {
   return { x: event.clientX, y: event.clientY };
+}
+
+const displayBandOrder = [
+  "Subatomic",
+  "Atomic",
+  "Molecular",
+  "Cellular / Microscopic",
+  "Human Scale",
+  "Planetary",
+  "Solar System",
+  "Interstellar",
+  "Galactic",
+  "Cosmic",
+];
+
+const highPriorityScaleObjects = new Set([
+  "planck-length",
+  "proton",
+  "electron",
+  "hydrogen-atom",
+  "water-molecule",
+  "dna-width",
+  "virus",
+  "red-blood-cell",
+  "human-hair-width",
+  "grain-of-sand",
+  "football",
+  "basketball",
+  "school-bag",
+  "notebook",
+  "textbook",
+  "water-bottle",
+  "laptop",
+  "chair",
+  "desk",
+  "door",
+  "whiteboard",
+  "microscope",
+  "football-goal",
+  "car",
+  "bicycle",
+  "school-bus",
+  "human",
+  "giraffe",
+  "elephant",
+  "blue-whale",
+  "mount-everest",
+  "earth",
+  "moon",
+  "jupiter",
+  "sun",
+  "earth-sun-distance",
+  "solar-system",
+  "light-year",
+  "milky-way",
+  "andromeda",
+  "observable-universe",
+]);
+
+const lowPriorityScaleObjects = new Set([
+  "dust-speck",
+  "flour-grain",
+  "mustard-seed",
+  "chia-seed",
+  "peppercorn",
+  "staple",
+  "button",
+  "paperclip",
+  "thumbtack",
+  "usb-drive",
+  "coffee-mug",
+  "spoon",
+  "fork",
+  "toothbrush",
+  "student-desk-row",
+  "laboratory-table",
+  "bus-stop-shelter",
+  "traffic-signal",
+  "utility-pole",
+  "apartment-floor",
+  "basketball-court",
+  "cricket-pitch",
+  "swimming-lane",
+  "railway-platform",
+  "pedestrian-bridge",
+  "city-block",
+  "neighborhood",
+  "village",
+  "rain-cell",
+  "football-field",
+  "swimming-pool",
+  "runway",
+  "mountain-range-width",
+  "gps-orbit",
+  "neptune-orbit",
+  "bootes-void",
+  "sloan-great-wall",
+]);
+
+function buildCuratedDisplayObjects(objects) {
+  const candidates = objects
+    .filter((object) => !lowPriorityScaleObjects.has(object.id))
+    .sort((a, b) => displayScore(b) - displayScore(a));
+  const byBand = new Map(displayBandOrder.map((band) => [band, []]));
+  for (const object of candidates) {
+    const band = displayBandOrder.find((name) => object.scaleBand.startsWith(name)) ?? object.scaleBand;
+    if (!byBand.has(band)) byBand.set(band, []);
+    byBand.get(band).push(object);
+  }
+
+  const ordered = [];
+  let moved = true;
+  while (moved) {
+    moved = false;
+    for (const band of displayBandOrder) {
+      const bucket = byBand.get(band);
+      if (bucket?.length) {
+        ordered.push(bucket.shift());
+        moved = true;
+      }
+    }
+  }
+  return ordered;
+}
+
+function displayScore(object) {
+  let score = object.importance * 100;
+  if (highPriorityScaleObjects.has(object.id)) score += 900;
+  if (object.assetPath) score += 90;
+  if (object.categoryGroup === "Human Scale") score += 120;
+  if (object.categoryGroup === "Planets and Moons") score += 80;
+  if (object.categoryGroup === "Stars") score += 60;
+  if (object.categoryGroup === "Galaxies") score += 60;
+  if (object.name.length > 24) score -= 45;
+  return score;
 }

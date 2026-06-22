@@ -95,7 +95,3 @@ export const localScaleObjectSpecs = [
   ["drone", "Drone", "Vehicle", 5e-1, "Human Scale", 7, "A small flying machine at hand scale."],
   ["satellite-bus", "Small Satellite Bus", "Vehicle", 1.5, "Human Scale", 8, "A compact spacecraft body about person scale."],
 ];
-
-export function scaleUniverseSpritePath(assetKey) {
-  return `/assets/scale-universe/sprites/${assetKey}.png`;
-}

@@ -20,13 +20,16 @@ export function renderScaleUniverse(ctx, state) {
   const labels = [];
   const selectedObject = objects.find((object) => object.id === selectedObjectId);
   const responsiveRange = getResponsiveVisibleRange(width);
-  const objectLimit = Math.round(clamp(state.objectDisplayLimit ?? getResponsiveObjectLimit(width), 30, objects.length));
+  const displayPool = state.displayObjects ?? objects;
+  const objectLimit = Math.round(clamp(state.objectDisplayLimit ?? displayPool.length, 30, displayPool.length));
+  const viewportLimit = getResponsiveObjectLimit(width);
+  const displayObjects = displayPool.slice(0, objectLimit);
   ctx.clearRect(0, 0, width, height);
   drawBackground(ctx, width, height, currentLog);
   drawScaleGrid(ctx, width, height, currentLog);
 
   const filters = state.categoryFilters ?? new Set();
-  let visible = objects
+  let visible = displayObjects
     .filter((object) => filters.size === 0 || filters.has(object.categoryGroup) || object.id === selectedObjectId)
     .map((object) => {
       const distance = Math.abs(object.logSize - currentLog);
@@ -45,7 +48,7 @@ export function renderScaleUniverse(ctx, state) {
 
   visible = visible
     .sort((a, b) => b.opacity + b.object.importance / 10 - (a.opacity + a.object.importance / 10))
-    .slice(0, objectLimit);
+    .slice(0, viewportLimit);
 
   if (selectedEntry && !visible.some((entry) => entry.object.id === selectedEntry.object.id)) {
     visible.push(selectedEntry);
@@ -73,15 +76,15 @@ export function renderScaleUniverse(ctx, state) {
 }
 
 function getResponsiveVisibleRange(width) {
-  if (width < 480) return 1.7;
-  if (width < 768) return 1.9;
-  return visibleRange;
+  if (width < 480) return 1.28;
+  if (width < 768) return 1.45;
+  return 1.6;
 }
 
 function getResponsiveObjectLimit(width) {
-  if (width < 480) return 18;
-  if (width < 768) return 24;
-  return 44;
+  if (width < 480) return 5;
+  if (width < 768) return 6;
+  return 7;
 }
 
 function makeEntryForSelected(object, state, responsiveRange) {
@@ -151,7 +154,7 @@ function drawScaleGrid(ctx, width, height, log) {
 
 function drawObject(ctx, entry) {
   const { object, screenX: x, screenY: y, radius: r } = entry;
-  if (object.assetPath && drawAssetSprite(ctx, object.assetPath, x, y, r)) return;
+  if (object.assetPath && drawAssetSprite(ctx, object, x, y, r)) return;
   if (object.renderStyle === "atom" || (object.renderStyle === "circle" && object.categoryGroup === "Atoms")) return drawAtom(ctx, x, y, r, object.color);
   if (object.renderStyle === "circle" && object.categoryGroup === "Molecules") return drawMolecule(ctx, x, y, r, object.color);
   if (object.renderStyle === "molecule") return drawMolecule(ctx, x, y, r, object.color);
@@ -176,17 +179,28 @@ function drawObject(ctx, entry) {
   return drawParticle(ctx, x, y, r, object.color);
 }
 
-function drawAssetSprite(ctx, src, x, y, r) {
-  const image = getAssetImage(src);
+function drawAssetSprite(ctx, object, x, y, r) {
+  const image = getAssetImage(object.assetPath);
   if (!image || !image.complete || image.naturalWidth === 0) return false;
-  const size = clamp(r * 2.5, 28, 150);
+  const { width, height } = getAssetSpriteBox(object, image, r);
   ctx.save();
   ctx.shadowColor = "rgba(0,0,0,0.34)";
-  ctx.shadowBlur = Math.max(6, size * 0.08);
-  ctx.shadowOffsetY = Math.max(2, size * 0.04);
-  ctx.drawImage(image, x - size / 2, y - size / 2, size, size);
+  ctx.shadowBlur = Math.max(6, Math.max(width, height) * 0.08);
+  ctx.shadowOffsetY = Math.max(2, Math.max(width, height) * 0.04);
+  ctx.drawImage(image, x - width / 2, y - height / 2, width, height);
   ctx.restore();
   return true;
+}
+
+function getAssetSpriteBox(object, image, r) {
+  const aspect = object.assetAspect || image.naturalWidth / image.naturalHeight || 1;
+  const base = clamp(r * (object.assetScale ?? 2.55), 26, 190);
+  if (aspect >= 1) {
+    const width = base;
+    return { width, height: clamp(base / aspect, 18, 180) };
+  }
+  const height = base;
+  return { width: clamp(base * aspect, 18, 180), height };
 }
 
 function getAssetImage(src) {

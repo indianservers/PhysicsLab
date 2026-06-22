@@ -32,6 +32,12 @@ export function PremiumElectromagnetismLab({ experiment, config, mode }: { exper
     setValues((current) => ({ ...current, ...preset.values }));
   };
 
+  const resetLab = () => {
+    setActivePreset(config.presets[0]?.id);
+    setActiveStep("setup");
+    setValues(config.defaults);
+  };
+
   return (
     <PremiumExperimentShell
       experiment={experiment}
@@ -44,7 +50,10 @@ export function PremiumElectromagnetismLab({ experiment, config, mode }: { exper
       stage={<PremiumEmStage id={config.id} values={values} result={result} />}
       controls={(
         <section className="premium-em-controls" aria-label={`${config.title} controls`}>
-          <p className="premium-mini-label">Electricity and magnetism controls</p>
+          <div className="premium-control-head">
+            <p className="premium-mini-label">Electricity and magnetism controls</p>
+            <button type="button" aria-label={`Reset ${config.title} lab`} onClick={resetLab}>Reset</button>
+          </div>
           <span className="premium-em-status">{result.warning}</span>
           {controls.map((control) => (
             <label className="premium-em-control" key={control.id}>
