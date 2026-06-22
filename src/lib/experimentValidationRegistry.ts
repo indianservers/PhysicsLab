@@ -12,8 +12,8 @@ import { waveLabBenchmarks } from "../experiments/wave-lab/wave-labSimulation";
 const si = (id: string, label: string, displayUnit: string, siUnit = displayUnit) => ({ id, label, displayUnit, siUnit });
 
 const newtonBenchmarks = runBenchmarkCases([
-  { id: "newton-fma-basic", name: "F=ma", input: { force: 10, mass: 2 }, expected: 5, unit: "m/s²", tolerance: 1e-12, actual: (input) => input.force / input.mass },
-  { id: "newton-negative-force", name: "Signed acceleration", input: { force: -12, mass: 3 }, expected: -4, unit: "m/s²", tolerance: 1e-12, actual: (input) => input.force / input.mass },
+  { id: "newton-fma-basic", name: "F=ma", input: { force: 10, mass: 2 }, expected: 5, unit: "m/s^2", tolerance: 1e-12, actual: (input) => input.force / input.mass },
+  { id: "newton-negative-force", name: "Signed acceleration", input: { force: -12, mass: 3 }, expected: -4, unit: "m/s^2", tolerance: 1e-12, actual: (input) => input.force / input.mass },
 ]);
 
 const energyBenchmarks = runBenchmarkCases([
@@ -39,11 +39,11 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   friction: {
     experimentId: "friction",
     formulaName: "Kinetic friction",
-    formula: "f = μN, N = mg",
+    formula: "f = mu N, N = mg",
     status: statusForBenchmarks(frictionBenchmarks),
     assumptions: ["Flat surface.", "Friction opposes motion.", "Classroom static/kinetic threshold approximation."],
-    inputUnits: [si("mass", "Mass", "kg"), si("gravity", "Gravity", "m/s²"), si("mu", "Coefficient", "unitless"), si("appliedForce", "Applied force", "N")],
-    outputUnits: [si("normalForce", "Normal force", "N"), si("frictionForce", "Friction force", "N"), si("acceleration", "Acceleration", "m/s²")],
+    inputUnits: [si("mass", "Mass", "kg"), si("gravity", "Gravity", "m/s^2"), si("mu", "Coefficient", "unitless"), si("appliedForce", "Applied force", "N")],
+    outputUnits: [si("normalForce", "Normal force", "N"), si("frictionForce", "Friction force", "N"), si("acceleration", "Acceleration", "m/s^2")],
     validRanges: [{ id: "mass", label: "Mass", min: 0, unit: "kg", warning: "Mass must be positive." }, { id: "mu", label: "Coefficient", min: 0 }],
     benchmarkCases: frictionBenchmarks,
     tolerance: 1e-9,
@@ -53,11 +53,11 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "inclined-plane": {
     experimentId: "inclined-plane",
     formulaName: "Incline acceleration",
-    formula: "a = max(0, g(sinθ - μcosθ))",
+    formula: "a = max(0, g(sin(theta) - mu cos(theta)))",
     status: statusForBenchmarks(inclinedPlaneBenchmarks),
     assumptions: ["Rigid plane.", "Friction acts up plane.", "Acceleration is clamped when friction holds the block."],
-    inputUnits: [si("angle", "Angle", "deg", "rad"), si("mass", "Mass", "kg"), si("mu", "Coefficient", "unitless"), si("gravity", "Gravity", "m/s²")],
-    outputUnits: [si("parallelWeight", "Parallel weight", "N"), si("normalForce", "Normal force", "N"), si("acceleration", "Acceleration", "m/s²")],
+    inputUnits: [si("angle", "Angle", "deg", "rad"), si("mass", "Mass", "kg"), si("mu", "Coefficient", "unitless"), si("gravity", "Gravity", "m/s^2")],
+    outputUnits: [si("parallelWeight", "Parallel weight", "N"), si("normalForce", "Normal force", "N"), si("acceleration", "Acceleration", "m/s^2")],
     validRanges: [{ id: "angle", label: "Angle", min: 0, max: 80, unit: "deg", warning: "Angles beyond classroom scope need warning." }, { id: "mass", label: "Mass", min: 0, unit: "kg" }],
     benchmarkCases: inclinedPlaneBenchmarks,
     tolerance: 1e-9,
@@ -81,7 +81,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "hooke-s-law": {
     experimentId: "hooke-s-law",
     formulaName: "Hooke's law",
-    formula: "F = -kx, U = 1/2 kx²",
+    formula: "F = -kx, U = 1/2 kx^2",
     status: statusForBenchmarks(hookesLawBenchmarks),
     assumptions: ["Spring remains elastic.", "Extension measured from equilibrium."],
     inputUnits: [si("k", "Spring constant", "N/m"), si("x", "Extension", "m"), si("mass", "Attached mass", "kg")],
@@ -95,7 +95,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "circular-motion": {
     experimentId: "circular-motion",
     formulaName: "Centripetal force",
-    formula: "Fc = mrω²",
+    formula: "Fc = m r omega^2",
     status: statusForBenchmarks(circularMotionBenchmarks),
     assumptions: ["Uniform circular motion.", "Centripetal force points inward."],
     inputUnits: [si("mass", "Mass", "kg"), si("radius", "Radius", "m"), si("omega", "Angular speed", "rad/s")],
@@ -109,7 +109,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "single-slit-diffraction": {
     experimentId: "single-slit-diffraction",
     formulaName: "Single slit minima",
-    formula: "a sinθ = mλ; ym ≈ mλD/a",
+    formula: "a sin(theta) = m lambda; y_m approx m lambda D / a",
     status: statusForBenchmarks(singleSlitBenchmarks),
     assumptions: ["Small-angle approximation for screen position.", "Classroom Fraunhofer scalar model."],
     inputUnits: [si("wavelengthNm", "Wavelength", "nm", "m"), si("slitWidthMm", "Slit width", "mm", "m"), si("screenDistanceM", "Screen distance", "m"), si("order", "Order", "integer")],
@@ -123,7 +123,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "chladni-plate": {
     experimentId: "chladni-plate",
     formulaName: "Qualitative standing wave mode",
-    formula: "z = A sin(nπx/L) sin(mπy/L) cos(ωt)",
+    formula: "z = A sin(n pi x/L) sin(m pi y/L) cos(omega t)",
     status: "qualitative-visual",
     assumptions: ["School-level qualitative mode model.", "Not a finite-element plate solver."],
     inputUnits: [si("modeN", "Mode n", "integer"), si("modeM", "Mode m", "integer"), si("frequency", "Frequency", "Hz")],
@@ -141,7 +141,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
     status: statusForBenchmarks(newtonBenchmarks),
     assumptions: ["Net force is known.", "Mass is positive and constant.", "One-dimensional model."],
     inputUnits: [si("force", "Net force", "N"), si("mass", "Mass", "kg")],
-    outputUnits: [si("acceleration", "Acceleration", "m/s²")],
+    outputUnits: [si("acceleration", "Acceleration", "m/s^2")],
     validRanges: [{ id: "mass", label: "Mass", min: 0, unit: "kg" }],
     benchmarkCases: newtonBenchmarks,
     tolerance: 1e-12,
@@ -154,7 +154,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
     formula: "KE + PE = constant",
     status: statusForBenchmarks(energyBenchmarks),
     assumptions: ["No non-conservative work.", "Uniform gravity.", "Closed mechanical system."],
-    inputUnits: [si("mass", "Mass", "kg"), si("height", "Height", "m"), si("g", "Gravity", "m/s²")],
+    inputUnits: [si("mass", "Mass", "kg"), si("height", "Height", "m"), si("g", "Gravity", "m/s^2")],
     outputUnits: [si("energy", "Energy", "J"), si("speed", "Speed", "m/s")],
     validRanges: [{ id: "mass", label: "Mass", min: 0, unit: "kg" }, { id: "height", label: "Height", min: 0, unit: "m" }],
     benchmarkCases: energyBenchmarks,
@@ -165,7 +165,7 @@ export const experimentValidationRegistry: Record<string, ExperimentValidationMe
   "wave-lab": {
     experimentId: "wave-lab",
     formulaName: "Wave relation and interference",
-    formula: "v = fλ; constructive Δr = mλ; destructive Δr = (m+1/2)λ",
+    formula: "v = f lambda; constructive delta r = m lambda; destructive delta r = (m+1/2) lambda",
     status: statusForBenchmarks(waveLabBenchmarks),
     assumptions: ["Two coherent point sources.", "Relative classroom amplitude model."],
     inputUnits: [si("frequency", "Frequency", "Hz"), si("speed", "Speed", "m/s"), si("sourceSeparation", "Separation", "m"), si("phaseDeg", "Phase", "deg", "rad")],

@@ -54,7 +54,7 @@ export const premiumOftConfigs: Record<PremiumOftId, PremiumOftConfig> = {
     prediction: "What happens when the object moves inside the focal length?", misconception: "A convex lens always forms a real image.", correction: "Inside focal length gives a virtual upright image.", teacherAnalogy: "Focal length is the lens's turning strength.", benchmarkText: ["Existing thin-lens benchmark preserved.", "Inside focal length gives virtual image."],
   },
   "prism-dispersion": {
-    id: "prism-dispersion", title: "Premium Prism Dispersion", subtitle: "Split a white beam into labeled red-through-violet rays and compare deviation.", domain: "optics", modelStatus: "validated", formulae: ["deviation approx (n - 1) A"],
+    id: "prism-dispersion", title: "Premium Prism Dispersion", subtitle: "Split a white beam into labeled red-through-violet rays and compare deviation.", domain: "optics", modelStatus: "formula-only", formulae: ["deviation approx (n - 1) A"],
     controls: [{ id: "angle", label: "Prism angle", unit: "deg", min: 20, max: 70, step: 1 }, { id: "index", label: "Refractive index", unit: "", min: 1.3, max: 1.8, step: 0.01 }, { id: "dispersion", label: "Dispersion strength", unit: "", min: 0, max: 1, step: 0.05 }],
     defaults: { angle: 45, index: 1.5, dispersion: 0.5 }, presets: presets({ angle: 35, index: 1.45, dispersion: 0.3 }, { angle: 65, index: 1.7, dispersion: 1 }, { angle: 50, index: 1.52, dispersion: 0.6 }),
     prediction: "Which color bends more in dispersion mode?", misconception: "All colors bend equally.", correction: "Violet bends more than red in normal dispersion.", teacherAnalogy: "The prism is a color sorting ramp.", benchmarkText: ["Larger index/prism angle increases deviation.", "Violet bends more than red when dispersion is enabled."],
@@ -66,7 +66,7 @@ export const premiumOftConfigs: Record<PremiumOftId, PremiumOftConfig> = {
     prediction: "Can TIR happen from rarer to denser medium?", misconception: "TIR can happen from rarer to denser medium.", correction: "TIR needs light going from denser to rarer medium.", teacherAnalogy: "Past critical angle, the boundary acts like a perfect mirror.", benchmarkText: ["n1=1.5,n2=1 gives C approx 41.8 deg.", "TIR only from denser to rarer medium."],
   },
   "human-eye-defects": {
-    id: "human-eye-defects", title: "Premium Human Eye Defects", subtitle: "See focus before, on, or behind the retina and apply the opposite corrective lens.", domain: "optics", modelStatus: "validated", formulae: ["P = 1/f"],
+    id: "human-eye-defects", title: "Premium Human Eye Defects", subtitle: "See focus before, on, or behind the retina and apply the opposite corrective lens.", domain: "optics", modelStatus: "qualitative-visual", formulae: ["P = 1/f"],
     controls: [{ id: "defect", label: "0 normal / 1 myopia / 2 hypermetropia", unit: "", min: 0, max: 2, step: 1 }, { id: "correction", label: "Correction lens power", unit: "D", min: -6, max: 6, step: 0.5 }],
     defaults: { defect: 1, correction: -2 }, presets: presets({ defect: 0, correction: 0 }, { defect: 1, correction: 2 }, { defect: 2, correction: 2 }),
     prediction: "Which correction helps myopia?", misconception: "Myopia and hypermetropia use the same correction.", correction: "Myopia uses diverging lens; hypermetropia uses converging lens.", teacherAnalogy: "Correction moves the focus back onto the retina.", benchmarkText: ["Myopia correction should be diverging.", "Hypermetropia correction should be converging."],
@@ -78,7 +78,7 @@ export const premiumOftConfigs: Record<PremiumOftId, PremiumOftConfig> = {
     prediction: "Does floating depend on mass alone?", misconception: "Floating depends on mass alone.", correction: "Floating depends on density compared with the fluid.", teacherAnalogy: "The object floats when displaced water can balance its weight.", benchmarkText: ["Less dense object floats; denser object sinks.", "Buoyant force equals displaced fluid weight."],
   },
   "bernoulli-fluid-flow": {
-    id: "bernoulli-fluid-flow", title: "Premium Bernoulli Flow", subtitle: "Watch streamlines speed up in a narrow throat while static pressure drops.", domain: "fluids", modelStatus: "validated", formulae: ["P + 1/2 rho v^2 + rho g h = constant"],
+    id: "bernoulli-fluid-flow", title: "Premium Bernoulli Flow", subtitle: "Watch streamlines speed up in a narrow throat while static pressure drops.", domain: "fluids", modelStatus: "formula-only", formulae: ["P + 1/2 rho v^2 + rho g h = constant"],
     controls: [{ id: "wideArea", label: "Wide area", unit: "m2", min: 0.2, max: 2, step: 0.05 }, { id: "narrowArea", label: "Narrow area", unit: "m2", min: 0.05, max: 1, step: 0.05 }, { id: "flowRate", label: "Flow rate", unit: "m3/s", min: 0.1, max: 3, step: 0.1 }],
     defaults: { wideArea: 1.2, narrowArea: 0.4, flowRate: 1 }, presets: presets({ wideArea: 1.2, narrowArea: 0.8, flowRate: 0.8 }, { wideArea: 1.2, narrowArea: 0.2, flowRate: 1.4 }, { wideArea: 1.5, narrowArea: 0.45, flowRate: 1.2 }),
     prediction: "Where is static pressure lower?", misconception: "Faster ideal flow means higher static pressure.", correction: "Faster ideal flow often means lower static pressure.", teacherAnalogy: "Energy shifts between pressure and motion.", benchmarkText: ["Narrow section has higher speed.", "Narrow section has lower static pressure in ideal flow."],
@@ -86,7 +86,7 @@ export const premiumOftConfigs: Record<PremiumOftId, PremiumOftConfig> = {
   "gas-laws": {
     id: "gas-laws", title: "Premium Gas Laws and Kinetic Theory", subtitle: "Control Kelvin temperature, volume, and moles while particles and pressure gauge respond.", domain: "thermodynamics", modelStatus: "validated", formulae: ["PV = nRT"],
     controls: [{ id: "temperature", label: "Temperature", unit: "K", min: 150, max: 700, step: 10 }, { id: "volume", label: "Volume", unit: "m3", min: 0.4, max: 3, step: 0.1 }, { id: "moles", label: "Amount", unit: "mol", min: 0.2, max: 3, step: 0.1 }],
-    defaults: { temperature: 300, volume: 1, moles: 1 }, presets: presets({ temperature: 300, volume: 1.5, moles: 1 }, { temperature: 25, volume: 1, moles: 1 }, { temperature: 500, volume: 0.8, moles: 1.2 }),
+    defaults: { temperature: 300, volume: 1, moles: 1 }, presets: presets({ temperature: 300, volume: 1.5, moles: 1 }, { temperature: 298, volume: 1, moles: 1 }, { temperature: 500, volume: 0.8, moles: 1.2 }),
     prediction: "Why must temperature be in Kelvin?", misconception: "Use Celsius directly in ideal gas law.", correction: "Use Kelvin, not Celsius, in PV = nRT.", teacherAnalogy: "Pressure is particle collisions per wall area.", benchmarkText: ["At fixed n,V pressure rises with temperature.", "At fixed n,T pressure falls with volume."],
   },
 };
@@ -117,7 +117,7 @@ export function computePremiumOft(id: PremiumOftId, values: Record<string, numbe
   if (id === "human-eye-defects") {
     const defect = values.defect === 1 ? "myopia" : values.defect === 2 ? "hypermetropia" : "normal";
     const correct = (defect === "myopia" && values.correction < 0) || (defect === "hypermetropia" && values.correction > 0) || defect === "normal";
-    return result([["Defect", 0, defect], ["Lens power", values.correction, "D"], ["Correction", 0, correct ? "right type" : "wrong type"]], "Choose defect and correction", correct ? "Focus moves toward retina" : "Focus moves the wrong way", "Myopia and hypermetropia need opposite correction lens signs.", "validated", Math.min(1, Math.abs(values.correction) / 6), { correct: correct ? 1 : 0, defect });
+    return result([["Defect", 0, defect], ["Lens power", values.correction, "D"], ["Correction", 0, correct ? "right type" : "wrong type"]], "Choose defect and correction", correct ? "Focus moves toward retina" : "Focus moves the wrong way", "Myopia and hypermetropia need opposite correction lens signs.", "qualitative correction model", Math.min(1, Math.abs(values.correction) / 6), { correct: correct ? 1 : 0, defect });
   }
   if (id === "buoyancy") {
     const fraction = floatingFraction(values.objectDensity, values.fluidDensity);
@@ -132,7 +132,7 @@ export function computePremiumOft(id: PremiumOftId, values: Record<string, numbe
     const vNarrow = continuitySpeed(values.flowRate, values.narrowArea);
     const pWide = bernoulliPressure(120000, 1000, vWide);
     const pNarrow = bernoulliPressure(120000, 1000, vNarrow);
-    return result([["Wide speed", vWide, "m/s"], ["Narrow speed", vNarrow, "m/s"], ["Wide pressure", pWide, "Pa"], ["Narrow pressure", pNarrow, "Pa"]], "Narrow the pipe", "Flow speeds up and pressure drops", "Ideal Bernoulli trades static pressure for kinetic energy.", "validated ideal flow", Math.min(1, vNarrow / 10), { vWide, vNarrow, pWide, pNarrow });
+    return result([["Wide speed", vWide, "m/s"], ["Narrow speed", vNarrow, "m/s"], ["Wide pressure", pWide, "Pa"], ["Narrow pressure", pNarrow, "Pa"]], "Narrow the pipe", "Flow speeds up and pressure drops", "Ideal Bernoulli trades static pressure for kinetic energy.", "school-level ideal-flow model", Math.min(1, vNarrow / 10), { vWide, vNarrow, pWide, pNarrow });
   }
   const pressure = idealGasPressure(values.moles, values.temperature, values.volume);
   return result([["Pressure", pressure, "Pa"], ["Temperature", values.temperature, "K"], ["Volume", values.volume, "m3"], ["Speed scale", particleSpeedScale(values.temperature), "x"]], "Change Kelvin temperature or volume", "Pressure gauge changes with collision rate", "PV = nRT needs absolute Kelvin temperature.", "validated", Math.min(1, pressure / 20000), { pressure, speed: particleSpeedScale(values.temperature) });

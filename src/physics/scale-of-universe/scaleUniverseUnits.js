@@ -8,7 +8,7 @@ export const scaleUnits = [
   unit("Kilometer", "km", 1e3, "geography and planetary surfaces", "Mount Everest"),
   unit("Astronomical Unit", "AU", 1.496e11, "Solar System distances", "Distance from Earth to Sun"),
   unit("Light Year", "ly", 9.461e15, "interstellar and galactic distances", "Light Year"),
-  unit("Parsec", "pc", 3.086e16, "astronomy and star distances", "Distance to Proxima Centauri"),
+  unit("Parsec", "pc", 3.086e16, "astronomy and star distances", "distance set by 1 arcsecond parallax"),
 ];
 
 export function formatBestUnit(sizeMeters) {

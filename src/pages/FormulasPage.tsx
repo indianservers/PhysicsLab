@@ -613,7 +613,8 @@ function calculateInteractiveFormula(id: InteractiveFormulaId, values: Record<st
     }
     case "newton": {
       const applied = values.mass * values.acceleration;
-      const net = applied - values.friction * Math.sign(applied || 1);
+      const opposing = Math.min(Math.abs(applied), values.friction);
+      const net = applied - opposing * Math.sign(applied || 1);
       const netAcceleration = net / values.mass;
       return {
         outputs: [
@@ -621,7 +622,7 @@ function calculateInteractiveFormula(id: InteractiveFormulaId, values: Record<st
           { label: "Net force", value: net, unit: "N" },
           { label: "Net acceleration", value: netAcceleration, unit: "m/s^2" },
         ],
-        insight: "Mass resists acceleration; opposing force subtracts from the push before motion changes.",
+        insight: "Mass resists acceleration; the resisting force can reduce the push to zero but does not reverse the motion by itself.",
       };
     }
     case "work": {

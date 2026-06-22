@@ -28,7 +28,7 @@ export function showInfoPanel(panel, object, options = {}) {
     <p>${object.whyItMatters}</p>
     <h3>Key facts</h3>
     <ol>${object.facts.map((fact) => `<li>${fact}</li>`).join("")}</ol>
-    <h3>Scale formula</h3>
+    <h3>Scale notation</h3>
     <code>${object.formula}</code>
     ${
       related.length

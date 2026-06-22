@@ -589,11 +589,11 @@ const supplementalFormulaSeeds: Record<string, FormulaSeed[]> = {
     ["gravitational-redshift-simple", "Gravitational redshift", "\\frac{\\Delta\\lambda}{\\lambda}\\approx\\frac{GM}{Rc^2}", ["Delta lambda", "lambda", "G", "M", "R", "c"], ["redshift"]],
     ["escape-speed-black-hole", "Black hole escape condition", "v_e=c", ["v_e", "c"], ["black hole"]],
     ["luminosity-flux", "Luminosity flux relation", "F=\\frac{L}{4\\pi d^2}", ["F", "L", "d"], ["astronomy"]],
-    ["distance-modulus", "Distance modulus", "m-M=5\\log_{10}d-5", ["m", "M", "d"], ["astronomy"]],
+    ["distance-modulus", "Distance modulus", "m-M=5\\log_{10}(d_{pc})-5", ["m", "M", "d_pc"], ["astronomy", "parsec"]],
     ["stefan-luminosity-star", "Star luminosity", "L=4\\pi R^2\\sigma T^4", ["L", "R", "sigma", "T"], ["star"]],
     ["kepler-binary-mass", "Binary mass relation", "M_1+M_2=\\frac{4\\pi^2a^3}{GT^2}", ["M", "a", "G", "T"], ["binary star"]],
     ["eddington-luminosity", "Eddington luminosity", "L_E=\\frac{4\\pi GMm_pc}{\\sigma_T}", ["L_E", "G", "M", "m_p", "c", "sigma_T"], ["star", "radiation pressure"]],
-    ["parallax-distance", "Parallax distance", "d=\\frac{1}{p}", ["d", "p"], ["parallax", "distance"]],
+    ["parallax-distance", "Parallax distance", "d_{pc}=\\frac{1}{p_{arcsec}}", ["d_pc", "p_arcsec"], ["parallax", "distance", "parsec"]],
   ],
 };
 
