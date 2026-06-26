@@ -216,7 +216,7 @@ function ExperimentQuizPane({ experiment, learningLevel }: { experiment: typeof 
       <div className="panel p-5">
         <p className="ui-label">Quick check</p>
         <h2 className="mt-1 text-2xl font-black">{experiment.title} quiz</h2>
-        <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">Practice the concepts behind this lab in the full quiz interface.</p>
+        <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">Use the lab-specific questions below first, then open the larger quiz bank for extra mixed practice.</p>
         <Link className="hero-btn mt-4 inline-flex" to={`/quiz?focus=${encodeURIComponent(experiment.title)}`} viewTransition>
           <PhysicsIcon name="check" className="h-4 w-4" />
           Start focused quiz
@@ -348,7 +348,6 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
   const [controlsCollapsed, setControlsCollapsed] = useState(false);
   const [classroomPaused, setClassroomPaused] = useState(initialSnapshot?.paused ?? false);
   const [presentationStep, setPresentationStep] = useState(initialSnapshot?.presentationStep ?? 0);
-  const [copiedPrompt, setCopiedPrompt] = useState(false);
   const [snapshotState, setSnapshotState] = useState(initialSnapshot ? "Snapshot loaded from this link" : "Ready to share current setup");
   const results = calculateLab(experiment.id, a, b, c);
   const supportsThreeD = has3DAnimation(experiment.id);
@@ -406,12 +405,6 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
     if (next.valueMode === "low") setAll(results.controls.map((control) => control.min));
     if (next.valueMode === "mid") setAll(results.controls.map((control) => midpoint(control)));
     if (next.valueMode === "high") setAll(results.controls.map((control) => control.max));
-  };
-  const copyPresentationPrompt = async () => {
-    const step = classroomPresentationSteps(experiment, results, flagshipModel?.predictionPrompt)[presentationStep];
-    await navigator.clipboard.writeText(`${experiment.title}: ${step.title}\n${step.prompt}\nWatch: ${step.watch}`);
-    setCopiedPrompt(true);
-    window.setTimeout(() => setCopiedPrompt(false), 1600);
   };
   return (
     <div id="simulation" className="experiment-live-shell">
@@ -526,7 +519,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
         </div>
         <div className="desktop-stage-body">
           {flagshipModel && (
-            <div className="rounded-md border border-emerald-400/30 bg-emerald-400/10 p-3 text-sm text-slate-700 dark:text-slate-200">
+            <div className="flagship-compact-card rounded-md border border-emerald-400/30 bg-emerald-400/10 p-3 text-sm text-slate-700 dark:text-slate-200">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="status-chip status-chip-cyan">Flagship model</span>
                 <span className="status-chip">{flagshipModel.modelVersion}</span>
@@ -613,12 +606,10 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
             experiment={experiment}
             result={results}
             activeIndex={presentationStep}
-            copiedPrompt={copiedPrompt}
             modelPrompt={flagshipModel?.predictionPrompt}
             onSelect={applyPresentationStep}
             onPrevious={() => applyPresentationStep(presentationStep - 1)}
             onNext={() => applyPresentationStep(presentationStep + 1)}
-            onCopy={copyPresentationPrompt}
           />
           <LabSnapshotPanel
             result={results}
@@ -664,7 +655,134 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
           )}
         </aside>
       </div>
+      <LabLearningBottom
+        experiment={experiment}
+        result={results}
+        values={[a, b, c]}
+        learningLevel={learningLevel}
+        activeMoment={activeMoment}
+        onMomentChange={setActiveMoment}
+        assignment={assignment}
+        snapshot={currentSnapshot}
+        presentationStep={presentationStep}
+        flagshipPrompt={flagshipModel?.predictionPrompt}
+        snapshotState={snapshotState}
+        onPresentationSelect={applyPresentationStep}
+        onPresentationPrevious={() => applyPresentationStep(presentationStep - 1)}
+        onPresentationNext={() => applyPresentationStep(presentationStep + 1)}
+        onCopySnapshot={copyLabSnapshot}
+        onPinSnapshot={pinLabSnapshot}
+        onReset={resetValues}
+        onSetValues={setAll}
+      />
     </div>
+  );
+}
+
+function LabLearningBottom({
+  experiment,
+  result,
+  values,
+  learningLevel,
+  activeMoment,
+  onMomentChange,
+  assignment,
+  snapshot,
+  presentationStep,
+  flagshipPrompt,
+  snapshotState,
+  onPresentationSelect,
+  onPresentationPrevious,
+  onPresentationNext,
+  onCopySnapshot,
+  onPinSnapshot,
+  onReset,
+  onSetValues,
+}: {
+  experiment: typeof experiments[number];
+  result: LabResult;
+  values: [number, number, number];
+  learningLevel: LearningLevel;
+  activeMoment: AnimationMoment | null;
+  onMomentChange: (moment: AnimationMoment | null) => void;
+  assignment?: ActiveAssignment;
+  snapshot: LabSnapshot;
+  presentationStep: number;
+  flagshipPrompt?: string;
+  snapshotState: string;
+  onPresentationSelect: (index: number) => void;
+  onPresentationPrevious: () => void;
+  onPresentationNext: () => void;
+  onCopySnapshot: () => void;
+  onPinSnapshot: () => void;
+  onReset: () => void;
+  onSetValues: (values: number[]) => void;
+}) {
+  const variables = result.controls.map((control, index) => ({ label: control.label, value: values[index] ?? 0 }));
+  const adaptiveQuestions = generateAdaptiveQuestions(experiment, learningLevel);
+  return (
+    <section className="lab-learning-bottom" aria-label="Concepts, explanations, quiz, and reports">
+      <ConceptFocusPanel experiment={experiment} result={result} learningLevel={learningLevel} />
+      <div className="lab-learning-bottom-grid">
+        <details className="concept-support-drawer" open>
+          <summary><PhysicsIcon name="spark" className="h-4 w-4" />Animation checkpoints</summary>
+          <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={onMomentChange} />
+        </details>
+        <CollapsibleSection icon="check" title="Quick Quiz" hint="Lab-specific checks before report writing" defaultOpen>
+          <div className="grid gap-2">
+            {adaptiveQuestions.slice(0, 5).map((question) => (
+              <details key={question.id} className="mini-disclosure">
+                <summary>{question.prompt}</summary>
+                <p className="mt-2 text-cyan-500"><strong>{question.type}:</strong> {question.answer}</p>
+              </details>
+            ))}
+          </div>
+        </CollapsibleSection>
+      </div>
+      <div className="lab-learning-bottom-grid">
+        <LabGraphingWorkspace
+          experiment={experiment}
+          result={result}
+          values={values}
+          makeTrialOutputs={(trialValues) => calculateLab(experiment.id, trialValues[0], trialValues[1], trialValues[2]).outputs}
+        />
+        <CollapsibleSection icon="teacher" title="Guided Coach" hint="Compare low, middle, and high setups before drawing a conclusion">
+          <ExperimentLearningCoach
+            experiment={experiment}
+            controls={result.controls}
+            values={values}
+            outputs={result.outputs}
+            formula={result.formula}
+            onSetValues={onSetValues}
+            makeTrialOutputs={(trialValues) => calculateLab(experiment.id, trialValues[0], trialValues[1], trialValues[2]).outputs}
+          />
+        </CollapsibleSection>
+      </div>
+      <div className="lab-learning-bottom-grid">
+        <ScientificNotebook experiment={experiment} result={result} values={values} assignment={assignment} snapshot={snapshot} />
+        <LabReportGenerator experiment={experiment} result={result} values={values} />
+      </div>
+      <LabReferenceStack experiment={experiment} values={values} result={result} />
+      <div className="lab-learning-bottom-grid">
+        <LabPresentationPanel
+          experiment={experiment}
+          result={result}
+          activeIndex={presentationStep}
+          modelPrompt={flagshipPrompt}
+          onSelect={onPresentationSelect}
+          onPrevious={onPresentationPrevious}
+          onNext={onPresentationNext}
+        />
+        <LabSnapshotPanel
+          result={result}
+          values={values}
+          snapshotState={snapshotState}
+          onCopy={onCopySnapshot}
+          onPin={onPinSnapshot}
+          onReset={onReset}
+        />
+      </div>
+    </section>
   );
 }
 
@@ -681,22 +799,18 @@ function LabPresentationPanel({
   experiment,
   result,
   activeIndex,
-  copiedPrompt,
   modelPrompt,
   onSelect,
   onPrevious,
   onNext,
-  onCopy,
 }: {
   experiment: typeof experiments[number];
   result: LabResult;
   activeIndex: number;
-  copiedPrompt: boolean;
   modelPrompt?: string;
   onSelect: (index: number) => void;
   onPrevious: () => void;
   onNext: () => void;
-  onCopy: () => void;
 }) {
   const steps = classroomPresentationSteps(experiment, result, modelPrompt);
   const active = steps[activeIndex] ?? steps[0];
@@ -712,7 +826,6 @@ function LabPresentationPanel({
         <div className="flex flex-wrap gap-2">
           <button className="tool-btn" type="button" onClick={onPrevious} disabled={activeIndex === 0}><PhysicsIcon name="step" className="h-4 w-4" />Back</button>
           <button className="tool-btn-primary" type="button" onClick={onNext} disabled={activeIndex >= steps.length - 1}><PhysicsIcon name="play" className="h-4 w-4" />Next</button>
-          <button className="tool-btn" type="button" onClick={onCopy}><PhysicsIcon name="clipboard" className="h-4 w-4" />{copiedPrompt ? "Copied" : "Copy prompt"}</button>
         </div>
       </div>
       <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_18rem]">
@@ -1075,7 +1188,7 @@ function LabReferenceStack({ experiment, values, result }: { experiment: typeof 
       {phaseTwoThreeBasics[experiment.id] && <PhaseTwoThreeBasicsPanel experimentId={experiment.id} />}
       <CollapsibleSection icon="check" title="Viva Questions" hint="Tap each question to reveal the answer">
         <div className="space-y-2 text-sm">
-          {experiment.vivaQuestions.map((question) => (
+          {vivaQuestionsForLab(experiment).map((question) => (
             <details key={question.prompt} className="mini-disclosure">
               <summary title="Reveal answer">{question.prompt}</summary>
               <p className="mt-1 text-cyan-500">{question.answer}</p>
@@ -1135,6 +1248,15 @@ function FlagshipModelCard({ experimentId }: { experimentId: string }) {
       </div>
     </CollapsibleSection>
   );
+}
+
+function vivaQuestionsForLab(experiment: typeof experiments[number]) {
+  return [
+    ...experiment.vivaQuestions,
+    { prompt: "Which input variable should be changed first in this lab?", answer: "Change one input at a time so the output trend and graph shape stay clear." },
+    { prompt: "Which assumption must you mention before trusting the result?", answer: experiment.assumptions?.[0] ?? "Mention the stated ideal model and keep all units consistent." },
+    { prompt: "How should you check whether the answer is reasonable?", answer: "Check the unit, sign or direction, graph trend, and expected result before writing the conclusion." },
+  ].slice(0, 5);
 }
 
 interface NotebookTrial {
@@ -2025,7 +2147,7 @@ function buildLabReportHtml(experiment: typeof experiments[number], result: LabR
   const assumptions = (experiment.assumptions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   const limitations = (experiment.limitations ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   const mistakes = experiment.commonMistakes.slice(0, 5).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-  const viva = experiment.vivaQuestions.slice(0, 5).map((item) => `<li><strong>${escapeHtml(item.prompt)}</strong><br/>${escapeHtml(item.answer)}</li>`).join("");
+  const viva = vivaQuestionsForLab(experiment).map((item) => `<li><strong>${escapeHtml(item.prompt)}</strong><br/>${escapeHtml(item.answer)}</li>`).join("");
   return `<!doctype html>
 <html>
 <head>

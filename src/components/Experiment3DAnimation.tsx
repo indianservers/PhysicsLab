@@ -8,6 +8,8 @@ import { ExperimentDefinition } from "../types";
 import { iconForExperiment, PhysicsIcon } from "../lib/icons";
 import { FullscreenButton } from "./FullscreenButton";
 import { makePrismModel } from "../lib/prism";
+import { getExperimentVisualizationSpec, isPanePending } from "../lib/experimentVisualizationSpecs";
+import { PendingVisualizationCard } from "./PendingVisualizationCard";
 
 type AnimationKind =
   | "projectile"
@@ -35,6 +37,7 @@ type AnimationKind =
   | "interference"
   | "photoelectric"
   | "bohr"
+  | "coupledOscillator"
   | "logic";
 
 interface AnimationConfig {
@@ -86,6 +89,7 @@ const animationConfigs: Record<string, AnimationConfig> = {
   "de-broglie-wavelength": { kind: "interference", title: "3D matter-wave spread", cue: "Higher accelerating voltage shortens wavelength and tightens diffraction." },
   "special-relativity-bridge": { kind: "graph3d", title: "3D spacetime bridge", cue: "A light-clock path and spacetime graph stretch as speed approaches light speed.", cinematic: true, steps: ["Set speed fraction", "Watch gamma grow", "Compare time and length readings"] },
   "bohr-model": { kind: "bohr", title: "Cinematic Bohr transition", cue: "Energy shells, electron jump path, photon pulse, and level ladder reveal why each spectral line has a fixed energy.", cinematic: true, steps: ["Choose energy levels", "Electron jumps shell", "Photon carries energy gap"] },
+  "chaotic-coupled-oscillators": { kind: "coupledOscillator", title: "3D coupled oscillator chaos", cue: "Two linked pendulum arms exchange energy. Increase the angle or coupling and the phase trail spreads instead of closing into a simple loop.", cinematic: true, steps: ["Set nearby initial angles", "Watch energy swap between arms", "Compare regular loops with chaotic phase spread"] },
   "logic-gates": { kind: "logic", title: "3D logic gate", cue: "Inputs feed a digital gate and the output indicator switches between 0 and 1." },
 };
 
@@ -102,7 +106,9 @@ export function has3DAnimation(experimentId: string) {
 }
 
 export function Experiment3DAnimation({ experiment, values, outputs = [], timelineTime = null, fixedShell = false }: Experiment3DAnimationProps) {
-  const config = useMemo(() => animationConfigs[experiment.id] ?? fallback3DConfig(experiment), [experiment]);
+  const visualizationSpec = getExperimentVisualizationSpec(experiment.id);
+  const isPending3D = !visualizationSpec || isPanePending(visualizationSpec.threeD);
+  const config = useMemo(() => isPending3D ? undefined : animationConfigs[experiment.id] ?? fallback3DConfig(experiment), [experiment, isPending3D]);
   const panelRef = useRef<HTMLElement | null>(null);
   const mountRef = useRef<HTMLDivElement>(null);
   const timelineTimeRef = useRef<number | null>(timelineTime);
@@ -115,6 +121,7 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
   }, [timelineTime]);
 
   useEffect(() => {
+    if (!config) return undefined;
     const mount = mountRef.current;
     if (!mount) return undefined;
 
@@ -178,9 +185,18 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
 
     const root = new THREE.Group();
     scene.add(root);
-    addGrid(root);
-    addCinematicSet(root, config.kind, Boolean(config.cinematic));
-    buildScene(config.kind, root, values);
+    try {
+      addGrid(root);
+      addCinematicSet(root, config.kind, Boolean(config.cinematic));
+      buildScene(config.kind, root, values);
+    } catch {
+      const fallback = document.createElement("div");
+      fallback.className = "three-lab-fallback";
+      fallback.innerHTML = "<strong>3D scene could not render.</strong><span>The 2D visualization, sliders, graph, and calculator are still available for this lab.</span>";
+      mount.replaceChildren(fallback);
+      renderer.dispose();
+      return undefined;
+    }
 
     const pointerState = {
       active: false,
@@ -316,6 +332,11 @@ export function Experiment3DAnimation({ experiment, values, outputs = [], timeli
       mount.replaceChildren();
     };
   }, [config, experiment.id, values]);
+
+  if (!config) {
+    // VISUALIZATION_PHASE_2: Replace pending 3D roadmap cards with experiment-specific apparatus scenes by assigned phase.
+    return <PendingVisualizationCard experiment={experiment} pane="threeD" />;
+  }
 
   const cardClassName = config.cinematic ? "three-lab-card three-lab-card-cinematic mt-5 fullscreen-target" : "three-lab-card mt-5 fullscreen-target";
   const setPanelRef = (element: HTMLElement | null) => {
@@ -503,6 +524,7 @@ function buildScene(kind: AnimationKind, root: THREE.Group, values: [number, num
   if (kind === "interference") return buildInterference(root, a, b, c);
   if (kind === "photoelectric") return buildPhotoelectric(root, a, b, c);
   if (kind === "bohr") return buildBohr(root, a, b, c);
+  if (kind === "coupledOscillator") return buildCoupledOscillator(root, a, b, c);
   return buildLogic(root, a, b, c);
 }
 
@@ -1363,6 +1385,94 @@ function buildBohr(root: THREE.Group, n1: number, n2: number, _unused = 0) {
   root.add(label("energy ladder", new THREE.Vector3(1.82, 1.45, 0), 0xfacc15));
 }
 
+function buildCoupledOscillator(root: THREE.Group, angle1: number, angle2: number, coupling: number) {
+  const theta1 = THREE.MathUtils.degToRad(clamp(angle1, 5, 92));
+  const theta2 = THREE.MathUtils.degToRad(clamp(angle2 + coupling * 38, 5, 112));
+  const couplingStrength = clamp(coupling, 0, 1);
+  const l1 = 1.28;
+  const l2 = 1.08;
+  const pivot = new THREE.Vector3(-1.5, 1.18, 0);
+  const joint = new THREE.Vector3(pivot.x + Math.sin(theta1) * l1, pivot.y - Math.cos(theta1) * l1, 0);
+  const bob = new THREE.Vector3(joint.x + Math.sin(theta2) * l2, joint.y - Math.cos(theta2) * l2, 0.18);
+
+  const support = box(2.45, 0.08, 0.1, 0x64748b, 0.9);
+  support.position.set(pivot.x, pivot.y + 0.12, 0);
+  root.add(support);
+  const stand = box(0.1, 2.45, 0.1, 0x475569, 0.86);
+  stand.position.set(pivot.x - 1.15, -0.05, 0);
+  root.add(stand);
+
+  const arm1 = cylinderBetween(pivot, joint, 0.035, 0x67e8f9);
+  arm1.userData.role = "coupled-arm";
+  arm1.userData.pivot = pivot;
+  arm1.userData.length = l1;
+  arm1.userData.phase = 0;
+  arm1.userData.color = 0x67e8f9;
+  root.add(arm1);
+  const arm2 = cylinderBetween(joint, bob, 0.03, 0xfacc15);
+  arm2.userData.role = "coupled-arm";
+  arm2.userData.parentArm = arm1;
+  arm2.userData.length = l2;
+  arm2.userData.phase = 1.7;
+  arm2.userData.color = 0xfacc15;
+  root.add(arm2);
+
+  const jointBall = sphere(0.16, 0x22d3ee);
+  jointBall.position.copy(joint);
+  jointBall.userData.role = "coupled-joint";
+  jointBall.userData.pivot = pivot;
+  jointBall.userData.length = l1;
+  root.add(jointBall);
+  const bobBall = sphere(0.2, 0xf43f5e);
+  bobBall.position.copy(bob);
+  bobBall.userData.role = "coupled-bob";
+  bobBall.userData.pivot = pivot;
+  bobBall.userData.length1 = l1;
+  bobBall.userData.length2 = l2;
+  root.add(bobBall);
+
+  const pathPoints = Array.from({ length: 160 }, (_, index) => {
+    const t = index / 16;
+    const spread = 0.7 + couplingStrength * 1.65 + Math.max(0, angle1 + angle2 - 90) * 0.018;
+    return new THREE.Vector3(
+      1.45 + Math.sin(t * 1.61 + Math.sin(t * 0.37) * 1.8) * spread,
+      -0.15 + Math.cos(t * 1.27 + Math.sin(t * 0.51)) * spread * 0.48,
+      -0.25 + Math.sin(t * 0.83) * 0.72
+    );
+  });
+  const trail = tube(pathPoints, 0.012, 0xf43f5e, 0.74);
+  trail.userData.role = "field";
+  trail.userData.phase = 0.4;
+  trail.userData.power = 0.55 + couplingStrength;
+  root.add(trail);
+  const regularLoop = tube(Array.from({ length: 96 }, (_, index) => {
+    const t = (index / 95) * Math.PI * 2;
+    return new THREE.Vector3(1.45 + Math.cos(t) * 0.72, -0.15 + Math.sin(t) * 0.38, -0.95);
+  }), 0.01, 0x22d3ee, 0.55);
+  root.add(regularLoop);
+  const tracer = sphere(0.075, 0xfacc15, 0.92);
+  tracer.userData.role = "path";
+  tracer.userData.path = pathPoints;
+  root.add(tracer);
+
+  const phasePlate = box(2.9, 0.035, 1.7, 0x0f172a, 0.46);
+  phasePlate.position.set(1.45, -1.02, -0.34);
+  root.add(phasePlate);
+  root.add(line([new THREE.Vector3(0, -1, -0.34), new THREE.Vector3(2.9, -1, -0.34)], 0x475569, 0.85));
+  root.add(line([new THREE.Vector3(1.45, -1.85, -0.34), new THREE.Vector3(1.45, -0.2, -0.34)], 0x475569, 0.85));
+  root.add(label("double pendulum", new THREE.Vector3(-2.65, 1.55, 0), 0x67e8f9));
+  root.add(label("phase trail", new THREE.Vector3(1.95, 1.2, -0.2), 0xf43f5e));
+  root.add(label(couplingStrength > 0.58 ? "sensitive divergence" : "regular beating", new THREE.Vector3(0.55, -1.75, -0.3), couplingStrength > 0.58 ? 0xf43f5e : 0x22d3ee));
+
+  const energyA = box(0.18, clamp(0.35 + angle1 / 80, 0.35, 1.35), 0.18, 0x22d3ee, 0.82);
+  energyA.position.set(-3.25, -0.65 + energyA.scale.y * 0.08, 0.2);
+  root.add(energyA);
+  const energyB = box(0.18, clamp(0.35 + angle2 / 80, 0.35, 1.35), 0.18, 0xf43f5e, 0.82);
+  energyB.position.set(-2.95, -0.65 + energyB.scale.y * 0.08, 0.2);
+  root.add(energyB);
+  root.add(label("energy swap", new THREE.Vector3(-3.55, 0.45, 0.2), 0xfacc15));
+}
+
 function buildLogic(root: THREE.Group, inputA: number, inputB: number, gateIndex: number) {
   const gate = box(1.1, 0.9, 0.5, 0x22d3ee, 0.28);
   root.add(gate);
@@ -1410,6 +1520,28 @@ function updateObjects(root: THREE.Group, t: number, values: [number, number, nu
       const damping = 1 - object.userData.damping;
       object.rotation.z = Math.sin(t * 1.8) * 0.55 * damping;
       object.rotation.y = Math.sin(t * 0.9) * 0.14;
+    }
+    if (object.userData.role === "coupled-joint") {
+      const [angle1, angle2, coupling] = values;
+      const amp1 = THREE.MathUtils.degToRad(clamp(angle1, 5, 92));
+      const chaos = clamp(coupling, 0, 1);
+      const theta = Math.sin(t * (1.05 + chaos * 0.55)) * amp1 + Math.sin(t * 2.1) * chaos * 0.22;
+      const pivot = object.userData.pivot as THREE.Vector3;
+      const length = object.userData.length as number;
+      object.position.set(pivot.x + Math.sin(theta) * length, pivot.y - Math.cos(theta) * length, Math.sin(t * 0.7) * 0.12);
+    }
+    if (object.userData.role === "coupled-bob") {
+      const [angle1, angle2, coupling] = values;
+      const chaos = clamp(coupling, 0, 1);
+      const amp1 = THREE.MathUtils.degToRad(clamp(angle1, 5, 92));
+      const amp2 = THREE.MathUtils.degToRad(clamp(angle2, 5, 112));
+      const theta1 = Math.sin(t * (1.05 + chaos * 0.55)) * amp1 + Math.sin(t * 2.1) * chaos * 0.22;
+      const theta2 = Math.sin(t * (1.75 + chaos * 0.9) + Math.sin(t * 0.41) * chaos * 2.1) * amp2;
+      const pivot = object.userData.pivot as THREE.Vector3;
+      const l1 = object.userData.length1 as number;
+      const l2 = object.userData.length2 as number;
+      const joint = new THREE.Vector3(pivot.x + Math.sin(theta1) * l1, pivot.y - Math.cos(theta1) * l1, Math.sin(t * 0.7) * 0.12);
+      object.position.set(joint.x + Math.sin(theta2) * l2, joint.y - Math.cos(theta2) * l2, joint.z + Math.cos(t * 0.63) * 0.24);
     }
     if (object.userData.role === "orbit") {
       const baseRadius = object.userData.radius;

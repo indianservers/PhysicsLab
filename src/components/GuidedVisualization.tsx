@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import { ExperimentDefinition } from "../types";
 import { iconForExperiment, PhysicsIcon } from "../lib/icons";
 import { makePrismModel } from "../lib/prism";
+import { FullscreenButton } from "./FullscreenButton";
+import { getExperimentVisualizationSpec, isPanePending } from "../lib/experimentVisualizationSpecs";
+import { PendingVisualizationCard } from "./PendingVisualizationCard";
 
 interface GuidedVisualizationProps {
   experiment: ExperimentDefinition;
@@ -11,12 +15,18 @@ interface GuidedVisualizationProps {
 
 export function GuidedVisualization({ experiment, values, outputs, controls = [] }: GuidedVisualizationProps) {
   const [a, b, c] = values;
+  const visualizationSpec = getExperimentVisualizationSpec(experiment.id);
+  if (!visualizationSpec || isPanePending(visualizationSpec.twoD)) {
+    // VISUALIZATION_PHASE_2: Replace pending 2D roadmap cards with experiment-specific apparatus scenes by assigned phase.
+    return <PendingVisualizationCard experiment={experiment} pane="twoD" />;
+  }
   const domain = experiment.curriculumTags?.domains[0] ?? experiment.category;
   const title = visualizationTitle(experiment);
   const animation = animationPlan(experiment);
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div className="rounded-lg border border-slate-300/70 bg-slate-950 p-3 dark:border-lab-line">
+    <div ref={panelRef} className="guided-visualization-card fullscreen-target rounded-lg border border-slate-300/70 bg-slate-950 p-3 dark:border-lab-line">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-3">
           <span className="grid h-10 w-10 place-items-center rounded-md border border-cyan-300/40 bg-cyan-300/10 text-cyan-200">
@@ -28,12 +38,13 @@ export function GuidedVisualization({ experiment, values, outputs, controls = []
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
+          <FullscreenButton targetRef={panelRef} compact />
           <span className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-2 py-1 text-xs font-bold text-cyan-200">{domain}</span>
           <span className="rounded-full border border-amber-300/40 bg-amber-300/10 px-2 py-1 text-xs font-bold text-amber-200">animated</span>
         </div>
       </div>
-      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_190px]">
-      <svg className="h-72 w-full rounded-md bg-slate-900" viewBox="0 0 760 300" role="img" aria-label={`${experiment.title} visualization`}>
+      <div className="guided-visualization-main mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_190px]">
+      <svg className="guided-visualization-svg h-72 w-full rounded-md bg-slate-900" viewBox="0 0 760 300" role="img" aria-label={`${experiment.title} visualization`}>
         <defs>
           <pattern id={`grid-${experiment.id}`} width="32" height="32" patternUnits="userSpaceOnUse">
             <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(148,163,184,.14)" strokeWidth="1" />
@@ -50,7 +61,7 @@ export function GuidedVisualization({ experiment, values, outputs, controls = []
         <rect width="760" height="300" fill={`url(#grid-${experiment.id})`} />
         {renderScene(experiment, a, b, c)}
       </svg>
-      <div className="grid content-start gap-2">
+      <div className="guided-visualization-aside grid content-start gap-2">
         <div className="rounded-md border border-cyan-300/30 bg-cyan-300/10 p-3">
           <div className="text-xs font-black uppercase tracking-widest text-cyan-200">watch while changing</div>
           <p className="mt-2 text-xs font-semibold leading-5 text-slate-200">
@@ -62,9 +73,9 @@ export function GuidedVisualization({ experiment, values, outputs, controls = []
         </div>
         <div className="rounded-md border border-slate-700 bg-slate-900 p-3">
           <div className="text-xs font-black uppercase tracking-widest text-cyan-300">visual key</div>
-          <LegendItem color="#22d3ee" label="active motion / output" />
-          <LegendItem color="#f43f5e" label="force / field effect" />
-          <LegendItem color="#facc15" label="reference / energy" />
+          <LegendItem color="#22d3ee" label="blue arrow: motion, ray, current, or measured output" />
+          <LegendItem color="#f43f5e" label="red arrow: force, field effect, loss, or threshold" />
+          <LegendItem color="#facc15" label="yellow marker: reference, energy, photon, or guide value" />
         </div>
         <div className="rounded-md border border-amber-300/30 bg-amber-300/10 p-3">
           <div className="text-xs font-black uppercase tracking-widest text-amber-200">{animation.title}</div>
@@ -80,7 +91,7 @@ export function GuidedVisualization({ experiment, values, outputs, controls = []
         ))}
       </div>
       </div>
-      <div className="mt-3 grid gap-2 md:grid-cols-3">
+      <div className="guided-visualization-outputs mt-3 grid gap-2 md:grid-cols-3">
         {outputs.slice(0, 3).map((output) => (
           <div key={output.label} className="rounded-md border border-slate-700 bg-slate-900 p-2">
             <div className="text-xs text-slate-400">{output.label}</div>
@@ -119,6 +130,7 @@ function MechanicsScene({ id, a, b, c }: { id: string; a: number; b: number; c: 
   if (id === "conservation-of-energy" || id === "work-power") return <EnergyBarsScene id={id} a={a} b={b} c={c} />;
   if (id === "circular-motion") return <CircularForceScene a={a} b={b} c={c} />;
   if (id === "simple-pendulum" || id === "shm-spring") return <OscillationScene id={id} a={a} b={b} c={c} />;
+  if (id === "chaotic-coupled-oscillators") return <CoupledOscillatorScene a={a} b={b} c={c} />;
   const blockX = clamp(120 + a * 12, 120, 520);
   const angle = clamp(b, 0, 80);
   const arrow = clamp(60 + c * 80, 40, 190);
@@ -152,6 +164,63 @@ function MechanicsScene({ id, a, b, c }: { id: string; a: number; b: number; c: 
       <path d={`M 120 240 L 340 240 L 340 ${240 - Math.sin((angle * Math.PI) / 180) * 120} Z`} fill="rgba(251,191,36,.32)" stroke="#fbbf24" />
       <text x="95" y="70" fill="#e2e8f0" fontSize="16">Mechanics model: vary controls and compare measured output</text>
       <text x="95" y="96" fill="#94a3b8" fontSize="13">Force, motion, energy, and geometry update from the live sliders.</text>
+    </g>
+  );
+}
+
+function CoupledOscillatorScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const angle1 = clamp(a, 5, 90);
+  const angle2 = clamp(b, 5, 90);
+  const coupling = clamp(c, 0, 1);
+  const theta1 = (angle1 * Math.PI) / 180;
+  const theta2 = ((angle2 + coupling * 42) * Math.PI) / 180;
+  const pivot1 = { x: 210, y: 76 };
+  const length1 = 82;
+  const length2 = 76;
+  const joint = { x: pivot1.x + Math.sin(theta1) * length1, y: pivot1.y + Math.cos(theta1) * length1 };
+  const bob = { x: joint.x + Math.sin(theta2) * length2, y: joint.y + Math.cos(theta2) * length2 };
+  const regularPath = Array.from({ length: 70 }, (_, index) => {
+    const t = index / 69;
+    const x = 455 + Math.sin(t * Math.PI * 2.4) * (42 + angle1 * 0.32);
+    const y = 158 + Math.cos(t * Math.PI * 2.4) * (30 + angle2 * 0.18);
+    return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const chaoticPath = Array.from({ length: 120 }, (_, index) => {
+    const t = index / 14;
+    const spread = 22 + coupling * 72 + Math.max(0, angle1 + angle2 - 80) * 0.45;
+    const x = 455 + Math.sin(t * 1.7 + Math.sin(t * 0.43) * 2.2) * spread + Math.cos(t * 0.71) * 28;
+    const y = 158 + Math.cos(t * 1.31 + Math.sin(t * 0.37)) * (spread * 0.62) + Math.sin(t * 0.91) * 18;
+    return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const divergence = clamp((Math.abs(angle1 - angle2) / 40 + coupling + Math.max(0, angle1 + angle2 - 95) / 85) / 2, 0, 1);
+  return (
+    <g>
+      <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">coupled nonlinear oscillator</text>
+      <text x="82" y="68" fill="#94a3b8" fontSize="13">Two linked angles exchange energy; stronger coupling makes nearby starts separate faster.</text>
+      <line x1="72" y1="76" x2="330" y2="76" stroke="#475569" strokeWidth="5" strokeLinecap="round" />
+      <circle cx={pivot1.x} cy={pivot1.y} r="7" fill="#67e8f9" />
+      <line x1={pivot1.x} y1={pivot1.y} x2={joint.x} y2={joint.y} stroke="#e2e8f0" strokeWidth="5" strokeLinecap="round" />
+      <line x1={joint.x} y1={joint.y} x2={bob.x} y2={bob.y} stroke="#facc15" strokeWidth="5" strokeLinecap="round" />
+      <circle cx={joint.x} cy={joint.y} r="16" fill="#22d3ee" stroke="#67e8f9" strokeWidth="3" className="lab-anim-glow" />
+      <circle cx={bob.x} cy={bob.y} r="18" fill="#f43f5e" stroke="#fb7185" strokeWidth="3" className="lab-anim-pulse" />
+      <path d={`M ${pivot1.x - 54} ${pivot1.y + 32} A 54 54 0 0 1 ${pivot1.x + 54} ${pivot1.y + 32}`} fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6 5" />
+      <path d={`M ${joint.x - 42} ${joint.y + 28} A 42 42 0 0 1 ${joint.x + 42} ${joint.y + 28}`} fill="none" stroke="#f43f5e" strokeWidth="3" strokeDasharray="6 5" />
+      <text x="105" y="274" fill="#67e8f9" fontSize="13" fontWeight="900">theta1 {angle1.toFixed(0)} deg</text>
+      <text x="220" y="274" fill="#fb7185" fontSize="13" fontWeight="900">theta2 {angle2.toFixed(0)} deg</text>
+      <rect x="374" y="52" width="310" height="210" rx="12" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <line x1="400" y1="158" x2="660" y2="158" stroke="#475569" />
+      <line x1="455" y1="72" x2="455" y2="244" stroke="#475569" />
+      <text x="390" y="82" fill="#e2e8f0" fontSize="14" fontWeight="900">phase portrait</text>
+      <path d={regularPath} fill="none" stroke="#22d3ee" strokeWidth="3" opacity={1 - divergence * 0.45} />
+      <path d={chaoticPath} fill="none" stroke="#f43f5e" strokeWidth="3" opacity={0.35 + divergence * 0.65} />
+      <circle r="6" fill="#facc15">
+        <animateMotion dur="3.2s" repeatCount="indefinite" path={chaoticPath} />
+      </circle>
+      <text x="502" y="238" fill="#94a3b8" fontSize="12">theta vs angular velocity</text>
+      <rect x="390" y="278" width="260" height="10" rx="5" fill="#334155" />
+      <rect x="390" y="278" width={clamp(40 + divergence * 220, 40, 260)} height="10" rx="5" fill={divergence > 0.62 ? "#f43f5e" : "#22d3ee"} />
+      <text x="390" y="270" fill="#e2e8f0" fontSize="13" fontWeight="900">sensitivity / phase spread</text>
+      <text x="654" y="288" fill={divergence > 0.62 ? "#fb7185" : "#67e8f9"} fontSize="13" fontWeight="900">{divergence > 0.62 ? "chaotic-looking" : "mostly regular"}</text>
     </g>
   );
 }

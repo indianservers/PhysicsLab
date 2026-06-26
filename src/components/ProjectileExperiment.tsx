@@ -14,7 +14,7 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
   const { projectile, updateProjectile } = useLabStore();
   const [activeMoment, setActiveMoment] = useState<AnimationMoment | null>(null);
   const hasThreeD = has3DAnimation(experiment.id);
-  const [view, setView] = useState<ProjectileView>(hasThreeD ? "three" : "trajectory");
+  const [view, setView] = useState<ProjectileView>("graphs");
   const [targetMetric, setTargetMetric] = useState(0);
   const [targetValue, setTargetValue] = useState("25");
   const angleRad = (projectile.angle * Math.PI) / 180;
@@ -54,15 +54,14 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
     updateProjectile({ speed: Number(bestSpeed.toFixed(2)) });
   };
   const views: Array<{ id: ProjectileView; label: string; icon: Parameters<typeof PhysicsIcon>[0]["name"] }> = [
-    ...(hasThreeD ? [{ id: "three" as const, label: "3D", icon: "orbit" as const }] : []),
-    { id: "trajectory", label: "Trajectory", icon: "rocket" },
     { id: "graphs", label: "Graphs", icon: "chart" },
     { id: "timeline", label: "Timeline", icon: "step" },
   ];
 
   return (
-    <div className="projectile-cockpit">
-      <section className="projectile-control-column">
+    <>
+      <div className="projectile-cockpit">
+        <section className="projectile-control-column">
       <ProjectilePanel title="Guided Experiment" icon="rocket" className="panel min-h-0 p-4 projectile-control-panel">
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">{experiment.aim}</p>
         <div className="mt-5 space-y-4">
@@ -117,12 +116,12 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
           />
         </details>
       </ProjectilePanel>
-      </section>
-      <section className="projectile-stage-column">
+        </section>
+        <section className="projectile-stage-column">
         <div className="projectile-stage-header">
           <div>
             <p className="ui-label">Interactive visualization</p>
-            <h2 className="text-xl font-black">Change controls, watch here</h2>
+            <h2 className="text-xl font-black">2D and 3D motion panes</h2>
           </div>
           <div className="projectile-stage-tabs" aria-label="Projectile visualization views">
             {views.map((item) => (
@@ -134,35 +133,43 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
           </div>
         </div>
         <div className="projectile-stage-stack">
+          <div className="projectile-visual-grid">
+            <div className="lab-visual-pane">
+              <div className="lab-visual-pane-label"><PhysicsIcon name="rocket" className="h-4 w-4" />2D</div>
+              <ProjectilePanel title="Trajectory" icon="rocket" className="panel p-4 projectile-stage-fill">
+                <div className="text-xs font-bold uppercase tracking-widest text-cyan-300">Interactive visualization</div>
+                <svg className="projectile-trajectory-svg mt-3 w-full rounded bg-slate-950" viewBox="0 0 820 300" role="img" aria-label="Projectile trajectory">
+                  <defs>
+                    <pattern id="projectile-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148,163,184,.18)" strokeWidth="1" />
+                    </pattern>
+                    <marker id="projectile-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L9,3 z" fill="#38bdf8" />
+                    </marker>
+                  </defs>
+                  <rect width="820" height="300" fill="url(#projectile-grid)" />
+                  <rect x="34" y="260" width="746" height="5" rx="2.5" fill="#475569" />
+                  <path d={areaPath(points, range, maxHeight)} fill="rgba(34,211,238,.10)" stroke="none" />
+                  <path className="lab-anim-dash" d={toPath(points, range, maxHeight)} fill="none" stroke="#22d3ee" strokeWidth="4" />
+                  <circle r="8" fill="#22d3ee" className="lab-anim-glow">
+                    <animateMotion dur="3s" repeatCount="indefinite" path={toPath(points, range, maxHeight)} />
+                  </circle>
+                  <circle cx="34" cy="260" r="10" fill="#38bdf8" />
+                  <line x1="34" y1="260" x2={34 + 70 * Math.cos(angleRad)} y2={260 - 70 * Math.sin(angleRad)} stroke="#38bdf8" strokeWidth="3" markerEnd="url(#projectile-arrow)" />
+                  <line x1="34" y1="40" x2="780" y2="40" stroke="#facc15" strokeDasharray="6 6" opacity=".65" />
+                  <text x="42" y="34" fill="#e2e8f0" fontSize="14">Range {range.toFixed(2)} m - Height {maxHeight.toFixed(2)} m</text>
+                  <text x="42" y="56" fill="#94a3b8" fontSize="12">Increase speed for a longer arc; change angle to trade range and height.</text>
+                </svg>
+              </ProjectilePanel>
+            </div>
+            {hasThreeD && (
+              <div className="lab-visual-pane">
+                <div className="lab-visual-pane-label"><PhysicsIcon name="orbit" className="h-4 w-4" />3D</div>
+                <Experiment3DAnimation experiment={experiment} values={[projectile.speed, projectile.angle, projectile.gravity]} outputs={outputs} timelineTime={activeMoment?.time ?? null} fixedShell />
+              </div>
+            )}
+          </div>
           {view === "timeline" && <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />}
-          {view === "three" && hasThreeD && <Experiment3DAnimation experiment={experiment} values={[projectile.speed, projectile.angle, projectile.gravity]} outputs={outputs} timelineTime={activeMoment?.time ?? null} fixedShell />}
-          {view === "trajectory" && (
-            <ProjectilePanel title="Trajectory" icon="rocket" className="panel p-4 projectile-stage-fill">
-          <div className="text-xs font-bold uppercase tracking-widest text-cyan-300">Interactive visualization</div>
-          <svg className="projectile-trajectory-svg mt-3 w-full rounded bg-slate-950" viewBox="0 0 820 300" role="img" aria-label="Projectile trajectory">
-            <defs>
-              <pattern id="projectile-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148,163,184,.18)" strokeWidth="1" />
-              </pattern>
-              <marker id="projectile-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="#38bdf8" />
-              </marker>
-            </defs>
-            <rect width="820" height="300" fill="url(#projectile-grid)" />
-            <rect x="34" y="260" width="746" height="5" rx="2.5" fill="#475569" />
-            <path d={areaPath(points, range, maxHeight)} fill="rgba(34,211,238,.10)" stroke="none" />
-            <path className="lab-anim-dash" d={toPath(points, range, maxHeight)} fill="none" stroke="#22d3ee" strokeWidth="4" />
-            <circle r="8" fill="#22d3ee" className="lab-anim-glow">
-              <animateMotion dur="3s" repeatCount="indefinite" path={toPath(points, range, maxHeight)} />
-            </circle>
-            <circle cx="34" cy="260" r="10" fill="#38bdf8" />
-            <line x1="34" y1="260" x2={34 + 70 * Math.cos(angleRad)} y2={260 - 70 * Math.sin(angleRad)} stroke="#38bdf8" strokeWidth="3" markerEnd="url(#projectile-arrow)" />
-            <line x1="34" y1="40" x2="780" y2="40" stroke="#facc15" strokeDasharray="6 6" opacity=".65" />
-            <text x="42" y="34" fill="#e2e8f0" fontSize="14">Range {range.toFixed(2)} m - Height {maxHeight.toFixed(2)} m</text>
-            <text x="42" y="56" fill="#94a3b8" fontSize="12">Increase speed for a longer arc; change angle to trade range and height.</text>
-          </svg>
-        </ProjectilePanel>
-          )}
           {view === "graphs" && (
             <ProjectilePanel title="x-y, x-time, y-time Graphs" icon="chart" className="panel p-4 projectile-stage-fill">
           <div className="projectile-graph-frame mt-3">
@@ -180,8 +187,51 @@ export function ProjectileExperiment({ experiment }: { experiment: ExperimentDef
         </ProjectilePanel>
           )}
         </div>
+        </section>
+      </div>
+      <section className="lab-learning-bottom projectile-learning-bottom" aria-label="Projectile concepts, explanations, and checks">
+        <div className="lab-learning-bottom-grid">
+          <ProjectilePanel title="Core Concept" icon="rocket" className="panel p-4 projectile-stage-fill">
+            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+              Projectile motion separates into horizontal and vertical motion. Horizontal velocity carries the object forward while gravity changes only the vertical velocity.
+            </p>
+            <div className="mt-3 grid gap-2 md:grid-cols-3">
+              <Metric label="Range" value={`${range.toFixed(2)} m`} />
+              <Metric label="Max height" value={`${maxHeight.toFixed(2)} m`} />
+              <Metric label="Flight time" value={`${time.toFixed(2)} s`} />
+            </div>
+          </ProjectilePanel>
+          <ProjectilePanel title="Quick Checks" icon="check" className="panel p-4 projectile-stage-fill">
+            <details className="mini-disclosure" open>
+              <summary>What happens to range when speed increases?</summary>
+              <p className="mt-2 text-cyan-500">Range grows strongly because speed is squared in the ideal range formula.</p>
+            </details>
+            <details className="mini-disclosure mt-2">
+              <summary>Which variable changes vertical motion directly?</summary>
+              <p className="mt-2 text-cyan-500">Gravity changes vertical acceleration, so it changes flight time, height, and range.</p>
+            </details>
+            <details className="mini-disclosure mt-2">
+              <summary>Why compare 2D and 3D views?</summary>
+              <p className="mt-2 text-cyan-500">The 2D pane makes the graph shape readable; the 3D pane makes velocity, arc, and spatial motion easier to picture.</p>
+            </details>
+          </ProjectilePanel>
+        </div>
+        <div className="lab-learning-bottom-grid">
+          <AnimationExplanationTimeline experiment={experiment} activeMomentId={activeMoment?.id ?? null} onMomentChange={setActiveMoment} />
+          <ProjectilePanel title="Guided Coach" icon="teacher" className="panel p-4 projectile-stage-fill">
+            <ExperimentLearningCoach
+              experiment={experiment}
+              controls={coachControls}
+              values={[projectile.speed, projectile.angle, projectile.gravity]}
+              outputs={outputs}
+              formula="R = u^2 sin(2 theta) / g"
+              onSetValues={(values) => updateProjectile({ speed: values[0], angle: values[1], gravity: values[2] })}
+              makeTrialOutputs={(values) => projectileOutputs(values[0], values[1], values[2], projectile.airResistance)}
+            />
+          </ProjectilePanel>
+        </div>
       </section>
-    </div>
+    </>
   );
 }
 

@@ -88,12 +88,21 @@ export function generateExperimentMarkdownReport(input: ExperimentReportInput) {
     ...commonMistakesForExperiment(experiment).slice(0, 5).map((item) => `- ${item}`),
     "",
     "## Viva Questions",
-    ...experiment.vivaQuestions.slice(0, 5).map((item) => `- **${item.prompt}** ${item.answer}`),
+    ...vivaQuestionsForReport(experiment).map((item) => `- **${item.prompt}** ${item.answer}`),
     "",
     "## Units",
     ...experiment.formulae.flatMap((formula) => formula.variables.map((variable) => `- ${variable.symbol}: ${variable.unit || "unitless"}`)),
     ...(validation?.warnings.length ? ["", "## Model Warnings", ...validation.warnings.map((item) => `- ${item}`)] : []),
   ].join("\n");
+}
+
+function vivaQuestionsForReport(experiment: ExperimentDefinition) {
+  return [
+    ...experiment.vivaQuestions,
+    { prompt: "Which input variable should be changed first in this lab?", answer: "Change one input at a time so the output trend and graph shape stay clear." },
+    { prompt: "Which assumption must you mention before trusting the result?", answer: experiment.assumptions?.[0] ?? "Mention the stated ideal model and keep all units consistent." },
+    { prompt: "How should you check whether the answer is reasonable?", answer: "Check the unit, sign or direction, graph trend, and expected result before writing the conclusion." },
+  ].slice(0, 5);
 }
 
 export function downloadMarkdownReport(markdown: string, filename: string) {

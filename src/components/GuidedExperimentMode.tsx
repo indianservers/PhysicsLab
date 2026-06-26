@@ -15,7 +15,7 @@ export function GuidedExperimentMode({ experiment, level, variables, outputs }: 
           <p className="ui-label">Guided experiment mode</p>
           <h2>Lab assistant flow</h2>
         </div>
-        <span className="status-chip status-chip-cyan">{active + 1}/10</span>
+        <span className="status-chip status-chip-cyan">Stage {active + 1} of {stages.length}: {stage}</span>
       </div>
       <div className="guided-flow">
         {stages.map((item, index) => (
@@ -47,6 +47,16 @@ function contentFor(stage: typeof stages[number], experiment: ExperimentDefiniti
     case "Record values": return `Record ${experiment.observationColumns.slice(0, 4).join(", ")}.`;
     case "Compare expected vs observed": return `Expected result: ${experiment.expectedResult}`;
     case "Conclusion": return "Write one sentence connecting the variable changed, formula used, graph shape, and result.";
-    case "Viva questions": return experiment.vivaQuestions[0] ? `${experiment.vivaQuestions[0].prompt} Answer: ${experiment.vivaQuestions[0].answer}` : "Explain the concept aloud in your own words.";
+    case "Viva questions": return vivaPrompt(experiment);
   }
+}
+
+function vivaPrompt(experiment: ExperimentDefinition) {
+  const questions = [
+    ...experiment.vivaQuestions,
+    { prompt: "Which variable did you change first?", answer: "Change one input at a time so the effect on the output is clear." },
+    { prompt: "Which assumption matters most in this lab?", answer: experiment.assumptions?.[0] ?? "Use the stated ideal model and keep units consistent." },
+    { prompt: "How do you know your result is reasonable?", answer: "Check the units, graph trend, and whether the answer matches the expected result." },
+  ].slice(0, 4);
+  return questions.map((question, index) => `${index + 1}. ${question.prompt} Answer: ${question.answer}`).join(" ");
 }
