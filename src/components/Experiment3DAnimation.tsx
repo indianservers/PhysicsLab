@@ -16,6 +16,15 @@ type AnimationKind =
   | "graph3d"
   | "force"
   | "forceBalance"
+  | "freeFall"
+  | "massWeight"
+  | "workPower"
+  | "vector3d"
+  | "rotationalDynamics"
+  | "satelliteOrbit"
+  | "uniformMotion"
+  | "elasticCollision"
+  | "hookesLaw"
   | "incline"
   | "energy"
   | "pendulum"
@@ -24,16 +33,45 @@ type AnimationKind =
   | "buoyancy"
   | "densityTank"
   | "fluid"
+  | "bernoulliVenturi"
   | "thermal"
   | "calorimetry"
+  | "thermoProcess"
+  | "statisticalEnsemble"
   | "circuit"
+  | "staticElectricity"
+  | "electrostaticField"
+  | "electrolysis"
+  | "meterBridge"
+  | "internalCell"
+  | "kirchhoff3d"
+  | "lcr3d"
   | "electromagnet"
+  | "lorentz3d"
   | "induction"
   | "generator"
   | "transformer"
   | "lens"
   | "eye"
   | "prism"
+  | "planeMirror3d"
+  | "glassSlab3d"
+  | "shadowEclipse3d"
+  | "multipleReflection3d"
+  | "opticalInstrument3d"
+  | "waveLab3d"
+  | "chladni3d"
+  | "echo3d"
+  | "soundPitch3d"
+  | "springShm3d"
+  | "spectrum3d"
+  | "polarization3d"
+  | "measurement3d"
+  | "nuclearDecay3d"
+  | "diode3d"
+  | "energySources3d"
+  | "quantumOperators3d"
+  | "computationalWorkflow3d"
   | "interference"
   | "photoelectric"
   | "bohr"
@@ -51,6 +89,12 @@ interface AnimationConfig {
 const animationConfigs: Record<string, AnimationConfig> = {
   "projectile-motion": { kind: "projectile", title: "Cinematic projectile motion", cue: "Watch launch velocity split into horizontal and vertical components, then track the ball, shadow, peak, and range in one scene.", cinematic: true, steps: ["Resolve launch velocity", "Track x and y independently", "Locate peak and landing range"] },
   "distance-time-graph": { kind: "graph3d", title: "3D distance-time graph", cue: "A cart and its live graph move together, so the slope becomes visible as speed instead of just a formula.", cinematic: true, steps: ["Set speed", "Watch distance build", "Read slope as speed"] },
+  "free-fall": { kind: "freeFall", title: "3D free-fall drop tower", cue: "A sphere drops through timer gates; equal-time ghost marks spread farther apart as speed increases.", cinematic: true, steps: ["Release from height", "Pass timer gates", "Read increasing velocity"] },
+  "mass-and-weight": { kind: "massWeight", title: "3D mass and weight comparison", cue: "Mass stays on the balance while the spring scale stretches differently as local gravity changes.", cinematic: true, steps: ["Set mass", "Change local g", "Compare balance and spring scale"] },
+  "work-power": { kind: "workPower", title: "3D work and power apparatus", cue: "A force pulls a load through a measured distance; the meter separates work in joules from power in watts.", cinematic: true, steps: ["Apply force", "Measure displacement", "Compare work and power"] },
+  "vector-resolution": { kind: "vector3d", title: "3D vector decomposition", cue: "The resultant vector is projected onto coordinate axes so components reconstruct the original vector.", cinematic: true, steps: ["Set magnitude and angle", "Project onto axes", "Compare components"] },
+  "rotational-dynamics": { kind: "rotationalDynamics", title: "3D torque flywheel", cue: "A tangential force on a lever arm creates torque; larger moment of inertia slows angular acceleration.", cinematic: true, steps: ["Set lever radius", "Apply tangential force", "Read angular acceleration"] },
+  "satellite-orbit": { kind: "satelliteOrbit", title: "3D orbit and escape lab", cue: "A satellite carries a tangential velocity arrow while gravity points inward; high speed bends into escape.", cinematic: true, steps: ["Set orbital radius", "Compare circular speed", "Cross escape threshold"] },
   "newton-s-second-law": { kind: "force", title: "3D force and acceleration", cue: "The cart responds to net force; the red vector grows when force dominates friction." },
   friction: { kind: "force", title: "3D friction response", cue: "Surface drag opposes motion, showing why applied force must cross the friction threshold." },
   "balanced-unbalanced-forces": { kind: "forceBalance", title: "3D balanced forces", cue: "Opposite pulls compete on the same body; the net arrow only appears when one side wins.", steps: ["Compare left and right pulls", "Find net force", "Predict acceleration"] },
@@ -59,32 +103,64 @@ const animationConfigs: Record<string, AnimationConfig> = {
   "simple-pendulum": { kind: "pendulum", title: "3D pendulum swing", cue: "The bob swings in depth so length and damping become visible, not just numeric." },
   "circular-motion": { kind: "circular", title: "3D circular motion", cue: "The orbiting mass shows velocity around the circle and inward centripetal pull." },
   "universal-gravitation": { kind: "gravity", title: "3D gravity field map", cue: "A test mass orbits through nested field shells while the attraction arrow shrinks with distance squared.", cinematic: true, steps: ["Increase source mass", "Move the test mass away", "Watch inverse-square weakening"] },
+  "uniform-motion": { kind: "uniformMotion", title: "3D uniform motion track", cue: "The cart passes equally spaced markers at equal time intervals, making constant velocity visible.", cinematic: true, steps: ["Set speed", "Watch equal spacing", "Read constant velocity"] },
+  "elastic-collision": { kind: "elasticCollision", title: "3D elastic collision track", cue: "Two carts exchange velocity according to mass while momentum and kinetic energy bars stay balanced.", cinematic: true, steps: ["Set masses", "Watch collision", "Compare momentum and energy"] },
+  "hooke-s-law": { kind: "hookesLaw", title: "3D Hooke's law spring rig", cue: "A hanging mass stretches a spring against a ruler; force and extension remain proportional inside the elastic region.", cinematic: true, steps: ["Set spring constant", "Add force", "Read extension"] },
   buoyancy: { kind: "buoyancy", title: "3D buoyancy tank", cue: "The block bobs in water while submerged volume represents displaced fluid." },
   "density-float-sink": { kind: "densityTank", title: "3D float-or-sink tank", cue: "The block settles to a depth set by density ratio, making floating, neutral buoyancy, and sinking easy to compare.", steps: ["Compare densities", "Watch submerged fraction", "Classify the object state"] },
   "fluid-pressure": { kind: "fluid", title: "3D fluid pressure", cue: "The pressure probe moves through depth; flow markers make pressure direction easier to see." },
   "force-and-pressure": { kind: "fluid", title: "3D pressure field", cue: "The same force over a smaller contact area creates a stronger pressure response." },
+  "bernoulli-fluid-flow": { kind: "bernoulliVenturi", title: "3D Bernoulli venturi", cue: "Flow speeds up through the narrow throat while static pressure gauges drop, showing the pressure-speed tradeoff.", cinematic: true, steps: ["Compare wide and narrow area", "Watch throat velocity increase", "Read pressure drop"] },
   "heat-and-temperature": { kind: "thermal", title: "3D thermal particles", cue: "Particle speed and glow rise with temperature to separate heat energy from temperature reading." },
   "heat-transfer": { kind: "thermal", title: "3D heat transfer", cue: "Energy packets migrate through a slab, slowing when the material is thicker." },
   "gas-laws": { kind: "thermal", title: "3D gas container", cue: "Particles collide with the walls while volume and temperature change pressure." },
+  "thermodynamic-process": { kind: "thermoProcess", title: "3D thermodynamic process piston", cue: "A gas piston, heat arrows, pressure gauge, and compact P-V path show how process type changes work and heat exchange.", cinematic: true, steps: ["Choose process type", "Watch piston and heat exchange", "Compare work on the P-V path"] },
   "calorimetry-mixing": { kind: "calorimetry", title: "3D calorimetry mixing", cue: "Hot and cold streams merge inside an insulated cup; the thermometer climbs toward the heat-balance temperature.", cinematic: true, steps: ["Pour hot sample", "Add cold sample", "Reach thermal equilibrium"] },
+  "statistical-ensemble-lab": { kind: "statisticalEnsemble", title: "3D ensemble distribution", cue: "Particles occupy a state-space box while a histogram wall shows the mean and spread of the ensemble.", cinematic: true, steps: ["Sample many microstates", "Watch spread change", "Read ensemble mean"] },
   "ohms-law": { kind: "circuit", title: "3D charge flow", cue: "Charges move around the loop; bulb glow and carrier speed track current." },
   "series-parallel-resistance": { kind: "circuit", title: "3D circuit paths", cue: "The loop shows how resistance changes the visible charge-flow rate." },
   "electric-power": { kind: "circuit", title: "3D power output", cue: "The load glows as voltage and current combine into useful electrical power." },
   "heating-effect-current": { kind: "circuit", title: "3D Joule heating", cue: "The resistor warms as current rises, emphasizing the squared current effect." },
+  "static-electricity": { kind: "staticElectricity", title: "3D static electricity", cue: "Charged bodies exchange charge, then attract or repel with visible field lines and force arrows.", cinematic: true, steps: ["Charge by contact", "Compare signs", "Watch force and spark cue"] },
+  "chemical-effects-current": { kind: "electrolysis", title: "3D electrolysis cell", cue: "Ions move through electrolyte toward electrodes while bubbles rise and deposit builds on the cathode.", cinematic: true, steps: ["Apply DC supply", "Move ions", "Build deposit"] },
   "capacitor-lab": { kind: "circuit", title: "3D capacitor charging", cue: "Charge gathers on the plates while stored energy rises with voltage." },
+  "electrostatic-field-potential": { kind: "electrostaticField", title: "3D field and potential map", cue: "Point charges create field arrows and potential-height rings; a test charge feels force along the field.", cinematic: true, steps: ["Place source charge", "Read field", "Compare potential"] },
+  "kirchhoff-circuit": { kind: "kirchhoff3d", title: "3D Kirchhoff circuit board", cue: "Junction nodes split current across loop branches while KCL and KVL labels stay tied to the board.", cinematic: true, steps: ["Trace incoming current", "Split at junction", "Check loop drops"] },
+  "ac-lcr-resonance": { kind: "lcr3d", title: "3D LCR resonance lab", cue: "R, L, and C sit in series with an AC source, phasor wheel, oscilloscope, and resonance curve marker.", cinematic: true, steps: ["Set frequency", "Compare reactances", "Find peak current"] },
+  "meter-bridge": { kind: "meterBridge", title: "3D meter bridge board", cue: "A jockey probe moves along the one-meter wire until the galvanometer needle reaches null.", cinematic: true, steps: ["Set ratio", "Move jockey", "Find null"] },
+  "internal-resistance-cell": { kind: "internalCell", title: "3D internal resistance cell", cue: "The cell separates EMF from terminal voltage and shows internal voltage drop as load current rises.", cinematic: true, steps: ["Set load", "Watch internal drop", "Compare E and V"] },
   "electromagnet": { kind: "electromagnet", title: "3D electromagnet", cue: "A helical coil produces pulsing magnetic field loops around an iron core." },
   "magnetic-field-current": { kind: "electromagnet", title: "3D magnetic field", cue: "Current through the conductor wraps field loops around it." },
+  "lorentz-force": { kind: "lorentz3d", title: "3D Lorentz force lab", cue: "A charged particle enters a uniform magnetic field; velocity, field, and force vectors reveal q(v x B), with negative charge reversing the bend.", cinematic: true, steps: ["Set charge sign", "Enter uniform B field", "Read force and radius"] },
   "emi-faraday": { kind: "induction", title: "Cinematic Faraday induction", cue: "Flux ribbons pass through the coil, the magnet moves, and the galvanometer responds when flux changes quickly.", cinematic: true, steps: ["Move magnet", "Change magnetic flux", "Induce emf and current"] },
   "ac-generator": { kind: "generator", title: "Cinematic AC generator", cue: "The rotating coil cuts magnetic flux; slip rings feed brushes while the waveform grows and reverses in sync.", cinematic: true, steps: ["Rotate coil in field", "Flux changes continuously", "Output becomes AC sine wave"] },
   "transformer-lab": { kind: "transformer", title: "Cinematic transformer", cue: "Primary AC creates changing core flux, the secondary coil receives it, and the voltage bars compare the turns ratio.", cinematic: true, steps: ["Primary AC drives flux", "Core links both coils", "Turns ratio sets secondary voltage"] },
   "lens-formula": { kind: "lens", title: "Cinematic lens bench", cue: "Object rays, focal planes, and image screen line up in 3D so the lens equation becomes a spatial story.", cinematic: true, steps: ["Send principal rays", "Bend through lens", "Form real or virtual image"] },
   "mirror-formula": { kind: "lens", title: "3D ray bench", cue: "Rays reflect or focus so object distance and focal length become spatial." },
+  "reflection-plane-mirror": { kind: "planeMirror3d", title: "3D plane mirror reflection", cue: "An object and its virtual image stay symmetric across the mirror while incident and reflected rays keep equal angles.", cinematic: true, steps: ["Set incidence angle", "Compare i and r", "Check equal object-image distance"] },
+  "glass-slab-refraction": { kind: "glassSlab3d", title: "3D glass slab refraction", cue: "The ray bends at both slab faces; the emergent ray remains parallel to the incident ray but is laterally shifted.", cinematic: true, steps: ["Enter first face", "Refract inside glass", "Exit parallel with lateral shift"] },
+  "shadows-eclipses": { kind: "shadowEclipse3d", title: "3D shadows and eclipses", cue: "A source, occluding body, and receiver line up so umbra and penumbra regions are visible in space.", cinematic: true, steps: ["Align source and body", "Trace full shadow", "Separate umbra from penumbra"] },
+  "multiple-reflection": { kind: "multipleReflection3d", title: "3D multiple reflection", cue: "Two ideal mirror panels form a V; smaller angles create more repeated virtual images and a kaleidoscope pattern.", cinematic: true, steps: ["Set mirror angle", "Place object between mirrors", "Count repeated images carefully"] },
   "human-eye-defects": { kind: "eye", title: "3D realistic eye focus", cue: "Trace rays through the corrective lens, cornea, eye lens, and retina. Myopia focuses before the retina; hypermetropia focuses behind it.", cinematic: true, steps: ["Choose the defect", "Watch the uncorrected focus", "Add the correct lens type"] },
   "prism-dispersion": { kind: "prism", title: "3D prism dispersion", cue: "White light separates into colored rays after refraction through the prism." },
   "total-internal-reflection": { kind: "prism", title: "3D total internal reflection", cue: "The ray reflects inside the denser medium after crossing the critical angle." },
+  "optical-instruments": { kind: "opticalInstrument3d", title: "3D microscope and telescope tube", cue: "Objective and eyepiece lenses form an intermediate image, then send a final virtual image direction to the eye.", cinematic: true, steps: ["Choose telescope or microscope", "Form the intermediate image", "Compare objective and eyepiece magnification"] },
   "young-double-slit": { kind: "interference", title: "3D interference fringes", cue: "Two coherent sources make bright and dark bands on a distant screen." },
   "single-slit-diffraction": { kind: "interference", title: "3D diffraction spread", cue: "A narrow opening spreads the wavefront into a broad pattern." },
   "sound-wave-anatomy": { kind: "interference", title: "3D sound wave", cue: "Compression bands travel forward while particles vibrate back and forth." },
+  "wave-lab": { kind: "waveLab3d", title: "3D wave lab", cue: "A string wave shows amplitude, wavelength, frequency, speed, and local medium motion separately from wave propagation.", cinematic: true, steps: ["Set amplitude and frequency", "Watch local particles oscillate", "Read v = f lambda"] },
+  "chladni-plate": { kind: "chladni3d", title: "3D Chladni plate", cue: "A vibrating plate forms mode-dependent nodal lines where sand collects while antinode regions move.", cinematic: true, steps: ["Set mode/frequency", "Find stationary nodes", "Compare sand accumulation"] },
+  "echo-speed-sound": { kind: "echo3d", title: "3D echo timing lab", cue: "A sound pulse travels to a reflecting wall and returns, making the factor of two in echo distance visible.", cinematic: true, steps: ["Send pulse", "Reflect at wall", "Use distance = v t / 2"] },
+  "sound-pitch-loudness": { kind: "soundPitch3d", title: "3D pitch and loudness lab", cue: "The source vibration and pressure rings separate frequency as pitch from amplitude as loudness/intensity cue.", cinematic: true, steps: ["Change frequency", "Change amplitude", "Compare wavelength and loudness cue"] },
+  "shm-spring": { kind: "springShm3d", title: "3D spring-mass SHM", cue: "A mass oscillates about equilibrium with restoring force, velocity, amplitude limits, and energy exchange cues.", cinematic: true, steps: ["Displace the mass", "Watch F = -kx", "Compare kinetic and spring energy"] },
+  "em-spectrum": { kind: "spectrum3d", title: "3D electromagnetic spectrum", cue: "A spectrum wall shows radio through gamma regions with wavelength decreasing as frequency increases.", cinematic: true, steps: ["Move along spectrum", "Find visible band", "Compare c = f lambda"] },
+  "polarization-lab": { kind: "polarization3d", title: "3D polarization and Malus law", cue: "Polarizer and analyzer planes show transmission axes, angle theta, and transmitted intensity from I = I0 cos^2 theta.", cinematic: true, steps: ["Set analyzer angle", "Compare axes", "Read transmitted intensity"] },
+  "measurement-errors": { kind: "measurement3d", title: "3D measurement uncertainty bench", cue: "A measured object, instrument scale, repeated markers, mean, and uncertainty range separate precision from error.", cinematic: true, steps: ["Read the scale", "Compare repeated readings", "Estimate uncertainty"] },
+  "nuclear-decay": { kind: "nuclearDecay3d", title: "3D half-life decay population", cue: "A cluster of unstable nuclei changes state while a half-life ring and curve show statistical population decay.", cinematic: true, steps: ["Set half-life", "Watch decay events", "Read remaining nuclei"] },
+  "semiconductor-diode": { kind: "diode3d", title: "3D PN junction and rectifier", cue: "P and N regions, depletion zone, carriers, I-V knee, and rectified waveform show forward and reverse bias behavior.", cinematic: true, steps: ["Set bias", "Watch depletion barrier", "Compare rectified output"] },
+  "sources-of-energy": { kind: "energySources3d", title: "3D energy source comparison", cue: "Mini apparatus for solar, wind, hydro, fossil, and nuclear sources compare output, reliability, and emissions.", cinematic: true, steps: ["Select a source", "Compare output bars", "Balance benefits and limits"] },
+  "advanced-quantum-operators": { kind: "quantumOperators3d", title: "3D quantum operator state space", cue: "A state vector, operator axis, eigenbasis, and measurement bars show qualitative operator action.", cinematic: true, steps: ["Set state", "Apply operator", "Read expectation"] },
+  "computational-physics-workflow": { kind: "computationalWorkflow3d", title: "3D computational workflow", cue: "Problem, discretization, solver iterations, convergence, error estimate, and result panel form one numerical-method pipeline.", cinematic: true, steps: ["Discretize the model", "Iterate solver", "Check convergence error"] },
   "photoelectric-equation": { kind: "photoelectric", title: "3D photoelectric effect", cue: "Photons strike the metal; electrons leave only when photon energy beats work function." },
   "de-broglie-wavelength": { kind: "interference", title: "3D matter-wave spread", cue: "Higher accelerating voltage shortens wavelength and tightens diffraction." },
   "special-relativity-bridge": { kind: "graph3d", title: "3D spacetime bridge", cue: "A light-clock path and spacetime graph stretch as speed approaches light speed.", cinematic: true, steps: ["Set speed fraction", "Watch gamma grow", "Compare time and length readings"] },
@@ -486,10 +562,37 @@ function fallback3DKind(experiment: ExperimentDefinition): AnimationKind {
 
 function fallback3DSteps(category: string, kind: AnimationKind) {
   if (kind === "eye") return ["Compare focus with retina", "Add a concave or convex correction", "Check clear-image formation"];
+  if (kind === "planeMirror3d") return ["Set incidence angle", "Compare incident and reflected rays", "Verify virtual image distance"];
+  if (kind === "glassSlab3d") return ["Enter the slab", "Bend by Snell's law", "Compare parallel emergent ray"];
+  if (kind === "shadowEclipse3d") return ["Align source and occluder", "Find the umbra", "Find the penumbra"];
+  if (kind === "multipleReflection3d") return ["Set mirror angle", "Watch virtual copies", "Check the image-count condition"];
+  if (kind === "opticalInstrument3d") return ["Set objective and eyepiece", "Locate intermediate image", "Read angular magnification"];
+  if (kind === "waveLab3d") return ["Set amplitude and frequency", "Track local medium motion", "Read v = f lambda"];
+  if (kind === "chladni3d") return ["Set plate mode", "Find nodal lines", "Watch sand collect"];
+  if (kind === "echo3d") return ["Send sound pulse", "Reflect from wall", "Halve round-trip time"];
+  if (kind === "soundPitch3d") return ["Set frequency", "Set amplitude", "Compare pitch and loudness"];
+  if (kind === "springShm3d") return ["Displace from equilibrium", "Watch restoring force", "Compare KE and spring PE"];
+  if (kind === "spectrum3d") return ["Scan wavelength regions", "Find visible band", "Compare frequency inverse relation"];
+  if (kind === "polarization3d") return ["Set analyzer angle", "Project field direction", "Read Malus intensity"];
+  if (kind === "measurement3d") return ["Read the instrument", "Compare repeated markers", "Report mean and uncertainty"];
+  if (kind === "nuclearDecay3d") return ["Start with nuclei population", "Advance half-lives", "Read remaining activity"];
+  if (kind === "diode3d") return ["Set bias direction", "Watch carriers cross", "Compare rectified output"];
+  if (kind === "energySources3d") return ["Select source type", "Compare output and reliability", "Check emissions tradeoff"];
+  if (kind === "quantumOperators3d") return ["Set state vector", "Apply operator axis", "Measure eigenbasis projection"];
+  if (kind === "computationalWorkflow3d") return ["Build mesh", "Run solver iterations", "Check convergence error"];
   if (kind === "lens" || kind === "prism") return ["Follow the incoming ray", "Watch the interaction surface", "Locate the image or pattern"];
   if (kind === "circuit" || kind === "logic") return ["Set the source/input", "Watch carriers or states move", "Read the output response"];
+  if (kind === "staticElectricity" || kind === "electrostaticField") return ["Set charge and distance", "Watch field direction", "Read force or potential"];
+  if (kind === "electrolysis") return ["Apply DC current", "Move ions", "Read deposit or bubbles"];
+  if (kind === "meterBridge") return ["Set resistances", "Move jockey", "Find null balance"];
+  if (kind === "internalCell") return ["Set load current", "Watch internal drop", "Compare E and V"];
+  if (kind === "kirchhoff3d") return ["Trace branch currents", "Check KCL", "Compare voltage drops"];
+  if (kind === "lcr3d") return ["Drive with AC", "Rotate phasors", "Find resonance peak"];
+  if (kind === "lorentz3d") return ["Set charge sign", "Compare v and B", "Read force and path radius"];
   if (kind === "electromagnet" || kind === "induction" || kind === "generator" || kind === "transformer") return ["Create changing current or flux", "Watch the field link the device", "Compare the induced response"];
   if (kind === "thermal" || kind === "calorimetry") return ["Set energy input", "Watch particles redistribute energy", "Read the final thermal state"];
+  if (kind === "thermoProcess") return ["Choose process type", "Watch pressure-volume change", "Compare heat and work"];
+  if (kind === "statisticalEnsemble") return ["Sample many states", "Watch the distribution form", "Read mean and spread"];
   if (kind === "fluid" || kind === "buoyancy" || kind === "densityTank") return ["Set depth, density, or flow", "Watch pressure and buoyancy vectors", "Compare the final state"];
   if (kind === "interference") return ["Set frequency or opening", "Watch wavefronts overlap", "Read nodes, antinodes, or fringes"];
   if (kind === "bohr" || kind === "photoelectric") return ["Add energy", "Watch the quantum event", "Read the emitted or ejected signal"];
@@ -503,6 +606,15 @@ function buildScene(kind: AnimationKind, root: THREE.Group, values: [number, num
   if (kind === "graph3d") return buildGraph3D(root, a, b, c);
   if (kind === "force") return buildForce(root, a, b, c);
   if (kind === "forceBalance") return buildForceBalance(root, a, b, c);
+  if (kind === "freeFall") return buildFreeFall(root, a, b, c);
+  if (kind === "massWeight") return buildMassWeight(root, a, b, c);
+  if (kind === "workPower") return buildWorkPower(root, a, b, c);
+  if (kind === "vector3d") return buildVector3D(root, a, b, c);
+  if (kind === "rotationalDynamics") return buildRotationalDynamics(root, a, b, c);
+  if (kind === "satelliteOrbit") return buildSatelliteOrbit(root, a, b, c);
+  if (kind === "uniformMotion") return buildUniformMotion(root, a, b, c);
+  if (kind === "elasticCollision") return buildElasticCollision(root, a, b, c);
+  if (kind === "hookesLaw") return buildHookesLaw(root, a, b, c);
   if (kind === "incline") return buildIncline(root, a, b, c);
   if (kind === "energy") return buildEnergy(root, a, b, c);
   if (kind === "pendulum") return buildPendulum(root, a, b, c);
@@ -511,9 +623,20 @@ function buildScene(kind: AnimationKind, root: THREE.Group, values: [number, num
   if (kind === "buoyancy") return buildBuoyancy(root, a, b, c);
   if (kind === "densityTank") return buildDensityTank(root, a, b, c);
   if (kind === "fluid") return buildFluid(root, a, b, c);
+  if (kind === "bernoulliVenturi") return buildBernoulliVenturi(root, a, b, c);
   if (kind === "thermal") return buildThermal(root, a, b, c);
   if (kind === "calorimetry") return buildCalorimetry(root, a, b, c);
+  if (kind === "thermoProcess") return buildThermoProcess(root, a, b, c);
+  if (kind === "statisticalEnsemble") return buildStatisticalEnsemble(root, a, b, c);
   if (kind === "circuit") return buildCircuit(root, a, b, c);
+  if (kind === "staticElectricity") return buildStaticElectricity(root, a, b, c);
+  if (kind === "electrostaticField") return buildElectrostaticField(root, a, b, c);
+  if (kind === "electrolysis") return buildElectrolysis(root, a, b, c);
+  if (kind === "meterBridge") return buildMeterBridge(root, a, b, c);
+  if (kind === "internalCell") return buildInternalCell(root, a, b, c);
+  if (kind === "kirchhoff3d") return buildKirchhoff3D(root, a, b, c);
+  if (kind === "lcr3d") return buildLcr3D(root, a, b, c);
+  if (kind === "lorentz3d") return buildLorentz3D(root, a, b, c);
   if (kind === "electromagnet") return buildElectromagnet(root, a, b, c);
   if (kind === "induction") return buildInduction(root, a, b, c);
   if (kind === "generator") return buildGenerator(root, a, b, c);
@@ -521,6 +644,24 @@ function buildScene(kind: AnimationKind, root: THREE.Group, values: [number, num
   if (kind === "lens") return buildLens(root, a, b, c);
   if (kind === "eye") return buildEyeFocus(root, a, b, c);
   if (kind === "prism") return buildPrism(root, a, b, c);
+  if (kind === "planeMirror3d") return buildPlaneMirror3D(root, a, b, c);
+  if (kind === "glassSlab3d") return buildGlassSlab3D(root, a, b, c);
+  if (kind === "shadowEclipse3d") return buildShadowEclipse3D(root, a, b, c);
+  if (kind === "multipleReflection3d") return buildMultipleReflection3D(root, a, b, c);
+  if (kind === "opticalInstrument3d") return buildOpticalInstrument3D(root, a, b, c);
+  if (kind === "waveLab3d") return buildWaveLab3D(root, a, b, c);
+  if (kind === "chladni3d") return buildChladni3D(root, a, b, c);
+  if (kind === "echo3d") return buildEcho3D(root, a, b, c);
+  if (kind === "soundPitch3d") return buildSoundPitch3D(root, a, b, c);
+  if (kind === "springShm3d") return buildSpringShm3D(root, a, b, c);
+  if (kind === "spectrum3d") return buildSpectrum3D(root, a, b, c);
+  if (kind === "polarization3d") return buildPolarization3D(root, a, b, c);
+  if (kind === "measurement3d") return buildMeasurement3D(root, a, b, c);
+  if (kind === "nuclearDecay3d") return buildNuclearDecay3D(root, a, b, c);
+  if (kind === "diode3d") return buildDiode3D(root, a, b, c);
+  if (kind === "energySources3d") return buildEnergySources3D(root, a, b, c);
+  if (kind === "quantumOperators3d") return buildQuantumOperators3D(root, a, b, c);
+  if (kind === "computationalWorkflow3d") return buildComputationalWorkflow3D(root, a, b, c);
   if (kind === "interference") return buildInterference(root, a, b, c);
   if (kind === "photoelectric") return buildPhotoelectric(root, a, b, c);
   if (kind === "bohr") return buildBohr(root, a, b, c);
@@ -590,12 +731,12 @@ function addCinematicSet(root: THREE.Group, kind: AnimationKind, cinematic: bool
 }
 
 function paletteForKind(kind: AnimationKind) {
-  if (kind === "thermal" || kind === "calorimetry") return { primary: 0xf97316, secondary: 0x38bdf8, hot: 0xfacc15 };
-  if (kind === "circuit" || kind === "electromagnet" || kind === "induction" || kind === "generator" || kind === "transformer") return { primary: 0x22d3ee, secondary: 0xfacc15, hot: 0xf97316 };
-  if (kind === "lens" || kind === "eye" || kind === "prism" || kind === "interference") return { primary: 0x67e8f9, secondary: 0xa78bfa, hot: 0xfacc15 };
+  if (kind === "thermal" || kind === "calorimetry" || kind === "thermoProcess" || kind === "statisticalEnsemble") return { primary: 0xf97316, secondary: 0x38bdf8, hot: 0xfacc15 };
+  if (kind === "circuit" || kind === "staticElectricity" || kind === "electrostaticField" || kind === "electrolysis" || kind === "meterBridge" || kind === "internalCell" || kind === "kirchhoff3d" || kind === "lcr3d" || kind === "electromagnet" || kind === "lorentz3d" || kind === "induction" || kind === "generator" || kind === "transformer") return { primary: 0x22d3ee, secondary: 0xfacc15, hot: 0xf97316 };
+  if (kind === "lens" || kind === "eye" || kind === "prism" || kind === "planeMirror3d" || kind === "glassSlab3d" || kind === "shadowEclipse3d" || kind === "multipleReflection3d" || kind === "opticalInstrument3d" || kind === "interference" || kind === "waveLab3d" || kind === "chladni3d" || kind === "echo3d" || kind === "soundPitch3d" || kind === "springShm3d" || kind === "spectrum3d" || kind === "polarization3d" || kind === "measurement3d" || kind === "nuclearDecay3d" || kind === "diode3d" || kind === "energySources3d" || kind === "quantumOperators3d" || kind === "computationalWorkflow3d") return { primary: 0x67e8f9, secondary: 0xa78bfa, hot: 0xfacc15 };
   if (kind === "gravity" || kind === "bohr" || kind === "photoelectric") return { primary: 0xa78bfa, secondary: 0x22d3ee, hot: 0xfacc15 };
-  if (kind === "buoyancy" || kind === "densityTank" || kind === "fluid") return { primary: 0x38bdf8, secondary: 0x0ea5e9, hot: 0xa3e635 };
-  if (kind === "force" || kind === "forceBalance" || kind === "incline") return { primary: 0x38bdf8, secondary: 0xf43f5e, hot: 0xfacc15 };
+  if (kind === "buoyancy" || kind === "densityTank" || kind === "fluid" || kind === "bernoulliVenturi") return { primary: 0x38bdf8, secondary: 0x0ea5e9, hot: 0xa3e635 };
+  if (kind === "force" || kind === "forceBalance" || kind === "incline" || kind === "freeFall" || kind === "massWeight" || kind === "workPower" || kind === "vector3d" || kind === "rotationalDynamics" || kind === "uniformMotion" || kind === "elasticCollision" || kind === "hookesLaw") return { primary: 0x38bdf8, secondary: 0xf43f5e, hot: 0xfacc15 };
   return { primary: 0x22d3ee, secondary: 0x38bdf8, hot: 0xfacc15 };
 }
 
@@ -742,6 +883,207 @@ function buildForceBalance(root: THREE.Group, leftForce: number, rightForce: num
   root.add(label("left pull", new THREE.Vector3(-2.45, -0.28, 0), 0xf43f5e));
   root.add(label("right pull", new THREE.Vector3(2.25, -0.28, 0), 0x34d399));
   root.add(label(Math.abs(net) < 0.01 ? "balanced" : `net ${net.toFixed(0)} N`, new THREE.Vector3(-0.15, 0.62, 0), 0xfacc15));
+}
+
+function buildFreeFall(root: THREE.Group, height: number, initialSpeed: number, gravity: number) {
+  addPlatform(root);
+  const drop = clamp(height / 120, 0.15, 1);
+  [-0.7, 0.7].forEach((x) => {
+    const post = box(0.06, 4.2, 0.06, 0x64748b, 0.92);
+    post.position.set(x, 0.86, 0);
+    root.add(post);
+  });
+  for (let index = 0; index < 5; index += 1) {
+    const gate = box(1.55, 0.035, 0.035, 0x22d3ee, 0.72);
+    gate.position.set(0, 2.55 - index * 0.78, 0);
+    root.add(gate);
+  }
+  const ball = sphere(0.18, 0xfacc15);
+  ball.userData.role = "path";
+  ball.userData.path = [new THREE.Vector3(0, 2.65, 0), new THREE.Vector3(0, 2.65 - drop * 3.25, 0)];
+  root.add(ball);
+  for (let index = 0; index < 6; index += 1) {
+    const ghost = sphere(0.08, 0x67e8f9, 0.18 + index * 0.08);
+    ghost.position.set(0.36, 2.45 - index * index * 0.115, 0);
+    root.add(ghost);
+  }
+  addArrow(root, new THREE.Vector3(0.95, 2.25, 0), new THREE.Vector3(0.95, 1.25, 0), 0xf43f5e);
+  root.add(label("g downward", new THREE.Vector3(1.08, 1.72, 0), 0xf43f5e));
+  root.add(label(`v = u + gt | g ${(gravity || 9.81).toFixed(1)}`, new THREE.Vector3(-1.95, -0.6, 0.2), 0x67e8f9));
+  root.add(label("air resistance ignored", new THREE.Vector3(-1.95, -0.92, 0.2), 0xfacc15));
+}
+
+function buildMassWeight(root: THREE.Group, mass: number, gravity: number, _unused: number) {
+  addPlatform(root);
+  const m = clamp(mass, 0.2, 80);
+  const g = clamp(gravity || 9.81, 1.6, 25);
+  const stretch = clamp((m * g) / 450, 0.25, 1.35);
+  const planet = sphere(1.05, g > 15 ? 0xf97316 : g < 4 ? 0x94a3b8 : 0x38bdf8, 0.62);
+  planet.scale.y = 0.18;
+  planet.position.set(0.9, -0.98, 0);
+  root.add(planet);
+  const stand = box(0.08, 2.25, 0.08, 0x64748b);
+  stand.position.set(1.15, 0.05, 0);
+  const arm = box(1.0, 0.06, 0.08, 0x64748b);
+  arm.position.set(0.68, 1.13, 0);
+  root.add(stand, arm);
+  root.add(tube(Array.from({ length: 30 }, (_, index) => new THREE.Vector3(0.3 + Math.sin(index * Math.PI) * 0.09, 1.06 - index * (stretch / 30), 0)), 0.018, 0x67e8f9, 1));
+  const block = box(0.45, 0.38, 0.45, 0xfacc15);
+  block.position.set(0.3, 1.0 - stretch, 0);
+  root.add(block);
+  const balance = box(1.8, 0.06, 0.12, 0xfacc15);
+  balance.position.set(-1.55, 0.18, 0);
+  root.add(balance);
+  [-2.25, -0.85].forEach((x) => {
+    const pan = cylinder(0.28, 0.34, 0.06, 0x38bdf8);
+    pan.position.set(x, -0.03, 0);
+    root.add(pan);
+  });
+  addArrow(root, new THREE.Vector3(1.78, 0.95, 0), new THREE.Vector3(1.78, -0.08, 0), 0xf43f5e);
+  root.add(label(`mass ${m.toFixed(1)} kg unchanged`, new THREE.Vector3(-2.55, 0.86, 0.2), 0x67e8f9));
+  root.add(label(`weight ${(m * g).toFixed(1)} N`, new THREE.Vector3(0.62, -0.64, 0.2), 0xfacc15));
+}
+
+function buildWorkPower(root: THREE.Group, force: number, distance: number, time: number) {
+  addPlatform(root);
+  const ramp = box(3.9, 0.12, 0.72, 0x64748b, 0.9);
+  ramp.rotation.z = -0.22;
+  ramp.position.set(-0.35, -0.6, 0);
+  root.add(ramp);
+  const load = box(0.58, 0.42, 0.52, 0x38bdf8);
+  load.position.set(-1.35, -0.15, 0);
+  load.userData.role = "cart";
+  root.add(load);
+  addArrow(root, new THREE.Vector3(-1.0, 0.15, 0), new THREE.Vector3(0.45, 0.47, 0), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(-1.5, -0.95, 0.28), new THREE.Vector3(1.45, -0.95, 0.28), 0x34d399);
+  const work = force * distance;
+  const power = work / Math.max(0.1, time);
+  root.add(label(`F ${force.toFixed(1)} N`, new THREE.Vector3(0.08, 0.76, 0.2), 0x22d3ee));
+  root.add(label(`d ${distance.toFixed(1)} m`, new THREE.Vector3(-0.8, -0.82, 0.45), 0x34d399));
+  root.add(label(`W ${work.toFixed(1)} J | P ${power.toFixed(1)} W`, new THREE.Vector3(-2.35, 1.35, 0.2), 0xfacc15));
+}
+
+function buildVector3D(root: THREE.Group, magnitude: number, angle: number, zFactor: number) {
+  addPlatform(root);
+  const mag = clamp(magnitude, 1, 30) / 8;
+  const theta = THREE.MathUtils.degToRad(clamp(angle, -170, 170));
+  const z = clamp(zFactor || 0, -10, 10) / 8;
+  const origin = new THREE.Vector3(0, -0.8, 0);
+  const end = new THREE.Vector3(Math.cos(theta) * mag, Math.sin(theta) * mag - 0.8, z);
+  addArrow(root, origin, new THREE.Vector3(2.6, -0.8, 0), 0x94a3b8);
+  addArrow(root, origin, new THREE.Vector3(0, 1.6, 0), 0x94a3b8);
+  addArrow(root, origin, new THREE.Vector3(0, -0.8, 2.2), 0x94a3b8);
+  addArrow(root, origin, end, 0xfacc15);
+  addArrow(root, origin, new THREE.Vector3(end.x, -0.8, 0), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(end.x, -0.8, 0), new THREE.Vector3(end.x, end.y, 0), 0x34d399);
+  addArrow(root, new THREE.Vector3(end.x, end.y, 0), end, 0xf43f5e);
+  root.add(label(`x ${(Math.cos(theta) * magnitude).toFixed(1)}`, new THREE.Vector3(end.x / 2, -0.55, 0.08), 0x22d3ee));
+  root.add(label(`y ${(Math.sin(theta) * magnitude).toFixed(1)}`, new THREE.Vector3(end.x + 0.12, (end.y - 0.8) / 2, 0.08), 0x34d399));
+}
+
+function buildRotationalDynamics(root: THREE.Group, force: number, radius: number, inertia: number) {
+  addPlatform(root);
+  const r = clamp(radius, 0.3, 3) * 0.45;
+  const wheel = cylinder(1.15, 1.15, 0.24, 0x38bdf8, 0.65);
+  wheel.rotation.x = Math.PI / 2;
+  wheel.userData.role = "spin";
+  wheel.userData.speed = clamp(force / Math.max(0.2, inertia), 0.3, 4);
+  root.add(wheel);
+  const arm = box(r * 2, 0.08, 0.1, 0xfacc15);
+  arm.position.set(r / 2, 0, 0.2);
+  root.add(arm);
+  addArrow(root, new THREE.Vector3(r, 0, 0.35), new THREE.Vector3(r, 0.95, 0.35), 0xf43f5e);
+  addArrow(root, new THREE.Vector3(-0.8, -0.9, 0.35), new THREE.Vector3(0.55, -0.9, 0.35), 0x22d3ee);
+  root.add(label(`tau ${(force * radius).toFixed(1)} N m`, new THREE.Vector3(-2.2, 1.25, 0.2), 0xfacc15));
+  root.add(label(`alpha ${(force * radius / Math.max(0.2, inertia)).toFixed(2)} rad/s^2`, new THREE.Vector3(-2.2, 0.9, 0.2), 0x67e8f9));
+}
+
+function buildSatelliteOrbit(root: THREE.Group, massFactor: number, radius: number, speed: number) {
+  addPlatform(root);
+  const planet = sphere(0.72, 0x38bdf8, 0.95);
+  planet.userData.role = "pulse";
+  root.add(planet);
+  const r = clamp(radius, 1, 12) * 0.18 + 1.25;
+  const orbit = new THREE.Mesh(new THREE.TorusGeometry(r, 0.014, 12, 96), material(speed > Math.sqrt(Math.max(0.1, massFactor) / Math.max(1, radius)) * 10 ? 0xf43f5e : 0x22d3ee, 0.9));
+  orbit.rotation.x = Math.PI / 2;
+  root.add(orbit);
+  const satellite = sphere(0.16, 0xfacc15);
+  satellite.position.set(r, 0, 0);
+  satellite.userData.role = "orbit";
+  satellite.userData.radius = r;
+  satellite.userData.speed = 0.18 + speed * 0.03;
+  root.add(satellite);
+  addArrow(root, new THREE.Vector3(r, 0.04, 0), new THREE.Vector3(r, 0.04, 0.9), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(r, 0.04, 0), new THREE.Vector3(0.35, 0.04, 0), 0xf43f5e);
+  root.add(label("velocity tangent", new THREE.Vector3(r - 0.2, 0.42, 0.85), 0x22d3ee));
+  root.add(label("gravity inward", new THREE.Vector3(0.65, 0.42, 0.12), 0xf43f5e));
+  root.add(label("not to scale", new THREE.Vector3(-1.9, -0.84, 0.2), 0xfacc15));
+}
+
+function buildUniformMotion(root: THREE.Group, speed: number, time: number, start: number) {
+  addPlatform(root);
+  const track = box(5.7, 0.08, 0.28, 0x64748b, 0.9);
+  track.position.set(0, -0.62, 0);
+  root.add(track);
+  for (let index = 0; index < 8; index += 1) {
+    const marker = box(0.035, 0.28, 0.05, 0xfacc15, 0.86);
+    marker.position.set(-2.5 + index * 0.72, -0.42, 0.18);
+    root.add(marker);
+  }
+  const travel = clamp((start + speed * time) / 120, -1, 1);
+  const cart = box(0.58, 0.34, 0.45, 0x38bdf8);
+  cart.position.set(-2.2 + travel * 3.8, -0.28, 0);
+  cart.userData.role = "cart";
+  root.add(cart);
+  addArrow(root, cart.position.clone().add(new THREE.Vector3(0.4, 0.2, 0)), cart.position.clone().add(new THREE.Vector3(1.35, 0.2, 0)), 0x22d3ee);
+  root.add(label(`constant v ${speed.toFixed(1)} m/s`, new THREE.Vector3(-2.35, 0.75, 0.2), 0x67e8f9));
+  root.add(label("equal distance in equal time", new THREE.Vector3(-1.15, -0.98, 0.35), 0xfacc15));
+}
+
+function buildElasticCollision(root: THREE.Group, mass1: number, mass2: number, speed: number) {
+  addPlatform(root);
+  const track = box(5.8, 0.08, 0.34, 0x64748b, 0.9);
+  track.position.set(0, -0.62, 0);
+  root.add(track);
+  const m1 = clamp(mass1, 0.5, 10);
+  const m2 = clamp(mass2, 0.5, 10);
+  const cart1 = box(0.45 + m1 * 0.04, 0.35, 0.45, 0x38bdf8);
+  cart1.position.set(-1.2, -0.27, 0);
+  cart1.userData.role = "force-balance";
+  cart1.userData.power = 1;
+  cart1.userData.direction = 1;
+  const cart2 = box(0.45 + m2 * 0.04, 0.35, 0.45, 0xfacc15);
+  cart2.position.set(1.1, -0.27, 0);
+  cart2.userData.role = "force-balance";
+  cart2.userData.power = 0.7;
+  cart2.userData.direction = -1;
+  root.add(cart1, cart2);
+  addArrow(root, new THREE.Vector3(-1.85, 0.12, 0), new THREE.Vector3(-0.8, 0.12, 0), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(1.75, 0.12, 0), new THREE.Vector3(0.85, 0.12, 0), 0xf43f5e);
+  root.add(label(`m1 ${m1.toFixed(1)} kg`, new THREE.Vector3(-2.2, 0.62, 0.2), 0x67e8f9));
+  root.add(label(`m2 ${m2.toFixed(1)} kg`, new THREE.Vector3(0.8, 0.62, 0.2), 0xfacc15));
+  root.add(label("momentum and KE conserved", new THREE.Vector3(-1.6, -0.95, 0.25), 0x34d399));
+}
+
+function buildHookesLaw(root: THREE.Group, springConstant: number, force: number, extensionInput: number) {
+  addPlatform(root);
+  const k = clamp(springConstant, 5, 200);
+  const f = clamp(force || extensionInput || 10, 0, 80);
+  const extension = clamp(f / k, 0.06, 0.72);
+  const stand = box(0.08, 2.3, 0.08, 0x64748b);
+  stand.position.set(-0.72, 0.1, 0);
+  const arm = box(1.1, 0.08, 0.08, 0x64748b);
+  arm.position.set(-0.18, 1.22, 0);
+  root.add(stand, arm);
+  root.add(tube(Array.from({ length: 36 }, (_, index) => new THREE.Vector3(0.22 + Math.sin(index * Math.PI) * 0.09, 1.15 - index * (extension / 18), 0)), 0.018, 0x67e8f9, 1));
+  const mass = box(0.48, 0.38, 0.48, extension > 0.45 ? 0xf43f5e : 0xfacc15);
+  mass.position.set(0.22, 1.15 - extension * 2.1, 0);
+  root.add(mass);
+  addArrow(root, mass.position.clone().add(new THREE.Vector3(0.48, 0.2, 0)), mass.position.clone().add(new THREE.Vector3(0.48, -0.55, 0)), 0xf43f5e);
+  addArrow(root, mass.position.clone().add(new THREE.Vector3(-0.48, 0, 0)), mass.position.clone().add(new THREE.Vector3(-0.48, 0.68, 0)), 0x22d3ee);
+  root.add(label(`F ${f.toFixed(1)} N`, new THREE.Vector3(0.86, 0.34, 0.2), 0xf43f5e));
+  root.add(label(`x ${(f / k).toFixed(3)} m`, new THREE.Vector3(-0.1, -0.82, 0.2), 0x67e8f9));
+  root.add(label(extension > 0.45 ? "elastic limit warning" : "within elastic limit", new THREE.Vector3(-2.0, -0.95, 0.2), extension > 0.45 ? 0xf43f5e : 0x34d399));
 }
 
 function buildIncline(root: THREE.Group, mass: number, angle: number, friction: number) {
@@ -940,6 +1282,58 @@ function buildFluid(root: THREE.Group, force: number, area: number, depth: numbe
   addArrow(root, new THREE.Vector3(-2.2, probe.position.y, 0), new THREE.Vector3(-2.2 + clamp(force / Math.max(area, 0.2), 0.5, 1.9), probe.position.y, 0), 0xf43f5e);
 }
 
+function buildBernoulliVenturi(root: THREE.Group, density: number, wideArea: number, flowRate: number) {
+  addPlatform(root);
+  const rho = clamp(density || 1000, 600, 1400);
+  const areaWide = clamp(wideArea || 4, 1.2, 8);
+  const q = clamp(flowRate || 3, 0.5, 10);
+  const areaThroat = Math.max(0.45, areaWide * 0.42);
+  const vWide = q / areaWide;
+  const vNarrow = q / areaThroat;
+  const pressureDrop = 0.5 * rho * (vNarrow * vNarrow - vWide * vWide);
+  const wideRadius = clamp(areaWide / 8, 0.42, 0.82);
+  const throatRadius = clamp(areaThroat / 8, 0.2, 0.42);
+  const inlet = cylinder(wideRadius, wideRadius, 1.3, 0x38bdf8, 0.32);
+  inlet.rotation.z = Math.PI / 2;
+  inlet.position.set(-2.15, -0.25, 0);
+  const throat = cylinder(throatRadius, throatRadius, 1.05, 0x22d3ee, 0.46);
+  throat.rotation.z = Math.PI / 2;
+  throat.position.set(0, -0.25, 0);
+  const outlet = cylinder(wideRadius, wideRadius, 1.3, 0x38bdf8, 0.32);
+  outlet.rotation.z = Math.PI / 2;
+  outlet.position.set(2.15, -0.25, 0);
+  root.add(inlet, throat, outlet);
+  root.add(tube([new THREE.Vector3(-1.5, -0.25, 0), new THREE.Vector3(-0.65, -0.25, 0)], 0.09, 0x67e8f9, 0.28));
+  root.add(tube([new THREE.Vector3(0.65, -0.25, 0), new THREE.Vector3(1.5, -0.25, 0)], 0.09, 0x67e8f9, 0.28));
+  const flowPath = [
+    new THREE.Vector3(-2.85, -0.25, 0),
+    new THREE.Vector3(-1.3, -0.25, 0),
+    new THREE.Vector3(-0.45, -0.25, 0),
+    new THREE.Vector3(0.45, -0.25, 0),
+    new THREE.Vector3(1.3, -0.25, 0),
+    new THREE.Vector3(2.85, -0.25, 0),
+  ];
+  for (let index = 0; index < 16; index += 1) {
+    const particle = sphere(index % 3 === 0 ? 0.055 : 0.04, 0x67e8f9, 0.78);
+    particle.userData.role = "path";
+    particle.userData.path = flowPath;
+    particle.userData.offset = index / 16;
+    root.add(particle);
+  }
+  const tapWide = box(0.08, clamp(1.2 - pressureDrop / 90000, 0.35, 1.2), 0.08, 0xfacc15, 0.92);
+  tapWide.position.set(-2.15, 0.62, 0);
+  const tapNarrow = box(0.08, clamp(0.45 + pressureDrop / 150000, 0.22, 0.85), 0.08, 0xf43f5e, 0.92);
+  tapNarrow.position.set(0, 0.42, 0);
+  root.add(tapWide, tapNarrow);
+  addArrow(root, new THREE.Vector3(-2.8, -0.95, 0.35), new THREE.Vector3(-1.75, -0.95, 0.35), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(-0.45, -0.95, 0.35), new THREE.Vector3(1.05, -0.95, 0.35), 0x34d399);
+  root.add(label("wide: high P, low v", new THREE.Vector3(-2.95, 1.28, 0.25), 0xfacc15));
+  root.add(label("throat: low P, high v", new THREE.Vector3(-0.85, 1.08, 0.25), 0xf43f5e));
+  root.add(label(`v1 ${vWide.toFixed(2)} | v2 ${vNarrow.toFixed(2)}`, new THREE.Vector3(-1.35, -1.02, 0.65), 0x67e8f9));
+  root.add(label(`Delta P ${(pressureDrop / 1000).toFixed(1)} kPa`, new THREE.Vector3(0.95, 1.28, 0.25), 0xa3e635));
+  root.add(label("steady incompressible ideal flow", new THREE.Vector3(-2.45, -1.2, 0.25), 0xfacc15));
+}
+
 function buildThermal(root: THREE.Group, temperature: number, mass: number, volume: number) {
   const chamber = box(3.4, 1.8, 1.8, 0xf97316, 0.12);
   root.add(chamber);
@@ -1004,6 +1398,117 @@ function buildCalorimetry(root: THREE.Group, hotMass: number, hotTemperature: nu
   root.add(label(`Tf ${finalTemperature.toFixed(1)} C`, new THREE.Vector3(-0.48, 1.22, 0), finalTemperature > 55 ? 0xf97316 : 0xfacc15));
 }
 
+function buildThermoProcess(root: THREE.Group, pressure: number, deltaVolume: number, processInput: number) {
+  addPlatform(root);
+  const processIndex = Math.abs(Math.round(processInput || 0)) % 4;
+  const process = ["isothermal", "adiabatic", "isobaric", "isochoric"][processIndex];
+  const volume = process === "isochoric" ? 3 : clamp(3 + deltaVolume, 0.8, 7);
+  const pistonY = clamp(0.95 - volume * 0.18, -0.25, 0.78);
+  const shellColor = process === "adiabatic" ? 0xfacc15 : 0x38bdf8;
+  const chamber = cylinder(0.78, 0.78, 1.9, shellColor, 0.18);
+  chamber.position.set(-1.35, -0.12, 0);
+  root.add(chamber);
+  const piston = cylinder(0.7, 0.7, 0.14, 0xe2e8f0, 0.72);
+  piston.position.set(-1.35, pistonY, 0);
+  piston.userData.role = process === "isochoric" ? "pulse" : "piston";
+  piston.userData.power = clamp(Math.abs(deltaVolume) / 4, 0.25, 1.4);
+  root.add(piston);
+  const rod = box(0.08, 1.2, 0.08, 0x94a3b8, 0.92);
+  rod.position.set(-1.35, pistonY + 0.7, 0);
+  root.add(rod);
+  for (let index = 0; index < 18; index += 1) {
+    const particle = sphere(0.045, index % 3 === 0 ? 0xfacc15 : 0xfb923c, 0.88);
+    particle.position.set(-1.78 + (index % 5) * 0.2, -0.78 + Math.floor(index / 5) * 0.22, ((index % 4) - 1.5) * 0.18);
+    particle.userData.role = "particle";
+    particle.userData.seed = index * 0.81;
+    particle.userData.speed = process === "isothermal" ? 0.9 : process === "adiabatic" ? 1.35 : 1.05;
+    root.add(particle);
+  }
+  if (process !== "adiabatic") {
+    addArrow(root, new THREE.Vector3(-2.9, -0.15, 0.34), new THREE.Vector3(-2.15, -0.15, 0.2), 0xf97316);
+    root.add(label("heat exchange", new THREE.Vector3(-3.05, 0.22, 0.35), 0xf97316));
+  } else {
+    const insulation = new THREE.Mesh(new THREE.TorusGeometry(0.95, 0.035, 12, 72), material(0xfacc15, 0.72));
+    insulation.position.set(-1.35, -0.12, 0);
+    insulation.rotation.x = Math.PI / 2;
+    root.add(insulation);
+    root.add(label("adiabatic insulation", new THREE.Vector3(-2.45, 0.95, 0.25), 0xfacc15));
+  }
+  const gauge = ring(0.42, 0xe2e8f0);
+  gauge.position.set(0.15, 0.7, 0);
+  root.add(gauge);
+  addArrow(root, new THREE.Vector3(0.15, 0.7, 0), new THREE.Vector3(0.15 + Math.cos(pressure / 115) * 0.34, 0.7 + Math.sin(pressure / 115) * 0.34, 0), 0xf43f5e);
+  root.add(label(`P ${pressure.toFixed(0)} kPa`, new THREE.Vector3(-0.2, 1.28, 0), 0xf43f5e));
+
+  const origin = new THREE.Vector3(1.1, -0.95, 0.15);
+  addArrow(root, origin, origin.clone().add(new THREE.Vector3(1.85, 0, 0)), 0x94a3b8);
+  addArrow(root, origin, origin.clone().add(new THREE.Vector3(0, 1.55, 0)), 0x94a3b8);
+  const pathPoints = process === "isobaric"
+    ? [new THREE.Vector3(1.25, -0.15, 0.15), new THREE.Vector3(2.72, -0.15, 0.15)]
+    : process === "isochoric"
+      ? [new THREE.Vector3(1.85, -0.72, 0.15), new THREE.Vector3(1.85, 0.48, 0.15)]
+      : Array.from({ length: 42 }, (_, index) => {
+        const u = index / 41;
+        return new THREE.Vector3(1.25 + u * 1.55, 0.48 - (process === "adiabatic" ? u ** 1.4 : u ** 1.15) * 1.25, 0.15);
+      });
+  const pvPath = tube(pathPoints, 0.025, process === "adiabatic" ? 0xfacc15 : 0x22d3ee, 0.95);
+  pvPath.userData.role = "field";
+  pvPath.userData.power = 0.8;
+  root.add(pvPath);
+  const tracer = sphere(0.07, 0xfacc15);
+  tracer.userData.role = "path";
+  tracer.userData.path = pathPoints;
+  root.add(tracer);
+  root.add(label(`P-V ${process}`, new THREE.Vector3(1.15, 0.88, 0.2), 0x67e8f9));
+  root.add(label(`work ${(process === "isochoric" ? 0 : pressure * (volume - 3) / 100).toFixed(2)} kJ`, new THREE.Vector3(1.16, -1.2, 0.35), 0xfacc15));
+  root.add(label("quasi-static ideal gas", new THREE.Vector3(-2.75, -1.08, 0.25), 0x94a3b8));
+}
+
+function buildStatisticalEnsemble(root: THREE.Group, temperature: number, particleInput: number, interaction: number) {
+  addPlatform(root);
+  const spread = clamp(temperature / 900 + interaction * 0.28, 0.18, 1.08);
+  const particleCount = Math.round(clamp(particleInput || 70, 24, 120));
+  const boxFrame = box(2.6, 1.8, 1.8, 0x22d3ee, 0.1);
+  boxFrame.position.set(-1.35, -0.05, 0);
+  root.add(boxFrame);
+  for (let index = 0; index < 34; index += 1) {
+    const energyRank = Math.abs(((index * 17) % 33) - 16) / 16;
+    const isHighEnergy = energyRank < spread;
+    const particle = sphere(isHighEnergy ? 0.055 : 0.04, isHighEnergy ? 0xfacc15 : 0x38bdf8, 0.86);
+    particle.position.set(
+      -2.42 + ((index * 31) % 210) / 100,
+      -0.75 + ((index * 19) % 150) / 100,
+      -0.76 + ((index * 23) % 150) / 100
+    );
+    particle.userData.role = "particle";
+    particle.userData.seed = index * 0.61;
+    particle.userData.speed = 0.35 + spread * 1.8 + (index % 5) * 0.05;
+    root.add(particle);
+  }
+  const bins = [0.22, 0.48, 0.78, 1, 0.82, 0.5, 0.26];
+  bins.forEach((heightBase, index) => {
+    const height = clamp(heightBase * spread * 1.25, 0.12, 1.35);
+    const bar = box(0.18, height, 0.24, index === 3 ? 0xfacc15 : 0x22d3ee, 0.82);
+    bar.position.set(0.95 + index * 0.28, -1.0 + height / 2, 0.1);
+    bar.userData.role = "pulse";
+    bar.userData.power = 0.3 + height;
+    root.add(bar);
+  });
+  const wall = box(2.25, 1.55, 0.04, 0x0f172a, 0.52);
+  wall.position.set(1.82, -0.2, 0.28);
+  root.add(wall);
+  const meanMarker = box(0.035, 1.45, 0.08, 0xf43f5e, 0.92);
+  meanMarker.position.set(1.78, -0.2, 0.42);
+  meanMarker.userData.role = "pulse";
+  meanMarker.userData.power = 0.9;
+  root.add(meanMarker);
+  root.add(label(`samples ${particleCount}`, new THREE.Vector3(-2.58, 1.28, 0.25), 0x67e8f9));
+  root.add(label(`spread ${spread.toFixed(2)}`, new THREE.Vector3(-0.55, 1.16, 0.25), 0xfacc15));
+  root.add(label("histogram wall", new THREE.Vector3(1.08, 0.92, 0.45), 0x22d3ee));
+  root.add(label("mean", new THREE.Vector3(1.84, 0.6, 0.55), 0xf43f5e));
+  root.add(label("qualitative ensemble model", new THREE.Vector3(-2.55, -1.22, 0.25), 0x94a3b8));
+}
+
 function buildCircuit(root: THREE.Group, voltage: number, resistance: number, _unused = 0) {
   const path = rectanglePath(2.8, 1.45);
   root.add(line(path, 0x94a3b8));
@@ -1028,6 +1533,297 @@ function buildCircuit(root: THREE.Group, voltage: number, resistance: number, _u
   }
 }
 
+function buildStaticElectricity(root: THREE.Group, chargeA: number, chargeB: number, distance: number) {
+  addPlatform(root);
+  const q1 = chargeA >= 0 ? 1 : -1;
+  const q2 = chargeB >= 0 ? 1 : -1;
+  const gap = clamp(distance || 3, 1, 8) * 0.38;
+  const left = sphere(0.46, q1 > 0 ? 0xf43f5e : 0x38bdf8, 0.92);
+  const right = sphere(0.46, q2 > 0 ? 0xf43f5e : 0x38bdf8, 0.92);
+  left.position.set(-gap, -0.18, 0);
+  right.position.set(gap, -0.18, 0);
+  left.userData.role = "pulse";
+  right.userData.role = "pulse";
+  root.add(left, right);
+  root.add(label(q1 > 0 ? "+" : "-", left.position.clone().add(new THREE.Vector3(-0.08, 0.08, 0.5)), 0xffffff));
+  root.add(label(q2 > 0 ? "+" : "-", right.position.clone().add(new THREE.Vector3(-0.08, 0.08, 0.5)), 0xffffff));
+  for (let index = 0; index < 8; index += 1) {
+    const y = -0.65 + index * 0.18;
+    const curve = tube([
+      new THREE.Vector3(-gap + 0.35, y, 0),
+      new THREE.Vector3(0, y + (q1 === q2 ? (index < 4 ? -0.42 : 0.42) : 0.25 * Math.sin(index)), 0.18),
+      new THREE.Vector3(gap - 0.35, y, 0),
+    ], 0.01, q1 === q2 ? 0xfacc15 : 0x22d3ee, 0.58);
+    curve.userData.role = "field";
+    curve.userData.phase = index * 0.2;
+    root.add(curve);
+  }
+  const direction = q1 === q2 ? -1 : 1;
+  addArrow(root, left.position.clone().add(new THREE.Vector3(0, 0.65, 0)), left.position.clone().add(new THREE.Vector3(direction * 0.95, 0.65, 0)), q1 === q2 ? 0xf97316 : 0x34d399);
+  addArrow(root, right.position.clone().add(new THREE.Vector3(0, 0.65, 0)), right.position.clone().add(new THREE.Vector3(-direction * 0.95, 0.65, 0)), q1 === q2 ? 0xf97316 : 0x34d399);
+  if (Math.abs(chargeA * chargeB) / Math.max(1, distance) > 25) {
+    const spark = tube([new THREE.Vector3(-0.25, 0.1, 0.1), new THREE.Vector3(0.05, 0.42, -0.05), new THREE.Vector3(0.25, 0.04, 0.12)], 0.022, 0xfacc15, 0.95);
+    spark.userData.role = "wave-shift";
+    root.add(spark);
+  }
+  root.add(label(q1 === q2 ? "repulsion" : "attraction", new THREE.Vector3(-0.5, 1.18, 0.2), q1 === q2 ? 0xf97316 : 0x34d399));
+  root.add(label("qualitative charge model", new THREE.Vector3(-2.6, -1.0, 0.25), 0x94a3b8));
+}
+
+function buildElectrostaticField(root: THREE.Group, charge: number, distance: number, testCharge: number) {
+  addPlatform(root);
+  const q = charge >= 0 ? 1 : -1;
+  const source = sphere(0.34, q > 0 ? 0xf43f5e : 0x38bdf8, 0.95);
+  source.userData.role = "pulse";
+  root.add(source);
+  for (let index = 0; index < 12; index += 1) {
+    const angle = (index / 12) * Math.PI * 2;
+    const start = new THREE.Vector3(Math.cos(angle) * 0.5, -0.18, Math.sin(angle) * 0.5);
+    const end = new THREE.Vector3(Math.cos(angle) * 2.35 * q, -0.18, Math.sin(angle) * 2.35 * q);
+    addArrow(root, start, end, 0x22d3ee);
+  }
+  [0.75, 1.25, 1.85].forEach((radius, index) => {
+    const equipotential = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.012, 10, 96), material(index === 0 ? 0xfacc15 : 0x67e8f9, 0.38));
+    equipotential.rotation.x = Math.PI / 2;
+    root.add(equipotential);
+  });
+  const r = clamp(distance || 2, 0.7, 6) * 0.45;
+  const test = sphere(0.13, testCharge >= 0 ? 0xfacc15 : 0xa78bfa, 0.95);
+  test.position.set(r, 0.08, 0.35);
+  root.add(test);
+  addArrow(root, test.position, test.position.clone().add(new THREE.Vector3(q * Math.sign(testCharge || 1) * 0.85, 0, 0)), 0xf43f5e);
+  root.add(label("point charge", new THREE.Vector3(-0.48, 0.62, 0.2), q > 0 ? 0xf43f5e : 0x38bdf8));
+  root.add(label("equipotential rings", new THREE.Vector3(0.85, -1.05, 0.25), 0xfacc15));
+  root.add(label(`E ~ 1/r^2 | V ~ 1/r`, new THREE.Vector3(-2.55, 1.18, 0.25), 0x67e8f9));
+  root.add(label("singularity visually clamped", new THREE.Vector3(-2.55, -1.22, 0.25), 0x94a3b8));
+}
+
+function buildElectrolysis(root: THREE.Group, current: number, time: number, chargeScale: number) {
+  addPlatform(root);
+  const beaker = cylinder(1.05, 1.18, 1.5, 0x38bdf8, 0.18);
+  beaker.position.set(0, -0.38, 0);
+  root.add(beaker);
+  const electrolyte = cylinder(0.94, 1.04, 1.08, 0x22d3ee, 0.28);
+  electrolyte.position.set(0, -0.62, 0);
+  root.add(electrolyte);
+  const anode = box(0.16, 1.45, 0.12, 0xf97316, 0.92);
+  const cathode = box(0.16, 1.45, 0.12, 0x94a3b8, 0.92);
+  anode.position.set(-0.55, -0.15, 0);
+  cathode.position.set(0.55, -0.15, 0);
+  root.add(anode, cathode);
+  const deposit = box(0.2, clamp(current * time * (chargeScale || 1) / 80, 0.08, 0.75), 0.16, 0xfacc15, 0.9);
+  deposit.position.set(0.55, -0.88 + deposit.scale.y * 0.1, 0.1);
+  root.add(deposit);
+  for (let index = 0; index < 22; index += 1) {
+    const ion = sphere(0.045, index % 2 ? 0x38bdf8 : 0xf43f5e, 0.86);
+    ion.position.set(-0.72 + ((index * 37) % 140) / 100, -0.9 + ((index * 19) % 100) / 100, -0.45 + ((index * 23) % 90) / 100);
+    ion.userData.role = "path";
+    ion.userData.path = index % 2 ? [ion.position.clone(), new THREE.Vector3(0.48, -0.35, ion.position.z)] : [ion.position.clone(), new THREE.Vector3(-0.48, -0.35, ion.position.z)];
+    ion.userData.offset = index / 22;
+    root.add(ion);
+  }
+  for (let index = 0; index < 8; index += 1) {
+    const bubble = sphere(0.035, 0xe0f2fe, 0.7);
+    bubble.position.set(index % 2 ? -0.55 : 0.55, -0.86 + index * 0.12, 0.2);
+    bubble.userData.role = "bubble";
+    bubble.userData.speed = 0.35 + index * 0.05;
+    root.add(bubble);
+  }
+  root.add(label("anode +", new THREE.Vector3(-1.15, 0.8, 0.2), 0xf97316));
+  root.add(label("cathode - deposit", new THREE.Vector3(0.5, 0.8, 0.2), 0xfacc15));
+  root.add(label("simplified electrolysis model", new THREE.Vector3(-2.55, -1.18, 0.2), 0x94a3b8));
+}
+
+function buildMeterBridge(root: THREE.Group, known: number, balanceInput: number, unknown: number) {
+  addPlatform(root);
+  const board = box(5.8, 0.16, 1.05, 0x92400e, 0.68);
+  board.position.set(0, -0.78, 0);
+  root.add(board);
+  const wire = box(5.3, 0.045, 0.06, 0xfacc15, 0.95);
+  wire.position.set(0, -0.58, 0.28);
+  root.add(wire);
+  const l = clamp(balanceInput || (known / Math.max(1, known + unknown)) * 100, 8, 92);
+  const x = -2.65 + (l / 100) * 5.3;
+  const jockey = cylinder(0.045, 0.045, 1.2, 0xe2e8f0, 0.95);
+  jockey.position.set(x, 0.04, 0.28);
+  jockey.rotation.z = 0.12;
+  root.add(jockey);
+  const nullMeter = ring(0.32, 0xfacc15);
+  nullMeter.position.set(0, 0.42, -0.42);
+  root.add(nullMeter);
+  const needle = box(0.035, 0.5, 0.035, 0xfacc15, 0.95);
+  needle.position.set(0, 0.42, -0.37);
+  needle.rotation.z = THREE.MathUtils.degToRad(clamp(l - 50, -35, 35));
+  root.add(needle);
+  const knownBox = box(0.9, 0.32, 0.42, 0x22d3ee, 0.9);
+  knownBox.position.set(-1.85, -0.3, -0.25);
+  const unknownBox = box(0.9, 0.32, 0.42, 0xa78bfa, 0.9);
+  unknownBox.position.set(1.85, -0.3, -0.25);
+  root.add(knownBox, unknownBox);
+  root.add(label(`l ${l.toFixed(1)} cm`, new THREE.Vector3(x - 0.3, 0.74, 0.35), 0xfacc15));
+  root.add(label("jockey probe", new THREE.Vector3(x - 0.45, 1.02, 0.35), 0xe2e8f0));
+  root.add(label("galvanometer null", new THREE.Vector3(-0.55, 0.96, -0.4), 0xfacc15));
+  root.add(label("uniform wire; contact resistance ignored", new THREE.Vector3(-2.65, -1.16, 0.25), 0x94a3b8));
+}
+
+function buildInternalCell(root: THREE.Group, emf: number, loadResistance: number, internalResistance: number) {
+  addPlatform(root);
+  const e = clamp(emf || 12, 1, 24);
+  const load = clamp(loadResistance || 8, 0.5, 100);
+  const internal = clamp(internalResistance || 1, 0.1, 10);
+  const current = e / (load + internal);
+  const terminal = e - current * internal;
+  const cell = box(1.4, 0.72, 0.65, 0x22d3ee, 0.9);
+  cell.position.set(-1.75, -0.45, 0);
+  root.add(cell);
+  const internalBlock = box(0.5, 0.36, 0.48, 0xf97316, 0.85);
+  internalBlock.position.set(-1.32, -0.45, 0.04);
+  internalBlock.userData.role = "pulse";
+  internalBlock.userData.power = clamp(current * internal, 0.25, 2.5);
+  root.add(internalBlock);
+  const loadBox = box(1.0, 0.46, 0.46, 0xfacc15, 0.9);
+  loadBox.position.set(1.35, -0.45, 0);
+  root.add(loadBox);
+  const path = rectanglePath(3.8, 1.35);
+  root.add(line(path, 0x94a3b8));
+  for (let index = 0; index < 10; index += 1) {
+    const charge = sphere(0.05, 0x22d3ee, 0.85);
+    charge.userData.role = "charge";
+    charge.userData.path = path;
+    charge.userData.offset = index / 10;
+    charge.userData.speed = clamp(current, 0.2, 3);
+    root.add(charge);
+  }
+  const meter = ring(0.34, 0x67e8f9);
+  meter.position.set(1.35, 0.58, 0);
+  root.add(meter);
+  root.add(label(`EMF ${e.toFixed(1)} V`, new THREE.Vector3(-2.35, 0.28, 0.2), 0x67e8f9));
+  root.add(label(`terminal ${terminal.toFixed(2)} V`, new THREE.Vector3(0.75, 1.02, 0.2), 0x67e8f9));
+  root.add(label("internal drop Ir", new THREE.Vector3(-1.75, -1.12, 0.25), 0xf97316));
+  root.add(label("linear internal resistance model", new THREE.Vector3(-2.65, -1.35, 0.25), 0x94a3b8));
+}
+
+function buildKirchhoff3D(root: THREE.Group, voltage: number, r1: number, r2: number) {
+  addPlatform(root);
+  const board = box(4.9, 0.12, 2.2, 0x0f172a, 0.62);
+  board.position.set(0, -0.82, 0);
+  root.add(board);
+  const nodes = [new THREE.Vector3(-1.9, -0.55, 0), new THREE.Vector3(1.9, -0.55, 0), new THREE.Vector3(0, -0.55, 0.75), new THREE.Vector3(0, -0.55, -0.75)];
+  nodes.forEach((node) => {
+    const pad = cylinder(0.12, 0.12, 0.04, 0xfacc15, 0.95);
+    pad.position.copy(node);
+    root.add(pad);
+  });
+  root.add(tube([nodes[0], nodes[2], nodes[1]], 0.035, 0x22d3ee, 0.95));
+  root.add(tube([nodes[0], nodes[3], nodes[1]], 0.035, 0xa78bfa, 0.95));
+  root.add(tube([new THREE.Vector3(-2.55, -0.55, 0), nodes[0]], 0.035, 0xfacc15, 0.95));
+  root.add(tube([nodes[1], new THREE.Vector3(2.55, -0.55, 0)], 0.035, 0xfacc15, 0.95));
+  const resistorA = box(0.72, 0.26, 0.26, 0x22d3ee, 0.9);
+  resistorA.position.set(0, -0.35, 0.75);
+  const resistorB = box(0.72, 0.26, 0.26, 0xa78bfa, 0.9);
+  resistorB.position.set(0, -0.35, -0.75);
+  root.add(resistorA, resistorB);
+  root.add(label("KCL: I in = I1 + I2", new THREE.Vector3(-2.45, 0.35, 0.25), 0xfacc15));
+  root.add(label(`V drops: R1 ${r1.toFixed(1)}, R2 ${r2.toFixed(1)}`, new THREE.Vector3(-0.85, 0.95, 0.25), 0x67e8f9));
+  root.add(label(`source ${voltage.toFixed(1)} V`, new THREE.Vector3(1.55, 0.35, 0.25), 0xfacc15));
+  root.add(label("ideal circuit elements", new THREE.Vector3(-2.35, -1.18, 0.25), 0x94a3b8));
+}
+
+function buildLcr3D(root: THREE.Group, resistance: number, frequency: number, capacitance: number) {
+  addPlatform(root);
+  const f = clamp(frequency || 50, 1, 1000);
+  const c = clamp(capacitance || 10, 0.1, 100);
+  const l = 0.1;
+  const f0 = 1 / (2 * Math.PI * Math.sqrt(l * c * 1e-6));
+  const near = Math.abs(f - f0) / Math.max(1, f0) < 0.18;
+  const path = rectanglePath(3.9, 1.35);
+  root.add(line(path, near ? 0x34d399 : 0x94a3b8));
+  const resistor = box(0.72, 0.26, 0.26, 0xfacc15, 0.9);
+  resistor.position.set(-1.15, 0.66, 0);
+  root.add(resistor);
+  const coil = helix(0.65, 0.22, 8, 0xa78bfa);
+  coil.position.set(0.15, 0.66, 0);
+  root.add(coil);
+  const capA = box(0.06, 0.72, 0.36, 0x67e8f9, 0.95);
+  const capB = box(0.06, 0.72, 0.36, 0x67e8f9, 0.95);
+  capA.position.set(1.28, 0.66, 0);
+  capB.position.set(1.46, 0.66, 0);
+  root.add(capA, capB);
+  const phasor = ring(0.48, 0x22d3ee);
+  phasor.position.set(-1.35, -0.28, 0);
+  root.add(phasor);
+  addArrow(root, new THREE.Vector3(-1.35, -0.28, 0), new THREE.Vector3(-0.85, -0.28, 0), 0x34d399);
+  addArrow(root, new THREE.Vector3(-1.35, -0.28, 0), new THREE.Vector3(-1.35, near ? 0.25 : 0.05, 0), 0xf43f5e);
+  const curve = Array.from({ length: 56 }, (_, index) => {
+    const u = index / 55;
+    const peak = near ? 1.15 : 0.45 + 0.25 * Math.sin(u * Math.PI);
+    return new THREE.Vector3(0.45 + u * 2.25, -0.85 + Math.sin(u * Math.PI) * peak, 0.35);
+  });
+  root.add(tube(curve, 0.018, near ? 0x34d399 : 0x22d3ee, 0.95));
+  root.add(label(near ? "resonance peak" : `f0 ${f0.toFixed(0)} Hz`, new THREE.Vector3(0.68, 0.98, 0.25), near ? 0x34d399 : 0xfacc15));
+  root.add(label(`R ${resistance.toFixed(1)} ohm | RMS AC`, new THREE.Vector3(-2.55, -1.15, 0.25), 0x94a3b8));
+  root.add(label("sinusoidal steady state", new THREE.Vector3(0.8, -1.22, 0.25), 0x94a3b8));
+}
+
+function buildLorentz3D(root: THREE.Group, chargeInput: number, speedInput: number, fieldInput: number) {
+  addPlatform(root);
+  const qSign = chargeInput >= 0 ? 1 : -1;
+  const chargeMagnitude = Math.max(0.1, Math.abs(chargeInput || 1));
+  const speed = clamp(speedInput || 4, 0.2, 12);
+  const field = clamp(Math.abs(fieldInput || 1), 0.1, 8);
+  const forceDirection = -qSign;
+  const radius = clamp(speed / (chargeMagnitude * field) * 1.45, 0.55, 2.4);
+  const forceMag = chargeMagnitude * speed * field;
+
+  const fieldBox = box(3.4, 1.8, 1.7, 0x22d3ee, 0.1);
+  fieldBox.position.set(0.35, -0.18, 0);
+  root.add(fieldBox);
+  for (let x = -1; x <= 2; x += 1) {
+    for (let y = -1; y <= 1; y += 1) {
+      const symbol = qSign > 0 ? "B out" : "B out";
+      root.add(label(symbol, new THREE.Vector3(x * 0.72, y * 0.42 - 0.18, -0.78), 0x67e8f9));
+      addArrow(root, new THREE.Vector3(x * 0.72, y * 0.42 - 0.18, -0.42), new THREE.Vector3(x * 0.72, y * 0.42 - 0.18, 0.42), 0x22d3ee);
+    }
+  }
+
+  const start = new THREE.Vector3(-2.65, -0.18, 0);
+  const entry = new THREE.Vector3(-0.85, -0.18, 0);
+  const pathPoints = [
+    start,
+    entry,
+    ...Array.from({ length: 48 }, (_, index) => {
+      const theta = (index / 47) * Math.PI * 0.82;
+      return new THREE.Vector3(
+        -0.85 + Math.sin(theta) * radius,
+        -0.18 + forceDirection * (1 - Math.cos(theta)) * radius,
+        0.05 + Math.sin(theta) * 0.12
+      );
+    }),
+  ];
+  root.add(tube(pathPoints, 0.025, qSign > 0 ? 0xfacc15 : 0xa78bfa, 0.9));
+  const charge = sphere(0.16, qSign > 0 ? 0xfacc15 : 0xa78bfa, 0.95);
+  charge.userData.role = "path";
+  charge.userData.path = pathPoints;
+  root.add(charge);
+
+  addArrow(root, new THREE.Vector3(-2.55, 0.34, 0), new THREE.Vector3(-1.35, 0.34, 0), 0x34d399);
+  root.add(label("v", new THREE.Vector3(-1.95, 0.62, 0.12), 0x34d399));
+  addArrow(root, new THREE.Vector3(-0.75, -0.18, 0.55), new THREE.Vector3(-0.75, -0.18, 1.32), 0x22d3ee);
+  root.add(label("B out of page", new THREE.Vector3(-0.58, 0.18, 1.05), 0x67e8f9));
+  addArrow(root, new THREE.Vector3(-0.42, -0.18, 0), new THREE.Vector3(-0.42, -0.18 + forceDirection * 1.05, 0), qSign > 0 ? 0xf43f5e : 0xfb7185);
+  root.add(label(qSign > 0 ? "F downward" : "F upward", new THREE.Vector3(-0.18, -0.18 + forceDirection * 1.12, 0.12), 0xf43f5e));
+
+  const radiusCue = ring(radius, 0xfacc15);
+  radiusCue.position.set(-0.85, -0.18 + forceDirection * radius, 0);
+  radiusCue.rotation.x = Math.PI / 2;
+  radiusCue.scale.y = 0.32;
+  root.add(radiusCue);
+  root.add(label(`r = mv/|q|B ~ ${radius.toFixed(2)} m`, new THREE.Vector3(0.72, -1.18, 0.22), 0xfacc15));
+  root.add(label(`F = q(v x B) | ${forceMag.toFixed(1)} N cue`, new THREE.Vector3(-2.65, 1.18, 0.22), 0x67e8f9));
+  root.add(label(qSign > 0 ? "positive charge" : "negative charge reverses force", new THREE.Vector3(-2.65, -1.16, 0.22), qSign > 0 ? 0xfacc15 : 0xa78bfa));
+  root.add(label("uniform B; non-relativistic; v perpendicular B", new THREE.Vector3(0.25, 1.18, 0.22), 0x94a3b8));
+}
+
 function buildElectromagnet(root: THREE.Group, turns: number, current: number, core: number) {
   const coreMesh = cylinder(0.28, 0.28, 3.5, 0x64748b);
   coreMesh.rotation.z = Math.PI / 2;
@@ -1041,6 +1837,12 @@ function buildElectromagnet(root: THREE.Group, turns: number, current: number, c
     field.userData.power = clamp(current * core, 0.4, 5);
     root.add(field);
   }
+  addArrow(root, new THREE.Vector3(-2.4, 0.68, 0), new THREE.Vector3(-1.35, 0.68, 0), 0xfacc15);
+  root.add(label("conventional current", new THREE.Vector3(-2.55, 1.02, 0.2), 0xfacc15));
+  root.add(label("N", new THREE.Vector3(1.82, 0.35, 0.2), 0xf43f5e));
+  root.add(label("S", new THREE.Vector3(-2.12, 0.35, 0.2), 0x38bdf8));
+  root.add(label("core", new THREE.Vector3(-0.25, -0.72, 0.2), 0x94a3b8));
+  root.add(label("ideal solenoid approximation", new THREE.Vector3(-2.65, -1.18, 0.2), 0x94a3b8));
 }
 
 function buildInduction(root: THREE.Group, turns: number, flux: number, time: number) {
@@ -1299,6 +2101,546 @@ function buildPrism(root: THREE.Group, prismAngle: number, meanIndex: number, di
   root.add(label(model.material.name.toLowerCase(), new THREE.Vector3(1.75, -1.02, 0), 0xe2e8f0));
 }
 
+function buildPlaneMirror3D(root: THREE.Group, incidenceInput: number, reflectionInput: number, distanceInput: number) {
+  addPlatform(root);
+  const incidence = THREE.MathUtils.degToRad(clamp(incidenceInput || reflectionInput || 35, 5, 78));
+  const distance = clamp((distanceInput || 50) / 28, 0.8, 2.25);
+  const mirror = box(0.08, 2.35, 1.65, 0x93c5fd, 0.36);
+  mirror.position.set(0, -0.05, 0);
+  root.add(mirror);
+  const backing = box(0.05, 2.35, 1.65, 0x1e293b, 0.72);
+  backing.position.set(0.06, -0.05, 0);
+  root.add(backing);
+
+  const object = sphere(0.18, 0xf43f5e, 0.95);
+  object.position.set(-distance, -0.42, -0.26);
+  root.add(object);
+  addArrow(root, object.position.clone().add(new THREE.Vector3(0, -0.22, 0)), object.position.clone().add(new THREE.Vector3(0, 0.64, 0)), 0xf43f5e);
+
+  const image = sphere(0.18, 0x34d399, 0.34);
+  image.position.set(distance, -0.42, -0.26);
+  root.add(image);
+  root.add(line([
+    image.position.clone().add(new THREE.Vector3(0, -0.52, 0)),
+    image.position.clone().add(new THREE.Vector3(0, 0.72, 0)),
+  ], 0x34d399, 0.38));
+
+  const hit = new THREE.Vector3(0, -0.02, -0.08);
+  const incidentStart = new THREE.Vector3(-2.85, -0.02 + Math.tan(incidence) * 0.92, -0.08);
+  const reflectedEnd = new THREE.Vector3(-2.85, -0.02 - Math.tan(incidence) * 0.92, -0.08);
+  root.add(tube([incidentStart, hit], 0.022, 0xfde047, 0.95));
+  root.add(tube([hit, reflectedEnd], 0.022, 0x22d3ee, 0.95));
+  const photon = sphere(0.075, 0xfacc15);
+  photon.userData.role = "path";
+  photon.userData.path = [incidentStart, hit, reflectedEnd];
+  root.add(photon);
+
+  root.add(line([new THREE.Vector3(-1.3, hit.y, -0.08), new THREE.Vector3(1.3, hit.y, -0.08)], 0x94a3b8, 0.72));
+  root.add(tube([new THREE.Vector3(-distance, -0.96, -0.54), new THREE.Vector3(0, -0.96, -0.54)], 0.01, 0xf43f5e, 0.8));
+  root.add(tube([new THREE.Vector3(0, -0.96, -0.54), new THREE.Vector3(distance, -0.96, -0.54)], 0.01, 0x34d399, 0.8));
+  const arcLeft = angleArc3D(hit, 0.34, Math.PI - incidence, Math.PI, 0xfacc15);
+  const arcRight = angleArc3D(hit, 0.43, Math.PI, Math.PI + incidence, 0x22d3ee);
+  root.add(arcLeft, arcRight);
+
+  root.add(label("mirror plane", new THREE.Vector3(-0.42, 1.42, 0.36), 0x93c5fd));
+  root.add(label("object", object.position.clone().add(new THREE.Vector3(-0.38, 0.78, 0)), 0xf43f5e));
+  root.add(label("virtual image", image.position.clone().add(new THREE.Vector3(-0.48, 0.78, 0)), 0x34d399));
+  root.add(label("incident ray", new THREE.Vector3(-2.45, 1.0, 0.05), 0xfde047));
+  root.add(label("reflected ray", new THREE.Vector3(-2.7, -0.98, 0.05), 0x22d3ee));
+  root.add(label("normal", new THREE.Vector3(0.95, 0.22, 0.08), 0x94a3b8));
+  root.add(label("equal distance", new THREE.Vector3(-0.58, -1.22, -0.48), 0xe2e8f0));
+  root.add(label("ideal plane mirror", new THREE.Vector3(1.42, 1.28, 0.2), 0xfacc15));
+}
+
+function buildGlassSlab3D(root: THREE.Group, incidenceInput: number, indexInput: number, thicknessInput: number) {
+  addPlatform(root);
+  const incidence = THREE.MathUtils.degToRad(clamp(incidenceInput || 45, 5, 76));
+  const refractiveIndex = clamp(indexInput || 1.5, 1.01, 2.4);
+  const refraction = Math.asin(clamp(Math.sin(incidence) / refractiveIndex, -1, 1));
+  const thickness = clamp((thicknessInput || 4) / 8, 0.48, 1.15);
+  const lateralShift = thickness * Math.sin(incidence - refraction) / Math.max(0.18, Math.cos(refraction));
+  const slab = box(thickness, 2.25, 1.45, 0x67e8f9, 0.24);
+  slab.position.set(0, -0.05, 0);
+  root.add(slab);
+  root.add(label("glass slab", new THREE.Vector3(-0.55, 1.48, 0.35), 0x67e8f9));
+
+  const x1 = -thickness / 2;
+  const x2 = thickness / 2;
+  const p1 = new THREE.Vector3(x1, 0.46, 0);
+  const p2 = new THREE.Vector3(x2, 0.46 - Math.tan(refraction) * thickness, 0);
+  const start = new THREE.Vector3(-3.0, p1.y + Math.tan(incidence) * (p1.x + 3.0), 0);
+  const end = new THREE.Vector3(3.05, p2.y - Math.tan(incidence) * (3.05 - p2.x), 0);
+  const unshiftedEnd = new THREE.Vector3(3.05, start.y - Math.tan(incidence) * 6.05, -0.12);
+
+  root.add(tube([start, p1], 0.024, 0xfde047, 0.95));
+  root.add(tube([p1, p2], 0.026, 0x22d3ee, 0.92));
+  root.add(tube([p2, end], 0.024, 0xfde047, 0.95));
+  root.add(line([start.clone().setZ(-0.12), unshiftedEnd], 0xf43f5e, 0.55));
+  const photon = sphere(0.075, 0xfacc15);
+  photon.userData.role = "path";
+  photon.userData.path = [start, p1, p2, end];
+  root.add(photon);
+
+  [x1, x2].forEach((x, index) => {
+    root.add(line([new THREE.Vector3(x, -1.14, 0.04), new THREE.Vector3(x, 1.22, 0.04)], 0x94a3b8, 0.7));
+    root.add(label(index === 0 ? "normal 1" : "normal 2", new THREE.Vector3(x - 0.42, -1.34, 0.08), 0x94a3b8));
+  });
+  root.add(tube([new THREE.Vector3(2.18, end.y, 0.1), new THREE.Vector3(2.18, unshiftedEnd.y, 0.1)], 0.012, 0xf43f5e, 0.86));
+  addMarker(root, p1, 0xfacc15);
+  addMarker(root, p2, 0x22d3ee);
+  root.add(label("incident ray", new THREE.Vector3(-2.55, 1.26, 0.12), 0xfde047));
+  root.add(label("refracted ray", new THREE.Vector3(-0.55, 0.38, 0.16), 0x22d3ee));
+  root.add(label("parallel emergent ray", new THREE.Vector3(1.2, -0.92, 0.12), 0xfde047));
+  root.add(label(`n ${refractiveIndex.toFixed(2)}`, new THREE.Vector3(-0.22, -1.28, 0.28), 0x67e8f9));
+  root.add(label(`thickness ${thickness.toFixed(2)}`, new THREE.Vector3(0.72, 1.32, 0.2), 0xe2e8f0));
+  root.add(label(`lateral shift ${Math.abs(lateralShift).toFixed(2)}`, new THREE.Vector3(2.0, 0.82, 0.18), 0xf43f5e));
+  root.add(label("plane parallel slab", new THREE.Vector3(-2.72, -1.15, 0.22), 0xfacc15));
+  root.add(label("no absorption/scattering", new THREE.Vector3(1.45, 1.38, 0.22), 0xfacc15));
+}
+
+function buildShadowEclipse3D(root: THREE.Group, sourceSizeInput: number, distanceInput: number, modeInput: number) {
+  addPlatform(root);
+  const sourceRadius = clamp((sourceSizeInput || 8) / 18, 0.36, 0.82);
+  const gap = clamp((distanceInput || 45) / 30, 1.15, 2.3);
+  const mode = Math.abs(Math.round(modeInput || 0)) % 3;
+  const source = sphere(sourceRadius, 0xfacc15, 0.95);
+  source.position.set(-2.75, 0.1, 0);
+  source.userData.role = "pulse";
+  source.userData.power = 1.2;
+  root.add(source);
+
+  const occluderColor = mode === 2 ? 0x38bdf8 : 0x94a3b8;
+  const screenColor = mode === 1 ? 0x38bdf8 : mode === 2 ? 0x94a3b8 : 0xe2e8f0;
+  const occluder = sphere(mode === 2 ? 0.42 : 0.34, occluderColor, 0.96);
+  occluder.position.set(-0.55, 0.02, 0);
+  root.add(occluder);
+  const receiver = sphere(mode === 0 ? 0.5 : 0.38, screenColor, 0.7);
+  receiver.scale.set(mode === 0 ? 0.18 : 1, 1, 1);
+  receiver.position.set(gap, 0, 0);
+  root.add(receiver);
+
+  const penumbra = new THREE.Mesh(new THREE.ConeGeometry(1.15, gap + 1.0, 48, 1, true), material(0xfacc15, 0.13));
+  penumbra.rotation.z = -Math.PI / 2;
+  penumbra.position.set((gap - 0.55) / 2, 0, 0);
+  root.add(penumbra);
+  const umbra = new THREE.Mesh(new THREE.ConeGeometry(0.46, gap + 0.45, 48, 1, true), material(0x020617, 0.44));
+  umbra.rotation.z = -Math.PI / 2;
+  umbra.position.set((gap - 0.35) / 2, 0, 0);
+  root.add(umbra);
+
+  [-0.4, 0.4].forEach((z) => {
+    root.add(line([new THREE.Vector3(-2.75, sourceRadius, z), new THREE.Vector3(gap, 0.72, z * 0.35)], 0xfde047, 0.42));
+    root.add(line([new THREE.Vector3(-2.75, -sourceRadius, z), new THREE.Vector3(gap, -0.72, z * 0.35)], 0xfde047, 0.42));
+    root.add(line([new THREE.Vector3(-0.55, 0.34, z * 0.2), new THREE.Vector3(gap, 0.22, z * 0.2)], 0x64748b, 0.74));
+    root.add(line([new THREE.Vector3(-0.55, -0.34, z * 0.2), new THREE.Vector3(gap, -0.22, z * 0.2)], 0x64748b, 0.74));
+  });
+  const orbit = new THREE.Mesh(new THREE.TorusGeometry(gap + 0.55, 0.006, 8, 120), material(0x334155, 0.58));
+  orbit.rotation.x = Math.PI / 2;
+  orbit.position.set(-0.45, -0.02, 0);
+  root.add(orbit);
+
+  const modeLabel = mode === 1 ? "solar eclipse geometry" : mode === 2 ? "lunar eclipse geometry" : "simple shadow geometry";
+  root.add(label("Sun/source", new THREE.Vector3(-3.25, 1.26, 0), 0xfacc15));
+  root.add(label(mode === 2 ? "Earth occluder" : "occluder", new THREE.Vector3(-1.18, 1.12, 0), occluderColor));
+  root.add(label(mode === 1 ? "Earth screen" : mode === 2 ? "Moon screen" : "screen", new THREE.Vector3(gap - 0.48, 1.12, 0), screenColor));
+  root.add(label("umbra", new THREE.Vector3(0.45, -0.52, 0.12), 0xe2e8f0));
+  root.add(label("penumbra", new THREE.Vector3(0.5, 0.88, 0.15), 0xfacc15));
+  root.add(label(modeLabel, new THREE.Vector3(-2.55, -1.16, 0.2), 0x67e8f9));
+  root.add(label("not to scale", new THREE.Vector3(1.55, -1.16, 0.2), 0xfacc15));
+}
+
+function buildMultipleReflection3D(root: THREE.Group, angleInput: number, imageInput: number, _unused = 0) {
+  addPlatform(root);
+  const angle = clamp(angleInput || 60, 20, 120);
+  const half = THREE.MathUtils.degToRad(angle / 2);
+  const imageCountRaw = 360 / angle;
+  const exact = Math.abs(imageCountRaw - Math.round(imageCountRaw)) < 0.02;
+  const imageCount = exact ? Math.max(0, Math.round(imageCountRaw) - 1) : Math.floor(imageCountRaw);
+  const panelLength = 2.7;
+  [-1, 1].forEach((side) => {
+    const mirror = box(0.06, 1.45, panelLength, 0x93c5fd, 0.34);
+    mirror.position.set(Math.cos(half) * 0.78, -0.12, side * Math.sin(half) * 0.78);
+    mirror.rotation.y = side * half;
+    root.add(mirror);
+  });
+
+  const object = sphere(0.18, 0xf43f5e, 0.95);
+  object.position.set(0.55, -0.55, 0);
+  root.add(object);
+  root.add(label("object", new THREE.Vector3(0.18, 0.2, 0), 0xf43f5e));
+  const visibleImages = Math.min(imageCount, 10);
+  for (let index = 0; index < visibleImages; index += 1) {
+    const theta = -half + ((index + 1) / (visibleImages + 1)) * half * 2;
+    const radius = 0.95 + index * 0.18;
+    const ghost = sphere(0.13, 0x34d399, 0.22 + (index % 3) * 0.1);
+    ghost.position.set(Math.cos(theta) * radius, -0.52, Math.sin(theta) * radius);
+    root.add(ghost);
+  }
+
+  const rayPath = [
+    new THREE.Vector3(0.55, -0.28, 0),
+    new THREE.Vector3(1.35, -0.16, Math.sin(half) * 1.0),
+    new THREE.Vector3(1.86, -0.16, -Math.sin(half) * 1.1),
+    new THREE.Vector3(2.32, -0.16, Math.sin(half) * 0.75),
+  ];
+  root.add(tube(rayPath, 0.018, 0xfde047, 0.92));
+  const photon = sphere(0.06, 0xfacc15);
+  photon.userData.role = "path";
+  photon.userData.path = rayPath;
+  root.add(photon);
+  root.add(angleArcHorizontal(0.72, -half, half, 0xfacc15));
+
+  const previewBase = box(1.25, 0.08, 1.25, 0x0f172a, 0.72);
+  previewBase.position.set(-2.15, -0.78, 0);
+  root.add(previewBase);
+  for (let index = 0; index < 12; index += 1) {
+    const theta = (index / 12) * Math.PI * 2;
+    const shard = box(0.08, 0.04, 0.34, [0x22d3ee, 0xf43f5e, 0xfacc15, 0x34d399][index % 4], 0.76);
+    shard.position.set(-2.15 + Math.cos(theta) * 0.38, -0.68, Math.sin(theta) * 0.38);
+    shard.rotation.y = theta;
+    root.add(shard);
+  }
+  root.add(label(`mirror angle ${angle.toFixed(0)} deg`, new THREE.Vector3(0.58, 0.62, 0.58), 0xfacc15));
+  root.add(label(`image count ${imageCount}`, new THREE.Vector3(1.65, 1.12, 0), 0x34d399));
+  root.add(label(exact ? "n = 360/theta - 1" : "floor rule condition", new THREE.Vector3(-0.52, -1.22, 0.2), 0xe2e8f0));
+  root.add(label("ideal mirrors", new THREE.Vector3(-2.78, 0.62, 0.2), 0x93c5fd));
+  root.add(label("kaleidoscope preview", new THREE.Vector3(-2.92, -1.18, 0.18), 0x67e8f9));
+  root.add(label(`input cue ${imageInput.toFixed(1)}`, new THREE.Vector3(1.45, -1.16, 0.18), 0x94a3b8));
+}
+
+function buildOpticalInstrument3D(root: THREE.Group, objectiveFInput: number, eyepieceFInput: number, modeInput: number) {
+  addPlatform(root);
+  const mode = modeInput < 0.5 ? "telescope" : "microscope";
+  const objectiveF = clamp(objectiveFInput || 40, 5, 120);
+  const eyepieceF = clamp(eyepieceFInput || 10, 2, 60);
+  const magnification = mode === "telescope" ? objectiveF / Math.max(1, eyepieceF) : (objectiveF * 25) / Math.max(1, eyepieceF * 10);
+  const tubeBody = cylinder(0.42, 0.42, 4.7, 0x334155, 0.26);
+  tubeBody.rotation.z = Math.PI / 2;
+  tubeBody.position.set(0.28, -0.16, 0);
+  root.add(tubeBody);
+  const objectiveX = -1.75;
+  const eyepieceX = 2.05;
+  const objective = sphere(0.52, 0x67e8f9, 0.34);
+  objective.scale.set(0.24, 1.55, 1.15);
+  objective.position.set(objectiveX, -0.16, 0);
+  root.add(objective);
+  const eyepiece = sphere(0.42, 0xa78bfa, 0.34);
+  eyepiece.scale.set(0.22, 1.18, 0.92);
+  eyepiece.position.set(eyepieceX, -0.16, 0);
+  root.add(eyepiece);
+
+  const objectX = mode === "microscope" ? -2.95 : -3.25;
+  if (mode === "microscope") {
+    addArrow(root, new THREE.Vector3(objectX, -0.8, 0), new THREE.Vector3(objectX, 0.22, 0), 0xf43f5e);
+    root.add(label("near object", new THREE.Vector3(objectX - 0.38, 0.58, 0), 0xf43f5e));
+  } else {
+    [-0.35, 0, 0.35].forEach((y) => {
+      root.add(line([new THREE.Vector3(-3.35, y, 0), new THREE.Vector3(objectiveX, y * 0.5 - 0.12, 0)], 0xfde047, 0.7));
+    });
+    root.add(label("distant parallel rays", new THREE.Vector3(-3.2, 0.92, 0), 0xfde047));
+  }
+
+  const intermediateX = mode === "microscope" ? 0.75 : 0.35;
+  const finalX = 3.05;
+  const rayStarts = mode === "microscope"
+    ? [new THREE.Vector3(objectX, 0.22, -0.16), new THREE.Vector3(objectX, 0.22, 0.16)]
+    : [new THREE.Vector3(-3.35, 0.35, -0.14), new THREE.Vector3(-3.35, -0.35, 0.14)];
+  rayStarts.forEach((start, index) => {
+    const objPoint = mode === "microscope" ? start : new THREE.Vector3(objectiveX, index === 0 ? 0.05 : -0.05, start.z);
+    root.add(tube([
+      start,
+      objPoint,
+      new THREE.Vector3(intermediateX, index === 0 ? -0.46 : 0.46, start.z * -0.6),
+      new THREE.Vector3(eyepieceX, index === 0 ? -0.22 : 0.22, start.z * -0.3),
+      new THREE.Vector3(finalX, index === 0 ? -0.64 : 0.64, start.z),
+    ], 0.016, index === 0 ? 0xfde047 : 0x22d3ee, 0.9));
+  });
+
+  const intermediate = box(0.04, 0.78, 0.22, 0x34d399, 0.74);
+  intermediate.position.set(intermediateX, -0.16, 0);
+  root.add(intermediate);
+  const focalMarks = [
+    { x: objectiveX - objectiveF / 60, color: 0x67e8f9, text: "Fo" },
+    { x: objectiveX + objectiveF / 60, color: 0x67e8f9, text: "Fo" },
+    { x: eyepieceX - eyepieceF / 35, color: 0xa78bfa, text: "Fe" },
+    { x: eyepieceX + eyepieceF / 35, color: 0xa78bfa, text: "Fe" },
+  ];
+  focalMarks.forEach((mark) => {
+    addMarker(root, new THREE.Vector3(clamp(mark.x, -3.1, 3.1), -0.84, 0), mark.color);
+    root.add(label(mark.text, new THREE.Vector3(clamp(mark.x, -3.1, 3.1) - 0.2, -0.48, 0.12), mark.color));
+  });
+  root.add(label("objective", new THREE.Vector3(objectiveX - 0.48, 1.22, 0), 0x67e8f9));
+  root.add(label("eyepiece", new THREE.Vector3(eyepieceX - 0.42, 1.12, 0), 0xa78bfa));
+  root.add(label("intermediate image", new THREE.Vector3(intermediateX - 0.55, 0.62, 0), 0x34d399));
+  root.add(label("final virtual image direction", new THREE.Vector3(1.62, -1.18, 0.2), 0xfde047));
+  root.add(label(`${mode} M ${magnification.toFixed(1)}x`, new THREE.Vector3(-2.92, -1.18, 0.2), 0xfacc15));
+  root.add(label("thin lens/paraxial rays", new THREE.Vector3(-0.82, 1.42, 0.2), 0xe2e8f0));
+}
+
+function angleArc3D(center: THREE.Vector3, radius: number, start: number, end: number, color: number) {
+  return line(Array.from({ length: 28 }, (_, index) => {
+    const u = index / 27;
+    const theta = start + (end - start) * u;
+    return new THREE.Vector3(center.x + Math.cos(theta) * radius, center.y + Math.sin(theta) * radius, center.z + 0.04);
+  }), color, 0.86);
+}
+
+function angleArcHorizontal(radius: number, start: number, end: number, color: number) {
+  return line(Array.from({ length: 36 }, (_, index) => {
+    const u = index / 35;
+    const theta = start + (end - start) * u;
+    return new THREE.Vector3(Math.cos(theta) * radius, -0.98, Math.sin(theta) * radius);
+  }), color, 0.88);
+}
+
+function buildWaveLab3D(root: THREE.Group, frequencyInput: number, amplitudeInput: number, mediumInput: number) {
+  addPlatform(root);
+  const frequency = clamp(frequencyInput || 2, 0.5, 12);
+  const amplitude = clamp((amplitudeInput || 1) / 3, 0.18, 0.9);
+  const wavelength = clamp(5.2 / frequency, 0.65, 2.6);
+  const points = Array.from({ length: 96 }, (_, index) => {
+    const x = -3.25 + (index / 95) * 6.5;
+    const phase = (x / wavelength) * Math.PI * 2;
+    return new THREE.Vector3(x, -0.35 + Math.sin(phase) * amplitude, 0);
+  });
+  root.add(tube(points, 0.035, 0x22d3ee, 0.95));
+  points.filter((_, index) => index % 8 === 0).forEach((point, index) => {
+    const bead = sphere(0.08, index % 2 ? 0xfacc15 : 0x67e8f9, 0.88);
+    bead.position.copy(point);
+    bead.userData.role = "particle";
+    bead.userData.seed = index * 0.6;
+    bead.userData.speed = clamp(frequency / 2, 0.4, 3);
+    root.add(bead);
+  });
+  root.add(line([new THREE.Vector3(-3.25, -0.35, -0.18), new THREE.Vector3(3.25, -0.35, -0.18)], 0x64748b, 0.72));
+  root.add(tube([new THREE.Vector3(-2.7, -0.35, 0.22), new THREE.Vector3(-2.7, -0.35 + amplitude, 0.22)], 0.014, 0xf43f5e, 0.9));
+  root.add(tube([new THREE.Vector3(-1.15, -1.02, 0.15), new THREE.Vector3(-1.15 + wavelength, -1.02, 0.15)], 0.014, 0x34d399, 0.9));
+  addArrow(root, new THREE.Vector3(2.0, 0.88, 0), new THREE.Vector3(3.0, 0.88, 0), 0xfacc15);
+  const tracer = sphere(0.08, 0xfacc15);
+  tracer.userData.role = "path";
+  tracer.userData.path = points;
+  root.add(tracer);
+  root.add(label("amplitude", new THREE.Vector3(-3.05, 0.55, 0.2), 0xf43f5e));
+  root.add(label("wavelength", new THREE.Vector3(-1.1, -1.24, 0.22), 0x34d399));
+  root.add(label(`f ${frequency.toFixed(1)} Hz`, new THREE.Vector3(0.92, 1.2, 0.15), 0x67e8f9));
+  root.add(label(`v=f lambda ${(frequency * wavelength).toFixed(1)}`, new THREE.Vector3(1.75, -1.22, 0.2), 0xfacc15));
+  root.add(label("medium particles oscillate locally", new THREE.Vector3(-2.88, 1.2, 0.15), 0xe2e8f0));
+  root.add(label(mediumInput > 0 ? "uniform medium" : "linear wave model", new THREE.Vector3(-0.62, -1.48, 0.2), 0x94a3b8));
+}
+
+function buildChladni3D(root: THREE.Group, modeInput: number, frequencyInput: number, _unused = 0) {
+  addPlatform(root);
+  const mode = Math.max(1, Math.round(clamp(modeInput || frequencyInput || 3, 1, 7)));
+  const plate = box(3.2, 0.08, 3.2, 0x1e293b, 0.94);
+  plate.position.set(0, -0.45, 0);
+  plate.userData.role = "pulse";
+  plate.userData.power = 0.45;
+  root.add(plate);
+  for (let index = 1; index <= mode; index += 1) {
+    const x = -1.6 + (index * 3.2) / (mode + 1);
+    root.add(tube([new THREE.Vector3(x, -0.34, -1.48), new THREE.Vector3(x, -0.34, 1.48)], 0.012, 0x22d3ee, 0.8));
+  }
+  for (let index = 1; index <= Math.max(1, Math.floor(mode / 2)); index += 1) {
+    const z = -1.6 + (index * 3.2) / (Math.floor(mode / 2) + 1);
+    root.add(tube([new THREE.Vector3(-1.48, -0.33, z), new THREE.Vector3(1.48, -0.33, z)], 0.012, 0x67e8f9, 0.8));
+  }
+  for (let index = 0; index < 95; index += 1) {
+    const band = index % 4;
+    const spread = (((index * 17) % 100) / 100 - 0.5) * 0.16;
+    const along = -1.38 + (((index * 29) % 276) / 100);
+    const grain = sphere(index % 6 === 0 ? 0.035 : 0.024, 0xfacc15, 0.92);
+    if (band < 2) {
+      const x = -1.6 + ((band + 1) * 3.2) / (mode + 2) + spread;
+      grain.position.set(x, -0.26, along);
+    } else {
+      const z = -0.8 + (band - 2) * 1.15 + spread;
+      grain.position.set(along, -0.26, z);
+    }
+    root.add(grain);
+  }
+  root.add(label(`mode ${mode}`, new THREE.Vector3(-1.58, 1.1, 0), 0x67e8f9));
+  root.add(label("node lines", new THREE.Vector3(-0.55, 0.86, 1.55), 0x22d3ee));
+  root.add(label("sand accumulation", new THREE.Vector3(0.8, 0.92, -1.4), 0xfacc15));
+  root.add(label("antinode regions vibrate", new THREE.Vector3(-2.8, -1.18, 0.2), 0xf43f5e));
+  root.add(label("illustrative nodal pattern", new THREE.Vector3(0.8, -1.18, 0.2), 0xe2e8f0));
+}
+
+function buildEcho3D(root: THREE.Group, timeInput: number, speedInput: number, distanceInput: number) {
+  addPlatform(root);
+  const echoTime = clamp(timeInput || 2, 0.25, 8);
+  const speed = clamp(speedInput || 343, 250, 420);
+  const distance = speed * echoTime / 2;
+  const source = sphere(0.22, 0xfacc15, 0.95);
+  source.position.set(-2.75, -0.38, 0);
+  source.userData.role = "pulse";
+  root.add(source);
+  const wall = box(0.16, 2.2, 2.5, 0x64748b, 0.82);
+  wall.position.set(2.55, -0.14, 0);
+  root.add(wall);
+  const outgoing = [new THREE.Vector3(-2.55, -0.25, -0.1), new THREE.Vector3(-0.3, 0.25, 0), new THREE.Vector3(2.45, -0.25, 0.1)];
+  const returning = [new THREE.Vector3(2.45, -0.52, -0.15), new THREE.Vector3(-0.2, -0.88, 0), new THREE.Vector3(-2.55, -0.52, 0.15)];
+  root.add(tube(outgoing, 0.026, 0x22d3ee, 0.92));
+  root.add(tube(returning, 0.026, 0xfacc15, 0.92));
+  for (let index = 0; index < 5; index += 1) {
+    const wave = ring(0.28 + index * 0.23, 0x22d3ee);
+    wave.position.set(-2.55 + index * 0.88, -0.25, 0);
+    wave.rotation.y = Math.PI / 2;
+    wave.userData.role = "wave";
+    wave.userData.speed = 0.4 + index * 0.1;
+    wave.userData.phase = index * 0.2;
+    root.add(wave);
+  }
+  const pulse = sphere(0.07, 0x67e8f9);
+  pulse.userData.role = "path";
+  pulse.userData.path = [...outgoing, ...returning.slice(1)];
+  root.add(pulse);
+  root.add(label("outgoing pulse", new THREE.Vector3(-1.8, 0.88, 0), 0x22d3ee));
+  root.add(label("reflected pulse", new THREE.Vector3(-1.55, -1.22, 0.2), 0xfacc15));
+  root.add(label("reflecting wall", new THREE.Vector3(1.7, 1.18, 0), 0xe2e8f0));
+  root.add(label(`echo time ${echoTime.toFixed(2)} s`, new THREE.Vector3(-2.95, 1.28, 0), 0x67e8f9));
+  root.add(label(`distance ${(distanceInput || distance).toFixed(0)} m = v t / 2`, new THREE.Vector3(0.2, -1.28, 0.2), 0x34d399));
+  root.add(label("round-trip echo distance", new THREE.Vector3(0.72, 1.28, 0), 0xfacc15));
+}
+
+function buildSoundPitch3D(root: THREE.Group, frequencyInput: number, amplitudeInput: number, distanceInput: number) {
+  addPlatform(root);
+  const frequency = clamp(frequencyInput || 440, 80, 1200);
+  const amplitude = clamp(amplitudeInput || 1, 0.2, 10);
+  const wavelength = clamp(343 / frequency, 0.22, 3.2);
+  const forkA = cylinder(0.045, 0.045, 1.35, 0x67e8f9, 0.92);
+  forkA.position.set(-2.45, 0.12, -0.18);
+  forkA.userData.role = "pulse";
+  forkA.userData.power = clamp(amplitude / 5, 0.2, 1.6);
+  const forkB = forkA.clone();
+  forkB.position.z = 0.18;
+  root.add(forkA, forkB);
+  const handle = cylinder(0.06, 0.06, 1.0, 0x94a3b8, 0.9);
+  handle.position.set(-2.45, -0.82, 0);
+  root.add(handle);
+  for (let index = 0; index < 7; index += 1) {
+    const ringWave = ring(0.35 + index * clamp(wavelength, 0.24, 0.68), 0x22d3ee);
+    ringWave.position.set(-2.05 + index * 0.25, -0.32, 0);
+    ringWave.rotation.y = Math.PI / 2;
+    ringWave.scale.y = clamp(amplitude / 2.5, 0.45, 1.8);
+    ringWave.userData.role = "wave";
+    ringWave.userData.speed = clamp(frequency / 440, 0.35, 2.7);
+    ringWave.userData.phase = index * 0.18;
+    root.add(ringWave);
+  }
+  const waveform = sineWave(2.8, 1.5, clamp(amplitude / 18, 0.04, 0.25), 0xfacc15);
+  waveform.position.set(1.2, -0.3, 0);
+  root.add(waveform);
+  root.add(label(`pitch = frequency ${frequency.toFixed(0)} Hz`, new THREE.Vector3(-2.95, 1.3, 0), 0x67e8f9));
+  root.add(label(`loudness cue = amplitude ${amplitude.toFixed(1)}`, new THREE.Vector3(-0.7, 1.05, 0), 0xfacc15));
+  root.add(label(`wavelength ${wavelength.toFixed(2)} m`, new THREE.Vector3(1.1, -1.24, 0.2), 0x34d399));
+  root.add(label("simplified hearing model", new THREE.Vector3(-2.6, -1.22, 0.2), 0xe2e8f0));
+  root.add(label(`distance ${distanceInput.toFixed(1)}`, new THREE.Vector3(1.6, 1.2, 0.2), 0x94a3b8));
+}
+
+function buildSpringShm3D(root: THREE.Group, springInput: number, massInput: number, amplitudeInput: number) {
+  addPlatform(root);
+  const k = clamp(springInput || 20, 1, 100);
+  const massValue = clamp(massInput || 1, 0.1, 10);
+  const amplitude = clamp((amplitudeInput || 1) / 3, 0.32, 1.25);
+  const omega = Math.sqrt(k / massValue);
+  const wall = box(0.18, 1.35, 1.0, 0x64748b, 0.92);
+  wall.position.set(-2.8, -0.35, 0);
+  root.add(wall);
+  const spring = helix(2.4, 0.18, 14, 0x67e8f9);
+  spring.position.set(-1.45, -0.34, 0);
+  spring.scale.x = 1 + amplitude * 0.12;
+  spring.userData.role = "wave-shift";
+  spring.userData.speed = clamp(omega / 5, 0.25, 2.6);
+  root.add(spring);
+  const mass = box(0.62, 0.58, 0.58, 0xfacc15, 0.94);
+  mass.position.set(1.0 + amplitude * 0.42, -0.34, 0);
+  mass.userData.role = "cart";
+  root.add(mass);
+  addMarker(root, new THREE.Vector3(0.85, -0.98, 0), 0x34d399);
+  root.add(tube([new THREE.Vector3(0.85 - amplitude, -1.08, 0.2), new THREE.Vector3(0.85 + amplitude, -1.08, 0.2)], 0.014, 0xf43f5e, 0.9));
+  addArrow(root, new THREE.Vector3(1.75, -0.28, 0.35), new THREE.Vector3(0.95, -0.28, 0.35), 0xf43f5e);
+  addArrow(root, new THREE.Vector3(0.6, 0.2, 0.35), new THREE.Vector3(1.25, 0.2, 0.35), 0x22d3ee);
+  const keBar = box(0.18, 0.78, 0.14, 0x22d3ee, 0.8);
+  keBar.position.set(2.42, -0.72, -0.5);
+  const peBar = box(0.18, 1.08, 0.14, 0xfacc15, 0.8);
+  peBar.position.set(2.72, -0.57, -0.5);
+  root.add(keBar, peBar);
+  root.add(label("equilibrium", new THREE.Vector3(0.35, -1.42, 0.2), 0x34d399));
+  root.add(label("amplitude endpoints", new THREE.Vector3(-0.42, 1.12, 0), 0xf43f5e));
+  root.add(label("restoring force F=-kx", new THREE.Vector3(0.82, 0.78, 0.25), 0xf43f5e));
+  root.add(label("velocity", new THREE.Vector3(0.35, 0.48, 0.25), 0x22d3ee));
+  root.add(label(`omega ${omega.toFixed(2)} rad/s`, new THREE.Vector3(-2.72, 1.18, 0), 0x67e8f9));
+  root.add(label("ideal spring / no damping", new THREE.Vector3(1.55, -1.26, 0.25), 0xe2e8f0));
+}
+
+function buildSpectrum3D(root: THREE.Group, frequencyInput: number, _unused: number, markerInput: number) {
+  addPlatform(root);
+  const bands = [
+    ["radio", 0x38bdf8],
+    ["microwave", 0x22d3ee],
+    ["infrared", 0xfb923c],
+    ["visible", 0x34d399],
+    ["ultraviolet", 0xa78bfa],
+    ["X-ray", 0xe2e8f0],
+    ["gamma", 0xf43f5e],
+  ] as const;
+  bands.forEach(([name, color], index) => {
+    const width = 0.82;
+    const block = box(width, 0.52 + index * 0.05, 0.12, color, 0.72);
+    block.position.set(-3 + index, -0.45, 0);
+    root.add(block);
+    root.add(label(name, new THREE.Vector3(-3.35 + index, 0.35 + index * 0.04, 0.12), color));
+    const sample = sineWave(0.68, -0.05, clamp(0.16 - index * 0.015, 0.04, 0.16), color);
+    sample.position.set(-3 + index, -0.15, 0.35);
+    sample.scale.x = clamp(1.6 - index * 0.16, 0.45, 1.6);
+    root.add(sample);
+  });
+  const markerIndex = clamp((Math.log10(Math.max(0.001, frequencyInput || markerInput || 1)) + 3) / 6 * 6, 0, 6);
+  addArrow(root, new THREE.Vector3(-3 + markerIndex, 1.3, 0), new THREE.Vector3(-3 + markerIndex, 0.78, 0), 0xfacc15);
+  root.add(tube([new THREE.Vector3(-3.28, -1.12, 0), new THREE.Vector3(3.28, -1.12, 0)], 0.015, 0x94a3b8, 0.8));
+  addArrow(root, new THREE.Vector3(-2.65, -1.36, 0), new THREE.Vector3(2.85, -1.36, 0), 0x67e8f9);
+  addArrow(root, new THREE.Vector3(2.85, -1.55, 0), new THREE.Vector3(-2.65, -1.55, 0), 0xfacc15);
+  root.add(label("frequency increases", new THREE.Vector3(0.75, -1.28, 0.2), 0x67e8f9));
+  root.add(label("wavelength decreases", new THREE.Vector3(-1.28, -1.58, 0.2), 0xfacc15));
+  root.add(label("visible band", new THREE.Vector3(-0.38, 1.22, 0), 0x34d399));
+  root.add(label("c = f lambda", new THREE.Vector3(1.55, 1.22, 0), 0xe2e8f0));
+  root.add(label("qualitative boundaries / not to scale", new THREE.Vector3(-2.85, 1.22, 0), 0x94a3b8));
+}
+
+function buildPolarization3D(root: THREE.Group, intensityInput: number, angleInput: number, scaleInput: number) {
+  addPlatform(root);
+  const theta = THREE.MathUtils.degToRad(clamp(angleInput || 0, 0, 180));
+  const i0 = clamp(intensityInput || 100, 0, 100);
+  const transmitted = i0 * Math.cos(theta) ** 2 * clamp(scaleInput || 1, 0.1, 1.5);
+  root.add(tube([new THREE.Vector3(-3.15, -0.05, 0), new THREE.Vector3(-1.4, -0.05, 0)], 0.025, 0xfde047, 0.92));
+  const polarizer = box(0.08, 1.65, 1.35, 0x67e8f9, 0.24);
+  polarizer.position.set(-1.18, -0.05, 0);
+  root.add(polarizer);
+  const analyzer = box(0.08, 1.65, 1.35, 0xa78bfa, 0.24);
+  analyzer.position.set(0.85, -0.05, 0);
+  analyzer.rotation.x = theta;
+  root.add(analyzer);
+  root.add(tube([new THREE.Vector3(-1.12, -0.72, 0), new THREE.Vector3(-1.12, 0.72, 0)], 0.012, 0x67e8f9, 0.9));
+  root.add(tube([new THREE.Vector3(0.88, -0.72 * Math.cos(theta), -0.72 * Math.sin(theta)), new THREE.Vector3(0.88, 0.72 * Math.cos(theta), 0.72 * Math.sin(theta))], 0.012, 0xa78bfa, 0.9));
+  for (let index = 0; index < 6; index += 1) {
+    const field = sineWave(0.7, 0.78 - index * 0.08, 0.12, index < 3 ? 0xfde047 : 0x34d399);
+    field.position.set(-2.65 + index * 0.72, -0.72, 0.28);
+    field.rotation.z = index < 3 ? 0 : theta;
+    field.scale.y = index < 3 ? 1 : clamp(transmitted / 100, 0.12, 1.2);
+    root.add(field);
+  }
+  const meter = box(0.42, clamp(transmitted / 70, 0.08, 1.25), 0.18, 0x34d399, 0.86);
+  meter.position.set(2.55, -1.08 + meter.geometry.parameters.height / 2, 0);
+  root.add(meter);
+  root.add(angleArc3D(new THREE.Vector3(0.1, -0.05, 0.28), 0.45, 0, theta, 0xfacc15));
+  root.add(label("polarizer", new THREE.Vector3(-1.72, 1.2, 0), 0x67e8f9));
+  root.add(label("analyzer", new THREE.Vector3(0.45, 1.2, 0), 0xa78bfa));
+  root.add(label("transmission axis", new THREE.Vector3(-0.95, -1.22, 0.2), 0xe2e8f0));
+  root.add(label(`theta ${THREE.MathUtils.radToDeg(theta).toFixed(0)} deg`, new THREE.Vector3(0.1, 0.58, 0.45), 0xfacc15));
+  root.add(label(`I = I0 cos^2 theta = ${transmitted.toFixed(1)}`, new THREE.Vector3(1.25, -1.22, 0.25), 0x34d399));
+  root.add(label("ideal polarizers / Malus law", new THREE.Vector3(-2.85, -1.22, 0.25), 0x94a3b8));
+}
+
 function buildInterference(root: THREE.Group, frequency: number, amplitude: number, _unused = 0) {
   [-0.7, 0.7].forEach((x) => {
     const source = sphere(0.13, 0x22d3ee);
@@ -1319,6 +2661,185 @@ function buildInterference(root: THREE.Group, frequency: number, amplitude: numb
     fringe.position.set(2.45, -1.4 + index * 0.35, 0);
     root.add(fringe);
   }
+}
+
+function buildMeasurement3D(root: THREE.Group, readingInput: number, leastCountInput: number, trueValueInput: number) {
+  addPlatform(root);
+  const reading = clamp(readingInput || 5.26, 0, 10);
+  const leastCount = clamp(leastCountInput || 0.01, 0.001, 0.5);
+  const trueValue = clamp(trueValueInput || reading * 0.98, 0, 10);
+  const error = Math.abs(reading - trueValue);
+  const ruler = box(4.8, 0.08, 0.48, 0x94a3b8, 0.72);
+  ruler.position.set(0, -0.8, 0);
+  root.add(ruler);
+  for (let index = 0; index <= 10; index += 1) {
+    const tick = box(0.02, index % 5 === 0 ? 0.32 : 0.18, 0.05, 0xe2e8f0, 0.88);
+    tick.position.set(-2.4 + index * 0.48, -0.64, 0.28);
+    root.add(tick);
+  }
+  const objectLength = clamp(reading / 10 * 4.3, 0.5, 4.3);
+  const object = box(objectLength, 0.28, 0.36, 0x67e8f9, 0.82);
+  object.position.set(-2.15 + objectLength / 2, -0.48, -0.05);
+  root.add(object);
+  const pointerX = -2.4 + (reading / 10) * 4.8;
+  addArrow(root, new THREE.Vector3(pointerX, 0.4, 0.2), new THREE.Vector3(pointerX, -0.42, 0.2), 0xfacc15);
+  [-2, -1, 0, 1, 2].forEach((offset, index) => {
+    const markerX = pointerX + offset * leastCount * 12;
+    addMarker(root, new THREE.Vector3(markerX, -0.34, 0.58), index === 2 ? 0xfacc15 : 0x22d3ee);
+  });
+  const trueX = -2.4 + (trueValue / 10) * 4.8;
+  root.add(tube([new THREE.Vector3(trueX, -1.08, 0.5), new THREE.Vector3(pointerX, -1.08, 0.5)], 0.012, 0xf43f5e, 0.9));
+  root.add(label(`reading ${reading.toFixed(3)}`, new THREE.Vector3(pointerX - 0.5, 0.72, 0.25), 0xfacc15));
+  root.add(label(`least count ${leastCount.toFixed(3)}`, new THREE.Vector3(-2.75, 0.95, 0), 0x67e8f9));
+  root.add(label(`error ${error.toFixed(3)}`, new THREE.Vector3(0.55, -1.28, 0.45), 0xf43f5e));
+  root.add(label("mean marker / repeated readings", new THREE.Vector3(-1.25, 1.25, 0.15), 0x22d3ee));
+  root.add(label("illustrative measurement model", new THREE.Vector3(1.25, 1.25, 0.15), 0xe2e8f0));
+  root.add(label("zero error ignored", new THREE.Vector3(1.7, -1.28, 0.25), 0x94a3b8));
+}
+
+function buildNuclearDecay3D(root: THREE.Group, initialInput: number, halfLifeInput: number, timeInput: number) {
+  addPlatform(root);
+  const initial = clamp(initialInput || 120, 40, 180);
+  const halfLife = clamp(halfLifeInput || 5, 0.5, 20);
+  const elapsed = clamp(timeInput || 5, 0, 60);
+  const remainingFraction = clamp(0.5 ** (elapsed / halfLife), 0.02, 1);
+  const count = 64;
+  for (let index = 0; index < count; index += 1) {
+    const alive = index / count < remainingFraction;
+    const nucleus = sphere(0.07, alive ? 0x22d3ee : 0xf43f5e, alive ? 0.9 : 0.58);
+    nucleus.position.set(-1.55 + (index % 8) * 0.42, -0.68 + Math.floor(index / 8) * 0.22, -0.82 + (index % 4) * 0.28);
+    if (!alive && index % 5 === 0) nucleus.userData.role = "pulse";
+    root.add(nucleus);
+  }
+  const curve = Array.from({ length: 50 }, (_, index) => {
+    const u = index / 49;
+    return new THREE.Vector3(0.65 + u * 2.2, -0.92 + 1.25 * 0.5 ** (u * 4), 0.4);
+  });
+  root.add(tube(curve, 0.012, 0xfacc15, 0.92));
+  const ringTimer = ring(0.74, 0xfacc15);
+  ringTimer.position.set(-2.1, 0.6, 0);
+  ringTimer.userData.role = "field";
+  ringTimer.userData.power = 0.8;
+  root.add(ringTimer);
+  root.add(label(`remaining ${Math.round(initial * remainingFraction)}`, new THREE.Vector3(-2.85, 1.32, 0), 0x22d3ee));
+  root.add(label(`decayed ${Math.round(initial * (1 - remainingFraction))}`, new THREE.Vector3(-0.9, 1.32, 0), 0xf43f5e));
+  root.add(label(`T1/2 ${halfLife.toFixed(1)}`, new THREE.Vector3(-2.55, -1.24, 0.25), 0xfacc15));
+  root.add(label("random decay model", new THREE.Vector3(0.75, 1.32, 0), 0xe2e8f0));
+  root.add(label("statistical, not individual prediction", new THREE.Vector3(0.7, -1.24, 0.25), 0x94a3b8));
+}
+
+function buildDiode3D(root: THREE.Group, voltageInput: number, thresholdInput: number, _mode: number) {
+  addPlatform(root);
+  const voltage = clamp(voltageInput || 0.7, -5, 5);
+  const threshold = clamp(thresholdInput || 0.7, 0.2, 1.2);
+  const conducts = voltage > threshold;
+  const pSide = box(1.25, 1.2, 1.2, 0xf472b6, 0.55);
+  pSide.position.set(-0.85, -0.2, 0);
+  const nSide = box(1.25, 1.2, 1.2, 0x38bdf8, 0.55);
+  nSide.position.set(0.85, -0.2, 0);
+  const depletion = box(0.32, 1.28, 1.28, 0xfacc15, conducts ? 0.24 : 0.62);
+  depletion.position.set(0, -0.2, 0);
+  root.add(pSide, nSide, depletion);
+  for (let index = 0; index < 18; index += 1) {
+    const carrier = sphere(0.045, index % 2 ? 0x22d3ee : 0xfacc15, 0.86);
+    carrier.position.set(-1.35 + (index % 9) * 0.34, -0.62 + Math.floor(index / 9) * 0.62, ((index * 17) % 80) / 100 - 0.4);
+    if (conducts) {
+      carrier.userData.role = "path";
+      carrier.userData.path = [carrier.position.clone(), carrier.position.clone().add(new THREE.Vector3(2.4, 0, 0))];
+      carrier.userData.offset = index / 18;
+    }
+    root.add(carrier);
+  }
+  addArrow(root, new THREE.Vector3(-2.3, 0.95, 0), new THREE.Vector3(2.3, 0.95, 0), conducts ? 0x34d399 : 0x64748b);
+  const wavePanel = box(1.55, 0.7, 0.08, 0x0f172a, 0.72);
+  wavePanel.position.set(2.35, -0.58, 0.72);
+  root.add(wavePanel);
+  root.add(sineWave(1.25, 0.38, conducts ? 0.12 : 0.04, conducts ? 0x34d399 : 0x64748b));
+  root.add(label("P-side", new THREE.Vector3(-1.55, 0.85, 0), 0xf472b6));
+  root.add(label("N-side", new THREE.Vector3(0.55, 0.85, 0), 0x38bdf8));
+  root.add(label("depletion region", new THREE.Vector3(-0.72, -1.22, 0.2), 0xfacc15));
+  root.add(label(conducts ? "forward bias current" : "reverse/blocking bias", new THREE.Vector3(0.78, 1.32, 0), conducts ? 0x34d399 : 0xf43f5e));
+  root.add(label("simplified PN junction", new THREE.Vector3(0.92, -1.22, 0.2), 0xe2e8f0));
+}
+
+function buildEnergySources3D(root: THREE.Group, selectedInput: number, outputInput: number, emissionInput: number) {
+  addPlatform(root);
+  const selected = Math.abs(Math.round(selectedInput || 0)) % 5;
+  const sources = [
+    { name: "solar", color: 0xfacc15, output: 0.65, emissions: 0.1 },
+    { name: "wind", color: 0x67e8f9, output: 0.58, emissions: 0.08 },
+    { name: "hydro", color: 0x38bdf8, output: 0.8, emissions: 0.12 },
+    { name: "fossil", color: 0xf97316, output: 0.95, emissions: 0.88 },
+    { name: "nuclear", color: 0xa78bfa, output: 0.98, emissions: 0.18 },
+  ];
+  sources.forEach((source, index) => {
+    const x = -2.6 + index * 1.3;
+    const base = box(0.82, 0.08, 0.82, selected === index ? 0xfacc15 : 0x334155, selected === index ? 0.82 : 0.55);
+    base.position.set(x, -0.95, 0);
+    root.add(base);
+    const icon = index === 1 ? cylinder(0.05, 0.05, 0.8, source.color, 0.9) : index === 0 ? box(0.65, 0.08, 0.42, source.color, 0.86) : index === 2 ? box(0.72, 0.38, 0.24, source.color, 0.7) : cylinder(0.25, 0.33, 0.55, source.color, 0.72);
+    icon.position.set(x, -0.55, 0);
+    if (index === 1) icon.rotation.z = Math.PI / 2;
+    root.add(icon);
+    const output = box(0.16, clamp(source.output + outputInput / 200, 0.18, 1.25), 0.16, 0x34d399, 0.86);
+    output.position.set(x - 0.25, -0.95 + output.geometry.parameters.height / 2, 0.48);
+    const emissions = box(0.16, clamp(source.emissions + emissionInput / 200, 0.08, 1.25), 0.16, 0xf43f5e, 0.72);
+    emissions.position.set(x + 0.25, -0.95 + emissions.geometry.parameters.height / 2, 0.48);
+    root.add(output, emissions);
+    root.add(label(source.name, new THREE.Vector3(x - 0.45, 0.28, 0), source.color));
+  });
+  root.add(label("output bars", new THREE.Vector3(-2.95, 1.2, 0), 0x34d399));
+  root.add(label("emissions/limits", new THREE.Vector3(-0.85, 1.2, 0), 0xf43f5e));
+  root.add(label("illustrative comparison data", new THREE.Vector3(1.1, 1.2, 0), 0xe2e8f0));
+}
+
+function buildQuantumOperators3D(root: THREE.Group, stateInput: number, operatorInput: number, measurementInput: number) {
+  addPlatform(root);
+  const stateAngle = THREE.MathUtils.degToRad(clamp(stateInput || 45, 0, 100) * 1.4 + 15);
+  const operatorAngle = THREE.MathUtils.degToRad(clamp(operatorInput || 50, 0, 100) * 1.2 + 10);
+  const sphereFrame = sphere(1.05, 0x67e8f9, 0.08);
+  sphereFrame.position.set(-1.2, -0.1, 0);
+  root.add(sphereFrame);
+  addArrow(root, new THREE.Vector3(-1.2, -0.1, 0), new THREE.Vector3(-1.2 + Math.cos(stateAngle), -0.1 + Math.sin(stateAngle), 0.25), 0x22d3ee);
+  addArrow(root, new THREE.Vector3(-1.2, -0.1, 0), new THREE.Vector3(-1.2 + Math.cos(operatorAngle) * 1.1, -0.1 + Math.sin(operatorAngle) * 1.1, -0.1), 0xfacc15);
+  const projection = Math.cos(stateAngle - operatorAngle) ** 2;
+  const pBar = box(0.22, clamp(projection, 0.08, 1.1), 0.18, 0x34d399, 0.86);
+  pBar.position.set(1.55, -0.95 + pBar.geometry.parameters.height / 2, 0);
+  const qBar = box(0.22, clamp(1 - projection, 0.08, 1.1), 0.18, 0xa78bfa, 0.86);
+  qBar.position.set(1.95, -0.95 + qBar.geometry.parameters.height / 2, 0);
+  root.add(pBar, qBar);
+  const matrix = box(1.0, 0.9, 0.08, 0x0f172a, 0.72);
+  matrix.position.set(1.75, 0.55, 0);
+  root.add(matrix);
+  root.add(label("state vector |psi>", new THREE.Vector3(-2.75, 1.22, 0), 0x22d3ee));
+  root.add(label("operator A", new THREE.Vector3(-1.0, 1.22, 0), 0xfacc15));
+  root.add(label(`eigenvalue cue ${measurementInput.toFixed(1)}`, new THREE.Vector3(0.8, 1.22, 0), 0xe2e8f0));
+  root.add(label(`expectation ${(projection * 100).toFixed(0)}%`, new THREE.Vector3(1.1, -1.22, 0.2), 0x34d399));
+  root.add(label("qualitative quantum visualization", new THREE.Vector3(-2.8, -1.22, 0.2), 0x94a3b8));
+}
+
+function buildComputationalWorkflow3D(root: THREE.Group, stepInput: number, iterationInput: number, errorInput: number) {
+  addPlatform(root);
+  const iterations = Math.round(clamp(iterationInput || 12, 3, 40));
+  const error = clamp(errorInput || Math.exp(-iterations / 8) * clamp(stepInput || 0.1, 0.01, 1), 0.001, 1);
+  const names = ["problem", "mesh", "solver", "converge", "result"];
+  names.forEach((name, index) => {
+    const node = box(0.75, 0.42, 0.55, index < 2 ? 0x22d3ee : index < 4 ? 0xfacc15 : 0x34d399, 0.72);
+    node.position.set(-2.6 + index * 1.3, -0.42, 0);
+    root.add(node);
+    if (index < names.length - 1) addArrow(root, new THREE.Vector3(-2.18 + index * 1.3, -0.42, 0), new THREE.Vector3(-1.72 + index * 1.3, -0.42, 0), 0x94a3b8);
+    root.add(label(name, new THREE.Vector3(-2.95 + index * 1.3, 0.08, 0.1), 0xe2e8f0));
+  });
+  for (let index = 0; index < 6; index += 1) {
+    root.add(line([new THREE.Vector3(-2.2 + index * 0.16, -0.92, -0.55), new THREE.Vector3(-2.2 + index * 0.16, -0.92, 0.55)], 0x334155, 0.72));
+    root.add(line([new THREE.Vector3(-2.25, -0.92, -0.5 + index * 0.2), new THREE.Vector3(-1.35, -0.92, -0.5 + index * 0.2)], 0x334155, 0.72));
+  }
+  const curve = Array.from({ length: 45 }, (_, index) => new THREE.Vector3(0.25 + index * 0.055, -1.02 + 0.9 * Math.exp(-index / 10), 0.55));
+  root.add(tube(curve, 0.012, 0x34d399, 0.92));
+  root.add(label(`iterations ${iterations}`, new THREE.Vector3(-0.25, 1.15, 0), 0xfacc15));
+  root.add(label(`error ${error.toFixed(4)}`, new THREE.Vector3(1.1, 1.15, 0), 0x34d399));
+  root.add(label("discretization mesh", new THREE.Vector3(-2.78, -1.22, 0.25), 0x67e8f9));
+  root.add(label("numerical method demonstration", new THREE.Vector3(0.55, -1.22, 0.25), 0xe2e8f0));
 }
 
 function buildPhotoelectric(root: THREE.Group, photonEnergy: number, workFunction: number, _unused = 0) {
@@ -1492,7 +3013,8 @@ function updateObjects(root: THREE.Group, t: number, values: [number, number, nu
   root.traverse((object) => {
     if (object.userData.role === "path") {
       const path = object.userData.path as THREE.Vector3[];
-      object.position.copy(samplePath(path, (t * 0.22) % 1));
+      const offset = typeof object.userData.offset === "number" ? object.userData.offset : 0;
+      object.position.copy(samplePath(path, (offset + t * 0.22) % 1));
     }
     if (object.userData.role === "cart") object.position.x = -0.8 + Math.sin(t * 1.6) * 0.12;
     if (object.userData.role === "force-balance") object.position.x = Math.sin(t * 1.45) * 0.11 * object.userData.power * object.userData.direction;

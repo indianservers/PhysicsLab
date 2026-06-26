@@ -114,16 +114,25 @@ function LegendItem({ color, label }: { color: string; label: string }) {
 
 function renderScene(experiment: ExperimentDefinition, a: number, b: number, c: number) {
   if (["mirror-formula", "lens-formula", "glass-slab-refraction", "prism-dispersion", "reflection-plane-mirror", "shadows-eclipses", "multiple-reflection", "human-eye-defects", "total-internal-reflection", "optical-instruments"].includes(experiment.id)) return <OpticsScene id={experiment.id} a={a} b={b} c={c} />;
-  if (["ohms-law", "series-parallel-resistance", "electric-power", "heating-effect-current", "kirchhoff-circuit", "capacitor-lab", "semiconductor-diode", "ac-lcr-resonance", "meter-bridge", "internal-resistance-cell", "ac-generator", "transformer-lab", "logic-gates", "sources-of-energy"].includes(experiment.id)) return <CircuitScene id={experiment.id} a={a} b={b} c={c} />;
+  if (["ohms-law", "series-parallel-resistance", "electric-power", "heating-effect-current", "chemical-effects-current", "kirchhoff-circuit", "capacitor-lab", "semiconductor-diode", "ac-lcr-resonance", "meter-bridge", "internal-resistance-cell", "ac-generator", "transformer-lab", "logic-gates", "sources-of-energy"].includes(experiment.id)) return <CircuitScene id={experiment.id} a={a} b={b} c={c} />;
   if (["wave-lab", "single-slit-diffraction", "sound-pitch-loudness", "echo-speed-sound", "young-double-slit", "em-spectrum", "chladni-plate", "shm-spring", "simple-pendulum", "sound-wave-anatomy", "polarization-lab"].includes(experiment.id)) return <WaveScene id={experiment.id} a={a} b={b} c={c} />;
-  if (["heat-and-temperature", "heat-transfer", "gas-laws", "thermodynamic-process"].includes(experiment.id)) return <ThermalScene id={experiment.id} a={a} b={b} c={c} />;
+  if (["heat-and-temperature", "heat-transfer", "gas-laws", "thermodynamic-process", "calorimetry-mixing", "statistical-ensemble-lab"].includes(experiment.id)) return <ThermalScene id={experiment.id} a={a} b={b} c={c} />;
   if (["force-and-pressure", "fluid-pressure", "buoyancy", "bernoulli-fluid-flow"].includes(experiment.id)) return <FluidScene id={experiment.id} a={a} b={b} c={c} />;
   if (["static-electricity", "electrostatic-field-potential", "lorentz-force", "emi-faraday", "magnetic-field-current", "electromagnet"].includes(experiment.id)) return <FieldScene id={experiment.id} a={a} b={b} c={c} />;
   if (["photoelectric-equation", "nuclear-decay", "de-broglie-wavelength", "bohr-model", "special-relativity-bridge", "advanced-quantum-operators"].includes(experiment.id)) return <ModernScene id={experiment.id} a={a} b={b} c={c} />;
+  if (["measurement-errors", "computational-physics-workflow"].includes(experiment.id)) return <MeasurementWorkflowScene id={experiment.id} a={a} b={b} c={c} />;
   return <MechanicsScene id={experiment.id} a={a} b={b} c={c} />;
 }
 
 function MechanicsScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
+  if (id === "free-fall") return <FreeFallScene a={a} b={b} c={c} />;
+  if (id === "mass-and-weight") return <MassWeightScene a={a} b={b} c={c} />;
+  if (id === "rotational-dynamics") return <RotationalDynamicsScene a={a} b={b} c={c} />;
+  if (id === "satellite-orbit") return <SatelliteOrbitScene a={a} b={b} c={c} />;
+  if (id === "distance-time-graph" || id === "uniform-motion") return <UniformMotionGraphScene id={id} a={a} b={b} c={c} />;
+  if (id === "universal-gravitation") return <UniversalGravitationScene a={a} b={b} c={c} />;
+  if (id === "elastic-collision") return <ElasticCollisionScene a={a} b={b} c={c} />;
+  if (id === "hooke-s-law") return <HookesLawScene a={a} b={b} c={c} />;
   if (id === "newton-s-second-law" || id === "balanced-unbalanced-forces") return <FreeBodyScene id={id} a={a} b={b} c={c} />;
   if (id === "friction") return <FrictionScene a={a} b={b} c={c} />;
   if (id === "inclined-plane") return <InclineComponentsScene a={a} b={b} c={c} />;
@@ -164,6 +173,233 @@ function MechanicsScene({ id, a, b, c }: { id: string; a: number; b: number; c: 
       <path d={`M 120 240 L 340 240 L 340 ${240 - Math.sin((angle * Math.PI) / 180) * 120} Z`} fill="rgba(251,191,36,.32)" stroke="#fbbf24" />
       <text x="95" y="70" fill="#e2e8f0" fontSize="16">Mechanics model: vary controls and compare measured output</text>
       <text x="95" y="96" fill="#94a3b8" fontSize="13">Force, motion, energy, and geometry update from the live sliders.</text>
+    </g>
+  );
+}
+
+function FreeFallScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const height = clamp(a, 5, 120);
+  const g = clamp(c || 9.81, 1, 20);
+  const time = Math.sqrt((2 * height) / g);
+  const velocity = b + g * time;
+  const ballY = clamp(78 + (height / 120) * 150, 94, 226);
+  return (
+    <g>
+      <rect x="120" y="42" width="155" height="216" rx="10" fill="rgba(15,23,42,.72)" stroke="#475569" strokeWidth="4" />
+      <line x1="198" y1="62" x2="198" y2="244" stroke="#94a3b8" strokeWidth="3" strokeDasharray="7 6" />
+      {[0, 1, 2, 3, 4].map((gate) => <line key={gate} x1="138" y1={70 + gate * 40} x2="258" y2={70 + gate * 40} stroke="#22d3ee" strokeWidth="2" opacity=".75" />)}
+      {[0, 1, 2, 3, 4].map((ghost) => <circle key={ghost} cx="198" cy={76 + ghost * ghost * 9.5} r="8" fill="#67e8f9" opacity={0.18 + ghost * 0.12} />)}
+      <circle cx="198" cy={ballY} r="18" fill="#facc15" stroke="#fde68a" strokeWidth="3" className="lab-anim-glow" />
+      <line x1="236" y1={ballY - 4} x2="236" y2={ballY + clamp(velocity * 2, 45, 130)} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <text x="245" y={ballY + 52} fill="#f43f5e" fontSize="13" fontWeight="900">v down</text>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">drop tower: equal time gaps widen</text>
+      <text x="82" y="274" fill="#94a3b8" fontSize="13">Air resistance ignored. s = ut + 1/2 gt^2, v = u + gt.</text>
+      <rect x="350" y="58" width="320" height="176" rx="12" fill="rgba(15,23,42,.7)" stroke="#334155" />
+      <line x1="390" y1="200" x2="635" y2="200" stroke="#64748b" />
+      <line x1="390" y1="200" x2="390" y2="82" stroke="#64748b" />
+      <polyline points={`390,190 445,172 500,148 555,118 620,82`} fill="none" stroke="#22d3ee" strokeWidth="4" />
+      <circle cx={clamp(390 + time * 45, 400, 635)} cy={clamp(200 - velocity * 3, 86, 190)} r="6" fill="#facc15" />
+      <text x="408" y="78" fill="#67e8f9" fontSize="13" fontWeight="900">velocity-time graph</text>
+      <text x="392" y="230" fill="#e2e8f0" fontSize="13" fontWeight="900">h {height.toFixed(1)} m | t {time.toFixed(2)} s | v {velocity.toFixed(1)} m/s</text>
+    </g>
+  );
+}
+
+function MassWeightScene({ a, b }: { a: number; b: number; c: number }) {
+  const mass = clamp(a, 0.2, 80);
+  const g = clamp(b || 9.81, 1.6, 25);
+  const weight = mass * g;
+  const spring = clamp(weight / 30, 20, 120);
+  return (
+    <g>
+      <text x="82" y="38" fill="#e2e8f0" fontSize="16" fontWeight="900">mass stays same; weight changes with g</text>
+      <rect x="94" y="78" width="250" height="166" rx="14" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <line x1="135" y1="174" x2="305" y2="174" stroke="#facc15" strokeWidth="5" />
+      <polygon points="220,174 200,230 240,230" fill="#64748b" />
+      <circle cx="145" cy="150" r={clamp(18 + mass / 6, 20, 45)} fill="#22d3ee" opacity=".9" />
+      <circle cx="295" cy="150" r={clamp(18 + mass / 6, 20, 45)} fill="#22d3ee" opacity=".9" />
+      <text x="126" y="102" fill="#67e8f9" fontSize="13" fontWeight="900">beam balance</text>
+      <text x="128" y="266" fill="#94a3b8" fontSize="13">mass = {mass.toFixed(1)} kg on every planet</text>
+      <rect x="410" y="62" width="170" height="206" rx="14" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <line x1="495" y1="86" x2="495" y2={86 + spring} stroke="#67e8f9" strokeWidth="4" strokeDasharray="6 5" />
+      <rect x="455" y={86 + spring} width="80" height="46" rx="8" fill="#facc15" stroke="#fde68a" strokeWidth="3" />
+      <line x1="590" y1="94" x2="590" y2={94 + clamp(g * 5, 30, 130)} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <text x="604" y="132" fill="#f43f5e" fontSize="13" fontWeight="900">g</text>
+      <text x="432" y="42" fill="#e2e8f0" fontSize="14" fontWeight="900">spring scale on selected body</text>
+      <text x="428" y="286" fill="#facc15" fontSize="14" fontWeight="900">Weight = {weight.toFixed(1)} N, g = {g.toFixed(2)} m/s^2</text>
+    </g>
+  );
+}
+
+function RotationalDynamicsScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const force = clamp(a, 0, 120);
+  const radius = clamp(b, 0.2, 3);
+  const inertia = clamp(c || 1, 0.2, 12);
+  const torque = force * radius;
+  const alpha = torque / inertia;
+  const cx = 260;
+  const cy = 154;
+  const r = clamp(radius * 42, 46, 118);
+  return (
+    <g>
+      <text x="82" y="38" fill="#e2e8f0" fontSize="16" fontWeight="900">torque wheel: larger radius gives more turning effect</text>
+      <circle cx={cx} cy={cy} r={r} fill="rgba(34,211,238,.16)" stroke="#67e8f9" strokeWidth="5" />
+      <circle cx={cx} cy={cy} r="8" fill="#facc15" />
+      <line x1={cx} y1={cy} x2={cx + r} y2={cy} stroke="#facc15" strokeWidth="4" />
+      <line x1={cx + r} y1={cy} x2={cx + r} y2={cy - clamp(force, 35, 120)} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <path d={`M ${cx - 76} ${cy} A 76 76 0 0 1 ${cx} ${cy - 76}`} fill="none" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <text x={cx + r + 12} y={cy - 72} fill="#f43f5e" fontSize="13" fontWeight="900">F</text>
+      <text x="106" y="272" fill="#94a3b8" fontSize="13">tau = rF, alpha = tau/I</text>
+      <rect x="450" y="62" width="230" height="174" rx="12" fill="rgba(15,23,42,.7)" stroke="#334155" />
+      <text x="470" y="92" fill="#67e8f9" fontSize="13" fontWeight="900">torque {torque.toFixed(1)} N m</text>
+      <text x="470" y="122" fill="#facc15" fontSize="13" fontWeight="900">I {inertia.toFixed(2)} kg m^2</text>
+      <text x="470" y="152" fill="#22d3ee" fontSize="13" fontWeight="900">alpha {alpha.toFixed(2)} rad/s^2</text>
+      <rect x="470" y="180" width="170" height="12" rx="6" fill="#334155" />
+      <rect x="470" y="180" width={clamp(alpha * 18, 12, 170)} height="12" rx="6" fill="#22d3ee" />
+    </g>
+  );
+}
+
+function SatelliteOrbitScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const massFactor = clamp(a || 1, 0.2, 10);
+  const radius = clamp(b, 1, 12);
+  const speed = clamp(c, 0, 20);
+  const circular = Math.sqrt(massFactor / radius) * 7;
+  const escape = circular * Math.SQRT2;
+  const state = speed > escape ? "escape" : speed > circular * 0.75 ? "orbit" : "suborbital";
+  const cx = 310;
+  const cy = 152;
+  const r = clamp(radius * 13, 58, 138);
+  const sx = cx + r * 0.76;
+  const sy = cy - r * 0.48;
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">orbit vs escape speed</text>
+      <circle cx={cx} cy={cy} r="42" fill="#38bdf8" stroke="#67e8f9" strokeWidth="4" />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke={state === "escape" ? "#f43f5e" : "#22d3ee"} strokeWidth="4" strokeDasharray={state === "suborbital" ? "12 8" : undefined} />
+      {state === "escape" && <path d={`M ${sx} ${sy} C 500 60 600 48 690 80`} fill="none" stroke="#f43f5e" strokeWidth="4" />}
+      <circle cx={sx} cy={sy} r="14" fill="#facc15" className="lab-anim-glow" />
+      <line x1={sx} y1={sy} x2={sx + 92} y2={sy + 54} stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <line x1={sx} y1={sy} x2={cx} y2={cy} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <text x={sx + 66} y={sy + 40} fill="#22d3ee" fontSize="13" fontWeight="900">v</text>
+      <text x={(sx + cx) / 2 - 10} y={(sy + cy) / 2 - 8} fill="#f43f5e" fontSize="13" fontWeight="900">g</text>
+      <rect x="490" y="126" width="190" height="96" rx="12" fill="rgba(15,23,42,.7)" stroke="#334155" />
+      <text x="510" y="154" fill="#e2e8f0" fontSize="14" fontWeight="900">regime: {state}</text>
+      <text x="510" y="180" fill="#67e8f9" fontSize="12" fontWeight="900">circular {circular.toFixed(1)}</text>
+      <text x="510" y="200" fill="#f43f5e" fontSize="12" fontWeight="900">escape {escape.toFixed(1)}</text>
+      <text x="82" y="276" fill="#94a3b8" fontSize="13">Not to scale. Point-mass planet; circular and escape thresholds are separated.</text>
+    </g>
+  );
+}
+
+function UniformMotionGraphScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
+  const speed = clamp(a, -20, 40);
+  const time = clamp(b || c || 5, 1, 20);
+  const start = id === "uniform-motion" ? clamp(c, -50, 50) : 0;
+  const distance = start + speed * time;
+  const cartX = clamp(130 + (distance + 60) * 3, 110, 420);
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">{id === "uniform-motion" ? "ticker tape: equal spacing means constant velocity" : "distance-time graph builder"}</text>
+      <line x1="90" y1="210" x2="430" y2="210" stroke="#64748b" strokeWidth="7" />
+      {Array.from({ length: 8 }, (_, i) => <line key={i} x1={110 + i * 42} y1="196" x2={110 + i * 42} y2="224" stroke="#94a3b8" strokeWidth="2" />)}
+      {Array.from({ length: 6 }, (_, i) => <circle key={i} cx={130 + i * clamp(Math.abs(speed) * 3, 18, 48)} cy="238" r="5" fill="#facc15" opacity=".85" />)}
+      <rect x={cartX} y="162" width="70" height="46" rx="7" fill="#38bdf8" stroke="#67e8f9" strokeWidth="3" />
+      <circle cx={cartX + 16} cy="210" r="8" fill="#020617" />
+      <circle cx={cartX + 54} cy="210" r="8" fill="#020617" />
+      <line x1={cartX + 78} y1="182" x2={cartX + 78 + clamp(speed * 4, -90, 110)} y2="182" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <rect x="480" y="62" width="220" height="178" rx="12" fill="rgba(15,23,42,.7)" stroke="#334155" />
+      <line x1="510" y1="206" x2="670" y2="206" stroke="#64748b" />
+      <line x1="510" y1="206" x2="510" y2="86" stroke="#64748b" />
+      <line x1="510" y1={206 - clamp(start, -20, 60)} x2="670" y2={206 - clamp(start + speed * 6, -20, 115)} stroke="#22d3ee" strokeWidth="4" />
+      <circle cx="620" cy={206 - clamp(distance, -20, 115)} r="6" fill="#facc15" />
+      <text x="536" y="82" fill="#67e8f9" fontSize="13" fontWeight="900">distance-time</text>
+      <text x="92" y="276" fill="#94a3b8" fontSize="13">Slope = speed. x = x0 + vt. Speed {speed.toFixed(1)} m/s, distance {distance.toFixed(1)} m.</text>
+    </g>
+  );
+}
+
+function UniversalGravitationScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const m1 = clamp(a, 1, 12);
+  const m2 = clamp(b, 1, 12);
+  const distance = clamp(c, 1, 20);
+  const force = (m1 * m2) / (distance * distance);
+  const cx = 260;
+  const cy = 150;
+  const tx = clamp(cx + distance * 18, 340, 650);
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">inverse-square gravitational field map</text>
+      {[55, 90, 125, 160].map((r, index) => <circle key={r} cx={cx} cy={cy} r={r} fill="none" stroke="#334155" strokeWidth="2" strokeDasharray="8 8" opacity={1 - index * 0.15} />)}
+      {Array.from({ length: 12 }, (_, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const x = cx + Math.cos(angle) * 120;
+        const y = cy + Math.sin(angle) * 120;
+        return <line key={i} x1={x} y1={y} x2={x - Math.cos(angle) * 32} y2={y - Math.sin(angle) * 32} stroke="#22d3ee" strokeWidth="3" markerEnd="url(#arrow-default)" opacity=".75" />;
+      })}
+      <circle cx={cx} cy={cy} r={clamp(20 + m1 * 2, 24, 48)} fill="#38bdf8" stroke="#67e8f9" strokeWidth="4" />
+      <circle cx={tx} cy={cy} r={clamp(12 + m2, 14, 32)} fill="#facc15" stroke="#fde68a" strokeWidth="3" />
+      <line x1={tx} y1={cy} x2={cx + 44} y2={cy} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <line x1={cx} y1="244" x2={tx} y2="244" stroke="#94a3b8" strokeWidth="3" />
+      <text x={(cx + tx) / 2 - 28} y="236" fill="#94a3b8" fontSize="13" fontWeight="900">r = {distance.toFixed(1)}</text>
+      <text x="440" y="72" fill="#e2e8f0" fontSize="14" fontWeight="900">F = G m1 m2 / r^2</text>
+      <text x="440" y="100" fill="#f43f5e" fontSize="13" fontWeight="900">relative force {force.toFixed(2)}</text>
+      <text x="82" y="276" fill="#94a3b8" fontSize="13">Point-mass model; not to scale; distance is clamped away from zero.</text>
+    </g>
+  );
+}
+
+function ElasticCollisionScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const m1 = clamp(a, 0.5, 10);
+  const m2 = clamp(b, 0.5, 10);
+  const u1 = clamp(c || 4, -10, 10);
+  const u2 = -u1 * 0.35;
+  const v1 = ((m1 - m2) / (m1 + m2)) * u1 + (2 * m2 / (m1 + m2)) * u2;
+  const v2 = (2 * m1 / (m1 + m2)) * u1 + ((m2 - m1) / (m1 + m2)) * u2;
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">ideal elastic collision: momentum and KE conserved</text>
+      <line x1="80" y1="190" x2="710" y2="190" stroke="#64748b" strokeWidth="8" />
+      <line x1="380" y1="146" x2="380" y2="220" stroke="#facc15" strokeWidth="3" strokeDasharray="6 5" />
+      <rect x="170" y="142" width={clamp(48 + m1 * 6, 54, 112)} height="48" rx="7" fill="#38bdf8" stroke="#67e8f9" strokeWidth="3" />
+      <rect x="510" y="142" width={clamp(48 + m2 * 6, 54, 112)} height="48" rx="7" fill="#facc15" stroke="#fde68a" strokeWidth="3" />
+      <line x1="170" y1="132" x2={170 + clamp(u1 * 18, -90, 120)} y2="132" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-default)" />
+      <line x1="510" y1="132" x2={510 + clamp(u2 * 18, -90, 120)} y2="132" stroke="#f43f5e" strokeWidth="4" markerEnd="url(#arrow-default)" />
+      <line x1="240" y1="222" x2={240 + clamp(v1 * 18, -90, 120)} y2="222" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-default)" />
+      <line x1="580" y1="222" x2={580 + clamp(v2 * 18, -90, 120)} y2="222" stroke="#f43f5e" strokeWidth="4" markerEnd="url(#arrow-default)" />
+      <text x="96" y="88" fill="#67e8f9" fontSize="13" fontWeight="900">before</text>
+      <text x="96" y="250" fill="#facc15" fontSize="13" fontWeight="900">after: v1 {v1.toFixed(1)}, v2 {v2.toFixed(1)} m/s</text>
+      <rect x="442" y="54" width="238" height="54" rx="10" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <text x="456" y="78" fill="#e2e8f0" fontSize="12" fontWeight="900">momentum conserved</text>
+      <text x="456" y="96" fill="#94a3b8" fontSize="11">ideal low-friction track</text>
+    </g>
+  );
+}
+
+function HookesLawScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const k = clamp(a, 5, 200);
+  const force = clamp(b || c || 10, 0, 80);
+  const extension = force / k;
+  const px = clamp(extension * 900, 18, 132);
+  const limit = extension > 0.45;
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">spring extension rig</text>
+      <line x1="155" y1="62" x2="340" y2="62" stroke="#64748b" strokeWidth="8" />
+      <line x1="247" y1="62" x2="247" y2="88" stroke="#64748b" strokeWidth="5" />
+      <path d={`M 247 88 ${Array.from({ length: 18 }, (_, i) => `L ${247 + (i % 2 ? -22 : 22)} ${98 + i * (px / 18)}`).join(" ")} L 247 ${108 + px}`} fill="none" stroke="#67e8f9" strokeWidth="4" />
+      <rect x="207" y={108 + px} width="80" height="44" rx="8" fill={limit ? "#f43f5e" : "#facc15"} stroke="#fde68a" strokeWidth="3" />
+      <line x1="305" y1={124 + px} x2="305" y2={124 + px + 56} stroke="#f43f5e" strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <line x1="247" y1={108 + px} x2="247" y2="88" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6 5" />
+      <line x1="360" y1="88" x2="360" y2={108 + px} stroke="#94a3b8" strokeWidth="3" />
+      <text x="372" y={104 + px / 2} fill="#94a3b8" fontSize="13" fontWeight="900">x = {extension.toFixed(3)} m</text>
+      <rect x="470" y="62" width="210" height="172" rx="12" fill="rgba(15,23,42,.7)" stroke="#334155" />
+      <line x1="500" y1="204" x2="650" y2="204" stroke="#64748b" />
+      <line x1="500" y1="204" x2="500" y2="90" stroke="#64748b" />
+      <line x1="500" y1="204" x2="650" y2={204 - clamp(force * 1.3, 0, 110)} stroke="#22d3ee" strokeWidth="4" />
+      <circle cx={500 + clamp(extension * 260, 0, 150)} cy={204 - clamp(force * 1.3, 0, 110)} r="6" fill="#facc15" />
+      <text x="522" y="84" fill="#67e8f9" fontSize="13" fontWeight="900">F-x graph</text>
+      <text x="82" y="276" fill={limit ? "#fb7185" : "#94a3b8"} fontSize="13">F = kx. {limit ? "Elastic limit warning: model should not be trusted beyond this region." : "Spring within elastic limit."}</text>
     </g>
   );
 }
@@ -370,6 +606,8 @@ function OpticsScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
   if (id === "lens-formula" || id === "mirror-formula" || id === "reflection-plane-mirror") return <RayOpticsBench id={id} a={a} b={b} c={c} />;
   if (id === "human-eye-defects") return <EyeDefectScene a={a} b={b} c={c} />;
   if (id === "optical-instruments") return <OpticalInstrumentScene a={a} b={b} c={c} />;
+  if (id === "shadows-eclipses") return <ShadowsEclipsesScene a={a} b={b} c={c} />;
+  if (id === "multiple-reflection") return <MultipleReflectionScene a={a} b={b} c={c} />;
   const rayY = 150;
   const bend = id === "prism-dispersion" ? 50 : id === "glass-slab-refraction" ? 28 : 0;
   const focus = clamp(120 + a * 4, 140, 330);
@@ -387,6 +625,110 @@ function OpticsScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
       <circle cx={380 + focus} cy="150" r="5" fill="#f43f5e" />
       <text x="80" y="40" fill="#e2e8f0" fontSize="16">Optics bench</text>
       <text x="80" y="266" fill="#94a3b8" fontSize="13">f/object/index controls reshape ray path and image prediction.</text>
+    </g>
+  );
+}
+
+function ShadowsEclipsesScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const mode = Math.abs(Math.round(c || 0)) % 3;
+  const sourceR = clamp(a * 2.5, 26, 58);
+  const occluderR = clamp(18 + b * 3, 22, 52);
+  const sourceX = 112;
+  const sourceY = 150;
+  const occluderX = mode === 1 ? 360 : 320;
+  const occluderY = 150;
+  const screenX = 650;
+  const screenR = mode === 2 ? 42 : 70;
+  const label = mode === 1 ? "solar eclipse: Moon shadow on Earth" : mode === 2 ? "lunar eclipse: Earth shadow on Moon" : "extended source shadow";
+  const bodyNames = mode === 1
+    ? { source: "Sun/source", occluder: "Moon occluder", screen: "Earth screen" }
+    : mode === 2
+      ? { source: "Sun/source", occluder: "Earth occluder", screen: "Moon screen" }
+      : { source: "light source", occluder: "opaque object", screen: "screen" };
+  const upperOuter = occluderY - occluderR - sourceR * 0.7;
+  const lowerOuter = occluderY + occluderR + sourceR * 0.7;
+  const upperUmbra = occluderY - occluderR * 0.55;
+  const lowerUmbra = occluderY + occluderR * 0.55;
+  return (
+    <g>
+      <rect x="46" y="44" width="680" height="220" rx="18" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <circle cx={sourceX} cy={sourceY} r={sourceR} fill="#facc15" opacity="0.9" className="lab-anim-glow" />
+      <circle cx={occluderX} cy={occluderY} r={occluderR} fill={mode === 2 ? "#38bdf8" : "#94a3b8"} stroke="#e2e8f0" strokeWidth="3" />
+      <circle cx={screenX} cy={sourceY} r={screenR} fill={mode === 1 ? "#38bdf8" : mode === 2 ? "#94a3b8" : "#e2e8f0"} opacity="0.78" />
+      <path d={`M ${sourceX} ${sourceY - sourceR} L ${screenX} ${upperOuter} L ${screenX} ${lowerOuter} L ${sourceX} ${sourceY + sourceR} Z`} fill="rgba(250,204,21,.12)" stroke="#fde047" strokeWidth="2" strokeDasharray="8 7" />
+      <path d={`M ${occluderX} ${occluderY - occluderR} L ${screenX} ${upperUmbra} L ${screenX} ${lowerUmbra} L ${occluderX} ${occluderY + occluderR} Z`} fill="rgba(2,6,23,.74)" stroke="#64748b" strokeWidth="2" />
+      <line className="lab-anim-dash" x1={sourceX + sourceR} y1={sourceY - sourceR * 0.72} x2={screenX} y2={upperOuter} stroke="#fde047" strokeWidth="2.5" />
+      <line className="lab-anim-dash" x1={sourceX + sourceR} y1={sourceY + sourceR * 0.72} x2={screenX} y2={lowerOuter} stroke="#fde047" strokeWidth="2.5" />
+      <line x1={occluderX} y1={sourceY} x2={screenX} y2={sourceY} stroke="#64748b" strokeWidth="2" strokeDasharray="6 5" />
+      <text x="70" y="38" fill="#e2e8f0" fontSize="16" fontWeight="900">{label}</text>
+      <text x={sourceX - 48} y={sourceY + sourceR + 28} fill="#fde68a" fontSize="12" fontWeight="900">{bodyNames.source}</text>
+      <text x={occluderX - 48} y={occluderY + occluderR + 26} fill="#e2e8f0" fontSize="12" fontWeight="900">{bodyNames.occluder}</text>
+      <text x={screenX - 42} y={sourceY + screenR + 25} fill="#67e8f9" fontSize="12" fontWeight="900">{bodyNames.screen}</text>
+      <text x={(occluderX + screenX) / 2 - 28} y={sourceY - 8} fill="#cbd5e1" fontSize="13" fontWeight="900">umbra</text>
+      <text x={(occluderX + screenX) / 2 - 36} y={sourceY - 78} fill="#fde047" fontSize="13" fontWeight="900">penumbra</text>
+      <g transform="translate(70 232)">
+        <rect width="166" height="24" rx="12" fill="rgba(250,204,21,.14)" stroke="#facc15" />
+        <text x="14" y="16" fill="#fde68a" fontSize="11" fontWeight="900">simplified eclipse geometry</text>
+      </g>
+      <g transform="translate(248 232)">
+        <rect width="88" height="24" rx="12" fill="rgba(103,232,249,.12)" stroke="#67e8f9" />
+        <text x="14" y="16" fill="#a5f3fc" fontSize="11" fontWeight="900">not to scale</text>
+      </g>
+      <text x="372" y="250" fill="#94a3b8" fontSize="12">Umbra is full shadow; penumbra is partial shadow from an extended source.</text>
+    </g>
+  );
+}
+
+function MultipleReflectionScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const angle = clamp(a || b || 60, 20, 120);
+  const rawCount = 360 / angle;
+  const exact = Math.abs(rawCount - Math.round(rawCount)) < 0.02;
+  const imageCount = exact ? Math.max(0, Math.round(rawCount) - 1) : Math.floor(rawCount);
+  const center = { x: 320, y: 158 };
+  const mirrorLength = 220;
+  const half = (angle * Math.PI) / 360;
+  const upper = { x: center.x + Math.cos(half) * mirrorLength, y: center.y - Math.sin(half) * mirrorLength };
+  const lower = { x: center.x + Math.cos(half) * mirrorLength, y: center.y + Math.sin(half) * mirrorLength };
+  const images = Array.from({ length: Math.min(imageCount, 9) }, (_, index) => {
+    const theta = (-angle / 2 + ((index + 1) * angle) / Math.max(2, Math.min(imageCount, 9))) * Math.PI / 180;
+    const radius = 74 + index * 10;
+    return { x: center.x + Math.cos(theta) * radius, y: center.y + Math.sin(theta) * radius, alpha: 0.25 + (index % 3) * 0.15 };
+  });
+  return (
+    <g>
+      <rect x="46" y="42" width="680" height="224" rx="18" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <line x1={center.x} y1={center.y} x2={upper.x} y2={upper.y} stroke="#93c5fd" strokeWidth="7" strokeLinecap="round" />
+      <line x1={center.x} y1={center.y} x2={lower.x} y2={lower.y} stroke="#93c5fd" strokeWidth="7" strokeLinecap="round" />
+      <path d={`M ${center.x + 58} ${center.y - 26} A 64 64 0 0 1 ${center.x + 58} ${center.y + 26}`} fill="none" stroke="#facc15" strokeWidth="4" />
+      <circle cx={center.x + 42} cy={center.y} r="14" fill="#f43f5e" />
+      <text x={center.x + 22} y={center.y + 38} fill="#fecdd3" fontSize="12" fontWeight="900">object</text>
+      {images.map((image, index) => (
+        <g key={`reflection-image-${index}`}>
+          <circle cx={image.x} cy={image.y} r="11" fill="#34d399" opacity={image.alpha} />
+          <text x={image.x - 10} y={image.y - 16} fill="#86efac" fontSize="10" fontWeight="900">image</text>
+        </g>
+      ))}
+      <path className="lab-anim-dash" d={`M ${center.x + 42} ${center.y} L ${center.x + 116} ${center.y - 38} L ${center.x + 168} ${center.y + 44}`} fill="none" stroke="#fde047" strokeWidth="3.5" markerEnd="url(#arrow-optics)" />
+      <text x="78" y="38" fill="#e2e8f0" fontSize="16" fontWeight="900">Two plane mirrors: repeated virtual images</text>
+      <text x={center.x + 76} y={center.y + 6} fill="#facc15" fontSize="13" fontWeight="900">theta = {angle.toFixed(0)} deg</text>
+      <text x="82" y="245" fill="#94a3b8" fontSize="12">Image count cue: {exact ? "n = 360/theta - 1" : "non-integer 360/theta, use floor rule carefully"}; ideal mirrors assumed.</text>
+      <g transform="translate(540 72)">
+        <rect width="150" height="132" rx="12" fill="rgba(2,6,23,.82)" stroke="#334155" />
+        <text x="18" y="24" fill="#67e8f9" fontSize="12" fontWeight="900">kaleidoscope preview</text>
+        {Array.from({ length: 8 }, (_, index) => (
+          <path
+            key={`kaleidoscope-${index}`}
+            d={`M 75 70 L ${75 + Math.cos(index * Math.PI / 4) * 44} ${70 + Math.sin(index * Math.PI / 4) * 44} L ${75 + Math.cos((index + 0.45) * Math.PI / 4) * 28} ${70 + Math.sin((index + 0.45) * Math.PI / 4) * 28} Z`}
+            fill={["#22d3ee", "#f43f5e", "#facc15", "#34d399"][index % 4]}
+            opacity="0.72"
+          />
+        ))}
+        <text x="18" y="116" fill="#e2e8f0" fontSize="12" fontWeight="900">images: {imageCount}</text>
+      </g>
+      <g transform="translate(82 64)">
+        <rect width="100" height="24" rx="12" fill="rgba(103,232,249,.12)" stroke="#67e8f9" />
+        <text x="14" y="16" fill="#a5f3fc" fontSize="11" fontWeight="900">ideal mirrors</text>
+      </g>
     </g>
   );
 }
@@ -647,11 +989,21 @@ function PrismScene({ a, b, c }: { a: number; b: number; c: number }) {
 }
 
 function CircuitScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
+  if (id === "ohms-law") return <OhmsLawCircuitScene a={a} b={b} c={c} />;
+  if (id === "series-parallel-resistance") return <SeriesParallelResistanceScene a={a} b={b} c={c} />;
+  if (id === "electric-power") return <ElectricPowerScene a={a} b={b} c={c} />;
+  if (id === "heating-effect-current") return <JouleHeatingScene a={a} b={b} c={c} />;
+  if (id === "chemical-effects-current") return <ElectrolysisScene a={a} b={b} c={c} />;
+  if (id === "meter-bridge") return <MeterBridgeScene a={a} b={b} c={c} />;
+  if (id === "internal-resistance-cell") return <InternalResistanceCellScene a={a} b={b} c={c} />;
   if (id === "capacitor-lab") return <CapacitorScene a={a} b={b} c={c} />;
   if (id === "kirchhoff-circuit") return <KirchhoffScene a={a} b={b} c={c} />;
   if (id === "ac-generator") return <GeneratorScene a={a} b={b} c={c} />;
   if (id === "transformer-lab") return <TransformerScene a={a} b={b} c={c} />;
   if (id === "ac-lcr-resonance") return <LcrScene a={a} b={b} c={c} />;
+  if (id === "semiconductor-diode") return <SemiconductorDiodeScene a={a} b={b} c={c} />;
+  if (id === "logic-gates") return <LogicGatesScene a={a} b={b} c={c} />;
+  if (id === "sources-of-energy") return <SourcesOfEnergyScene a={a} b={b} c={c} />;
   const brightness = clamp(a * b * 1.5, 12, 78);
   const current = clamp(a * 25, 8, 130);
   return (
@@ -670,6 +1022,275 @@ function CircuitScene({ id, a, b, c }: { id: string; a: number; b: number; c: nu
       ))}
       <text x="90" y="50" fill="#e2e8f0" fontSize="16">{id === "semiconductor-diode" ? "Diode/rectifier model" : "Circuit model"}</text>
       <text x="90" y="260" fill="#94a3b8" fontSize="13">Voltage, resistance, capacitance, or reactance controls update current and stored/output energy.</text>
+    </g>
+  );
+}
+
+function SemiconductorDiodeScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const forward = (a || 0.7) >= 0;
+  const voltage = clamp(a || 0.7, -5, 5);
+  const threshold = clamp(b || 0.7, 0.2, 1.2);
+  const conducts = forward && voltage > threshold;
+  const current = conducts ? clamp((voltage - threshold) * 38, 4, 110) : 2;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">PN junction diode and half-wave rectifier</text>
+      <rect x="82" y="72" width="270" height="112" rx="14" fill="rgba(15,23,42,.78)" stroke="#334155" />
+      <rect x="108" y="96" width="96" height="64" rx="8" fill="#f472b6" opacity="0.8" /><text x="134" y="133" fill="#fff" fontSize="18" fontWeight="900">P-side</text>
+      <rect x="228" y="96" width="96" height="64" rx="8" fill="#38bdf8" opacity="0.8" /><text x="254" y="133" fill="#082f49" fontSize="18" fontWeight="900">N-side</text>
+      <rect x="204" y="88" width="24" height="80" rx="8" fill="#facc15" opacity={conducts ? 0.35 : 0.78} />
+      <text x="174" y="184" fill="#fde68a" fontSize="12" fontWeight="900">depletion region</text>
+      <line x1="96" y1="220" x2="328" y2="220" stroke="#64748b" strokeWidth="6" />
+      <path d="M 164 220 l38 -28 v56 Z" fill="#e2e8f0" /><line x1="214" y1="190" x2="214" y2="250" stroke="#e2e8f0" strokeWidth="6" />
+      {conducts ? <line className="lab-anim-dash-fast" x1="110" y1="220" x2="316" y2="220" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-circuit)" /> : <text x="112" y="254" fill="#f43f5e" fontSize="12" fontWeight="900">reverse/blocking or below threshold</text>}
+      <text x="82" y="278" fill="#94a3b8" fontSize="13">{forward ? "forward bias" : "reverse bias"}; idealized knee near {threshold.toFixed(2)} V. Current {current.toFixed(1)} mA</text>
+
+      <rect x="410" y="62" width="280" height="94" rx="12" fill="rgba(15,23,42,.76)" stroke="#334155" />
+      <line x1="430" y1="132" x2="670" y2="132" stroke="#64748b" /><line x1="450" y1="142" x2="450" y2="76" stroke="#64748b" />
+      <path d={`M 450 132 C 510 132 532 128 552 ${132 - current * 0.42} S 625 ${132 - current * 0.5} 670 ${132 - current * 0.52}`} fill="none" stroke="#22d3ee" strokeWidth="4" />
+      <text x="462" y="82" fill="#67e8f9" fontSize="12" fontWeight="900">I-V curve knee</text>
+      <rect x="410" y="174" width="280" height="84" rx="12" fill="rgba(15,23,42,.76)" stroke="#334155" />
+      <path d="M 426 222 C 450 178 474 266 498 222 S 546 178 570 222 S 618 178 642 222" fill="none" stroke="#64748b" strokeWidth="3" />
+      <path d="M 426 222 C 450 178 474 222 498 222 S 546 178 570 222 S 618 178 642 222" fill="none" stroke="#34d399" strokeWidth="4" />
+      <text x="428" y="194" fill="#86efac" fontSize="12" fontWeight="900">rectified output</text>
+    </g>
+  );
+}
+
+function LogicGatesScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const gateIndex = Math.abs(Math.round(c || 0)) % 6;
+  const gates = ["AND", "OR", "NOT", "NAND", "NOR", "XOR"];
+  const gate = gates[gateIndex];
+  const inputA = (a || 0) >= 0.5;
+  const inputB = gate === "NOT" ? false : (b || 0) >= 0.5;
+  const output = gate === "AND" ? inputA && inputB : gate === "OR" ? inputA || inputB : gate === "NOT" ? !inputA : gate === "NAND" ? !(inputA && inputB) : gate === "NOR" ? !(inputA || inputB) : inputA !== inputB;
+  const rows = [[false, false], [false, true], [true, false], [true, true]];
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">logic gate: ideal 0/1 levels</text>
+      <rect x="88" y="86" width="72" height="44" rx="10" fill={inputA ? "#34d399" : "#334155"} /><text x="112" y="114" fill="#fff" fontSize="15" fontWeight="900">A {inputA ? 1 : 0}</text>
+      {gate !== "NOT" && <><rect x="88" y="168" width="72" height="44" rx="10" fill={inputB ? "#34d399" : "#334155"} /><text x="112" y="196" fill="#fff" fontSize="15" fontWeight="900">B {inputB ? 1 : 0}</text></>}
+      <line x1="160" y1="108" x2="260" y2="126" stroke={inputA ? "#34d399" : "#64748b"} strokeWidth="5" />
+      {gate !== "NOT" && <line x1="160" y1="190" x2="260" y2="174" stroke={inputB ? "#34d399" : "#64748b"} strokeWidth="5" />}
+      <path d="M 260 92 H 350 Q 420 150 350 208 H 260 Z" fill="rgba(34,211,238,.18)" stroke="#67e8f9" strokeWidth="5" />
+      <text x="305" y="158" fill="#e2e8f0" fontSize="24" fontWeight="900">{gate}</text>
+      <line x1="420" y1="150" x2="548" y2="150" stroke={output ? "#34d399" : "#64748b"} strokeWidth="6" markerEnd="url(#arrow-circuit)" />
+      <circle cx="604" cy="150" r="36" fill={output ? "#fde68a" : "#334155"} className={output ? "lab-anim-glow" : ""} />
+      <text x="582" y="156" fill={output ? "#0f172a" : "#e2e8f0"} fontSize="16" fontWeight="900">Y {output ? 1 : 0}</text>
+      <g transform="translate(456 56)">
+        <rect width="224" height="74" rx="10" fill="rgba(15,23,42,.78)" stroke="#334155" />
+        <text x="14" y="20" fill="#67e8f9" fontSize="12" fontWeight="900">truth table</text>
+        {rows.map(([ra, rb], index) => {
+          const y = 36 + index * 8;
+          const active = ra === inputA && (gate === "NOT" || rb === inputB);
+          const val = gate === "AND" ? ra && rb : gate === "OR" ? ra || rb : gate === "NOT" ? !ra : gate === "NAND" ? !(ra && rb) : gate === "NOR" ? !(ra || rb) : ra !== rb;
+          return <text key={index} x="16" y={y} fill={active ? "#facc15" : "#94a3b8"} fontSize="9" fontWeight={active ? "900" : "700"}>{Number(ra)} {gate === "NOT" ? "-" : Number(rb)} | {Number(val)}</text>;
+        })}
+      </g>
+      <text x="82" y="274" fill="#94a3b8" fontSize="13">Boolean expression: {gate === "NOT" ? "Y = NOT A" : `Y = A ${gate} B`}. Ideal logic levels.</text>
+    </g>
+  );
+}
+
+function SourcesOfEnergyScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const selected = Math.abs(Math.round(a || 0)) % 5;
+  const sources = [
+    { name: "solar", color: "#facc15", output: 62, reliability: 45, emissions: 8 },
+    { name: "wind", color: "#67e8f9", output: 58, reliability: 50, emissions: 6 },
+    { name: "hydro", color: "#38bdf8", output: 78, reliability: 82, emissions: 10 },
+    { name: "fossil", color: "#f97316", output: 92, reliability: 88, emissions: 86 },
+    { name: "nuclear", color: "#a78bfa", output: 96, reliability: 90, emissions: 14 },
+  ];
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">energy source comparison dashboard</text>
+      {sources.map((source, index) => (
+        <g key={source.name} transform={`translate(${72 + index * 132} 72)`}>
+          <rect width="114" height="178" rx="12" fill={index === selected ? "rgba(250,204,21,.16)" : "rgba(15,23,42,.76)"} stroke={index === selected ? "#facc15" : "#334155"} />
+          <circle cx="57" cy="34" r="20" fill={source.color} opacity="0.86" />
+          <text x="16" y="70" fill="#e2e8f0" fontSize="13" fontWeight="900">{source.name}</text>
+          <text x="14" y="94" fill="#94a3b8" fontSize="10">output</text><rect x="54" y="84" width={source.output * 0.48} height="9" rx="4" fill="#34d399" />
+          <text x="14" y="118" fill="#94a3b8" fontSize="10">reliable</text><rect x="54" y="108" width={source.reliability * 0.48} height="9" rx="4" fill="#22d3ee" />
+          <text x="14" y="142" fill="#94a3b8" fontSize="10">emission</text><rect x="54" y="132" width={source.emissions * 0.48} height="9" rx="4" fill="#f43f5e" />
+          <text x="14" y="166" fill="#cbd5e1" fontSize="10">{source.emissions > 60 ? "high CO2 tradeoff" : source.reliability < 60 ? "intermittent" : "low-carbon firm"}</text>
+        </g>
+      ))}
+      <text x="82" y="282" fill="#94a3b8" fontSize="13">Illustrative comparison data: output, reliability, and emissions are teaching cues, not live rankings.</text>
+    </g>
+  );
+}
+
+function OhmsLawCircuitScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const current = clamp(a || 1, 0.05, 10);
+  const resistance = clamp(b || c || 10, 0.5, 100);
+  const voltage = current * resistance;
+  const graphHeight = clamp(voltage / 2, 24, 112);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">Ohm's law circuit: V = IR</text>
+      <path d="M 92 158 H 210 H 310 H 430 H 610 V 228 H 92 Z" fill="none" stroke="#64748b" strokeWidth="6" strokeLinejoin="round" />
+      <rect x="112" y="132" width="58" height="52" rx="8" fill="#22d3ee" /><text x="128" y="163" fill="#082f49" fontSize="15" fontWeight="900">DC</text>
+      <circle cx="254" cy="158" r="25" fill="#0f172a" stroke="#facc15" strokeWidth="4" /><text x="245" y="164" fill="#facc15" fontSize="17" fontWeight="900">A</text>
+      <rect x="338" y="132" width="96" height="52" rx="8" fill="#facc15" /><path d="M 350 158 l12 -18 l14 36 l14 -36 l14 36 l14 -18" fill="none" stroke="#0f172a" strokeWidth="4" />
+      <circle cx="386" cy="88" r="25" fill="#0f172a" stroke="#67e8f9" strokeWidth="4" /><text x="378" y="94" fill="#67e8f9" fontSize="17" fontWeight="900">V</text>
+      <path d="M 362 88 H 326 V 132 M 410 88 H 454 V 132" fill="none" stroke="#67e8f9" strokeWidth="3" />
+      {[0, 1, 2].map((i) => <line key={i} className="lab-anim-dash-fast" x1={186 + i * 120} y1="158" x2={244 + i * 120} y2="158" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-circuit)" />)}
+      <rect x="500" y="72" width="190" height="152" rx="12" fill="rgba(15,23,42,.78)" stroke="#334155" />
+      <line x1="530" y1="196" x2="656" y2="196" stroke="#94a3b8" /><line x1="530" y1="196" x2="530" y2="92" stroke="#94a3b8" />
+      <path d={`M 530 196 L 656 ${196 - graphHeight}`} stroke="#22d3ee" strokeWidth="4" fill="none" />
+      <text x="540" y="88" fill="#67e8f9" fontSize="12" fontWeight="900">V-I graph</text>
+      <text x="548" y="218" fill="#94a3b8" fontSize="11">slope = R = {resistance.toFixed(1)} ohm</text>
+      <text x="86" y="262" fill="#94a3b8" fontSize="13">Ohmic conductor assumed: V/I remains constant only for linear materials.</text>
+      <text x="230" y="112" fill="#facc15" fontSize="12" fontWeight="900">I {current.toFixed(2)} A</text>
+      <text x="330" y="214" fill="#fde68a" fontSize="12" fontWeight="900">R {resistance.toFixed(1)} ohm</text>
+      <text x="430" y="112" fill="#67e8f9" fontSize="12" fontWeight="900">V {voltage.toFixed(1)} V</text>
+    </g>
+  );
+}
+
+function SeriesParallelResistanceScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const r1 = clamp(a || 10, 1, 100);
+  const r2 = clamp(b || 20, 1, 100);
+  const modeParallel = Math.round(c || 0) % 2 === 1;
+  const req = modeParallel ? 1 / (1 / r1 + 1 / r2) : r1 + r2;
+  const current = clamp(12 / req, 0.05, 3);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">resistor network: {modeParallel ? "parallel current split" : "series voltage split"}</text>
+      <rect x="92" y="122" width="72" height="54" rx="8" fill="#22d3ee" /><text x="111" y="154" fill="#082f49" fontSize="14" fontWeight="900">12 V</text>
+      {modeParallel ? (
+        <>
+          <path d="M 164 150 H 265 M 265 150 V 92 H 470 V 150 M 265 150 V 208 H 470 V 150 M 470 150 H 626" fill="none" stroke="#64748b" strokeWidth="6" />
+          <rect x="332" y="72" width="78" height="38" rx="6" fill="#facc15" /><text x="348" y="96" fill="#0f172a" fontSize="12" fontWeight="900">R1</text>
+          <rect x="332" y="190" width="78" height="38" rx="6" fill="#a78bfa" /><text x="348" y="214" fill="#0f172a" fontSize="12" fontWeight="900">R2</text>
+          <line x1="284" y1="92" x2="328" y2="92" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-circuit)" />
+          <line x1="284" y1="208" x2="328" y2="208" stroke="#a78bfa" strokeWidth="4" markerEnd="url(#arrow-circuit)" />
+          <text x="494" y="94" fill="#67e8f9" fontSize="12">same V</text><text x="494" y="212" fill="#c4b5fd" fontSize="12">current splits</text>
+        </>
+      ) : (
+        <>
+          <path d="M 164 150 H 626" fill="none" stroke="#64748b" strokeWidth="6" />
+          <rect x="270" y="124" width="82" height="52" rx="8" fill="#facc15" /><text x="292" y="155" fill="#0f172a" fontSize="13" fontWeight="900">R1</text>
+          <rect x="414" y="124" width="82" height="52" rx="8" fill="#a78bfa" /><text x="436" y="155" fill="#0f172a" fontSize="13" fontWeight="900">R2</text>
+          <line x1="190" y1="150" x2="258" y2="150" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-circuit)" />
+          <line x1="360" y1="150" x2="404" y2="150" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-circuit)" />
+          <text x="300" y="106" fill="#facc15" fontSize="12">same current</text><text x="428" y="106" fill="#c4b5fd" fontSize="12">voltage divides</text>
+        </>
+      )}
+      <rect x="92" y="224" width="236" height="48" rx="10" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <text x="108" y="246" fill="#e2e8f0" fontSize="12" fontWeight="900">Req = {req.toFixed(2)} ohm</text>
+      <text x="108" y="264" fill="#67e8f9" fontSize="11">I total = {current.toFixed(2)} A</text>
+      <text x="390" y="250" fill="#94a3b8" fontSize="13">{modeParallel ? "1/Req = 1/R1 + 1/R2" : "Req = R1 + R2"}; ideal wires/meters.</text>
+    </g>
+  );
+}
+
+function ElectricPowerScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const voltage = clamp(a || 12, 1, 240);
+  const current = clamp(b || 2, 0.1, 20);
+  const time = clamp(c || 10, 1, 3600);
+  const power = voltage * current;
+  const energy = power * time;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">electric power and energy are different</text>
+      <path d="M 88 154 H 228 H 354 H 540 H 650 V 224 H 88 Z" fill="none" stroke="#64748b" strokeWidth="6" />
+      <rect x="110" y="128" width="66" height="52" rx="8" fill="#22d3ee" /><text x="126" y="158" fill="#082f49" fontSize="14" fontWeight="900">V</text>
+      <rect x="246" y="126" width="86" height="58" rx="9" fill="#0f172a" stroke="#facc15" strokeWidth="4" /><text x="258" y="158" fill="#facc15" fontSize="13" fontWeight="900">W meter</text>
+      <circle cx="464" cy="154" r={clamp(18 + power / 60, 22, 52)} fill="#fde68a" opacity={clamp(0.25 + power / 600, 0.28, 0.9)} className="lab-anim-glow" />
+      <text x="433" y="158" fill="#0f172a" fontSize="13" fontWeight="900">load</text>
+      <rect x="548" y="74" width="126" height="70" rx="10" fill="rgba(15,23,42,.82)" stroke="#34d399" />
+      <text x="562" y="102" fill="#86efac" fontSize="12" fontWeight="900">energy counter</text>
+      <rect x="562" y="116" width={clamp(energy / 500, 12, 94)} height="10" rx="5" fill="#34d399" />
+      <line className="lab-anim-dash-fast" x1="188" y1="154" x2="238" y2="154" stroke="#22d3ee" strokeWidth="4" markerEnd="url(#arrow-circuit)" />
+      <text x="98" y="262" fill="#94a3b8" fontSize="13">P = VI = {power.toFixed(1)} W; E = Pt = {energy.toFixed(0)} J. Ideal load model.</text>
+    </g>
+  );
+}
+
+function JouleHeatingScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const current = clamp(a || 2, 0.1, 20);
+  const resistance = clamp(b || 10, 0.5, 100);
+  const time = clamp(c || 5, 0.5, 120);
+  const heat = current * current * resistance * time;
+  const glow = clamp(heat / 1200, 0.18, 0.95);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">Joule heating: H = I^2Rt</text>
+      <path d="M 94 154 H 248 H 428 H 620 V 226 H 94 Z" fill="none" stroke="#64748b" strokeWidth="6" />
+      <rect x="116" y="128" width="62" height="52" rx="8" fill="#22d3ee" /><text x="132" y="160" fill="#082f49" fontSize="13" fontWeight="900">DC</text>
+      <circle cx="238" cy="154" r="25" fill="#0f172a" stroke="#facc15" strokeWidth="4" /><text x="229" y="160" fill="#facc15" fontSize="16" fontWeight="900">A</text>
+      <rect x="330" y="126" width="112" height="56" rx="10" fill={`rgba(249,115,22,${glow})`} stroke="#f97316" strokeWidth="4" className="lab-anim-glow" />
+      <path d="M 344 154 l14 -20 l16 40 l16 -40 l16 40 l16 -20" fill="none" stroke="#fff7ed" strokeWidth="4" />
+      {[0, 1, 2].map((i) => <path key={i} d={`M ${350 + i * 30} 112 C ${340 + i * 30} 94 ${364 + i * 30} 84 ${354 + i * 30} 66`} fill="none" stroke="#fb923c" strokeWidth="3" opacity={glow} />)}
+      <rect x="486" y="82" width="28" height="126" rx="14" fill="#111827" stroke="#cbd5e1" />
+      <rect x="495" y={194 - glow * 96} width="10" height={glow * 96} rx="5" fill="#f97316" />
+      <rect x="554" y="84" width="130" height="120" rx="10" fill="rgba(15,23,42,.74)" stroke="#334155" />
+      <line x1="578" y1="178" x2="660" y2="178" stroke="#94a3b8" /><line x1="578" y1="178" x2="578" y2="104" stroke="#94a3b8" />
+      <path d={`M 578 178 C 604 ${178 - glow * 45} 632 ${178 - glow * 66} 660 ${178 - glow * 82}`} fill="none" stroke="#f97316" strokeWidth="4" />
+      <text x="92" y="262" fill="#94a3b8" fontSize="13">Current is squared: heat {heat.toFixed(0)} J. Uniform resistor heating assumed.</text>
+    </g>
+  );
+}
+
+function ElectrolysisScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const current = clamp(a || 1, 0.1, 10);
+  const time = clamp(b || 20, 1, 120);
+  const deposit = clamp(current * time * (c || 1) / 20, 0.05, 42);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">electrolysis cell: ions carry charge through liquid</text>
+      <rect x="90" y="70" width="74" height="46" rx="8" fill="#22d3ee" /><text x="108" y="99" fill="#082f49" fontSize="14" fontWeight="900">DC</text>
+      <path d="M 126 116 V 152 H 252 M 164 93 H 510 V 152" fill="none" stroke="#64748b" strokeWidth="5" />
+      <path d="M 238 90 L 560 90 L 522 244 L 276 244 Z" fill="rgba(56,189,248,.18)" stroke="#67e8f9" strokeWidth="4" />
+      <rect x="306" y="108" width="26" height="112" rx="5" fill="#f97316" /><text x="282" y="236" fill="#fdba74" fontSize="12" fontWeight="900">anode +</text>
+      <rect x="466" y="108" width="26" height="112" rx="5" fill="#94a3b8" /><rect x="466" y={220 - deposit} width="26" height={deposit} fill="#facc15" /><text x="438" y="236" fill="#fde68a" fontSize="12" fontWeight="900">cathode -</text>
+      {Array.from({ length: 14 }, (_, i) => <circle key={i} cx={358 + (i % 5) * 24} cy={128 + Math.floor(i / 5) * 34} r="6" fill={i % 2 ? "#38bdf8" : "#f43f5e"}><animate attributeName="cx" values={`${358 + (i % 5) * 24};${i % 2 ? 472 : 320};${358 + (i % 5) * 24}`} dur={`${2.4 - current * 0.08}s`} repeatCount="indefinite" /></circle>)}
+      {[0, 1, 2, 3].map((i) => <circle key={i} cx={476 + i * 5} cy="118" r="4" fill="#e0f2fe"><animate attributeName="cy" values="190;120;92" dur={`${1.8 + i * 0.2}s`} repeatCount="indefinite" /></circle>)}
+      <circle cx="636" cy="154" r="27" fill="#0f172a" stroke="#facc15" strokeWidth="4" /><text x="627" y="160" fill="#facc15" fontSize="16" fontWeight="900">A</text>
+      <text x="92" y="270" fill="#94a3b8" fontSize="13">Simplified electrolysis model; deposit grows with charge passed ({(current * time).toFixed(1)} C).</text>
+    </g>
+  );
+}
+
+function MeterBridgeScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const known = clamp(a || 10, 1, 100);
+  const unknown = clamp(c || b || 20, 1, 100);
+  const length = clamp((known / (known + unknown)) * 100, 8, 92);
+  const jockeyX = 102 + length * 5.2;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">meter bridge: null point locates resistance ratio</text>
+      <rect x="80" y="96" width="600" height="128" rx="12" fill="#7c2d12" opacity=".45" stroke="#fdba74" />
+      <line x1="102" y1="178" x2="622" y2="178" stroke="#facc15" strokeWidth="7" />
+      {[0, 25, 50, 75, 100].map((tick) => <g key={tick}><line x1={102 + tick * 5.2} y1="170" x2={102 + tick * 5.2} y2="190" stroke="#fde68a" /><text x={94 + tick * 5.2} y="205" fill="#fde68a" fontSize="10">{tick}</text></g>)}
+      <rect x="126" y="116" width="94" height="38" rx="7" fill="#22d3ee" /><text x="138" y="140" fill="#082f49" fontSize="12" fontWeight="900">Known R</text>
+      <rect x="504" y="116" width="94" height="38" rx="7" fill="#a78bfa" /><text x="512" y="140" fill="#1e1b4b" fontSize="12" fontWeight="900">Unknown X</text>
+      <line x1={jockeyX} y1="82" x2={jockeyX} y2="178" stroke="#e2e8f0" strokeWidth="5" markerEnd="url(#arrow-circuit)" />
+      <circle cx={jockeyX} cy="76" r="21" fill="#0f172a" stroke="#34d399" strokeWidth="4" /><text x={jockeyX - 7} y="82" fill="#86efac" fontSize="15" fontWeight="900">J</text>
+      <circle cx="360" cy="72" r="25" fill="#0f172a" stroke="#facc15" strokeWidth="4" /><path d="M 360 72 L 360 52" stroke="#facc15" strokeWidth="4" /><text x="386" y="78" fill="#facc15" fontSize="12" fontWeight="900">galvanometer null</text>
+      <text x="94" y="252" fill="#94a3b8" fontSize="13">l = {length.toFixed(1)} cm; 100-l = {(100 - length).toFixed(1)} cm. Uniform wire, contact resistance ignored.</text>
+    </g>
+  );
+}
+
+function InternalResistanceCellScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const emf = clamp(a || 12, 1, 24);
+  const externalR = clamp(b || 8, 0.5, 100);
+  const internalR = clamp(c || 1, 0.1, 10);
+  const current = emf / (externalR + internalR);
+  const terminalV = emf - current * internalR;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">cell internal resistance: V = E - Ir</text>
+      <path d="M 92 154 H 220 H 360 H 508 H 650 V 226 H 92 Z" fill="none" stroke="#64748b" strokeWidth="6" />
+      <rect x="110" y="112" width="98" height="84" rx="12" fill="#22d3ee" /><text x="124" y="140" fill="#082f49" fontSize="13" fontWeight="900">EMF E</text><text x="124" y="166" fill="#082f49" fontSize="12">{emf.toFixed(1)} V</text>
+      <rect x="244" y="128" width="84" height="52" rx="8" fill="#f97316" /><text x="256" y="158" fill="#fff7ed" fontSize="12" fontWeight="900">internal r</text>
+      <rect x="414" y="128" width="98" height="52" rx="8" fill="#facc15" /><text x="426" y="158" fill="#0f172a" fontSize="12" fontWeight="900">load R</text>
+      <circle cx="590" cy="96" r="25" fill="#0f172a" stroke="#67e8f9" strokeWidth="4" /><text x="582" y="102" fill="#67e8f9" fontSize="16" fontWeight="900">V</text>
+      <path d="M 566 96 H 514 V 128 M 614 96 H 650 V 154" fill="none" stroke="#67e8f9" strokeWidth="3" />
+      <rect x="244" y="88" width={clamp((emf - terminalV) * 34, 14, 100)} height="10" rx="5" fill="#f97316" />
+      <text x="92" y="262" fill="#94a3b8" fontSize="13">Terminal V {terminalV.toFixed(2)} V; current {current.toFixed(2)} A. Linear internal resistance model.</text>
     </g>
   );
 }
@@ -773,6 +1394,9 @@ function WaveScene({ id, a, b, c }: { id: string; a: number; b: number; c: numbe
   if (id === "polarization-lab") return <PolarizationScene a={a} b={b} c={c} />;
   if (id === "em-spectrum") return <EmSpectrumScene a={a} b={b} c={c} />;
   if (id === "sound-wave-anatomy" || id === "sound-pitch-loudness") return <SoundAnatomyScene a={a} b={b} c={c} />;
+  if (id === "wave-lab") return <WaveLabScene a={a} b={b} c={c} />;
+  if (id === "chladni-plate") return <ChladniPlateScene a={a} b={b} c={c} />;
+  if (id === "echo-speed-sound") return <EchoSpeedSoundScene a={a} b={b} c={c} />;
   const amp = clamp(b * 18, 8, 60);
   const frequency = clamp(a / 40, 0.3, 7);
   const points = Array.from({ length: 80 }, (_, index) => {
@@ -790,6 +1414,128 @@ function WaveScene({ id, a, b, c }: { id: string; a: number; b: number; c: numbe
       <circle className="lab-anim-pulse" cx="90" cy="150" r={clamp(c * 14 + 8, 8, 28)} fill="#34d399" />
       <text x="80" y="45" fill="#e2e8f0" fontSize="16">Wave pattern</text>
       <text x="80" y="265" fill="#94a3b8" fontSize="13">Frequency compresses wavelength; amplitude controls height/intensity.</text>
+    </g>
+  );
+}
+
+function WaveLabScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const frequency = clamp(a || 2, 0.5, 12);
+  const amplitude = clamp((b || 1) * 18, 14, 58);
+  const wavelength = clamp(420 / frequency, 42, 190);
+  const speed = frequency * wavelength;
+  const points = Array.from({ length: 110 }, (_, index) => {
+    const x = 72 + index * 5.7;
+    const y = 150 + Math.sin((index / 109) * Math.PI * 2 * (640 / wavelength)) * amplitude;
+    return `${index === 0 ? "M" : "L"} ${x} ${y}`;
+  }).join(" ");
+  const crestX = 160 + wavelength / 4;
+  return (
+    <g>
+      <line x1="72" y1="150" x2="704" y2="150" stroke="#64748b" strokeWidth="2" strokeDasharray="8 6" />
+      <path className="lab-anim-dash" d={points} fill="none" stroke="#22d3ee" strokeWidth="5" />
+      {Array.from({ length: 15 }, (_, index) => {
+        const x = 92 + index * 40;
+        const y = 150 + Math.sin((x - 72) / wavelength * Math.PI * 2) * amplitude;
+        return <circle key={index} cx={x} cy={y} r="6" fill={index % 2 ? "#facc15" : "#67e8f9"} opacity="0.9" />;
+      })}
+      <line x1={crestX} y1="150" x2={crestX} y2={150 - amplitude} stroke="#f43f5e" strokeWidth="4" />
+      <text x={crestX + 10} y={150 - amplitude / 2} fill="#f43f5e" fontSize="12" fontWeight="900">amplitude</text>
+      <line x1="180" y1="236" x2={180 + wavelength} y2="236" stroke="#34d399" strokeWidth="5" />
+      <line x1="180" y1="226" x2="180" y2="246" stroke="#34d399" strokeWidth="3" />
+      <line x1={180 + wavelength} y1="226" x2={180 + wavelength} y2="246" stroke="#34d399" strokeWidth="3" />
+      <text x={188 + wavelength / 3} y="226" fill="#34d399" fontSize="12" fontWeight="900">wavelength</text>
+      <line x1="610" y1="108" x2="690" y2="108" stroke="#facc15" strokeWidth="4" markerEnd="url(#arrow-optics)" />
+      <text x="594" y="96" fill="#facc15" fontSize="12" fontWeight="900">wave propagation</text>
+      <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">Wave lab: medium oscillates locally</text>
+      <text x="82" y="68" fill="#94a3b8" fontSize="13">Crests travel forward, while particles move up and down around equilibrium.</text>
+      <g transform="translate(500 210)">
+        <rect width="188" height="48" rx="10" fill="rgba(2,6,23,.78)" stroke="#334155" />
+        <text x="14" y="21" fill="#67e8f9" fontSize="12" fontWeight="900">f {frequency.toFixed(1)} Hz | T {(1 / frequency).toFixed(2)} s</text>
+        <text x="14" y="39" fill="#facc15" fontSize="12" fontWeight="900">v = f lambda = {speed.toFixed(0)} rel.</text>
+      </g>
+      <g transform="translate(78 250)">
+        <rect width="124" height="24" rx="12" fill="rgba(34,211,238,.12)" stroke="#67e8f9" />
+        <text x="14" y="16" fill="#a5f3fc" fontSize="11" fontWeight="900">linear wave model</text>
+      </g>
+      <g transform="translate(212 250)">
+        <rect width="106" height="24" rx="12" fill="rgba(250,204,21,.12)" stroke="#facc15" />
+        <text x="14" y="16" fill="#fde68a" fontSize="11" fontWeight="900">uniform medium</text>
+      </g>
+    </g>
+  );
+}
+
+function ChladniPlateScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const mode = Math.max(1, Math.round(clamp(a || b || 3, 1, 7)));
+  const plateX = 112;
+  const plateY = 54;
+  const size = 210;
+  const grains = Array.from({ length: 90 }, (_, index) => {
+    const band = index % 4;
+    const t = (index * 37) % size;
+    const offset = ((index * 19) % 18) - 9;
+    const vertical = band < 2;
+    const x = vertical ? plateX + size * (band + 1) / (mode + 2) + offset : plateX + t;
+    const y = vertical ? plateY + t : plateY + size * ((band % 2) + 1) / (mode + 1) + offset;
+    return { x: clamp(x, plateX + 8, plateX + size - 8), y: clamp(y, plateY + 8, plateY + size - 8) };
+  });
+  return (
+    <g>
+      <rect x={plateX} y={plateY} width={size} height={size} rx="18" fill="rgba(15,23,42,.86)" stroke="#67e8f9" strokeWidth="4" />
+      {Array.from({ length: mode }, (_, index) => {
+        const x = plateX + ((index + 1) * size) / (mode + 1);
+        return <line key={`node-v-${index}`} x1={x} y1={plateY + 12} x2={x} y2={plateY + size - 12} stroke="#22d3ee" strokeWidth="2.5" strokeDasharray="7 5" />;
+      })}
+      {Array.from({ length: Math.max(1, Math.floor(mode / 2)) }, (_, index) => {
+        const y = plateY + ((index + 1) * size) / (Math.floor(mode / 2) + 1);
+        return <line key={`node-h-${index}`} x1={plateX + 12} y1={y} x2={plateX + size - 12} y2={y} stroke="#22d3ee" strokeWidth="2.5" strokeDasharray="7 5" />;
+      })}
+      {grains.map((grain, index) => <circle key={index} cx={grain.x} cy={grain.y} r={index % 5 === 0 ? 3.4 : 2.2} fill="#facc15" opacity="0.9" />)}
+      <circle className="lab-anim-pulse" cx={plateX + size * 0.72} cy={plateY + size * 0.34} r={clamp(c * 5, 18, 44)} fill="rgba(244,63,94,.18)" stroke="#f43f5e" />
+      <text x="370" y="60" fill="#e2e8f0" fontSize="16" fontWeight="900">Chladni plate: sand collects on nodes</text>
+      <text x="370" y="88" fill="#94a3b8" fontSize="13">Frequency changes mode shape; antinodes vibrate, nodal lines stay almost still.</text>
+      <text x="370" y="128" fill="#22d3ee" fontSize="13" fontWeight="900">node lines</text>
+      <text x="370" y="158" fill="#f43f5e" fontSize="13" fontWeight="900">antinode vibration region</text>
+      <text x="370" y="188" fill="#facc15" fontSize="13" fontWeight="900">sand accumulation</text>
+      <text x="370" y="224" fill="#67e8f9" fontSize="13" fontWeight="900">mode / frequency index: {mode}</text>
+      <g transform="translate(370 244)">
+        <rect width="164" height="24" rx="12" fill="rgba(250,204,21,.12)" stroke="#facc15" />
+        <text x="14" y="16" fill="#fde68a" fontSize="11" fontWeight="900">illustrative nodal pattern</text>
+      </g>
+    </g>
+  );
+}
+
+function EchoSpeedSoundScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const echoTime = clamp(a || c || 2, 0.2, 8);
+  const speed = clamp(b || 343, 250, 420);
+  const distance = speed * echoTime / 2;
+  const sourceX = 104;
+  const wallX = 622;
+  return (
+    <g>
+      <rect x="84" y="118" width="54" height="76" rx="18" fill="#38bdf8" />
+      <circle cx="111" cy="94" r="22" fill="#facc15" />
+      <rect x={wallX} y="62" width="28" height="188" rx="8" fill="#64748b" stroke="#cbd5e1" strokeWidth="3" />
+      <path className="lab-anim-dash" d={`M ${sourceX + 54} 128 C 250 88 420 88 ${wallX} 128`} fill="none" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-optics)" />
+      <path className="lab-anim-dash-fast" d={`M ${wallX} 174 C 430 224 252 224 ${sourceX + 54} 174`} fill="none" stroke="#facc15" strokeWidth="5" markerEnd="url(#arrow-optics)" />
+      <text x="164" y="86" fill="#67e8f9" fontSize="12" fontWeight="900">outgoing pulse</text>
+      <text x="250" y="232" fill="#fde68a" fontSize="12" fontWeight="900">reflected echo pulse</text>
+      <line x1={sourceX + 42} y1="264" x2={wallX} y2="264" stroke="#34d399" strokeWidth="5" />
+      <text x="238" y="256" fill="#34d399" fontSize="13" fontWeight="900">one-way distance = v x t / 2 = {distance.toFixed(0)} m</text>
+      <g transform="translate(170 42)">
+        <rect width="330" height="30" rx="10" fill="rgba(2,6,23,.76)" stroke="#334155" />
+        <circle cx="22" cy="15" r="7" fill="#22d3ee" />
+        <circle cx="165" cy="15" r="7" fill="#94a3b8" />
+        <circle cx="308" cy="15" r="7" fill="#facc15" />
+        <line x1="22" y1="15" x2="308" y2="15" stroke="#64748b" strokeWidth="2" />
+        <text x="38" y="20" fill="#67e8f9" fontSize="11" fontWeight="900">send</text>
+        <text x="181" y="20" fill="#cbd5e1" fontSize="11" fontWeight="900">reflect</text>
+        <text x="246" y="20" fill="#fde68a" fontSize="11" fontWeight="900">return {echoTime.toFixed(2)} s</text>
+      </g>
+      <text x="82" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">Echo timing uses round-trip sound travel</text>
+      <text x="82" y="286" fill="#94a3b8" fontSize="13">The measured echo time includes outbound plus inbound travel, so distance uses half the time.</text>
+      <text x="522" y="52" fill="#94a3b8" fontSize="12" fontWeight="900">wall / cliff</text>
     </g>
   );
 }
@@ -912,22 +1658,222 @@ function SoundAnatomyScene({ a, b, c }: { a: number; b: number; c: number }) {
 }
 
 function ThermalScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
-  const temp = clamp(a, -20, 800);
-  const fill = clamp((temp + 20) / 820, 0.05, 1);
+  if (id === "heat-and-temperature") return <HeatTemperatureScene a={a} b={b} c={c} />;
+  if (id === "heat-transfer") return <HeatTransferBenchScene a={a} b={b} c={c} />;
+  if (id === "gas-laws") return <GasLawsPistonScene a={a} b={b} c={c} />;
+  if (id === "thermodynamic-process") return <ThermodynamicProcessScene a={a} b={b} c={c} />;
+  if (id === "calorimetry-mixing") return <CalorimetryMixingScene a={a} b={b} c={c} />;
+  if (id === "statistical-ensemble-lab") return <StatisticalEnsembleScene a={a} b={b} c={c} />;
   return (
     <g>
-      <rect x="110" y="70" width="92" height="175" rx="42" fill="#1e293b" stroke="#94a3b8" strokeWidth="4" />
-      <rect className="lab-anim-glow" x="140" y={230 - fill * 130} width="32" height={fill * 130} rx="16" fill="#ef4444" />
-      <circle cx="156" cy="232" r="28" fill="#ef4444" />
-      <rect x="330" y="100" width="245" height="110" rx="14" fill="rgba(249,115,22,.2)" stroke="#fb923c" strokeWidth="4" />
-      {Array.from({ length: 22 }, (_, index) => (
-        <circle key={index} cx={350 + (index % 8) * 28} cy={120 + Math.floor(index / 8) * 28} r={clamp(3 + b, 4, 10)} fill="#fbbf24" opacity={0.75}>
-          <animate attributeName="cy" values={`${120 + Math.floor(index / 8) * 28};${114 + Math.floor(index / 8) * 28};${125 + Math.floor(index / 8) * 28};${120 + Math.floor(index / 8) * 28}`} dur={`${1.1 + (index % 5) * 0.18}s`} repeatCount="indefinite" />
-          <animate attributeName="cx" values={`${350 + (index % 8) * 28};${356 + (index % 8) * 28};${344 + (index % 8) * 28};${350 + (index % 8) * 28}`} dur={`${1.25 + (index % 4) * 0.2}s`} repeatCount="indefinite" />
-        </circle>
-      ))}
-      <text x="90" y="45" fill="#e2e8f0" fontSize="16">{id === "gas-laws" ? "Gas particle model" : "Thermal energy model"}</text>
-      <text x="90" y="268" fill="#94a3b8" fontSize="13">Temperature, mass, volume, and process controls update heat or pressure trends.</text>
+      <text x="90" y="45" fill="#e2e8f0" fontSize="16" fontWeight="900">Thermal model needs a mapped scene</text>
+      <text x="90" y="72" fill="#94a3b8" fontSize="13">This experiment is guarded by the visualization contract.</text>
+    </g>
+  );
+}
+
+function HeatTemperatureScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const tempC = clamp(a, -20, 120);
+  const mass = clamp(b || 1, 0.2, 10);
+  const heat = clamp(c || tempC * mass * 4.18, 0, 5000);
+  const fill = clamp((tempC + 20) / 140, 0.05, 1);
+  const particleSpeed = clamp((tempC + 30) / 90, 0.3, 2.1);
+  return (
+    <g>
+      <text x="76" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">heat transfer raises temperature reading</text>
+      <rect x="94" y="76" width="78" height="162" rx="36" fill="#111827" stroke="#cbd5e1" strokeWidth="4" />
+      <rect x="122" y={218 - fill * 112} width="22" height={fill * 112} rx="11" fill="#ef4444" className="lab-anim-glow" />
+      <circle cx="133" cy="225" r="24" fill="#ef4444" />
+      {[0, 25, 50, 75, 100].map((tick) => <g key={tick}><line x1="174" y1={216 - tick * 1.1} x2="194" y2={216 - tick * 1.1} stroke="#94a3b8" /><text x="200" y={220 - tick * 1.1} fill="#94a3b8" fontSize="10">{tick} C</text></g>)}
+      <text x="102" y="264" fill="#fca5a5" fontSize="13" fontWeight="900">Thermometer {tempC.toFixed(1)} C</text>
+      <rect x="286" y="78" width="220" height="142" rx="16" fill="rgba(249,115,22,.16)" stroke="#fb923c" strokeWidth="4" />
+      {Array.from({ length: 24 }, (_, index) => {
+        const x = 310 + (index % 8) * 24;
+        const y = 104 + Math.floor(index / 8) * 36;
+        return (
+          <circle key={index} cx={x} cy={y} r={4 + particleSpeed} fill={index % 3 === 0 ? "#facc15" : "#fb923c"} opacity="0.84">
+            <animate attributeName="cx" values={`${x};${x + 4 * particleSpeed};${x - 5 * particleSpeed};${x}`} dur={`${1.2 / particleSpeed}s`} repeatCount="indefinite" />
+            <animate attributeName="cy" values={`${y};${y - 3 * particleSpeed};${y + 4 * particleSpeed};${y}`} dur={`${1.35 / particleSpeed}s`} repeatCount="indefinite" />
+          </circle>
+        );
+      })}
+      <line x1="238" y1="184" x2="286" y2="164" stroke="#f97316" strokeWidth="6" markerEnd="url(#arrow-default)" />
+      <text x="218" y="210" fill="#fdba74" fontSize="13" fontWeight="900">Heat = energy in transfer</text>
+      <text x="304" y="62" fill="#fde68a" fontSize="13" fontWeight="900">Particle speed: average kinetic energy cue</text>
+      <rect x="548" y="78" width="138" height="54" rx="10" fill="rgba(34,211,238,.12)" stroke="#22d3ee" />
+      <text x="562" y="101" fill="#67e8f9" fontSize="12" fontWeight="900">Kelvin {(tempC + 273.15).toFixed(1)} K</text>
+      <text x="562" y="120" fill="#94a3b8" fontSize="11">formula scale</text>
+      <rect x="548" y="146" width="138" height="54" rx="10" fill="rgba(250,204,21,.12)" stroke="#facc15" />
+      <text x="562" y="169" fill="#fde68a" fontSize="12" fontWeight="900">Heat {heat.toFixed(0)} J</text>
+      <text x="562" y="188" fill="#94a3b8" fontSize="11">depends on mass c DeltaT</text>
+      <text x="286" y="264" fill="#94a3b8" fontSize="13">Same temperature can represent different heat energy when mass changes. Mass {mass.toFixed(1)} kg.</text>
+    </g>
+  );
+}
+
+function HeatTransferBenchScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const deltaT = clamp(a || 40, 5, 220);
+  const thickness = clamp(b || 2, 0.5, 10);
+  const rate = clamp((deltaT * (c || 1)) / thickness, 1, 180);
+  return (
+    <g>
+      <text x="74" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">three heat-transfer mechanisms</text>
+      <g transform="translate(70 62)">
+        <rect width="190" height="178" rx="14" fill="rgba(239,68,68,.1)" stroke="#fb7185" />
+        <text x="18" y="28" fill="#fecdd3" fontSize="13" fontWeight="900">Conduction</text>
+        <rect x="26" y="82" width="136" height="26" rx="6" fill="#64748b" />
+        <rect x="26" y="82" width={clamp(136 - thickness * 7, 58, 132)} height="26" rx="6" fill="#f97316" opacity=".75" />
+        {[0, 1, 2].map((i) => <line key={i} x1={42 + i * 36} y1="95" x2={82 + i * 36} y2="95" stroke="#facc15" strokeWidth="4" markerEnd="url(#arrow-default)" />)}
+        <text x="24" y="134" fill="#94a3b8" fontSize="11">solid bar only</text>
+        <text x="24" y="152" fill="#facc15" fontSize="11" fontWeight="900">DeltaT {deltaT.toFixed(0)} C</text>
+      </g>
+      <g transform="translate(286 62)">
+        <rect width="190" height="178" rx="14" fill="rgba(34,211,238,.1)" stroke="#22d3ee" />
+        <text x="18" y="28" fill="#bae6fd" fontSize="13" fontWeight="900">Convection</text>
+        <rect x="42" y="55" width="108" height="102" rx="14" fill="rgba(14,165,233,.25)" stroke="#38bdf8" />
+        <path d="M 70 132 C 38 86 78 54 112 76 C 152 102 124 154 82 140" fill="none" stroke="#facc15" strokeWidth="4" markerEnd="url(#arrow-default)" />
+        <path d="M 126 72 C 156 108 128 148 92 142" fill="none" stroke="#38bdf8" strokeWidth="4" markerEnd="url(#arrow-default)" />
+        <text x="22" y="152" fill="#94a3b8" fontSize="11">warm fluid rises; cool fluid sinks</text>
+      </g>
+      <g transform="translate(502 62)">
+        <rect width="190" height="178" rx="14" fill="rgba(250,204,21,.1)" stroke="#facc15" />
+        <text x="18" y="28" fill="#fde68a" fontSize="13" fontWeight="900">Radiation</text>
+        <circle cx="58" cy="104" r="25" fill="#f97316" className="lab-anim-glow" />
+        {[0, 1, 2].map((i) => <path key={i} d={`M ${86 + i * 6} ${84 + i * 15} C ${112 + i * 6} ${74 + i * 9}, ${132 + i * 7} ${72 + i * 18}, 154 ${78 + i * 20}`} fill="none" stroke="#facc15" strokeWidth="3" markerEnd="url(#arrow-default)" />)}
+        <rect x="142" y="75" width="18" height="72" rx="8" fill="#94a3b8" />
+        <text x="24" y="152" fill="#94a3b8" fontSize="11">no medium required</text>
+      </g>
+      <rect x="224" y="258" width={clamp(rate * 1.6, 20, 250)} height="12" rx="6" fill="#22d3ee" />
+      <text x="74" y="269" fill="#67e8f9" fontSize="13" fontWeight="900">heat-transfer rate {rate.toFixed(1)} W</text>
+      <text x="506" y="269" fill="#94a3b8" fontSize="13">Simplified heat rate; uniform material approximation.</text>
+    </g>
+  );
+}
+
+function GasLawsPistonScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const pressure = clamp(a || 100, 20, 500);
+  const tempK = clamp(b || 300, 150, 800);
+  const volume = clamp(c || 3, 0.5, 8);
+  const pistonY = clamp(210 - volume * 14, 92, 204);
+  const speed = clamp(tempK / 300, 0.5, 2.2);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">ideal gas piston: P, V, and absolute temperature</text>
+      <rect x="92" y="78" width="210" height="150" rx="12" fill="rgba(34,211,238,.12)" stroke="#67e8f9" strokeWidth="4" />
+      <rect x="104" y={pistonY} width="186" height="14" rx="5" fill="#94a3b8" />
+      <line x1="197" y1={pistonY} x2="197" y2="54" stroke="#94a3b8" strokeWidth="5" />
+      <text x="118" y="248" fill="#94a3b8" fontSize="12">Volume {volume.toFixed(2)} L</text>
+      {Array.from({ length: 20 }, (_, index) => {
+        const x = 120 + (index % 5) * 33;
+        const y = pistonY + 24 + Math.floor(index / 5) * clamp((226 - pistonY) / 5, 9, 25);
+        return <circle key={index} cx={x} cy={y} r="5" fill={index % 2 ? "#facc15" : "#22d3ee"}><animate attributeName="cx" values={`${x};${x + speed * 7};${x - speed * 6};${x}`} dur={`${1.4 / speed}s`} repeatCount="indefinite" /></circle>;
+      })}
+      <circle cx="390" cy="116" r="44" fill="rgba(15,23,42,.82)" stroke="#cbd5e1" strokeWidth="5" />
+      <path d={`M 390 116 L ${390 + Math.cos(pressure / 120) * 31} ${116 - Math.sin(pressure / 120) * 31}`} stroke="#f43f5e" strokeWidth="5" strokeLinecap="round" />
+      <text x="342" y="178" fill="#fecdd3" fontSize="13" fontWeight="900">Pressure {pressure.toFixed(0)} kPa</text>
+      <rect x="486" y="62" width="184" height="178" rx="12" fill="rgba(15,23,42,.75)" stroke="#334155" />
+      <text x="508" y="92" fill="#67e8f9" fontSize="13" fontWeight="900">P-V-T dashboard</text>
+      <text x="508" y="120" fill="#fde68a" fontSize="12">T = {tempK.toFixed(0)} K</text>
+      <text x="508" y="142" fill="#bae6fd" fontSize="12">V = {volume.toFixed(2)} L</text>
+      <text x="508" y="164" fill="#fecdd3" fontSize="12">P = {pressure.toFixed(0)} kPa</text>
+      <line x1="520" y1="216" x2="646" y2="216" stroke="#94a3b8" />
+      <line x1="520" y1="216" x2="520" y2="178" stroke="#94a3b8" />
+      <path d="M 526 184 C 548 190 568 200 590 206 C 612 212 628 214 646 215" fill="none" stroke="#facc15" strokeWidth="3" />
+      <text x="536" y="236" fill="#94a3b8" fontSize="11">Boyle P vs V curve</text>
+      <text x="92" y="276" fill="#94a3b8" fontSize="13">Ideal gas assumption; gas-law formulas use absolute temperature, not Celsius.</text>
+    </g>
+  );
+}
+
+function ThermodynamicProcessScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const pressure = clamp(a || 120, 40, 400);
+  const deltaV = clamp(b || 2, -4, 6);
+  const processIndex = Math.abs(Math.round(c || 0)) % 4;
+  const process = ["isothermal", "adiabatic", "isobaric", "isochoric"][processIndex];
+  const volume = process === "isochoric" ? 3 : clamp(3 + deltaV, 0.8, 7);
+  const pistonY = clamp(212 - volume * 15, 88, 200);
+  const work = process === "isochoric" ? 0 : pressure * (volume - 3) / 100;
+  const heatArrow = process !== "adiabatic";
+  return (
+    <g>
+      <text x="74" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">thermodynamic process: piston synchronized with P-V path</text>
+      <rect x="84" y="76" width="210" height="156" rx="12" fill="rgba(34,211,238,.12)" stroke={process === "adiabatic" ? "#facc15" : "#67e8f9"} strokeWidth="4" strokeDasharray={process === "adiabatic" ? "8 6" : undefined} />
+      <rect x="102" y={pistonY} width="174" height="16" rx="5" fill="#cbd5e1" />
+      <line x1="189" y1={pistonY} x2="189" y2="56" stroke="#94a3b8" strokeWidth="5" />
+      {heatArrow && <line x1="44" y1="154" x2="84" y2="154" stroke="#f97316" strokeWidth="6" markerEnd="url(#arrow-default)" />}
+      <text x={heatArrow ? 34 : 40} y="140" fill={heatArrow ? "#fdba74" : "#facc15"} fontSize="12" fontWeight="900">{heatArrow ? "Heat" : "insulated"}</text>
+      {[0, 1, 2, 3, 4, 5].map((i) => <circle key={i} cx={124 + (i % 3) * 48} cy={pistonY + 34 + Math.floor(i / 3) * 34} r="7" fill="#facc15" opacity=".82" />)}
+      <text x="102" y="254" fill="#67e8f9" fontSize="12" fontWeight="900">P {pressure.toFixed(0)} kPa | V {volume.toFixed(1)} L</text>
+      <rect x="360" y="64" width="300" height="190" rx="12" fill="rgba(15,23,42,.78)" stroke="#334155" />
+      <line x1="400" y1="218" x2="620" y2="218" stroke="#94a3b8" />
+      <line x1="400" y1="218" x2="400" y2="92" stroke="#94a3b8" />
+      <text x="626" y="222" fill="#94a3b8" fontSize="11">V</text>
+      <text x="388" y="86" fill="#94a3b8" fontSize="11">P</text>
+      <path d={process === "isobaric" ? "M 420 150 H 590" : process === "isochoric" ? "M 500 210 V 106" : process === "adiabatic" ? "M 420 112 C 470 132 520 176 596 206" : "M 420 120 C 470 128 530 178 596 198"} fill="none" stroke={process === "adiabatic" ? "#facc15" : "#22d3ee"} strokeWidth="5" markerEnd="url(#arrow-default)" />
+      <text x="424" y="78" fill="#e2e8f0" fontSize="13" fontWeight="900">P-V path: {process}</text>
+      <text x="424" y="248" fill="#fde68a" fontSize="12" fontWeight="900">Work {work.toFixed(2)} kJ</text>
+      <text x="74" y="276" fill="#94a3b8" fontSize="13">Quasi-static idealized process; heat/work signs are conceptual for the selected path.</text>
+    </g>
+  );
+}
+
+function CalorimetryMixingScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const hotMass = clamp(a || 1, 0.1, 5);
+  const hotTemp = clamp(b || 80, 25, 100);
+  const coldMass = clamp(c || 1, 0.1, 5);
+  const coldTemp = 25;
+  const finalTemp = (hotMass * hotTemp + coldMass * coldTemp) / (hotMass + coldMass);
+  const fill = clamp((finalTemp - coldTemp) / Math.max(1, hotTemp - coldTemp), 0.08, 0.95);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">calorimetry mixing: heat lost equals heat gained</text>
+      <rect x="92" y="70" width="130" height="82" rx="12" fill="rgba(249,115,22,.16)" stroke="#fb923c" />
+      <rect x="540" y="70" width="130" height="82" rx="12" fill="rgba(34,211,238,.16)" stroke="#38bdf8" />
+      <text x="116" y="104" fill="#fdba74" fontSize="13" fontWeight="900">Hot sample</text>
+      <text x="560" y="104" fill="#bae6fd" fontSize="13" fontWeight="900">Cold sample</text>
+      <text x="116" y="128" fill="#fdba74" fontSize="12">{hotMass.toFixed(1)} kg, {hotTemp.toFixed(1)} C</text>
+      <text x="560" y="128" fill="#bae6fd" fontSize="12">{coldMass.toFixed(1)} kg, {coldTemp} C</text>
+      <path d="M 220 128 C 286 148 300 176 330 196" fill="none" stroke="#f97316" strokeWidth="6" markerEnd="url(#arrow-default)" />
+      <path d="M 540 128 C 476 148 458 176 426 196" fill="none" stroke="#38bdf8" strokeWidth="6" markerEnd="url(#arrow-default)" />
+      <path d="M 314 118 L 446 118 L 424 244 L 336 244 Z" fill="rgba(148,163,184,.18)" stroke="#cbd5e1" strokeWidth="4" />
+      <path d={`M 332 ${238 - fill * 86} L 428 ${238 - fill * 86} L 420 238 L 340 238 Z`} fill="rgba(56,189,248,.42)" />
+      <rect x="456" y="110" width="20" height="122" rx="10" fill="#111827" stroke="#cbd5e1" />
+      <rect x="463" y={218 - fill * 88} width="6" height={fill * 88} rx="3" fill={finalTemp > 50 ? "#f97316" : "#facc15"} />
+      <circle cx="466" cy="226" r="13" fill={finalTemp > 50 ? "#f97316" : "#facc15"} />
+      <text x="338" y="268" fill="#fde68a" fontSize="13" fontWeight="900">Final temperature {finalTemp.toFixed(1)} C equilibrium</text>
+      <text x="80" y="270" fill="#94a3b8" fontSize="12">No heat loss; uniform mixing and constant heat capacity assumed.</text>
+      <text x="506" y="270" fill="#94a3b8" fontSize="12">q hot lost = q cold gained</text>
+    </g>
+  );
+}
+
+function StatisticalEnsembleScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const temperature = clamp(a || 300, 80, 900);
+  const samples = Math.round(clamp(b || 80, 20, 200));
+  const interaction = clamp(c || 0.4, 0, 1);
+  const spread = clamp(temperature / 900 + interaction * 0.35, 0.18, 1);
+  const bins = [0.25, 0.55, 0.9, 1.0, 0.76, 0.46, 0.25].map((height, index) => clamp(height * spread * 120 - Math.abs(index - 3) * 8, 12, 120));
+  const meanX = 542;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">statistical ensemble: many microstates build a distribution</text>
+      <rect x="82" y="64" width="300" height="190" rx="14" fill="rgba(34,211,238,.08)" stroke="#22d3ee" />
+      {Array.from({ length: 42 }, (_, index) => {
+        const x = 110 + ((index * 37) % 240);
+        const y = 90 + ((index * 23) % 132);
+        const hot = (index % 7) / 7 < spread;
+        return <circle key={index} cx={x} cy={y} r={hot ? 5.5 : 3.8} fill={hot ? "#facc15" : "#38bdf8"} opacity=".82"><animate attributeName="cy" values={`${y};${y - 8 * spread};${y + 7 * spread};${y}`} dur={`${1.2 + (index % 6) * 0.1}s`} repeatCount="indefinite" /></circle>;
+      })}
+      <text x="104" y="238" fill="#67e8f9" fontSize="12" fontWeight="900">sample count {samples}</text>
+      <text x="238" y="238" fill="#fde68a" fontSize="12" fontWeight="900">fluctuation spread {spread.toFixed(2)}</text>
+      <rect x="432" y="64" width="244" height="190" rx="14" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <line x1="462" y1="222" x2="642" y2="222" stroke="#94a3b8" />
+      <line x1="462" y1="222" x2="462" y2="88" stroke="#94a3b8" />
+      {bins.map((height, index) => <rect key={index} x={478 + index * 22} y={222 - height} width="16" height={height} rx="4" fill={index === 3 ? "#facc15" : "#22d3ee"} opacity=".82" />)}
+      <line x1={meanX} y1="86" x2={meanX} y2="228" stroke="#f43f5e" strokeWidth="4" strokeDasharray="7 5" />
+      <text x="552" y="102" fill="#fecdd3" fontSize="12" fontWeight="900">Mean</text>
+      <text x="490" y="244" fill="#94a3b8" fontSize="11">energy state</text>
+      <text x="438" y="282" fill="#94a3b8" fontSize="13">Qualitative distribution model; ensemble average is over many possible states.</text>
     </g>
   );
 }
@@ -935,6 +1881,8 @@ function ThermalScene({ id, a, b, c }: { id: string; a: number; b: number; c: nu
 function FluidScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
   if (id === "buoyancy" || id === "density-float-sink") return <BuoyancyScene a={a} b={b} c={c} />;
   if (id === "bernoulli-fluid-flow") return <BernoulliScene a={a} b={b} c={c} />;
+  if (id === "force-and-pressure") return <ForceAndPressureScene a={a} b={b} c={c} />;
+  if (id === "fluid-pressure") return <FluidPressureDepthScene a={a} b={b} c={c} />;
   const depth = clamp(c * 18, 18, 180);
   const pressure = clamp(a / 10 + b * 12, 40, 230);
   return (
@@ -953,6 +1901,84 @@ function FluidScene({ id, a, b, c }: { id: string; a: number; b: number; c: numb
       ))}
       <text x="90" y="45" fill="#e2e8f0" fontSize="16">Fluid model</text>
       <text x="90" y="278" fill="#94a3b8" fontSize="13">Depth, density, speed, and area controls drive pressure, buoyancy, or Bernoulli flow.</text>
+    </g>
+  );
+}
+
+function ForceAndPressureScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const force = clamp(a, 1, 500);
+  const area = Math.max(0.05, clamp(b || c || 1, 0.05, 8));
+  const pressure = force / area;
+  const smallAreaPressure = force / Math.max(0.1, area * 0.45);
+  const largeAreaPressure = force / Math.max(0.1, area * 1.8);
+  const pistonWidth = clamp(area * 38, 46, 210);
+  const markCount = Math.round(clamp(pressure / 20, 4, 22));
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">force over area: pressure press</text>
+      <rect x="110" y="206" width="270" height="24" rx="5" fill="#64748b" />
+      <rect x={245 - pistonWidth / 2} y="104" width={pistonWidth} height="96" rx="12" fill="#38bdf8" stroke="#67e8f9" strokeWidth="4" />
+      <rect x={245 - pistonWidth / 2 - 8} y="190" width={pistonWidth + 16} height="16" rx="4" fill="#facc15" />
+      <line x1="245" y1="56" x2="245" y2="100" stroke="#f43f5e" strokeWidth={clamp(force / 60, 4, 10)} markerEnd="url(#arrow-fluid)" />
+      <text x="262" y="84" fill="#f43f5e" fontSize="13" fontWeight="900">F = {force.toFixed(0)} N</text>
+      {Array.from({ length: markCount }, (_, index) => (
+        <line key={index} x1={122 + (index % 11) * 22} y1={214 + Math.floor(index / 11) * 7} x2={134 + (index % 11) * 22} y2={214 + Math.floor(index / 11) * 7} stroke="#facc15" strokeWidth="3" opacity=".88" />
+      ))}
+      <rect x="430" y="60" width="250" height="188" rx="14" fill="rgba(15,23,42,.72)" stroke="#334155" />
+      <text x="452" y="90" fill="#e2e8f0" fontSize="14" fontWeight="900">P = F / A</text>
+      <text x="452" y="120" fill="#67e8f9" fontSize="13" fontWeight="900">Area {area.toFixed(2)} m^2</text>
+      <text x="452" y="148" fill="#facc15" fontSize="13" fontWeight="900">Pressure {pressure.toFixed(1)} Pa</text>
+      <circle cx="560" cy="196" r="38" fill="none" stroke="#94a3b8" strokeWidth="5" />
+      <path d={`M 560 196 L ${560 + Math.cos(pressure / 90) * 28} ${196 - Math.sin(pressure / 90) * 28}`} stroke="#f43f5e" strokeWidth="5" strokeLinecap="round" />
+      <text x="520" y="238" fill="#94a3b8" fontSize="12" fontWeight="900">pressure gauge</text>
+      <g transform="translate(92 250)">
+        <rect width="140" height="34" rx="8" fill="rgba(244,63,94,.14)" stroke="#f43f5e" />
+        <text x="12" y="21" fill="#fecdd3" fontSize="12" fontWeight="900">small A: {smallAreaPressure.toFixed(0)} Pa</text>
+      </g>
+      <g transform="translate(250 250)">
+        <rect width="140" height="34" rx="8" fill="rgba(34,211,238,.14)" stroke="#22d3ee" />
+        <text x="12" y="21" fill="#bae6fd" fontSize="12" fontWeight="900">large A: {largeAreaPressure.toFixed(0)} Pa</text>
+      </g>
+      <text x="452" y="276" fill="#94a3b8" fontSize="13">Uniform contact pressure assumed.</text>
+    </g>
+  );
+}
+
+function FluidPressureDepthScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const density = clamp(a || b || 1000, 600, 1400);
+  const depth = clamp(c || b || 2, 0.2, 10);
+  const g = 9.81;
+  const pressure = density * g * depth;
+  const probeY = clamp(88 + depth * 14, 102, 228);
+  const waterDark = clamp(depth / 10, 0.25, 0.9);
+  return (
+    <g>
+      <text x="82" y="36" fill="#e2e8f0" fontSize="16" fontWeight="900">hydrostatic pressure increases with depth</text>
+      <rect x="112" y="72" width="260" height="184" rx="12" fill="rgba(56,189,248,.12)" stroke="#38bdf8" strokeWidth="4" />
+      <defs>
+        <linearGradient id="fluid-depth-gradient" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stopColor="rgba(125,211,252,.28)" />
+          <stop offset="100%" stopColor={`rgba(14,116,144,${waterDark})`} />
+        </linearGradient>
+      </defs>
+      <rect x="112" y="102" width="260" height="154" fill="url(#fluid-depth-gradient)" />
+      {[0, 1, 2, 3, 4].map((tick) => (
+        <g key={tick}>
+          <line x1="382" y1={102 + tick * 34} x2="404" y2={102 + tick * 34} stroke="#94a3b8" strokeWidth="2" />
+          <text x="410" y={106 + tick * 34} fill="#94a3b8" fontSize="11">{(tick * 2.5).toFixed(1)} m</text>
+        </g>
+      ))}
+      <circle cx="230" cy={probeY} r="12" fill="#facc15" stroke="#fde68a" strokeWidth="3" className="lab-anim-glow" />
+      <line x1="242" y1={probeY} x2="482" y2={probeY} stroke="#facc15" strokeWidth="3" strokeDasharray="7 6" />
+      {[0, 1, 2].map((jet) => <line key={jet} x1="372" y1={128 + jet * 45} x2={430 + jet * 34} y2={128 + jet * 45} stroke="#22d3ee" strokeWidth={2 + jet * 1.4} markerEnd="url(#arrow-fluid)" opacity=".72" />)}
+      <path d={`M 505 86 V 218 Q 505 242 532 242 Q 560 242 560 218 V ${218 - clamp(pressure / 12000, 28, 112)}`} fill="none" stroke="#67e8f9" strokeWidth="8" strokeLinecap="round" />
+      <circle cx="610" cy="148" r="42" fill="rgba(15,23,42,.72)" stroke="#94a3b8" strokeWidth="5" />
+      <path d={`M 610 148 L ${610 + Math.cos(pressure / 45000) * 30} ${148 - Math.sin(pressure / 45000) * 30}`} stroke="#f43f5e" strokeWidth="5" strokeLinecap="round" />
+      <text x="525" y="62" fill="#67e8f9" fontSize="13" fontWeight="900">manometer</text>
+      <text x="450" y="270" fill="#e2e8f0" fontSize="13" fontWeight="900">P = rho g h = {(pressure / 1000).toFixed(1)} kPa</text>
+      <text x="128" y="278" fill="#94a3b8" fontSize="13">Gauge pressure shown; same depth has same pressure in all directions.</text>
+      <text x="130" y="92" fill="#67e8f9" fontSize="12" fontWeight="900">rho {density.toFixed(0)} kg/m^3</text>
+      <text x="244" y={probeY - 14} fill="#facc15" fontSize="12" fontWeight="900">depth {depth.toFixed(1)} m</text>
     </g>
   );
 }
@@ -1014,15 +2040,27 @@ function ElectricFieldScene({ a, b, c }: { a: number; b: number; c: number }) {
 
 function MagneticFieldScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
   const turns = id === "electromagnet" ? Math.max(3, Math.round(a / 20)) : 1;
+  const isElectromagnet = id === "electromagnet";
   return (
     <g>
-      <rect x="330" y="62" width="60" height="180" rx="12" fill="#334155" />
-      {Array.from({ length: turns }, (_, i) => <ellipse key={i} cx="360" cy={82 + i * (150 / Math.max(1, turns - 1))} rx="88" ry="22" fill="none" stroke="#a78bfa" strokeWidth="3" />)}
-      {[52, 90, 128].map((r) => <ellipse key={r} cx="360" cy="150" rx={r * 2} ry={r} fill="none" stroke="rgba(34,211,238,.28)" strokeWidth="2" />)}
+      {isElectromagnet ? (
+        <>
+          <rect x="312" y="62" width="96" height="180" rx="18" fill="#334155" />
+          <text x="324" y="86" fill="#cbd5e1" fontSize="12" fontWeight="900">iron core</text>
+          <text x="426" y="92" fill="#f43f5e" fontSize="16" fontWeight="900">N</text>
+          <text x="278" y="92" fill="#38bdf8" fontSize="16" fontWeight="900">S</text>
+        </>
+      ) : (
+        <rect x="342" y="54" width="36" height="190" rx="18" fill="#facc15" />
+      )}
+      {Array.from({ length: turns }, (_, i) => <ellipse key={i} cx="360" cy={82 + i * (150 / Math.max(1, turns - 1))} rx={isElectromagnet ? 96 : 54} ry={isElectromagnet ? 22 : 16} fill="none" stroke="#a78bfa" strokeWidth="3" />)}
+      {[52, 90, 128].map((r) => <ellipse key={r} cx="360" cy="150" rx={r * (isElectromagnet ? 2 : 1.25)} ry={r} fill="none" stroke="rgba(34,211,238,.28)" strokeWidth="2" markerEnd="url(#arrow-modern)" />)}
       <line className="lab-anim-dash-fast" x1="360" y1="248" x2="360" y2="52" stroke="#facc15" strokeWidth="5" markerEnd="url(#arrow-modern)" />
-      <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">magnetic field around current</text>
-      <text x="82" y="70" fill="#94a3b8" fontSize="13">Right-hand rule: thumb is current, curled fingers show field direction.</text>
+      <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">{isElectromagnet ? "electromagnet: coil and core strengthen field" : "straight current: circular magnetic field"}</text>
+      <text x="82" y="70" fill="#94a3b8" fontSize="13">{isElectromagnet ? "Right-hand grip rule: curled fingers follow current, thumb points toward north pole." : "Right-hand thumb rule: thumb is conventional current, curled fingers show B direction."}</text>
+      <text x="372" y="52" fill="#facc15" fontSize="12" fontWeight="900">current direction</text>
       <text x="470" y="104" fill="#a78bfa" fontSize="13" fontWeight="900">NI strength {(a * b * Math.max(1, c)).toFixed(0)}</text>
+      <text x="84" y="270" fill="#94a3b8" fontSize="12">{isElectromagnet ? "Ideal solenoid approximation; qualitative field-line density." : "Straight-wire approximation; conventional current shown."}</text>
     </g>
   );
 }
@@ -1105,6 +2143,9 @@ function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
   if (id === "advanced-quantum-operators") return <AdvancedQuantumOperatorsScene a={a} b={b} c={c} />;
   if (id === "photoelectric-equation") return <PhotoelectricScene a={a} b={b} c={c} />;
   if (id === "special-relativity-bridge") return <RelativityScene a={a} b={b} c={c} />;
+  if (id === "nuclear-decay") return <NuclearDecayScene a={a} b={b} c={c} />;
+  if (id === "de-broglie-wavelength") return <DeBroglieScene a={a} b={b} c={c} />;
+  if (id === "bohr-model") return <BohrTransitionScene a={a} b={b} c={c} />;
   const emitted = a > b;
   const remaining = id === "nuclear-decay" ? clamp(220 * 0.5 ** (c / Math.max(1, b)), 10, 220) : 140;
   return (
@@ -1116,6 +2157,87 @@ function ModernScene({ id, a, b, c }: { id: string; a: number; b: number; c: num
       {id === "nuclear-decay" ? <rect x="90" y="220" width={remaining} height="18" rx="9" fill="#f43f5e" /> : null}
       <text x="82" y="45" fill="#e2e8f0" fontSize="16">{id === "nuclear-decay" ? "Half-life model" : "Photoelectric model"}</text>
       <text x="82" y="265" fill="#94a3b8" fontSize="13">Quantum inputs determine emission, energy, or remaining nuclei.</text>
+    </g>
+  );
+}
+
+function NuclearDecayScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const initial = Math.round(clamp(a || 120, 40, 180));
+  const halfLife = clamp(b || 5, 0.5, 20);
+  const elapsed = clamp(c || 5, 0, 60);
+  const remaining = Math.round(initial * 0.5 ** (elapsed / halfLife));
+  const decayed = initial - remaining;
+  const grid = Array.from({ length: 100 }, (_, index) => index < clamp((remaining / initial) * 100, 0, 100));
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">half-life decay: statistical population model</text>
+      <g transform="translate(82 62)">
+        {grid.map((alive, index) => <circle key={index} cx={(index % 10) * 18} cy={Math.floor(index / 10) * 18} r="6" fill={alive ? "#22d3ee" : "#f43f5e"} opacity={alive ? 0.9 : 0.62} />)}
+        <text x="0" y="200" fill="#67e8f9" fontSize="12" fontWeight="900">remaining {remaining}</text>
+        <text x="98" y="200" fill="#fb7185" fontSize="12" fontWeight="900">decayed {decayed}</text>
+      </g>
+      <g transform="translate(330 74)">
+        <line x1="0" y1="150" x2="320" y2="150" stroke="#64748b" /><line x1="0" y1="150" x2="0" y2="12" stroke="#64748b" />
+        <path d={Array.from({ length: 80 }, (_, index) => {
+          const t = (index / 79) * halfLife * 4;
+          const y = 150 - 130 * 0.5 ** (t / halfLife);
+          return `${index === 0 ? "M" : "L"} ${index * 4} ${y}`;
+        }).join(" ")} fill="none" stroke="#facc15" strokeWidth="4" />
+        {[1, 2, 3].map((n) => <g key={n}><line x1={n * 70} y1="18" x2={n * 70} y2="150" stroke="#334155" strokeDasharray="5 5" /><text x={n * 70 - 18} y="168" fill="#94a3b8" fontSize="10">{n} T1/2</text></g>)}
+        <text x="12" y="18" fill="#facc15" fontSize="12" fontWeight="900">N = N0(1/2)^(t/T1/2)</text>
+        <text x="188" y="54" fill="#67e8f9" fontSize="12" fontWeight="900">activity falls with N</text>
+      </g>
+      <text x="82" y="282" fill="#94a3b8" fontSize="13">Random decay model: half-life predicts population behavior, not which nucleus decays next.</text>
+    </g>
+  );
+}
+
+function DeBroglieScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const momentum = clamp(a || b || 5, 0.2, 50);
+  const wavelength = clamp(12.3 / Math.sqrt(Math.max(0.1, c || momentum)), 0.08, 8);
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">matter wave: electron beam wavelength</text>
+      <rect x="86" y="126" width="78" height="48" rx="12" fill="#334155" stroke="#67e8f9" /><text x="104" y="155" fill="#67e8f9" fontSize="13" fontWeight="900">source</text>
+      <line x1="170" y1="150" x2="606" y2="150" stroke="#64748b" strokeWidth="3" />
+      <line className="lab-anim-dash-fast" x1="170" y1="150" x2="606" y2="150" stroke="#22d3ee" strokeWidth="5" markerEnd="url(#arrow-modern)" />
+      <path className="lab-anim-dash" d={`M 180 150 ${Array.from({ length: 80 }, (_, index) => {
+        const x = 180 + index * 5;
+        const y = 150 + Math.sin(index / clamp(wavelength, 0.8, 8) * 1.2) * 26;
+        return `L ${x} ${y}`;
+      }).join(" ")}`} fill="none" stroke="#facc15" strokeWidth="3" />
+      <rect x="622" y="72" width="28" height="156" rx="8" fill="#e2e8f0" opacity="0.8" />
+      {[-2, -1, 0, 1, 2].map((n) => <rect key={n} x="656" y={146 + n * 22} width={n === 0 ? 58 : 34} height="8" rx="4" fill={n === 0 ? "#facc15" : "#22d3ee"} opacity={n === 0 ? 1 : 0.55} />)}
+      <line x1="250" y1="226" x2={250 + clamp(80 / wavelength, 20, 120)} y2="226" stroke="#34d399" strokeWidth="5" />
+      <text x="244" y="216" fill="#34d399" fontSize="12" fontWeight="900">wavelength ruler</text>
+      <text x="312" y="92" fill="#67e8f9" fontSize="13" fontWeight="900">momentum p = {momentum.toFixed(2)}</text>
+      <text x="312" y="116" fill="#facc15" fontSize="13" fontWeight="900">lambda = h / p approx {wavelength.toFixed(2)}</text>
+      <text x="82" y="282" fill="#94a3b8" fontSize="13">Non-relativistic matter-wave representation; wave scale is schematic, not a visible classical wave.</text>
+    </g>
+  );
+}
+
+function BohrTransitionScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const n1 = Math.max(1, Math.round(clamp(a || 3, 1, 5)));
+  const n2 = Math.max(1, Math.round(clamp(b || 2, 1, 5)));
+  const emission = n2 < n1;
+  const levels = [1, 2, 3, 4, 5];
+  const energyDiff = Math.abs(13.6 * (1 / (n2 * n2) - 1 / (n1 * n1)));
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">Bohr transition and spectral line</text>
+      <circle cx="210" cy="150" r="18" fill="#f43f5e" />
+      {levels.map((n) => <circle key={n} cx="210" cy="150" r={28 + n * 22} fill="none" stroke={n === n1 ? "#facc15" : n === n2 ? "#22d3ee" : "#475569"} strokeWidth={n === n1 || n === n2 ? 4 : 2} />)}
+      <path d={`M ${210 + 28 + n1 * 22} 150 Q 282 80 ${210 + 28 + n2 * 22} 150`} fill="none" stroke={emission ? "#facc15" : "#22d3ee"} strokeWidth="4" markerEnd="url(#arrow-modern)" />
+      <text x="92" y="264" fill="#94a3b8" fontSize="13">{emission ? "emission" : "absorption"}: electron moves n={n1} to n={n2}; DeltaE = hf = {energyDiff.toFixed(2)} eV</text>
+      <g transform="translate(430 70)">
+        {levels.map((n, index) => <g key={n}><line x1="0" y1={140 - index * 26} x2="170" y2={140 - index * 26} stroke={n === n1 ? "#facc15" : n === n2 ? "#22d3ee" : "#64748b"} strokeWidth="4" /><text x="184" y={144 - index * 26} fill="#94a3b8" fontSize="11">n={n}</text></g>)}
+        <line x1="72" y1={140 - (n1 - 1) * 26} x2="72" y2={140 - (n2 - 1) * 26} stroke={emission ? "#facc15" : "#22d3ee"} strokeWidth="5" markerEnd="url(#arrow-modern)" />
+        <rect x="0" y="168" width="210" height="16" rx="8" fill="#1e293b" />
+        <rect x={clamp(c * 16, 0, 170)} y="168" width="32" height="16" rx="8" fill={emission ? "#facc15" : "#22d3ee"} />
+        <text x="0" y="204" fill="#e2e8f0" fontSize="12" fontWeight="900">spectral line</text>
+      </g>
+      <text x="82" y="282" fill="#94a3b8" fontSize="13">Hydrogen-only Bohr model; simplified atomic picture for level transitions.</text>
     </g>
   );
 }
@@ -1202,6 +2324,79 @@ function RelativityScene({ a, b, c }: { a: number; b: number; c: number }) {
       </g>
       <text x="82" y="42" fill="#e2e8f0" fontSize="16" fontWeight="900">relativity bridge: beta {beta.toFixed(2)}c, gamma {gamma.toFixed(2)}</text>
       <text x="82" y="275" fill="#94a3b8" fontSize="13">Length contracts along motion while measured time grows with the Lorentz factor.</text>
+    </g>
+  );
+}
+
+function MeasurementWorkflowScene({ id, a, b, c }: { id: string; a: number; b: number; c: number }) {
+  if (id === "computational-physics-workflow") return <ComputationalWorkflowScene a={a} b={b} c={c} />;
+  return <MeasurementErrorsScene a={a} b={b} c={c} />;
+}
+
+function MeasurementErrorsScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const reading = clamp(a || 5.26, 0, 10);
+  const leastCount = clamp(b || 0.01, 0.001, 0.5);
+  const trueValue = clamp(c || reading * 0.98, 0, 10);
+  const error = Math.abs(reading - trueValue);
+  const percent = trueValue > 0 ? (error / trueValue) * 100 : 0;
+  const repeats = [reading - leastCount * 2, reading - leastCount, reading, reading + leastCount, reading + leastCount * 2];
+  const mean = repeats.reduce((sum, value) => sum + value, 0) / repeats.length;
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">measurement, uncertainty, and significant figures</text>
+      <rect x="82" y="96" width="420" height="58" rx="10" fill="#1e293b" stroke="#94a3b8" />
+      {Array.from({ length: 21 }, (_, index) => <g key={index}><line x1={100 + index * 18} y1="96" x2={100 + index * 18} y2={index % 5 === 0 ? 132 : 116} stroke="#cbd5e1" /><text x={94 + index * 18} y="148" fill="#94a3b8" fontSize="9">{index % 5 === 0 ? index / 2 : ""}</text></g>)}
+      <rect x="120" y="66" width={clamp(reading * 36, 40, 360)} height="26" rx="8" fill="#67e8f9" opacity="0.72" />
+      <line x1={100 + reading * 36} y1="72" x2={100 + reading * 36} y2="168" stroke="#facc15" strokeWidth="4" />
+      <text x={108 + reading * 36} y="78" fill="#facc15" fontSize="12" fontWeight="900">reading {reading.toFixed(3)}</text>
+      <line x1={100 + (mean - error) * 36} y1="186" x2={100 + (mean + error) * 36} y2="186" stroke="#f43f5e" strokeWidth="6" />
+      <text x="96" y="210" fill="#f43f5e" fontSize="12" fontWeight="900">uncertainty / error bar</text>
+      <g transform="translate(540 70)">
+        <rect width="160" height="176" rx="12" fill="rgba(15,23,42,.78)" stroke="#334155" />
+        <text x="14" y="24" fill="#67e8f9" fontSize="12" fontWeight="900">repeated readings</text>
+        {repeats.map((value, index) => <text key={index} x="18" y={48 + index * 18} fill={index === 2 ? "#facc15" : "#e2e8f0"} fontSize="12">{index + 1}. {value.toFixed(3)}</text>)}
+        <text x="18" y="146" fill="#34d399" fontSize="12" fontWeight="900">mean {mean.toFixed(3)}</text>
+        <text x="18" y="166" fill="#f43f5e" fontSize="12" fontWeight="900">% error {percent.toFixed(2)}%</text>
+      </g>
+      <text x="82" y="258" fill="#94a3b8" fontSize="13">Least count {leastCount.toFixed(3)}; absolute error |x - true| = {error.toFixed(3)}; significant figures depend on instrument precision.</text>
+      <text x="82" y="280" fill="#94a3b8" fontSize="13">Illustrative measurement model; zero error ignored.</text>
+    </g>
+  );
+}
+
+function ComputationalWorkflowScene({ a, b, c }: { a: number; b: number; c: number }) {
+  const step = clamp(a || 0.1, 0.01, 1);
+  const iterations = Math.round(clamp(b || 12, 3, 40));
+  const error = clamp(c || Math.exp(-iterations / 8) * step, 0.001, 1);
+  const steps = ["problem", "model", "discretize", "solver", "converge", "error", "result"];
+  return (
+    <g>
+      <text x="76" y="34" fill="#e2e8f0" fontSize="16" fontWeight="900">computational physics workflow</text>
+      {steps.map((stepName, index) => (
+        <g key={stepName} transform={`translate(${68 + index * 94} 72)`}>
+          <rect width="78" height="54" rx="10" fill={index < 4 ? "rgba(34,211,238,.16)" : "rgba(250,204,21,.14)"} stroke={index < 4 ? "#22d3ee" : "#facc15"} />
+          <text x="8" y="30" fill="#e2e8f0" fontSize="10" fontWeight="900">{stepName}</text>
+          {index < steps.length - 1 && <line x1="78" y1="27" x2="94" y2="27" stroke="#64748b" strokeWidth="3" markerEnd="url(#arrow-default)" />}
+        </g>
+      ))}
+      <g transform="translate(92 164)">
+        <rect width="230" height="88" rx="12" fill="rgba(15,23,42,.78)" stroke="#334155" />
+        {Array.from({ length: 8 }, (_, index) => <line key={index} x1={24 + index * 24} y1="16" x2={24 + index * 24} y2="72" stroke="#334155" />)}
+        {Array.from({ length: 4 }, (_, index) => <line key={index} x1="20" y1={20 + index * 16} x2="210" y2={20 + index * 16} stroke="#334155" />)}
+        <text x="28" y="78" fill="#67e8f9" fontSize="11" fontWeight="900">mesh / step size h = {step.toFixed(3)}</text>
+      </g>
+      <g transform="translate(374 160)">
+        <rect width="270" height="96" rx="12" fill="rgba(15,23,42,.78)" stroke="#334155" />
+        <line x1="24" y1="76" x2="238" y2="76" stroke="#64748b" /><line x1="24" y1="76" x2="24" y2="18" stroke="#64748b" />
+        <path d={Array.from({ length: 50 }, (_, index) => {
+          const x = 24 + index * 4.2;
+          const y = 76 - 54 * Math.exp(-index / clamp(iterations / 3, 2, 12));
+          return `${index === 0 ? "M" : "L"} ${x} ${y}`;
+        }).join(" ")} fill="none" stroke="#34d399" strokeWidth="4" />
+        <text x="34" y="18" fill="#86efac" fontSize="12" fontWeight="900">convergence graph</text>
+        <text x="34" y="92" fill="#94a3b8" fontSize="11">iteration {iterations}, error {error.toFixed(4)}</text>
+      </g>
+      <text x="82" y="282" fill="#94a3b8" fontSize="13">Numerical method demonstration: smaller steps can improve accuracy but increase computation; convergence is method-dependent.</text>
     </g>
   );
 }
