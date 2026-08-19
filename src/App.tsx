@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { Component, ReactNode, useEffect, useRef, useState } from "react";
+import { Component, lazy, ReactNode, Suspense, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HomePage } from "./pages/HomePage";
 import { WorkspacePage } from "./pages/WorkspacePage";
@@ -47,6 +47,13 @@ import { AchievementSystem } from "./components/AchievementSystem";
 import { ParticleConstellation } from "./components/ParticleConstellation";
 import { AmbientAudio } from "./components/AmbientAudio";
 import { AppFooter } from "./components/AppFooter";
+import { ProLabProgramPage } from "./pages/ProLabProgramPage";
+import { ProLabPage } from "./pages/ProLabPage";
+import { ClientDemosPage } from "./pages/ClientDemosPage";
+import { AppDirectoryPage } from "./pages/AppDirectoryPage";
+import { ConceptExperiencesPage } from "./pages/ConceptExperiencesPage";
+
+const RocketPartsPage = lazy(() => import("./pages/RocketPartsPage").then((module) => ({ default: module.RocketPartsPage })));
 
 const topics = [
   "mechanics",
@@ -137,7 +144,15 @@ export default function App() {
           <div key={location.pathname} className="route-fade">
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/client-demos" element={<ClientDemosPage />} />
+              <Route path="/all-modules" element={<AppDirectoryPage />} />
+              <Route path="/concept-studio" element={<ConceptExperiencesPage />} />
+              <Route path="/concept-studio/:conceptId" element={<ConceptExperiencesPage />} />
               <Route path="/lab" element={<WorkspacePage mode="guided" />} />
+              <Route path="/pro-lab" element={<ProLabProgramPage />} />
+              <Route path="/pro-lab/launch-vehicle" element={<ProLabPage />} />
+              <Route path="/rocket-lab/parts" element={<Suspense fallback={<div className="min-h-screen bg-space-950 p-10 text-space-100">Loading Rocket Parts engineering reference…</div>}><RocketPartsPage /></Suspense>} />
+              <Route path="/rocket-lab/parts/:partId" element={<Suspense fallback={<div className="min-h-screen bg-space-950 p-10 text-space-100">Loading component workspace…</div>}><RocketPartsPage /></Suspense>} />
               <Route path="/sandbox" element={<WorkspacePage mode="sandbox" />} />
               <Route path="/experiments" element={<ExperimentsPage />} />
               <Route path="/experiments/:id" element={<RouteErrorBoundary><ExperimentDetailPage /></RouteErrorBoundary>} />

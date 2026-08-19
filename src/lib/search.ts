@@ -20,6 +20,8 @@ import { objectRegistry } from "./objectRegistry";
 import { quizQuestions } from "./quiz";
 import { allSolverQuestions } from "./solver";
 import { allPhysicsModules, physicsModuleGroups } from "./physicsModules";
+import { clientDemos } from "./clientDemos";
+import { conceptExperiences } from "./conceptExperiences";
 
 export type SearchResultType = "experiment" | "topic" | "solver" | "quiz" | "formula" | "dictionary" | "object" | "action";
 
@@ -111,6 +113,13 @@ const index: SearchRecord[] = [
   ...[
     { id: "action-sandbox", title: "Open sandbox", subtitle: "Action · Simulation workspace", path: "/sandbox", icon: "spark" as const, tags: ["sandbox", "lab", "simulation", "free workspace"] },
     { id: "action-guided-lab", title: "Open guided lab", subtitle: "Action · Lab workspace", path: "/lab", icon: "compass" as const, tags: ["guided", "lab", "workspace"] },
+    { id: "action-client-demos", title: "Open Top 15 Client Demos", subtitle: "Action · Presentation showcase", path: "/client-demos", icon: "play" as const, tags: ["client", "presentation", "showcase", "top demos", "sales", "best features"] },
+    { id: "action-all-modules", title: "Open All Modules & Concepts", subtitle: "Action · Complete searchable app directory", path: "/all-modules", icon: "menu" as const, tags: ["everything", "all modules", "all concepts", "all experiments", "complete menu", "easy navigation", "directory"] },
+    { id: "action-concept-studio", title: "Open Live Concept Studio", subtitle: "Action · 16 animated physics concepts", path: "/concept-studio", icon: "play" as const, tags: ["animated concepts", "real-time examples", "applications", "interactive physics", ...conceptExperiences.map((item)=>item.title)] },
+    ...conceptExperiences.map((item)=>({id:`action-live-${item.id}`,title:`Live ${item.title}`,subtitle:`Interactive concept · ${item.domain}`,path:`/concept-studio/${item.id}`,icon:item.icon,tags:[item.summary,item.principle,item.formula,...item.examples.map((example)=>example.title),...item.applications.map((application)=>application.title)]})),
+    { id: "action-pro-lab", title: "Open Pro Lab Mission Program", subtitle: "Action · Advanced scientific operations", path: "/pro-lab", icon: "rocket" as const, tags: ["pro lab", "rocket", "mission control", "launch", "scientists", "professional"] },
+    { id: "action-rocket-build", title: "Build and Launch a Rocket", subtitle: "Action · Rocket Building Lab", path: "/pro-lab/launch-vehicle", icon: "rocket" as const, tags: ["build rocket", "launch rocket", "fuel", "avionics", "go no-go", "ascent"] },
+    { id: "action-rocket-parts", title: "Explore Rocket Parts & Systems", subtitle: "Action · 225-component engineering library", path: "/rocket-lab/parts", icon: "settings" as const, tags: ["rocket parts", "engine", "turbopump", "IMU", "avionics", "GNC", "payload", "225 components"] },
     { id: "action-experiments", title: "Browse experiments", subtitle: "Action - Experiment library", path: "/experiments", icon: "flask" as const, tags: ["experiments", "library", "demos", "practicals"] },
     { id: "action-modules", title: "Open all physics modules", subtitle: "Action - Searchable physics module directory", path: "/modules", icon: "menu" as const, tags: ["modules", "physics", "submenu", "directory", "all physics", "search"] },
     { id: "action-formulas", title: "Open formula bank", subtitle: "Action - Formula reference", path: "/formulas", icon: "book" as const, tags: ["formula", "equation", "reference", "physics formulas"] },
@@ -140,6 +149,7 @@ const index: SearchRecord[] = [
     { id: "action-projects", title: "Open projects", subtitle: "Action · Saved work", path: "/projects", icon: "folder" as const, tags: ["projects", "saved", "portfolio"] },
     { id: "action-settings", title: "Open settings", subtitle: "Action · Preferences", path: "/settings", icon: "settings" as const, tags: ["settings", "theme", "accessibility"] },
     { id: "action-help", title: "Open help", subtitle: "Action · Guidance", path: "/help", icon: "book" as const, tags: ["help", "support", "guide", "shortcuts"] },
+    ...clientDemos.map((demo) => ({ id: `action-demo-${demo.rank}`, title: `${demo.rank}. ${demo.title}`, subtitle: `Client Demo · ${demo.category} · ${demo.duration}`, path: demo.path, icon: demo.icon, tags: ["client demo", "presentation", demo.category, demo.pitch, ...demo.show] })),
   ].map((action) => ({
     ...action,
     type: "action" as const,

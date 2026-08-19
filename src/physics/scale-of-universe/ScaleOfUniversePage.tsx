@@ -13,7 +13,7 @@ export function ScaleOfUniversePage() {
   }, []);
 
   return (
-    <div className="scale-universe-page min-h-screen">
+    <div className="scale-universe-page min-h-screen" data-ui-theme="dark">
       <Toolbar />
       <main id="content" className="scale-universe-shell" aria-label="Scale of Universe Explorer page">
         <div ref={hostRef} className="scale-universe-root" />

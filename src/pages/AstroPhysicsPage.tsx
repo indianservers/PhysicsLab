@@ -77,7 +77,7 @@ export function AstroPhysicsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-slate-950 text-slate-100" data-ui-theme="dark">
       <Toolbar />
       <main id="content" className="mx-auto grid w-full max-w-[1680px] gap-4 px-3 py-4 sm:px-5 lg:grid-cols-[280px_minmax(0,1fr)_340px]">
         <aside className="rounded-md border border-cyan-300/20 bg-slate-900/90 p-3 shadow-2xl shadow-cyan-950/20 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">

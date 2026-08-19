@@ -10,6 +10,8 @@ import { GlobalSearch } from "./GlobalSearch";
 import { particlePhysicsConcepts } from "../lib/particlePhysics";
 import { TrustStatusBadge } from "./TrustStatusBadge";
 import { physicsModuleGroups } from "../lib/physicsModules";
+import { clientDemos } from "../lib/clientDemos";
+import { AppDirectory } from "./AppDirectory";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -26,22 +28,31 @@ type NavItem = {
 
 const primaryNavItems: NavItem[] = [
   { label: "Home", path: "/", icon: "atom" },
-  { label: "Modules", path: "/modules", icon: "menu", accent: "quantum" },
-  { label: "Experiments", path: "/experiments", icon: "flask" },
-  { label: "Solver", path: "/solver", icon: "calculator" },
-  { label: "Formulas", path: "/formulas", icon: "book", accent: "warning" },
-  { label: "Dictionary", path: "/dictionary", icon: "clipboard" },
-  { label: "Quiz", path: "/quiz", icon: "check" },
-  { label: "Syllabus", path: "/syllabus", icon: "book" },
-  { label: "Concepts", path: "/concepts", icon: "spark" },
-  { label: "Lab", path: "/lab", icon: "compass" },
-  { label: "Teacher", path: "/teacher", icon: "teacher" },
+  { label: "All Modules & Concepts", path: "/all-modules", icon: "menu", accent: "quantum", keywords: ["everything", "complete directory", "all concepts", "all experiments", "easy navigation"], children: physicsModuleGroups.map((group) => ({ label: group.title, path: `/all-modules?group=${group.id}`, icon: group.icon, accent: group.accent, keywords: [group.summary], children: group.modules.map((module) => ({ label: module.title, path: module.path, icon: module.icon, accent: module.accent, keywords: [module.description, ...module.keywords] })) })) },
+  { label: "Live Concept Studio", path: "/concept-studio", icon: "play", accent: "quantum", keywords: ["real animation", "realtime examples", "applications", "interactive concepts"] },
+  { label: "Client Demo Showcase", path: "/client-demos", icon: "play", accent: "warning", keywords: ["presentation", "top demos", "sales", "clients", "showcase"], children: clientDemos.map((demo) => ({ label: `${String(demo.rank).padStart(2, "0")} · ${demo.title}`, path: demo.path, icon: demo.icon, accent: demo.rank <= 3 ? "warning" as const : "science" as const, keywords: [demo.category, demo.pitch, ...demo.show] })) },
+  { label: "Pro Lab", path: "/pro-lab", icon: "rocket", accent: "warning", keywords: ["build rocket", "launch vehicle", "propellant", "mission"], children: [
+    { label: "Mission Dashboard", path: "/pro-lab", icon: "gauge", accent: "warning" },
+    { label: "Build Lab", path: "/pro-lab/launch-vehicle#integration", icon: "settings", accent: "warning" },
+    { label: "Rocket Parts", path: "/rocket-lab/parts", icon: "settings", accent: "science", keywords: ["components", "systems", "engine", "avionics", "GNC"] },
+    { label: "Mission Planner", path: "/pro-lab/launch-vehicle#mission", icon: "clipboard", accent: "science" },
+    { label: "Launch & Ascent", path: "/pro-lab/launch-vehicle#launch", icon: "rocket", accent: "warning" },
+    { label: "Data Analysis", path: "/pro-lab/launch-vehicle#outcomes", icon: "chart", accent: "science" },
+  ] },
+  { label: "Laboratories", path: "/experiments", icon: "flask", children: [
+    { label: "All Experiments", path: "/experiments", icon: "flask" }, { label: "Guided Lab", path: "/lab", icon: "compass" },
+    { label: "Open Sandbox", path: "/sandbox", icon: "spark" }, { label: "Video Analysis", path: "/video", icon: "eye" },
+    { label: "Quantum Lab", path: "/quantum", icon: "atom", accent: "quantum" }, { label: "Graph Studio", path: "/graphs", icon: "chart" },
+  ] },
+  { label: "Learning Library", path: "/modules", icon: "book", children: [
+    { label: "All Modules", path: "/modules", icon: "menu", accent: "quantum" }, { label: "Syllabus", path: "/syllabus", icon: "book" },
+    { label: "Concepts", path: "/concepts", icon: "spark" }, { label: "Formula Bank", path: "/formulas", icon: "book", accent: "warning" },
+    { label: "Formula Revision Grid", path: "/formulas/revision-grid", icon: "calculator", accent: "warning" }, { label: "Physics Dictionary", path: "/dictionary", icon: "clipboard" },
+    { label: "Solver Bank", path: "/solver", icon: "calculator" }, { label: "Quiz", path: "/quiz", icon: "check" }, { label: "Mastery Roadmap", path: "/roadmap", icon: "compass" },
+  ] },
 ];
 
 const studyNavItems: NavItem[] = [
-  { label: "Scale of Universe", path: "/physics/scale-of-universe", icon: "ruler", accent: "quantum", keywords: ["powers of ten", "scale", "objects", "galaxies", "particles"] },
-  { label: "Roadmap", path: "/roadmap", icon: "compass" },
-  { label: "All Topics", path: "/topics", icon: "book" },
   {
     label: "Physics Modules",
     path: "/modules",
@@ -63,11 +74,12 @@ const studyNavItems: NavItem[] = [
     })),
   },
   {
-    label: "Visual Modules",
-    path: "/atmosphere",
+    label: "Immersive Science",
+    path: "/physics/scale-of-universe",
     icon: "spark",
     accent: "quantum",
     children: [
+      { label: "Scale of Universe", path: "/physics/scale-of-universe", icon: "ruler", accent: "quantum", keywords: ["powers of ten", "scale", "galaxies", "particles"] },
       { label: "Inventions", path: "/physics-innovations", icon: "spark", accent: "warning" },
       { label: "String Theory", path: "/string-theory", icon: "wave", accent: "quantum" },
       { label: "Atmosphere", path: "/atmosphere", icon: "orbit", accent: "quantum" },
@@ -81,28 +93,32 @@ const studyNavItems: NavItem[] = [
       })),
     ],
   },
-  { label: "Learning Studio", path: "/learning-studio", icon: "teacher", accent: "science" },
-  { label: "Graphs", path: "/graphs", icon: "chart" },
-  { label: "Trust", path: "/trust", icon: "check", accent: "warning" },
-  { label: "Quantum", path: "/quantum", icon: "atom", accent: "quantum" },
-  { label: "Knowledge Graph", path: "/graph", icon: "orbit" },
-  { label: "Compare", path: "/comparison", icon: "chart" },
+  { label: "Curriculum Topics", path: "/topics", icon: "book", children: [
+    ["Mechanics","mechanics"],["Waves","waves"],["Optics","optics"],["Electricity","electricity"],["Magnetism","magnetism"],["Thermodynamics","thermodynamics"],["Modern Physics","modern-physics"],["Fluid Mechanics","fluid-mechanics"],["Oscillations","oscillations"],["Astronomy","astronomy"],["Astrophysics","astrophysics"],["Measurement","measurement"],["Electronics","electronics"],["Energy","energy"],
+  ].map(([label, slug]) => ({ label, path: `/topics/${slug}`, icon: "book" as const })) },
+  { label: "Knowledge & Planning", path: "/graph", icon: "orbit", children: [
+    { label: "Knowledge Graph", path: "/graph", icon: "orbit" }, { label: "Learning Studio", path: "/learning-studio", icon: "teacher" },
+    { label: "Mastery Roadmap", path: "/roadmap", icon: "compass" }, { label: "Tool Comparison", path: "/comparison", icon: "chart" },
+  ] },
 ];
 
 const toolNavItems: NavItem[] = [
-  { label: "Sandbox", path: "/sandbox", icon: "spark" },
-  { label: "Video Analysis", path: "/video", icon: "eye" },
-  { label: "Quantum Lab", path: "/quantum", icon: "atom", accent: "quantum" },
-  { label: "Quality Audit", path: "/quality-audit", icon: "chart", accent: "warning" },
-  { label: "Accuracy Center", path: "/accuracy-center", icon: "check", accent: "science" },
-  { label: "Sim Depth", path: "/simulation-depth", icon: "eye", accent: "science" },
-  { label: "Deploy", path: "/classroom-deployment", icon: "teacher", accent: "warning" },
-  { label: "Access", path: "/accessibility-center", icon: "settings", accent: "science" },
-  { label: "Insights", path: "/insights-center", icon: "chart", accent: "warning" },
-  { label: "Release", path: "/release-governance", icon: "check", accent: "science" },
-  { label: "Excellence", path: "/excellence-benchmark", icon: "gauge", accent: "warning" },
-  { label: "Projects", path: "/projects", icon: "folder" },
-  { label: "Backup", path: "/backup", icon: "download" },
+  { label: "Teacher & Classroom", path: "/teacher", icon: "teacher", children: [
+    { label: "Teacher Workspace", path: "/teacher", icon: "teacher" }, { label: "Classroom Deployment", path: "/classroom-deployment", icon: "upload", accent: "warning" },
+    { label: "Insights Center", path: "/insights-center", icon: "chart", accent: "warning" }, { label: "LMS Configuration", path: "/lms-config", icon: "settings" },
+  ] },
+  { label: "Quality & Scientific Trust", path: "/quality-audit", icon: "check", accent: "warning", children: [
+    { label: "Quality Audit", path: "/quality-audit", icon: "chart", accent: "warning" }, { label: "Accuracy Center", path: "/accuracy-center", icon: "check" },
+    { label: "Simulation Depth", path: "/simulation-depth", icon: "eye" }, { label: "Accessibility Center", path: "/accessibility-center", icon: "settings" },
+    { label: "Release Governance", path: "/release-governance", icon: "check" }, { label: "Excellence Benchmark", path: "/excellence-benchmark", icon: "gauge", accent: "warning" },
+    { label: "Scientific Trust", path: "/trust", icon: "check", accent: "warning" },
+  ] },
+  { label: "Workspace & Files", path: "/projects", icon: "folder", children: [
+    { label: "Projects", path: "/projects", icon: "folder" }, { label: "Backup & Restore", path: "/backup", icon: "download" }, { label: "Settings", path: "/settings", icon: "settings" },
+  ] },
+  { label: "Help & Legal", path: "/help", icon: "book", children: [
+    { label: "Help Center", path: "/help", icon: "book" }, { label: "Privacy", path: "/privacy", icon: "clipboard" }, { label: "Terms", path: "/terms", icon: "clipboard" },
+  ] },
 ];
 
 const railNavGroups = [
@@ -121,7 +137,9 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [navFilter, setNavFilter] = useState("");
+  const [directoryOpen, setDirectoryOpen] = useState(false);
   const { objects, gravity, timeScale, airResistance, showGrid, showVectors, theme, setTheme, toProject, loadProject } = useLabStore();
+  const visibleNavGroups = filterNavGroups(railNavGroups, navFilter);
 
   const save = async () => {
     await saveProject(toProject("PhysicsLab 100 Project"));
@@ -171,6 +189,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
     };
     window.addEventListener("beforeinstallprompt", onInstall);
     const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && directoryOpen) { event.preventDefault(); setDirectoryOpen(false); return; }
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         setSearchOpen(true);
@@ -205,6 +224,13 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
     };
   });
 
+  useEffect(() => {
+    if (!directoryOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [directoryOpen]);
+
   const navClass = (path: string) => {
     const exactHome = path === "/" && location.pathname === "/";
     const active = exactHome || (path !== "/" && (location.pathname === path || location.pathname.startsWith(`${path}/`)));
@@ -218,6 +244,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
           <span className="brand-atom-icon"><PhysicsIcon name="atom" className="h-5 w-5" /></span>
           <span className="brand-wordmark">PhysicsLab 100</span>
         </RouterLink>
+        {!compact && <button className="all-modules-trigger" onClick={() => setDirectoryOpen(true)}><PhysicsIcon name="menu" className="h-4 w-4" /><span>All Modules</span><b>{physicsModuleGroups.reduce((count, group) => count + group.modules.length, 0)}</b></button>}
         {!compact && (
           <button className="command-trigger" title="Open command palette" data-tooltip="Open command palette" onClick={() => setSearchOpen(true)}>
             <PhysicsIcon name="search" className="h-4 w-4" />
@@ -265,9 +292,9 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
         <aside className="app-nav-rail" aria-label="Primary navigation">
           <label className="rail-search-box">
             <PhysicsIcon name="search" className="h-4 w-4" />
-            <input value={navFilter} onChange={(event) => setNavFilter(event.target.value)} placeholder="Search menu" />
+            <input value={navFilter} onChange={(event) => setNavFilter(event.target.value)} placeholder="Search every menu…" aria-label="Search all menus and submenus" />
           </label>
-          {filterNavGroups(railNavGroups, navFilter).map((group) => (
+          {visibleNavGroups.map((group) => (
             <div key={group.label} className="rail-nav-group">
               <span className="rail-nav-label">{group.label}</span>
               {group.items.map((item) => (
@@ -275,12 +302,14 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
               ))}
             </div>
           ))}
+          {visibleNavGroups.length === 0 && <div className="rail-nav-empty"><b>No menu matches</b><button onClick={() => setNavFilter("")}>Clear search</button></div>}
         </aside>
       )}
       <input ref={inputRef} className="hidden" type="file" accept="application/json" onChange={(event) => event.target.files?.[0] && importJson(event.target.files[0])} />
       {toast && <div className="fixed right-4 top-20 z-50 rounded bg-science-500 px-3 py-2 text-sm font-semibold text-space-900 shadow-glow">{toast}</div>}
       {showShortcuts && <ShortcutOverlay onClose={() => setShowShortcuts(false)} />}
       <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
+      {directoryOpen && <div className="app-directory-overlay" role="dialog" aria-modal="true" aria-label="All modules and concepts"><div className="app-directory-modal"><header><div><span>PHYSICSLAB 100</span><h2>Everything in this app</h2></div><RouterLink to="/all-modules" onClick={() => setDirectoryOpen(false)}>Open full directory</RouterLink><button onClick={() => setDirectoryOpen(false)} aria-label="Close complete directory">×</button></header><AppDirectory compact onNavigate={() => setDirectoryOpen(false)} /></div></div>}
     </>
   );
 }
@@ -323,8 +352,8 @@ function filterNavGroups(groups: { label: string; items: NavItem[] }[], query: s
 
 function filterNavItems(items: NavItem[], search: string): NavItem[] {
   return items.reduce<NavItem[]>((filtered, item) => {
-    const children = item.children ? filterNavItems(item.children, search) : undefined;
     const ownMatch = [item.label, item.path, ...(item.keywords ?? [])].join(" ").toLowerCase().includes(search);
+    const children = ownMatch ? item.children : item.children ? filterNavItems(item.children, search) : undefined;
     if (ownMatch || children?.length) filtered.push({ ...item, children });
     return filtered;
   }, []);

@@ -36,6 +36,8 @@ function timeAgo(ts: number): string {
 }
 
 const QUICK_ACTIONS = [
+  { label: "Top 15 Client Demos", icon: "play" as const, path: "/client-demos", hint: "15" },
+  { label: "Rocket Parts", icon: "rocket" as const, path: "/rocket-lab/parts", hint: "225" },
   { label: "Open Sandbox", icon: "flask" as const, path: "/sandbox", hint: "S" },
   { label: "Quiz Challenge", icon: "check" as const, path: "/quiz", hint: "Q" },
   { label: "Graph Studio", icon: "chart" as const, path: "/graphs", hint: "G" },

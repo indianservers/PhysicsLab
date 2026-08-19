@@ -13881,73 +13881,73 @@ html:not(.dark) body {
 
 html:not(.dark) .app-toolbar,
 html:not(.dark) .app-nav-rail,
-html:not(.dark) .panel,
-html:not(.dark) .page-hero,
-html:not(.dark) .desktop-tabs,
-html:not(.dark) .filter-bar,
-html:not(.dark) .experiment-tab-shell,
-html:not(.dark) .guide-panel,
-html:not(.dark) .lab-disclosure,
-html:not(.dark) .phase4-panel,
-html:not(.dark) .watch-cue-card,
-html:not(.dark) .animation-timeline-shell,
-html:not(.dark) .experiment-library-card,
-html:not(.dark) .formula-category-section,
-html:not(.dark) .formula-card,
-html:not(.dark) .class-progress-panel,
-html:not(.dark) .topic-lens-panel {
+html:not(.dark) .panel:not([data-ui-theme="dark"] *),
+html:not(.dark) .page-hero:not([data-ui-theme="dark"] *),
+html:not(.dark) .desktop-tabs:not([data-ui-theme="dark"] *),
+html:not(.dark) .filter-bar:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-tab-shell:not([data-ui-theme="dark"] *),
+html:not(.dark) .guide-panel:not([data-ui-theme="dark"] *),
+html:not(.dark) .lab-disclosure:not([data-ui-theme="dark"] *),
+html:not(.dark) .phase4-panel:not([data-ui-theme="dark"] *),
+html:not(.dark) .watch-cue-card:not([data-ui-theme="dark"] *),
+html:not(.dark) .animation-timeline-shell:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-library-card:not([data-ui-theme="dark"] *),
+html:not(.dark) .formula-category-section:not([data-ui-theme="dark"] *),
+html:not(.dark) .formula-card:not([data-ui-theme="dark"] *),
+html:not(.dark) .class-progress-panel:not([data-ui-theme="dark"] *),
+html:not(.dark) .topic-lens-panel:not([data-ui-theme="dark"] *) {
   background: var(--surface-panel-strong) !important;
   border-color: var(--line-soft) !important;
   color: var(--text-primary) !important;
 }
 
-html:not(.dark) .text-gradient,
-html:not(.dark) .experiment-card-title,
-html:not(.dark) .formula-card h4,
-html:not(.dark) h1,
-html:not(.dark) h2,
-html:not(.dark) h3,
-html:not(.dark) h4,
-html:not(.dark) .panel-title,
-html:not(.dark) .desktop-stage-header h2,
-html:not(.dark) .phase4-panel-head h2,
-html:not(.dark) .watch-cue-card h3 {
+html:not(.dark) .text-gradient:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-card-title:not([data-ui-theme="dark"] *),
+html:not(.dark) .formula-card h4:not([data-ui-theme="dark"] *),
+html:not(.dark) h1:not([data-ui-theme="dark"] *),
+html:not(.dark) h2:not([data-ui-theme="dark"] *),
+html:not(.dark) h3:not([data-ui-theme="dark"] *),
+html:not(.dark) h4:not([data-ui-theme="dark"] *),
+html:not(.dark) .panel-title:not([data-ui-theme="dark"] *),
+html:not(.dark) .desktop-stage-header h2:not([data-ui-theme="dark"] *),
+html:not(.dark) .phase4-panel-head h2:not([data-ui-theme="dark"] *),
+html:not(.dark) .watch-cue-card h3:not([data-ui-theme="dark"] *) {
   color: #0f172a !important;
   -webkit-text-fill-color: #0f172a !important;
   text-shadow: none !important;
 }
 
-html:not(.dark) p,
-html:not(.dark) li,
-html:not(.dark) .experiment-card-aim,
-html:not(.dark) .experiment-learn-box,
-html:not(.dark) .experiment-topic-list,
-html:not(.dark) .phase4-card p,
-html:not(.dark) .phase4-derivation li,
-html:not(.dark) .watch-cue-card p {
+html:not(.dark) p:not([data-ui-theme="dark"] *),
+html:not(.dark) li:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-card-aim:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-learn-box:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-topic-list:not([data-ui-theme="dark"] *),
+html:not(.dark) .phase4-card p:not([data-ui-theme="dark"] *),
+html:not(.dark) .phase4-derivation li:not([data-ui-theme="dark"] *),
+html:not(.dark) .watch-cue-card p:not([data-ui-theme="dark"] *) {
   color: #334155 !important;
 }
 
-html:not(.dark) .ui-label,
-html:not(.dark) .experiment-card-category,
-html:not(.dark) .experiment-card-level,
-html:not(.dark) .formula-expression-label {
+html:not(.dark) .ui-label:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-card-category:not([data-ui-theme="dark"] *),
+html:not(.dark) .experiment-card-level:not([data-ui-theme="dark"] *),
+html:not(.dark) .formula-expression-label:not([data-ui-theme="dark"] *) {
   color: #475569 !important;
 }
 
-html:not(.dark) .search-field,
-html:not(.dark) .select-field,
-html:not(.dark) input,
-html:not(.dark) select,
-html:not(.dark) textarea {
+html:not(.dark) .search-field:not([data-ui-theme="dark"] *),
+html:not(.dark) .select-field:not([data-ui-theme="dark"] *),
+html:not(.dark) input:not([data-ui-theme="dark"] *),
+html:not(.dark) select:not([data-ui-theme="dark"] *),
+html:not(.dark) textarea:not([data-ui-theme="dark"] *) {
   background: #ffffff !important;
   border-color: rgb(15 23 42 / 0.18) !important;
   color: #0f172a !important;
 }
 
-html:not(.dark) .search-field::placeholder,
-html:not(.dark) input::placeholder,
-html:not(.dark) textarea::placeholder {
+html:not(.dark) .search-field:not([data-ui-theme="dark"] *)::placeholder,
+html:not(.dark) input:not([data-ui-theme="dark"] *)::placeholder,
+html:not(.dark) textarea:not([data-ui-theme="dark"] *)::placeholder {
   color: #64748b !important;
 }
 

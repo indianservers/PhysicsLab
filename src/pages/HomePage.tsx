@@ -115,6 +115,15 @@ export function HomePage() {
             <h2 className="section-heading-gradient">Every tool a physicist needs</h2>
           </div>
           <div className="bento-feature-grid">
+            <Link className="bento-card bento-wide scroll-reveal" to="/pro-lab" viewTransition>
+              <div className="bento-card-icon"><PhysicsIcon name="rocket" className="h-8 w-8" /></div>
+              <div className="bento-card-content">
+                <span className="bento-card-tag">New · Mission PL-01</span>
+                <h2 className="bento-card-title">Pro Lab: Build & Launch</h2>
+                <p className="bento-card-body">Integrate a launch vehicle, load real propellants, run flight-safety checks, and fly a simulated mission to orbit.</p>
+              </div>
+              <span className="bento-card-arrow">→</span>
+            </Link>
             <Link className="bento-card bento-hero-large scroll-reveal" to="/experiments" viewTransition>
               <div className="bento-card-icon"><PhysicsIcon name="orbit" className="h-8 w-8" /></div>
               <div className="bento-card-content">

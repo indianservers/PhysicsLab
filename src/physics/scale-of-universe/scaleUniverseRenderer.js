@@ -120,6 +120,31 @@ function drawBackground(ctx, width, height, log) {
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, width, height);
 
+  const referenceAsset = {
+    Planetary: "/assets/astrophysics/cosmic-timeline.png",
+    "Solar System": "/assets/astrophysics/cosmic-timeline.png",
+    Interstellar: "/assets/astrophysics/stellar-life-cycle.png",
+    Galactic: "/assets/astrophysics/galaxy-atlas.png",
+    Cosmic: "/assets/astrophysics/black-hole-lensing.png",
+  }[band];
+  if (referenceAsset) {
+    const image = getAssetImage(referenceAsset);
+    if (image?.complete && image.naturalWidth > 0) {
+      const imageRatio = image.naturalWidth / image.naturalHeight;
+      const canvasRatio = width / height;
+      const sourceWidth = imageRatio > canvasRatio ? image.naturalHeight * canvasRatio : image.naturalWidth;
+      const sourceHeight = imageRatio > canvasRatio ? image.naturalHeight : image.naturalWidth / canvasRatio;
+      const sourceX = (image.naturalWidth - sourceWidth) / 2;
+      const sourceY = (image.naturalHeight - sourceHeight) / 2;
+      ctx.save();
+      ctx.globalAlpha = band === "Planetary" || band === "Solar System" ? 0.34 : 0.28;
+      ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, width, height);
+      ctx.fillStyle = "rgba(2, 6, 23, 0.34)";
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+    }
+  }
+
   if (log > 7) {
     ctx.fillStyle = "rgba(255,255,255,0.32)";
     for (let i = 0; i < 95; i += 1) {

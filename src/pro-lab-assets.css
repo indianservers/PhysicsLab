@@ -1,0 +1,323 @@
+.pro-cutaway-figure {
+  height: 430px;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0 0;
+}
+
+.pro-cutaway-figure img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 22px 38px rgba(0, 0, 0, 0.5));
+  animation: cutaway-reveal 0.55s ease both;
+}
+
+.pro-cutaway-figure figcaption {
+  margin-top: 9px;
+  color: var(--pro-cyan);
+  font: 700 9px monospace;
+  letter-spacing: 0.16em;
+}
+
+.launch-sky {
+  background-color: #02070c;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.45s ease;
+}
+
+.launch-sky::before { opacity: 0.08; }
+.launch-sky-pad { background-position: 62% center; }
+.launch-sky-flight,
+.launch-sky-orbit { background-position: center; }
+.launch-sky-pad .earth-limb,
+.launch-sky-pad .orbit-line { display: none; }
+.launch-sky-flight .earth-limb,
+.launch-sky-orbit .earth-limb { opacity: 0.12; }
+.launch-sky-flight .orbit-line,
+.launch-sky-orbit .orbit-line { opacity: 0.35; }
+
+.pad-live-indicator {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  background: rgba(2, 8, 13, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #d9e7ed;
+  font: 700 9px monospace;
+  letter-spacing: 0.11em;
+}
+
+.pad-live-indicator i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff4e42;
+  box-shadow: 0 0 10px #ff4e42;
+}
+
+@keyframes cutaway-reveal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .pro-cutaway-figure { height: 350px; }
+  .launch-sky-pad { background-position: 68% center; }
+}
+
+/* Pro Lab is intentionally a dark control-room surface in both app themes. */
+.pro-lab-page {
+  color: #e9f5fb !important;
+  color-scheme: dark;
+}
+
+.pro-lab-page .pro-lab-header h1,
+.pro-lab-page .pro-section-copy h2,
+.pro-lab-page .parts-rack h2,
+.pro-lab-page .load-console h2,
+.pro-lab-page .commit-board h2,
+.pro-lab-page .procedure-grid h3,
+.pro-lab-page .readiness-card h3,
+.pro-lab-page .launch-console h2,
+.pro-lab-page .parts-list strong,
+.pro-lab-page .check-list strong,
+.pro-lab-page .pro-metric strong {
+  color: #edf8fc !important;
+}
+
+.pro-lab-page .pro-lab-header > div > p,
+.pro-lab-page .pro-section-copy p,
+.pro-lab-page .microcopy,
+.pro-lab-page .procedure-grid p,
+.pro-lab-page .parts-list em,
+.pro-lab-page .parts-list small,
+.pro-lab-page .check-list small,
+.pro-lab-page .readiness-card p,
+.pro-lab-page .simulation-notice {
+  color: #afc3cd !important;
+}
+
+.pro-lab-page .pro-lab-steps button:not(:disabled) {
+  color: #b8cbd4 !important;
+}
+
+.pro-lab-page .pro-lab-steps button.active {
+  color: #f5fbfd !important;
+}
+
+.pro-lab-page .pro-lab-steps button:disabled {
+  color: #78919e !important;
+  opacity: 0.62;
+}
+
+.pro-lab-page .section-number,
+.pro-lab-page .parts-list small {
+  color: #ffad5c !important;
+}
+
+.phase-reference {
+  position: relative;
+  width: 100%;
+  min-height: 190px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 190, 207, 0.22);
+  background: #030b10;
+}
+
+.phase-reference img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.82) contrast(1.06) brightness(0.82);
+}
+
+.phase-reference::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 38%, rgba(2, 9, 14, 0.94) 100%);
+  pointer-events: none;
+}
+
+.phase-reference figcaption {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  display: grid;
+  gap: 2px;
+}
+
+.phase-reference figcaption small {
+  color: #ffad5c !important;
+  font: 800 8px monospace;
+  letter-spacing: 0.14em;
+}
+
+.phase-reference figcaption strong {
+  color: #f0f8fb !important;
+  font-size: 14px;
+}
+
+.phase-reference figcaption span {
+  color: #aec3cd;
+  font: 600 9px monospace;
+}
+
+.phase-reference > i {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 9px;
+  padding: 4px 6px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(2,9,14,.68);
+  color: #b9ced7;
+  font: 700 7px monospace;
+  font-style: normal;
+  letter-spacing: .09em;
+}
+
+.procedure-grid > .phase-reference {
+  grid-column: 1 / -1;
+  min-height: 230px;
+}
+
+.procedure-grid > .phase-reference img { min-height: 230px; }
+.phase-reference-stack { width: min(100%, 690px); display: grid; grid-template-columns: minmax(260px, 1fr) auto; align-items: center; gap: 22px; }
+.phase-reference-stack .phase-reference { min-height: 380px; }
+.phase-reference-stack .phase-reference img { min-height: 380px; }
+.phase-reference-stack .phase-reference.portrait img { object-fit: contain; background: #02080d; }
+.fuel-reference-stack { width: 100%; grid-template-columns: 1fr auto; }
+.fuel-reference-stack .phase-reference { min-height: 330px; }
+.fuel-reference-stack .phase-reference img { min-height: 330px; }
+.readiness-card .phase-reference { min-height: 230px; margin-bottom: 22px; }
+.readiness-card .phase-reference img { min-height: 230px; }
+.readiness-card .readiness-ring { width: 142px; }
+
+@media (max-width: 760px) {
+  .phase-reference-stack,
+  .fuel-reference-stack { grid-template-columns: 1fr; }
+  .phase-reference-stack .rocket-visual { display: none; }
+  .phase-reference-stack .phase-reference,
+  .phase-reference-stack .phase-reference img { min-height: 300px; }
+}
+
+.step-purpose-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px 1.15fr 1fr 1fr;
+  gap: 0;
+  margin: -10px 0 18px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 190, 207, 0.2);
+  background: linear-gradient(100deg, rgba(255, 157, 69, 0.08), rgba(6, 19, 26, 0.96) 24%);
+  animation: purpose-enter 420ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.step-purpose-panel > div {
+  min-width: 0;
+  padding: 12px 14px;
+  border-right: 1px solid rgba(143, 190, 207, 0.14);
+}
+
+.step-purpose-panel > div > small {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffad5c !important;
+  font: 800 8px monospace;
+  letter-spacing: .12em;
+}
+
+.step-purpose-panel p {
+  color: #bed0d8 !important;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.step-purpose-panel .purpose-index {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.purpose-index strong {
+  color: #f3f9fb !important;
+  font: 900 24px monospace;
+}
+
+.purpose-index i {
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin: 4px auto 0;
+  background: #ff9d45;
+  box-shadow: 0 0 10px rgba(255,157,69,.55);
+}
+
+.purpose-scan {
+  position: absolute;
+  inset: 0 auto 0 -18%;
+  width: 18%;
+  background: linear-gradient(90deg, transparent, rgba(93, 218, 255, 0.08), transparent);
+  transform: skewX(-15deg);
+  animation: purpose-scan 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.phase-stage { animation: phase-stage-enter 520ms cubic-bezier(.16,.8,.24,1) both; }
+.phase-stage .phase-reference img { animation: reference-drift 12s ease-in-out infinite alternate; }
+.parts-list button.installed { animation: hardware-lock 460ms cubic-bezier(.18,.88,.24,1.25) both; }
+.check-list button.verified { animation: verification-pass 520ms ease both; }
+.prop-control em i { animation: fluid-shimmer 1.6s linear infinite; }
+.readiness-ring.go { animation: readiness-confirm 1.4s ease-in-out infinite alternate; }
+.drop-callout::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #ff9d45; box-shadow: 0 0 9px #ff9d45; animation: ops-beacon 1s infinite; }
+
+@keyframes purpose-enter { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes purpose-scan { 0%,18% { left: -18%; } 70%,100% { left: 105%; } }
+@keyframes phase-stage-enter { from { opacity: 0; transform: translateY(14px) scale(.992); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes reference-drift { from { transform: scale(1.01); } to { transform: scale(1.055) translateX(-.7%); } }
+@keyframes hardware-lock { 0% { opacity: .35; transform: translateX(-8px); } 60% { transform: translateX(2px); } 100% { opacity: .62; transform: translateX(0); } }
+@keyframes verification-pass { 0% { box-shadow: inset 0 0 rgba(87,232,155,0); } 50% { box-shadow: inset 0 0 38px rgba(87,232,155,.18), 0 0 16px rgba(87,232,155,.1); } 100% { box-shadow: inset 3px 0 #57e89b; } }
+@keyframes fluid-shimmer { from { filter: brightness(.85); } 50% { filter: brightness(1.25); } to { filter: brightness(.85); } }
+@keyframes readiness-confirm { from { box-shadow: 0 0 28px rgba(87,232,155,.08), inset 0 0 26px rgba(87,232,155,.06); } to { box-shadow: 0 0 55px rgba(87,232,155,.2), inset 0 0 42px rgba(87,232,155,.12); } }
+@keyframes ops-beacon { 50% { opacity: .25; transform: scale(.7); } }
+
+@media (max-width: 950px) {
+  .step-purpose-panel { grid-template-columns: 62px 1fr 1fr; }
+  .step-purpose-panel > div:last-of-type { grid-column: 2 / -1; border-top: 1px solid rgba(143,190,207,.14); }
+}
+
+@media (max-width: 620px) {
+  .step-purpose-panel { grid-template-columns: 55px 1fr; }
+  .step-purpose-panel > div { grid-column: auto; }
+  .step-purpose-panel > div:nth-of-type(n+3) { grid-column: 1 / -1; border-top: 1px solid rgba(143,190,207,.14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-purpose-panel,
+  .phase-stage,
+  .phase-stage .phase-reference img,
+  .parts-list button.installed,
+  .check-list button.verified,
+  .prop-control em i,
+  .readiness-ring.go,
+  .drop-callout::before,
+  .purpose-scan { animation: none !important; }
+}
