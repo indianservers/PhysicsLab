@@ -7,10 +7,10 @@ import { ProjectFile } from "../types";
 import { classOptions, curriculumCoverageStats } from "../lib/curriculum";
 import { iconForCategory, iconForExperiment, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { useCountUp } from "../hooks/useCountUp";
-import { WebGLHero } from "../components/WebGLHero";
 import { initScrollReveal } from "../hooks/useScrollReveal";
 import { getTotalXP, getUnlocked, ACHIEVEMENTS } from "../lib/achievements";
 import { useMagnetic } from "../hooks/useMagnetic";
+import "./home-premium.css";
 
 const labs = ["Mechanics", "Waves", "Optics", "Electricity", "Magnetism", "Thermodynamics", "Fluid Mechanics", "Modern Physics", "Measurement", "Electronics", "Energy"];
 
@@ -23,6 +23,9 @@ export function HomePage() {
   const showcase = experiments.slice(0, 14);
   const totalXp = getTotalXP();
   const unlockedCount = getUnlocked().size;
+  const [heroSpeed, setHeroSpeed] = useState(7.7);
+  const heroState = heroSpeed < 7.25 ? "Sub-orbital path" : heroSpeed < 10.9 ? "Stable orbit" : "Escape trajectory";
+  const heroTone = heroSpeed < 7.25 ? "warning" : heroSpeed < 10.9 ? "stable" : "escape";
   const filteredExperiments = experiments
     .filter((experiment) => {
       const query = experimentQuery.trim().toLowerCase();
@@ -47,31 +50,68 @@ export function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen home-premium-root">
       <Toolbar />
-      <main id="content" className="home-bento-page desktop-page">
-        <section className="home-bento-hero mesh-bg" style={{ position: "relative", overflow: "hidden" }}>
-          <WebGLHero />
-          <LiveHeroPhysics />
-          <div className="home-hero-content" style={{ position: "relative", zIndex: 2 }}>
-            <p className="hero-display-tagline">Browser-only STEM Lab</p>
-            <h1 className="hero-display-title">PhysicsLab 100</h1>
-            <p className="hero-sub-text">
-              A browser-only physics lab for school to undergraduate learning: transparent model limits, guided experiments, live vectors, graphing, quizzes, and local reports.
-            </p>
-            <div className="home-hero-actions">
-              <MagneticWrapper><Link className="hero-btn" to="/sandbox" viewTransition><PhysicsIcon name="flask" className="h-4 w-4" />Start simulation</Link></MagneticWrapper>
-              <MagneticWrapper><Link className="hero-btn-secondary" to="/experiments/projectile-motion" viewTransition><PhysicsIcon name="rocket" className="h-4 w-4" />Projectile lab</Link></MagneticWrapper>
-              <MagneticWrapper><Link className="hero-btn-secondary" to="/trust" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Trust guide</Link></MagneticWrapper>
-              <MagneticWrapper><Link className="hero-btn-secondary" to="/quiz" viewTransition><PhysicsIcon name="check" className="h-4 w-4" />Quiz challenge</Link></MagneticWrapper>
+      <main id="content" className="home-bento-page home-premium-page desktop-page">
+        <section className="home-premium-hero" aria-labelledby="home-premium-title">
+          <div className="home-premium-topline">
+            <span><i /> PHYSICS LEARNING OPERATING SYSTEM</span>
+            <strong>80 LIVE LESSONS <b>•</b> 581 SCIENTIFIC CHECKS</strong>
+          </div>
+          <div className="home-premium-grid">
+            <div className="home-premium-copy">
+              <p className="home-premium-kicker">INTERACTIVE · MEASURABLE · LESSON-SPECIFIC</p>
+              <h1 id="home-premium-title">Learn physics by <em>operating it.</em></h1>
+              <p className="home-premium-lede">Predict the outcome, manipulate a real model, measure the evidence, and explain what changed. Every lesson is a working scientific studio—not a static slide.</p>
+              <div className="home-premium-chips" aria-label="Platform strengths">
+                <span>2D-first interactive labs</span><span>Class 6–Undergraduate</span><span>No sound distractions</span>
+              </div>
+              <div className="home-hero-actions">
+                <MagneticWrapper><Link className="home-premium-primary" to="/experiments/satellite-orbit" viewTransition><PhysicsIcon name="orbit" className="h-4 w-4" />Launch first lesson</Link></MagneticWrapper>
+                <MagneticWrapper><Link className="home-premium-secondary" to="/experiments" viewTransition><PhysicsIcon name="book" className="h-4 w-4" />Browse all lessons</Link></MagneticWrapper>
+              </div>
+              <div className="home-premium-proof">
+                <HomeMetric icon="teacher" label="Classes" value={stats.classes} />
+                <HomeMetric icon="book" label="Units" value={stats.units} />
+                <HomeMetric icon="compass" label="Topics" value={stats.topics} />
+                <HomeMetric icon="check" label="Validated labs" value={80} />
+              </div>
+            </div>
+
+            <div className="home-command-deck" aria-label="Interactive satellite lesson preview">
+              <header><div><span>LIVE LESSON PREVIEW</span><strong>Satellite Orbit &amp; Escape Speed</strong></div><small><i /> MODEL RUNNING</small></header>
+              <div className={`home-orbit-stage ${heroTone}`}>
+                <div className="home-stage-legend"><span><i className="sub" />Sub-orbital</span><span><i className="orbit" />Stable orbit</span><span><i className="escape" />Escape</span></div>
+                <div className="home-orbit-ring home-orbit-ring-a" />
+                <div className="home-orbit-ring home-orbit-ring-b" />
+                <img className="home-premium-earth" src="/assets/experiments/satellite-orbit/sprites/earth.png" alt="" />
+                <div className="home-satellite-track" style={{ transform: `rotate(${(heroSpeed - 4) * 28}deg)` }}>
+                  <img src="/assets/experiments/satellite-orbit/sprites/satellite.png" alt="Animated satellite" />
+                  <span className="home-velocity-vector">v</span>
+                </div>
+                <div className="home-gravity-vector">F<sub>g</sub></div>
+                <div className="home-stage-status"><i />{heroState}</div>
+              </div>
+              <div className="home-command-controls">
+                <div className="home-speed-control">
+                  <label htmlFor="home-launch-speed"><span>Launch speed <em>v₀</em></span><output>{heroSpeed.toFixed(1)} km/s</output></label>
+                  <input id="home-launch-speed" type="range" min="4" max="12" step="0.1" value={heroSpeed} onChange={(event) => setHeroSpeed(Number(event.target.value))} />
+                  <small><span>4 km/s</span><span>12 km/s</span></small>
+                </div>
+                <div className="home-orbit-readings">
+                  <span><small>ALTITUDE</small><b>700 km</b></span>
+                  <span><small>ORBITAL PERIOD</small><b>{heroSpeed < 7.25 ? "—" : "98.2 min"}</b></span>
+                  <span><small>SPECIFIC ENERGY</small><b>{heroTone === "escape" ? "+4.8" : heroTone === "stable" ? "−28.2" : "−34.7"} MJ/kg</b></span>
+                </div>
+                <div className="home-orbit-presets" aria-label="Launch speed presets">
+                  <button type="button" onClick={() => setHeroSpeed(6.2)}>Sub-orbital</button>
+                  <button type="button" className={heroTone === "stable" ? "active" : ""} onClick={() => setHeroSpeed(7.7)}>Low Earth orbit</button>
+                  <button type="button" onClick={() => setHeroSpeed(11.2)}>Escape</button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="home-hero-metrics" style={{ position: "relative", zIndex: 2 }}>
-            <HomeMetric icon="teacher" label="Classes" value={stats.classes} />
-            <HomeMetric icon="book" label="Units" value={stats.units} />
-            <HomeMetric icon="compass" label="Topics" value={stats.topics} />
-            {totalXp > 0 && <HomeMetric icon="spark" label="Your XP" value={totalXp} />}
-          </div>
+          <div className="home-premium-flow" aria-label="Learning workflow"><span><b>01</b> Predict</span><span><b>02</b> Manipulate</span><span><b>03</b> Measure</span><span><b>04</b> Explain</span></div>
         </section>
 
         <section className="home-continue-strip" aria-label="Continue saved sessions">
@@ -349,20 +389,6 @@ function HomeMiniPreview({ experiment }: { experiment: typeof experiments[number
     </span>
   );
 }
-
-function LiveHeroPhysics() {
-  return (
-    <div className="home-live-physics" aria-hidden="true">
-      <div className="home-live-orbit" />
-      <div className="home-live-wave" />
-      <div className="home-live-vector home-live-vector-a" />
-      <div className="home-live-vector home-live-vector-b" />
-      <div className="home-live-particle home-live-particle-a" />
-      <div className="home-live-particle home-live-particle-b" />
-    </div>
-  );
-}
-
 
 function HomeMetric({ icon, label, value }: { icon: PhysicsIconName; label: string; value: number }) {
   const animated = useCountUp(value);
