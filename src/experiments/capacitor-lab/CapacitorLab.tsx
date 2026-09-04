@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   computeCapacitor,
@@ -9,6 +6,7 @@ import {
   type CapacitorInput,
 } from "./capacitorPhysics";
 import "./capacitor-lab.css";
+import "./capacitor-2d.css";
 const ROOT = "/assets/experiments/capacitor-lab",
   DEFAULTS = {
     plateArea: 0.02,
@@ -28,8 +26,8 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
     [reducedMotion, setReducedMotion] = useState(
       () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
     ),
-    [resetViewSignal, setResetViewSignal] = useState(0);
-  const input = useMemo<CapacitorInput>(() => values, [values]),
+    [storedCharge, setStoredCharge] = useState(0);
+  const input = useMemo<CapacitorInput>(() => ({ ...values, storedCharge }), [values, storedCharge]),
     result = useMemo(() => computeCapacitor(input), [input]),
     missionComplete =
       values.arrangement === "parallel" &&
@@ -63,6 +61,7 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
       setValues(DEFAULTS);
       setRunState("idle");
       setProgress(0);
+      setStoredCharge(0);
     };
   const chargeFraction = values.connected ? Math.min(1, progress) : 1;
   return (
@@ -80,8 +79,8 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
           <p>Change plate geometry, charge the field, and wire a network.</p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset view
+          <button onClick={() => { update("spacing", DEFAULTS.spacing); update("plateArea", DEFAULTS.plateArea); }}>
+            ◎ Reset plates
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -94,18 +93,17 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
             progress={chargeFraction}
             running={runState === "charging" || runState === "running"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
+            onSpacing={(spacing) => update("spacing", spacing)}
+            onDielectric={(dielectric) => update("dielectric", dielectric)}
           />
           <div className="cap-connection">
             <span>
-              {values.connected
-                ? "🔌 Battery connected"
-                : "◇ Capacitor discharged"}
+              {values.connected ? "🔌 Battery connected" : "◇ Battery disconnected"}
             </span>
             <small>
               {values.connected
                   ? "V constant · Q and U respond"
-                  : "Q = 0 · U = 0"}
+                  : "Q constant · V and U respond"}
             </small>
           </div>
           <div className="cap-dimension">
@@ -200,8 +198,8 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
             >
               ▮▶ Step
             </button>
-            <button onClick={() => update("connected", !values.connected)}>
-              {values.connected ? "Discharge" : "Connect + charge"}
+            <button onClick={() => { if(values.connected){ setStoredCharge(result.charge); update("connected",false); } else { update("connected",true); } }}>
+              {values.connected ? "Disconnect (hold Q)" : "Reconnect battery"}
             </button>
           </div>
           <div className="cap-options">
@@ -275,7 +273,7 @@ export function CapacitorLab({ experiment }: DedicatedExperimentLabProps) {
           <small>
             {values.connected
               ? "Battery connected: voltage remains constant."
-              : "Discharged state: Q = 0 and U = 0 until reconnected."}
+              : "Battery disconnected: charge remains constant while V and U respond to C."}
           </small>
         </section>
       </div>
@@ -461,6 +459,26 @@ function Readings({ result }: { result: ReturnType<typeof computeCapacitor> }) {
 const format = (v: number, u: string) =>
   `${Math.abs(v) >= 1000 || (Math.abs(v) < 0.01 && v !== 0) ? v.toExponential(2) : v.toFixed(2)} ${u}`;
 
+function CapScene({ input, result, progress, running, reducedMotion, onSpacing, onDielectric }: { input:CapacitorInput; result:ReturnType<typeof computeCapacitor>; progress:number; running:boolean; reducedMotion:boolean; onSpacing:(spacing:number)=>void; onDielectric:(dielectric:number)=>void }) {
+  const plateGap=72 + ((input.spacing-.0005)/.0095)*155;
+  const plateSize=.72 + ((input.plateArea-.005)/.045)*.34;
+  const movePlate=(event:React.PointerEvent<HTMLButtonElement>)=>{if(event.type==="pointermove"&&!event.currentTarget.hasPointerCapture(event.pointerId))return;if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);const rect=event.currentTarget.parentElement!.getBoundingClientRect();const distance=Math.abs(event.clientX-(rect.left+rect.width/2));onSpacing(.0005+Math.max(0,Math.min(1,(distance-36)/155))*.0095);};
+  const moveDielectric=(event:React.PointerEvent<HTMLButtonElement>)=>{if(event.type==="pointermove"&&!event.currentTarget.hasPointerCapture(event.pointerId))return;if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);const rect=event.currentTarget.parentElement!.getBoundingClientRect();const fraction=1-Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height));onDielectric(1+fraction*9);};
+  return <div className="cap-2d" role="application" aria-label="Interactive two-dimensional capacitor. Drag either plate horizontally to change spacing; drag the dielectric handle vertically to change dielectric constant.">
+    <img src={`${ROOT}/sprites/capacitor-bench.png`} alt="Capacitor plates, battery, leads and switch" draggable={false}/>
+    <div className="cap-live-plates" style={{transform:`translate(-50%,-50%) scale(${plateSize})`}}>
+      <button aria-label="Drag left capacitor plate" className="cap-plate left" style={{transform:`translateX(${-plateGap}px)`}} onPointerDown={movePlate} onPointerMove={movePlate}><span>+</span></button>
+      <button aria-label="Drag right capacitor plate" className="cap-plate right" style={{transform:`translateX(${plateGap}px)`}} onPointerDown={movePlate} onPointerMove={movePlate}><span>−</span></button>
+      <div className="cap-live-field" style={{width:`${plateGap*2-24}px`,opacity:.18+.75*progress}}>{Array.from({length:7},(_,i)=><i key={i}>→</i>)}</div>
+      <button aria-label="Drag dielectric insertion" className="cap-dielectric-handle" style={{height:`${20+(input.dielectric-1)/9*150}px`}} onPointerDown={moveDielectric} onPointerMove={moveDielectric}><span>κ {input.dielectric.toFixed(1)}</span></button>
+    </div>
+    <div className="cap-charge-flow" data-running={running&&!reducedMotion}>{Array.from({length:8},(_,i)=><i key={i} style={{animationDelay:`${i*.12}s`}}/> )}</div>
+    <span className="cap-direct-hint">DRAG PLATES ↔ SPACING · DRAG κ HANDLE ↕ DIELECTRIC</span>
+    <output className="cap-live-output">C {format(result.equivalentCapacitance,"F")} · Q {format(result.charge,"C")}</output>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
 type SceneRuntime = {
   camera: THREE.PerspectiveCamera;
   controls: OrbitControls;
@@ -641,3 +659,4 @@ function CapScene({
     </div>
   );
 }
+*/

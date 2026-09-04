@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   computeChemicalEffects,
@@ -9,6 +6,7 @@ import {
   type Electrolyte,
 } from "./chemicalEffectsPhysics";
 import "./chemical-effects-current.css";
+import "./chemical-effects-2d.css";
 
 const ROOT = "/assets/experiments/chemical-effects-current";
 const DEFAULTS = {
@@ -31,7 +29,6 @@ export function ChemicalEffectsLab({
   const [reducedMotion, setReducedMotion] = useState(
     () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
   );
-  const [resetViewSignal, setResetViewSignal] = useState(0);
   const [selectedPart, setSelectedPart] = useState("electrode_cathode");
   const [missionFeedback, setMissionFeedback] = useState("");
   const [trials, setTrials] = useState<
@@ -123,8 +120,8 @@ export function ChemicalEffectsLab({
           </p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset view
+          <button onClick={() => { update("electrodeGap",DEFAULTS.electrodeGap); setSelectedPart("electrode_cathode"); }}>
+            ◎ Reset vessel
           </button>
           <button onClick={reset}>↻ Rinse & reset</button>
         </div>
@@ -137,9 +134,10 @@ export function ChemicalEffectsLab({
             progress={values.duration ? elapsed / values.duration : 0}
             running={runState === "running"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
             selectedPart={selectedPart}
             onSelect={setSelectedPart}
+            onGap={(electrodeGap)=>update("electrodeGap",electrodeGap)}
+            onVoltage={(voltage)=>update("voltage",voltage)}
           />
           <div className="chem-polarity">
             <b>{values.polarityReversed ? "CATHODE (−)" : "ANODE (+)"}</b>
@@ -539,7 +537,25 @@ function MassGraph({
   );
 }
 
-function ElectrolysisScene({
+function ElectrolysisScene({ input, current, progress, running, reducedMotion, selectedPart, onSelect, onGap, onVoltage }: { input:ChemicalEffectsInput; current:number; progress:number; running:boolean; reducedMotion:boolean; selectedPart:string; onSelect:(name:string)=>void; onGap:(value:number)=>void; onVoltage:(value:number)=>void }) {
+  const gapPx=145+((input.electrodeGap-.01)/.09)*255;
+  const moveGap=(event:React.PointerEvent<HTMLButtonElement>)=>{if(event.type==="pointermove"&&!event.currentTarget.hasPointerCapture(event.pointerId))return;if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);const rect=event.currentTarget.parentElement!.getBoundingClientRect();const dx=Math.abs(event.clientX-(rect.left+rect.width*.35));onGap(.01+Math.max(0,Math.min(1,(dx-72)/255))*.09);};
+  const moveVoltage=(event:React.PointerEvent<HTMLButtonElement>)=>{if(event.type==="pointermove"&&!event.currentTarget.hasPointerCapture(event.pointerId))return;if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);const rect=event.currentTarget.getBoundingClientRect();onVoltage(Math.max(0,Math.min(12,(event.clientX-rect.left)/rect.width*12)));};
+  return <div className="chem-2d" role="application" aria-label="Interactive two-dimensional electrolysis vessel. Drag electrodes to change their gap and drag the power dial to set voltage.">
+    <img src={`${ROOT}/sprites/electrolysis-bench.png`} alt="Glass electrolysis vessel, copper electrodes and DC supply" draggable={false}/>
+    <div className="chem-live-vessel">
+      <button className={`chem-electrode left ${selectedPart.includes("anode")?"active":""}`} style={{transform:`translateX(${-gapPx/2}px)`}} aria-label="Drag left electrode" onPointerDown={moveGap} onPointerMove={moveGap} onClick={()=>onSelect("electrode_anode")}/>
+      <button className={`chem-electrode right ${selectedPart.includes("cathode")?"active":""}`} style={{transform:`translateX(${gapPx/2}px)`}} aria-label="Drag right electrode" onPointerDown={moveGap} onPointerMove={moveGap} onClick={()=>onSelect("electrode_cathode")}/>
+      <div className="chem-ions" data-running={running&&!reducedMotion}>{Array.from({length:22},(_,i)=><i key={i} className={i%2?"cation":"anion"} style={{left:`${8+(i*37)%84}%`,top:`${12+(i*53)%76}%`,animationDelay:`${i*.07}s`}}>{i%2?"+":"−"}</i>)}</div>
+      <div className="chem-deposit" style={{height:`${Math.min(100,progress*100)}%`}}/><div className="chem-bubbles" style={{opacity:running?.25+Math.min(.75,current):0}}>{Array.from({length:10},(_,i)=><i key={i} style={{left:`${i*9}%`,animationDelay:`${i*.12}s`}}/> )}</div>
+    </div>
+    <button className="chem-voltage-dial" aria-label={`Voltage ${input.voltage.toFixed(1)} volts`} onPointerDown={moveVoltage} onPointerMove={moveVoltage}><i style={{left:`${input.voltage/12*100}%`}}/></button>
+    <span className="chem-direct-hint">DRAG ELECTRODES ↔ GAP · DRAG POWER DIAL ↔ VOLTAGE</span>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
+function LegacyElectrolysisScene({
   input,
   current,
   progress,
@@ -748,3 +764,4 @@ function ElectrolysisScene({
     />
   );
 }
+*/

@@ -1,4 +1,4 @@
-export type Appliance = "lamp" | "fan" | "kettle" | "heater";
+export type Appliance = "lamp" | "fan" | "kettle" | "heater" | "television" | "refrigerator" | "iron";
 export const APPLIANCES: Record<
   Appliance,
   { label: string; ratedPower: number; resistance: number }
@@ -19,6 +19,9 @@ export const APPLIANCES: Record<
     ratedPower: 1500,
     resistance: 230 ** 2 / 1500,
   },
+  television: { label: "Television", ratedPower: 120, resistance: 230 ** 2 / 120 },
+  refrigerator: { label: "Refrigerator", ratedPower: 180, resistance: 230 ** 2 / 180 },
+  iron: { label: "Clothes iron", ratedPower: 1100, resistance: 230 ** 2 / 1100 },
 };
 
 export interface ElectricPowerInput {

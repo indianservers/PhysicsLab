@@ -1,7 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   computeInternalResistance,
@@ -11,6 +8,7 @@ import {
   type TerminalReading,
 } from "./internalResistancePhysics";
 import "./internal-resistance-cell.css";
+import "./internal-resistance-2d.css";
 
 const ROOT = "/assets/experiments/internal-resistance-cell";
 const DEFAULTS = { emf: 1.5, internalResistance: 0.8, externalResistance: 5 };
@@ -32,7 +30,6 @@ export function InternalResistanceLab({
   const [readings, setReadings] = useState<TerminalReading[]>([]);
   const [autoCollect, setAutoCollect] = useState(false);
   const [autoIndex, setAutoIndex] = useState(0);
-  const [resetViewSignal, setResetViewSignal] = useState(0);
   const [selectedPart, setSelectedPart] = useState("battery_body");
   const [missionMode, setMissionMode] = useState(false);
   const [estimate, setEstimate] = useState(0.5);
@@ -137,8 +134,8 @@ export function InternalResistanceLab({
           </p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((value) => value + 1)}>
-            ◎ Reset view
+          <button onClick={() => { setSelectedPart("battery_body"); update("externalResistance",DEFAULTS.externalResistance); }}>
+            ◎ Reset bench
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -152,9 +149,10 @@ export function InternalResistanceLab({
             phase={phase}
             running={runState === "running"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
             selectedPart={selectedPart}
             onSelect={setSelectedPart}
+            onResistance={(externalResistance)=>update("externalResistance",externalResistance)}
+            onSwitch={()=>setSwitchClosed(value=>!value)}
           />
           <div className="ir-current-flow" aria-hidden="true">
             {Array.from({ length: 8 }, (_, index) => (
@@ -674,7 +672,25 @@ function VoltageCurrentGraph({
   );
 }
 
-function CellScene({
+function CellScene({ input, resultCurrent, phase, running, reducedMotion, selectedPart, onSelect, onResistance, onSwitch }: { input:InternalResistanceInput; resultCurrent:number; phase:number; running:boolean; reducedMotion:boolean; selectedPart:string; onSelect:(name:string)=>void; onResistance:(value:number)=>void; onSwitch:()=>void }) {
+  const moveRheostat=(event:React.PointerEvent<HTMLButtonElement>)=>{if(event.type==="pointermove"&&!event.currentTarget.hasPointerCapture(event.pointerId))return;if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);const rect=event.currentTarget.getBoundingClientRect();onResistance(Math.max(0,Math.min(20,(event.clientX-rect.left)/rect.width*20)));};
+  const slider=(input.externalResistance/20)*100;
+  const needleA=-55+Math.min(1,resultCurrent/1)*110;
+  const terminalVoltage=input.emf-resultCurrent*input.internalResistance;
+  const needleV=-55+Math.min(1,terminalVoltage/5)*110;
+  return <div className="ir-2d" role="application" aria-label="Interactive two-dimensional internal resistance bench. Drag the rheostat slider and click the key switch.">
+    <img src={`${ROOT}/sprites/meter-bench.png`} alt="Cell, rheostat, ammeter, voltmeter and open key on a wired board" draggable={false}/>
+    <button className={`ir-select ir-cell-select ${selectedPart==="battery_body"?"active":""}`} aria-label="Select cell" onClick={()=>onSelect("battery_body")}/>
+    <button className="ir-rheostat-track" aria-label={`Rheostat ${input.externalResistance.toFixed(2)} ohms`} onPointerDown={moveRheostat} onPointerMove={moveRheostat}><i style={{left:`${slider}%`}}/></button>
+    <button className={`ir-key-2d ${input.switchClosed?"closed":""}`} aria-label={input.switchClosed?"Open circuit key":"Close circuit key"} onClick={onSwitch}><i/></button>
+    <i className="ir-needle ir-needle-a" style={{transform:`rotate(${needleA}deg)`}}/><i className="ir-needle ir-needle-v" style={{transform:`rotate(${needleV}deg)`}}/>
+    <div className="ir-electrons" data-running={running&&!reducedMotion}>{Array.from({length:10},(_,i)=><i key={i} style={{animationDelay:`${i*.1}s`,opacity:.3+.7*Math.abs(Math.sin(phase*Math.PI*2+i))}}/> )}</div>
+    <span className="ir-direct-hint">DRAG RHEOSTAT · CLICK KEY · SELECT CELL</span>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
+function LegacyCellScene({
   input,
   resultCurrent,
   phase,
@@ -881,3 +897,4 @@ function CellScene({
     />
   );
 }
+*/

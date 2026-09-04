@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   computeAcGenerator,
@@ -34,7 +31,6 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
   );
   const [introComplete, setIntroComplete] = useState(false);
   const [introTravel, setIntroTravel] = useState(0);
-  const [resetViewSignal, setResetViewSignal] = useState(0);
   const input = useMemo<AcGeneratorInput>(
     () => ({ ...values, direction, polarity }),
     [values, direction, polarity],
@@ -119,8 +115,8 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
           </p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset view
+          <button onClick={() => update("angleRad", DEFAULTS.angleRad)}>
+            ◎ Reset coil
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -131,7 +127,7 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
             input={input}
             running={runState === "running" || runState === "narrated"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
+            onAngle={(angleRad) => { update("angleRad", angleRad); setRunState("paused"); }}
           />
           <div className="ac-stage-badge">
             <span>COIL ANGLE</span>
@@ -523,6 +519,25 @@ function FluxGraph({ input }: { input: AcGeneratorInput }) {
   );
 }
 
+function GeneratorScene({ input, running, reducedMotion, onAngle }: { input: AcGeneratorInput; running: boolean; reducedMotion: boolean; onAngle: (angleRad:number) => void }) {
+  const setFromPointer = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.type === "pointermove" && !event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    if (event.type === "pointerdown") event.currentTarget.setPointerCapture(event.pointerId);
+    const rect = event.currentTarget.getBoundingClientRect();
+    const angle = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)) * Math.PI * 2;
+    onAngle(angle);
+  };
+  const projectedWidth = Math.max(.07, Math.abs(Math.cos(input.angleRad)));
+  return <div className="ac-2d" role="application" tabIndex={0} aria-label="Interactive two-dimensional AC generator. Drag across the coil to turn it; use arrow keys for precise rotation." onPointerDown={setFromPointer} onPointerMove={setFromPointer} onKeyDown={event => { if(event.key === "ArrowLeft") onAngle(normalizeAngle(input.angleRad - Math.PI/36)); if(event.key === "ArrowRight") onAngle(normalizeAngle(input.angleRad + Math.PI/36)); }}>
+    <div className="ac-field-lines" aria-hidden="true">{Array.from({length:7},(_,i)=><i key={i}/>)}</div>
+    <img className="ac-stator-sprite" src={`${ROOT}/sprites/stator.png`} alt="AC generator magnets, bearings, slip rings, brushes, and terminals" draggable={false}/>
+    <img className="ac-coil-sprite" src={`${ROOT}/sprites/coil.png`} alt="Draggable rotating copper coil" draggable={false} style={{transform:`translate(-50%,-50%) scaleX(${projectedWidth})`, opacity: running && !reducedMotion ? .98 : 1}}/>
+    <div className="ac-crank" style={{transform:`rotate(${input.angleRad}rad)`}} aria-hidden="true"><i/></div>
+    <span className="ac-direct-hint">DRAG COIL TO ROTATE · ← → FOR 5° STEPS</span>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
 type SceneData = {
   camera: THREE.PerspectiveCamera;
   controls: OrbitControls;
@@ -706,3 +721,4 @@ function GeneratorScene({
     </div>
   );
 }
+*/

@@ -1,13 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import { computeLcr, resonanceSeries, type LcrInput } from "./lcrPhysics";
 import "./lcr-resonance.css";
 
-const ROOT = "/assets/experiments/ac-lcr-resonance",
-  DEFAULTS = {
+const DEFAULTS = {
     frequency: 50,
     resistance: 40,
     inductance: 0.2,
@@ -23,8 +19,7 @@ export function LcrResonanceLab({ experiment }: DedicatedExperimentLabProps) {
     [reducedMotion, setReducedMotion] = useState(
       () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
     ),
-    [sweeping, setSweeping] = useState(false),
-    [resetViewSignal, setResetViewSignal] = useState(0);
+    [sweeping, setSweeping] = useState(false);
   const input = useMemo<LcrInput>(() => values, [values]),
     result = useMemo(() => computeLcr(input), [input]),
     atResonance =
@@ -86,8 +81,8 @@ export function LcrResonanceLab({ experiment }: DedicatedExperimentLabProps) {
           </p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset view
+          <button onClick={() => update("frequency", result.resonanceFrequency)}>
+            ◎ Tune resonance
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -99,7 +94,9 @@ export function LcrResonanceLab({ experiment }: DedicatedExperimentLabProps) {
             phase={phase}
             running={runState === "running"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
+            frequency={values.frequency}
+            resistance={values.resistance}
+            onFrequency={(frequency) => { update("frequency", frequency); setSweeping(false); }}
           />
           <div className="lcr-source">
             <span>AC SOURCE</span>
@@ -582,6 +579,31 @@ function ResponseGraph({ input }: { input: LcrInput }) {
   );
 }
 
+function LcrScene({ result, phase, running, reducedMotion, frequency, resistance, onFrequency }: { result: ReturnType<typeof computeLcr>; phase:number; running:boolean; reducedMotion:boolean; frequency:number; resistance:number; onFrequency:(value:number)=>void }) {
+  const [selected,setSelected] = useState<"source"|"resistor"|"inductor"|"capacitor">("inductor");
+  const tune = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.type === "pointermove" && !event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    if (event.type === "pointerdown") event.currentTarget.setPointerCapture(event.pointerId);
+    const rect=event.currentTarget.getBoundingClientRect();
+    onFrequency(1 + Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width))*499);
+  };
+  const currentGlow=Math.min(1,result.current/Math.max(.001,10/40));
+  return <div className="lcr-2d" role="application" tabIndex={0} aria-label="Interactive two-dimensional series LCR circuit. Drag horizontally on the bench to tune frequency; select components for their live response." onPointerDown={tune} onPointerMove={tune} onKeyDown={event=>{if(event.key==="ArrowLeft")onFrequency(Math.max(1,frequency-1));if(event.key==="ArrowRight")onFrequency(Math.min(500,frequency+1));}}>
+    <svg viewBox="0 0 900 420" aria-label="Series circuit with AC source, resistor, inductor and capacitor">
+      <path className="lcr-wire" d="M150 210V95H745V210M745 210V330H150V210"/>
+      <g className={selected==="source"?"selected":""} onPointerDown={e=>{e.stopPropagation();setSelected("source")}}><circle cx="150" cy="210" r="48"/><path d="M118 210c16-32 32-32 48 0s32 32 48 0"/><text x="150" y="278">AC SOURCE</text></g>
+      <g className={selected==="resistor"?"selected":""} onPointerDown={e=>{e.stopPropagation();setSelected("resistor")}}><path d="M270 95l15-18 25 36 25-36 25 36 25-36 25 18"/><text x="340" y="57">R</text></g>
+      <g className={selected==="inductor"?"selected":""} onPointerDown={e=>{e.stopPropagation();setSelected("inductor")}}><path d="M470 95c0-38 45-38 45 0s45 38 45 0 45-38 45 0 45 38 45 0"/><text x="560" y="57">L</text></g>
+      <g className={selected==="capacitor"?"selected":""} onPointerDown={e=>{e.stopPropagation();setSelected("capacitor")}}><path d="M500 330h52m18 0h52M552 285v90M570 285v90"/><text x="561" y="404">C</text></g>
+      {Array.from({length:12},(_,i)=><circle className="lcr-charge" key={i} r="5" cx={190+i*43} cy="95" style={{opacity:running?.9:.35,transform:reducedMotion?undefined:`translateX(${Math.sin(phase+i*.45)*10}px)`}}/>)}
+    </svg>
+    <div className="lcr-component-readout"><strong>{selected.toUpperCase()}</strong><span>{selected==="inductor"?`Xᴸ ${result.xL.toFixed(1)} Ω`:selected==="capacitor"?`Xᶜ ${result.xC.toFixed(1)} Ω`:selected==="resistor"?`R ${resistance.toFixed(1)} Ω`:`${frequency.toFixed(1)} Hz`}</span></div>
+    <div className="lcr-resonance-beacon" style={{opacity:.25+.75*currentGlow}}>CURRENT {result.current.toFixed(3)} A</div>
+    <span className="lcr-direct-hint">DRAG BENCH TO SWEEP FREQUENCY · ← → FINE TUNE</span>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
 type SceneRuntime = {
   camera: THREE.PerspectiveCamera;
   controls: OrbitControls;
@@ -766,3 +788,4 @@ function LcrScene({
     </div>
   );
 }
+*/

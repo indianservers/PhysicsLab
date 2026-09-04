@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Application, Assets, Container, FederatedPointerEvent, Graphics, Sprite, Texture } from "pixi.js";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { PixiStage, type PixiSceneController } from "../shared-2d/PixiStage";
 import {
   buildSpeedCurves,
   deriveOrbit,
@@ -26,22 +25,6 @@ const DEFAULT_INPUT: SatelliteOrbitInput = {
 
 type RunState = "idle" | "running" | "paused" | "result";
 
-interface SatelliteSceneRuntime {
-  renderer: THREE.WebGLRenderer;
-  scene: THREE.Scene;
-  camera: THREE.PerspectiveCamera;
-  controls: OrbitControls;
-  satelliteNodes: THREE.Object3D[];
-  interactionNodes: THREE.Object3D[];
-  basePositions: THREE.Vector3[];
-  velocityArrow: THREE.ArrowHelper;
-  gravityArrow: THREE.ArrowHelper;
-  trailLine: THREE.Line;
-  overlays: THREE.Sprite[];
-  selected?: THREE.Object3D;
-  reset: () => void;
-}
-
 export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
   const [input, setInput] = useState(DEFAULT_INPUT);
   const [vectorState, setVectorState] = useState(() => initialOrbitState(DEFAULT_INPUT));
@@ -51,6 +34,8 @@ export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false);
   const [resetViewSignal, setResetViewSignal] = useState(0);
   const [mission, setMission] = useState({ circular: false, escape: false });
+  const [prediction, setPrediction] = useState<"collision" | "orbit" | "escape" | "">("");
+  const [predictionFeedback, setPredictionFeedback] = useState("");
   const lastFrameRef = useRef<number | null>(null);
   const inputRef = useRef(input);
   const stateRef = useRef(vectorState);
@@ -143,6 +128,14 @@ export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
   };
 
   const status = statusCopy(launchDerived.regime);
+  const play = () => {
+    if (prediction) {
+      const actual = launchDerived.regime === "collision" ? "collision" : launchDerived.regime === "escape" ? "escape" : "orbit";
+      setPredictionFeedback(prediction === actual ? `Prediction confirmed: ${status.toLowerCase()}.` : `Observe the trail: this launch produces ${status.toLowerCase()}.`);
+    }
+    setRunState("running");
+    runRef.current = "running";
+  };
 
   return (
     <section className="satellite-lab" aria-label={`${experiment.title} interactive laboratory`} data-run-state={runState} data-regime={launchDerived.regime}>
@@ -172,8 +165,9 @@ export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
             running={runState === "running"}
             reducedMotion={reducedMotion}
             resetViewSignal={resetViewSignal}
+            onInput={(patch) => resetTrajectory({ ...inputRef.current, ...patch })}
           />
-          <div className="satellite-stage-help">Drag to rotate · Wheel or pinch to zoom · Arrow keys rotate</div>
+          <div className="satellite-stage-help">Drag satellite to place · Drag orange handle to launch · Wheel to zoom</div>
         </div>
 
         <aside className="satellite-controls" aria-label="Satellite launch controls">
@@ -191,7 +185,7 @@ export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
           </div>
 
           <div className="satellite-playback" aria-label="Simulation controls">
-            <button className="satellite-primary-button" type="button" onClick={() => { setRunState("running"); runRef.current = "running"; }}>▶ {runState === "paused" ? "Resume" : runState === "result" ? "Replay" : "Play"}</button>
+            <button className="satellite-primary-button" type="button" onClick={play}>▶ {runState === "paused" ? "Resume" : runState === "result" ? "Replay" : "Play"}</button>
             <button type="button" onClick={() => { setRunState("paused"); runRef.current = "paused"; }} disabled={runState !== "running"}>Ⅱ Pause</button>
             <button type="button" onClick={stepOnce}>▮▶ Step</button>
             <button type="button" onClick={() => resetTrajectory(DEFAULT_INPUT)}>↻ Reset</button>
@@ -217,7 +211,7 @@ export function SatelliteOrbitLab({ experiment }: DedicatedExperimentLabProps) {
       </div>
 
       <div className="satellite-learning-grid">
-        <article><span>◎</span><div><h3>Learning cue</h3><p>Predict collision, orbit, or escape before pressing Play.</p></div></article>
+        <article><span>◎</span><div><h3>Predict the launch</h3><p>Commit before pressing Play.</p><div className="satellite-predictions" role="group" aria-label="Launch prediction">{(["collision","orbit","escape"] as const).map(value => <button type="button" aria-pressed={prediction === value} onClick={() => { setPrediction(value); setPredictionFeedback(""); }} key={value}>{value}</button>)}</div>{predictionFeedback && <small aria-live="polite">{predictionFeedback}</small>}</div></article>
         <article><span>◌</span><div><h3>Observation prompt</h3><p>How do the path and total energy change as launch speed rises?</p></div></article>
         <article className={mission.escape ? "mission-complete" : ""}><span>♜</span><div><h3>Challenge</h3><p>{mission.escape ? "Mission complete: circular orbit and minimum escape found." : mission.circular ? "Circular orbit found. Now use Escape at 400 km and press Play." : "First place the satellite in circular orbit; then find minimum escape speed at 400 km."}</p></div></article>
       </div>
@@ -266,124 +260,210 @@ function SpeedGraph({ input, derived }: { input: SatelliteOrbitInput; derived: O
   </svg><div><span><i className="graph-key-orbit" />Orbital speed</span><span><i className="graph-key-escape" />Escape speed</span></div></section>;
 }
 
-function SatelliteScene({ input, state, derived, trail, running, reducedMotion, resetViewSignal }: { input: SatelliteOrbitInput; state: OrbitVectorState; derived: OrbitDerived; trail: OrbitVectorState[]; running: boolean; reducedMotion: boolean; resetViewSignal: number }) {
-  const hostRef = useRef<HTMLDivElement>(null);
-  const runtimeRef = useRef<SatelliteSceneRuntime | null>(null);
-  const liveRef = useRef({ input, state, derived, trail, running, reducedMotion });
-  useEffect(() => { liveRef.current = { input, state, derived, trail, running, reducedMotion }; }, [input, state, derived, trail, running, reducedMotion]);
+interface SatelliteSceneProps {
+  input: SatelliteOrbitInput;
+  state: OrbitVectorState;
+  derived: OrbitDerived;
+  trail: OrbitVectorState[];
+  running: boolean;
+  reducedMotion: boolean;
+  resetViewSignal: number;
+  onInput: (patch: Partial<SatelliteOrbitInput>) => void;
+}
 
-  useEffect(() => {
-    const host = hostRef.current;
-    if (!host) return;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.01, 100);
-    camera.position.set(0, 3.2, 6.3);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
-    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.35;
-    host.appendChild(renderer.domElement);
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.minDistance = 3.4;
-    controls.maxDistance = 10;
-    controls.target.set(0, 0, 0);
-    const reset = () => { const compactDistance = host.clientWidth / Math.max(1, host.clientHeight) < 1.1 ? 12.5 : 6.3; camera.position.set(0, compactDistance * 0.42, compactDistance); controls.target.set(0, 0, 0); controls.update(); };
-    scene.add(new THREE.HemisphereLight(0xbfe9ff, 0x07111f, 2.2));
-    const key = new THREE.DirectionalLight(0xffffff, 3.4); key.position.set(4, 5, 5); scene.add(key);
-    const rim = new THREE.DirectionalLight(0x38bdf8, 2.2); rim.position.set(-4, 1, -3); scene.add(rim);
-    const starGeometry = new THREE.BufferGeometry();
-    const starPositions = new Float32Array(420 * 3);
-    for (let i = 0; i < starPositions.length; i += 3) { const radius = 9 + (i % 17) * 0.18; const a = i * 1.71; const b = i * 0.37; starPositions[i] = Math.sin(a) * radius; starPositions[i+1] = Math.sin(b) * radius * 0.6; starPositions[i+2] = Math.cos(a) * radius; }
-    starGeometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
-    scene.add(new THREE.Points(starGeometry, new THREE.PointsMaterial({ color: 0xdff7ff, size: 0.025 })));
-    const velocityArrow = new THREE.ArrowHelper(new THREE.Vector3(0,1,0), new THREE.Vector3(), 1, 0xfb923c, 0.18, 0.1);
-    const gravityArrow = new THREE.ArrowHelper(new THREE.Vector3(-1,0,0), new THREE.Vector3(), 1, 0xfacc15, 0.18, 0.1);
-    scene.add(velocityArrow, gravityArrow);
-    const trailLine = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.88 }));
-    scene.add(trailLine);
-    const runtime: SatelliteSceneRuntime = { renderer, scene, camera, controls, satelliteNodes: [], interactionNodes: [], basePositions: [], velocityArrow, gravityArrow, trailLine, overlays: [], reset };
-    runtimeRef.current = runtime;
-    const loader = new GLTFLoader();
-    loader.load(`${ASSET_ROOT}/satellite-orbit.glb`, (gltf) => {
-      const model = gltf.scene;
-      const box = new THREE.Box3().setFromObject(model);
-      const size = box.getSize(new THREE.Vector3());
-      model.scale.setScalar(3.35 / Math.max(size.x, size.y, size.z));
-      const centre = box.getCenter(new THREE.Vector3()).multiplyScalar(model.scale.x);
-      model.position.sub(centre);
-      scene.add(model);
-      const names = ["satellite_body", "solar_panel_left", "solar_panel_right"];
-      runtime.satelliteNodes = names.map((name) => model.getObjectByName(name)).filter((node): node is THREE.Object3D => Boolean(node));
-      runtime.interactionNodes = ["earth", ...names].map((name) => model.getObjectByName(name)).filter((node): node is THREE.Object3D => Boolean(node));
-      runtime.basePositions = runtime.satelliteNodes.map((node) => node.position.clone());
-      ["velocity_vector_shaft", "velocity_vector_head", "gravity_vector_shaft", "gravity_vector_head", "orbit_path"].forEach((name) => { const node = model.getObjectByName(name); if (node) node.visible = false; });
-      model.traverse((object) => { if ((object as THREE.Mesh).isMesh) { const mesh = object as THREE.Mesh; mesh.castShadow = true; mesh.receiveShadow = true; } });
-      reset();
-    });
-    ["concept_effect.png", "interaction_overlay.png"].forEach((filename, index) => {
-      new THREE.TextureLoader().load(`${ASSET_ROOT}/effects/${filename}`, (texture) => {
-        texture.colorSpace = THREE.SRGBColorSpace;
-        const material = new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: index ? 0.055 : 0.1, blending: THREE.AdditiveBlending, depthWrite: false });
-        const sprite = new THREE.Sprite(material);
-        sprite.scale.set(index ? 3.25 : 4.1, index ? 3.25 : 4.1, 1);
-        sprite.position.z = index ? 0.04 : -0.2;
-        scene.add(sprite);
-        runtime.overlays.push(sprite);
+function SatelliteScene(props: SatelliteSceneProps) {
+  const createScene = useCallback((app: Application, initial: SatelliteSceneProps): PixiSceneController<SatelliteSceneProps> => {
+    const viewport = new Container();
+    const stars = new Graphics();
+    const trajectory = new Graphics();
+    const vectors = new Graphics();
+    const orbitGuide = new Graphics();
+    const satelliteHit = new Graphics();
+    const velocityHit = new Graphics();
+    viewport.addChild(stars, orbitGuide, trajectory, vectors);
+    app.stage.addChild(viewport);
+    app.stage.eventMode = "static";
+    app.stage.hitArea = app.screen;
+
+    for (let index = 0; index < 150; index += 1) {
+      const x = (index * 173.17) % 760;
+      const y = (index * index * 17.31 + 29) % 430;
+      const radius = index % 13 === 0 ? 1.4 : 0.65;
+      stars.circle(x, y, radius).fill({ color: 0xdff7ff, alpha: 0.35 + (index % 5) * 0.1 });
+    }
+
+    let earth: Sprite | undefined;
+    let satellite: Sprite | undefined;
+    let latest = initial;
+    let width = 760;
+    let height = 430;
+    let zoom = 1;
+    let resetSeen = initial.resetViewSignal;
+    let drag: "satellite" | "velocity" | "pan" | null = null;
+    let panStart = { x: 0, y: 0, px: 0, py: 0 };
+
+    void Promise.all([
+      Assets.load<Texture>(`${ASSET_ROOT}/sprites/earth.png`),
+      Assets.load<Texture>(`${ASSET_ROOT}/sprites/satellite.png`),
+    ]).then(([earthTexture, satelliteTexture]) => {
+      earth = new Sprite(earthTexture);
+      earth.anchor.set(0.5);
+      earth.width = 250;
+      earth.height = 242;
+      earth.position.set(350, 218);
+      satellite = new Sprite(satelliteTexture);
+      satellite.anchor.set(0.5);
+      satellite.width = 92;
+      satellite.height = 61;
+      satellite.eventMode = "static";
+      satellite.cursor = "grab";
+      satellite.on("pointerdown", (event: FederatedPointerEvent) => {
+        event.stopPropagation();
+        drag = "satellite";
       });
+      viewport.addChildAt(earth, 2);
+      viewport.addChildAt(satellite, viewport.children.indexOf(vectors));
+      viewport.addChild(satelliteHit, velocityHit);
+      draw(latest);
     });
-    let fitted = false;
-    const resize = () => { const width = Math.max(1, host.clientWidth), height = Math.max(1, host.clientHeight); renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); if (!fitted) { fitted = true; reset(); } };
-    const observer = new ResizeObserver(resize); observer.observe(host); resize();
-    const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2();
-    let dragPart: { node: THREE.Object3D; startX: number; rotationY: number } | null = null;
-    const onPointerDown = (event: PointerEvent) => {
-      const rect = renderer.domElement.getBoundingClientRect(); pointer.set(((event.clientX-rect.left)/rect.width)*2-1, -((event.clientY-rect.top)/rect.height)*2+1); raycaster.setFromCamera(pointer,camera);
-      const hit = raycaster.intersectObjects(runtime.interactionNodes,true)[0];
-      const target = hit ? runtime.interactionNodes.find((candidate) => { let node: THREE.Object3D | null = hit.object; while (node) { if (node === candidate) return true; node = node.parent; } return false; }) : undefined;
-      runtime.selected = target;
-      if (target) { host.dataset.selected = target.name; dragPart = { node: target, startX: event.clientX, rotationY: target.rotation.y }; controls.enabled = false; renderer.domElement.setPointerCapture(event.pointerId); }
+
+    satelliteHit.eventMode = "static";
+    satelliteHit.cursor = "grab";
+    satelliteHit.on("pointerdown", (event: FederatedPointerEvent) => {
+      event.stopPropagation();
+      drag = "satellite";
+    });
+    velocityHit.eventMode = "static";
+    velocityHit.cursor = "crosshair";
+    velocityHit.on("pointerdown", (event: FederatedPointerEvent) => {
+      event.stopPropagation();
+      drag = "velocity";
+    });
+    app.stage.on("pointerdown", (event: FederatedPointerEvent) => {
+      drag = "pan";
+      panStart = { x: event.global.x, y: event.global.y, px: viewport.x, py: viewport.y };
+    });
+    app.stage.on("globalpointermove", (event: FederatedPointerEvent) => {
+      if (!drag) return;
+      if (drag === "pan") {
+        viewport.position.set(panStart.px + event.global.x - panStart.x, panStart.py + event.global.y - panStart.y);
+        return;
+      }
+      const local = viewport.toLocal(event.global);
+      const dx = local.x - 350;
+      const dy = -(local.y - 218);
+      if (drag === "satellite") {
+        const radiusPx = Math.max(130, Math.min(275, Math.hypot(dx, dy)));
+        const ratio = (radiusPx - 130) / 145;
+        const altitudeKm = 200 * (36_000 / 200) ** ratio;
+        latest.onInput({ altitudeKm: Math.round(altitudeKm / 10) * 10, launchPositionDeg: Math.atan2(dy, dx) * 180 / Math.PI });
+      } else {
+        const satellitePoint = scenePoint(latest.state, latest.input);
+        const vx = local.x - satellitePoint.x;
+        const vy = -(local.y - satellitePoint.y);
+        const radialAngle = Math.atan2(latest.state.y, latest.state.x);
+        const velocityAngle = Math.atan2(vy, vx);
+        const tangentAngle = radialAngle + Math.PI / 2;
+        const directionDeg = normalizeSignedDegrees((velocityAngle - tangentAngle) * 180 / Math.PI);
+        const launchSpeedKmS = Math.max(0, Math.min(30, Math.hypot(vx, vy) / 10));
+        latest.onInput({ directionDeg: Math.max(-90, Math.min(90, directionDeg)), launchSpeedKmS: Number(launchSpeedKmS.toFixed(2)) });
+      }
+    });
+    const endDrag = () => { drag = null; };
+    app.stage.on("pointerup", endDrag);
+    app.stage.on("pointerupoutside", endDrag);
+    const wheel = (event: WheelEvent) => {
+      event.preventDefault();
+      zoom = Math.max(0.7, Math.min(1.8, zoom * Math.exp(-event.deltaY * 0.001)));
+      fit();
     };
-    const onPointerMove = (event: PointerEvent) => { if (dragPart) dragPart.node.rotation.y = dragPart.rotationY + (event.clientX - dragPart.startX) * 0.012; };
-    const onPointerUp = (event: PointerEvent) => { if (!dragPart) return; dragPart = null; controls.enabled = true; if (renderer.domElement.hasPointerCapture(event.pointerId)) renderer.domElement.releasePointerCapture(event.pointerId); };
-    renderer.domElement.addEventListener("pointerdown", onPointerDown, true);
-    renderer.domElement.addEventListener("pointermove", onPointerMove);
-    renderer.domElement.addEventListener("pointerup", onPointerUp);
-    let animation = 0;
-    const draw = () => {
-      const live = liveRef.current;
-      const rScale = 1.48 / Math.max(1, (EARTH_RADIUS + live.input.altitudeKm * 1000) / EARTH_RADIUS);
-      const sx = (live.state.x / EARTH_RADIUS) * rScale, sz = (live.state.y / EARTH_RADIUS) * rScale;
-      runtime.satelliteNodes.forEach((node, index) => { const base = runtime.basePositions[index]; if (base) { node.position.x = base.x + sx - 1.48; node.position.z = base.z + sz; if (node.name.includes("solar_panel") && live.running && !live.reducedMotion) node.rotation.y += 0.003; } });
-      const origin = new THREE.Vector3(sx, 0.35, sz);
-      const vdir = new THREE.Vector3(live.state.vx, 0, live.state.vy).normalize();
-      const gdir = new THREE.Vector3(-live.state.x, 0, -live.state.y).normalize();
-      runtime.velocityArrow.position.copy(origin); runtime.velocityArrow.setDirection(vdir); runtime.velocityArrow.setLength(Math.min(1.35, 0.45 + live.derived.speed / Math.max(1, live.derived.escapeSpeed)));
-      runtime.gravityArrow.position.copy(origin); runtime.gravityArrow.setDirection(gdir); runtime.gravityArrow.setLength(Math.min(1.2, 0.35 + live.derived.acceleration / 12));
-      const trailPoints = live.trail.map((point) => new THREE.Vector3((point.x/EARTH_RADIUS)*rScale, 0.02, (point.y/EARTH_RADIUS)*rScale));
-      runtime.trailLine.geometry.dispose(); runtime.trailLine.geometry = new THREE.BufferGeometry().setFromPoints(trailPoints);
-      runtime.overlays.forEach((overlay, index) => {
-        (overlay.material as THREE.SpriteMaterial).opacity = live.running ? (index ? 0.11 : 0.16) : (index ? 0.035 : 0.07);
-        if (live.running && !live.reducedMotion) overlay.material.rotation += index ? -0.0015 : 0.002;
-      });
-      controls.update(); renderer.render(scene,camera); animation = requestAnimationFrame(draw);
+    app.canvas.addEventListener("wheel", wheel, { passive: false });
+
+    const fit = () => {
+      const scale = Math.min(width / 760, height / 430) * zoom;
+      viewport.scale.set(scale);
+      if (!drag) viewport.position.set((width - 760 * scale) / 2, (height - 430 * scale) / 2);
     };
-    animation = requestAnimationFrame(draw);
-    return () => { cancelAnimationFrame(animation); observer.disconnect(); renderer.domElement.removeEventListener("pointerdown", onPointerDown, true); renderer.domElement.removeEventListener("pointermove", onPointerMove); renderer.domElement.removeEventListener("pointerup", onPointerUp); controls.dispose(); renderer.dispose(); host.removeChild(renderer.domElement); runtimeRef.current = null; };
+
+    const draw = (next: SatelliteSceneProps) => {
+      latest = next;
+      if (next.resetViewSignal !== resetSeen) {
+        resetSeen = next.resetViewSignal;
+        zoom = 1;
+        fit();
+      }
+      const point = scenePoint(next.state, next.input);
+      const scale = visualRadius(next.input.altitudeKm) / (EARTH_RADIUS + next.input.altitudeKm * 1000);
+      orbitGuide.clear();
+      orbitGuide.circle(350, 218, visualRadius(next.input.altitudeKm)).stroke({ color: 0x7ee787, width: 1.5, alpha: 0.35 });
+      trajectory.clear();
+      if (next.trail.length > 1) {
+        next.trail.forEach((sample, index) => {
+          const p = { x: 350 + sample.x * scale, y: 218 - sample.y * scale };
+          if (index === 0) trajectory.moveTo(p.x, p.y); else trajectory.lineTo(p.x, p.y);
+        });
+        trajectory.stroke({ color: regimeColor(next.derived.regime), width: 3, alpha: 0.92 });
+      }
+      if (satellite) {
+        satellite.position.set(point.x, point.y);
+        satellite.rotation = -Math.atan2(next.state.vy, next.state.vx);
+        satellite.alpha = next.derived.radius <= EARTH_RADIUS ? 0.45 : 1;
+      }
+      satelliteHit.clear().circle(point.x, point.y, 34).fill({ color: 0xffffff, alpha: 0.001 });
+      const velocityLength = Math.max(38, Math.min(150, next.derived.speed / 100));
+      const speed = Math.max(1, next.derived.speed);
+      const velocityEnd = { x: point.x + next.state.vx / speed * velocityLength, y: point.y - next.state.vy / speed * velocityLength };
+      const gravityLength = Math.max(34, Math.min(95, next.derived.acceleration * 6));
+      const radius = Math.max(1, next.derived.radius);
+      const gravityEnd = { x: point.x - next.state.x / radius * gravityLength, y: point.y + next.state.y / radius * gravityLength };
+      vectors.clear();
+      drawArrow(vectors, point.x, point.y, velocityEnd.x, velocityEnd.y, 0xfb923c);
+      drawArrow(vectors, point.x, point.y, gravityEnd.x, gravityEnd.y, 0xfacc15);
+      velocityHit.clear().circle(velocityEnd.x, velocityEnd.y, 16).fill({ color: 0xfb923c, alpha: 0.9 }).circle(velocityEnd.x, velocityEnd.y, 23).stroke({ color: 0xffffff, width: 2, alpha: 0.8 });
+    };
+
+    return {
+      update: draw,
+      resize: (nextWidth, nextHeight) => { width = nextWidth; height = nextHeight; fit(); },
+      destroy: () => app.canvas.removeEventListener("wheel", wheel),
+    };
   }, []);
 
-  useEffect(() => { runtimeRef.current?.reset(); }, [resetViewSignal]);
-
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const runtime = runtimeRef.current; if (!runtime) return;
-    if (["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","+","-","0"].includes(event.key)) event.preventDefault();
-    if (event.key === "0") return runtime.reset();
-    if (event.key === "+" || event.key === "=") runtime.camera.position.multiplyScalar(0.9);
-    else if (event.key === "-") runtime.camera.position.multiplyScalar(1.1);
-    else { const axis = event.key === "ArrowUp" || event.key === "ArrowDown" ? new THREE.Vector3(1,0,0) : new THREE.Vector3(0,1,0); const angle = (event.key === "ArrowLeft" || event.key === "ArrowUp") ? 0.12 : -0.12; runtime.camera.position.applyAxisAngle(axis, angle); runtime.camera.lookAt(runtime.controls.target); }
+    const patch: Partial<SatelliteOrbitInput> = {};
+    if (event.key === "ArrowUp") patch.launchSpeedKmS = Math.min(30, props.input.launchSpeedKmS + (event.shiftKey ? 0.01 : 0.1));
+    if (event.key === "ArrowDown") patch.launchSpeedKmS = Math.max(0, props.input.launchSpeedKmS - (event.shiftKey ? 0.01 : 0.1));
+    if (event.key === "ArrowLeft") patch.directionDeg = Math.max(-90, props.input.directionDeg - 1);
+    if (event.key === "ArrowRight") patch.directionDeg = Math.min(90, props.input.directionDeg + 1);
+    if (Object.keys(patch).length) { event.preventDefault(); props.onInput(patch); }
   };
-  return <div ref={hostRef} className="satellite-three-scene" role="application" tabIndex={0} onKeyDown={onKeyDown} aria-label="Interactive three-dimensional Earth and satellite. Drag to rotate, wheel or pinch to zoom, arrow keys to rotate, plus and minus to zoom, zero to reset view." />;
+
+  return <PixiStage className="satellite-three-scene satellite-two-d-scene" ariaLabel="Interactive two-dimensional orbital launch stage. Drag the satellite to place it. Drag the orange velocity handle to choose launch speed and direction." sceneProps={props} createScene={createScene} onKeyDown={onKeyDown} />;
+}
+
+function visualRadius(altitudeKm: number) {
+  return 130 + Math.log(Math.max(200, altitudeKm) / 200) / Math.log(36_000 / 200) * 145;
+}
+
+function scenePoint(state: OrbitVectorState, input: SatelliteOrbitInput) {
+  const scale = visualRadius(input.altitudeKm) / (EARTH_RADIUS + input.altitudeKm * 1000);
+  return { x: 350 + state.x * scale, y: 218 - state.y * scale };
+}
+
+function drawArrow(graphics: Graphics, x1: number, y1: number, x2: number, y2: number, color: number) {
+  const angle = Math.atan2(y2 - y1, x2 - x1);
+  graphics.moveTo(x1, y1).lineTo(x2, y2).stroke({ color, width: 4, alpha: 0.95 });
+  graphics.moveTo(x2, y2).lineTo(x2 - 12 * Math.cos(angle - 0.55), y2 - 12 * Math.sin(angle - 0.55)).lineTo(x2 - 12 * Math.cos(angle + 0.55), y2 - 12 * Math.sin(angle + 0.55)).closePath().fill({ color, alpha: 0.95 });
+}
+
+function normalizeSignedDegrees(value: number) {
+  return ((value + 180) % 360 + 360) % 360 - 180;
+}
+
+function regimeColor(regime: OrbitDerived["regime"]) {
+  if (regime === "escape") return 0xc084fc;
+  if (regime === "collision") return 0xfb923c;
+  return 0x7ee787;
 }
 
 function statusCopy(regime: OrbitDerived["regime"]) {

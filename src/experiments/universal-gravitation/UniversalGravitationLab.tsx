@@ -1,12 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import { computeGravitation, G, samplePotentialLine, type GravitationInput } from "./universalGravitationPhysics";
 import "./universal-gravitation.css";
 
-const ASSET_ROOT = "/assets/experiments/universal-gravitation";
 const DEFAULTS = { massALog: 30.3, massBLog: Math.log10(5.972e24), separationLog: Math.log10(1.5e11), probeStageX: .28, probeStageY: .35, softeningLog: 9 };
 type FieldState = "idle" | "running" | "paused";
 type Values = typeof DEFAULTS;
@@ -19,7 +15,6 @@ export function UniversalGravitationLab({ experiment }: DedicatedExperimentLabPr
   const [phase, setPhase] = useState(0);
   const [playback, setPlayback] = useState(1);
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false);
-  const [resetViewSignal, setResetViewSignal] = useState(0);
   const visualSep = visualSeparation(values.separationLog);
   const input = useMemo<GravitationInput>(() => {
     const separation = 10 ** values.separationLog;
@@ -65,17 +60,16 @@ export function UniversalGravitationLab({ experiment }: DedicatedExperimentLabPr
   return <section className="gravity-lab" data-ui-theme="dark" aria-label={`${experiment.title} interactive laboratory`} data-field-state={fieldState} data-mission={missionComplete ? "complete" : "searching"}>
     <header className="gravity-lab-head">
       <div><span>ASTRONOMY · CLASS 9 / 11</span><h2>Universal Gravitation — Field Map</h2><p>Explore inverse-square fields, superposition, and gravitational potential.</p></div>
-      <div className="gravity-head-actions"><button type="button" onClick={reset}>↻ Reset field</button><button type="button" onClick={() => setResetViewSignal(value => value + 1)}>◎ Center view</button></div>
+      <div className="gravity-head-actions"><button type="button" onClick={reset}>↻ Reset field</button><button type="button" onClick={() => setValues(current => ({ ...current, probeStageX: 0, probeStageY: 0 }))}>◎ Center probe</button></div>
     </header>
     <div className="gravity-primary-grid">
       <div className="gravity-stage">
-        <GravityScene input={input} visualSep={visualSep} phase={phase} running={fieldState === "running"} reducedMotion={reducedMotion} resetViewSignal={resetViewSignal} />
-        <FieldOverlay input={input} visualSep={visualSep} probeX={values.probeStageX} probeY={values.probeStageY} zeroX={zeroStageX} phase={phase} onProbe={(x, y) => setValues(current => ({ ...current, probeStageX: x, probeStageY: y }))} />
+        <FieldOverlay input={input} visualSep={visualSep} probeX={values.probeStageX} probeY={values.probeStageY} zeroX={zeroStageX} phase={phase} onProbe={(x, y) => setValues(current => ({ ...current, probeStageX: x, probeStageY: y }))} onSeparation={separationLog => setValues(current => ({ ...current, separationLog }))} />
         <div className="gravity-legend"><span><i />Field vectors</span><span><i />Equipotential contours</span><span><i />Net-field probe</span></div>
         <div className="gravity-scale">↔ {formatScientific(input.separation)} m separation</div>
       </div>
       <aside className="gravity-controls" aria-label="System parameters">
-        <div className="gravity-panel-title"><h3>System parameters</h3><button type="button" onClick={() => setResetViewSignal(value => value + 1)}>Reset view</button></div>
+        <div className="gravity-panel-title"><h3>System parameters</h3><button type="button" onClick={() => setValues(current => ({ ...current, probeStageX: 0, probeStageY: 0 }))}>Center probe</button></div>
         <LogControl label="Mass A" symbol="M₁" value={values.massALog} min={20} max={32} step={.05} unit="kg" onChange={value => update("massALog", value)} />
         <LogControl label="Mass B" symbol="M₂" value={values.massBLog} min={20} max={32} step={.05} unit="kg" onChange={value => update("massBLog", value)} />
         <LogControl label="Separation" symbol="r₁₂" value={values.separationLog} min={7} max={13} step={.02} unit="m" onChange={value => update("separationLog", value)} />
@@ -103,7 +97,7 @@ function NumberControl({ label, value, min, max, step, unit, onChange }: { label
   return <label><span>{label}</span><input aria-label={label} type="number" value={value.toFixed(2)} min={min} max={max} step={step} onChange={event => onChange(Math.max(min, Math.min(max, Number(event.target.value))))} /><small>{unit}</small></label>;
 }
 
-function FieldOverlay({ input, visualSep, probeX, probeY, zeroX, phase, onProbe }: { input:GravitationInput; visualSep:number; probeX:number; probeY:number; zeroX:number; phase:number; onProbe:(x:number,y:number)=>void }) {
+function FieldOverlay({ input, visualSep, probeX, probeY, zeroX, phase, onProbe, onSeparation }: { input:GravitationInput; visualSep:number; probeX:number; probeY:number; zeroX:number; phase:number; onProbe:(x:number,y:number)=>void; onSeparation:(value:number)=>void }) {
   const width = 900, height = 440;
   const mx = (x:number) => width / 2 + x * 260;
   const my = (y:number) => height / 2 - y * 180;
@@ -120,12 +114,21 @@ function FieldOverlay({ input, visualSep, probeX, probeY, zeroX, phase, onProbe 
     const y = (height / 2 - (event.clientY - rect.top) / rect.height * height) / 180;
     onProbe(Math.max(-1.5, Math.min(1.5, x)), Math.max(-1.1, Math.min(1.1, y)));
   };
+  const moveMass = (event: React.PointerEvent<SVGGElement>) => {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    const rect = event.currentTarget.ownerSVGElement!.getBoundingClientRect();
+    const mapX = ((event.clientX - rect.left) / rect.width * width - width / 2) / 260;
+    const nextSep = Math.max(.3, Math.min(2.1, Math.abs(mapX) * 2));
+    onSeparation(Math.max(7, Math.min(13, 9 + (nextSep - .9) / 1.2 * 4)));
+  };
   const pulse = .72 + Math.sin(phase * Math.PI * 2) * .18;
   return <svg className="gravity-field-overlay" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Superposed gravitational field vectors, potential contours, and draggable probe">
-    <defs><marker id="gravity-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" /></marker><marker id="probe-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" /></marker></defs>
+    <defs><radialGradient id="mass-a"><stop offset="0" stopColor="#fff5bd"/><stop offset=".35" stopColor="#ffb23f"/><stop offset="1" stopColor="#d54a14"/></radialGradient><radialGradient id="mass-b"><stop offset="0" stopColor="#d9f4ff"/><stop offset=".42" stopColor="#4db5e8"/><stop offset="1" stopColor="#123c7a"/></radialGradient><marker id="gravity-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" /></marker><marker id="probe-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" /></marker></defs>
     <g className="gravity-contours">{contours.map((path, index) => <path key={index} d={path} />)}</g>
     <g className="gravity-field-arrows" opacity={pulse}>{fieldArrows.map((arrow, index) => <line key={index} x1={mx(arrow.x)} y1={my(arrow.y)} x2={mx(arrow.x + arrow.dx)} y2={my(arrow.y + arrow.dy)} />)}</g>
     <line className="gravity-distance-line" x1={mx(-visualSep/2)} y1={my(0)} x2={mx(visualSep/2)} y2={my(0)} />
+    <g className="gravity-mass gravity-mass-a" transform={`translate(${mx(-visualSep/2)} ${my(0)})`} role="slider" tabIndex={0} aria-label="Drag mass A to change separation" onPointerDown={event => event.currentTarget.setPointerCapture(event.pointerId)} onPointerMove={moveMass}><circle className="gravity-mass-glow" r="46"/><circle r="30"/><text y="52">M₁</text></g>
+    <g className="gravity-mass gravity-mass-b" transform={`translate(${mx(visualSep/2)} ${my(0)})`} role="slider" tabIndex={0} aria-label="Drag mass B to change separation" onPointerDown={event => event.currentTarget.setPointerCapture(event.pointerId)} onPointerMove={moveMass}><circle className="gravity-mass-glow" r="40"/><circle r="25"/><text y="46">M₂</text></g>
     <g className="gravity-zero-marker" transform={`translate(${mx(zeroX)} ${my(0)})`}><circle r="8" /><path d="M-12 0H12M0-12V12" /><text y="-16">g = 0</text></g>
     <g className="gravity-probe-vector"><line x1={mx(probeX)} y1={my(probeY)} x2={mx(probeX + probeResult.netField.x * probeScale)} y2={my(probeY + probeResult.netField.y * probeScale)} /></g>
     <circle className="gravity-probe" cx={mx(probeX)} cy={my(probeY)} r="12" tabIndex={0} role="slider" aria-valuetext={`x ${probeX.toFixed(2)}, y ${probeY.toFixed(2)}`} aria-label="Field probe" onPointerDown={drag} onPointerMove={move} onKeyDown={event => { if(event.key === "ArrowLeft") onProbe(probeX-.02,probeY); if(event.key === "ArrowRight") onProbe(probeX+.02,probeY); if(event.key === "ArrowUp") onProbe(probeX,probeY+.02); if(event.key === "ArrowDown") onProbe(probeX,probeY-.02); }} />
@@ -195,6 +198,7 @@ function PotentialGraph({ input, probeX, zeroX }: { input:GravitationInput; prob
   return <section className="gravity-graph"><h3>Gravitational potential V along y = 0</h3><svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Negative gravitational potential curve along the line through both masses"><line x1={l} x2={w-r} y1={h-b} y2={h-b}/><path d={path}/><line className="probe-line" x1={x(probeX)} x2={x(probeX)} y1={t} y2={h-b}/><line className="zero-line" x1={x(zeroX)} x2={x(zeroX)} y1={t} y2={h-b}/><text x={x(probeX)} y={t+9}>P</text><text className="zero-text" x={x(zeroX)} y={h-b-6}>g=0</text><text x={l} y={h-8}>−1.5r</text><text x={w-r} y={h-8} textAnchor="end">+1.5r</text></svg><p>Potential stays negative at the zero-field point because potential is scalar.</p></section>;
 }
 
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
 type SceneRuntime = {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
@@ -306,6 +310,7 @@ function GravityScene({ input, visualSep, phase, running, reducedMotion, resetVi
   </div>;
 }
 
+*/
 function formatScientific(value:number) {
   if (!Number.isFinite(value)) return "—";
   if (value === 0) return "0";

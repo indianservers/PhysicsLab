@@ -8,6 +8,8 @@ export interface CapacitorInput {
   arrangement: Arrangement;
   count: number;
   connected: boolean;
+  /** Charge retained after the battery is disconnected. */
+  storedCharge?: number;
 }
 export interface CapacitorResult {
   singleCapacitance: number;
@@ -29,11 +31,11 @@ export function sanitizeCapacitorInput(i: CapacitorInput): CapacitorInput {
     arrangement: i.arrangement,
     count: Math.round(clamp(i.count, 1, 3)),
     connected: Boolean(i.connected),
+    storedCharge: Number.isFinite(i.storedCharge) ? Math.max(0, i.storedCharge ?? 0) : 0,
   };
 }
 export function computeCapacitor(raw: CapacitorInput): CapacitorResult {
   const i = sanitizeCapacitorInput(raw);
-  const activeVoltage = i.connected ? i.voltage : 0;
   const singleCapacitance = (i.dielectric * EPSILON_0 * i.plateArea) / i.spacing,
     equivalentCapacitance =
       i.arrangement === "parallel"
@@ -41,7 +43,9 @@ export function computeCapacitor(raw: CapacitorInput): CapacitorResult {
         : i.arrangement === "series"
           ? singleCapacitance / i.count
           : singleCapacitance,
-    charge = equivalentCapacitance * activeVoltage,
+    charge = i.connected ? equivalentCapacitance * i.voltage : (i.storedCharge ?? 0),
+    activeVoltage = equivalentCapacitance > 0 ? charge / equivalentCapacitance : 0,
+
     energy = 0.5 * equivalentCapacitance * activeVoltage ** 2,
     electricField = activeVoltage / i.spacing,
     energyDensity = 0.5 * i.dielectric * EPSILON_0 * electricField ** 2,

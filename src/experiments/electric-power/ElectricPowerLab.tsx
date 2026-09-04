@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   APPLIANCES,
@@ -10,6 +7,7 @@ import {
   type ElectricPowerInput,
 } from "./electricPowerPhysics";
 import "./electric-power.css";
+import "./electric-power-2d.css";
 
 const ROOT = "/assets/experiments/electric-power",
   DEFAULTS = {
@@ -29,7 +27,6 @@ export function ElectricPowerLab({ experiment }: DedicatedExperimentLabProps) {
     [reducedMotion, setReducedMotion] = useState(
       () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
     ),
-    [resetViewSignal, setResetViewSignal] = useState(0),
     [selectedPart, setSelectedPart] = useState("resistor"),
     [feedback, setFeedback] = useState("");
   const input = useMemo<ElectricPowerInput>(
@@ -101,8 +98,8 @@ export function ElectricPowerLab({ experiment }: DedicatedExperimentLabProps) {
           <p>Connect voltage, resistance, power, heating, and energy cost.</p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset view
+          <button onClick={() => { choose("lamp"); setSelectedPart("lamp"); }}>
+            ◎ Reset home
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -115,11 +112,14 @@ export function ElectricPowerLab({ experiment }: DedicatedExperimentLabProps) {
             phase={elapsed}
             running={runState === "ramping" || runState === "running"}
             reducedMotion={reducedMotion}
-            resetViewSignal={resetViewSignal}
             selectedPart={selectedPart}
             onSelect={setSelectedPart}
+            appliance={values.appliance}
+            enabled={values.enabled}
+            onChoose={choose}
+            onToggle={()=>update("enabled",!values.enabled)}
           />
-          <div className="power-flow">
+          <div className="power-flow" style={{ display: "none" }}>
             {Array.from({ length: 8 }, (_, i) => (
               <i key={i} style={{ animationDelay: `${-i * 0.13}s` }}>
                 ●
@@ -142,7 +142,7 @@ export function ElectricPowerLab({ experiment }: DedicatedExperimentLabProps) {
                   : "Ready"}
             </span>
           </div>
-          <div className="power-parts">
+          <div className="power-parts" style={{ display: "none" }}>
             {[
               "battery_body",
               "battery_positive",
@@ -504,7 +504,19 @@ function EnergyGraph({
   );
 }
 
-function PowerScene({
+function PowerScene({ input, power, phase, running, reducedMotion, selectedPart, onSelect, appliance, enabled, onChoose, onToggle }: { input:ElectricPowerInput; power:number; phase:number; running:boolean; reducedMotion:boolean; selectedPart:string; onSelect:(name:string)=>void; appliance:Appliance; enabled:boolean; onChoose:(appliance:Appliance)=>void; onToggle:()=>void }) {
+  const hotspots:Array<{id:Appliance;label:string;x:number;y:number}>=[{id:"fan",label:"Fan",x:32,y:23},{id:"lamp",label:"Lamp",x:22,y:68},{id:"television",label:"TV",x:34,y:72},{id:"refrigerator",label:"Fridge",x:62,y:70},{id:"kettle",label:"Kettle",x:76,y:72},{id:"iron",label:"Iron",x:72,y:27},{id:"heater",label:"Heater",x:87,y:74}];
+  return <div className="power-2d" role="application" aria-label="Interactive two-dimensional smart home. Select an appliance hotspot and use the main switch.">
+    <img src={`${ROOT}/sprites/smart-home.png`} alt="Cutaway smart home with seven electrical appliances and visible wiring" draggable={false}/>
+    {hotspots.map(item=><button key={item.id} className={`power-hotspot ${appliance===item.id?"active":""} ${enabled&&appliance===item.id?"on":""}`} style={{left:`${item.x}%`,top:`${item.y}%`}} onClick={()=>{onChoose(item.id);onSelect(item.id)}} aria-label={`Select ${item.label}`}><i/>{item.label}</button>)}
+    <button className={`power-main-switch ${enabled?"on":""}`} onClick={onToggle}>{enabled?"MAIN ON":"MAIN OFF"}</button>
+    <div className="power-live-wire" data-running={running&&!reducedMotion}>{Array.from({length:12},(_,i)=><i key={i} style={{animationDelay:`${i*.08}s`,opacity:.2+Math.min(.8,power/2000)}}/> )}</div>
+    <output className="power-house-meter">{selectedPart.toUpperCase()} · {input.voltage.toFixed(0)} V · {power.toFixed(0)} W · t {phase.toFixed(2)} h</output>
+  </div>;
+}
+
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
+function LegacyPowerScene({
   input,
   power,
   phase,
@@ -695,3 +707,4 @@ function PowerScene({
     />
   );
 }
+*/

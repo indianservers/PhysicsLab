@@ -16,10 +16,16 @@
     "audit:visualizations": "node scripts/auditVisualizations.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-slider": "^1.4.7",
+    "@radix-ui/react-toggle-group": "^1.1.19",
+    "@radix-ui/react-tooltip": "^1.2.16",
+    "@use-gesture/react": "^10.3.1",
     "@vitejs/plugin-react": "^4.2.1",
     "i18next": "^26.2.0",
     "katex": "^0.16.45",
     "matter-js": "^0.20.0",
+    "motion": "^13.2.0",
+    "pixi.js": "^8.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^17.0.8",

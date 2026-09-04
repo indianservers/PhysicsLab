@@ -8,6 +8,7 @@ export interface SatelliteOrbitInput {
   launchSpeedKmS: number;
   directionDeg: number;
   satelliteMassKg: number;
+  launchPositionDeg?: number;
 }
 
 export interface OrbitVectorState {
@@ -45,6 +46,7 @@ export function clampOrbitInput(input: SatelliteOrbitInput): SatelliteOrbitInput
     launchSpeedKmS: clamp(input.launchSpeedKmS, 0, 30),
     directionDeg: clamp(input.directionDeg, -90, 90),
     satelliteMassKg: clamp(input.satelliteMassKg, 100, 10_000),
+    launchPositionDeg: normalizeDegrees(input.launchPositionDeg ?? 0),
   };
 }
 
@@ -53,11 +55,18 @@ export function initialOrbitState(rawInput: SatelliteOrbitInput): OrbitVectorSta
   const radius = EARTH_RADIUS + input.altitudeKm * 1000;
   const speed = input.launchSpeedKmS * 1000;
   const theta = (input.directionDeg * Math.PI) / 180;
+  const positionTheta = ((input.launchPositionDeg ?? 0) * Math.PI) / 180;
+  const radial = { x: Math.cos(positionTheta), y: Math.sin(positionTheta) };
+  const tangent = { x: -radial.y, y: radial.x };
+  const velocityDirection = {
+    x: tangent.x * Math.cos(theta) + radial.x * Math.sin(theta),
+    y: tangent.y * Math.cos(theta) + radial.y * Math.sin(theta),
+  };
   return {
-    x: radius,
-    y: 0,
-    vx: speed * Math.sin(theta),
-    vy: speed * Math.cos(theta),
+    x: radius * radial.x,
+    y: radius * radial.y,
+    vx: speed * velocityDirection.x,
+    vy: speed * velocityDirection.y,
     elapsed: 0,
   };
 }
@@ -139,4 +148,9 @@ export function buildSpeedCurves(planetMassEarths: number) {
 function clamp(value: number, min: number, max: number) {
   if (!Number.isFinite(value)) return min;
   return Math.max(min, Math.min(max, value));
+}
+
+function normalizeDegrees(value: number) {
+  if (!Number.isFinite(value)) return 0;
+  return ((value % 360) + 360) % 360;
 }

@@ -1,7 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   computeElectrostatic,
@@ -9,8 +6,8 @@ import {
   type ElectrostaticInput,
 } from "./electrostaticPhysics";
 import "./electrostatic-field.css";
-const ROOT = "/assets/experiments/electrostatic-field-potential",
-  DEFAULTS = {
+import "./electrostatic-field-2d.css";
+const DEFAULTS = {
     charge1: 3e-6,
     charge2: -3e-6,
     separation: 2,
@@ -29,8 +26,6 @@ export function ElectrostaticFieldLab({
     [reducedMotion, setReducedMotion] = useState(
       () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
     ),
-    [resetViewSignal, setResetViewSignal] = useState(0),
-    [selectedPart, setSelectedPart] = useState("positive_charge"),
     [feedback, setFeedback] = useState("");
   const input = useMemo<ElectrostaticInput>(() => values, [values]),
     result = useMemo(() => computeElectrostatic(input), [input]);
@@ -74,8 +69,8 @@ export function ElectrostaticFieldLab({
           </p>
         </div>
         <div>
-          <button onClick={() => setResetViewSignal((v) => v + 1)}>
-            ◎ Reset 3D view
+          <button onClick={() => { update("probeX",0); update("probeY",0); }}>
+            ◎ Center probe
           </button>
           <button onClick={reset}>↻ Reset experiment</button>
         </div>
@@ -176,31 +171,7 @@ export function ElectrostaticFieldLab({
             }
             onSeparation={(separation) => update("separation", separation)}
           />
-          <div className="electro-3d">
-            <ChargeScene
-              input={input}
-              phase={phase}
-              running={runState === "running"}
-              reducedMotion={reducedMotion}
-              resetViewSignal={resetViewSignal}
-              selectedPart={selectedPart}
-              onSelect={setSelectedPart}
-            />
-            <div>
-              <button
-                className={selectedPart === "positive_charge" ? "active" : ""}
-                onClick={() => setSelectedPart("positive_charge")}
-              >
-                positive charge
-              </button>
-              <button
-                className={selectedPart === "negative_charge" ? "active" : ""}
-                onClick={() => setSelectedPart("negative_charge")}
-              >
-                negative charge
-              </button>
-            </div>
-          </div>
+          <div className="electro-2d-guide" style={{opacity:.86+(runState === "running" ? Math.sin(phase*Math.PI*2)*.12 : 0)}}><strong>DIRECT FIELD TOOLS</strong><span>Drag charges ↔ to change separation</span><span>Drag probe anywhere · arrow keys fine-tune</span><span>Compare E vector and scalar V at the same point</span></div>
         </main>
         <aside className="electro-results">
           <span>PROBE READOUT</span>
@@ -610,6 +581,7 @@ function makeContours(input: ElectrostaticInput) {
   return segments;
 }
 
+/* Legacy GLB scene intentionally retired in the 2D studio conversion.
 function ChargeScene({
   input,
   phase,
@@ -803,3 +775,4 @@ function ChargeScene({
     />
   );
 }
+*/
