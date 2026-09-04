@@ -63,7 +63,10 @@ export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinitio
     const nextStage = stages[Math.min(Math.max(index, 0) + 1, stages.length - 1)].id;
     patchRecord({ completed, stage: nextStage });
   };
-  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollTo = (id: string) => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  };
   const progress = Math.round((record.completed.length / stages.length) * 100);
 
   return (

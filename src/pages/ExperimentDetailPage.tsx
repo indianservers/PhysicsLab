@@ -436,6 +436,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
                 result={results}
                 values={[a, b, c]}
                 disabled={classroomPaused || variablesLocked}
+                transportLocked={variablesLocked}
                 lockReason={variablesLocked ? "Teacher locked variables for this assignment." : undefined}
                 onChange={(index, value) => setters[index]?.(value)}
                 onSetAll={setAll}
@@ -961,6 +962,7 @@ function LiveExperimentControls({
   result,
   values,
   disabled,
+  transportLocked,
   lockReason,
   onChange,
   onSetAll,
@@ -971,6 +973,7 @@ function LiveExperimentControls({
   result: LabResult;
   values: number[];
   disabled: boolean;
+  transportLocked: boolean;
   lockReason?: string;
   onChange: (index: number, value: number) => void;
   onSetAll: (values: number[]) => void;
@@ -998,8 +1001,8 @@ function LiveExperimentControls({
           <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.min))} disabled={disabled}>Low</button>
           <button type="button" onClick={() => onSetAll(result.controls.map((control) => midpoint(control)))} disabled={disabled}>Mid</button>
           <button type="button" onClick={() => onSetAll(result.controls.map((control) => control.max))} disabled={disabled}>High</button>
-          <button type="button" onClick={onStep} disabled={disabled}>Step</button>
-          <button type="button" onClick={onReset} disabled={disabled}>Reset</button>
+          <button type="button" onClick={onStep} disabled={transportLocked}>Step</button>
+          <button type="button" onClick={onReset} disabled={transportLocked}>Reset</button>
         </div>
       </div>
       {lockReason && <p className="mt-2 rounded-md border border-amber-300/40 bg-amber-300/10 p-2 text-xs font-bold text-slate-600 dark:text-amber-100">{lockReason}</p>}

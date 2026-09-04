@@ -468,7 +468,7 @@ export function KirchhoffCircuitLab({
         </div>
         <div className="kirchhoff-target">
           <span>PREDICT I₃ BEFORE TRACE</span>
-          <div className="kirchhoff-prediction" role="group" aria-label="Shared current prediction">{(["up","zero","down"] as const).map(item=><button key={item} className={prediction===item?"active":""} onClick={()=>{setPrediction(item);setPredictionFeedback("")}}>{item === "up" ? "↑" : item === "down" ? "↓" : "0"}</button>)}</div>
+          <div className="kirchhoff-prediction" role="group" aria-label="Shared current prediction">{(["up","zero","down"] as const).map(item=><button key={item} aria-label={`Predict ${item === "up" ? "upward" : item === "down" ? "downward" : "zero"} shared current`} className={prediction===item?"active":""} onClick={()=>{setPrediction(item);setPredictionFeedback("")}}>{item === "up" ? "↑" : item === "down" ? "↓" : "0"}</button>)}</div>
           {predictionFeedback && <small aria-live="polite">{predictionFeedback}</small>}
           <span>Calculated balance</span>
           <strong>
