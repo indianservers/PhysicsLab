@@ -127,7 +127,7 @@ const railNavGroups = [
   { label: "Tools", items: toolNavItems },
 ];
 
-export function Toolbar({ compact = false }: { compact?: boolean }) {
+export function Toolbar({ compact = false, hideRail = false }: { compact?: boolean; hideRail?: boolean }) {
   const { t } = useTranslation();
   const location = useLocation();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -239,7 +239,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
 
   return (
     <>
-      <header className="app-toolbar">
+      <header className={`app-toolbar${hideRail ? " app-toolbar-no-rail" : ""}`}>
         <RouterLink to="/" className="brand-mark" aria-label="PhysicsLab 100 home">
           <span className="brand-atom-icon"><PhysicsIcon name="atom" className="h-5 w-5" /></span>
           <span className="brand-wordmark">PhysicsLab 100</span>
@@ -258,7 +258,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
             <PhysicsIcon name="download" className="h-4 w-4" />
           </button>
         )}
-        {!compact && (
+        {!compact && !hideRail && (
           <button
             ref={themeToggleRef}
             className="theme-toggle"
@@ -288,7 +288,7 @@ export function Toolbar({ compact = false }: { compact?: boolean }) {
           </button>
         )}
       </header>
-      {!compact && (
+      {!compact && !hideRail && (
         <aside className="app-nav-rail" aria-label="Primary navigation">
           <label className="rail-search-box">
             <PhysicsIcon name="search" className="h-4 w-4" />
