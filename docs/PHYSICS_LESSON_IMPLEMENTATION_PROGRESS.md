@@ -6,9 +6,16 @@
 - Current lesson: Complete — all 80 prompts implemented
 - Last completed lesson: 080 — Young's Double Slit
 - Blocked lessons: None
-- Last update time: 2026-09-04 07:05:38 +05:30
+- Last update time: 2026-09-04 09:54:53 +05:30
 
 This file is the authoritative resume point. Later lesson routes remain unrecorded until each lesson prompt is opened in strict numerical order.
+
+## 2D interaction enhancement pass — 2026-09-04
+
+- Preserved the completed 001–080 lesson implementations and their existing validation evidence.
+- Added keyboard/touch/pointer direct manipulation to Lessons 011, 012, 014, 016, 017, 021, 026, 032, 033, 035, 037, 038, 039, and 040 where an important variable previously depended mainly on a side-panel control.
+- Rechecked all 80 live lesson routes; no lesson runtime failure was detected.
+- Physics validation: 581/581 passed. Type-check and production build passed.
 
 |  ID | Lesson                                    | Prompt                                                            | Route                                       | Status      | UI Match                                                                                                                                                                  | Interaction | Physics | Desktop                 | Mobile                 | Tests                                                                          | Screenshot Folder                                                                  | Notes                                                                                                                                                                                                                                                                                                                                                      |
 | --: | ----------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- | ----------------------- | ---------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

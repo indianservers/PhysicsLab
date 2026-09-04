@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import {
   requiredReleaseHeight,
   solveEnergy,
@@ -264,6 +265,7 @@ export function ConservationOfEnergyLab({
             className="energy-stage"
             aria-label={`Ball height ${f(energy.heightM)} metres, speed ${f(energy.speedMps)} metres per second`}
           >
+            <DirectAxisControl className="energy-direct-height" vertical label="DRAG RELEASE HEIGHT ↕" value={input.startHeightM} min={1} max={18} step={.5} onChange={startHeightM=>update({startHeightM})}/>
             <img
               src="/assets/experiments/conservation-of-energy/energy-track.png"
               alt="Transparent alpine energy track"

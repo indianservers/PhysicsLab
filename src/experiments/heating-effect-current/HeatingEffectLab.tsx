@@ -287,6 +287,24 @@ export function HeatingEffectLab({ experiment }: DedicatedExperimentLabProps) {
               src={`${ROOT}/joule-calorimeter.png`}
               alt="Power supply connected to a resistance coil immersed in an insulated water calorimeter with thermometer and thermal camera"
             />
+            <button
+              className="joule-direct-current"
+              type="button"
+              aria-label={`Drag current control, ${input.current.toFixed(1)} amperes`}
+              onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)}
+              onPointerMove={(event) => {
+                if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+                const rect = event.currentTarget.getBoundingClientRect();
+                update("current", Math.max(0, Math.min(5, ((event.clientX - rect.left) / rect.width) * 5)));
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowLeft") update("current", input.current - .1);
+                if (event.key === "ArrowRight") update("current", input.current + .1);
+              }}
+            >
+              <i style={{ left: `${input.current / 5 * 100}%` }} />
+              <span>DRAG CURRENT · {input.current.toFixed(1)} A</span>
+            </button>
             <div className="joule-screen joule-supply-screen">
               <strong>{input.current.toFixed(2)} A</strong>
               <span>{result.power.toFixed(1)} W</span>

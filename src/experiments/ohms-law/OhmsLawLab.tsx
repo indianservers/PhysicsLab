@@ -221,6 +221,12 @@ export function OhmsLawLab({ experiment }: DedicatedExperimentLabProps) {
               src="/assets/experiments/ohms-law/apparatus.png"
               alt="DC supply, switch, ammeter, voltmeter, rheostat and sample on a wooden lab board"
             />
+            <button className="ohm-direct-rheostat" aria-label={`Drag rheostat voltage, ${input.voltage.toFixed(1)} volts`}
+              onPointerDown={event=>event.currentTarget.setPointerCapture(event.pointerId)}
+              onPointerMove={event=>{if(!event.currentTarget.hasPointerCapture(event.pointerId))return;const rect=event.currentTarget.getBoundingClientRect();update("voltage",Math.max(0,Math.min(12,(event.clientX-rect.left)/rect.width*12)));}}
+              onKeyDown={event=>{if(event.key==="ArrowLeft")update("voltage",input.voltage-.1);if(event.key==="ArrowRight")update("voltage",input.voltage+.1)}}>
+              <i style={{left:`${input.voltage/12*100}%`}}/><span>DRAG RHEOSTAT</span>
+            </button>
             <div className="ohm-meter current">
               <span>CURRENT</span>
               <b>{solved.current.toFixed(3)} A</b>

@@ -149,6 +149,7 @@
   border-radius: 14px;
   background: linear-gradient(#f7f1eb, #fff 60%, #ded6ce);
 }
+.ec-stage .ec-direct-launch{left:16px;bottom:12px}
 .ec-stage > img {
   position: absolute;
   inset: auto 0 4%;

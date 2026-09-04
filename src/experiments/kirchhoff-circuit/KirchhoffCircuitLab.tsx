@@ -26,6 +26,8 @@ export function KirchhoffCircuitLab({
     () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
   );
   const [missionFeedback, setMissionFeedback] = useState("");
+  const [prediction, setPrediction] = useState<"up" | "down" | "zero" | "">("");
+  const [predictionFeedback, setPredictionFeedback] = useState("");
   const result = useMemo(() => solveKirchhoff(input), [input]);
   const steps = loop === "left" ? 5 : 6;
 
@@ -52,6 +54,8 @@ export function KirchhoffCircuitLab({
       normalizeKirchhoffInput({ ...current, [key]: value }),
     );
     setMissionFeedback("");
+    setPrediction("");
+    setPredictionFeedback("");
   };
   const reset = () => {
     setInput(DEFAULT_KIRCHHOFF_INPUT);
@@ -64,6 +68,10 @@ export function KirchhoffCircuitLab({
   const play = () => {
     if (runState === "result") setTraceStep(0);
     setRunState("running");
+    if (prediction) {
+      const actual = Math.abs(result.sharedCurrent) < 1e-6 ? "zero" : result.sharedCurrent > 0 ? "down" : "up";
+      setPredictionFeedback(prediction === actual ? `✓ Correct: shared current is ${actual}.` : `Observe the arrows: shared current is ${actual}.`);
+    }
   };
   const step = () => {
     setRunState("paused");
@@ -288,6 +296,13 @@ export function KirchhoffCircuitLab({
                 value={input.resistance1}
                 active={loop === "left" && traceStep === 2}
               />
+              <g className="kirchhoff-direct-r5">
+                <rect x="458" y="278" width="144" height="62" rx="8" tabIndex={0} role="slider" aria-label="Drag adjustable resistor R5" aria-valuemin={10} aria-valuemax={1000} aria-valuenow={input.resistance5}
+                  onPointerDown={event => event.currentTarget.setPointerCapture(event.pointerId)}
+                  onPointerMove={event => { if(!event.currentTarget.hasPointerCapture(event.pointerId)) return; const rect=event.currentTarget.ownerSVGElement!.getBoundingClientRect(); const x=(event.clientX-rect.left)/rect.width*760; update("resistance5",10+Math.max(0,Math.min(1,(x-458)/144))*990); }}
+                  onKeyDown={event=>{if(event.key==="ArrowLeft")update("resistance5",input.resistance5-2.5);if(event.key==="ArrowRight")update("resistance5",input.resistance5+2.5);}} />
+                <text x="530" y="352">DRAG R₅ ↔</text>
+              </g>
               <Component
                 x={220}
                 y={310}
@@ -452,6 +467,9 @@ export function KirchhoffCircuitLab({
           </p>
         </div>
         <div className="kirchhoff-target">
+          <span>PREDICT I₃ BEFORE TRACE</span>
+          <div className="kirchhoff-prediction" role="group" aria-label="Shared current prediction">{(["up","zero","down"] as const).map(item=><button key={item} className={prediction===item?"active":""} onClick={()=>{setPrediction(item);setPredictionFeedback("")}}>{item === "up" ? "↑" : item === "down" ? "↓" : "0"}</button>)}</div>
+          {predictionFeedback && <small aria-live="polite">{predictionFeedback}</small>}
           <span>Calculated balance</span>
           <strong>
             {balanceInRange

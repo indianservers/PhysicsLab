@@ -275,6 +275,10 @@ export function StaticElectricityLab({
               src="/assets/experiments/static-electricity/static-lab.png"
               alt="Van de Graaff generator, electroscope, storm cloud, lightning rod, PVC rod and wool"
             />
+            <button className="static-direct-rub" aria-label={`Drag to rub materials, ${input.rubbing.toFixed(0)} percent`}
+              onPointerDown={event=>event.currentTarget.setPointerCapture(event.pointerId)}
+              onPointerMove={event=>{if(!event.currentTarget.hasPointerCapture(event.pointerId))return;const rect=event.currentTarget.getBoundingClientRect();update({rubbing:Math.max(0,Math.min(100,(event.clientX-rect.left)/rect.width*100))})}}
+              onKeyDown={event=>{if(event.key==="ArrowLeft")update({rubbing:input.rubbing-2});if(event.key==="ArrowRight")update({rubbing:input.rubbing+2})}}><i style={{left:`${input.rubbing}%`}}/><span>RUB MATERIALS ↔</span></button>
             <svg
               viewBox="0 0 1000 560"
               role="img"

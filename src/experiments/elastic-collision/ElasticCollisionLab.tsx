@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import {
   simulateElasticCollision,
   type ElasticCollisionInput,
@@ -254,6 +255,7 @@ export function ElasticCollisionLab({
             className={contact ? "ec-stage contact" : "ec-stage"}
             aria-label={`${phase}; cart A velocity ${f(v1)} metres per second, cart B velocity ${f(v2)} metres per second`}
           >
+            <DirectAxisControl className="ec-direct-launch" label="DRAG CART A VELOCITY ↔" value={input.u1} min={-2} max={2} step={.1} onChange={u1=>update({u1})}/>
             <img
               src="/assets/experiments/elastic-collision/air-track.png"
               alt="Transparent laboratory air track"

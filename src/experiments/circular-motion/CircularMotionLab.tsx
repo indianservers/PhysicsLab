@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import {
   circularVectors,
   simulateCircularMotion,
@@ -295,6 +296,7 @@ export function CircularMotionLab({ experiment }: DedicatedExperimentLabProps) {
             className="cm-stage"
             aria-label={`Tangential speed ${fmt(Math.abs(result.tangentialSpeed))} metres per second; inward acceleration ${fmt(result.centripetalAcceleration)} metres per second squared`}
           >
+            <DirectAxisControl className="cm-direct" label="DRAG RADIUS ↔" value={input.radius} min={.4} max={5} step={.1} onChange={radius=>update({radius})}/>
             <img
               src="/assets/experiments/circular-motion/rotating-platform.png"
               alt="Top-down circular-motion platform"

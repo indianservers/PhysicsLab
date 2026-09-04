@@ -32,6 +32,7 @@
 .ohm-lab button:disabled {
   opacity: 0.45;
 }
+.ohm-direct-rheostat{position:absolute!important;z-index:6;left:39%;bottom:12%;width:32%;height:38px!important;min-height:0!important;padding:0!important;border:1px solid #54cfff!important;background:#111a20e8!important;touch-action:none}.ohm-direct-rheostat i{position:absolute;top:3px;width:12px;height:20px;transform:translateX(-50%);border-radius:4px;background:#f4b63f;box-shadow:0 0 8px #ffc34d}.ohm-direct-rheostat span{position:absolute;left:0;right:0;bottom:2px;color:#bdefff;font-size:8px}
 .ohm-lab button:focus-visible,
 .ohm-lab input:focus-visible,
 .ohm-lab select:focus-visible {

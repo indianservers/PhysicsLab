@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import {
   simulateInclinedPlane,
   type InclinedPlaneInput,
@@ -280,6 +281,15 @@ export function InclinedPlaneLab({ experiment }: DedicatedExperimentLabProps) {
             className={`ip-stage ${state.motionState}`}
             aria-label={`${state.motionState}; angle ${f(input.angleDegrees)} degrees; acceleration ${f(state.accelerationDownMps2)} metres per second squared`}
           >
+            <DirectAxisControl
+              className="ip-direct-angle"
+              label="Ramp angle"
+              value={input.angleDegrees}
+              min={0}
+              max={60}
+              step={1}
+              onChange={(angleDegrees) => update({ angleDegrees })}
+            />
             <img
               src="/assets/experiments/inclined-plane/inclined-plane-rig.png"
               alt="Adjustable inclined-plane apparatus"

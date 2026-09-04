@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import {
   bodyData,
   massWeightState,
@@ -281,6 +282,16 @@ export function MassAndWeightLab({ experiment }: DedicatedExperimentLabProps) {
             className="mw-stage"
             aria-label={`${input.massKg} kilogram object on ${input.body}; weight ${f(state.trueWeightN)} newtons; apparent weight ${f(state.apparentWeightN)} newtons`}
           >
+            <DirectAxisControl
+              className="mw-direct-mass"
+              label="Object mass"
+              value={input.massKg}
+              min={0.1}
+              max={10}
+              step={0.1}
+              onChange={(massKg) => update({ massKg })}
+              vertical
+            />
             <img
               src="/assets/experiments/mass-and-weight/mass-weight-station.png"
               alt="Balance and spring-scale measurement station"

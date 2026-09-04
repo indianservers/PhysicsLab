@@ -142,6 +142,7 @@
   background: linear-gradient(#a9ddfa, #eef7fe 68%, #bfdf8d);
   box-shadow: 0 8px 24px #513c2728;
 }
+.energy-stage .energy-direct-height{left:16px;top:18%}
 .energy-stage > img,
 .energy-stage > svg {
   position: absolute;

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import { simulateFriction, type FrictionInput } from "./frictionSimulation";
 import "./friction.css";
 
@@ -315,6 +316,15 @@ export function FrictionLab({ experiment }: DedicatedExperimentLabProps) {
             className={`fr-stage ${state.motionState} ${incline ? "inclined" : ""}`}
             aria-label={`${state.motionState}; applied force ${f(input.appliedForce)} newtons; friction ${f(state.frictionForce)} newtons; acceleration ${f(state.acceleration)} metres per second squared`}
           >
+            <DirectAxisControl
+              className="fr-direct-force"
+              label="Pull force"
+              value={input.appliedForce}
+              min={0}
+              max={160}
+              step={1}
+              onChange={(appliedForce) => update({ appliedForce })}
+            />
             <div
               className="fr-apparatus"
               style={{ rotate: `${-input.inclineDegrees}deg` }}

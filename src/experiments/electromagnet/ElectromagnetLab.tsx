@@ -7,6 +7,7 @@ import {
   type ElectromagnetInput,
 } from "./electromagnetSimulation";
 import "./electromagnet.css";
+import "./electromagnet-direct.css";
 type Run = "idle" | "running" | "paused" | "result";
 const D: ElectromagnetInput = {
   currentA: 2.5,
@@ -229,6 +230,10 @@ export function ElectromagnetLab({ experiment }: DedicatedExperimentLabProps) {
               src="/assets/experiments/electromagnet/electromagnet-crane.png"
               alt="Transparent electromagnet crane and steel washer tray"
             />
+            <button className="magnet-direct-current" aria-label={`Drag electromagnet current, ${input.currentA.toFixed(1)} amperes`}
+              onPointerDown={event=>event.currentTarget.setPointerCapture(event.pointerId)}
+              onPointerMove={event=>{if(!event.currentTarget.hasPointerCapture(event.pointerId))return;const rect=event.currentTarget.getBoundingClientRect();update({currentA:Math.max(0,Math.min(5,(event.clientX-rect.left)/rect.width*5))})}}
+              onKeyDown={event=>{if(event.key==="ArrowLeft")update({currentA:input.currentA-.1});if(event.key==="ArrowRight")update({currentA:input.currentA+.1})}}><i style={{left:`${input.currentA/5*100}%`}}/><span>DRAG CURRENT ↔</span></button>
             <svg
               viewBox="0 0 1536 1024"
               role="img"

@@ -31,6 +31,7 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.joule-direct-current{position:absolute!important;z-index:8;left:8%;bottom:12%;width:30%;height:42px!important;min-height:0!important;padding:0!important;border:1px solid #ffb46d!important;background:#101820e8!important;touch-action:none}.joule-direct-current i{position:absolute;top:4px;width:12px;height:20px;transform:translateX(-50%);border-radius:4px;background:#ff7d2b;box-shadow:0 0 10px #ff6a20}.joule-direct-current span{position:absolute;left:0;right:0;bottom:3px;color:#ffd0aa;font-size:8px;letter-spacing:.06em}
 .joule-lab button:focus-visible,
 .joule-lab select:focus-visible,
 .joule-lab input:focus-visible {

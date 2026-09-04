@@ -6,6 +6,7 @@ import {
   type BernoulliInput,
 } from "./bernoulliPhysics";
 import "./bernoulli-fluid-flow.css";
+import "./bernoulli-direct.css";
 type RunState = "idle" | "running" | "paused" | "result";
 const DEFAULT: BernoulliInput = {
   inletPressureKPa: 140,
@@ -246,6 +247,10 @@ export function BernoulliFluidFlowLab({
               src="/assets/experiments/bernoulli-fluid-flow/venturi-bench.png"
               alt="Transparent Venturi pipe with reservoir, pump and three piezometer taps"
             />
+            <button className="venturi-direct-throat" aria-label={`Drag Venturi throat radius, ${input.radius2Mm.toFixed(1)} millimetres`}
+              onPointerDown={event=>event.currentTarget.setPointerCapture(event.pointerId)}
+              onPointerMove={event=>{if(!event.currentTarget.hasPointerCapture(event.pointerId))return;const rect=event.currentTarget.getBoundingClientRect();const f=1-Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height));update({radius2Mm:8+f*22})}}
+              onKeyDown={event=>{if(event.key==="ArrowUp")update({radius2Mm:input.radius2Mm+.5});if(event.key==="ArrowDown")update({radius2Mm:input.radius2Mm-.5})}}><i style={{top:`${(30-input.radius2Mm)/22*100}%`}}/><span>DRAG THROAT ↕</span></button>
             <svg
               viewBox="0 0 1000 540"
               role="img"

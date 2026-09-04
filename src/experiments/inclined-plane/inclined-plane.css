@@ -156,6 +156,7 @@
   border-radius: 12px;
   background: linear-gradient(#f7f3ed, #e5d9c9);
 }
+.ip-stage .ip-direct-angle { left: 16px; bottom: 16px; }
 .ip-stage > img {
   position: absolute;
   inset: auto 2% 5%;

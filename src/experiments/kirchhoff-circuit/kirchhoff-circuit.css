@@ -31,6 +31,7 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.kirchhoff-direct-r5 rect{fill:#07131bdd;stroke:#ff9d43;stroke-width:2;stroke-dasharray:5 4;cursor:ew-resize;touch-action:none}.kirchhoff-direct-r5 text{fill:#ffcf9c;text-anchor:middle;font:700 10px Inter;pointer-events:none}.kirchhoff-direct-r5 rect:focus{outline:none;stroke:#fff}.kirchhoff-prediction{display:flex;gap:4px}.kirchhoff-prediction button{min-width:32px;padding:4px}.kirchhoff-prediction .active{background:#e76f28;color:#fff}
 .kirchhoff-lab button:focus-visible,
 .kirchhoff-lab input:focus-visible,
 .kirchhoff-lab select:focus-visible {

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
+import { DirectAxisControl } from "../shared-2d/DirectAxisControl";
 import { springState, type HookesLawInput } from "./hooke-s-lawSimulation";
 import "./hooke-s-law.css";
 
@@ -291,6 +292,16 @@ export function HookesLawLab({ experiment }: DedicatedExperimentLabProps) {
             className={`hk-stage ${state.beyondElasticLimit ? "overlimit" : ""}`}
             aria-label={`Extension ${fmt(state.displayedExtensionM * 100)} centimetres, force ${fmt(state.forceN)} newtons`}
           >
+            <DirectAxisControl
+              className="hk-direct-load"
+              label="Load mass"
+              value={input.loadMassKg}
+              min={0.05}
+              max={0.5}
+              step={0.05}
+              onChange={(loadMassKg) => update({ loadMassKg })}
+              vertical
+            />
             <img
               src="/assets/experiments/hooke-s-law/spring-stand.png"
               alt="Precision spring stand with ruler"
