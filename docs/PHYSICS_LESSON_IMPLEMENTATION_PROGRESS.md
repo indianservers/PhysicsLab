@@ -6,7 +6,7 @@
 - Current lesson: Complete — all 80 prompts implemented
 - Last completed lesson: 080 — Young's Double Slit
 - Blocked lessons: None
-- Last update time: 2026-09-04 10:27:48 +05:30
+- Last update time: 2026-09-04 11:05:17 +05:30
 
 This file is the authoritative resume point. Later lesson routes remain unrecorded until each lesson prompt is opened in strict numerical order.
 
@@ -24,6 +24,13 @@ This file is the authoritative resume point. Later lesson routes remain unrecord
 - Content is visible in both Simulate and Guide panes and uses the lesson's own governing physics rather than a renamed generic template.
 - Added `npm run test:lesson-content`; coverage passes 80/80 with no missing, duplicate, or extra lesson records.
 - Verified representative electricity/mechanics/optics routes live and confirmed the 390×844 teaching-card layout has no horizontal overflow.
+
+## Five-by-five lesson UX pass — 2026-09-04
+
+- Every lesson now exposes five specific UX anchors: signature manipulation, concept animation, prediction challenge, authentic measurement, and mastery mission.
+- Every lesson shares five studio affordances: consistent lab controls, Predict → Manipulate → Observe → Explain → Complete flow, synchronized-result guidance, accessible input guidance, and a persistent workspace.
+- Predictions, observations, explanations, completed stages, and progress are saved independently per lesson in browser-local storage.
+- Live persistence and stage-advance behavior passed; the 390×844 layout shows five unique and five common elements with no horizontal overflow.
 
 |  ID | Lesson                                    | Prompt                                                            | Route                                       | Status      | UI Match                                                                                                                                                                  | Interaction | Physics | Desktop                 | Mobile                 | Tests                                                                          | Screenshot Folder                                                                  | Notes                                                                                                                                                                                                                                                                                                                                                      |
 | --: | ----------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- | ----------------------- | ---------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

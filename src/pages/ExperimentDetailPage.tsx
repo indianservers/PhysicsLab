@@ -34,6 +34,7 @@ import { getDedicatedExperimentLab } from "../experiments/shared/experimentRegis
 import { experimentModes, ExperimentMode, learningLevelForMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
 import { LessonTheoryExamples } from "../components/LessonTheoryExamples";
+import { LessonUXStudio } from "../components/LessonUXStudio";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
@@ -166,13 +167,16 @@ export function ExperimentDetailPage() {
             {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={modeLearningLevel} />}
             {activePane === "simulate" && (
               <>
-                {DedicatedExperimentLab ? (
-                  <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} />
-                ) : experiment.id === "projectile-motion" ? (
-                  <ProjectileExperiment experiment={experiment} />
-                ) : (
-                  <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
-                )}
+                <LessonUXStudio experiment={experiment} />
+                <div id={`live-lab-${experiment.id}`}>
+                  {DedicatedExperimentLab ? (
+                    <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} />
+                  ) : experiment.id === "projectile-motion" ? (
+                    <ProjectileExperiment experiment={experiment} />
+                  ) : (
+                    <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
+                  )}
+                </div>
                 <LessonTheoryExamples experiment={experiment} />
               </>
             )}
@@ -189,6 +193,7 @@ export function ExperimentDetailPage() {
 function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   return (
     <div className="experiment-bento-pane experiment-guide-pane">
+      <LessonUXStudio experiment={experiment} />
       <LessonTheoryExamples experiment={experiment} />
       <ConceptExplainer experiment={experiment} level={learningLevel} />
       <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
