@@ -374,7 +374,7 @@ export function EchoSpeedSoundLab({ experiment }: DedicatedExperimentLabProps) {
                 setRunning((v) => !v);
               }}
             >
-              {running ? "❚❚" : "▶"}
+              {running ? "❚❚ Pause" : "▶ Play"}
             </button>
             <button
               aria-label="Step pulse"
@@ -383,7 +383,7 @@ export function EchoSpeedSoundLab({ experiment }: DedicatedExperimentLabProps) {
                 setTime((t) => clamp(t + 0.4, 0, duration));
               }}
             >
-              ▶│
+              ▶│ Step
             </button>
             <input
               aria-label="Pulse journey timeline"

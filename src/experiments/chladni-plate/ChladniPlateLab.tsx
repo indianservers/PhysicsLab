@@ -392,7 +392,7 @@ export function ChladniPlateLab({ experiment }: DedicatedExperimentLabProps) {
                 setRunning((v) => !v);
               }}
             >
-              {running ? "❚❚" : "▶"}
+              {running ? "❚❚ Pause" : "▶ Play"}
             </button>
             <button
               aria-label="Step plate"
@@ -401,7 +401,7 @@ export function ChladniPlateLab({ experiment }: DedicatedExperimentLabProps) {
                 setTime((t) => clamp(t + 0.4, 0, 8));
               }}
             >
-              ▶│
+              ▶│ Step
             </button>
             <input
               aria-label="Emergence timeline"

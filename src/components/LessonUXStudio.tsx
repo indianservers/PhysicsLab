@@ -15,19 +15,37 @@ const stages: Array<{ id: UXStage; label: string }> = [
 ];
 const blankRecord = (): UXRecord => ({ stage: "predict", prediction: "", observation: "", explanation: "", completed: [] });
 const storageKey = (id: string) => `physicslab.lesson-ux.${id}`;
+const isUXStage = (value: unknown): value is UXStage => stages.some((stage) => stage.id === value);
 
 function loadRecord(id: string): UXRecord {
   try {
     const parsed = JSON.parse(localStorage.getItem(storageKey(id)) ?? "null") as Partial<UXRecord> | null;
     if (!parsed) return blankRecord();
-    return { ...blankRecord(), ...parsed, completed: Array.isArray(parsed.completed) ? parsed.completed : [] };
+    const completed = Array.isArray(parsed.completed)
+      ? [...new Set(parsed.completed.filter(isUXStage))]
+      : [];
+    return {
+      ...blankRecord(),
+      ...parsed,
+      stage: isUXStage(parsed.stage) ? parsed.stage : "predict",
+      prediction: typeof parsed.prediction === "string" ? parsed.prediction : "",
+      observation: typeof parsed.observation === "string" ? parsed.observation : "",
+      explanation: typeof parsed.explanation === "string" ? parsed.explanation : "",
+      completed,
+    };
   } catch { return blankRecord(); }
 }
 
 export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinition }) {
   const teaching = lessonTeachingContent[experiment.id];
   const [record, setRecord] = useState<UXRecord>(() => loadRecord(experiment.id));
-  useEffect(() => localStorage.setItem(storageKey(experiment.id), JSON.stringify(record)), [experiment.id, record]);
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey(experiment.id), JSON.stringify(record));
+    } catch {
+      // The lesson remains usable when storage is blocked or the browser quota is full.
+    }
+  }, [experiment.id, record]);
 
   const unique = useMemo(() => teaching ? [
     { id: "manipulate" as UXStage, label: "Signature manipulation", title: experiment.apparatus[0] ?? experiment.title, detail: experiment.procedure[0] },
@@ -42,7 +60,8 @@ export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinitio
   const finishStage = () => {
     const completed = record.completed.includes(record.stage) ? record.completed : [...record.completed, record.stage];
     const index = stages.findIndex((item) => item.id === record.stage);
-    patchRecord({ completed, stage: stages[Math.min(index + 1, stages.length - 1)].id });
+    const nextStage = stages[Math.min(Math.max(index, 0) + 1, stages.length - 1)].id;
+    patchRecord({ completed, stage: nextStage });
   };
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   const progress = Math.round((record.completed.length / stages.length) * 100);
@@ -56,8 +75,8 @@ export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinitio
           <button type="button" onClick={() => scrollTo(`lesson-theory-${experiment.id}`)}>Open theory</button>
         </div>
       </header>
-      <div className="lesson-ux-progress"><i style={{ width: `${progress}%` }} /><span>{progress}% learning flow</span></div>
-      <nav aria-label="Learning stages">{stages.map((stage) => <button type="button" key={stage.id} className={record.stage === stage.id ? "active" : record.completed.includes(stage.id) ? "done" : ""} onClick={() => patchRecord({ stage: stage.id })}>{stage.label}</button>)}</nav>
+      <div className="lesson-ux-progress" role="progressbar" aria-label="Learning flow progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><i style={{ width: `${progress}%` }} /><span>{progress}% learning flow</span></div>
+      <nav aria-label="Learning stages">{stages.map((stage) => <button type="button" key={stage.id} aria-current={record.stage === stage.id ? "step" : undefined} className={record.stage === stage.id ? "active" : record.completed.includes(stage.id) ? "done" : ""} onClick={() => patchRecord({ stage: stage.id })}>{stage.label}</button>)}</nav>
       <div className="lesson-unique-grid">{unique.map((item, index) => <button type="button" key={`${item.label}-${index}`} onClick={() => patchRecord({ stage: item.id })}><span>UNIQUE {index + 1}</span><small>{item.label}</small><b>{item.title}</b><p>{item.detail}</p></button>)}</div>
       <div className="lesson-workflow">
         <article>
@@ -68,7 +87,7 @@ export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinitio
           {record.stage === "observe" && <label>Observation<textarea value={record.observation} onChange={(event) => patchRecord({ observation: event.target.value })} placeholder={`What changed in ${experiment.observationColumns.slice(0, 3).join(", ")}?`} /></label>}
           {record.stage === "explain" && <label>Physics explanation<textarea value={record.explanation} onChange={(event) => patchRecord({ explanation: event.target.value })} placeholder={`Use ${experiment.formulae[0]?.expression ?? "the lesson relationship"} to explain the result.`} /></label>}
           {record.stage === "complete" && <div className="lesson-stage-copy"><b>Mastery target</b><p>{experiment.expectedResult}</p><p><strong>Self-check:</strong> {teaching.check.question}</p></div>}
-          <button className="lesson-stage-done" type="button" onClick={finishStage}>Mark step complete</button>
+          <button className="lesson-stage-done" type="button" onClick={finishStage} disabled={record.stage === "complete" && record.completed.includes("complete")}>{record.stage === "complete" && record.completed.includes("complete") ? "Lesson complete" : "Mark step complete"}</button>
         </article>
         <aside>
           <span>COMMON UX · ALL LESSONS</span>

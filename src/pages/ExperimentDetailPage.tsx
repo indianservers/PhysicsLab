@@ -397,7 +397,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
     setters[controlIndex]?.(nextValue);
   };
   const stepValues = () => {
-    if (classroomPaused || variablesLocked) return;
+    if (variablesLocked) return;
     const first = results.controls[0];
     if (!first) return;
     const next = Number(Math.min(first.max, a + first.step).toFixed(first.step < 0.1 ? 2 : 1));
