@@ -36,6 +36,7 @@ import { getExperimentValidationMetadata } from "../lib/experimentValidationRegi
 import { LessonTheoryExamples } from "../components/LessonTheoryExamples";
 import { LessonUXStudio } from "../components/LessonUXStudio";
 import { LessonInvestigationConsole } from "../components/LessonInvestigationConsole";
+import "../components/lesson-premium.css";
 import "../components/lesson-panel-contrast.css";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
@@ -74,7 +75,7 @@ export function ExperimentDetailPage() {
   const modeLearningLevel = learningLevelForMode(experimentMode, learningLevel);
 
   return (
-    <div className={`${classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"} experiment-detail-${experiment.id}`}>
+    <div data-premium-domain={experiment.category} data-premium-lesson={experiment.id} className={`${classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"} experiment-detail-${experiment.id}`}>
       <ReadingProgress />
       <FocusMode />
       <Toolbar />

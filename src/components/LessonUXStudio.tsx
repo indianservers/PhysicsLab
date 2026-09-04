@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ExperimentDefinition } from "../types";
 import { lessonTeachingContent } from "../lib/lessonTeachingContent";
+import { lessonUiUpgrades } from "../lib/lessonUiUpgrades";
 import "./lesson-ux-studio.css";
 
 type UXStage = "predict" | "manipulate" | "observe" | "explain" | "complete";
@@ -38,6 +39,7 @@ function loadRecord(id: string): UXRecord {
 
 export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinition }) {
   const teaching = lessonTeachingContent[experiment.id];
+  const premium = lessonUiUpgrades[experiment.id];
   const [record, setRecord] = useState<UXRecord>(() => loadRecord(experiment.id));
   useEffect(() => {
     try {
@@ -72,12 +74,13 @@ export function LessonUXStudio({ experiment }: { experiment: ExperimentDefinitio
   return (
     <section className="lesson-ux" aria-labelledby={`lesson-ux-title-${experiment.id}`}>
       <header>
-        <div><span>INTERACTIVE LEARNING FLIGHT PLAN</span><h2 id={`lesson-ux-title-${experiment.id}`}>{experiment.title}: learn by doing</h2></div>
+        <div><span>PREMIUM INTERACTIVE LEARNING STUDIO</span><h2 id={`lesson-ux-title-${experiment.id}`}>{experiment.title}: learn by doing</h2>{premium && <p className="lesson-premium-identity"><b>{premium.mode}</b><small>{premium.causal.join(" → ")}</small></p>}</div>
         <div className="lesson-ux-actions">
           <button type="button" onClick={() => scrollTo(`live-lab-${experiment.id}`)}>Focus live lab</button>
           <button type="button" onClick={() => scrollTo(`lesson-theory-${experiment.id}`)}>Open theory</button>
         </div>
       </header>
+      <div className="lesson-premium-rail" aria-label="Premium lesson capabilities"><span><b>LIVE</b> scientific model</span><span><b>A/B</b> trial comparison</span><span><b>80/80</b> lesson-specific UI</span><span><b>{experiment.trustLevel}%</b> trust</span></div>
       <div className="lesson-ux-progress" role="progressbar" aria-label="Learning flow progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><i style={{ width: `${progress}%` }} /><span>{progress}% learning flow</span></div>
       <nav aria-label="Learning stages">{stages.map((stage) => <button type="button" key={stage.id} aria-current={record.stage === stage.id ? "step" : undefined} className={record.stage === stage.id ? "active" : record.completed.includes(stage.id) ? "done" : ""} onClick={() => patchRecord({ stage: stage.id })}>{stage.label}</button>)}</nav>
       <div className="lesson-unique-grid">{unique.map((item, index) => <button type="button" key={`${item.label}-${index}`} onClick={() => patchRecord({ stage: item.id })}><span>UNIQUE {index + 1}</span><small>{item.label}</small><b>{item.title}</b><p>{item.detail}</p></button>)}</div>

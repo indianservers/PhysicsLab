@@ -5,6 +5,9 @@ const progressSource = readFileSync(new URL("../docs/PHYSICS_LESSON_IMPLEMENTATI
 const uxSource = readFileSync(new URL("../src/components/LessonUXStudio.tsx", import.meta.url), "utf8");
 const upgradeSource = readFileSync(new URL("../src/lib/lessonUiUpgrades.ts", import.meta.url), "utf8");
 const investigationSource = readFileSync(new URL("../src/components/LessonInvestigationConsole.tsx", import.meta.url), "utf8");
+const premiumSource = readFileSync(new URL("../src/components/lesson-premium.css", import.meta.url), "utf8");
+const contrastSource = readFileSync(new URL("../src/components/lesson-panel-contrast.css", import.meta.url), "utf8");
+const detailSource = readFileSync(new URL("../src/pages/ExperimentDetailPage.tsx", import.meta.url), "utf8");
 const contentIds = [...contentSource.matchAll(/^\s+"([^"]+)": \{ title:/gm)].map((match) => match[1]);
 const routeIds = [...progressSource.matchAll(/^\|\s+\d+\s+\|.*?\|\s*\/experiments\/([^\s|]+)\s*\|/gm)].map((match) => match[1]);
 const duplicates = contentIds.filter((id, index) => contentIds.indexOf(id) !== index);
@@ -20,12 +23,19 @@ const duplicateUpgradeIds = upgradeIds.filter((id, index) => upgradeIds.indexOf(
 const duplicateModes = upgradeModes.filter((mode, index) => upgradeModes.indexOf(mode) !== index);
 const interactionContracts = ["Pin trial A", "Pin trial B", "SYNCHRONIZED TIMELINE", "Export lesson evidence", 'control("play")', 'control("pause")', 'control("step")', 'control("reset")'];
 const missingInteractionContracts = interactionContracts.filter((contract) => !investigationSource.includes(contract));
+const premiumCategories = ["Astronomy", "Modern Physics", "Electricity", "Electronics", "Energy", "Fluid Mechanics", "Magnetism", "Measurement", "Mechanics", "Optics", "Oscillations", "Thermodynamics", "Waves"];
+const missingPremiumCategories = premiumCategories.filter((category) => !premiumSource.includes(`data-premium-domain="${category}"`));
+const premiumContracts = ["lesson-premium-rail", "LIVE PHYSICS ENGINE", "LESSON-SPECIFIC APPARATUS"];
+const missingPremiumContracts = premiumContracts.filter((contract) => !premiumSource.includes(contract));
+const missingPremiumBindings = ["data-premium-domain", "data-premium-lesson"].filter((binding) => !detailSource.includes(binding));
+const premiumOverlayGuard = contrastSource.includes(".lesson-ux::before") && contrastSource.includes("display: none !important");
 
-if (routeIds.length !== 80 || contentIds.length !== 80 || duplicates.length || missing.length || extra.length || uniqueLabels.length !== 5 || commonLabels.length !== 5 || upgradeIds.length !== 80 || missingUpgrades.length || extraUpgrades.length || duplicateUpgradeIds.length || duplicateModes.length || missingInteractionContracts.length) {
-  console.error({ routeCount: routeIds.length, contentCount: contentIds.length, duplicates, missing, extra, uniqueLabels, commonLabels, upgradeCount: upgradeIds.length, missingUpgrades, extraUpgrades, duplicateUpgradeIds, duplicateModes, missingInteractionContracts });
+if (routeIds.length !== 80 || contentIds.length !== 80 || duplicates.length || missing.length || extra.length || uniqueLabels.length !== 5 || commonLabels.length !== 5 || upgradeIds.length !== 80 || missingUpgrades.length || extraUpgrades.length || duplicateUpgradeIds.length || duplicateModes.length || missingInteractionContracts.length || missingPremiumCategories.length || missingPremiumContracts.length || missingPremiumBindings.length || !premiumOverlayGuard) {
+  console.error({ routeCount: routeIds.length, contentCount: contentIds.length, duplicates, missing, extra, uniqueLabels, commonLabels, upgradeCount: upgradeIds.length, missingUpgrades, extraUpgrades, duplicateUpgradeIds, duplicateModes, missingInteractionContracts, missingPremiumCategories, missingPremiumContracts, missingPremiumBindings, premiumOverlayGuard });
   process.exit(1);
 }
 
 console.log(`PASS lesson-specific theory and examples: ${contentIds.length}/${routeIds.length} routes covered.`);
 console.log("PASS lesson UX contract: 5 lesson-specific elements + 5 common elements.");
 console.log(`PASS lesson-specific UI upgrades: ${upgradeIds.length}/${routeIds.length} unique modes with comparison, timeline, evidence, and playback controls.`);
+console.log(`PASS premium lesson UI: ${routeIds.length}/${routeIds.length} routes bound to ${premiumCategories.length} domain palettes with premium studio and apparatus framing.`);

@@ -6,9 +6,18 @@
 - Current lesson: Complete — all 80 prompts implemented
 - Last completed lesson: 080 — Young's Double Slit
 - Blocked lessons: None
-- Last update time: 2026-09-04 11:05:17 +05:30
+- Last update time: 2026-09-04 15:18:51 +05:30
 
 This file is the authoritative resume point. Later lesson routes remain unrecorded until each lesson prompt is opened in strict numerical order.
+
+## Premium lesson UI pass — 2026-09-04
+
+- Applied a polished learning-studio visual system to all 80 lesson routes while preserving every lesson's dedicated simulation and controls.
+- Added 13 subject-specific palettes spanning Astronomy through Waves, plus 80 distinct investigation identities and causal sequences.
+- Upgraded the lesson workflow, unique activity cards, live apparatus frame, A/B investigation console, evidence actions, standard hero, and tab surfaces with consistent depth, spacing, glow, and hierarchy.
+- Audited Lessons 001–080 sequentially in the live browser: 80/80 rendered the correct lesson binding, a unique identity, the premium capability rail, investigation tools, live apparatus framing, readable headings, and zero horizontal overflow.
+- Checked a representative lesson from every domain at 390×844; all 13 domain layouts retained the premium UI and interactive content without horizontal overflow.
+- Added automated coverage for the 80 route bindings, 13 premium palettes, apparatus/studio contracts, and contrast-overlay safeguard.
 
 ## 2D interaction enhancement pass — 2026-09-04
 

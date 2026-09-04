@@ -20,3 +20,13 @@
 #root .lesson-investigation article small {
   color: #9fb9c4 !important;
 }
+
+/* Keep the premium border treatment below content in browsers with partial mask support. */
+.experiment-detail-page .lesson-ux::before {
+  display: none !important;
+}
+
+#root .experiment-detail-page .lesson-ux h2,
+#root .experiment-detail-page .lesson-ux h3 {
+  -webkit-text-fill-color: #eaf7fb !important;
+}
