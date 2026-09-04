@@ -1,0 +1,22 @@
+/* These teaching surfaces intentionally stay dark in both app themes. */
+#root .lesson-ux h2,
+#root .lesson-ux h3,
+#root .lesson-ux .lesson-unique-grid b,
+#root .lesson-ux .lesson-stage-copy b,
+#root .lesson-ux .lesson-workflow li b,
+#root .lesson-investigation h2,
+#root .lesson-investigation h3,
+#root .lesson-investigation .causal-chain b,
+#root .lesson-investigation table,
+#root .lesson-investigation label {
+  color: #eaf7fb !important;
+}
+
+#root .lesson-ux .lesson-unique-grid p,
+#root .lesson-ux .lesson-stage-copy p,
+#root .lesson-ux .lesson-workflow li small,
+#root .lesson-investigation header p,
+#root .lesson-investigation article p,
+#root .lesson-investigation article small {
+  color: #9fb9c4 !important;
+}

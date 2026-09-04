@@ -35,6 +35,8 @@ import { experimentModes, ExperimentMode, learningLevelForMode, modeFromLearning
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
 import { LessonTheoryExamples } from "../components/LessonTheoryExamples";
 import { LessonUXStudio } from "../components/LessonUXStudio";
+import { LessonInvestigationConsole } from "../components/LessonInvestigationConsole";
+import "../components/lesson-panel-contrast.css";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
@@ -177,6 +179,7 @@ export function ExperimentDetailPage() {
                     <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
                   )}
                 </div>
+                <LessonInvestigationConsole experiment={experiment} />
                 <LessonTheoryExamples experiment={experiment} />
               </>
             )}
