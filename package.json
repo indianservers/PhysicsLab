@@ -13,6 +13,7 @@
     "test:directory": "node scripts/validateAppDirectory.mjs",
     "test:concepts": "node scripts/validateConceptExperiences.mjs",
     "test:visual-contrast": "node scripts/validateVisualContrast.mjs",
+    "test:lesson-content": "node scripts/validateLessonTeachingContent.mjs",
     "audit:visualizations": "node scripts/auditVisualizations.mjs"
   },
   "dependencies": {

@@ -6,7 +6,7 @@
 - Current lesson: Complete — all 80 prompts implemented
 - Last completed lesson: 080 — Young's Double Slit
 - Blocked lessons: None
-- Last update time: 2026-09-04 10:14:09 +05:30
+- Last update time: 2026-09-04 10:27:48 +05:30
 
 This file is the authoritative resume point. Later lesson routes remain unrecorded until each lesson prompt is opened in strict numerical order.
 
@@ -17,6 +17,13 @@ This file is the authoritative resume point. Later lesson routes remain unrecord
 - Rechecked all 80 live lesson routes; no lesson runtime failure was detected.
 - Physics validation: 581/581 passed. Type-check and production build passed.
 - Active animation audit: 80/80 lesson actions changed live state with zero runtime lesson failures. Detailed evidence is recorded in `docs/PHYSICS_LESSON_ANIMATION_INTERACTION_AUDIT.md`.
+
+## Lesson-specific teaching pass — 2026-09-04
+
+- Added unique theory, animation observation cues, worked calculations, real-world applications, and self-checks to all 80 lesson routes.
+- Content is visible in both Simulate and Guide panes and uses the lesson's own governing physics rather than a renamed generic template.
+- Added `npm run test:lesson-content`; coverage passes 80/80 with no missing, duplicate, or extra lesson records.
+- Verified representative electricity/mechanics/optics routes live and confirmed the 390×844 teaching-card layout has no horizontal overflow.
 
 |  ID | Lesson                                    | Prompt                                                            | Route                                       | Status      | UI Match                                                                                                                                                                  | Interaction | Physics | Desktop                 | Mobile                 | Tests                                                                          | Screenshot Folder                                                                  | Notes                                                                                                                                                                                                                                                                                                                                                      |
 | --: | ----------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- | ----------------------- | ---------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

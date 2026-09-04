@@ -33,6 +33,7 @@ import { saveLocalArtifact } from "../lib/offlineDB";
 import { getDedicatedExperimentLab } from "../experiments/shared/experimentRegistry";
 import { experimentModes, ExperimentMode, learningLevelForMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
+import { LessonTheoryExamples } from "../components/LessonTheoryExamples";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
@@ -164,13 +165,16 @@ export function ExperimentDetailPage() {
           <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
             {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={modeLearningLevel} />}
             {activePane === "simulate" && (
-              DedicatedExperimentLab ? (
-                <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} />
-              ) : experiment.id === "projectile-motion" ? (
-                <ProjectileExperiment experiment={experiment} />
-              ) : (
-                <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
-              )
+              <>
+                {DedicatedExperimentLab ? (
+                  <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} />
+                ) : experiment.id === "projectile-motion" ? (
+                  <ProjectileExperiment experiment={experiment} />
+                ) : (
+                  <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
+                )}
+                <LessonTheoryExamples experiment={experiment} />
+              </>
             )}
             {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
             {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={modeLearningLevel} />}
@@ -185,6 +189,7 @@ export function ExperimentDetailPage() {
 function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   return (
     <div className="experiment-bento-pane experiment-guide-pane">
+      <LessonTheoryExamples experiment={experiment} />
       <ConceptExplainer experiment={experiment} level={learningLevel} />
       <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
       <GuidePanel guide={guideForExperiment(experiment)} compact />
