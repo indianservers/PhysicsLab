@@ -1,9 +1,11 @@
-import { computePremiumEm } from "../shared/electromagnetismPremiumLibrary";
-import { relativeElectromagnetStrength } from "../shared/magnetismMath";
-
-export const simulateElectromagnet = (values: Record<string, number>) => computePremiumEm("electromagnet", values);
-
-export const electromagnetBenchmarks = [
-  { id: "turns-current", name: "More turns/current increases relative strength", actual: relativeElectromagnetStrength(200, 4, 1) - relativeElectromagnetStrength(100, 2, 1), expected: 600, tolerance: 0.000001, unit: "arb" },
-  { id: "reverse", name: "Reversing current keeps strength magnitude", actual: Math.abs(relativeElectromagnetStrength(100, -2, 1)), expected: 200, tolerance: 0.000001, unit: "arb" },
+export const MU0=4*Math.PI*1e-7;export type CoreMaterial="air"|"iron"|"steel";export interface ElectromagnetInput{currentA:number;turns:number;core:CoreMaterial;polarity:1|-1;airGapMm:number;targetLoad:number}
+const CORE={air:{muR:1,saturation:10},iron:{muR:2000,saturation:1.6},steel:{muR:500,saturation:1.9}};const clamp=(n:number,a:number,b:number)=>Math.min(b,Math.max(a,n));
+export function solveElectromagnet(input:ElectromagnetInput){const currentA=clamp(input.currentA,0,5),turns=clamp(input.turns,100,2000),gapM=clamp(input.airGapMm,0,10)/1000,core=CORE[input.core],coreLength=.1,idealB=MU0*turns*currentA/(gapM+coreLength/core.muR),magnitudeB=core.saturation*Math.tanh(idealB/core.saturation),signedB=magnitudeB*input.polarity,coilResistance=turns*.005,batteryVoltage=currentA*coilResistance,powerW=currentA**2*coilResistance,temperatureC=24+powerW*.5,rawForce=magnitudeB**2*1e-4/(2*MU0),liftForceN=rawForce*.1,liftedWashers=Math.min(80,Math.floor(liftForceN/(.02*9.80665)));return{currentA,turns,idealB,magnitudeB,signedB,coilResistance,batteryVoltage,powerW,temperatureC,liftForceN,liftedWashers,northPole:input.polarity===1?"bottom":"top",safe:temperatureC<=70&&batteryVoltage<=24,ampereTurns:turns*currentA};}
+export function minimumCurrentForLoad(base:ElectromagnetInput,target:number){for(let currentA=.05;currentA<=5;currentA+=.05){const r=solveElectromagnet({...base,currentA});if(r.safe&&r.liftedWashers>=target)return Number(currentA.toFixed(2))}return 5}
+export const electromagnetBenchmarks=[
+ {id:"air-solenoid",name:"Air core follows mu zero N I over length",actual:solveElectromagnet({currentA:1,turns:1000,core:"air",polarity:1,airGapMm:0,targetLoad:1}).idealB,expected:MU0*1000/.1,tolerance:1e-12,unit:"T"},
+ {id:"turns",name:"Unsaturated field increases with turns",actual:Number(solveElectromagnet({currentA:.1,turns:1000,core:"iron",polarity:1,airGapMm:5,targetLoad:1}).magnitudeB>solveElectromagnet({currentA:.1,turns:500,core:"iron",polarity:1,airGapMm:5,targetLoad:1}).magnitudeB),expected:1,tolerance:0,unit:"boolean"},
+ {id:"current",name:"Unsaturated field increases with current",actual:Number(solveElectromagnet({currentA:.2,turns:500,core:"steel",polarity:1,airGapMm:5,targetLoad:1}).magnitudeB>solveElectromagnet({currentA:.1,turns:500,core:"steel",polarity:1,airGapMm:5,targetLoad:1}).magnitudeB),expected:1,tolerance:0,unit:"boolean"},
+ {id:"reverse",name:"Current reversal reverses field only",actual:solveElectromagnet({currentA:2,turns:800,core:"iron",polarity:-1,airGapMm:2,targetLoad:20}).signedB/solveElectromagnet({currentA:2,turns:800,core:"iron",polarity:1,airGapMm:2,targetLoad:20}).signedB,expected:-1,tolerance:1e-12,unit:"ratio"},
+ {id:"gap",name:"Larger air gap weakens field",actual:Number(solveElectromagnet({currentA:2,turns:800,core:"iron",polarity:1,airGapMm:1,targetLoad:20}).magnitudeB>solveElectromagnet({currentA:2,turns:800,core:"iron",polarity:1,airGapMm:5,targetLoad:20}).magnitudeB),expected:1,tolerance:0,unit:"boolean"},
 ];

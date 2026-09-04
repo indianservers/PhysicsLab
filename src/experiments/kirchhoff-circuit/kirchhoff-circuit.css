@@ -1,0 +1,509 @@
+.kirchhoff-lab {
+  --orange: #ea5a10;
+  --ink: #172236;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d8dde5;
+  border-radius: 18px;
+  background: #fafafa;
+  color: var(--ink);
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
+}
+.kirchhoff-lab button,
+.kirchhoff-lab select,
+.kirchhoff-lab input {
+  font: inherit;
+}
+.kirchhoff-lab button {
+  min-height: 37px;
+  border: 1px solid #cfd5de;
+  border-radius: 7px;
+  background: #fff;
+  color: #283347;
+  padding: 0.5rem 0.72rem;
+  cursor: pointer;
+}
+.kirchhoff-lab button:hover:not(:disabled) {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.kirchhoff-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.kirchhoff-lab button:focus-visible,
+.kirchhoff-lab input:focus-visible,
+.kirchhoff-lab select:focus-visible {
+  outline: 3px solid rgba(24, 145, 220, 0.35);
+  outline-offset: 2px;
+}
+.kirchhoff-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e0e4ea;
+  background: #fff;
+}
+.kirchhoff-head span,
+.kirchhoff-controls h3,
+.kirchhoff-analysis h3,
+.kirchhoff-mission > div:first-child span {
+  color: var(--orange);
+  font-size: 0.71rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kirchhoff-head h2 {
+  margin: 0.1rem 0;
+  font:
+    800 clamp(1.4rem, 2.3vw, 2.1rem)/1.05 Georgia,
+    serif;
+}
+.kirchhoff-head p {
+  margin: 0;
+  color: #5c6675;
+}
+.kirchhoff-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 290px;
+}
+.kirchhoff-controls,
+.kirchhoff-analysis {
+  padding: 1rem;
+  background: #fff;
+}
+.kirchhoff-controls {
+  border-right: 1px solid #e0e4ea;
+}
+.kirchhoff-analysis {
+  border-left: 1px solid #e0e4ea;
+}
+.kirchhoff-controls h3,
+.kirchhoff-analysis h3 {
+  margin: 0 0 0.65rem;
+}
+.kirchhoff-controls h3:not(:first-child),
+.kirchhoff-analysis h3:not(:first-child) {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+.kirchhoff-control {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.72rem;
+}
+.kirchhoff-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+}
+.kirchhoff-control strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.kirchhoff-control input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.kirchhoff-control small {
+  color: #7b8492;
+  text-align: right;
+}
+.kirchhoff-presets {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+.kirchhoff-presets button:last-child {
+  border-color: #ef9d66;
+  color: #a84209;
+}
+.kirchhoff-main {
+  min-width: 0;
+  background: #f6f3ee;
+}
+.kirchhoff-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  background: #fff;
+}
+.kirchhoff-toolbar > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.kirchhoff-toolbar button:first-child,
+.kirchhoff-footer button:first-child {
+  border-color: #4aa85c;
+  color: #187f34;
+}
+.kirchhoff-toolbar > span {
+  border-radius: 999px;
+  background: #edf1f5;
+  padding: 0.42rem 0.7rem;
+  color: #617083;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+.kirchhoff-board {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+}
+.kirchhoff-board > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.88;
+  pointer-events: none;
+}
+.kirchhoff-board svg {
+  position: absolute;
+  inset: 4% 2%;
+  width: 96%;
+  height: 92%;
+  overflow: visible;
+}
+.kirchhoff-board .wire {
+  fill: none;
+  stroke: #273344;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.kirchhoff-board .current-wire {
+  stroke: #d62d35;
+  stroke-width: 10;
+  stroke-dasharray: 10 13;
+  opacity: 0.82;
+  animation: kirchhoff-flow 1.5s linear infinite;
+  animation-play-state: paused;
+}
+.kirchhoff-board .right-current {
+  stroke: #6940c5;
+  animation-direction: reverse;
+}
+.kirchhoff-board .shared-current {
+  stroke: #188bce;
+}
+.kirchhoff-lab[data-run-state="running"] .current-wire {
+  animation-play-state: running;
+}
+@keyframes kirchhoff-flow {
+  to {
+    stroke-dashoffset: -46;
+  }
+}
+.kirchhoff-board .loop-path {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 22;
+  stroke-linejoin: round;
+}
+.kirchhoff-board .loop-path.selected {
+  stroke: rgba(243, 129, 38, 0.28);
+}
+.kirchhoff-board .resistor line,
+.kirchhoff-board .resistor path {
+  fill: none;
+  stroke: #6b3c1f;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.kirchhoff-board .resistor text,
+.kirchhoff-board .battery text,
+.kirchhoff-board .node text,
+.kirchhoff-board .current-label {
+  fill: #182236;
+  font:
+    800 15px/1 ui-monospace,
+    monospace;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+.kirchhoff-board .resistor.active path,
+.kirchhoff-board .resistor.active line,
+.kirchhoff-board .battery.active line {
+  stroke: #ff6b00;
+  stroke-width: 8;
+  filter: drop-shadow(0 0 5px #ffb36f);
+}
+.kirchhoff-board .battery line {
+  stroke: #1e293b;
+  stroke-width: 5;
+}
+.kirchhoff-board .node circle {
+  fill: #141f31;
+  stroke: #fff;
+  stroke-width: 3;
+}
+.kirchhoff-board .node.active circle {
+  fill: #f25d0d;
+  stroke: #ffe0ca;
+  stroke-width: 8;
+  filter: drop-shadow(0 0 8px #f25d0d);
+}
+.kirchhoff-board .node text {
+  text-anchor: middle;
+}
+.kirchhoff-board .current-label.i1 {
+  fill: #d12832;
+}
+.kirchhoff-board .current-label.i2 {
+  fill: #6135b5;
+}
+.kirchhoff-board .current-label.ib {
+  fill: #076eac;
+}
+.kirchhoff-balances {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.7rem;
+}
+.kirchhoff-balances section {
+  display: grid;
+  align-content: center;
+  min-height: 82px;
+  border: 1px solid #dde2e8;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.6rem;
+  text-align: center;
+}
+.kirchhoff-balances section.pass {
+  border-color: #9bd0a4;
+  background: #effaf1;
+}
+.kirchhoff-balances span {
+  color: #687386;
+  font-size: 0.64rem;
+  font-weight: 900;
+}
+.kirchhoff-balances strong {
+  font:
+    800 0.78rem/1.3 ui-monospace,
+    monospace;
+}
+.kirchhoff-balances small {
+  color: #21733a;
+}
+.kirchhoff-choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+.kirchhoff-choice button.active {
+  border-color: var(--orange);
+  background: #fff3ea;
+  color: #a83d05;
+}
+.kirchhoff-ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.kirchhoff-ledger li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.2rem;
+  min-height: 47px;
+  align-items: center;
+  border-bottom: 1px solid #e6e8ec;
+  padding: 0.35rem;
+  font-size: 0.69rem;
+}
+.kirchhoff-ledger li.active {
+  border-left: 4px solid var(--orange);
+  background: #fff3ea;
+}
+.kirchhoff-ledger li strong {
+  font-family: ui-monospace, monospace;
+}
+.kirchhoff-ledger li small {
+  grid-column: 1/-1;
+  color: #788292;
+}
+.kirchhoff-ledger li.total {
+  color: #187b36;
+  font-weight: 900;
+}
+.kirchhoff-matrix {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+  border-radius: 7px;
+  background: #f1f4f8;
+  padding: 0.7rem;
+}
+.kirchhoff-matrix span {
+  color: #677285;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+.kirchhoff-matrix code {
+  white-space: pre;
+  font-size: 0.69rem;
+}
+.kirchhoff-mission {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  border-top: 1px solid #dfe4e9;
+  background: #fff;
+  padding: 1rem;
+}
+.kirchhoff-mission h3 {
+  margin: 0.25rem 0;
+}
+.kirchhoff-mission p {
+  margin: 0.3rem 0;
+  color: #5d687a;
+  font-size: 0.76rem;
+}
+.kirchhoff-target,
+.kirchhoff-mission > div:last-child {
+  display: grid;
+  gap: 0.35rem;
+}
+.kirchhoff-target span {
+  color: #687386;
+  font-size: 0.7rem;
+}
+.kirchhoff-target strong,
+.kirchhoff-mission > div:last-child > strong {
+  font:
+    850 1rem/1.2 ui-monospace,
+    monospace;
+}
+.kirchhoff-mission > div.complete {
+  border-radius: 7px;
+  background: #eaf8ed;
+  padding: 0.65rem;
+  color: #19733a;
+}
+.kirchhoff-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 58px;
+  padding: 0.55rem 1rem;
+  border-top: 1px solid #dfe4e9;
+  background: #f7f8fa;
+}
+.kirchhoff-footer > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.kirchhoff-footer label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+}
+.kirchhoff-footer > span {
+  margin-left: auto;
+  color: #607083;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 1100px) {
+  .kirchhoff-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .kirchhoff-analysis {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+    border-top: 1px solid #e0e4ea;
+    border-left: 0;
+  }
+  .kirchhoff-analysis h3 {
+    align-self: end;
+  }
+  .kirchhoff-ledger,
+  .kirchhoff-matrix {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 720px) {
+  .kirchhoff-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .kirchhoff-head button {
+    width: 100%;
+  }
+  .kirchhoff-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .kirchhoff-main {
+    order: -1;
+  }
+  .kirchhoff-controls {
+    border-top: 1px solid #e0e4ea;
+    border-right: 0;
+  }
+  .kirchhoff-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .kirchhoff-toolbar > div button {
+    flex: 1;
+  }
+  .kirchhoff-board {
+    min-height: 330px;
+  }
+  .kirchhoff-board svg {
+    inset: 1%;
+    width: 98%;
+    height: 98%;
+  }
+  .kirchhoff-board .resistor text,
+  .kirchhoff-board .battery text,
+  .kirchhoff-board .node text,
+  .kirchhoff-board .current-label {
+    font-size: 12px;
+  }
+  .kirchhoff-balances {
+    grid-template-columns: 1fr;
+  }
+  .kirchhoff-analysis {
+    display: block;
+  }
+  .kirchhoff-mission {
+    grid-template-columns: 1fr;
+  }
+  .kirchhoff-footer {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .kirchhoff-footer > div {
+    width: 100%;
+  }
+  .kirchhoff-footer > div button {
+    flex: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kirchhoff-lab *,
+  .kirchhoff-lab *::before,
+  .kirchhoff-lab *::after {
+    animation-duration: 2s !important;
+    transition-duration: 0.01ms !important;
+  }
+}

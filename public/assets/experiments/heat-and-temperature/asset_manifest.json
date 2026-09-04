@@ -1,0 +1,32 @@
+{
+  "lessonId": 67,
+  "experimentId": "heat-and-temperature",
+  "renderingMode": "2d",
+  "assets": [
+    {
+      "file": "thermal-contact-apparatus.png",
+      "role": "transparent dual-sample calorimeter apparatus",
+      "source": "generated with built-in image generation",
+      "dynamicOverlays": [
+        "thermometers",
+        "particles",
+        "temperature labels",
+        "heat-flow arrows"
+      ]
+    },
+    {
+      "file": "concept-effect.png",
+      "role": "supplied optional concept texture"
+    },
+    {
+      "file": "interaction-overlay.png",
+      "role": "supplied optional interaction texture"
+    }
+  ],
+  "deferred": [
+    {
+      "file": "heat-and-temperature.glb",
+      "reason": "3D intentionally deferred; lesson currently uses the approved 2D direction"
+    }
+  ]
+}

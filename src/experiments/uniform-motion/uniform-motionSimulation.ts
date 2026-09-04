@@ -45,4 +45,40 @@ export const uniformMotionBenchmarks = runBenchmarkCases<UniformMotionInput>([
     tolerance: 1e-9,
     actual: (input) => simulateUniformMotion(input).finalPosition,
   },
+  {
+    id: "uniform-motion-zero-velocity",
+    name: "Zero velocity preserves position",
+    input: { x0: -3, velocity: 0, time: 10 },
+    expected: -3,
+    unit: "m",
+    tolerance: 1e-9,
+    actual: (input) => simulateUniformMotion(input).finalPosition,
+  },
+  {
+    id: "uniform-motion-position-slope",
+    name: "Position-time slope equals signed velocity",
+    input: { x0: 4, velocity: -2, time: 3 },
+    expected: -2,
+    unit: "m/s",
+    tolerance: 1e-9,
+    actual: (input) => {
+      const points = simulateUniformMotion(input).distancePoints;
+      const last = points[points.length - 1];
+      return (last.y - points[0].y) / (last.x - points[0].x);
+    },
+  },
+  {
+    id: "uniform-motion-velocity-constant",
+    name: "Velocity-time graph is constant",
+    input: { x0: 1, velocity: 0.75, time: 8 },
+    expected: 0,
+    unit: "m/s",
+    tolerance: 1e-9,
+    actual: (input) => {
+      const ys = simulateUniformMotion(input).velocityPoints.map(
+        (point) => point.y,
+      );
+      return Math.max(...ys) - Math.min(...ys);
+    },
+  },
 ]);

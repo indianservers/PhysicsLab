@@ -1,0 +1,9 @@
+{
+  "lessonId": "074",
+  "experimentId": "sound-wave-anatomy",
+  "renderingMode": "2d-png-svg",
+  "generatedApparatus": "sound-tube.png",
+  "suppliedEffects": ["concept-effect.png", "interaction-overlay.png"],
+  "deferredAssets": ["sound-wave-anatomy.glb"],
+  "note": "GLB intentionally deferred per project direction; particles, compression bands, wavelength marker, probe, pressure graph and tracking mission are live 2D layers."
+}

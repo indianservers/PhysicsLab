@@ -1,0 +1,9 @@
+{
+  "lessonId": "073",
+  "experimentId": "em-spectrum",
+  "renderingMode": "2d-png-svg",
+  "generatedApparatus": "em-apparatus.png",
+  "suppliedEffects": ["concept-effect.png", "interaction-overlay.png"],
+  "deferredAssets": ["em-spectrum.glb"],
+  "note": "GLB intentionally deferred per project direction; E/B fields, logarithmic spectrum, readouts and mission are live 2D layers."
+}

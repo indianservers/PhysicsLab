@@ -1,1 +1,479 @@
-@import "../uniform-motion/uniform-motion.css";
+.cm-lab {
+  --navy: #132c46;
+  --green: #278f55;
+  --orange: #f29b23;
+  width: min(100%, calc(100vw - 96px));
+  margin: 0;
+  color: #17283a;
+  font-family: Inter, system-ui, sans-serif;
+}
+.cm-lab > header,
+.cm-toolbar,
+.cm-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.cm-lab > header {
+  padding: 18px 22px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 3px solid var(--orange);
+  background: #fff;
+}
+.cm-lab h2,
+.cm-lab h3,
+.cm-lab p {
+  margin: 0;
+}
+.cm-lab > header span,
+.cm-mission span {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  color: #e17120;
+}
+.cm-lab > header h2 {
+  font-size: clamp(22px, 2.6vw, 34px);
+}
+.cm-lab > header p {
+  color: #657381;
+  font-size: 12px;
+}
+.cm-lab button,
+.cm-lab select {
+  border: 1px solid #c9d2d9;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #fff;
+  color: #263849;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.cm-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.cm-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(480px, 1fr) 255px;
+  min-height: 720px;
+  border: 1px solid #d5d9dc;
+  background: #eee7dc;
+}
+.cm-controls,
+.cm-data {
+  padding: 18px;
+  background: #fff;
+}
+.cm-controls {
+  border-right: 1px solid #d5d9dc;
+}
+.cm-data {
+  border-left: 1px solid #d5d9dc;
+}
+.cm-controls h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 2px 0 14px;
+  font-size: 13px;
+}
+.cm-controls h3:not(:first-child) {
+  margin-top: 22px;
+}
+.cm-controls h3 b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  color: #fff;
+  background: var(--navy);
+}
+.cm-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 17px;
+}
+.cm-toggle button {
+  padding: 7px 3px;
+  font-size: 11px;
+}
+.cm-toggle button.active {
+  border-color: var(--green);
+  color: #fff;
+  background: var(--green);
+}
+.cm-range {
+  display: block;
+  margin-bottom: 17px;
+}
+.cm-range span,
+.cm-range small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cm-range span {
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.cm-range b {
+  color: #1e67bd;
+}
+.cm-range input {
+  width: 100%;
+  accent-color: #26506a;
+}
+.cm-range small {
+  color: #80909b;
+  font-size: 9px;
+}
+.cm-range i {
+  font-style: normal;
+}
+.cm-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin: -6px 0 16px;
+}
+.cm-presets button {
+  padding: 6px 2px;
+  font-size: 9px;
+}
+.cm-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.cm-release {
+  width: 100%;
+  border-color: #e35f48 !important;
+  color: #a73626 !important;
+}
+.cm-release.active {
+  color: #fff !important;
+  background: #d94d38 !important;
+}
+.cm-note {
+  margin-top: 11px !important;
+  padding: 10px;
+  border-radius: 8px;
+  color: #607280;
+  background: #eff3f5;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.cm-main {
+  min-width: 0;
+  padding: 14px;
+}
+.cm-toolbar {
+  margin-bottom: 10px;
+}
+.cm-toolbar > div {
+  display: flex;
+  gap: 5px;
+}
+.cm-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.cm-stage {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid #c8c1b9;
+  border-radius: 16px;
+  background: radial-gradient(circle, #d8c5ab, #b59673);
+  box-shadow: 0 10px 28px #563d2130;
+}
+.cm-stage > img {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 88%;
+  translate: -50% -50%;
+  clip-path: circle(46% at 50% 50%);
+  filter: drop-shadow(0 10px 10px #0006);
+}
+.cm-stage > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cm-stage svg text {
+  fill: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  paint-order: stroke;
+  stroke: #14283b;
+  stroke-width: 5px;
+}
+.cm-string {
+  stroke: #fff;
+  stroke-width: 3;
+}
+.cm-orbit {
+  fill: none;
+  stroke: #fff8;
+  stroke-width: 2;
+  stroke-dasharray: 8 7;
+}
+.cm-mass {
+  fill: #f37421;
+  stroke: #ffcb70;
+  stroke-width: 5;
+}
+.cm-velocity {
+  stroke: #36d27d;
+  stroke-width: 7;
+}
+.cm-force {
+  stroke: #ffb62e;
+  stroke-width: 7;
+}
+.cm-trail {
+  fill: none;
+  stroke: #ffe369;
+  stroke-width: 5;
+  stroke-dasharray: 7 6;
+}
+.cm-sensor {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  translate: -50% 0;
+  padding: 6px 11px;
+  border: 3px solid #555;
+  border-radius: 7px;
+  color: #60f07f;
+  background: #07110a;
+  box-shadow: 0 3px 8px #0008;
+}
+.cm-sensor span {
+  color: #fff;
+  font-size: 8px;
+}
+.cm-sensor b {
+  font-size: 23px;
+}
+.cm-sensor i {
+  color: #fff;
+  font-size: 9px;
+  font-style: normal;
+}
+.cm-state {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  color: #fff;
+  background: #1b6847de;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+.cm-state.released {
+  background: #c34e31e8;
+}
+.cm-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.cm-equations div {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 9px;
+  background: #fff;
+}
+.cm-equations span {
+  font-size: 9px;
+  color: #697985;
+}
+.cm-equations b {
+  font-size: 11px;
+  color: #164e72;
+}
+.cm-data h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.cm-data dl {
+  margin: 12px 0 18px;
+}
+.cm-data dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e5e7;
+  font-size: 11px;
+}
+.cm-data dd {
+  margin: 0;
+  color: #1470c7;
+  font-weight: 900;
+  text-align: right;
+}
+.cm-graph,
+.cm-insight {
+  padding: 11px;
+  border: 1px solid #d5dadd;
+  border-radius: 9px;
+  background: #fff;
+}
+.cm-graph svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+}
+.cm-graph line {
+  stroke: #97a3aa;
+}
+.cm-graph polyline {
+  fill: none;
+  stroke: #7951e8;
+  stroke-width: 3;
+}
+.cm-graph circle {
+  fill: #7951e8;
+}
+.cm-graph small,
+.cm-insight small {
+  display: block;
+  color: #667780;
+  font-size: 9px;
+}
+.cm-insight {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+.cm-insight span {
+  color: #e26b1e;
+  font-weight: 900;
+}
+.cm-mission {
+  flex-wrap: wrap;
+  padding: 15px 20px;
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  background: var(--navy);
+}
+.cm-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.cm-mission small {
+  color: #cddbe6;
+}
+.cm-mission output {
+  flex-basis: 100%;
+  min-height: 17px;
+  color: #c8f6d8;
+  font-size: 11px;
+}
+@media (max-width: 1050px) {
+  .cm-layout {
+    grid-template-columns: 210px minmax(420px, 1fr);
+  }
+  .cm-data {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-left: 0;
+    border-top: 1px solid #d5d9dc;
+  }
+  .cm-data h3,
+  .cm-data dl {
+    grid-column: 1/-1;
+  }
+  .cm-data dl {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+  }
+  .cm-data dl div {
+    display: grid;
+    padding: 8px;
+    border: 1px solid #e1e5e7;
+    border-radius: 7px;
+  }
+}
+@media (max-width: 760px) {
+  .cm-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .cm-lab > header {
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .cm-lab > header p {
+    display: none;
+  }
+  .cm-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .cm-main {
+    order: 1;
+    padding: 9px;
+  }
+  .cm-controls {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid #d5d9dc;
+  }
+  .cm-data {
+    order: 3;
+    display: block;
+  }
+  .cm-toolbar {
+    flex-wrap: wrap;
+  }
+  .cm-toolbar > div {
+    width: 100%;
+  }
+  .cm-toolbar > div button {
+    flex: 1;
+  }
+  .cm-stage {
+    aspect-ratio: 1/1;
+  }
+  .cm-stage > img {
+    width: 108%;
+  }
+  .cm-equations {
+    grid-template-columns: 1fr;
+  }
+  .cm-data dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cm-mission {
+    align-items: stretch;
+  }
+  .cm-mission button {
+    flex: 1;
+  }
+  .cm-stage svg text {
+    font-size: 13px;
+  }
+}

@@ -1,1 +1,449 @@
-@import "../uniform-motion/uniform-motion.css";
+.fr-lab {
+  --brown: #4a2208;
+  --orange: #ea6b0b;
+  width: min(100%, calc(100vw - 96px));
+  color: #2e241e;
+  font-family: Inter, system-ui, sans-serif;
+}
+.fr-lab h2,
+.fr-lab h3,
+.fr-lab p {
+  margin: 0;
+}
+.fr-lab button,
+.fr-lab input,
+.fr-lab select {
+  border: 1px solid #ddcfc1;
+  border-radius: 8px;
+  background: #fff;
+  color: #38271c;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 800;
+}
+.fr-lab button {
+  cursor: pointer;
+}
+.fr-lab > header,
+.fr-toolbar,
+.fr-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fr-lab > header {
+  padding: 18px 22px;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 3px solid #dd7418;
+  background: linear-gradient(100deg, #3c1a06, #6a310c);
+  color: #fff;
+}
+.fr-lab > header span,
+.fr-mission span {
+  color: #ffb36c;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.fr-lab > header h2 {
+  background: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: clamp(22px, 2.5vw, 34px);
+}
+.fr-lab > header p {
+  color: #f1d8c3 !important;
+  font-size: 11px;
+}
+.fr-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(450px, 1fr) 285px;
+  min-height: 670px;
+  border: 1px solid #e0d6cc;
+  background: #f7f1e9;
+}
+.fr-controls,
+.fr-data {
+  padding: 17px;
+  background: #fff;
+}
+.fr-controls {
+  border-right: 1px solid #e2d8cf;
+}
+.fr-data {
+  border-left: 1px solid #e2d8cf;
+}
+.fr-controls h3,
+.fr-data h3 {
+  margin-bottom: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.fr-range {
+  display: block;
+  margin-bottom: 15px;
+}
+.fr-range span,
+.fr-range small {
+  display: flex;
+  justify-content: space-between;
+}
+.fr-range span {
+  font-size: 10px;
+}
+.fr-range b,
+.fr-data dd {
+  color: #a44b0a;
+}
+.fr-range input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.fr-range small {
+  color: #98887d;
+  font-size: 8px;
+}
+.fr-range i {
+  font-style: normal;
+}
+.fr-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f5e8dc;
+  font-size: 10px;
+}
+.fr-switch input {
+  width: auto;
+}
+.fr-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+.fr-presets button {
+  padding: 7px 2px;
+  font-size: 8px;
+}
+.fr-controls > p {
+  margin-top: 11px;
+  padding: 9px;
+  border-radius: 8px;
+  background: #f1eee9;
+  color: #74675e;
+  font-size: 9px;
+  line-height: 1.45;
+}
+.fr-main {
+  min-width: 0;
+  padding: 13px;
+}
+.fr-toolbar {
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.fr-toolbar button {
+  padding: 8px;
+}
+.fr-toolbar .ramp {
+  border-color: #d05e0a;
+  background: #f98423;
+  color: #fff;
+}
+.fr-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  font-weight: 900;
+}
+.fr-toolbar input {
+  width: auto;
+}
+.fr-stage {
+  position: relative;
+  contain: paint;
+  isolation: isolate;
+  min-height: 470px;
+  overflow: hidden;
+  border: 1px solid #e3d8cc;
+  border-radius: 12px;
+  background: linear-gradient(#fbf8f3 70%, #eee2d3);
+}
+.fr-apparatus {
+  position: absolute;
+  pointer-events: none;
+  inset: 12% 2% 8%;
+  transform-origin: 50% 75%;
+  transition: rotate 0.35s;
+}
+.fr-surface {
+  position: absolute;
+  z-index: 0;
+  inset: auto 2% 16% 2%;
+  height: 55px;
+  border-radius: 5px;
+  background: linear-gradient(#b56e32, #7d3f18 70%, #33251f);
+  box-shadow: 0 12px 0 #303235;
+}
+.fr-apparatus > img {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 4%;
+  width: 100%;
+  clip-path: inset(0 0 0 43%);
+  pointer-events: none;
+}
+.fr-block {
+  position: absolute;
+  z-index: 3;
+  left: 17%;
+  bottom: 27%;
+  width: 19%;
+  height: 31%;
+  border: 2px solid #71380f;
+  border-radius: 5px;
+  background: linear-gradient(115deg, #d9914e, #9c501c);
+  box-shadow:
+    inset 0 0 0 5px #ffffff1d,
+    0 7px 8px #321b0d44;
+  display: grid;
+  place-items: center;
+  transition: translate 0.08s linear;
+}
+.fr-block span {
+  color: #3c1b08;
+  font-size: 11px;
+  font-weight: 900;
+}
+.fr-force {
+  position: absolute;
+  z-index: 4;
+  font-size: 9px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.fr-force.applied {
+  left: 37%;
+  bottom: 46%;
+  height: 3px;
+  color: #186de1;
+  background: #186de1;
+}
+.fr-force.friction {
+  right: 64%;
+  bottom: 35%;
+  height: 3px;
+  color: #e66b09;
+  background: #e66b09;
+  text-align: left;
+}
+.fr-force.normal {
+  left: 23%;
+  bottom: 59%;
+  height: 90px;
+  border-left: 3px solid #48a843;
+  color: #307d2d;
+  padding-left: 5px;
+}
+.fr-force.weight {
+  left: 26%;
+  bottom: 4%;
+  height: 105px;
+  border-left: 3px solid #ea4335;
+  color: #be291e;
+  padding: 88px 0 0 5px;
+}
+.fr-stage > strong {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 12px;
+  translate: -50% 0;
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: #356b2e;
+  color: #fff;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.fr-stage.impending > strong {
+  background: #c66a0a;
+}
+.fr-stage.sliding > strong {
+  background: #772eb6;
+}
+.fr-stage.impending .fr-block {
+  animation: fr-shiver 0.18s infinite;
+}
+.fr-stage.sliding .fr-block {
+  box-shadow:
+    inset 0 0 0 5px #ffffff1d,
+    0 7px 8px #321b0d44,
+    0 13px 18px #f9731633;
+}
+.fr-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 9px;
+}
+.fr-equations b {
+  padding: 9px;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+  font-size: 10px;
+}
+.fr-meter {
+  display: block;
+  padding: 12px;
+  border: 1px solid #edd7c3;
+  border-radius: 8px;
+  color: #0757bd;
+  background: #fffaf5;
+  font-size: 27px;
+  font-weight: 900;
+}
+.fr-data dl {
+  margin: 12px 0;
+}
+.fr-data dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid #ece3dc;
+  font-size: 9px;
+}
+.fr-data dd {
+  margin: 0;
+  font-weight: 900;
+}
+.fr-plot {
+  padding: 9px;
+  border: 1px solid #e4d9d0;
+  border-radius: 9px;
+}
+.fr-plot > b {
+  font-size: 10px;
+}
+.fr-plot svg {
+  width: 100%;
+  height: 150px;
+}
+.fr-plot line {
+  stroke: #ad9c8d;
+}
+.fr-plot .threshold {
+  stroke: #7d6f65;
+  stroke-dasharray: 4;
+}
+.fr-plot polyline {
+  fill: none;
+  stroke: #dd6710;
+  stroke-width: 3;
+}
+.fr-plot small {
+  color: #75665b;
+  font-size: 8px;
+}
+.fr-mission {
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-radius: 0 0 18px 18px;
+  background: #4b240c;
+  color: #fff;
+}
+.fr-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.fr-mission small {
+  color: #edd5c2;
+}
+.fr-mission input {
+  width: 70px;
+}
+.fr-mission output {
+  flex-basis: 100%;
+  min-height: 16px;
+  color: #c8f5d6;
+  font-size: 10px;
+}
+@keyframes fr-shiver {
+  50% {
+    translate: 2px 0;
+  }
+}
+@media (max-width: 1050px) {
+  .fr-layout {
+    grid-template-columns: 210px minmax(420px, 1fr);
+  }
+  .fr-data {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    border-left: 0;
+  }
+  .fr-data h3,
+  .fr-data dl {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 760px) {
+  .fr-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .fr-lab > header {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .fr-lab > header p {
+    display: none;
+  }
+  .fr-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .fr-main {
+    order: 1;
+    padding: 8px;
+  }
+  .fr-controls {
+    order: 2;
+  }
+  .fr-data {
+    order: 3;
+    display: block;
+  }
+  .fr-toolbar {
+    align-items: stretch;
+  }
+  .fr-toolbar button {
+    flex: 1;
+  }
+  .fr-toolbar .ramp {
+    flex-basis: 100%;
+  }
+  .fr-stage {
+    min-height: 390px;
+  }
+  .fr-apparatus {
+    inset: 11% -18% 7%;
+  }
+  .fr-equations {
+    grid-template-columns: 1fr;
+  }
+  .fr-mission {
+    align-items: stretch;
+  }
+  .fr-mission button {
+    flex: 1;
+  }
+}

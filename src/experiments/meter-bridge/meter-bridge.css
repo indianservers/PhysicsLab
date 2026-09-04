@@ -1,0 +1,553 @@
+.meter-lab {
+  --navy: #172554;
+  --orange: #e85d19;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ddd7cd;
+  border-radius: 18px;
+  background: #faf8f4;
+  color: #172033;
+  box-shadow: 0 22px 70px #1720331c;
+}
+.meter-lab * {
+  box-sizing: border-box;
+}
+.meter-lab button,
+.meter-lab input,
+.meter-lab select {
+  font: inherit;
+}
+.meter-lab button {
+  min-height: 38px;
+  border: 1px solid #d7d2c9;
+  border-radius: 7px;
+  background: #fff;
+  color: #243047;
+  padding: 0.52rem 0.72rem;
+  cursor: pointer;
+}
+.meter-lab button:hover:not(:disabled) {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.meter-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.meter-lab button:focus-visible,
+.meter-lab input:focus-visible,
+.meter-lab select:focus-visible {
+  outline: 3px solid #168bdc55;
+  outline-offset: 2px;
+}
+.meter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e4ded4;
+  background: #fff;
+}
+.meter-head span,
+.meter-controls h3,
+.meter-readings h3,
+.meter-mission > div:first-child span {
+  color: var(--orange);
+  font-size: 0.71rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.meter-head h2 {
+  margin: 0.12rem 0;
+  font:
+    800 clamp(1.4rem, 2.3vw, 2.1rem)/1.05 Georgia,
+    serif;
+}
+.meter-head p {
+  margin: 0;
+  color: #626977;
+}
+.meter-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 275px;
+}
+.meter-controls,
+.meter-readings {
+  padding: 1rem;
+  background: #fff;
+}
+.meter-controls {
+  border-right: 1px solid #e4ded4;
+}
+.meter-readings {
+  border-left: 1px solid #e4ded4;
+}
+.meter-controls h3,
+.meter-readings h3 {
+  margin: 0 0 0.75rem;
+}
+.meter-control {
+  display: grid;
+  gap: 0.28rem;
+  margin-bottom: 0.86rem;
+}
+.meter-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+}
+.meter-control strong,
+.meter-reading strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.meter-control input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.meter-control small {
+  color: #808795;
+  text-align: right;
+}
+.meter-presets {
+  display: grid;
+  gap: 0.36rem;
+  margin-top: 1rem;
+}
+.meter-presets button:last-child {
+  border-color: #ee9b6c;
+  color: #a9440e;
+}
+.meter-guard {
+  border-left: 3px solid #e7a230;
+  background: #fff7e6;
+  padding: 0.65rem;
+  color: #73561c;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+.meter-main {
+  min-width: 0;
+  background: #f3eee7;
+}
+.meter-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  background: #fff;
+}
+.meter-toolbar > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.meter-toolbar button:first-child,
+.meter-footer button:first-child,
+.mission-start {
+  border-color: #4a9e58 !important;
+  color: #16722a !important;
+}
+.meter-toolbar > strong {
+  border-radius: 99px;
+  background: #eef1f5;
+  padding: 0.42rem 0.7rem;
+  color: #5e6978;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+.meter-stage {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 44%, #fff7eb, #ded3c3);
+}
+.meter-stage > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.meter-wire {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 24.5%;
+  height: 8px;
+  filter: drop-shadow(0 1px 2px #fff);
+}
+.meter-segment {
+  position: absolute;
+  top: 0;
+  height: 4px;
+}
+.meter-segment.left {
+  left: 0;
+  background: #dc3737;
+}
+.meter-segment.right {
+  right: 0;
+  background: #1c2738;
+}
+.meter-jockey {
+  position: absolute;
+  top: -20px;
+  width: 3px;
+  height: 47px;
+  background: #f57b22;
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 11px #e45800;
+}
+.meter-jockey.null {
+  background: #28a651;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 15px #24aa54;
+}
+.meter-jockey i {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: inherit;
+}
+.meter-jockey b {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  background: #172033;
+  color: #fff;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.68rem;
+}
+.meter-drag {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 20%;
+  width: 84%;
+  height: 48px;
+  opacity: 0.01;
+  cursor: ew-resize;
+}
+.meter-direction {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 99px;
+  background: #172033e8;
+  color: #fff;
+  padding: 0.45rem 0.85rem;
+  font-weight: 800;
+  font-size: 0.76rem;
+  box-shadow: 0 6px 20px #0003;
+}
+.meter-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 62px;
+  border-top: 1px solid #ddd4c7;
+  background: #fff;
+  padding: 0.7rem;
+}
+.meter-equation span {
+  color: #7b8490;
+  text-transform: uppercase;
+  font-size: 0.67rem;
+  font-weight: 900;
+}
+.meter-equation strong {
+  font-family: Georgia, serif;
+  color: var(--navy);
+}
+.meter-equation b {
+  border-radius: 5px;
+  background: #edf7ef;
+  color: #22703b;
+  padding: 0.35rem 0.5rem;
+  font-family: ui-monospace, monospace;
+}
+.meter-reading,
+.meter-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.48rem 0;
+  border-bottom: 1px solid #ece8e1;
+  font-size: 0.74rem;
+}
+.meter-status {
+  margin-top: 0.45rem;
+  border: 1px solid #f0b5a9;
+  border-radius: 6px;
+  background: #fff2ef;
+  padding: 0.6rem;
+  color: #a02e22;
+}
+.meter-status.null {
+  border-color: #a5ddb0;
+  background: #effbf1;
+  color: #187635;
+}
+.meter-gauge {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 95px;
+  margin: 0.7rem 0;
+  padding: 0.48rem 0.8rem;
+  border: 8px solid #35332f;
+  border-radius: 70px 70px 10px 10px;
+  background: linear-gradient(#fffdf7, #e9e4d7);
+  overflow: hidden;
+}
+.meter-gauge i {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 2px;
+  height: 63px;
+  background: #d72525;
+  transform-origin: bottom;
+  transition: transform 0.2s;
+}
+.meter-gauge b {
+  color: #555;
+}
+.meter-graph {
+  width: 100%;
+  margin-top: 0.7rem;
+  background: #fbfaf8;
+  border: 1px solid #ebe5dc;
+  border-radius: 6px;
+}
+.meter-graph path {
+  fill: none;
+  stroke: #b7bdc7;
+  stroke-width: 1;
+}
+.meter-graph .curve {
+  stroke: #c13030;
+  stroke-width: 2.5;
+}
+.meter-graph circle {
+  fill: #172554;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.meter-graph text {
+  font-size: 9px;
+  fill: #657080;
+}
+.meter-mission {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) auto auto;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #ded6cb;
+  background: #fffaf2;
+  padding: 1rem 1.2rem;
+}
+.meter-mission h3 {
+  margin: 0.1rem 0;
+}
+.meter-mission p {
+  margin: 0.2rem 0;
+  color: #626977;
+  font-size: 0.78rem;
+}
+.meter-mission > label {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.meter-mission input[type="number"] {
+  width: 90px;
+  border: 1px solid #cdd3dc;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+.meter-mission > p {
+  grid-column: 1/-1;
+  border-left: 3px solid #dc8d28;
+  padding: 0.5rem;
+}
+.meter-mission > p.success {
+  border-color: #2b9b4c;
+  color: #197538;
+  background: #eef9f0;
+}
+.meter-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #ddd7ce;
+  background: #172033;
+  color: #fff;
+}
+.meter-footer label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+}
+.meter-footer select {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.25rem;
+}
+.meter-footer > span {
+  margin-left: auto;
+  color: #aeb8c8;
+  font-size: 0.72rem;
+}
+.meter-lab[data-run-state="running"] .meter-jockey {
+  animation: meter-pulse 0.7s ease-in-out infinite alternate;
+}
+.meter-lab[data-run-state="paused"] .meter-jockey {
+  animation-play-state: paused;
+}
+@keyframes meter-pulse {
+  to {
+    filter: brightness(1.3);
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .meter-lab * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+@media (max-width: 1100px) {
+  .meter-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .meter-readings {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #e4ded4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 1rem;
+  }
+  .meter-readings h3,
+  .meter-gauge,
+  .meter-graph {
+    grid-column: span 1;
+    grid-row: span 4;
+  }
+  .meter-stage {
+    min-height: 430px;
+  }
+}
+@media (max-width: 720px) {
+  .meter-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .meter-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .meter-main {
+    order: 1;
+  }
+  .meter-controls {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid #e4ded4;
+  }
+  .meter-readings {
+    order: 3;
+    display: block;
+  }
+  .meter-stage {
+    min-height: 350px;
+  }
+  .meter-wire {
+    top: 25%;
+  }
+  .meter-drag {
+    top: 19%;
+  }
+  .meter-direction {
+    top: 36%;
+  }
+  .meter-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .meter-equation {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .meter-mission {
+    grid-template-columns: 1fr;
+  }
+  .meter-mission > p {
+    grid-column: auto;
+  }
+  .meter-footer {
+    flex-wrap: wrap;
+  }
+  .meter-footer > span {
+    width: 100%;
+    margin-left: 0;
+  }
+  .meter-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 0.75rem;
+  }
+  .meter-controls h3,
+  .meter-presets,
+  .meter-guard {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 430px) {
+  .meter-stage {
+    min-height: 300px;
+  }
+  .meter-wire {
+    top: 26%;
+  }
+  .meter-drag {
+    top: 20%;
+  }
+  .meter-direction {
+    top: 39%;
+    font-size: 0.67rem;
+  }
+  .meter-controls {
+    display: block;
+  }
+  .meter-head,
+  .meter-mission {
+    padding: 0.85rem;
+  }
+  .meter-footer button {
+    flex: 1;
+  }
+  .meter-toolbar > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+}

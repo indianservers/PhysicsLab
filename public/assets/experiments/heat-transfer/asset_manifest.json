@@ -1,0 +1,33 @@
+{
+  "lessonId": 68,
+  "experimentId": "heat-transfer",
+  "renderingMode": "2d",
+  "assets": [
+    {
+      "file": "heat-transfer-apparatus.png",
+      "role": "transparent conduction, convection, and radiation apparatus plate",
+      "source": "generated with built-in image generation",
+      "dynamicOverlays": [
+        "lattice vibration",
+        "temperature gradient",
+        "fluid circulation",
+        "radiation waves",
+        "probe labels"
+      ]
+    },
+    {
+      "file": "concept-effect.png",
+      "role": "supplied cool-particle effect layer"
+    },
+    {
+      "file": "interaction-overlay.png",
+      "role": "supplied warm-particle effect layer"
+    }
+  ],
+  "deferred": [
+    {
+      "file": "heat-transfer.glb",
+      "reason": "3D intentionally deferred under the current 2D lesson direction"
+    }
+  ]
+}

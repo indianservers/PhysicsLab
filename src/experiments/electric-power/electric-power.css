@@ -1,0 +1,500 @@
+.experiment-detail-electric-power .page-hero,
+.experiment-detail-electric-power .experiment-tab-strip {
+  display: none !important;
+}
+.experiment-detail-electric-power .experiment-main,
+.experiment-detail-electric-power .experiment-workspace,
+.experiment-detail-electric-power .experiment-workspace-main {
+  padding: 0 !important;
+  max-width: none !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.power-lab {
+  --red: #7d1414;
+  --ink: #2a211d;
+  color: var(--ink);
+  background: #f0ece7;
+  border: 1px solid #c7beb5;
+  font-family: Inter, system-ui, sans-serif;
+  min-width: 0;
+}
+.power-lab * {
+  box-sizing: border-box;
+}
+.power-lab button,
+.power-lab input,
+.power-lab select {
+  font: inherit;
+}
+.power-lab button {
+  padding: 0.55rem 0.72rem;
+  border: 1px solid #c0b6ac;
+  border-radius: 4px;
+  background: linear-gradient(#fff, #eeeae5);
+  color: #342a25;
+  cursor: pointer;
+}
+.power-lab button:hover {
+  border-color: #8b2020;
+  background: #fff8f5;
+}
+.power-lab button:focus-visible,
+.power-lab input:focus-visible,
+.power-lab select:focus-visible {
+  outline: 3px solid #ffb322;
+  outline-offset: 2px;
+}
+.power-lab button:disabled {
+  opacity: 0.45;
+}
+.power-lab button.primary {
+  background: linear-gradient(#39a42d, #1f791d);
+  color: #fff;
+  border-color: #1c701c;
+}
+.power-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 12px 18px;
+  background: #fffdfb;
+  border-bottom: 1px solid #c9bfb7;
+}
+.power-head > div:last-child {
+  display: flex;
+  gap: 7px;
+}
+.power-head span,
+.power-analysis section > span {
+  color: var(--red);
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+.power-head h2 {
+  margin: 4px 0 2px;
+  color: #501010;
+  font:
+    700 1.45rem Georgia,
+    serif;
+}
+.power-head p {
+  margin: 0;
+  color: #75665d;
+  font-size: 0.75rem;
+}
+.power-bench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  border-bottom: 1px solid #c6bbb2;
+}
+.power-stage {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 28%, #705647, #332b29 58%, #191718);
+}
+.power-stage:after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 7%;
+  right: 7%;
+  bottom: 13%;
+  height: 31%;
+  background: linear-gradient(172deg, transparent 0 13%, #160e0bcc 14%);
+  border-bottom: 1px solid #b36a35;
+}
+.power-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  touch-action: none;
+}
+.power-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.power-flow {
+  position: absolute;
+  z-index: 3;
+  left: 12%;
+  right: 12%;
+  bottom: 27%;
+  display: flex;
+  justify-content: space-between;
+  color: #ffca58;
+}
+.power-flow i {
+  font-style: normal;
+  animation: power-flow 1.2s linear infinite;
+}
+.power-lab:not([data-run-state="running"]):not([data-run-state="ramping"])
+  .power-flow
+  i {
+  animation-play-state: paused;
+  opacity: 0.2;
+}
+@keyframes power-flow {
+  0%,
+  100% {
+    transform: translateX(-7px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(7px);
+    opacity: 1;
+  }
+}
+.power-status {
+  position: absolute;
+  z-index: 5;
+  left: 14px;
+  top: 14px;
+  display: grid;
+  gap: 3px;
+  padding: 9px 12px;
+  color: white;
+  background: #254d29e8;
+  border: 1px solid #85b98a;
+  border-radius: 4px;
+  font-size: 0.73rem;
+}
+.power-status span {
+  font-size: 0.63rem;
+  color: #cde9d0;
+}
+.power-status.danger {
+  background: #761919e8;
+  border-color: #ff9d8d;
+}
+.power-parts {
+  position: absolute;
+  z-index: 5;
+  left: 12px;
+  right: 12px;
+  bottom: 9px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.power-parts button {
+  padding: 0.3rem 0.44rem;
+  color: #fff;
+  background: #231c1bd9;
+  border-color: #ad9385;
+  text-transform: capitalize;
+  font-size: 0.6rem;
+}
+.power-parts button.active {
+  background: #d99024;
+  color: #1f1814;
+  border-color: #ffd287;
+}
+.power-controls {
+  padding: 13px;
+  background: #fffdfb;
+  border-left: 1px solid #c6bbb2;
+}
+.power-controls h3 {
+  margin: 0 0 8px;
+  color: #791818;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.power-control {
+  display: block;
+  padding: 9px 0;
+  border-top: 1px solid #ddd5ce;
+}
+.power-control > span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+.power-control strong {
+  font-family: ui-monospace, monospace;
+}
+.power-control input {
+  width: 100%;
+  accent-color: #922020;
+}
+.power-control > small {
+  display: block;
+  text-align: right;
+  color: #85766d;
+  font-size: 0.61rem;
+}
+.power-fuse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-block: 1px solid #ddd5ce;
+  padding: 9px 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.power-fuse select {
+  padding: 5px;
+}
+.power-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 9px 0;
+}
+.power-time {
+  display: block;
+  font-size: 0.66rem;
+}
+.power-time input {
+  display: block;
+  width: 100%;
+  accent-color: #98201f;
+}
+.power-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  margin-top: 7px;
+  font-size: 0.66rem;
+}
+.power-options label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.power-appliances {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #c4bab2;
+  border-bottom: 1px solid #c4bab2;
+}
+.power-appliances button {
+  border: 0;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  text-align: left;
+  padding: 10px 18px;
+}
+.power-appliances button > span {
+  grid-row: 1/3;
+  font-size: 1.5rem;
+}
+.power-appliances b {
+  font-size: 0.74rem;
+}
+.power-appliances small {
+  font-size: 0.62rem;
+  color: #776b64;
+}
+.power-appliances button.active {
+  background: #fff3cf;
+  box-shadow: inset 0 3px #c47a14;
+}
+.power-readings {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: #c4bab2;
+}
+.power-readings > div {
+  display: grid;
+  gap: 5px;
+  text-align: center;
+  padding: 10px;
+  background: #fffcf9;
+}
+.power-readings span {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  color: #7a6960;
+  font-weight: 800;
+}
+.power-readings strong {
+  font:
+    700 1rem ui-monospace,
+    monospace;
+  color: #6d1818;
+}
+.power-readings .danger {
+  background: #ffe9e5;
+}
+.power-readings .danger strong {
+  color: #c02018;
+}
+.power-analysis {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+  gap: 1px;
+  background: #c4bab2;
+  border-top: 1px solid #c4bab2;
+}
+.power-analysis > section {
+  min-width: 0;
+  padding: 13px;
+  background: #fffdfb;
+}
+.power-analysis h3 {
+  margin: 4px 0 9px;
+  color: #641414;
+  font:
+    700 1rem Georgia,
+    serif;
+}
+.power-graph header {
+  display: flex;
+  justify-content: space-between;
+  color: #762020;
+  font-size: 0.68rem;
+}
+.power-graph svg {
+  width: 100%;
+  display: block;
+  max-height: 190px;
+  background: repeating-linear-gradient(0deg, #fff 0 29px, #e8e2dd 30px);
+}
+.power-graph svg line {
+  stroke: #40352f;
+}
+.power-graph svg path {
+  fill: none;
+  stroke: #1d5ec5;
+  stroke-width: 2;
+}
+.power-graph svg .fill {
+  fill: #7db6ff55;
+  stroke: none;
+}
+.power-graph svg circle {
+  fill: #d02626;
+  stroke: white;
+  stroke-width: 2;
+}
+.power-graph svg text {
+  font-size: 10px;
+  fill: #5d514b;
+}
+.power-graph footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.72rem;
+}
+.power-identities > p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid #dacfc7;
+  border-bottom: 0;
+  font-size: 0.72rem;
+}
+.power-identities > p:nth-of-type(3) {
+  border-bottom: 1px solid #dacfc7;
+}
+.power-identities small {
+  display: block;
+  margin-top: 8px;
+  color: #6f625a;
+  font-size: 0.66rem;
+  line-height: 1.4;
+}
+.power-mission {
+  background: #fff8e9 !important;
+  border: 1px solid #d49b4f;
+}
+.power-mission p,
+.power-safety p {
+  font-size: 0.69rem;
+  line-height: 1.4;
+}
+.power-mission.complete {
+  background: #e9f7e9 !important;
+  border-color: #3c9947;
+}
+.power-safety {
+  background: #f1faef !important;
+}
+.power-safety.danger {
+  background: #fff0ed !important;
+}
+.power-safety.danger h3 {
+  color: #b21c15;
+}
+.power-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .power-flow i {
+    animation: none !important;
+  }
+}
+@media (max-width: 1100px) {
+  .experiment-detail-electric-power .experiment-workspace {
+    margin-top: 40px !important;
+  }
+  .power-bench {
+    grid-template-columns: 1fr 300px;
+  }
+  .power-stage {
+    min-height: 430px;
+  }
+  .power-analysis {
+    grid-template-columns: 1fr 1fr;
+  }
+  .power-readings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .power-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .power-head > div:last-child {
+    width: 100%;
+  }
+  .power-head button {
+    flex: 1;
+  }
+  .power-bench {
+    display: block;
+  }
+  .power-stage {
+    min-height: 400px;
+  }
+  .power-controls {
+    border: 0;
+    border-top: 1px solid #c6bbb2;
+  }
+  .power-appliances {
+    grid-template-columns: 1fr 1fr;
+  }
+  .power-readings,
+  .power-analysis {
+    display: block;
+  }
+  .power-readings > div,
+  .power-analysis > section {
+    border-bottom: 1px solid #c4bab2;
+  }
+  .power-parts button {
+    font-size: 0.54rem;
+  }
+}

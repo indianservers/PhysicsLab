@@ -1,3 +1,413 @@
-.premium-shell--waves .premium-wave-status {
-  letter-spacing: 0;
+.experiment-detail-sound-wave-anatomy .experiment-tab-pane {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.sound-lab {
+  --green: #178548;
+  --orange: #ef7723;
+  --ink: #172333;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 13px;
+  border: 1px solid #dce2df;
+  border-radius: 20px;
+  background: #f6f7f4;
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+  box-shadow: 0 18px 50px #253a2a18;
+}
+.sound-lab * {
+  box-sizing: border-box;
+}
+.sound-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #dce3df;
+}
+.sound-hero span,
+.eyebrow,
+.sound-bottom > div > span {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+.sound-hero h1 {
+  margin: 3px 0;
+  color: #172333 !important;
+  -webkit-text-fill-color: #172333 !important;
+  background: none !important;
+  font-size: 27px;
+}
+.sound-hero p {
+  margin: 0;
+  color: #67726e !important;
+  font-size: 12px;
+}
+.sound-hero > div:last-child {
+  padding: 8px 12px;
+  border: 1px solid #d5ddd8;
+  border-radius: 99px;
+  color: #76827b;
+  font-size: 10px;
+  font-weight: 900;
+}
+.sound-hero > div.running {
+  color: #087b3d;
+  background: #ecf9f1;
+}
+.sound-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(460px, 1fr) 245px;
+  gap: 10px;
+}
+.sound-card,
+.sound-bottom > div {
+  border: 1px solid #dce2df;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 6px 18px #334f3909;
+}
+.sound-controls,
+.sound-readings {
+  padding: 15px;
+}
+.sound-range {
+  display: grid;
+  gap: 7px;
+  margin: 15px 0;
+}
+.sound-range > span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.sound-range output {
+  font-weight: 900;
+  color: #087a40;
+}
+.sound-range input {
+  width: 100%;
+  accent-color: var(--green);
+}
+.sound-range small {
+  display: flex;
+  justify-content: space-between;
+  color: #7b8681;
+  font-size: 8px;
+}
+.sound-select {
+  display: grid;
+  gap: 7px;
+  font-size: 11px;
+  margin: 15px 0;
+}
+.sound-select select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccd6d0;
+  border-radius: 7px;
+  background: #fff;
+}
+.sound-principle,
+.sound-check {
+  padding: 11px;
+  border-left: 3px solid var(--orange);
+  background: #fff6e8;
+  border-radius: 7px;
+  font-size: 10px;
+}
+.sound-principle p {
+  margin: 5px 0 0;
+  line-height: 1.45;
+}
+.sound-stage {
+  min-width: 0;
+  overflow: hidden;
+}
+.sound-stage-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e1e7e3;
+  font-size: 10px;
+}
+.sound-stage-head span {
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+}
+.tube {
+  position: relative;
+  min-height: 355px;
+  background: linear-gradient(#fafcfb, #eef3f0);
+  overflow: hidden;
+}
+.tube img,
+.tube svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tube img {
+  z-index: 1;
+}
+.tube svg {
+  z-index: 2;
+}
+.particle {
+  fill: #2a7dcc;
+}
+.tracked {
+  fill: #13a858;
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 5px #13a858);
+}
+.compression {
+  fill: #ed49391a;
+}
+.probe {
+  stroke: #128647;
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.lambda,
+.travel,
+.oscillate {
+  fill: none;
+  stroke: #168247;
+  stroke-width: 3;
+}
+.oscillate {
+  stroke: #246fc0;
+}
+.lambda-label,
+.tube text {
+  fill: #146e3d;
+  text-anchor: middle;
+  font: 800 12px sans-serif;
+}
+.tube text {
+  fill: #355d78;
+}
+.sound-transport {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px;
+  border-top: 1px solid #dfe5e1;
+  flex-wrap: wrap;
+}
+.sound-transport button,
+.sound-transport select {
+  padding: 7px 8px;
+  border: 1px solid #cbd5cf;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+.sound-transport button:first-child {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.sound-transport > input {
+  flex: 1;
+  min-width: 80px;
+  accent-color: var(--green);
+}
+.sound-transport label {
+  font-size: 9px;
+  white-space: nowrap;
+}
+.sound-stage > .sound-range {
+  padding: 0 12px 10px;
+  margin: 8px 0;
+}
+.sound-readings dl {
+  margin: 12px 0;
+}
+.sound-readings dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e9eeeb;
+  font-size: 10px;
+}
+.sound-readings dd {
+  margin: 0;
+  font-weight: 900;
+  text-align: right;
+}
+.sound-check {
+  border-color: var(--green);
+  background: #edf8f1;
+}
+.sound-check > * {
+  display: block;
+  margin: 3px 0;
+}
+.sound-check code {
+  font-weight: 900;
+  color: #087942;
+}
+.track {
+  display: grid;
+  gap: 7px;
+  margin-top: 16px;
+  font-size: 10px;
+}
+.track input {
+  width: 100%;
+  accent-color: #18a75b;
+}
+.sound-bottom {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.sound-bottom > div {
+  padding: 14px;
+}
+.pressure-card svg {
+  display: block;
+  width: 100%;
+  height: 165px;
+}
+.pressure-card svg line {
+  stroke: #78847d;
+}
+.pressure-card polyline {
+  fill: none;
+  stroke: #df382d;
+  stroke-width: 3;
+}
+.pressure-card .graph-probe {
+  stroke: var(--green);
+  stroke-dasharray: 5 4;
+}
+.pressure-card text {
+  fill: #53615a;
+  font: 11px sans-serif;
+}
+.sound-mission h2 {
+  font-size: 17px;
+  margin: 7px 0;
+}
+.sound-mission button {
+  padding: 8px 11px;
+  border: 1px solid #cbd5cf;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+.sound-mission button.selected {
+  border-color: var(--green);
+  background: #eaf8f0;
+}
+.sound-mission p {
+  min-height: 32px;
+  color: #5f6c65;
+  font-size: 10px;
+}
+.sound-mission p.success {
+  color: #087940;
+  font-weight: 900;
+}
+.sound-mission footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #e1e6e3;
+  font-size: 10px;
+}
+.sound-mission footer b {
+  font: 800 18px Georgia;
+  color: var(--green);
+}
+.sound-lab button:focus-visible,
+.sound-lab input:focus-visible,
+.sound-lab select:focus-visible {
+  outline: 3px solid #19a35c66;
+  outline-offset: 2px;
+}
+@media (max-width: 1050px) {
+  .sound-layout {
+    grid-template-columns: 220px 1fr;
+  }
+  .sound-readings {
+    grid-column: 1/-1;
+  }
+  .sound-readings dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 18px;
+  }
+}
+@media (max-width: 720px) {
+  .sound-lab {
+    padding: 8px;
+    border-radius: 14px;
+  }
+  .sound-hero {
+    align-items: flex-start;
+  }
+  .sound-hero h1 {
+    font-size: 22px;
+  }
+  .sound-hero > div:last-child {
+    display: none;
+  }
+  .sound-layout {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-width: 0;
+  }
+  .sound-stage {
+    grid-row: 1;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .sound-controls {
+    grid-row: 2;
+  }
+  .sound-readings {
+    grid-row: 3;
+  }
+  .tube {
+    min-height: 265px;
+  }
+  .sound-transport > input {
+    order: 8;
+    flex-basis: 100%;
+  }
+  .sound-readings dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sound-bottom {
+    grid-template-columns: 1fr;
+  }
+  .pressure-card svg {
+    height: 135px;
+  }
+  .sound-hero p {
+    font-size: 10px;
+  }
 }

@@ -1,0 +1,26 @@
+{
+  "schema_version": "2d-png-svg-1.0",
+  "lesson_id": 79,
+  "lesson_code": "wave-lab",
+  "mode": "2d",
+  "assets": {
+    "apparatus": "ripple-tank.png",
+    "supplied_effects": ["concept-effect.png", "interaction-overlay.png"]
+  },
+  "live_layers": [
+    "coherent circular wavefronts",
+    "source and detector markers",
+    "medium particles",
+    "component waves",
+    "resultant wave",
+    "mission node marker"
+  ],
+  "physics": [
+    "v=f lambda",
+    "y=y1+y2",
+    "fixed-end phase inversion",
+    "free-end no inversion"
+  ],
+  "glb_status": "deferred-by-user-2d-direction",
+  "alpha_verified": true
+}

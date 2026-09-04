@@ -1,0 +1,17 @@
+{
+  "lesson_id": 78,
+  "lesson_code": "shm-spring",
+  "rendering_mode": "2d-png-svg",
+  "apparatus_layers": ["shm-track.png", "shm-cart.png"],
+  "live_layers": [
+    "deforming spring",
+    "moving cart",
+    "x-v-a vectors",
+    "phase circle",
+    "time traces",
+    "energy bars",
+    "resonance curve"
+  ],
+  "source_glb_status": "deferred per current 2D-first direction",
+  "alpha_verified": true
+}

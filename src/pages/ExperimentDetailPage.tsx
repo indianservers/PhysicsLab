@@ -70,7 +70,7 @@ export function ExperimentDetailPage() {
   const modeLearningLevel = learningLevelForMode(experimentMode, learningLevel);
 
   return (
-    <div className={classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"}>
+    <div className={`${classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"} experiment-detail-${experiment.id}`}>
       <ReadingProgress />
       <FocusMode />
       <Toolbar />

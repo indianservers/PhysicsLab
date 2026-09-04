@@ -1,0 +1,5 @@
+.ac-control { line-height: 1.2; padding-block: 7px; }
+
+@media (max-width: 650px) {
+  .ac-stage-badge { top: 94px; }
+}

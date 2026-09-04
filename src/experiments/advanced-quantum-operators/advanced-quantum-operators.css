@@ -1,0 +1,360 @@
+.qo-lab {
+  --violet: #9b5cf5;
+  --cyan: #24d7ef;
+  border: 1px solid #463160;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #080d1d;
+  color: #eaf1ff;
+  box-shadow: 0 20px 52px #07020d88;
+}
+.qo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  padding: 21px 25px;
+  background: linear-gradient(120deg, #240f38, #451864);
+  color: #fff;
+}
+.qo-head span,
+.qo-mission span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+.qo-head h2 {
+  margin: 4px 0;
+  font-size: clamp(25px, 3vw, 38px);
+}
+.qo-head p {
+  margin: 0;
+  color: #eadcf7;
+}
+.qo-lab button,
+.qo-lab input,
+.qo-lab select {
+  font: inherit;
+}
+.qo-lab button {
+  border: 1px solid #694785;
+  border-radius: 8px;
+  background: #21142f;
+  color: #f7efff;
+  padding: 9px 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.qo-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 225px;
+}
+.qo-controls,
+.qo-readings {
+  padding: 17px;
+  background: #11172a;
+}
+.qo-controls {
+  border-right: 1px solid #342441;
+}
+.qo-readings {
+  border-left: 1px solid #342441;
+}
+.qo-controls h3,
+.qo-readings h3 {
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #d8b6ff;
+}
+.qo-controls label {
+  display: block;
+  margin-bottom: 17px;
+}
+.qo-controls label > span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.qo-controls label b,
+.qo-readings dd {
+  color: var(--cyan);
+}
+.qo-controls input {
+  width: 100%;
+  accent-color: var(--violet);
+}
+.qo-ket {
+  padding: 11px;
+  border-radius: 8px;
+  background: #26163b;
+  color: #e8cbff;
+  font-family: serif;
+  margin-bottom: 17px;
+}
+.qo-ket small {
+  display: block;
+  margin-top: 7px;
+  font-family: monospace;
+  color: #b8eefa;
+}
+.qo-ops {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.qo-select {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 900;
+}
+.qo-select select,
+.qo-transport select {
+  background: #0f1525;
+  color: #fff;
+  border: 1px solid #664782;
+  padding: 5px;
+}
+.qo-center {
+  padding: 12px;
+  background: #090f20;
+}
+.qo-transport {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.qo-transport label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+}
+.qo-stage {
+  position: relative;
+  height: 455px;
+  overflow: hidden;
+  border: 1px solid #3d3151;
+  border-radius: 13px;
+  background: radial-gradient(circle, #15274b, #070b17 67%);
+}
+.qo-stage > img {
+  position: absolute;
+  width: 420px;
+  max-width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.qo-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+.qo-stage svg line {
+  stroke: #ffbb3e;
+  stroke-width: 6;
+}
+.qo-stage svg marker path {
+  fill: #ffbb3e;
+}
+.qo-stage svg circle {
+  fill: #fff;
+  stroke: #ffbb3e;
+  stroke-width: 4;
+}
+.qo-stage svg text {
+  fill: #ffe4a8;
+  font-size: 16px;
+  font-weight: 900;
+}
+.qo-plane {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 90px;
+  border: 2px solid #c174ff;
+  background: #a451ff22;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.qo-plane.basis-x {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.qo-plane.basis-y {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.qo-coords {
+  position: absolute;
+  z-index: 4;
+  right: 12px;
+  bottom: 12px;
+  background: #080b13dc;
+  border-radius: 7px;
+  padding: 7px;
+  color: #a9edff;
+  font-family: monospace;
+}
+.qo-event {
+  display: block;
+  padding: 8px;
+  text-align: center;
+  color: #cfb0ef;
+  font-weight: 800;
+}
+.qo-readings dl {
+  margin: 0;
+}
+.qo-readings dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  padding: 10px 0;
+  border-bottom: 1px solid #28304a;
+}
+.qo-readings dt {
+  font-size: 11px;
+}
+.qo-readings dd {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 900;
+}
+.qo-readings button {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 11px;
+}
+.qo-hist {
+  height: 125px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  border-bottom: 1px solid #6d6380;
+  margin-top: 13px;
+}
+.qo-hist i {
+  width: 55px;
+  min-height: 2px;
+  background: linear-gradient(#bc72ff, #6231a2);
+  position: relative;
+}
+.qo-hist i:nth-child(2) {
+  background: linear-gradient(#4feaff, #177d9f);
+}
+.qo-hist b {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  padding-bottom: 4px;
+  text-align: center;
+  font-style: normal;
+  font-size: 10px;
+}
+.qo-readings > small {
+  display: block;
+  text-align: center;
+  padding-top: 8px;
+  color: #bec7d9;
+}
+.qo-mission {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 17px 22px;
+  background: #231334;
+  border-top: 1px solid #54336d;
+}
+.qo-mission > div {
+  display: grid;
+  gap: 3px;
+  margin-right: auto;
+}
+.qo-mission output {
+  width: 100%;
+  color: #68f3cb;
+  font-weight: 800;
+}
+.qo-lab button:focus-visible,
+.qo-lab input:focus-visible,
+.qo-lab select:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
+}
+@media (max-width: 1050px) {
+  .qo-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .qo-readings {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #342441;
+  }
+  .qo-readings dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 14px;
+  }
+  .qo-stage {
+    height: 415px;
+  }
+  .qo-hist {
+    height: 90px;
+  }
+}
+@media (max-width: 760px) {
+  .qo-head {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+  }
+  .qo-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .qo-center {
+    order: -1;
+  }
+  .qo-stage {
+    height: 370px;
+  }
+  .qo-stage > img {
+    width: 340px;
+  }
+  .qo-plane {
+    width: 240px;
+  }
+  .qo-controls,
+  .qo-readings {
+    border: 0;
+    border-top: 1px solid #342441;
+  }
+  .qo-readings dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .qo-transport button {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+  .qo-head h2 {
+    max-width: 230px;
+  }
+  .qo-mission {
+    align-items: stretch;
+  }
+  .qo-mission > div {
+    width: 100%;
+  }
+}

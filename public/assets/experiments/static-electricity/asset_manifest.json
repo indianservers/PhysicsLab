@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "lesson_id": 16,
+  "lesson_code": "static-electricity",
+  "lesson_name": "Static Electricity and Lightning",
+  "category": "Electricity",
+  "class_level": "Class 8 / Class 12 foundation",
+  "source_mockup": "016__lesson__static-electricity-and-lightning__static-electricity__Mockup.png",
+  "model": "static-electricity.glb",
+  "preview": "preview.png",
+  "effects": [
+    "effects/concept_effect.png",
+    "effects/interaction_overlay.png"
+  ],
+  "coordinate_system": "Y-up",
+  "units": "metres",
+  "parts": [
+    {
+      "name": "bench",
+      "movable": false,
+      "pivot": [
+        0,
+        0,
+        -0.9
+      ],
+      "role": "base"
+    },
+    {
+      "name": "positive_charge",
+      "movable": true,
+      "pivot": [
+        -1,
+        0,
+        0
+      ],
+      "role": "charge"
+    },
+    {
+      "name": "negative_charge",
+      "movable": true,
+      "pivot": [
+        1,
+        0,
+        0
+      ],
+      "role": "charge"
+    },
+    {
+      "name": "field_line_0",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.935,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_1",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.7012500000000002,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_2",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.4675,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_3",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.23375,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_4",
+      "movable": false,
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_5",
+      "movable": false,
+      "pivot": [
+        0.0,
+        0.23374999999999996,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_6",
+      "movable": false,
+      "pivot": [
+        0.0,
+        0.4675,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_7",
+      "movable": false,
+      "pivot": [
+        0.0,
+        0.7012500000000002,
+        0.0
+      ],
+      "role": "field"
+    },
+    {
+      "name": "field_line_8",
+      "movable": false,
+      "pivot": [
+        0.0,
+        0.935,
+        0.0
+      ],
+      "role": "field"
+    }
+  ],
+  "runtime": {
+    "lesson": "Static Electricity and Lightning",
+    "interaction_targets": [
+      "positive_charge",
+      "negative_charge"
+    ],
+    "controls": [
+      {
+        "id": "static",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "electricity",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "time_scale",
+        "type": "slider",
+        "bind": "simulation"
+      }
+    ],
+    "gestures": {
+      "orbit": "drag_background",
+      "rotate_part": "drag_target",
+      "zoom": "wheel_or_pinch",
+      "select": "tap_part"
+    },
+    "animation": {
+      "clip": "concept_cycle",
+      "duration_seconds": 8,
+      "loop": true,
+      "pauseable": true,
+      "scrubbable": true,
+      "speed_range": [
+        0.25,
+        2.0
+      ]
+    },
+    "states": [
+      "idle",
+      "prediction",
+      "running",
+      "paused",
+      "result",
+      "reset"
+    ],
+    "accessibility": {
+      "reduced_motion": true,
+      "keyboard_rotation": true,
+      "descriptions_required": true
+    }
+  },
+  "rendering": {
+    "pbr": true,
+    "transparent_effects": true,
+    "recommended_viewer": "Three.js/Babylon.js/model-viewer"
+  }
+}

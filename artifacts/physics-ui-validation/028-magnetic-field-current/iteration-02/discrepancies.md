@@ -1,0 +1,12 @@
+# Lesson 028 — Magnetic Field Around Current visual review
+
+- The supplied GLB and effect layers were deliberately not loaded under the user's current 2D-first direction. A generated transparent PNG establishes the gridded field-mapping board, empty compass housings and Hall-probe wand; live SVG layers render conductors, loop/solenoid geometry, compass needles, field rings and the active probe vector.
+- The PNG is presentation-only. Every needle, field direction, field magnitude, ring animation, graph and mission result is driven by the authoritative simulation state.
+- The mockup's bench hierarchy is retained inside the app shell: geometry tabs, current/direction and probe controls, large board, live measurements, right-hand-rule panel, inverse-distance graph, equations and a two-wire null-field challenge.
+- A long straight wire uses the vector form equivalent to `B = μ₀I/(2πr)`. Circular-loop axial field uses `B = μ₀IR²/[2(R²+x²)³ᐟ²]`; the finite solenoid uses the difference of its end-angle factors. Multiple wire fields add component by component.
+- The 5 mm singularity guard represents the finite conductor/post radius. Probe positions and calculations remain in SI units; the UI also shows centimetres and microtesla.
+- Current reversal immediately changes every live field vector and compass direction. Browser checks observed the default field angle change from 119° to 299°, consistent with the right-hand rule. Zero, typical 3 A and maximum 5 A controls were also verified.
+- Straight-wire, circular-loop and solenoid modes, pointer/touch probe dragging, keyboard 5 mm probe steps, grow/pause/step, 0.25×–2× speed and reduced motion are supported and browser-tested.
+- The two-wire challenge passed for same-direction currents `I₁ = 4.0 A`, `I₂ = 2.0 A` with the probe at `x = 2.0 cm`, where the opposing field contributions cancel below 0.25 μT.
+- Generated source: `C:\Users\saisa\.codex\generated_images\01a064f9-4270-7ab3-88a1-9c5c3aa9a5a9\exec-a8a13ad9-d4d2-491b-a63d-100ca042d3c4.png`; app copy: `public/assets/experiments/magnetic-field-current/field-mapping-bench.png` (1287×1222, 32-bit alpha).
+- Desktop 1440×900, tablet 1024×768 and mobile 390×844 were captured. The mobile geometry selector scrolls internally while the lesson remains constrained to the available app-shell width. A fresh console had no runtime errors; its only warnings were the two pre-existing React Router future-flag notices.

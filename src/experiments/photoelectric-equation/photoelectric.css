@@ -1,0 +1,371 @@
+.pe-lab {
+  --purple: #5b2db1;
+  border: 1px solid #ddd7cf;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #faf8f4;
+  color: #20242b;
+  box-shadow: 0 18px 46px #2f231a20;
+}
+.pe-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(115deg, #211636, #56318b);
+  color: #fff;
+}
+.pe-head span,
+.pe-mission span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.pe-head h2 {
+  margin: 4px 0;
+  font-size: clamp(25px, 3vw, 38px);
+}
+.pe-head p {
+  margin: 0;
+  color: #e9def7;
+}
+.pe-lab button,
+.pe-lab select,
+.pe-lab input {
+  font: inherit;
+}
+.pe-lab button {
+  padding: 9px 11px;
+  border: 1px solid #d8d1c8;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+.pe-head button {
+  color: #241934;
+}
+.pe-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 235px;
+}
+.pe-controls,
+.pe-readings {
+  padding: 17px;
+  background: #fff;
+}
+.pe-controls {
+  border-right: 1px solid #ddd7cf;
+}
+.pe-readings {
+  border-left: 1px solid #ddd7cf;
+}
+.pe-lab h3 {
+  margin: 0 0 13px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #4e278f;
+}
+.pe-controls label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.pe-controls label > input,
+.pe-controls label > select {
+  grid-column: 1/-1;
+  width: 100%;
+}
+.pe-controls output {
+  color: #5b2db1;
+}
+.pe-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.pe-presets button {
+  font-size: 9px;
+  padding: 7px 1px;
+}
+.pe-center {
+  padding: 12px;
+  background: #eeeae5;
+}
+.pe-transport {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.pe-transport label {
+  font-size: 10px;
+}
+.pe-stage {
+  position: relative;
+  aspect-ratio: 1.5;
+  overflow: hidden;
+  border: 1px solid #cec6bc;
+  border-radius: 10px;
+  background: radial-gradient(circle at 45% 35%, #f6f0ff, #d8d0c5);
+}
+.pe-stage > img {
+  position: absolute;
+  inset: 2%;
+  z-index: 2;
+  width: 96%;
+  height: 96%;
+  object-fit: contain;
+}
+.pe-photons,
+.pe-electrons {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+.pe-photons i {
+  position: absolute;
+  left: 21%;
+  top: 12%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--light);
+  box-shadow: 0 0 10px var(--light);
+  animation: pe-photon 1s linear infinite;
+}
+.pe-electrons i {
+  position: absolute;
+  left: 34%;
+  top: 41%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #42d7ff;
+  box-shadow: 0 0 8px #1caeff;
+  animation: pe-electron 1s linear infinite;
+}
+.pe-ammeter,
+.pe-voltmeter {
+  position: absolute;
+  z-index: 4;
+  bottom: 15%;
+  font: 21px monospace;
+  color: #78df69;
+  text-shadow: 0 0 6px #3bb42c;
+}
+.pe-ammeter {
+  left: 18%;
+}
+.pe-voltmeter {
+  right: 16%;
+}
+.pe-ammeter small,
+.pe-voltmeter small {
+  font-size: 10px;
+}
+.pe-status {
+  text-align: center;
+  margin: 8px;
+  padding: 7px;
+  border-radius: 7px;
+  background: #fff1d5;
+  color: #8a4a00;
+  font-size: 12px;
+  font-weight: 800;
+}
+.pe-status.on {
+  background: #e7f7e8;
+  color: #28723c;
+}
+.pe-readings dl {
+  margin: 0;
+}
+.pe-readings dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2ddd6;
+}
+.pe-readings dt {
+  font-size: 10px;
+}
+.pe-readings dd {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: #5b2db1;
+}
+.pe-equation {
+  margin: 14px 0;
+  padding: 12px;
+  text-align: center;
+  background: #f3e9ff;
+  font: 18px Georgia;
+}
+.pe-equation small {
+  display: block;
+  margin-top: 8px;
+  font: 10px sans-serif;
+}
+.pe-bottom {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  border-top: 1px solid #dad4cc;
+}
+.pe-bottom section {
+  padding: 16px 20px;
+  min-width: 0;
+}
+.pe-bottom section + section {
+  border-left: 1px solid #dad4cc;
+}
+.pe-bottom svg {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd6cd;
+  border-radius: 7px;
+}
+.pe-bottom polyline {
+  fill: none;
+  stroke: #6330bc;
+  stroke-width: 3;
+}
+.pe-bottom line {
+  stroke: #e48720;
+  stroke-dasharray: 5;
+}
+.pe-bottom p {
+  font-size: 11px;
+}
+.pe-bottom section:nth-child(2) p {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 88px;
+  align-items: center;
+  gap: 6px;
+}
+.pe-bottom p i {
+  height: 6px;
+  max-width: 100%;
+  background: #7d4ac8;
+}
+.pe-mission {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  padding: 17px 22px;
+  background: #f1e9ff;
+  border-top: 1px solid #bea5e2;
+}
+.pe-mission > div {
+  display: grid;
+  gap: 3px;
+  margin-right: auto;
+}
+.pe-mission output {
+  width: 100%;
+  font-weight: 800;
+  color: #2b7a43;
+}
+.pe-mission label {
+  font-size: 11px;
+  font-weight: 800;
+}
+.pe-mission input {
+  width: 70px;
+}
+.pe-lab :focus-visible {
+  outline: 3px solid #0ca4d7;
+  outline-offset: 2px;
+}
+@keyframes pe-photon {
+  to {
+    left: 32%;
+    top: 40%;
+  }
+}
+@keyframes pe-electron {
+  to {
+    left: 70%;
+  }
+}
+@media (max-width: 1050px) {
+  .pe-layout {
+    grid-template-columns: 215px minmax(0, 1fr);
+  }
+  .pe-readings {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #ddd;
+  }
+  .pe-readings dl {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0 10px;
+  }
+  .pe-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pe-bottom section:last-child {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #ddd;
+  }
+}
+@media (max-width: 760px) {
+  .pe-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pe-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .pe-center {
+    order: -1;
+  }
+  .pe-controls,
+  .pe-readings {
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  .pe-readings dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pe-bottom {
+    grid-template-columns: 1fr;
+  }
+  .pe-bottom section,
+  .pe-bottom section:last-child {
+    grid-column: auto;
+    border-left: 0 !important;
+    border-top: 1px solid #ddd;
+  }
+  .pe-transport button {
+    font-size: 10px;
+    padding: 7px;
+  }
+  .pe-ammeter,
+  .pe-voltmeter {
+    font-size: 12px;
+  }
+  .pe-mission {
+    align-items: stretch;
+  }
+  .pe-mission > div {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pe-photons i,
+  .pe-electrons i {
+    animation: none;
+  }
+}

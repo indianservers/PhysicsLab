@@ -1,0 +1,15 @@
+{
+  "lesson_id": 76,
+  "lesson_code": "single-slit-diffraction",
+  "rendering_mode": "2d-png-svg",
+  "apparatus": "diffraction-bench.png",
+  "live_layers": [
+    "incident wavefronts",
+    "Huygens wavelets",
+    "diffraction envelope",
+    "detector intensity",
+    "minima markers"
+  ],
+  "source_glb_status": "deferred per current 2D-first direction",
+  "alpha_verified": true
+}

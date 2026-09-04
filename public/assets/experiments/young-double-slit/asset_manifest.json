@@ -1,0 +1,27 @@
+{
+  "schema_version": "2d-png-svg-1.0",
+  "lesson_id": 80,
+  "lesson_code": "young-double-slit",
+  "mode": "2d",
+  "assets": {
+    "apparatus": "optical-bench.png",
+    "supplied_effects": ["concept-effect.png", "interaction-overlay.png"]
+  },
+  "live_layers": [
+    "laser beam",
+    "coherent wavelets",
+    "path rays",
+    "screen fringes",
+    "probe",
+    "phasor",
+    "intensity graph"
+  ],
+  "physics": [
+    "beta=lambda D/d",
+    "exact path difference",
+    "bright and dark criteria",
+    "coherence visibility"
+  ],
+  "glb_status": "deferred-by-user-2d-direction",
+  "alpha_verified": true
+}

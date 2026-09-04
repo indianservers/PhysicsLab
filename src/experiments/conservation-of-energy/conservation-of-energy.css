@@ -1,3 +1,346 @@
-.mechanics-cinema-conservation-of-energy {
-  --mechanics-scene-accent: #facc15;
+.energy-lab {
+  width: min(100%, calc(100vw - 96px));
+  margin: 0;
+  color: #1d2939;
+  font-family: Inter, system-ui, sans-serif;
+}
+.energy-lab > header,
+.energy-toolbar,
+.energy-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.energy-lab > header {
+  padding: 18px 22px;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  border-bottom: 3px solid #7447c6;
+}
+.energy-lab h2,
+.energy-lab h3,
+.energy-lab p {
+  margin: 0;
+}
+.energy-lab > header span,
+.energy-mission span {
+  color: #7348bd;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+.energy-lab > header h2 {
+  font-size: clamp(22px, 2.6vw, 34px);
+}
+.energy-lab > header p {
+  color: #667085;
+  font-size: 12px;
+}
+.energy-lab button,
+.energy-lab select {
+  border: 1px solid #ccd2d8;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #fff;
+  color: #27364a;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.energy-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(480px, 1fr) 250px;
+  min-height: 680px;
+  border: 1px solid #d8d4cf;
+  background: #f3eee7;
+}
+.energy-controls,
+.energy-data {
+  padding: 18px;
+  background: #fff;
+}
+.energy-controls {
+  border-right: 1px solid #ddd;
+}
+.energy-data {
+  border-left: 1px solid #ddd;
+}
+.energy-controls h3,
+.energy-data h3 {
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.en-slider {
+  display: block;
+  margin-bottom: 15px;
+}
+.en-slider span,
+.en-slider small {
+  display: flex;
+  justify-content: space-between;
+}
+.en-slider span {
+  font-size: 11px;
+}
+.en-slider b {
+  color: #6a43b1;
+}
+.en-slider input {
+  width: 100%;
+  accent-color: #7348bd;
+}
+.en-slider small {
+  color: #89949d;
+  font-size: 9px;
+}
+.en-slider i {
+  font-style: normal;
+}
+.en-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.en-presets button {
+  padding: 6px 2px;
+  font-size: 9px;
+}
+.energy-controls > p {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f2edf9;
+  color: #675c73;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.energy-main {
+  min-width: 0;
+  padding: 14px;
+}
+.energy-toolbar {
+  margin-bottom: 10px;
+}
+.energy-toolbar > div {
+  display: flex;
+  gap: 5px;
+}
+.energy-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.energy-stage {
+  position: relative;
+  aspect-ratio: 9/5;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(#a9ddfa, #eef7fe 68%, #bfdf8d);
+  box-shadow: 0 8px 24px #513c2728;
+}
+.energy-stage > img,
+.energy-stage > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.energy-stage > img {
+  object-fit: contain;
+  object-position: center bottom;
+}
+.energy-stage svg text {
+  fill: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  paint-order: stroke;
+  stroke: #27364a;
+  stroke-width: 5px;
+}
+.energy-ball {
+  fill: #f47827;
+  stroke: #fff;
+  stroke-width: 5;
+}
+.height-line {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.target-line {
+  stroke: #e54437;
+  stroke-width: 5;
+}
+.energy-readout {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  display: flex;
+  gap: 5px;
+  translate: -50% 0;
+}
+.energy-readout b {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #fffffff0;
+  font-size: 10px;
+}
+.energy-equation {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 12px;
+  color: #254d68;
+}
+.energy-meter {
+  margin: 13px 0;
+}
+.energy-meter span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.energy-meter i {
+  display: block;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: 9px;
+  background: #e6e9ec;
+  overflow: hidden;
+}
+.energy-meter em {
+  display: block;
+  height: 100%;
+}
+.stacked-bar {
+  display: flex;
+  height: 22px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.energy-total {
+  display: grid;
+  gap: 4px;
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 9px;
+  background: #f2edf9;
+}
+.energy-total b {
+  font-size: 22px;
+}
+.energy-total small {
+  color: #567063;
+}
+.energy-data > section {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+}
+.energy-data section p {
+  margin-top: 7px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.energy-mission {
+  flex-wrap: wrap;
+  padding: 15px 20px;
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  background: #402769;
+}
+.energy-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.energy-mission small {
+  color: #ded1ef;
+}
+.energy-mission output {
+  flex-basis: 100%;
+  min-height: 17px;
+  color: #c7f5d5;
+  font-size: 11px;
+}
+@media (max-width: 1050px) {
+  .energy-layout {
+    grid-template-columns: 210px minmax(420px, 1fr);
+  }
+  .energy-data {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #ddd;
+  }
+  .energy-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .energy-data h3,
+  .energy-total,
+  .energy-data > section,
+  .stacked-bar {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 760px) {
+  .energy-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .energy-lab > header {
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .energy-lab > header p {
+    display: none;
+  }
+  .energy-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .energy-main {
+    order: 1;
+    padding: 9px;
+  }
+  .energy-controls {
+    order: 2;
+    border-right: 0;
+  }
+  .energy-data {
+    order: 3;
+    display: block;
+  }
+  .energy-toolbar {
+    flex-wrap: wrap;
+  }
+  .energy-toolbar > div {
+    width: 100%;
+  }
+  .energy-toolbar > div button {
+    flex: 1;
+  }
+  .energy-stage {
+    aspect-ratio: 1/1;
+  }
+  .energy-stage > img {
+    object-fit: cover;
+  }
+  .energy-equation {
+    display: grid;
+  }
+  .energy-mission {
+    align-items: stretch;
+  }
+  .energy-mission button {
+    flex: 1;
+  }
 }

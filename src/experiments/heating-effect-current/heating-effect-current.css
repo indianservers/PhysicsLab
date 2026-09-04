@@ -1,0 +1,592 @@
+.joule-lab {
+  --orange: #e95d12;
+  --ink: #182236;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dee6;
+  border-radius: 18px;
+  background: #fafafa;
+  color: var(--ink);
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
+}
+.joule-lab button,
+.joule-lab select,
+.joule-lab input {
+  font: inherit;
+}
+.joule-lab button {
+  min-height: 37px;
+  border: 1px solid #cfd5de;
+  border-radius: 7px;
+  background: #fff;
+  color: #273244;
+  padding: 0.5rem 0.72rem;
+  cursor: pointer;
+}
+.joule-lab button:hover:not(:disabled) {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.joule-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.joule-lab button:focus-visible,
+.joule-lab select:focus-visible,
+.joule-lab input:focus-visible {
+  outline: 3px solid rgba(24, 145, 220, 0.35);
+  outline-offset: 2px;
+}
+.joule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e0e4ea;
+  background: #fff;
+}
+.joule-head > div:last-child {
+  display: flex;
+  gap: 0.5rem;
+}
+.joule-head span,
+.joule-controls h3,
+.joule-readouts h3,
+.joule-bottom section > span {
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.joule-head h2 {
+  margin: 0.1rem 0;
+  font:
+    800 clamp(1.45rem, 2.4vw, 2.15rem)/1.05 Georgia,
+    serif;
+}
+.joule-head p {
+  margin: 0;
+  color: #5f6875;
+}
+.joule-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 260px;
+}
+.joule-controls,
+.joule-readouts {
+  padding: 1rem;
+  background: #fff;
+}
+.joule-controls {
+  border-right: 1px solid #e0e4ea;
+}
+.joule-readouts {
+  border-left: 1px solid #e0e4ea;
+}
+.joule-controls h3,
+.joule-readouts h3 {
+  margin: 0 0 0.8rem;
+}
+.joule-control,
+.joule-select {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0 0 0.85rem;
+}
+.joule-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+}
+.joule-control strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.joule-control input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.joule-control small {
+  color: #7b8490;
+  text-align: right;
+}
+.joule-select span {
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+.joule-select select {
+  width: 100%;
+  border: 1px solid #d6dbe2;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0.48rem;
+}
+.joule-presets {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1rem 0;
+}
+.joule-presets button:last-child {
+  border-color: #ef9d66;
+  color: #a84209;
+}
+.joule-safety {
+  display: grid;
+  gap: 0.25rem;
+  border: 1px solid #98d3a3;
+  border-radius: 7px;
+  background: #effbf1;
+  padding: 0.7rem;
+  color: #176d30;
+  font-size: 0.72rem;
+}
+.joule-safety.unsafe,
+.joule-safety.melted {
+  border-color: #ef8c87;
+  background: #fff0ef;
+  color: #aa2822;
+}
+.joule-main {
+  min-width: 0;
+  background: #f7f6f3;
+}
+.joule-transport {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #fff;
+}
+.joule-transport > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.joule-transport button:first-child,
+.joule-footer button:first-child {
+  border-color: #4dab60;
+  color: #168036;
+}
+.joule-run-state {
+  border-radius: 999px;
+  background: #eef2f6;
+  padding: 0.45rem 0.7rem;
+  color: #667183;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+.joule-run-state.running {
+  background: #eaf8ed;
+  color: #197d37;
+}
+.joule-run-state.cooling {
+  background: #eaf5fc;
+  color: #176fa5;
+}
+.joule-stage {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 47%, #343943, #11151c 74%);
+  background-size:
+    32px 32px,
+    32px 32px,
+    auto;
+}
+.joule-apparatus {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.joule-screen {
+  position: absolute;
+  z-index: 3;
+  border-radius: 5px;
+  background: #09110d;
+  color: #7dff8d;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(80, 255, 120, 0.25);
+}
+.joule-supply-screen {
+  left: 7%;
+  top: 41%;
+  display: flex;
+  justify-content: space-around;
+  width: 24%;
+  padding: 0.4rem;
+}
+.joule-supply-screen span {
+  color: #ff7373;
+}
+.joule-thermometer-screen {
+  left: 51.3%;
+  top: 6%;
+  padding: 0.25rem 0.38rem;
+  font-size: 0.8rem;
+}
+.joule-thermal-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 41%;
+  top: 34%;
+  width: 28%;
+  height: 36%;
+  mix-blend-mode: screen;
+  filter: hue-rotate(calc(var(--heat) * -45deg)) saturate(1.6);
+  pointer-events: none;
+}
+.joule-thermal-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.joule-wire-model {
+  position: absolute;
+  z-index: 5;
+  left: 42%;
+  top: 62%;
+  width: 25%;
+  height: 54px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(4, 10, 18, 0.55);
+}
+.joule-wire-line {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 50%;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--wire-color);
+  box-shadow: 0 0 calc(2px + var(--heat) * 20px) var(--wire-color);
+}
+.joule-atom {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: var(--wire-color);
+  animation: joule-jitter 0.18s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.joule-lab[data-run-state="running"] .joule-atom,
+.joule-lab[data-run-state="cooling"] .joule-atom {
+  animation-play-state: running;
+}
+.joule-electron {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: -10%;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: #3ad6ff;
+  color: #04263b;
+  font-size: 0.7rem;
+  animation: joule-drift var(--electron-speed) linear infinite;
+  animation-play-state: paused;
+}
+.joule-lab[data-run-state="running"] .joule-electron {
+  animation-play-state: running;
+}
+.joule-collision-note {
+  position: absolute;
+  z-index: 6;
+  left: 16%;
+  right: 16%;
+  bottom: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 6px;
+  background: rgba(7, 14, 23, 0.84);
+  color: #f0f7ff;
+  padding: 0.55rem;
+  font-size: 0.72rem;
+  text-align: center;
+}
+@keyframes joule-jitter {
+  from {
+    transform: translate(calc(var(--jitter) * -1), calc(var(--jitter) * 0.5));
+  }
+  to {
+    transform: translate(var(--jitter), calc(var(--jitter) * -0.5));
+  }
+}
+@keyframes joule-drift {
+  to {
+    transform: translateX(320px);
+  }
+}
+.joule-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  padding: 0.75rem;
+}
+.joule-equations > div {
+  display: grid;
+  min-height: 75px;
+  align-content: center;
+  border: 1px solid #dfe3e8;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.55rem;
+  text-align: center;
+}
+.joule-equations span {
+  color: #657083;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+.joule-equations strong {
+  font:
+    italic 800 1.05rem/1.3 Georgia,
+    serif;
+}
+.joule-equations small {
+  color: #d84b10;
+  font-family: ui-monospace, monospace;
+}
+.joule-readout {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 62px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.joule-readout i {
+  color: var(--orange);
+  font-style: normal;
+  text-align: center;
+}
+.joule-readout span {
+  font-size: 0.74rem;
+}
+.joule-readout strong {
+  font:
+    800 0.83rem/1.2 ui-monospace,
+    monospace;
+}
+.joule-efficiency {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  border-radius: 7px;
+  background: #f0f8ee;
+  padding: 0.7rem;
+  color: #1d7135;
+}
+.joule-bottom {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr 1fr;
+  border-top: 1px solid #dfe4ea;
+  background: #fff;
+}
+.joule-bottom section {
+  padding: 1rem;
+  border-right: 1px solid #e0e4ea;
+}
+.joule-bottom section:last-child {
+  border-right: 0;
+}
+.joule-bottom section.complete {
+  background: #effbef;
+}
+.joule-bottom h3 {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+}
+.joule-bottom p,
+.joule-bottom label {
+  color: #5d687a;
+  font-size: 0.76rem;
+}
+.joule-bottom label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+.joule-bottom input[type="number"] {
+  width: 78px;
+  border: 1px solid #d3d9e0;
+  border-radius: 5px;
+  padding: 0.45rem;
+}
+.joule-chart {
+  width: 100%;
+  border: 1px solid #e0e4e9;
+  background:
+    linear-gradient(rgba(20, 30, 40, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 30, 40, 0.05) 1px, transparent 1px), #fff;
+  background-size: 40px 30px;
+}
+.joule-chart polyline {
+  fill: none;
+  stroke-width: 2.5;
+}
+.joule-chart .temperature {
+  stroke: #ec3434;
+}
+.joule-chart .energy {
+  stroke: #1d77d2;
+  stroke-dasharray: 6 4;
+}
+.joule-chart .axis {
+  stroke: #808895;
+}
+.joule-chart .cursor {
+  stroke: #e6a10d;
+  stroke-width: 1.5;
+}
+.joule-chart text {
+  fill: #4c5667;
+  font-size: 11px;
+}
+.joule-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 58px;
+  padding: 0.55rem 1rem;
+  border-top: 1px solid #dfe4ea;
+  background: #f7f8fa;
+}
+.joule-footer > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.joule-footer label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+}
+.joule-footer > span {
+  margin-left: auto;
+  color: #647083;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 1100px) {
+  .joule-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .joule-readouts {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.45rem;
+    border-top: 1px solid #e0e4ea;
+    border-left: 0;
+  }
+  .joule-readouts h3 {
+    grid-column: 1 / -1;
+  }
+  .joule-readout {
+    grid-template-columns: 24px 1fr;
+    border: 1px solid #e2e6eb;
+    border-radius: 6px;
+    padding: 0.4rem;
+  }
+  .joule-readout strong {
+    grid-column: 1 / -1;
+  }
+  .joule-efficiency {
+    align-self: center;
+  }
+}
+@media (max-width: 720px) {
+  .joule-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .joule-head > div:last-child {
+    width: 100%;
+  }
+  .joule-head button {
+    flex: 1;
+  }
+  .joule-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .joule-main {
+    order: -1;
+  }
+  .joule-controls {
+    border-top: 1px solid #e0e4ea;
+    border-right: 0;
+  }
+  .joule-transport {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .joule-transport > div button {
+    flex: 1;
+  }
+  .joule-stage {
+    min-height: 320px;
+  }
+  .joule-wire-model {
+    left: 42%;
+    width: 27%;
+    height: 42px;
+  }
+  .joule-collision-note {
+    left: 5%;
+    right: 5%;
+  }
+  .joule-equations {
+    grid-template-columns: 1fr;
+  }
+  .joule-readouts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .joule-bottom {
+    display: block;
+  }
+  .joule-bottom section {
+    border-right: 0;
+    border-bottom: 1px solid #e0e4ea;
+  }
+  .joule-footer {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .joule-footer > div {
+    width: 100%;
+  }
+  .joule-footer > div button {
+    flex: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .joule-lab *,
+  .joule-lab *::before,
+  .joule-lab *::after {
+    animation-duration: 2s !important;
+    transition-duration: 0.01ms !important;
+  }
+}

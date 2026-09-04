@@ -22,11 +22,41 @@ export const hookesLawPresets: ControlPreset[] = [
   { id: "compressed", label: "Compressed", values: { k: 80, x: -0.15 } },
 ];
 
-export function hookesLawControls(values: typeof hookesLawDefaults, simple: boolean): ExperimentControl[] {
+export function hookesLawControls(
+  values: typeof hookesLawDefaults,
+  simple: boolean,
+): ExperimentControl[] {
   const controls: ExperimentControl[] = [
-    { id: "x", label: "Extension", unit: "m", min: -0.4, max: 0.4, step: 0.01, value: values.x, defaultValue: hookesLawDefaults.x },
-    { id: "k", label: "Spring constant", unit: "N/m", min: 10, max: 250, step: 5, value: values.k, defaultValue: hookesLawDefaults.k },
-    { id: "mass", label: "Attached mass", unit: "kg", min: 0.1, max: 8, step: 0.1, value: values.mass, defaultValue: hookesLawDefaults.mass },
+    {
+      id: "x",
+      label: "Extension",
+      unit: "m",
+      min: -0.4,
+      max: 0.4,
+      step: 0.01,
+      value: values.x,
+      defaultValue: hookesLawDefaults.x,
+    },
+    {
+      id: "k",
+      label: "Spring constant",
+      unit: "N/m",
+      min: 10,
+      max: 250,
+      step: 5,
+      value: values.k,
+      defaultValue: hookesLawDefaults.k,
+    },
+    {
+      id: "mass",
+      label: "Attached mass",
+      unit: "kg",
+      min: 0.1,
+      max: 8,
+      step: 0.1,
+      value: values.mass,
+      defaultValue: hookesLawDefaults.mass,
+    },
   ];
   return simple ? controls.filter((control) => control.id === "x") : controls;
 }

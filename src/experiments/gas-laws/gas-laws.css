@@ -1,1 +1,951 @@
-.premium-experiment-shell[data-domain="thermodynamics"] .premium-oft-control input { accent-color: #f97316; }
+.experiment-detail-gas-laws .experiment-tab-pane {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.gas-lab {
+  --ink: #192127;
+  --muted: #687178;
+  --line: #ddd8cf;
+  --paper: #fffefa;
+  --warm: #fbf8f1;
+  --orange: #e96b1b;
+  --green: #1b8a37;
+  color: var(--ink);
+  width: 100%;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #ddd8ce;
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      circle at 47% 22%,
+      rgba(255, 246, 225, 0.66),
+      transparent 31%
+    ),
+    #fbfaf6;
+  box-shadow: 0 12px 30px rgba(70, 57, 40, 0.09);
+}
+
+.gas-lab *,
+.gas-lab *::before,
+.gas-lab *::after {
+  box-sizing: border-box;
+}
+
+.gas-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 2px 6px 13px;
+}
+
+.gas-hero > div > span,
+.gas-stage-head > div > span,
+.gas-assumption > span {
+  color: #0a7598;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.gas-hero h1 {
+  margin: 2px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.65rem, 2.4vw, 2.45rem);
+  line-height: 1.02;
+}
+
+.gas-hero p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.81rem;
+}
+
+.gas-status {
+  min-width: 96px;
+  padding: 8px 12px;
+  border: 1px solid #d9c7ab;
+  border-radius: 7px;
+  background: #fffaf0;
+  color: #8f531e;
+  font-size: 0.65rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.gas-status.running {
+  border-color: #8bc99a;
+  background: #effbf1;
+  color: #1b7c36;
+}
+
+.gas-status.paused {
+  border-color: #d9b681;
+  background: #fff7e7;
+}
+
+.gas-status.result {
+  border-color: #79b9d0;
+  background: #eefaff;
+  color: #0b6889;
+}
+
+.gas-layout {
+  display: grid;
+  grid-template-columns: minmax(218px, 0.72fr) minmax(510px, 1.9fr) minmax(
+      270px,
+      0.92fr
+    );
+  gap: 10px;
+  align-items: start;
+}
+
+.gas-controls,
+.gas-analysis,
+.gas-main {
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+}
+
+.gas-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: rgba(255, 254, 250, 0.96);
+  box-shadow: 0 5px 15px rgba(65, 54, 39, 0.055);
+}
+
+.gas-controls .gas-card,
+.gas-analysis .gas-card {
+  padding: 12px;
+}
+
+.gas-card h2 {
+  margin: 0 0 9px;
+  font-size: 0.77rem;
+  letter-spacing: 0.02em;
+}
+
+.gas-card .eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.gas-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.gas-modes button {
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+  min-height: 74px;
+  padding: 7px 3px;
+  border: 1px solid #d9dde0;
+  border-radius: 7px;
+  background: #fff;
+  color: #373d42;
+}
+
+.gas-modes button.active {
+  border-color: #49a45f;
+  background: #effbf0;
+  color: #176b2b;
+  box-shadow: inset 0 0 0 1px rgba(73, 164, 95, 0.18);
+}
+
+.gas-modes small {
+  font-size: 0.48rem;
+  font-weight: 800;
+}
+
+.gas-modes b {
+  font-family: Georgia, serif;
+  font-size: 1.32rem;
+  font-style: italic;
+}
+
+.gas-modes span {
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 0.55rem;
+  text-overflow: ellipsis;
+}
+
+.gas-law-cue {
+  display: grid;
+  gap: 2px;
+  margin: 9px 0 12px;
+  padding: 8px;
+  border-left: 3px solid var(--orange);
+  background: #fff8ed;
+}
+
+.gas-law-cue b {
+  font-size: 0.68rem;
+}
+
+.gas-law-cue span {
+  color: var(--muted);
+  font-size: 0.58rem;
+  line-height: 1.38;
+}
+
+.gas-range {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+}
+
+.gas-range > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.gas-range b {
+  font-size: 0.64rem;
+}
+
+.gas-range output {
+  color: #c65720;
+  font-size: 0.61rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.gas-range input {
+  width: 100%;
+  margin: 0;
+  accent-color: #e86628;
+}
+
+.gas-range.locked {
+  opacity: 0.62;
+}
+
+.gas-range small {
+  color: #8d6b3b;
+  font-size: 0.52rem;
+}
+
+.gas-prediction {
+  background: linear-gradient(145deg, #fffefa, #fff9ec);
+}
+
+.gas-prediction p {
+  margin: 6px 0;
+  color: #4c5960;
+  font-size: 0.63rem;
+  line-height: 1.42;
+}
+
+.gas-prediction label {
+  display: grid;
+  gap: 5px;
+  margin-top: 10px;
+  color: #4e5960;
+  font-size: 0.62rem;
+}
+
+.gas-prediction label > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.gas-prediction input[type="number"] {
+  width: min(120px, 70%);
+  min-height: 34px;
+  border: 1px solid #ccd2d5;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.gas-prediction button,
+.gas-transport button,
+.gas-graph button {
+  min-height: 34px;
+  border: 1px solid #cfd3d5;
+  border-radius: 7px;
+  background: #fff;
+  color: #2c6485;
+  font-size: 0.64rem;
+  font-weight: 850;
+}
+
+.gas-prediction button {
+  margin-top: 8px;
+  padding: 7px 10px;
+}
+
+.gas-prediction .mission-start {
+  border-color: #1b8a37;
+  background: #1b8a37;
+  color: #fff;
+}
+
+.mission-progress {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.mission-progress span {
+  padding: 4px 5px;
+  border-radius: 5px;
+  background: #eee;
+  color: #667178;
+  font-size: 0.53rem;
+}
+
+.mission-progress span.done {
+  background: #e8f8eb;
+  color: #187132;
+}
+
+.mission-progress i {
+  flex: 1;
+  height: 1px;
+  background: #b6bdc0;
+}
+
+.gas-stage {
+  overflow: hidden;
+}
+
+.gas-stage-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gas-stage-head h2 {
+  margin: 2px 0 0;
+  font-family: Georgia, serif;
+  font-size: 1.03rem;
+}
+
+.gas-formula {
+  display: grid;
+  padding: 6px 11px;
+  border: 1px solid #e0cfb3;
+  border-radius: 8px;
+  background: #fffaf0;
+  text-align: center;
+}
+
+.gas-formula small {
+  color: #73797c;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+.gas-formula b {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.gas-canvas {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.5;
+  min-height: 410px;
+  background:
+    radial-gradient(
+      circle at 50% 52%,
+      rgba(218, 244, 252, 0.72),
+      transparent 41%
+    ),
+    linear-gradient(180deg, #fbfaf5, #f5f1e8);
+  isolation: isolate;
+}
+
+.gas-canvas > img,
+.gas-canvas > svg,
+.gas-effect {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gas-canvas > img {
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.gas-canvas > svg {
+  z-index: 4;
+  touch-action: none;
+}
+
+.piston-drag-control {
+  position: absolute;
+  z-index: 6;
+  left: calc(50% - 115px);
+  top: 57%;
+  width: 230px !important;
+  height: 18px;
+  margin: 0;
+  opacity: 0.01;
+  cursor: ns-resize;
+  transform: rotate(-90deg);
+  touch-action: none;
+}
+
+.piston-drag-control:disabled {
+  cursor: not-allowed;
+}
+
+.gas-effect {
+  z-index: 3;
+  left: 31.5%;
+  top: 39%;
+  width: 37%;
+  height: 45%;
+  border-radius: 15px;
+  background-position: center;
+  background-size: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.gas-effect.cold {
+  background-image: url("/assets/experiments/gas-laws/concept-effect.png");
+}
+
+.gas-effect.hot {
+  background-image: url("/assets/experiments/gas-laws/interaction-overlay.png");
+}
+
+.gas-canvas.running .gas-effect {
+  animation: gas-effect-drift 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes gas-effect-drift {
+  to {
+    transform: scale(1.035) translateY(-2px);
+  }
+}
+
+.gas-fill {
+  fill: url("#none");
+  opacity: 0;
+}
+
+.molecule {
+  cursor: pointer;
+  fill: #276fd1;
+  stroke: #d8f5ff;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 4px rgba(34, 130, 230, 0.75));
+}
+
+.molecule:nth-of-type(3n) {
+  fill: #713ac6;
+}
+
+.molecule.selected {
+  fill: #ff9b19;
+  stroke: #fff8d9;
+  stroke-width: 2.2;
+}
+
+.velocity-vector {
+  stroke: #4bb4e7;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.62;
+}
+
+.collision-flash {
+  fill: none;
+  stroke: #ffae21;
+  stroke-width: 2;
+  opacity: 0.9;
+}
+
+.piston-target {
+  pointer-events: none;
+  outline: none;
+}
+
+.piston-target rect {
+  fill: url("#none");
+  fill: #5d6061;
+  stroke: #232729;
+  stroke-width: 2;
+}
+
+.piston-target line {
+  stroke: #525556;
+  stroke-width: 13;
+}
+
+.piston-target .drag-cue {
+  fill: none;
+  stroke: #1578aa;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.piston-target.automatic {
+  opacity: 0.9;
+}
+
+.gauge-needle line {
+  stroke: #e53422;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.gauge-needle circle {
+  fill: #e53422;
+}
+
+.thermometer-column {
+  fill: #ec321d;
+  filter: drop-shadow(0 0 2px rgba(255, 82, 39, 0.65));
+}
+
+.stage-readout rect {
+  fill: #effbea;
+  stroke: #9ac08f;
+  stroke-width: 1.2;
+}
+
+.stage-readout text {
+  fill: #1f6727;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.gas-transport {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.gas-transport button {
+  padding: 6px 10px;
+}
+
+.gas-transport .play {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+
+.gas-transport > .gas-range {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 190px;
+  margin: 0;
+}
+
+.gas-transport > .gas-range > span {
+  min-width: 82px;
+}
+
+.gas-transport > .gas-range input {
+  margin: 0;
+}
+
+.gas-transport > label:not(.gas-range) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.58rem;
+}
+
+.gas-transport select {
+  min-height: 30px;
+  border: 1px solid #cdd2d4;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.gas-readings {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 0 8px 8px;
+  border: 1px solid #dfd4c3;
+  border-radius: 9px;
+  background: #fffcf5;
+}
+
+.gas-readings span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px 6px;
+  border-right: 1px solid #e7ded0;
+  color: #59656b;
+  font-size: 0.55rem;
+  text-align: center;
+}
+
+.gas-readings span:last-child {
+  border: 0;
+}
+
+.gas-readings b {
+  overflow: hidden;
+  color: #1167a0;
+  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gas-view-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  padding: 0 11px 10px;
+  color: #536067;
+  font-size: 0.58rem;
+}
+
+.gas-view-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gas-view-toggles .track-select {
+  margin-left: auto;
+  color: #0d7295;
+  font-weight: 700;
+}
+
+.gas-view-toggles .track-select select {
+  min-height: 26px;
+  border: 1px solid #cbd2d5;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.graph-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.graph-head > div {
+  display: flex;
+}
+
+.gas-graph button {
+  min-height: 28px;
+  padding: 4px 9px;
+  border-radius: 0;
+}
+
+.gas-graph button:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.gas-graph button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.gas-graph button.active {
+  border-color: #248a38;
+  background: #248a38;
+  color: #fff;
+}
+
+.gas-graph svg,
+.gas-speed svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gas-graph svg > line,
+.gas-speed svg > line {
+  stroke: #687178;
+  stroke-width: 1;
+}
+
+.gas-graph .grid {
+  stroke: #e1e5e5;
+  stroke-width: 0.8;
+}
+
+.gas-graph text,
+.gas-speed text {
+  fill: #566066;
+  font-size: 9px;
+}
+
+.process-curve {
+  fill: none;
+  stroke: #258e39;
+  stroke-width: 2.5;
+}
+
+.current-point {
+  fill: #fff;
+  stroke: #1ea444;
+  stroke-width: 3;
+}
+
+.mission-point {
+  fill: #2aa34c;
+}
+
+.mission-target {
+  fill: #fff;
+  stroke: #e12c2c;
+  stroke-width: 3;
+}
+
+.invariant {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 8px;
+  border-radius: 7px;
+  background: #eef9ee;
+}
+
+.invariant span {
+  color: #27783a;
+  font-size: 0.61rem;
+  font-weight: 800;
+}
+
+.invariant b {
+  color: #135f27;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+}
+
+.invariant small,
+.invariant em {
+  color: #687178;
+  font-size: 0.52rem;
+}
+
+.invariant em {
+  grid-column: 1/-1;
+  font-style: normal;
+}
+
+.speed-fill {
+  fill: rgba(54, 176, 76, 0.16);
+}
+
+.speed-line {
+  fill: none;
+  stroke: #20823a;
+  stroke-width: 2;
+}
+
+.mean-speed {
+  stroke: #ef6b1d !important;
+  stroke-width: 1.5 !important;
+  stroke-dasharray: 4 3;
+}
+
+.gas-speed > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.gas-speed span {
+  display: grid;
+  gap: 2px;
+  color: #667177;
+  font-size: 0.5rem;
+}
+
+.gas-speed b {
+  color: #275e78;
+  font-size: 0.62rem;
+}
+
+.gas-assumption {
+  background: #fbf7ff;
+}
+
+.gas-assumption b {
+  display: block;
+  margin: 7px 0;
+  color: #6b3194;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.gas-assumption p,
+.gas-assumption small {
+  margin: 0;
+  color: #5e6870;
+  font-size: 0.58rem;
+  line-height: 1.45;
+}
+
+.gas-assumption small {
+  display: block;
+  margin-top: 6px;
+}
+
+.gas-lab button,
+.gas-lab input,
+.gas-lab select,
+.gas-lab [tabindex="0"] {
+  outline-offset: 2px;
+}
+
+.gas-lab button:focus-visible,
+.gas-lab input:focus-visible,
+.gas-lab select:focus-visible {
+  outline: 3px solid #03a9d7;
+}
+
+.gas-lab button:hover:not(:disabled) {
+  filter: brightness(0.97);
+}
+
+.gas-lab button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+@media (max-width: 1180px) {
+  .gas-layout {
+    grid-template-columns: minmax(210px, 0.65fr) minmax(500px, 1.55fr);
+  }
+
+  .gas-analysis {
+    grid-column: 1/-1;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .gas-lab {
+    padding: 9px;
+  }
+
+  .gas-status {
+    display: none;
+  }
+
+  .gas-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .gas-main {
+    grid-row: 1;
+  }
+
+  .gas-controls {
+    grid-row: 2;
+  }
+
+  .gas-analysis {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .gas-canvas {
+    min-height: 0;
+  }
+
+  .gas-canvas > img {
+    opacity: 0.9;
+  }
+
+  .gas-readings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gas-readings span:nth-child(3) {
+    border-right: 0;
+  }
+
+  .gas-readings span:nth-child(-n + 3) {
+    border-bottom: 1px solid #e7ded0;
+  }
+
+  .gas-transport > .gas-range {
+    order: 9;
+    flex-basis: 100%;
+  }
+
+  .gas-view-toggles .track-select {
+    width: 100%;
+    margin: 0;
+  }
+
+  .gas-lab button,
+  .gas-lab select,
+  .gas-lab input[type="number"] {
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 430px) {
+  .gas-hero h1 {
+    font-size: 1.62rem;
+  }
+
+  .gas-hero p {
+    font-size: 0.72rem;
+  }
+
+  .gas-stage-head {
+    align-items: flex-start;
+  }
+
+  .gas-formula {
+    padding: 5px 7px;
+  }
+
+  .gas-formula b {
+    font-size: 0.95rem;
+  }
+
+  .stage-readout text {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gas-effect,
+  .piston-target,
+  .thermometer-column {
+    animation: none !important;
+    transition: none !important;
+  }
+}

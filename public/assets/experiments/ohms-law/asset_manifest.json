@@ -1,0 +1,1646 @@
+{
+  "schema_version": "1.0",
+  "lesson_id": 14,
+  "lesson_code": "ohms-law",
+  "lesson_name": "Ohm's Law V-I Graph",
+  "category": "Electricity",
+  "class_level": "Class 10 / Class 12",
+  "source_mockup": "014__lesson__ohm-s-law-v-i-graph__ohms-law__Mockup.png",
+  "model": "ohms-law.glb",
+  "preview": "preview.png",
+  "effects": [
+    "effects/concept_effect.png",
+    "effects/interaction_overlay.png"
+  ],
+  "coordinate_system": "Y-up",
+  "units": "metres",
+  "parts": [
+    {
+      "name": "bench",
+      "movable": false,
+      "pivot": [
+        0,
+        0,
+        -0.9
+      ],
+      "role": "base"
+    },
+    {
+      "name": "battery_body",
+      "movable": true,
+      "pivot": [
+        -1.65,
+        -0.55,
+        -0.35
+      ],
+      "role": "source"
+    },
+    {
+      "name": "battery_positive",
+      "movable": true,
+      "pivot": [
+        -1.65,
+        -0.55,
+        0.1
+      ],
+      "role": "apparatus"
+    },
+    {
+      "name": "wire_0",
+      "movable": false,
+      "pivot": [
+        -1.1,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_1",
+      "movable": false,
+      "pivot": [
+        -0.55,
+        0.55,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_2",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_3",
+      "movable": false,
+      "pivot": [
+        0.55,
+        0.55,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_4",
+      "movable": false,
+      "pivot": [
+        1.1,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "inductor_000",
+      "movable": true,
+      "pivot": [
+        -0.3944444444444445,
+        0.6849231551964771,
+        0.08550503583141718
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_001",
+      "movable": true,
+      "pivot": [
+        -0.38333333333333336,
+        0.6264342659762216,
+        0.24620193825305198
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_002",
+      "movable": true,
+      "pivot": [
+        -0.37222222222222223,
+        0.5165111107797445,
+        0.37720325336774446
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_003",
+      "movable": true,
+      "pivot": [
+        -0.3611111111111111,
+        0.36841204441673264,
+        0.4627082891991616
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_004",
+      "movable": true,
+      "pivot": [
+        -0.35,
+        0.20000000000000004,
+        0.492403876506104
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_005",
+      "movable": true,
+      "pivot": [
+        -0.3388888888888889,
+        0.03158795558326749,
+        0.4627082891991617
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_006",
+      "movable": true,
+      "pivot": [
+        -0.32777777777777783,
+        -0.11651111077974441,
+        0.3772032533677445
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_007",
+      "movable": true,
+      "pivot": [
+        -0.3166666666666667,
+        -0.22643426597622154,
+        0.2462019382530521
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_008",
+      "movable": true,
+      "pivot": [
+        -0.3055555555555556,
+        -0.28492315519647704,
+        0.08550503583141725
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_009",
+      "movable": true,
+      "pivot": [
+        -0.2944444444444445,
+        -0.2849231551964771,
+        -0.08550503583141714
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_010",
+      "movable": true,
+      "pivot": [
+        -0.2833333333333334,
+        -0.2264342659762216,
+        -0.24620193825305198
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_011",
+      "movable": true,
+      "pivot": [
+        -0.27222222222222225,
+        -0.1165111107797446,
+        -0.3772032533677444
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_012",
+      "movable": true,
+      "pivot": [
+        -0.2611111111111111,
+        0.03158795558326732,
+        -0.4627082891991616
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_013",
+      "movable": true,
+      "pivot": [
+        -0.25,
+        0.19999999999999993,
+        -0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_014",
+      "movable": true,
+      "pivot": [
+        -0.23888888888888887,
+        0.36841204441673253,
+        -0.4627082891991617
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_015",
+      "movable": true,
+      "pivot": [
+        -0.22777777777777775,
+        0.5165111107797444,
+        -0.3772032533677445
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_016",
+      "movable": true,
+      "pivot": [
+        -0.21666666666666667,
+        0.6264342659762214,
+        -0.24620193825305225
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_017",
+      "movable": true,
+      "pivot": [
+        -0.2055555555555556,
+        0.684923155196477,
+        -0.08550503583141741
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_018",
+      "movable": true,
+      "pivot": [
+        -0.19444444444444448,
+        0.6849231551964771,
+        0.08550503583141718
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_019",
+      "movable": true,
+      "pivot": [
+        -0.18333333333333335,
+        0.6264342659762216,
+        0.24620193825305203
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_020",
+      "movable": true,
+      "pivot": [
+        -0.17222222222222222,
+        0.5165111107797444,
+        0.3772032533677445
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_021",
+      "movable": true,
+      "pivot": [
+        -0.1611111111111111,
+        0.36841204441673253,
+        0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_022",
+      "movable": true,
+      "pivot": [
+        -0.15000000000000002,
+        0.20000000000000015,
+        0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_023",
+      "movable": true,
+      "pivot": [
+        -0.13888888888888895,
+        0.03158795558326774,
+        0.46270828919916185
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_024",
+      "movable": true,
+      "pivot": [
+        -0.12777777777777782,
+        -0.1165111107797441,
+        0.37720325336774485
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_025",
+      "movable": true,
+      "pivot": [
+        -0.11666666666666664,
+        -0.2264342659762214,
+        0.24620193825305225
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_026",
+      "movable": true,
+      "pivot": [
+        -0.10555555555555551,
+        -0.2849231551964771,
+        0.08550503583141728
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_027",
+      "movable": true,
+      "pivot": [
+        -0.09444444444444444,
+        -0.28492315519647715,
+        -0.0855050358314169
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_028",
+      "movable": true,
+      "pivot": [
+        -0.08333333333333334,
+        -0.22643426597622157,
+        -0.24620193825305195
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_029",
+      "movable": true,
+      "pivot": [
+        -0.07222222222222219,
+        -0.11651111077974437,
+        -0.37720325336774463
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_030",
+      "movable": true,
+      "pivot": [
+        -0.06111111111111106,
+        0.03158795558326741,
+        -0.4627082891991617
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_031",
+      "movable": true,
+      "pivot": [
+        -0.04999999999999999,
+        0.1999999999999998,
+        -0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_032",
+      "movable": true,
+      "pivot": [
+        -0.03888888888888892,
+        0.36841204441673225,
+        -0.46270828919916185
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_033",
+      "movable": true,
+      "pivot": [
+        -0.027777777777777818,
+        0.5165111107797441,
+        -0.3772032533677449
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_034",
+      "movable": true,
+      "pivot": [
+        -0.016666666666666663,
+        0.6264342659762214,
+        -0.2462019382530523
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_035",
+      "movable": true,
+      "pivot": [
+        -0.005555555555555536,
+        0.6849231551964771,
+        -0.08550503583141733
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_036",
+      "movable": true,
+      "pivot": [
+        0.005555555555555536,
+        0.6849231551964772,
+        0.08550503583141685
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_037",
+      "movable": true,
+      "pivot": [
+        0.016666666666666663,
+        0.6264342659762216,
+        0.2462019382530519
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_038",
+      "movable": true,
+      "pivot": [
+        0.02777777777777779,
+        0.5165111107797449,
+        0.3772032533677444
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_039",
+      "movable": true,
+      "pivot": [
+        0.03888888888888889,
+        0.36841204441673303,
+        0.46270828919916146
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_040",
+      "movable": true,
+      "pivot": [
+        0.04999999999999999,
+        0.20000000000000026,
+        0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_041",
+      "movable": true,
+      "pivot": [
+        0.061111111111111116,
+        0.03158795558326747,
+        0.4627082891991616
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_042",
+      "movable": true,
+      "pivot": [
+        0.07222222222222224,
+        -0.11651111077974438,
+        0.37720325336774474
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_043",
+      "movable": true,
+      "pivot": [
+        0.08333333333333334,
+        -0.22643426597622132,
+        0.24620193825305237
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_044",
+      "movable": true,
+      "pivot": [
+        0.09444444444444444,
+        -0.28492315519647704,
+        0.08550503583141739
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_045",
+      "movable": true,
+      "pivot": [
+        0.10555555555555554,
+        -0.28492315519647715,
+        -0.08550503583141679
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_046",
+      "movable": true,
+      "pivot": [
+        0.11666666666666667,
+        -0.2264342659762219,
+        -0.2462019382530515
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_047",
+      "movable": true,
+      "pivot": [
+        0.12777777777777777,
+        -0.1165111107797451,
+        -0.37720325336774396
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_048",
+      "movable": true,
+      "pivot": [
+        0.1388888888888889,
+        0.03158795558326736,
+        -0.4627082891991615
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_049",
+      "movable": true,
+      "pivot": [
+        0.15000000000000002,
+        0.19999999999999968,
+        -0.4924038765061042
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_050",
+      "movable": true,
+      "pivot": [
+        0.16111111111111115,
+        0.36841204441673203,
+        -0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_051",
+      "movable": true,
+      "pivot": [
+        0.17222222222222225,
+        0.5165111107797447,
+        -0.3772032533677444
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_052",
+      "movable": true,
+      "pivot": [
+        0.18333333333333335,
+        0.6264342659762216,
+        -0.2462019382530521
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_053",
+      "movable": true,
+      "pivot": [
+        0.19444444444444448,
+        0.6849231551964771,
+        -0.08550503583141744
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_054",
+      "movable": true,
+      "pivot": [
+        0.20555555555555555,
+        0.6849231551964772,
+        0.08550503583141673
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_055",
+      "movable": true,
+      "pivot": [
+        0.21666666666666667,
+        0.626434265976222,
+        0.24620193825305145
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_056",
+      "movable": true,
+      "pivot": [
+        0.22777777777777777,
+        0.5165111107797452,
+        0.37720325336774396
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_057",
+      "movable": true,
+      "pivot": [
+        0.23888888888888887,
+        0.3684120444167327,
+        0.4627082891991615
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_058",
+      "movable": true,
+      "pivot": [
+        0.25,
+        0.2000000000000004,
+        0.4924038765061042
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_059",
+      "movable": true,
+      "pivot": [
+        0.2611111111111111,
+        0.031587955583268025,
+        0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_060",
+      "movable": true,
+      "pivot": [
+        0.27222222222222225,
+        -0.11651111077974458,
+        0.37720325336774446
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_061",
+      "movable": true,
+      "pivot": [
+        0.2833333333333334,
+        -0.22643426597622154,
+        0.24620193825305214
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_062",
+      "movable": true,
+      "pivot": [
+        0.2944444444444445,
+        -0.28492315519647704,
+        0.0855050358314175
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_063",
+      "movable": true,
+      "pivot": [
+        0.3055555555555556,
+        -0.2849231551964772,
+        -0.08550503583141668
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_064",
+      "movable": true,
+      "pivot": [
+        0.31666666666666665,
+        -0.226434265976222,
+        -0.2462019382530514
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_065",
+      "movable": true,
+      "pivot": [
+        0.3277777777777778,
+        -0.11651111077974521,
+        -0.3772032533677439
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_066",
+      "movable": true,
+      "pivot": [
+        0.3388888888888889,
+        0.03158795558326724,
+        -0.46270828919916146
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_067",
+      "movable": true,
+      "pivot": [
+        0.35000000000000003,
+        0.19999999999999957,
+        -0.4924038765061042
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_068",
+      "movable": true,
+      "pivot": [
+        0.36111111111111116,
+        0.3684120444167319,
+        -0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_069",
+      "movable": true,
+      "pivot": [
+        0.37222222222222223,
+        0.5165111107797445,
+        -0.3772032533677445
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_070",
+      "movable": true,
+      "pivot": [
+        0.38333333333333336,
+        0.6264342659762215,
+        -0.2462019382530522
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_071",
+      "movable": true,
+      "pivot": [
+        0.3944444444444445,
+        0.6849231551964771,
+        -0.08550503583141757
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_072",
+      "movable": true,
+      "pivot": [
+        0.40555555555555556,
+        0.6849231551964772,
+        0.08550503583141661
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_073",
+      "movable": true,
+      "pivot": [
+        0.41666666666666663,
+        0.626434265976222,
+        0.24620193825305134
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_074",
+      "movable": true,
+      "pivot": [
+        0.4277777777777778,
+        0.5165111107797444,
+        0.3772032533677443
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_075",
+      "movable": true,
+      "pivot": [
+        0.43888888888888894,
+        0.36841204441673203,
+        0.4627082891991619
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_076",
+      "movable": true,
+      "pivot": [
+        0.45,
+        0.2000000000000005,
+        0.4924038765061042
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_077",
+      "movable": true,
+      "pivot": [
+        0.4611111111111111,
+        0.03158795558326892,
+        0.46270828919916224
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_078",
+      "movable": true,
+      "pivot": [
+        0.4722222222222222,
+        -0.11651111077974372,
+        0.37720325336774496
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_079",
+      "movable": true,
+      "pivot": [
+        0.4833333333333334,
+        -0.2264342659762215,
+        0.24620193825305225
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_080",
+      "movable": true,
+      "pivot": [
+        0.49444444444444446,
+        -0.28492315519647704,
+        0.08550503583141762
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_081",
+      "movable": true,
+      "pivot": [
+        0.5055555555555555,
+        -0.2849231551964772,
+        -0.08550503583141655
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_082",
+      "movable": true,
+      "pivot": [
+        0.5166666666666666,
+        -0.22643426597622202,
+        -0.24620193825305128
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_083",
+      "movable": true,
+      "pivot": [
+        0.5277777777777778,
+        -0.11651111077974453,
+        -0.3772032533677443
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_084",
+      "movable": true,
+      "pivot": [
+        0.538888888888889,
+        0.031587955583267886,
+        -0.46270828919916185
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_085",
+      "movable": true,
+      "pivot": [
+        0.55,
+        0.19999999999999946,
+        -0.4924038765061042
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_086",
+      "movable": true,
+      "pivot": [
+        0.5611111111111111,
+        0.3684120444167311,
+        -0.46270828919916224
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_087",
+      "movable": true,
+      "pivot": [
+        0.5722222222222223,
+        0.5165111107797438,
+        -0.37720325336774496
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_088",
+      "movable": true,
+      "pivot": [
+        0.5833333333333335,
+        0.6264342659762214,
+        -0.24620193825305225
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_089",
+      "movable": true,
+      "pivot": [
+        0.5944444444444446,
+        0.684923155196477,
+        -0.08550503583141768
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_090",
+      "movable": true,
+      "pivot": [
+        0.6055555555555556,
+        0.6849231551964772,
+        0.0855050358314165
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_091",
+      "movable": true,
+      "pivot": [
+        0.6166666666666667,
+        0.6264342659762221,
+        0.24620193825305126
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_092",
+      "movable": true,
+      "pivot": [
+        0.6277777777777778,
+        0.5165111107797453,
+        0.3772032533677438
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_093",
+      "movable": true,
+      "pivot": [
+        0.638888888888889,
+        0.3684120444167338,
+        0.46270828919916124
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_094",
+      "movable": true,
+      "pivot": [
+        0.65,
+        0.2000000000000015,
+        0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_095",
+      "movable": true,
+      "pivot": [
+        0.6611111111111111,
+        0.03158795558326902,
+        0.4627082891991623
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_096",
+      "movable": true,
+      "pivot": [
+        0.6722222222222223,
+        -0.1165111107797442,
+        0.3772032533677444
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_097",
+      "movable": true,
+      "pivot": [
+        0.6833333333333333,
+        -0.22643426597622232,
+        0.2462019382530508
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_098",
+      "movable": true,
+      "pivot": [
+        0.6944444444444444,
+        -0.2849231551964773,
+        0.08550503583141779
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_099",
+      "movable": true,
+      "pivot": [
+        0.7055555555555556,
+        -0.28492315519647754,
+        -0.08550503583141472
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_100",
+      "movable": true,
+      "pivot": [
+        0.7166666666666667,
+        -0.22643426597622296,
+        -0.24620193825304967
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_101",
+      "movable": true,
+      "pivot": [
+        0.7277777777777779,
+        -0.1165111107797452,
+        -0.3772032533677435
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_102",
+      "movable": true,
+      "pivot": [
+        0.7388888888888889,
+        0.031587955583267775,
+        -0.46270828919916185
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_103",
+      "movable": true,
+      "pivot": [
+        0.75,
+        0.2000000000000002,
+        -0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_104",
+      "movable": true,
+      "pivot": [
+        0.7611111111111111,
+        0.3684120444167326,
+        -0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_105",
+      "movable": true,
+      "pivot": [
+        0.7722222222222223,
+        0.5165111107797443,
+        -0.37720325336774463
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_106",
+      "movable": true,
+      "pivot": [
+        0.7833333333333334,
+        0.6264342659762214,
+        -0.24620193825305237
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_107",
+      "movable": true,
+      "pivot": [
+        0.7944444444444445,
+        0.684923155196477,
+        -0.08550503583141779
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_108",
+      "movable": true,
+      "pivot": [
+        0.8055555555555556,
+        0.6849231551964772,
+        0.08550503583141639
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_109",
+      "movable": true,
+      "pivot": [
+        0.8166666666666667,
+        0.6264342659762221,
+        0.24620193825305114
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_110",
+      "movable": true,
+      "pivot": [
+        0.8277777777777778,
+        0.5165111107797455,
+        0.37720325336774374
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_111",
+      "movable": true,
+      "pivot": [
+        0.838888888888889,
+        0.3684120444167339,
+        0.4627082891991612
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_112",
+      "movable": true,
+      "pivot": [
+        0.8500000000000001,
+        0.20000000000000165,
+        0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_113",
+      "movable": true,
+      "pivot": [
+        0.8611111111111112,
+        0.031587955583269135,
+        0.4627082891991623
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_114",
+      "movable": true,
+      "pivot": [
+        0.8722222222222222,
+        -0.11651111077974409,
+        0.37720325336774446
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_115",
+      "movable": true,
+      "pivot": [
+        0.8833333333333334,
+        -0.22643426597622224,
+        0.24620193825305092
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_116",
+      "movable": true,
+      "pivot": [
+        0.8944444444444445,
+        -0.28492315519647726,
+        0.08550503583141614
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_117",
+      "movable": true,
+      "pivot": [
+        0.9055555555555556,
+        -0.2849231551964776,
+        -0.08550503583141636
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_118",
+      "movable": true,
+      "pivot": [
+        0.9166666666666666,
+        -0.22643426597622304,
+        -0.2462019382530496
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_119",
+      "movable": true,
+      "pivot": [
+        0.9277777777777778,
+        -0.11651111077974531,
+        -0.37720325336774346
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_120",
+      "movable": true,
+      "pivot": [
+        0.938888888888889,
+        0.03158795558326766,
+        -0.4627082891991618
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_121",
+      "movable": true,
+      "pivot": [
+        0.9500000000000001,
+        0.20000000000000007,
+        -0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_122",
+      "movable": true,
+      "pivot": [
+        0.9611111111111111,
+        0.3684120444167325,
+        -0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_123",
+      "movable": true,
+      "pivot": [
+        0.9722222222222223,
+        0.5165111107797442,
+        -0.37720325336774474
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_124",
+      "movable": true,
+      "pivot": [
+        0.9833333333333334,
+        0.6264342659762213,
+        -0.24620193825305248
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_125",
+      "movable": true,
+      "pivot": [
+        0.9944444444444445,
+        0.684923155196477,
+        -0.08550503583141791
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_126",
+      "movable": true,
+      "pivot": [
+        1.0055555555555555,
+        0.6849231551964773,
+        0.08550503583141625
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_127",
+      "movable": true,
+      "pivot": [
+        1.0166666666666666,
+        0.6264342659762222,
+        0.24620193825305103
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_128",
+      "movable": true,
+      "pivot": [
+        1.0277777777777777,
+        0.5165111107797455,
+        0.37720325336774363
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_129",
+      "movable": true,
+      "pivot": [
+        1.038888888888889,
+        0.36841204441673403,
+        0.4627082891991612
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_130",
+      "movable": true,
+      "pivot": [
+        1.05,
+        0.20000000000000176,
+        0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_131",
+      "movable": true,
+      "pivot": [
+        1.0611111111111111,
+        0.03158795558326925,
+        0.46270828919916235
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_132",
+      "movable": true,
+      "pivot": [
+        1.0722222222222224,
+        -0.116511110779744,
+        0.3772032533677445
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_133",
+      "movable": true,
+      "pivot": [
+        1.0833333333333335,
+        -0.22643426597622218,
+        0.24620193825305103
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_134",
+      "movable": true,
+      "pivot": [
+        1.0944444444444446,
+        -0.28492315519647726,
+        0.08550503583141802
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_135",
+      "movable": true,
+      "pivot": [
+        1.1055555555555556,
+        -0.2849231551964776,
+        -0.08550503583141447
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_136",
+      "movable": true,
+      "pivot": [
+        1.1166666666666667,
+        -0.22643426597622307,
+        -0.24620193825304948
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_137",
+      "movable": true,
+      "pivot": [
+        1.1277777777777778,
+        -0.11651111077974538,
+        -0.3772032533677434
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_138",
+      "movable": true,
+      "pivot": [
+        1.1388888888888888,
+        0.03158795558326755,
+        -0.46270828919916174
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_139",
+      "movable": true,
+      "pivot": [
+        1.15,
+        0.19999999999999993,
+        -0.49240387650610407
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_140",
+      "movable": true,
+      "pivot": [
+        1.161111111111111,
+        0.36841204441673236,
+        -0.4627082891991618
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_141",
+      "movable": true,
+      "pivot": [
+        1.1722222222222223,
+        0.5165111107797442,
+        -0.37720325336774485
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_142",
+      "movable": true,
+      "pivot": [
+        1.1833333333333336,
+        0.6264342659762213,
+        -0.24620193825305262
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "inductor_143",
+      "movable": true,
+      "pivot": [
+        1.1944444444444446,
+        0.684923155196477,
+        -0.08550503583141804
+      ],
+      "role": "coil"
+    },
+    {
+      "name": "resistor",
+      "movable": true,
+      "pivot": [
+        0.9,
+        -0.2,
+        0
+      ],
+      "role": "resistor"
+    },
+    {
+      "name": "capacitor_plate_a",
+      "movable": true,
+      "pivot": [
+        -0.45,
+        0.35,
+        0.05
+      ],
+      "role": "capacitor"
+    },
+    {
+      "name": "capacitor_plate_b",
+      "movable": true,
+      "pivot": [
+        -0.25,
+        0.35,
+        0.05
+      ],
+      "role": "capacitor"
+    },
+    {
+      "name": "meter_dial",
+      "movable": true,
+      "pivot": [
+        1.65,
+        0.55,
+        0
+      ],
+      "role": "meter"
+    }
+  ],
+  "runtime": {
+    "lesson": "Ohm's Law V-I Graph",
+    "interaction_targets": [
+      "battery_body",
+      "battery_positive",
+      "inductor_000",
+      "inductor_001",
+      "inductor_002",
+      "inductor_003",
+      "inductor_004",
+      "inductor_005",
+      "inductor_006",
+      "inductor_007"
+    ],
+    "controls": [
+      {
+        "id": "ohms",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "law",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "time_scale",
+        "type": "slider",
+        "bind": "simulation"
+      }
+    ],
+    "gestures": {
+      "orbit": "drag_background",
+      "rotate_part": "drag_target",
+      "zoom": "wheel_or_pinch",
+      "select": "tap_part"
+    },
+    "animation": {
+      "clip": "concept_cycle",
+      "duration_seconds": 8,
+      "loop": true,
+      "pauseable": true,
+      "scrubbable": true,
+      "speed_range": [
+        0.25,
+        2.0
+      ]
+    },
+    "states": [
+      "idle",
+      "prediction",
+      "running",
+      "paused",
+      "result",
+      "reset"
+    ],
+    "accessibility": {
+      "reduced_motion": true,
+      "keyboard_rotation": true,
+      "descriptions_required": true
+    }
+  },
+  "rendering": {
+    "pbr": true,
+    "transparent_effects": true,
+    "recommended_viewer": "Three.js/Babylon.js/model-viewer"
+  }
+}

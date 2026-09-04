@@ -1,3 +1,462 @@
-.premium-shell--waves .wave-canvas-card {
-  box-shadow: inset 0 0 0 1px rgba(125, 211, 252, 0.14), 0 24px 80px rgba(14, 165, 233, 0.12);
+.experiment-detail-young-double-slit .experiment-tab-pane {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.yds-lab {
+  --orange: #ea6d13;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid #e2ddd5;
+  border-radius: 18px;
+  background: #faf8f4;
+  color: #222a35;
+  font-family: Inter, system-ui, sans-serif;
+  box-shadow: 0 16px 52px #41270d12;
+}
+.yds-lab * {
+  box-sizing: border-box;
+}
+.yds-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 13px 17px;
+  border: 1px solid #e5dfd7;
+  border-radius: 13px;
+  background: #fff;
+}
+.yds-head span,
+.yds-kicker {
+  color: #d85e0b;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.11em;
+}
+.yds-head h1 {
+  margin: 2px 0;
+  color: #172035 !important;
+  -webkit-text-fill-color: #172035 !important;
+  background: none !important;
+  font-size: 25px;
+}
+.yds-head p {
+  margin: 0;
+  color: #68717b !important;
+  font-size: 10px;
+}
+.yds-transport {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.yds-transport button,
+.yds-transport select {
+  padding: 8px 10px;
+  border: 1px solid #d6d0c9;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 9px;
+  font-weight: 900;
+}
+.yds-transport button:first-child {
+  border-color: #329d47;
+  background: #45b15a;
+  color: #fff;
+}
+.yds-transport label {
+  font-size: 8px;
+  white-space: nowrap;
+}
+.yds-grid {
+  display: grid;
+  grid-template-columns: 225px minmax(530px, 1fr) 245px;
+  gap: 10px;
+}
+.yds-card {
+  min-width: 0;
+  border: 1px solid #e0dbd4;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 5px 16px #4931190a;
+}
+.yds-controls,
+.yds-readings {
+  padding: 14px;
+}
+.yds-range {
+  display: grid;
+  gap: 6px;
+  margin: 13px 0;
+}
+.yds-range > span,
+.yds-range small,
+.yds-coherence > span {
+  display: flex;
+  justify-content: space-between;
+}
+.yds-range > span,
+.yds-coherence {
+  font-size: 9px;
+}
+.yds-range output,
+.yds-coherence output {
+  color: #d95e0b;
+  font-weight: 950;
+}
+.yds-range input {
+  width: 100%;
+  accent-color: #e36b17;
+}
+.yds-range small {
+  color: #8f9296;
+  font-size: 7px;
+}
+.yds-coherence {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+}
+.yds-coherence select {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #d8d3cd;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 9px;
+}
+.yds-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.yds-presets button,
+.yds-predict button,
+.yds-mission button {
+  padding: 7px 3px;
+  border: 1px solid #dad4cd;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 8px;
+  font-weight: 900;
+}
+.yds-equation {
+  display: grid;
+  gap: 3px;
+  margin-top: 10px;
+  padding: 9px;
+  border-radius: 8px;
+  background: #fff4e8;
+  color: #9b450c;
+}
+.yds-equation strong {
+  font: italic 800 20px Georgia;
+}
+.yds-equation span {
+  font-size: 8px;
+}
+.yds-predict {
+  margin-top: 11px;
+  padding: 9px;
+  border: 1px solid #e0ddd8;
+  border-radius: 8px;
+}
+.yds-predict p {
+  margin: 5px 0;
+  color: #69717a !important;
+  font-size: 8px;
+}
+.yds-predict > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.yds-predict > button {
+  width: 100%;
+  margin-top: 4px;
+}
+.yds-predict button.active {
+  border-color: #dc6a18;
+  background: #fff1e5;
+  color: #9e4309;
+}
+.yds-stage {
+  overflow: hidden;
+}
+.yds-stage-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 13px;
+  border-bottom: 1px solid #e2ddd7;
+  font-size: 9px;
+}
+.yds-stage-title span {
+  color: #d85e0b;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+}
+.yds-bench {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  background: radial-gradient(circle at 60% 35%, #fff, #f2ede6);
+}
+.yds-bench > img,
+.yds-bench > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.yds-bench > img {
+  z-index: 1;
+  object-fit: contain;
+}
+.yds-bench > svg {
+  z-index: 2;
+  touch-action: none;
+  cursor: crosshair;
+}
+.yds-bench svg text {
+  fill: #353f4a;
+  text-anchor: middle;
+  font: 900 10px sans-serif;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.yds-axis {
+  stroke: #263542;
+  stroke-width: 2;
+}
+.yds-probe circle {
+  fill: #fff;
+  stroke: #252f39;
+  stroke-width: 3;
+}
+.yds-probe line {
+  stroke: #252f39;
+  stroke-width: 2;
+}
+.yds-timeline {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border-top: 1px solid #e2ddd7;
+}
+.yds-timeline input {
+  flex: 1;
+  accent-color: #e46712;
+}
+.yds-timeline span {
+  font-size: 8px;
+}
+.yds-readings dl {
+  margin: 10px 0;
+}
+.yds-readings dl div,
+.yds-mission dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #ebe7e2;
+  font-size: 9px;
+}
+.yds-readings dd,
+.yds-mission dd {
+  margin: 0;
+  color: #d45908;
+  font-weight: 950;
+}
+.yds-class {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border: 1px solid #e0dad3;
+  border-radius: 8px;
+  background: #f8f7f5;
+}
+.yds-class b {
+  font-size: 9px;
+}
+.yds-class span {
+  color: #68717b;
+  font-size: 8px;
+}
+.yds-class.bright {
+  border-color: #f1be9b;
+  background: #fff4e9;
+  color: #9c4208;
+}
+.yds-class.dark {
+  border-color: #b9ccda;
+  background: #f1f7fa;
+  color: #294f6c;
+}
+.yds-class.incoherent {
+  border-color: #d3d5d6;
+  color: #656a6e;
+}
+.yds-phasor svg {
+  display: block;
+  width: 160px;
+  height: 140px;
+  margin: 8px auto 0;
+}
+.yds-phasor circle {
+  fill: #fafafa;
+  stroke: #707981;
+}
+.yds-phasor line {
+  stroke: #2874cf;
+  stroke-width: 3;
+}
+.yds-phasor line:first-of-type {
+  stroke: #e45525;
+}
+.yds-phasor text {
+  fill: #59636d;
+  text-anchor: middle;
+  font: 9px sans-serif;
+}
+.yds-phasor p {
+  color: #69717a !important;
+  font-size: 8px;
+}
+.yds-bottom {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.yds-graph,
+.yds-mission {
+  padding: 14px;
+}
+.yds-graph svg {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+.yds-graph line {
+  stroke: #aeb4b9;
+}
+.yds-graph path {
+  fill: none;
+  stroke-width: 2.5;
+}
+.yds-graph circle {
+  fill: #2468c8;
+}
+.yds-graph text {
+  fill: #626b74;
+  text-anchor: middle;
+  font: 9px sans-serif;
+}
+.yds-mission h2 {
+  margin: 7px 0;
+  font-size: 15px;
+}
+.yds-mission p {
+  color: #68717a !important;
+  font-size: 9px;
+}
+.yds-meter {
+  height: 12px;
+  margin: 12px 0;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e5e3df;
+}
+.yds-meter span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #e27020, #7b43ad);
+}
+.yds-mission > div:last-of-type {
+  display: flex;
+  gap: 5px;
+}
+.yds-mission p.success {
+  color: #23713a !important;
+  font-weight: 900;
+}
+.yds-mission p.try {
+  color: #a14712 !important;
+}
+.yds-lab button:focus-visible,
+.yds-lab input:focus-visible,
+.yds-lab select:focus-visible {
+  outline: 3px solid #e36b1766;
+  outline-offset: 2px;
+}
+@media (max-width: 1100px) {
+  .yds-grid {
+    grid-template-columns: 210px minmax(460px, 1fr);
+  }
+  .yds-readings {
+    grid-column: 1/-1;
+  }
+  .yds-readings dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .yds-readings dl div {
+    display: grid;
+    text-align: center;
+  }
+}
+@media (max-width: 720px) {
+  .yds-lab {
+    padding: 7px;
+    border-radius: 13px;
+  }
+  .yds-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .yds-head h1 {
+    font-size: 21px;
+  }
+  .yds-transport {
+    flex-wrap: wrap;
+  }
+  .yds-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-width: 0;
+  }
+  .yds-stage {
+    grid-row: 1;
+  }
+  .yds-controls {
+    grid-row: 2;
+  }
+  .yds-readings {
+    grid-row: 3;
+  }
+  .yds-bench {
+    min-height: 290px;
+  }
+  .yds-readings dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .yds-bottom {
+    grid-template-columns: 1fr;
+  }
+  .yds-mission {
+    grid-row: 1;
+  }
+  .yds-graph {
+    grid-row: 2;
+  }
 }

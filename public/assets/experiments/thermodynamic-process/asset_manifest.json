@@ -1,0 +1,9 @@
+{
+  "lessonId": "070",
+  "experimentId": "thermodynamic-process",
+  "renderingMode": "2d-png-svg",
+  "generatedApparatus": "thermodynamic-process-apparatus.png",
+  "suppliedEffects": ["concept-effect.png", "interaction-overlay.png"],
+  "deferredAssets": ["thermodynamic-process.glb"],
+  "note": "GLB intentionally deferred per project direction; piston, particles, graph and energy state are animated in 2D."
+}

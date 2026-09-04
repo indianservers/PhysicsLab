@@ -1,1 +1,418 @@
-.premium-experiment-shell[data-domain="optics"] .ray-stage-svg { min-block-size: 420px; }
+.eye-lab {
+  border: 1px solid #ddd8ce;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #faf9f6;
+  color: #202629;
+  box-shadow: 0 18px 44px #29363d1d;
+}
+.eye-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(120deg, #122f3e, #0d625f);
+  color: #fff;
+}
+.eye-head span,
+.eye-mission > span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+.eye-head h2 {
+  margin: 4px 0;
+  font-size: clamp(25px, 3vw, 38px);
+}
+.eye-head p {
+  margin: 0;
+  color: #d9f5ee;
+}
+.eye-lab button,
+.eye-lab input,
+.eye-lab select {
+  font: inherit;
+}
+.eye-lab button {
+  border: 1px solid #d9d6cf;
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: #fff;
+  color: #263137;
+  font-weight: 800;
+  cursor: pointer;
+}
+.eye-lab button:hover,
+.eye-lab button:focus-visible,
+.eye-lab button.active {
+  border-color: #b88924;
+  box-shadow: 0 0 0 3px #e7b94b2c;
+}
+.eye-layout {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr) 250px;
+}
+.eye-controls,
+.eye-correction {
+  padding: 16px;
+  background: #fff;
+}
+.eye-controls {
+  border-right: 1px solid #dfddd8;
+}
+.eye-correction {
+  border-left: 1px solid #dfddd8;
+}
+.eye-layout h3,
+.eye-lower h3 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.eye-defects {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.eye-defects button {
+  text-align: left;
+}
+.eye-defects small {
+  display: block;
+  margin-top: 3px;
+  color: #69757a;
+  font-weight: 500;
+}
+.eye-range {
+  display: block;
+  margin: 0 0 15px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.eye-range output {
+  float: right;
+  color: #a15f00;
+}
+.eye-range input {
+  display: block;
+  width: 100%;
+  margin: 8px 0 3px;
+  accent-color: #c59023;
+}
+.eye-range small {
+  display: flex;
+  justify-content: space-between;
+  color: #69757a;
+}
+.eye-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.eye-presets button {
+  font-size: 10px;
+  padding: 7px 3px;
+}
+.eye-main {
+  min-width: 0;
+  padding: 12px;
+  background: #f7f6f2;
+}
+.eye-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+.eye-legend span:nth-child(1) {
+  color: #2676de;
+}
+.eye-legend span:nth-child(2) {
+  color: #1a9a55;
+}
+.eye-legend span:nth-child(3) {
+  color: #a22ccd;
+}
+.eye-legend strong {
+  margin-left: auto;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+.eye-legend .good {
+  color: #14753d;
+  background: #eaf8ef;
+}
+.eye-legend .before,
+.eye-legend .behind {
+  color: #a34e13;
+  background: #fff0df;
+}
+.eye-stage {
+  position: relative;
+  aspect-ratio: 15/8;
+  border: 1px solid #d7d8d5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: radial-gradient(circle at 65% 48%, #fff, #f1ede7 75%);
+}
+.eye-stage img,
+.eye-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.eye-stage img {
+  z-index: 0;
+  object-fit: cover;
+  opacity: 0.77;
+  filter: saturate(0.9) contrast(0.92);
+}
+.eye-stage svg {
+  z-index: 1;
+}
+.eye-stage .incoming {
+  stroke: #2478e5;
+  stroke-width: 3;
+}
+.eye-stage .corrected {
+  fill: none;
+  stroke: #b52bd1;
+  stroke-width: 3;
+}
+.eye-stage .focused {
+  stroke: #18a85b;
+  stroke-width: 3;
+}
+.eye-stage .retina {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.eye-stage .corrective path {
+  fill: #bceaff80;
+  stroke: #1686bd;
+  stroke-width: 4;
+}
+.eye-stage .focus {
+  fill: #f19c38;
+  stroke: #fff;
+  stroke-width: 3;
+}
+.eye-stage .focus.good {
+  fill: #2ac46c;
+}
+.eye-stage text {
+  font-size: 13px;
+  font-weight: 900;
+  fill: #17313b;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.eye-transport {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 9px;
+}
+.eye-transport button {
+  font-size: 11px;
+  padding: 7px;
+}
+.eye-transport label {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.eye-transport select {
+  padding: 5px;
+}
+.eye-caption {
+  margin: 8px 2px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #47585f;
+}
+.eye-lenses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 16px;
+}
+.eye-lenses button {
+  font:
+    700 25px Georgia,
+    serif;
+}
+.eye-lenses small {
+  display: block;
+  font: 600 10px system-ui;
+  margin-top: 5px;
+}
+.eye-auto {
+  width: 100%;
+  margin-bottom: 18px;
+}
+.eye-correction dl {
+  margin: 0;
+}
+.eye-correction dt,
+.eye-correction dd {
+  border-bottom: 1px solid #ebe8e1;
+  padding: 7px 0;
+  margin: 0;
+  font-size: 11px;
+}
+.eye-correction dt {
+  float: left;
+  clear: left;
+}
+.eye-correction dd {
+  text-align: right;
+  color: #147047;
+  font-weight: 900;
+}
+.eye-equation {
+  clear: both;
+  margin-top: 14px;
+  padding: 11px;
+  text-align: center;
+  background: #eef8e9;
+  color: #174a26;
+  font:
+    italic 17px/1.7 Georgia,
+    serif;
+}
+.eye-lower {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid #dedbd4;
+}
+.eye-lower section {
+  border: 1px solid #ddd9d0;
+  border-radius: 9px;
+  background: #fff;
+  padding: 13px;
+}
+.eye-lower p {
+  font-size: 12px;
+  margin: 7px 0;
+}
+.eye-mission {
+  background: #fff9ea !important;
+  border-color: #e3c16d !important;
+}
+.eye-mission div {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.eye-mission .success {
+  color: #14753d;
+  font-weight: 900;
+}
+.eye-mission .hint {
+  color: #a34e13;
+  font-weight: 800;
+}
+@media (max-width: 1060px) {
+  .eye-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .eye-correction {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #dedbd4;
+  }
+  .eye-correction dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+  .eye-correction dt {
+    float: none;
+  }
+  .eye-correction dd {
+    text-align: left;
+  }
+}
+@media (max-width: 720px) {
+  .eye-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .eye-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .eye-main {
+    order: 1;
+  }
+  .eye-controls {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid #dedbd4;
+  }
+  .eye-correction {
+    order: 3;
+  }
+  .eye-stage {
+    aspect-ratio: 1.18;
+  }
+  .eye-stage img {
+    object-fit: cover;
+  }
+  .eye-stage svg {
+    width: 130%;
+    left: -15%;
+  }
+  .eye-correction dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .eye-lower {
+    grid-template-columns: 1fr;
+  }
+  .eye-mission {
+    order: -1;
+  }
+}
+@media (max-width: 430px) {
+  .eye-head {
+    padding: 18px;
+  }
+  .eye-main {
+    padding: 8px;
+  }
+  .eye-legend strong {
+    margin-left: 0;
+  }
+  .eye-stage {
+    aspect-ratio: 1;
+  }
+  .eye-transport {
+    gap: 4px;
+  }
+  .eye-transport button {
+    padding: 6px 5px;
+  }
+  .eye-controls,
+  .eye-correction {
+    padding: 14px;
+  }
+  .eye-correction dl {
+    grid-template-columns: 1fr;
+  }
+  .eye-lower {
+    padding: 8px;
+  }
+}

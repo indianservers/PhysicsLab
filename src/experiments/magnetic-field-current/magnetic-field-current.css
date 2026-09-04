@@ -1,3 +1,546 @@
-.premium-experiment-shell[data-domain="magnetism"] .premium-em-control strong {
-  color: #bfdbfe;
+.field-lab {
+  --green: #075b43;
+  --ink: #18231f;
+  --muted: #65716c;
+  --line: #d8ded9;
+  color: var(--ink);
+  background: #f4f3ef;
+  border: 1px solid #dfe2dd;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 52px #1c2c2518;
+}
+.field-lab * {
+  box-sizing: border-box;
+}
+.field-lab button,
+.field-lab input,
+.field-lab select {
+  font: inherit;
+}
+.field-lab button {
+  border: 1px solid #cbd3ce;
+  border-radius: 8px;
+  background: #fff;
+  padding: 9px 12px;
+  color: var(--ink);
+  font-weight: 750;
+  cursor: pointer;
+}
+.field-lab button:hover {
+  border-color: #0a7659;
+}
+.field-lab button:focus-visible,
+.field-lab input:focus-visible,
+.field-lab select:focus-visible,
+.probe:focus-visible {
+  outline: 3px solid #1a9472;
+  outline-offset: 2px;
+}
+.field-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 23px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.field-head span,
+.field-mission span {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #9a6609;
+  font-weight: 850;
+}
+.field-head h2 {
+  margin: 3px 0;
+  font-size: 1.55rem;
+}
+.field-head p {
+  margin: 0;
+  color: var(--muted);
+}
+.geometry-tabs {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.geometry-tabs button {
+  min-width: 180px;
+  border-radius: 0;
+}
+.geometry-tabs button:first-child {
+  border-radius: 9px 0 0 9px;
+}
+.geometry-tabs button:last-child {
+  border-radius: 0 9px 9px 0;
+}
+.geometry-tabs button.active,
+.direction-buttons button.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.field-layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr) 245px;
+}
+.field-controls,
+.field-analysis {
+  background: #fff;
+  padding: 17px;
+}
+.field-controls {
+  border-right: 1px solid var(--line);
+}
+.field-analysis {
+  border-left: 1px solid var(--line);
+}
+.field-controls h3,
+.field-analysis h3 {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 4px 0 13px;
+}
+.field-controls h3:not(:first-child) {
+  border-top: 1px solid #edf0ed;
+  padding-top: 15px;
+  margin-top: 17px;
+}
+.field-slider {
+  display: block;
+  margin: 16px 0;
+}
+.field-slider > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+.field-slider b {
+  font-size: 0.74rem;
+}
+.field-slider input {
+  width: 100%;
+  accent-color: #0a7457;
+}
+.field-slider small {
+  display: flex;
+  justify-content: space-between;
+  color: #8a958f;
+}
+.field-slider i {
+  font-style: normal;
+}
+.direction-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.current-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.current-presets button {
+  padding: 6px 3px;
+  font-size: 0.62rem;
+}
+.direction-buttons button {
+  padding: 8px 4px;
+  font-size: 0.69rem;
+}
+.control-tip {
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--muted);
+  background: #eef7f3;
+  padding: 9px;
+  border-radius: 8px;
+}
+.field-main {
+  padding: 9px;
+  background: #e9ece8;
+  min-width: 0;
+}
+.field-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 9px;
+  padding: 3px 4px 10px;
+  font-size: 0.76rem;
+}
+.field-toolbar > div {
+  display: flex;
+  gap: 6px;
+}
+.field-toolbar button:first-child {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.field-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.field-toolbar select {
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+}
+.field-stage {
+  position: relative;
+  min-height: 540px;
+  border: 1px solid #ccd2cb;
+  border-radius: 13px;
+  overflow: hidden;
+  background: radial-gradient(circle, #fefdfa, #dcded8);
+}
+.field-stage > img {
+  position: absolute;
+  inset: 1% 5%;
+  width: 90%;
+  height: 94%;
+  object-fit: contain;
+  filter: saturate(0.78) brightness(1.02);
+  pointer-events: none;
+}
+.field-stage > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.compass-grid circle {
+  fill: #f5f2e8dd;
+  stroke: #68736f;
+  stroke-width: 1.3;
+}
+.compass-grid line {
+  stroke: #cf3b2f;
+  stroke-width: 2;
+}
+.compass-grid path {
+  fill: #cf3b2f;
+}
+.wire-post {
+  fill: #9b5a29;
+  stroke: #633318;
+  stroke-width: 3;
+}
+.wire-sign {
+  fill: #fff;
+  font: bold 28px system-ui;
+}
+.wire-label {
+  font: bold 16px system-ui;
+  fill: #74451d;
+}
+.field-ring {
+  fill: none;
+  stroke: #e46e31;
+  stroke-width: 2;
+  stroke-dasharray: 8 7;
+  opacity: 0.75;
+}
+.loop-geometry ellipse {
+  fill: none;
+  stroke: #b96728;
+  stroke-width: 15;
+}
+.loop-geometry path {
+  fill: #fff;
+}
+.loop-geometry text,
+.solenoid-geometry text {
+  font: bold 22px system-ui;
+  fill: #075b43;
+}
+.solenoid-geometry ellipse {
+  fill: none;
+  stroke: #bd6a2e;
+  stroke-width: 7;
+}
+.solenoid-geometry line {
+  stroke: #087253;
+  stroke-width: 4;
+}
+.probe {
+  cursor: move;
+}
+.probe circle {
+  fill: #166fc2;
+  stroke: white;
+  stroke-width: 3;
+}
+.probe line {
+  stroke: #081b32;
+  stroke-width: 5;
+}
+.probe text {
+  font: bold 15px system-ui;
+  fill: #062b54;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4;
+}
+.field-legend {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  background: #fffffff0;
+  border: 1px solid #d9dfd9;
+  padding: 8px 11px;
+  border-radius: 8px;
+}
+.field-legend span {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.field-equation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  font-family: Georgia, serif;
+}
+.field-reading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #edf0ed;
+  padding: 10px 0;
+  font-size: 0.75rem;
+}
+.field-reading b {
+  text-align: right;
+}
+.field-reading.hot b {
+  color: #087253;
+  font-size: 0.9rem;
+}
+.hand-rule,
+.field-graph {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 14px;
+  padding: 11px;
+  border: 1px solid #b6d4c8;
+  background: #eef8f4;
+  border-radius: 9px;
+  font-size: 0.72rem;
+}
+.hand-rule span {
+  color: #52625b;
+  line-height: 1.4;
+}
+.field-graph {
+  background: #fff;
+  border-color: var(--line);
+}
+.field-graph svg {
+  width: 100%;
+  height: 100px;
+}
+.field-graph line {
+  stroke: #9ca8a2;
+}
+.field-graph polyline {
+  fill: none;
+  stroke: #078055;
+  stroke-width: 2.5;
+}
+.field-graph > span {
+  color: #087253;
+  font-weight: 800;
+}
+.field-mission {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  padding: 16px 22px;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+.field-mission > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  margin-right: auto;
+}
+.field-mission small {
+  color: var(--muted);
+}
+.field-mission button:first-of-type {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.field-mission output {
+  flex-basis: 100%;
+  min-height: 1.2em;
+  color: #17663f;
+  font-weight: 750;
+}
+@media (max-width: 1180px) {
+  .field-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .field-analysis {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 16px;
+  }
+  .field-analysis h3 {
+    grid-column: 1/-1;
+  }
+  .hand-rule,
+  .field-graph {
+    grid-column: span 2;
+  }
+  .field-stage {
+    min-height: 490px;
+  }
+}
+@media (max-width: 760px) {
+  .field-lab,
+  .field-main,
+  .field-controls,
+  .field-analysis,
+  .geometry-tabs {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .field-lab {
+    overflow: hidden;
+    width: min(100%, calc(100vw - 96px));
+    margin-inline: 0;
+  }
+  .field-head {
+    padding: 15px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .field-head button {
+    width: 100%;
+  }
+  .field-head h2 {
+    font-size: 1.25rem;
+  }
+  .field-head p {
+    font-size: 0.78rem;
+  }
+  .geometry-tabs {
+    overflow: auto;
+    justify-content: flex-start;
+  }
+  .geometry-tabs button {
+    min-width: 140px;
+  }
+  .field-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .field-main {
+    order: 1;
+    padding: 7px;
+  }
+  .field-controls {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+  .field-analysis {
+    order: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .field-toolbar {
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .field-toolbar > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+  .field-toolbar button {
+    flex: 1;
+    padding: 8px 3px;
+    font-size: 0.68rem;
+    min-width: 0;
+    width: 100%;
+  }
+  .field-toolbar > label:last-child {
+    justify-self: end;
+  }
+  .field-stage {
+    min-height: 390px;
+  }
+  .field-equation {
+    flex-direction: column;
+    font-size: 0.78rem;
+  }
+  .field-mission {
+    padding: 15px;
+  }
+  .field-mission > div {
+    width: 100%;
+    min-width: 0;
+  }
+  .field-mission button {
+    flex: 1;
+  }
+}
+@media (max-width: 420px) {
+  .field-head p {
+    display: none;
+  }
+  .field-head button {
+    padding: 7px;
+  }
+  .field-stage {
+    min-height: 340px;
+  }
+  .field-analysis {
+    grid-template-columns: 1fr;
+  }
+  .field-analysis h3,
+  .hand-rule,
+  .field-graph {
+    grid-column: auto;
+  }
+  .field-equation {
+    font-size: 0.7rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-lab * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

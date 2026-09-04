@@ -1,1 +1,499 @@
-.premium-experiment-shell[data-domain="optics"] .premium-oft-status { letter-spacing: 0; }
+.tir-lab {
+  --ink: #252b33;
+  --muted: #687078;
+  --line: #dedbd3;
+  background: #fbfaf6;
+  color: var(--ink);
+  border: 1px solid #d8d5ce;
+  border-radius: 18px;
+  padding: 12px;
+  font-family: Inter, system-ui, sans-serif;
+  box-shadow: 0 14px 36px #1c273214;
+}
+.tir-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 10px 14px;
+}
+.tir-hero span,
+.tir-stage-head span,
+.tir-equation > span,
+.tir-predict > span,
+.tir-mission > span {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  font-weight: 900;
+  color: #2d6eaa;
+}
+.tir-hero h1 {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  margin: 3px 0;
+}
+.tir-hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+.tir-status {
+  font-size: 0.67rem;
+  padding: 10px 14px;
+  border-radius: 9px;
+  border: 1px solid #c5d5df;
+  background: #f3fbff;
+  color: #225f8b;
+}
+.tir-status.total-internal-reflection {
+  background: #fff1ee;
+  border-color: #efb4a8;
+  color: #a33a2b;
+}
+.tir-status.critical {
+  background: #f6efff;
+  color: #6b35a8;
+  border-color: #d5bbef;
+}
+.tir-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(520px, 1fr) 250px;
+  gap: 11px;
+  align-items: start;
+}
+.tir-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 0 5px 15px #2d35400a;
+}
+.tir-controls {
+  padding: 13px;
+}
+.tir-card h2 {
+  font-size: 0.88rem;
+  margin: 5px 0 10px;
+}
+.tir-controls h2:not(:first-child) {
+  padding-top: 12px;
+  margin-top: 13px;
+  border-top: 1px solid #ece9e2;
+}
+.tir-controls h2 i {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  background: #2e7bb5;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.66rem;
+  font-style: normal;
+}
+.tir-select {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  margin: 9px 0;
+}
+.tir-select select,
+.tir-transport select {
+  border: 1px solid #d3d5d8;
+  background: #fff;
+  border-radius: 7px;
+  padding: 7px;
+  color: #333;
+}
+.tir-range {
+  display: block;
+  margin: 13px 0;
+}
+.tir-range span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.69rem;
+}
+.tir-range output {
+  font-weight: 900;
+  color: #e26322;
+}
+.tir-range input {
+  width: 100%;
+  margin-top: 7px;
+  accent-color: #e96a26;
+}
+.tir-warning {
+  font-size: 0.67rem;
+  padding: 8px;
+  background: #fff1eb;
+  border-radius: 7px;
+  color: #a33c26;
+}
+.tir-spectrum {
+  height: 6px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    #6f3ad8,
+    #257bdc,
+    #26b16e,
+    #ead52c,
+    #ef6a24,
+    #d82f3f
+  );
+  box-shadow: 0 0 8px var(--light);
+}
+.tir-check {
+  font-size: 0.68rem;
+  color: var(--muted);
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.tir-main {
+  display: grid;
+  gap: 10px;
+}
+.tir-stage {
+  overflow: hidden;
+}
+.tir-stage-head {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.tir-stage-head h2 {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  margin: 2px 0;
+}
+.tir-stage-head button,
+.tir-transport button,
+.tir-equation button,
+.tir-predict button,
+.tir-mission button {
+  border: 1px solid #cfd5da;
+  background: #fff;
+  border-radius: 7px;
+  padding: 8px 10px;
+  color: #2b6090;
+  font-weight: 800;
+  font-size: 0.7rem;
+}
+.tir-canvas,
+.tir-fibre {
+  height: 430px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 43%, #fff, #f1f0eb 78%);
+}
+.tir-canvas > img {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 76%;
+  object-fit: fill;
+  opacity: 0.72;
+}
+.tir-canvas svg,
+.tir-fibre svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.tir-slab {
+  fill: #bde7ee66;
+  stroke: #73a5ae;
+  stroke-width: 2;
+}
+.tir-normal {
+  stroke: #7a838b;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 6;
+}
+.tir-ray {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  filter: drop-shadow(0 0 4px currentColor);
+  transition: opacity 0.2s;
+}
+.tir-ray.transmitted {
+  stroke-dasharray: 1;
+}
+.tir-ray.critical {
+  stroke-width: 4;
+}
+.tir-angle {
+  fill: none;
+  stroke: #f0772e;
+  stroke-width: 2;
+}
+.tir-canvas text,
+.tir-fibre text {
+  font-size: 11px;
+  fill: #37424c;
+  font-weight: 800;
+}
+.tir-evanescent ellipse {
+  fill: #e58bff44;
+  stroke: #9d4eb8;
+  stroke-width: 1;
+}
+.tir-evanescent text {
+  fill: #7d338f;
+  font-size: 9px;
+}
+.tir-transport {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 9px;
+  border-top: 1px solid var(--line);
+}
+.tir-transport .play {
+  background: #2d8846;
+  color: white;
+  border-color: #2d8846;
+}
+.tir-transport label {
+  font-size: 0.67rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tir-fibre {
+  background: linear-gradient(160deg, #eef8ff, #fbfdff);
+}
+.tir-fibre .cladding,
+.tir-fibre .core {
+  fill: none;
+  stroke-linecap: round;
+}
+.tir-fibre .cladding {
+  stroke: #74acd4;
+  stroke-width: 82;
+}
+.tir-fibre .core {
+  stroke: #dff5ff;
+  stroke-width: 58;
+  filter: drop-shadow(0 6px 6px #417ca644);
+}
+.fibre-ray {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  filter: drop-shadow(0 0 5px currentColor);
+}
+.fibre-ray.leaking {
+  opacity: 0.7;
+}
+.leak {
+  stroke-width: 3;
+  stroke-dasharray: 6 5;
+  opacity: 0.55;
+}
+.tir-bottom {
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: 10px;
+}
+.tir-predict,
+.tir-mission {
+  padding: 13px;
+}
+.tir-predict h2,
+.tir-mission h2 {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+}
+.tir-predict label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 10px;
+  font-size: 0.68rem;
+}
+.tir-predict button {
+  display: block;
+  margin-top: 10px;
+}
+.tir-predict p,
+.tir-mission p {
+  font-size: 0.7rem;
+  color: #25713d;
+  font-weight: 800;
+}
+.tir-mission {
+  background: linear-gradient(145deg, #fff9ed, #fff);
+  border-color: #e6c58e;
+}
+.mission-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mission-controls .tir-range {
+  margin: 5px 0;
+}
+.tir-output {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  margin: 8px 0;
+  background: #f6f1e6;
+  border-radius: 7px;
+  font-size: 0.67rem;
+}
+.tir-output b {
+  color: #15814b;
+}
+.tir-mission button {
+  margin-right: 5px;
+}
+.tir-mission .check {
+  background: #a46820;
+  color: white;
+  border-color: #a46820;
+}
+.tir-side {
+  display: grid;
+  gap: 10px;
+}
+.tir-readings,
+.tir-equation,
+.tir-graph {
+  padding: 12px;
+}
+.tir-readings > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.tir-readings span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  background: #fbfaf7;
+  border: 1px solid #ebe5da;
+  border-radius: 8px;
+  padding: 9px 3px;
+  font-size: 0.68rem;
+  color: #52616e;
+}
+.tir-readings b {
+  font-size: 1rem;
+  color: #e66421;
+}
+.tir-equation {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+  background: #faf6ff;
+  border-color: #dbc7ed;
+}
+.tir-equation b {
+  font-family: Georgia, serif;
+  color: #7130a5;
+  font-size: 1.12rem;
+}
+.tir-equation small {
+  color: var(--muted);
+  font-size: 0.67rem;
+  line-height: 1.4;
+}
+.tir-graph svg {
+  width: 100%;
+  height: 170px;
+}
+.tir-graph svg line {
+  stroke: #aeb5bb;
+}
+.tir-graph polyline {
+  fill: none;
+  stroke: #6c33aa;
+  stroke-width: 2.5;
+}
+.tir-graph circle {
+  fill: #e26c28;
+}
+.tir-graph .critical-mark {
+  stroke: #b65ce0;
+  stroke-dasharray: 5 4;
+}
+.tir-graph text {
+  font-size: 9px;
+  fill: #5d6570;
+}
+@media (max-width: 1120px) {
+  .tir-layout {
+    grid-template-columns: 220px 1fr;
+  }
+  .tir-side {
+    grid-column: 1/-1;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .tir-lab {
+    padding: 9px;
+  }
+  .tir-hero {
+    align-items: flex-start;
+  }
+  .tir-status {
+    display: none;
+  }
+  .tir-layout {
+    grid-template-columns: 1fr;
+  }
+  .tir-main {
+    grid-row: 1;
+  }
+  .tir-controls {
+    grid-row: 2;
+  }
+  .tir-side {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+  .tir-canvas,
+  .tir-fibre {
+    height: 250px;
+  }
+  .tir-canvas > img {
+    height: 72%;
+  }
+  .tir-bottom {
+    grid-template-columns: 1fr;
+  }
+  .tir-stage-head {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .tir-stage-head button {
+    padding: 7px;
+  }
+  .tir-hero h1 {
+    font-size: 1.75rem;
+  }
+  .tir-fibre text,
+  .tir-canvas text {
+    font-size: 14px;
+  }
+  .mission-controls {
+    grid-template-columns: 1fr;
+  }
+}

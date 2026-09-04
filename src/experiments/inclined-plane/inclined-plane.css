@@ -1,1 +1,400 @@
-@import "../uniform-motion/uniform-motion.css";
+.ip-lab {
+  --violet: #6d38a5;
+  width: min(100%, calc(100vw - 96px));
+  color: #292433;
+  font-family: Inter, system-ui, sans-serif;
+}
+.ip-lab h2,
+.ip-lab h3,
+.ip-lab p {
+  margin: 0;
+}
+.ip-lab button,
+.ip-lab input,
+.ip-lab select {
+  border: 1px solid #d7cfe0;
+  border-radius: 8px;
+  background: #fff;
+  color: #30273a;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 800;
+}
+.ip-lab button {
+  cursor: pointer;
+}
+.ip-lab > header,
+.ip-toolbar,
+.ip-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ip-lab > header {
+  padding: 18px 22px;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 3px solid #9a69c9;
+  background: linear-gradient(100deg, #29113f, #5b2581);
+  color: #fff;
+}
+.ip-lab > header span,
+.ip-mission span {
+  color: #d5aff7;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.ip-lab > header h2 {
+  background: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: clamp(22px, 2.5vw, 34px);
+}
+.ip-lab > header p {
+  color: #e9d9f6 !important;
+  font-size: 11px;
+}
+.ip-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(450px, 1fr) 280px;
+  min-height: 680px;
+  border: 1px solid #ddd5e3;
+  background: #f2eee8;
+}
+.ip-controls,
+.ip-data {
+  padding: 17px;
+  background: #fff;
+}
+.ip-controls {
+  border-right: 1px solid #ddd6e2;
+}
+.ip-data {
+  border-left: 1px solid #ddd6e2;
+}
+.ip-controls h3,
+.ip-data h3 {
+  margin-bottom: 15px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.ip-range {
+  display: block;
+  margin-bottom: 17px;
+}
+.ip-range span,
+.ip-range small {
+  display: flex;
+  justify-content: space-between;
+}
+.ip-range span {
+  font-size: 9px;
+}
+.ip-range b,
+.ip-data dd {
+  color: var(--violet);
+}
+.ip-range input {
+  width: 100%;
+  accent-color: var(--violet);
+}
+.ip-range small {
+  color: #8a8191;
+  font-size: 8px;
+}
+.ip-range i {
+  font-style: normal;
+}
+.ip-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.ip-presets button {
+  padding: 7px 2px;
+  font-size: 8px;
+}
+.ip-controls > p {
+  margin-top: 11px;
+  padding: 9px;
+  border-radius: 8px;
+  background: #f1edf4;
+  color: #6e6575;
+  font-size: 9px;
+  line-height: 1.45;
+}
+.ip-main {
+  min-width: 0;
+  padding: 12px;
+}
+.ip-toolbar {
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.ip-toolbar .sweep {
+  border-color: #6d38a5;
+  background: #7841ad;
+  color: #fff;
+}
+.ip-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  font-weight: 900;
+}
+.ip-toolbar input {
+  width: auto;
+}
+.ip-stage {
+  position: relative;
+  contain: paint;
+  isolation: isolate;
+  min-height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(#f7f3ed, #e5d9c9);
+}
+.ip-stage > img {
+  position: absolute;
+  inset: auto 2% 5%;
+  width: 96%;
+}
+.ip-live-ramp {
+  position: absolute;
+  z-index: 2;
+  left: 13%;
+  bottom: 22%;
+  width: 72%;
+  height: 14px;
+  transform-origin: 8% 50%;
+  border-radius: 5px;
+  background: #77441f;
+  box-shadow: 0 4px 0 #343438;
+  transition: rotate 0.12s;
+}
+.ip-block {
+  position: absolute;
+  left: 42%;
+  bottom: 13px;
+  width: 76px;
+  height: 62px;
+  border: 2px solid #666;
+  rotate: 0deg;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #ddd, #888);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 900;
+  transition: translate 0.06s linear;
+}
+.ip-v {
+  position: absolute;
+  font-size: 8px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.ip-v.weight {
+  left: 48%;
+  top: -62px;
+  border-left: 3px solid #df3c32;
+  color: #b92821;
+  padding-top: 50px;
+}
+.ip-v.normal {
+  left: 51%;
+  bottom: 55px;
+  border-left: 3px solid #237cdd;
+  color: #1556a0;
+  padding-left: 5px;
+}
+.ip-v.parallel {
+  right: 52%;
+  top: -38px;
+  height: 3px;
+  background: #df3c32;
+  color: #b92821;
+}
+.ip-v.friction {
+  left: 52%;
+  top: -18px;
+  height: 3px;
+  background: #48a331;
+  color: #2d7920;
+}
+.ip-stage > strong {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 12px;
+  translate: -50% 0;
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: #417033;
+  color: #fff;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.ip-stage.impending > strong {
+  background: #c27213;
+}
+.ip-stage.sliding > strong {
+  background: #7539a9;
+}
+.ip-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 9px;
+}
+.ip-equations b {
+  padding: 9px;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+  font-size: 10px;
+}
+.ip-data dl {
+  margin: 0 0 13px;
+}
+.ip-data dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6e0e9;
+  font-size: 9px;
+}
+.ip-data dd {
+  margin: 0;
+  font-weight: 900;
+}
+.ip-gauge {
+  padding: 10px;
+  border: 1px solid #ddd5e2;
+  border-radius: 9px;
+}
+.ip-gauge > b {
+  font-size: 10px;
+}
+.ip-gauge div {
+  position: relative;
+  height: 14px;
+  margin: 12px 0;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    #56a25d var(--critical),
+    #dfb75f var(--critical)
+  );
+}
+.ip-gauge div:after {
+  content: "";
+  position: absolute;
+  left: var(--angle);
+  top: -5px;
+  width: 3px;
+  height: 24px;
+  background: #6d38a5;
+}
+.ip-gauge small {
+  font-size: 8px;
+}
+.ip-mission {
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-radius: 0 0 18px 18px;
+  background: #35184b;
+  color: #fff;
+}
+.ip-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.ip-mission small {
+  color: #e2d1ef;
+}
+.ip-mission input {
+  width: 80px;
+}
+.ip-mission output {
+  flex-basis: 100%;
+  min-height: 16px;
+  color: #cdf2d4;
+  font-size: 10px;
+}
+@media (max-width: 1050px) {
+  .ip-layout {
+    grid-template-columns: 210px minmax(420px, 1fr);
+  }
+  .ip-data {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    border-left: 0;
+  }
+  .ip-data h3,
+  .ip-data dl {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 760px) {
+  .ip-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .ip-lab > header {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .ip-lab > header p {
+    display: none;
+  }
+  .ip-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .ip-main {
+    order: 1;
+    padding: 8px;
+  }
+  .ip-controls {
+    order: 2;
+  }
+  .ip-data {
+    order: 3;
+    display: block;
+  }
+  .ip-toolbar {
+    align-items: stretch;
+  }
+  .ip-toolbar button {
+    flex: 1;
+  }
+  .ip-toolbar .sweep {
+    flex-basis: 100%;
+  }
+  .ip-stage {
+    min-height: 410px;
+  }
+  .ip-stage > img {
+    inset: auto -12% 9%;
+    width: 124%;
+  }
+  .ip-live-ramp {
+    left: 8%;
+    bottom: 26%;
+    width: 78%;
+  }
+  .ip-equations {
+    grid-template-columns: 1fr;
+  }
+  .ip-mission {
+    align-items: stretch;
+  }
+  .ip-mission button {
+    flex: 1;
+  }
+}

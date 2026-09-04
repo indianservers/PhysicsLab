@@ -1,3 +1,431 @@
-.premium-experiment-shell[data-domain="electricity"] .circuit-board-card {
-  box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.14), 0 24px 80px rgba(8, 145, 178, 0.12);
+.ohm-lab {
+  --orange: #ed6219;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ddd8d0;
+  border-radius: 18px;
+  background: #faf8f4;
+  color: #182333;
+  box-shadow: 0 22px 70px #1720331c;
+}
+.ohm-lab * {
+  box-sizing: border-box;
+}
+.ohm-lab button,
+.ohm-lab input,
+.ohm-lab select {
+  font: inherit;
+}
+.ohm-lab button {
+  min-height: 38px;
+  border: 1px solid #d5d1ca;
+  border-radius: 7px;
+  background: #fff;
+  color: #253044;
+  padding: 0.52rem 0.72rem;
+  cursor: pointer;
+}
+.ohm-lab button:hover:not(:disabled) {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.ohm-lab button:disabled {
+  opacity: 0.45;
+}
+.ohm-lab button:focus-visible,
+.ohm-lab input:focus-visible,
+.ohm-lab select:focus-visible {
+  outline: 3px solid #168bdc55;
+  outline-offset: 2px;
+}
+.ohm-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e3ddd4;
+  background: #fff;
+}
+.ohm-head span,
+.ohm-controls h3,
+.ohm-analysis h3,
+.ohm-mission > div span {
+  color: var(--orange);
+  font-size: 0.71rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.ohm-head h2 {
+  margin: 0.1rem 0;
+  font:
+    800 clamp(1.4rem, 2.3vw, 2.1rem)/1.05 Georgia,
+    serif;
+}
+.ohm-head p {
+  margin: 0;
+  color: #626b78;
+}
+.ohm-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 330px;
+}
+.ohm-controls,
+.ohm-analysis {
+  padding: 1rem;
+  background: #fff;
+}
+.ohm-controls {
+  border-right: 1px solid #e3ddd4;
+}
+.ohm-analysis {
+  border-left: 1px solid #e3ddd4;
+}
+.ohm-controls h3,
+.ohm-analysis h3 {
+  margin: 0 0 0.7rem;
+}
+.ohm-control {
+  display: grid;
+  gap: 0.27rem;
+  margin-bottom: 0.86rem;
+}
+.ohm-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+}
+.ohm-control strong {
+  font-family: ui-monospace, monospace;
+}
+.ohm-control input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.ohm-control small {
+  color: #818895;
+  text-align: right;
+}
+.ohm-select {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.85rem 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+.ohm-select select {
+  border: 1px solid #d5d8de;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0.5rem;
+}
+.ohm-presets {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+.ohm-main {
+  min-width: 0;
+  background: #f0e8dc;
+}
+.ohm-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem;
+  background: #fff;
+}
+.ohm-toolbar > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.ohm-toolbar button:first-child,
+.ohm-footer button:first-child {
+  border-color: #4c9f59;
+  color: #16722a;
+}
+.ohm-toolbar > strong {
+  border-radius: 99px;
+  background: #eef1f5;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+.ohm-stage {
+  position: relative;
+  min-height: 450px;
+  overflow: hidden;
+  background: radial-gradient(circle at 55% 40%, #fff8ec, #ded2c1);
+}
+.ohm-stage > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ohm-meter {
+  position: absolute;
+  border-radius: 7px;
+  background: #eaf6e7e8;
+  padding: 0.5rem 0.65rem;
+  text-align: center;
+  box-shadow: 0 4px 15px #0002;
+}
+.ohm-meter span {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #647164;
+}
+.ohm-meter b {
+  font-family: ui-monospace, monospace;
+  color: #154522;
+}
+.ohm-meter.current {
+  left: 50%;
+  top: 10%;
+}
+.ohm-meter.voltage {
+  right: 8%;
+  top: 10%;
+}
+.ohm-flow {
+  position: absolute;
+  left: 25%;
+  right: 18%;
+  bottom: 18%;
+  color: #ff3b23;
+  font-weight: 900;
+  letter-spacing: 0.55rem;
+  animation: ohm-flow 1.2s linear infinite;
+}
+.ohm-lab[data-run-state="paused"] .ohm-flow,
+.ohm-lab[data-run-state="idle"] .ohm-flow {
+  animation-play-state: paused;
+}
+@keyframes ohm-flow {
+  to {
+    transform: translateX(24px);
+  }
+}
+.ohm-identities {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border-top: 1px solid #ddd4c7;
+  background: #ddd4c7;
+}
+.ohm-identities > div {
+  padding: 0.65rem;
+  background: #fff;
+  text-align: center;
+}
+.ohm-identities span {
+  display: block;
+  color: #7a8491;
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+.ohm-identities b {
+  font:
+    800 0.78rem ui-monospace,
+    monospace;
+}
+.ohm-analysis > p {
+  margin: -0.4rem 0 0.5rem;
+  color: #6f7784;
+  font-size: 0.72rem;
+}
+.ohm-analysis svg {
+  width: 100%;
+  border: 1px solid #e8e2d9;
+  border-radius: 7px;
+  background: #fbfaf8;
+}
+.ohm-analysis svg line {
+  stroke: #e0e2e5;
+  stroke-width: 1;
+}
+.ohm-analysis svg text {
+  fill: #58616e;
+  font-size: 10px;
+}
+.ohm-analysis svg .axes {
+  fill: none;
+  stroke: #424a55;
+  stroke-width: 2;
+}
+.ohm-analysis svg .trace {
+  fill: none;
+  stroke: #1686e3;
+  stroke-width: 3;
+}
+.ohm-analysis svg circle {
+  fill: #e85e1a;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.ohm-analysis > div {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.7rem;
+  border: 1px solid #a9dcb5;
+  border-radius: 7px;
+  background: #effaf1;
+  padding: 0.7rem;
+}
+.ohm-analysis > div.non-ohmic {
+  border-color: #f0c48c;
+  background: #fff7e9;
+}
+.ohm-analysis > div span {
+  font-size: 0.72rem;
+  color: #657080;
+}
+.ohm-analysis > div b {
+  font-size: 0.72rem;
+}
+.ohm-mission {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #ded7cc;
+  background: #fffaf1;
+  padding: 1rem 1.2rem;
+}
+.ohm-mission h3,
+.ohm-mission p {
+  margin: 0.12rem 0;
+}
+.ohm-mission > div {
+  margin-right: auto;
+}
+.ohm-mission label {
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+.ohm-mission > p {
+  width: 100%;
+  border-left: 3px solid #db8a25;
+  padding: 0.5rem;
+  font-size: 0.76rem;
+}
+.ohm-mission > p.success {
+  border-color: #279749;
+  background: #eef9f0;
+  color: #187536;
+}
+.ohm-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  background: #172033;
+  color: #fff;
+}
+.ohm-footer label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+}
+.ohm-footer select {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.25rem;
+}
+.ohm-footer > span {
+  margin-left: auto;
+  color: #b7c0cf;
+  font-size: 0.7rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ohm-lab * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+@media (max-width: 1100px) {
+  .ohm-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .ohm-analysis {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #e3ddd4;
+  }
+  .ohm-stage {
+    min-height: 420px;
+  }
+  .ohm-analysis svg {
+    max-height: 280px;
+  }
+}
+@media (max-width: 720px) {
+  .ohm-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ohm-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .ohm-main {
+    order: 1;
+  }
+  .ohm-controls {
+    order: 2;
+    border-right: 0;
+  }
+  .ohm-analysis {
+    order: 3;
+  }
+  .ohm-stage {
+    min-height: 340px;
+  }
+  .ohm-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .ohm-identities {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ohm-mission {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .ohm-mission > div {
+    width: 100%;
+  }
+  .ohm-footer {
+    flex-wrap: wrap;
+  }
+  .ohm-footer > span {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 430px) {
+  .ohm-stage {
+    min-height: 295px;
+  }
+  .ohm-meter {
+    padding: 0.35rem;
+    font-size: 0.65rem;
+  }
+  .ohm-toolbar > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  .ohm-footer button {
+    flex: 1;
+  }
+  .ohm-head {
+    padding: 0.85rem;
+  }
 }
