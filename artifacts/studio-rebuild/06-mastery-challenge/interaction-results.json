@@ -1,0 +1,74 @@
+{
+  "checks": [
+    "Direct load, decoded chamber/cart assets and pause/play clock",
+    "Challenge level targets, all/essential variables and hint options",
+    "Formula/code switch and all four scientific graph tabs",
+    "Four mission stages and every parameter minimum/maximum",
+    "Default prediction, actual 70-degree goal success and session progress",
+    "Three distinct missions and live challenge search",
+    "Cross-concept tools, conservation explanation, dialog keyboard handling and Observe",
+    "Zoom cycle, four playback speeds and restart",
+    "Six responsive viewports and readable mobile goal/dialog",
+    "Direct refresh and preserved focused MCQ practice with working filters"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 201
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 203
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 203
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 220
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 220
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "clipped": [],
+      "goalVisible": true,
+      "graphHeight": 215
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.",
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.",
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+  ],
+  "failed": []
+}

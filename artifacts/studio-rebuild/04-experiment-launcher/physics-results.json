@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "Air/glass Snell angle is 19.2049 degrees, correcting the mockup",
+    "Second-boundary total internal reflection and transmitted energy",
+    "Optical control boundaries remain finite and conserve transmitted power",
+    "Gaussian detector profile follows calculated ray direction and disappears under TIR",
+    "White-light channels share source power and exhibit normal dispersion",
+    "Pendulum, signed Ohm law, heat and sound-wave boundary calculations",
+    "Projected ray geometry intersects prism faces; TIR segment stops at its next boundary",
+    "Moving pendulum graph window ends at the current measured angle"
+  ],
+  "defaultPrism": {
+    "n": 1.52,
+    "refraction": 19.2048974971294,
+    "internalSecond": 40.79510250287059,
+    "exit": 83.26586340191037,
+    "deviation": 53.265863401910366,
+    "tir": false,
+    "transmission": 0.45533332642984664
+  }
+}

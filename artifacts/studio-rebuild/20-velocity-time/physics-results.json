@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Default numerical example: velocity 3.06, signed area 5.696, average 1.78",
+    "All signed/minimum/maximum/zero parameters, exact area integration, time limits, derivative and turning points",
+    "Reversal positive and negative areas cancel exactly; zero-time average remains undefined"
+  ],
+  "default": {
+    "time": 3.2,
+    "v": 3.0600000000000005,
+    "displacement": 5.6960000000000015,
+    "averageVelocity": 1.7800000000000002,
+    "acceleration": 0.8
+  }
+}

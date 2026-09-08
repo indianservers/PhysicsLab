@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Correct default, run/pause/reset and prediction",
+    "Exact balance, mirror and label toggle",
+    "Slider endpoints, keyboard and pointer dragging",
+    "Zoom and notebook record/retain/clear",
+    "Six responsive captures without overflow"
+  ],
+  "errors": [],
+  "failed": []
+}

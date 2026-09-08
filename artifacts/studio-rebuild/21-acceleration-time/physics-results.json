@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "Default pulse area 1 m/s, FWHM400 ms, zero acceleration/jerk after pulse, exact displacement",
+    "Every amplitude/width/rate limit: analytical derivatives, finite jerk, exact sensor integral, sign/zero and sample hold"
+  ],
+  "default": {
+    "time": 1.842,
+    "a": 0,
+    "j": 0,
+    "v": 0.9999999999999998,
+    "x": 0.5419999999999998
+  }
+}

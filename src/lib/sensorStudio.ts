@@ -1,0 +1,2 @@
+export type SensorInput={stimulus:number;rate:number;type:number};export const SENSOR_DEFAULTS={stimulus:70,rate:10,type:1};export function sensorSettings(v:SensorInput){return{stimulus:Math.max(0,Math.min(100,Number(v.stimulus)||0)),rate:Math.max(1,Math.min(50,Number(v.rate)||1)),type:v.type<0?-1:1}}export function sensorSolution(v:SensorInput){const resistance=v.type>0?105000*Math.pow(Math.max(1,v.stimulus),-.82):1.0e3*(1+.01*(v.stimulus-50));const temp=20+.066*v.stimulus;const voltage=5*resistance/(resistance+4180);return{resistance,temp,voltage}}
+

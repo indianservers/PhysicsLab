@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Default endpoint subtraction and cm/mm resolution",
+    "Every angle sign, scale division, endpoint mode and ruler boundary follows geometric projection and rounding limits",
+    "Independent 30 degree triangle, equal-shift cancellation and off-scale detection",
+    "Fine-division challenge resolves actual endpoints"
+  ]
+}

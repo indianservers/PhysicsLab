@@ -1,0 +1,106 @@
+{
+  "checks": [
+    "Four direct-load models and synchronized pause/play clocks",
+    "All four header selectors and both comparison selectors",
+    "Shared quantity updates all live readings and relationship",
+    "Every experiment parameter minimum/maximum and return to observation",
+    "Model assumptions, equations, SI comparison ratio and Observe mode",
+    "Five challenge banks, wrong/correct feedback, score and next-challenge navigation",
+    "Playback speeds, amplitude guides and scene zoom limits",
+    "Notebook persistence, direct refresh, Escape and recoverable storage failure",
+    "Six responsive sizes without overflow or clipped controls, plus readable mobile dialog",
+    "Original platform benchmark retained"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        188,
+        188,
+        188,
+        188
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        155,
+        155,
+        155,
+        155
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        155,
+        155,
+        155,
+        155
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        165,
+        165,
+        165,
+        165
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        165,
+        165,
+        165,
+        165
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "missing": 0,
+      "clipped": [],
+      "graph": [
+        175,
+        175,
+        175,
+        175
+      ]
+    }
+  ],
+  "errors": [],
+  "network": [],
+  "warnings": [
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.",
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.",
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.",
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+  ]
+}

@@ -1,0 +1,7 @@
+# Velocity–Time apparatus assets
+
+Built-in image_gen.imagegen generated public/assets/velocity-time/photogate.png. Copied unchanged from C:/Users/saisa/.codex/generated_images/01a07335-84ef-78b2-bcb9-d2e500ff94cb/exec-28a4eb9f-c1d4-46f3-8efc-483c0d4f30db.png. Verified 1024×1536 RGBA with transparent exterior pixel (30,600) alpha0. Browser inspection confirms the cutout composites cleanly. SVG places two copies at trajectory reference positions, draws their labels and calibrated ruler, and reuses the blue cart sprite documented in18-momentum-assets.md. The backdrop from19-position-assets.md is reused with a dark cool CSS filter.
+
+Exact prompt:
+
+Use case: scientific-educational. Generate a photorealistic RGBA cutout of ONE compact black laboratory photogate for a physics motion track. A vertically oriented dark machined rectangular sensor housing, 60 mm wide and 90 mm tall, with a narrow vertical open sensing slot through its middle. Brushed black anodized metal, subtle silver edge highlights, four tiny screws. Mounted on a short stout black column and low rectangular metal mounting foot. Entire apparatus about 150 mm tall and 80 mm wide. Front three-quarter view with a little right side and top face visible, camera almost level. Soft cool studio lighting. Crisp industrial product photography, genuine fully transparent alpha outside the apparatus. Tight portrait composition. No track, no trolley, no wall, no floor, no cables, no text, no logos, no arrows, no numbers, no UI, no painted checkerboard.

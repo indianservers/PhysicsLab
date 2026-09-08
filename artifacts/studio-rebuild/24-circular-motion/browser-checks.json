@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Defaults, playback, pause/reset, all min/max, negative, oversized, blank and rounding inputs",
+    "Angle keyboard control, zero omega, all four overlays, zoom bounds, accordion, modes, prediction and five presets",
+    "All five challenges reject wrong and accept correct settings; next challenge cycles",
+    "Six default viewport captures without horizontal overflow",
+    "Ten desktop/mobile extreme captures across zero, min/max and cardinal angles"
+  ],
+  "errors": [],
+  "failed": [],
+  "warnings": [
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+  ]
+}

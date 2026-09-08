@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Default exact accelerated/coasting/braking position, slope and terminal rest",
+    "All programs, initial position/window boundaries, finite-difference tangent slope, signed displacement and equal selected times",
+    "Continuous reversal, stationary tangent, exact return and negative displacement"
+  ],
+  "default": {
+    "time": 4,
+    "x": 1.22,
+    "v": 0.24,
+    "a": 0,
+    "displacement": 0.72
+  }
+}

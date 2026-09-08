@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Default open-jaw state: 1.64 turns, 0.5 mm sleeve and 32 thimble divisions",
+    "Every 0.01 mm opening and signed correction obey pitch, carry and correction equations",
+    "All five wire sizes enforce rigid contact and expose an open gap",
+    "Closed-jaw negative raw indication and half-millimeter rollover boundaries"
+  ]
+}

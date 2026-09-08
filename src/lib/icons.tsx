@@ -18,6 +18,7 @@ export type PhysicsIconName =
   | "flask"
   | "folder"
   | "gauge"
+  | "home"
   | "magnet"
   | "menu"
   | "moon"
@@ -58,6 +59,7 @@ const iconPaths: Record<PhysicsIconName, ReactNode> = {
   flask: <><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" /><path d="M8 15h8" /></>,
   folder: <><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="M3 10h18" /></>,
   gauge: <><path d="M4 15a8 8 0 1 1 16 0" /><path d="M12 15l4-5" /><path d="M6 19h12" /></>,
+  home: <><path d="M3 11.5L12 4l9 7.5" /><path d="M5.5 10v10h13V10" /><path d="M9.5 20v-6h5v6" /></>,
   magnet: <><path d="M6 4v7a6 6 0 0 0 12 0V4h-4v7a2 2 0 0 1-4 0V4z" /><path d="M6 8h4M14 8h4" /></>,
   menu: <><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></>,
   moon: <path d="M20 14.5A7.5 7.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" />,

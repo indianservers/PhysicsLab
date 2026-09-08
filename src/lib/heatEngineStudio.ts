@@ -1,0 +1,2 @@
+export type EngineInput={hot:number;cold:number;ratio:number};export const ENGINE_DEFAULTS={hot:600,cold:300,ratio:8};export function engineSettings(v:EngineInput){return{hot:Math.max(300,Math.min(1200,Number(v.hot)||300)),cold:Math.max(100,Math.min(600,Number(v.cold)||100)),ratio:Math.max(2,Math.min(20,Number(v.ratio)||2))}}export function engineSolution(v:EngineInput){const eta=Math.max(0,Math.min(1,1-v.cold/v.hot));const qh=1.02/(1-eta);return{eta,work:qh*eta*1000,qc:qh*1000*(1-eta),pressure:352*(v.hot/600),volume:.73*(v.ratio/8)}}
+

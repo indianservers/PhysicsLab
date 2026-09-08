@@ -1,0 +1,108 @@
+:root {
+  --app-content-left: 0px;
+  --app-topbar-height: 0px;
+  --app-sticky-top: 10px;
+}
+
+.app-home-button {
+  position: fixed;
+  z-index: 1100;
+  bottom: 54px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(58, 158, 193, 0.5);
+  border-radius: 999px;
+  background: rgba(5, 20, 29, 0.9);
+  box-shadow: 0 8px 24px rgba(2, 13, 20, 0.2);
+  color: #dff8ff;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+}
+
+.app-home-button svg {
+  width: 16px;
+  height: 16px;
+  color: #65dbff;
+}
+
+.app-home-button:hover {
+  border-color: #65dbff;
+  background: #0a2937;
+  transform: translateY(-1px);
+}
+
+.app-home-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.app-footer {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.client-demo-shell,
+.concept-studio-shell,
+.directory-page-shell,
+.atmosphere-premium-page,
+.pro-lab-shell,
+.pro-program-shell {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.client-demo-shell,
+.concept-studio-shell,
+.directory-page-shell,
+.pro-lab-shell {
+  padding-top: 24px !important;
+}
+
+.pro-program-shell {
+  padding-top: 12px !important;
+}
+
+.client-demo-controls,
+.program-command-bar,
+.mission-alert,
+.desktop-tabs,
+.filter-bar,
+.formula-filter-bar,
+.solver-filter-bar,
+.quiz-filter-bar,
+.experiment-jump-strip,
+.lab-command-strip {
+  top: 10px !important;
+}
+
+.experiment-detail-page > #content::before {
+  inset-inline-start: 0 !important;
+  top: 0 !important;
+}
+
+@media (max-width: 680px) {
+  .app-home-button {
+    bottom: 52px;
+    left: 8px;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .app-home-button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

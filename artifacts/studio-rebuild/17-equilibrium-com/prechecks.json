@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Scan, pause, reset and prediction",
+    "All three challenge conditions, wrong/valid outcomes and reopen",
+    "All cameras, zoom and experiment presets",
+    "Six responsive captures without horizontal overflow"
+  ],
+  "errors": [],
+  "failed": []
+}

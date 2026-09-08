@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "Default force readings and sequential decimal typing",
+    "Pause/resume, travel brake, theory tabs and dissipated energy",
+    "All three experiment presets and reversed acceleration",
+    "Six viewport captures and zero horizontal overflow"
+  ],
+  "errors": []
+}

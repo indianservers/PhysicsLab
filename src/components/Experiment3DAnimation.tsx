@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
@@ -727,18 +727,9 @@ interface Experiment3DAnimationProps {
 }
 
 export function has3DAnimation(experimentId: string) {
-  return (
-    ![
-      "em-spectrum",
-      "sound-wave-anatomy",
-      "polarization-lab",
-      "single-slit-diffraction",
-      "sound-pitch-loudness",
-      "shm-spring",
-      "wave-lab",
-      "young-double-slit",
-    ].includes(experimentId) && Boolean(experimentId)
-  );
+  if (experimentId === "atomic-interactions") return true;
+  const spec = getExperimentVisualizationSpec(experimentId);
+  return Boolean(spec && !isPanePending(spec.threeD));
 }
 
 export function Experiment3DAnimation({
@@ -761,6 +752,12 @@ export function Experiment3DAnimation({
   const panelRef = useRef<HTMLElement | null>(null);
   const mountRef = useRef<HTMLDivElement>(null);
   const timelineTimeRef = useRef<number | null>(timelineTime);
+  const [playing, setPlaying] = useState(true);
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const transport = useRef({ playing, playbackRate, reducedMotion, time: 0 });
+  const savedView = useRef<{ theta: number; phi: number; radius: number; target: THREE.Vector3 } | null>(null);
+  useEffect(() => { Object.assign(transport.current, { playing, playbackRate, reducedMotion }); }, [playing, playbackRate, reducedMotion]);
   const sendViewCommand = (
     command: "reset" | "front" | "top" | "zoom-in" | "zoom-out",
   ) => {
@@ -832,9 +829,10 @@ export function Experiment3DAnimation({
       radius: config.cinematic ? 7.2 : 6.6,
       target: cameraTarget.clone(),
     };
+    if (savedView.current) { Object.assign(orbit, savedView.current); orbit.target = savedView.current.target.clone(); }
     const setCameraFromOrbit = () => {
       const spherical = new THREE.Spherical(
-        orbit.radius,
+        orbit.radius * Math.max(1, 1.35 / camera.aspect),
         orbit.phi,
         orbit.theta,
       );
@@ -867,7 +865,10 @@ export function Experiment3DAnimation({
     try {
       addGrid(root);
       addCinematicSet(root, config.kind, Boolean(config.cinematic));
-      buildScene(config.kind, root, values);
+      if (experiment.id === "newton-s-second-law") {
+        transport.current.time = 0;
+        buildNewtonCart(root, ...values);
+      } else buildScene(config.kind, root, values);
     } catch {
       const fallback = document.createElement("div");
       fallback.className = "three-lab-fallback";
@@ -975,10 +976,15 @@ export function Experiment3DAnimation({
     resizeObserver.observe(mount);
     resize();
 
-    const clock = new THREE.Clock();
+    let previousTime = performance.now();
     let frame = 0;
     const animate = () => {
-      const t = timelineTimeRef.current ?? clock.getElapsedTime();
+      const now = performance.now();
+      const delta = Math.min(.05, (now - previousTime) / 1000);
+      previousTime = now;
+      if (!document.hidden && transport.current.playing) transport.current.time += delta * transport.current.playbackRate * (transport.current.reducedMotion ? .15 : 1);
+      const t = timelineTimeRef.current ?? transport.current.time;
+      mount.dataset.simulationTime = t.toFixed(3);
       rimLight.intensity =
         (config.cinematic ? 30 : 8) +
         Math.sin(t * 1.2) * (config.cinematic ? 5 : 1.2);
@@ -986,6 +992,10 @@ export function Experiment3DAnimation({
         (config.cinematic ? 16 : 5) +
         Math.cos(t * 0.9) * (config.cinematic ? 4 : 0.8);
       updateObjects(root, t, values);
+      if (experiment.id === "newton-s-second-law") {
+        const cart = root.getObjectByName("newton-cart");
+        if (cart) mount.dataset.cartPosition = String(cart.position.x);
+      }
       setCameraFromOrbit();
       if (composer) composer.render();
       else renderer.render(scene, camera);
@@ -994,6 +1004,7 @@ export function Experiment3DAnimation({
     animate();
 
     return () => {
+      savedView.current = { ...orbit, target: orbit.target.clone() };
       cancelAnimationFrame(frame);
       mount.removeEventListener("pointerdown", onPointerDown);
       mount.removeEventListener("pointermove", onPointerMove);
@@ -1120,6 +1131,15 @@ export function Experiment3DAnimation({
     </div>
   );
   const body = (
+    <>
+    <div className="three-simulation-transport" aria-label="Simulation playback">
+      {experiment.id === "newton-s-second-law" && <span>3 s trial from rest · track scale fits the trial · Restart to replay</span>}
+      <button className="three-view-btn" onClick={() => setPlaying(value => !value)}>{playing ? "Pause simulation" : "Play simulation"}</button>
+      <button className="three-view-btn" onClick={() => { setPlaying(false); transport.current.playing = false; transport.current.time += .1; }}>Step simulation</button>
+      <button className="three-view-btn" onClick={() => { transport.current.time = 0; }}>Restart simulation</button>
+      <label>Playback <select aria-label="Simulation speed" value={playbackRate} onChange={event => setPlaybackRate(Number(event.target.value))}><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1">1×</option><option value="2">2×</option></select></label>
+      <label><input type="checkbox" checked={reducedMotion} onChange={event => setReducedMotion(event.target.checked)} /> Reduced motion</label>
+    </div>
     <div
       className={
         config.cinematic
@@ -1179,6 +1199,7 @@ export function Experiment3DAnimation({
         ))}
       </div>
     </div>
+    </>
   );
 
   if (fixedShell) {
@@ -1929,6 +1950,29 @@ function buildGraph3D(
       0x34d399,
     ),
   );
+}
+
+function buildNewtonCart(root: THREE.Group, force: number, mass: number, friction: number) {
+  addPlatform(root);
+  const acceleration = Math.sign(force) * Math.max(0, Math.abs(force) - friction) / Math.max(.1, mass);
+  const body = new THREE.Group();
+  body.name = "newton-cart";
+  body.userData.role = "newton-cart";
+  body.userData.acceleration = acceleration;
+  body.userData.extent = Math.max(10, Math.abs(acceleration) * 4.95);
+  body.position.y = -.78;
+  root.add(body);
+  body.add(box(.75, .4, .55, 0x38bdf8));
+  for (const x of [-.25,.25]) for (const z of [-.32,.32]) {
+    const wheel = cylinder(.12,.12,.1,0x172d40);
+    wheel.rotation.x = Math.PI / 2;
+    wheel.position.set(x,-.24,z);
+    wheel.userData.role = "newton-wheel";
+    body.add(wheel);
+  }
+  if (force) addArrow(body,new THREE.Vector3(0,.4,0),new THREE.Vector3(Math.sign(force)*.8,.4,0),0x34d399);
+  if (force && friction) addArrow(body,new THREE.Vector3(0,.7,0),new THREE.Vector3(-Math.sign(force)*.65,.7,0),0xf43f5e);
+  root.add(label("x = ½at² · a = Fnet / m",new THREE.Vector3(0,1.2,0),0x67e8f9));
 }
 
 function buildForce(
@@ -6720,6 +6764,13 @@ function updateObjects(
   values: [number, number, number],
 ) {
   root.traverse((object) => {
+    if (object.userData.role === "newton-cart") {
+      const position = .5 * object.userData.acceleration * Math.min(3,t) ** 2;
+      object.position.x = position / object.userData.extent * 2.6;
+      object.children.forEach(child => {
+        if (child.userData.role === "newton-wheel") child.rotation.z = -position / .12;
+      });
+    }
     if (object.userData.role === "path") {
       const path = object.userData.path as THREE.Vector3[];
       const offset =

@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Default lift-off and reduced normal/static friction",
+    "All display toggles, pause and release/landing",
+    "Applied-force vector responds to pointer dragging"
+  ],
+  "errors": []
+}

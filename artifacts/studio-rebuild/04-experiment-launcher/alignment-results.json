@@ -1,0 +1,44 @@
+[
+  {
+    "width": 1536,
+    "height": 1024,
+    "display": "block",
+    "clipRight": 910.2669666666667,
+    "equationLeft": 918.146
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "display": "block",
+    "clipRight": 839.2950282485874,
+    "equationLeft": 846.2084745762712
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "display": "block",
+    "clipRight": 746.7689,
+    "equationLeft": 753.1980000000001
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "display": "block",
+    "clipRight": 536.0397666666668,
+    "equationLeft": 541.242
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "display": "block",
+    "clipRight": 536.2551412429378,
+    "equationLeft": 542.1423728813559
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "display": "none",
+    "clipRight": 263.442,
+    "equationLeft": 273.324
+  }
+]

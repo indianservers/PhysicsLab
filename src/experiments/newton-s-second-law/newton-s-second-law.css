@@ -466,3 +466,70 @@
     width: 100%;
   }
 }
+
+/* Target: dark instrumentation dashboard, live metal-track apparatus. */
+#root .n2-lab {width:100%;--ink:#dcecff;--violet:#80baff;background:#061524;color:var(--ink);padding:14px;border-radius:12px;font-size:15px}
+#root .n2-lab h3,#root .n2-lab b,#root .n2-lab dt {color:#c5ddf5!important}
+#root .n2-lab p {color:#a3bed7!important;font-size:14px;line-height:1.6}
+#root .n2-lab .n2-equation b,#root .n2-lab .n2-fbd p {background:#0b2236!important;color:#c5ddf5!important}
+#root .n2-lab button,#root .n2-lab select {background:#0c2943;border-color:#315c7d;color:#cce8ff;font-size:14px;min-height:42px}
+#root .n2-lab button:hover {background:#164166;border-color:#5ab8ff}
+#root .n2-lab button:focus-visible,#root .n2-lab input:focus-visible {outline:2px solid #54ceff;outline-offset:3px}
+#root .n2-lab>header {background:transparent;border-bottom:1px solid #254c69;border-radius:0;padding:8px 4px 18px}
+#root .n2-lab>header span {font-size:13px;color:#62cfff}
+#root .n2-lab>header h2 {font-size:28px}
+#root .n2-layout {grid-template-columns:minmax(0,1fr) 270px;border:0;background:transparent;gap:14px;min-height:0;padding-top:14px}
+#root .n2-main {grid-column:1;grid-row:1;padding:0}
+#root .n2-fbd {grid-column:2;grid-row:1;display:block;border:1px solid #244761;border-radius:8px;background:#081c2e}
+#root .n2-controls {grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:1px solid #244761;border-radius:8px;background:#081c2e}
+#root .n2-controls h3 {grid-column:1/-1;font-size:16px;margin:0}
+#root .n2-range {margin:0;border:1px solid #23455f;border-radius:7px;padding:12px}
+#root .n2-range span {font-size:15px;flex-wrap:wrap;gap:8px}
+#root .n2-range small {font-size:13px;color:#91b0c9}
+#root .n2-range input {accent-color:#559aff;background:transparent;min-height:30px}
+#root .n2-presets,#root .n2-run {grid-column:span 2}
+#root .n2-speed,#root .n2-check {font-size:14px;margin:0;gap:8px}
+#root .n2-new {margin:0}
+#root .n2-run .play {background:#0b5792;color:#7ceaff}
+#root .n2-meters span {background:#091f33;border:1px solid #244761;font-size:14px}
+#root .n2-meters b {font-size:22px;color:#65d5f1}
+#root .n2-stage {min-height:0;background:#071422;border:1px solid #244761;border-radius:8px}
+.n2-apparatus {height:420px;position:relative}
+.n2-webgl {position:absolute;inset:0;touch-action:none}
+.n2-webgl canvas {display:block;width:100%;height:100%}
+#root .n2-camera {position:absolute;bottom:12px;right:12px;font-size:13px;z-index:4}
+.n2-scene-help {position:absolute;bottom:15px;left:14px;color:#afcce4;font-size:13px;pointer-events:none;max-width:65%}
+#root .n2-accel {top:12px;right:12px;font-size:14px;background:#061623dc;border:1px solid #30536c}
+#root .n2-accel b {color:#69ecaa}
+#root .n2-stage>strong {top:12px;left:12px;translate:none;max-width:60%;font-size:13px}
+#root .n2-ticker {display:none}
+#root .n2-equation {background:#0b2236;color:#b1cce4;font-size:14px;border-color:#244761}
+.n2-time-graph {margin-top:12px;padding:14px;border:1px solid #244761;border-radius:8px;background:#071b2c}
+.n2-time-graph svg {width:100%;display:block;margin-top:12px}
+.n2-time-graph text {fill:#acc9e4;font:14px system-ui}
+#root .n2-time-graph h3 {font-size:18px}
+#root .n2-time-graph p {font-size:12px}
+#root .n2-fbd h3 {font-size:18px}
+#root .n2-fbd dd {font-size:23px;color:#77c9ff}
+#root .n2-fbd dl div {padding:14px 0;border-color:#294960;font-size:15px}
+#root .n2-body {background:#0c263d;border-color:#294960;color:#7fe0ff}
+#root .n2-results,#root .n2-mission {background:#081c2e;border-color:#294960;color:#acc9e4}
+#root .n2-graph,#root .n2-table {background:#0b2236;border-color:#294960;color:#c5ddf5}
+#root .n2-table th,#root .n2-table td {font-size:14px;border-color:#294960}
+#root .n2-graph small {font-size:13px}
+@media(max-width:900px){
+  #root .n2-layout {grid-template-columns:1fr}
+  #root .n2-fbd {grid-column:1;grid-row:2}
+  #root .n2-controls {grid-row:3;grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  #root .n2-lab {padding:8px}
+  #root .n2-lab>header {flex-wrap:wrap}
+  #root .n2-layout {display:flex;flex-direction:column}
+  #root .n2-main {order:0}
+  #root .n2-controls {order:1;grid-template-columns:1fr}
+  #root .n2-fbd {order:2}
+  #root .n2-presets,#root .n2-run {grid-column:1}
+  .n2-apparatus {height:330px}
+  .n2-scene-help {font-size:12px;max-width:55%}
+}

@@ -36,13 +36,12 @@ export function sanitizeAcGeneratorInput(input: AcGeneratorInput): AcGeneratorIn
 export function computeAcGenerator(raw: AcGeneratorInput): AcGeneratorResult {
   const input = sanitizeAcGeneratorInput(raw);
   const amplitude = input.turns * input.magneticField * input.coilArea;
-  const signedAngle = input.angleRad * input.direction;
   const peakEmf = amplitude * input.angularSpeed;
-  const fluxLinkage = input.polarity * amplitude * Math.cos(signedAngle);
-  const emf = input.polarity * input.direction * peakEmf * Math.sin(signedAngle);
+  const fluxLinkage = input.polarity * amplitude * Math.cos(input.angleRad);
+  const emf = input.polarity * input.direction * peakEmf * Math.sin(input.angleRad);
   const current = emf / input.loadResistance;
-  const sine = Math.sin(signedAngle) * input.polarity * input.direction;
-  const cosine = Math.cos(signedAngle) * input.polarity;
+  const sine = Math.sin(input.angleRad) * input.polarity * input.direction;
+  const cosine = Math.cos(input.angleRad) * input.polarity;
   const phase = Math.abs(sine) < .035 ? (cosine >= 0 ? "zero rising" : "zero falling")
     : Math.abs(cosine) < .035 ? (sine > 0 ? "positive peak" : "negative peak")
     : sine > 0 ? "positive" : "negative";

@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+const ConceptRelationshipsPage = lazy(() => import('./ConceptRelationshipsPage').then(module => ({ default: module.ConceptRelationshipsPage })));
 import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { PhysicsIcon } from "../lib/icons";
@@ -50,7 +51,7 @@ function buildGraph() {
   return { nodes, edges };
 }
 
-export function KnowledgeGraphPage() {
+function ExperimentKnowledgeGraphPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const navigate = useNavigate();
   const rafRef = useRef<number>(0);
@@ -280,4 +281,9 @@ export function KnowledgeGraphPage() {
       </main>
     </div>
   );
+}
+
+export function KnowledgeGraphPage(){
+  const [params]=useSearchParams();
+  return params.get('view')==='experiments'?<ExperimentKnowledgeGraphPage/>:<Suspense fallback={<main aria-busy="true" style={{minHeight:'100vh',background:'#030f1e',color:'#c9dffa',padding:24}}>Loading concept relationships…</main>}><ConceptRelationshipsPage/></Suspense>;
 }

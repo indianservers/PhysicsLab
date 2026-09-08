@@ -1,0 +1,60 @@
+{
+  "checks": [
+    "Gate positions, measured intervals and bounded jitter at both speeds and all spacing boundaries",
+    "Balance mass, tare, negative net mass and power",
+    "Sample statistics, empty/single observation and independence of balance mass from timing"
+  ],
+  "sample": [
+    {
+      "trial": 1,
+      "gate1": 0.2011,
+      "gate2": 0.5236000000000001,
+      "trueGate1": 0.2,
+      "trueGate2": 0.5246753246753246,
+      "elapsed": 0.3225,
+      "flagDuration": 0.01948051948051948
+    },
+    {
+      "trial": 2,
+      "gate1": 0.1985,
+      "gate2": 0.5247,
+      "trueGate1": 0.2,
+      "trueGate2": 0.5246753246753246,
+      "elapsed": 0.3262,
+      "flagDuration": 0.01948051948051948
+    },
+    {
+      "trial": 3,
+      "gate1": 0.20120000000000002,
+      "gate2": 0.5241,
+      "trueGate1": 0.2,
+      "trueGate2": 0.5246753246753246,
+      "elapsed": 0.3229,
+      "flagDuration": 0.01948051948051948
+    },
+    {
+      "trial": 4,
+      "gate1": 0.1998,
+      "gate2": 0.523,
+      "trueGate1": 0.2,
+      "trueGate2": 0.5246753246753246,
+      "elapsed": 0.3232,
+      "flagDuration": 0.01948051948051948
+    },
+    {
+      "trial": 5,
+      "gate1": 0.1986,
+      "gate2": 0.5242,
+      "trueGate1": 0.2,
+      "trueGate2": 0.5246753246753246,
+      "elapsed": 0.3256,
+      "flagDuration": 0.01948051948051948
+    }
+  ],
+  "stats": {
+    "n": 5,
+    "mean": 0.32408000000000003,
+    "std": 0.0016932217811025157,
+    "last": 0.3256
+  }
+}

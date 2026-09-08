@@ -1,0 +1,24 @@
+{
+  "assets": [
+    {
+      "src": "/assets/spherometer/optical-bench.png",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "src": "/assets/vernier-caliper/brushed-steel.png",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "src": "/assets/micrometer/hammered-enamel.png",
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "frames": {
+    "medianMs": 13.900000000000091,
+    "p95Ms": 21,
+    "maxMs": 90.20000000000005
+  }
+}

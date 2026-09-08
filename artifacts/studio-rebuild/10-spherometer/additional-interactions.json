@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Scan retains descending direction across pause/resume",
+    "Notebook focus stays in dialog and Escape closes",
+    "Original lesson navigation preserved",
+    "Measurement studio entry reaches new page"
+  ]
+}

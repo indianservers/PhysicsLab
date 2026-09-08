@@ -3,7 +3,7 @@ import {
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
+  lazy, Suspense,
 } from "react";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
@@ -16,6 +16,7 @@ import {
 import "./newton-s-second-law.css";
 
 const durationS = 3;
+const NewtonTrackScene = lazy(() => import("./NewtonTrackScene"));
 const palette = [
   "#58a63c",
   "#7448b8",
@@ -151,6 +152,8 @@ export function NewtonsSecondLawLab({
     accelerationMps2: state.accelerationMps2,
     durationS,
   };
+  // Fit the complete trial, with a labelled physical scale (no clamped motion).
+  const trackExtentM = Math.max(10, Math.abs(state.accelerationMps2) * durationS ** 2 * .55);
   const update = (change: Partial<NewtonInput>) => {
     setInput((old) => ({ ...old, ...change }));
     setRunning(false);
@@ -231,12 +234,13 @@ export function NewtonsSecondLawLab({
   return (
     <section
       className="n2-lab"
+      data-ui-theme="dark"
       aria-label={`${experiment.title} interactive laboratory`}
     >
       <header data-ui-theme="dark">
         <div>
           <span>DYNAMICS TRACK · NEWTON II</span>
-          <h2>Net force writes the motion.</h2>
+          <h2>Force & Newton’s Laws · Second Law</h2>
           <p>
             Run matched trials from rest and keep every result on the graphs.
           </p>
@@ -398,38 +402,7 @@ export function NewtonsSecondLawLab({
             className="n2-stage"
             aria-label={`Cart mass ${f(input.massKg)} kilograms, net force ${f(state.netForceN)} newtons, acceleration ${f(state.accelerationMps2)} metres per second squared`}
           >
-            <div
-              className="n2-vector applied"
-              style={
-                {
-                  "--length": `${Math.min(32, Math.abs(input.appliedForceN) * 1.4 + 5)}%`,
-                } as CSSProperties
-              }
-            >
-              F applied {f(input.appliedForceN)} N
-            </div>
-            <div
-              className="n2-vector friction"
-              style={
-                {
-                  "--length": `${Math.min(24, input.frictionN * 1.5 + 4)}%`,
-                } as CSSProperties
-              }
-            >
-              friction {f(input.frictionN)} N
-            </div>
-            <img
-              src="/assets/experiments/newton-s-second-law/dynamics-track.png"
-              alt="Cart, dynamics track, pulley and hanging mass"
-            />
-            <div
-              className="n2-cart-label"
-              style={{
-                left: `${42 + Math.max(-17, Math.min(17, motion.positionM * 3))}%`,
-              }}
-            >
-              {f(input.massKg, 1)} kg
-            </div>
+            <Suspense fallback={<p>Loading dynamics track…</p>}><NewtonTrackScene position={motion.positionM} mass={input.massKg} force={input.appliedForceN} friction={input.frictionN} extent={trackExtentM} time={timeS}/></Suspense>
             <div className="n2-accel">
               Accelerometer <b>{f(state.accelerationMps2)} m/s²</b>
             </div>
@@ -443,7 +416,7 @@ export function NewtonsSecondLawLab({
                 <i
                   key={index}
                   style={{
-                    left: `${50 + Math.max(-46, Math.min(46, sample.positionM * 3))}%`,
+                    left: `${50 + sample.positionM / trackExtentM * 36.25}%`,
                   }}
                 />
               ))}
@@ -458,6 +431,16 @@ export function NewtonsSecondLawLab({
               a = F<sub>net</sub>/m = {f(state.accelerationMps2)} m/s²
             </b>
           </div>
+          <section className="n2-time-graph">
+            <h3>Acceleration vs. time</h3>
+            <svg viewBox="0 0 800 155" role="img" aria-label="Calculated acceleration versus time">
+              {[0,1,2,3].map(t=><g key={t}><path d={`M${60+t*230} 18V120`} stroke="#244359"/><text x={60+t*230} y="145">{t} s</text></g>)}
+              <path d="M60 20V120H750M60 70H750" fill="none" stroke="#7693aa"/>
+              <text x="4" y="23">+{Math.max(5,Math.abs(state.accelerationMps2)).toFixed(0)}</text><text x="30" y="75">0</text><text x="4" y="120">−{Math.max(5,Math.abs(state.accelerationMps2)).toFixed(0)}</text>
+              <path d={`M60 ${70-state.accelerationMps2/Math.max(5,Math.abs(state.accelerationMps2))*45}H${60+timeS*230}`} stroke="#60e4ef" strokeWidth="3"/>
+            </svg>
+            <p>Ideal constant net force: acceleration is constant (m/s²). Trial stops at 3 s; Play starts a new trial. No artificial measurement noise.</p>
+          </section>
         </main>
         <aside className="n2-fbd">
           <h3>Free-body data</h3>

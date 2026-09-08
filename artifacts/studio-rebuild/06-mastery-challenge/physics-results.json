@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "Default kinetic energy, emf, Ohm law, spot size and mg-to-kg heat capacity",
+    "Energy ledger across every individual bound, all 64 bound combinations, best-focus combinations and time scales; peak stays below 400 degrees",
+    "Position, regenerative braking and heating obey their differential equations",
+    "Zero launch energy and perfectly insulated thermal boundaries",
+    "Analytic temperature peak and equal-rate convolution limit",
+    "Defocus reduces capture and radial irradiance integrates to absorbed sample power",
+    "Advanced target is physically reachable by a modest speed increase; all plots use finite model values"
+  ],
+  "default": {
+    "t": 0,
+    "electricDrag": 0.3173553719008264,
+    "drag": 0.3973553719008264,
+    "velocityRate": 0.7947107438016529,
+    "powerRate": 1.5894214876033057,
+    "waist": 0.0006000000000000001,
+    "capture": 0.9961340798605272,
+    "opticalEfficiency": 0.5037948108894615,
+    "heatCapacity": 0.009,
+    "heatConductance": 0.0004,
+    "coolingRate": 0.04444444444444445,
+    "initialEnergy": 1.2100000000000002,
+    "initialElectricalPower": 1.536,
+    "electricalFraction": 0.7986688851913477,
+    "velocity": 2.2,
+    "position": 0,
+    "voltage": 4.8,
+    "current": 0.32,
+    "electricalPower": 1.536,
+    "absorbedPower": 0.7738288295262129,
+    "remainingEnergy": 1.2100000000000002,
+    "electricalEnergy": 0,
+    "mechanicalLoss": 0,
+    "absorbedEnergy": 0,
+    "storedHeat": 0,
+    "heatLoss": 0,
+    "opticalLoss": 0,
+    "temperature": 20
+  },
+  "peak": {
+    "time": 2.3151705915624308,
+    "temperature": 68.80630692755275
+  },
+  "reachable": {
+    "time": 2.3151705915624308,
+    "temperature": 78.0835388228727
+  }
+}

@@ -1,0 +1,15 @@
+import {build} from 'esbuild';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+const b=await build({entryPoints:['src/lib/momentumCollision.ts'],bundle:true,write:false,format:'esm',platform:'node'}),m=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));
+const near=(a,b,t=1e-9)=>assert(Math.abs(a-b)<t,`${a} != ${b}`),checks=[];
+const d=m.collisionTrial(m.MOMENTUM_DEFAULTS),f=m.collisionState(d,1);near(d.contactTime,.1);near(d.duration,.18);near(f.v1,.06);near(f.v2,.54);near(f.kineticChange,-.0324);near(f.impulse1,-.54);near(f.compression,.0108);near(m.collisionState(d,10).compression,f.compression);checks.push('Correct default final velocities, contact duration, impulses and energy');
+for(const ratio of [.5,1,2,5])for(const u1 of [-1,0,.01,.6,1])for(const u2 of [-1,0,.6,1])for(const e of [0,.2,.8,1]){
+ const tr=m.collisionTrial({ratio,u1,u2,e}),p=u1+ratio*u2;
+ for(let k=0;k<=100;k++){const t=Number.isFinite(tr.contactTime)?tr.contactTime+tr.duration*k/100:k/100,s=m.collisionState(tr,t);near(s.momentum,p);near(s.force1+s.force2,0);assert(s.compression<=.06+1e-9);assert(s.x2-s.x1>=m.CART_BODY_LENGTH-1e-9);assert(Object.values(s).filter(v=>typeof v==='number').every(Number.isFinite));}
+ if(tr.closing>0){const s=m.collisionState(tr,tr.endTime+1);near(s.v1,tr.result.v1);near(s.v2,tr.result.v2);near(s.v2-s.v1,e*(u1-u2));near(-s.kineticChange,.5*ratio/(1+ratio)*(1-e*e)*(u1-u2)**2);const h=1e-6,t=tr.contactTime+tr.duration*.37,a=m.collisionState(tr,t-h),c=m.collisionState(tr,t),z=m.collisionState(tr,t+h);near((z.x1-a.x1)/(2*h),c.v1,1e-6);near((z.x2-a.x2)/(2*h),c.v2,1e-6);near((z.v1-a.v1)/(2*h),c.force1,1e-6);near((z.v2-a.v2)/(2*h),c.force2/ratio,1e-6);
+ let j=0;const n=1000,dt=tr.duration/n;for(let k=0;k<n;k++)j+=m.collisionState(tr,tr.contactTime+(k+.5)*dt).force2*dt;near(j,tr.impulse,3e-6);
+ for(const edge of [tr.contactTime,tr.endTime]){const a=m.collisionState(tr,edge-1e-8),z=m.collisionState(tr,edge+1e-8);near(a.x1,z.x1,1e-6);near(a.v1,z.v1,1e-6);}
+ }else{const s=m.collisionState(tr,1);near(s.v1,u1);near(s.v2,u2);near(s.force1,0);near(s.kineticChange,0);assert.equal(s.phase,'No collision');}
+}
+checks.push('All mass, velocity and restitution limits conserve momentum; force is equal/opposite, impulse integral agrees, trajectories differentiate to velocities/forces, contact continuous, bumpers never interpenetrate');
+const late=m.collisionTrial({ratio:1,u1:.01,u2:0,e:1});assert(late.contactTime>1);assert.equal(m.collisionState(late,1).phase,'Approach');near(m.collisionState(late,1).impulse1,0);const same=m.collisionTrial({ratio:5,u1:-1,u2:-1,e:0});near(m.collisionState(same,1).x2-m.collisionState(same,1).x1,.3);checks.push('Late contact and equal negative velocities do not fabricate a collision');
+await fs.mkdir('artifacts/studio-rebuild/18-momentum-collisions',{recursive:true});await fs.writeFile('artifacts/studio-rebuild/18-momentum-collisions/physics-results.json',JSON.stringify({checks,defaultTrial:d,defaultFinal:f},null,2));console.log(checks);

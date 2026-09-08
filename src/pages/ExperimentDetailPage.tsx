@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
 import { ProjectileExperiment } from "../components/ProjectileExperiment";
 import { LearningPanel } from "../components/LearningPanel";
@@ -31,28 +30,37 @@ import { downloadMarkdownReport, generateExperimentMarkdownReport } from "../lib
 import { evaluateFlagshipLab, getFlagshipDefaultValues, getFlagshipLabModel } from "../lib/flagshipLabModels";
 import { saveLocalArtifact } from "../lib/offlineDB";
 import { getDedicatedExperimentLab } from "../experiments/shared/experimentRegistry";
-import { experimentModes, ExperimentMode, learningLevelForMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
+import { liveLessonDefaults } from "../lib/liveLessonDefaults";
+import "../components/live-lesson-workbench.css";
+import { ExperimentMode, learningLevelForMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
-import { LessonTheoryExamples } from "../components/LessonTheoryExamples";
-import { LessonUXStudio } from "../components/LessonUXStudio";
-import { LessonInvestigationConsole } from "../components/LessonInvestigationConsole";
 import "../components/lesson-premium.css";
 import "../components/lesson-panel-contrast.css";
+import "../components/lesson-compact-shell.css";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
+
+const lessonPanes = [
+  { id: "guide" as const, label: "Guide", icon: "book" as const },
+  { id: "simulate" as const, label: "Simulate", icon: "calculator" as const },
+  { id: "three" as const, label: "3D", icon: "orbit" as const },
+  { id: "quiz" as const, label: "Quiz", icon: "check" as const },
+  { id: "coach" as const, label: "Coach", icon: "teacher" as const },
+];
 
 export function ExperimentDetailPage() {
   const { id } = useParams();
   const location = useLocation();
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
   const DedicatedExperimentLab = getDedicatedExperimentLab(experiment.id);
-  const validationMetadata = getExperimentValidationMetadata(experiment.id);
   const assignment = getAssignmentFromSearch(location.search);
-  const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : "simulate");
+  const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && has3DAnimation(experiment.id) ? "three" : "simulate");
+  useEffect(() => {
+    setActivePane(location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && has3DAnimation(experiment.id) ? "three" : "simulate");
+  }, [experiment.id, location.hash]);
   const [learningLevel, setLearningLevel] = useState<LearningLevel>(() => defaultLearningLevelForClass(experiment.classLevel));
   const [experimentMode, setExperimentMode] = useState<ExperimentMode>(() => modeFromLearningLevel(defaultLearningLevelForClass(experiment.classLevel)));
-  const [classroomMode, setClassroomMode] = useState(false);
   useEffect(() => {
     if (!location.hash) return undefined;
     const targetId = location.hash.slice(1);
@@ -69,108 +77,57 @@ export function ExperimentDetailPage() {
     setLearningLevel(nextLevel);
     setExperimentMode(modeFromLearningLevel(nextLevel));
   }, [experiment.id, experiment.classLevel]);
-  useEffect(() => {
-    if (classroomMode) setExperimentMode("Teacher");
-  }, [classroomMode]);
   const modeLearningLevel = learningLevelForMode(experimentMode, learningLevel);
 
   return (
-    <div data-premium-domain={experiment.category} data-premium-lesson={experiment.id} className={`${classroomMode ? "experiment-detail-page classroom-mode min-h-screen" : "experiment-detail-page min-h-screen"} experiment-detail-${experiment.id}`}>
+    <div data-premium-domain={experiment.category} data-premium-lesson={experiment.id} className={`experiment-detail-page min-h-screen experiment-detail-${experiment.id}`}>
       <ReadingProgress />
       <FocusMode />
-      <Toolbar />
-      <div id="content" className="mx-auto max-w-[1600px] px-3 py-3">
-        <div className="page-hero mesh-bg mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex min-w-0 items-start gap-3">
-            <span className="card-icon mt-1 h-12 w-12">
-              <PhysicsIcon name={iconForExperiment(experiment)} className="h-6 w-6" />
-            </span>
-            <div>
-            <Link to="/experiments" className="text-sm font-bold text-cyan-500">Experiments</Link>
-            <h1 className="text-3xl font-black text-gradient">{experiment.title}</h1>
-            {experiment.curriculumTags && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {experiment.curriculumTags.classes.map((grade) => <span key={grade} className="status-chip status-chip-cyan">Class {grade}</span>)}
-                {experiment.curriculumTags.domains.map((domain) => <span key={domain} className="status-chip">{domain}</span>)}
-                <span className="status-chip">{experiment.difficulty}</span>
-                <span className="status-chip status-chip-cyan">{displayModelClassLabel(experiment, validationMetadata?.status)}</span>
-                <span className="status-chip status-chip-amber">{experiment.evidenceType}</span>
-                <span className="status-chip">{experiment.maturityLevel}</span>
-                <span className={validationMetadata?.status === "validated" ? "status-chip status-chip-cyan" : "status-chip status-chip-amber"}>
-                  {validationMetadata?.status ?? "needs-benchmark"}
-                </span>
-                <span className="status-chip">{experiment.trustLevel}% trust</span>
-              </div>
-            )}
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <label className="learning-level-selector">
-              <span>Learning Level</span>
-              <select value={learningLevel} onChange={(event) => {
-                const nextLevel = event.target.value as LearningLevel;
-                setLearningLevel(nextLevel);
-                setExperimentMode(modeFromLearningLevel(nextLevel));
-              }}>
-                {learningLevels.map((level) => <option key={level} value={level}>{level}</option>)}
-              </select>
-            </label>
-            <div className="experiment-mode-toggle no-print" role="group" aria-label="Experiment learning mode">
-              {experimentModes.map((mode) => (
+      <div id="content" className="lesson-page-content mx-auto max-w-[1600px] px-3 py-3">
+        <header className="lesson-command-bar no-print">
+          <nav className="lesson-breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/" className="lesson-home-link"><PhysicsIcon name="home" className="h-4 w-4" />Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/experiments">Experiments</Link>
+            <span aria-hidden="true">/</span>
+            <strong title={experiment.title}>{experiment.title}</strong>
+          </nav>
+          <div className="lesson-command-tabs" role="tablist" aria-label="Lesson sections">
+            {lessonPanes.map((pane) => {
+              const disabled = pane.id === "three" && !has3DAnimation(experiment.id);
+              return (
                 <button
-                  key={mode}
+                  key={pane.id}
+                  role="tab"
+                  aria-selected={activePane === pane.id}
+                  className={activePane === pane.id ? "experiment-tab experiment-tab-active" : "experiment-tab"}
                   type="button"
-                  className={experimentMode === mode ? "experiment-mode-button experiment-mode-button-active" : "experiment-mode-button"}
-                  onClick={() => {
-                    setExperimentMode(mode);
-                    setClassroomMode(mode === "Teacher");
-                  }}
+                  disabled={disabled}
+                  onClick={() => setActivePane(pane.id)}
                 >
-                  {mode}
+                  <PhysicsIcon name={pane.icon} className="h-4 w-4" />
+                  {pane.label}
                 </button>
-              ))}
-            </div>
-            <button className={classroomMode ? "hero-btn inline-flex items-center gap-2 no-print" : "hero-btn-secondary inline-flex items-center gap-2 no-print"} type="button" onClick={() => setClassroomMode((value) => !value)}>
-              <PhysicsIcon name="teacher" className="h-4 w-4" />Classroom Mode
-            </button>
-            <button
-              className="hero-btn-secondary inline-flex items-center gap-2 no-print"
-              onClick={() => window.print()}
-              title="Print lab report"
-            >
-              <PhysicsIcon name="book" className="h-4 w-4" />Lab Report
-            </button>
-            <Link to="/trust" className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="check" className="h-4 w-4" />Trust guide</Link>
-            <Link to={`/lab?experiment=${encodeURIComponent(experiment.id)}`} className="hero-btn-secondary inline-flex items-center gap-2"><PhysicsIcon name="flask" className="h-4 w-4" />Open full lab workspace</Link>
+              );
+            })}
           </div>
-        </div>
+          <label className="learning-level-selector lesson-level-compact">
+            <span>Learning level</span>
+            <select value={learningLevel} onChange={(event) => {
+              const nextLevel = event.target.value as LearningLevel;
+              setLearningLevel(nextLevel);
+              setExperimentMode(modeFromLearningLevel(nextLevel));
+            }}>
+              {learningLevels.map((level) => <option key={level} value={level}>{level}</option>)}
+            </select>
+          </label>
+        </header>
         {assignment && <AssignmentBanner assignment={assignment} />}
         <div className="experiment-tab-shell">
-          <div className="experiment-tab-strip" aria-label="Experiment panes">
-            {[
-              { id: "guide" as const, label: "Guide", icon: "book" as const },
-              { id: "simulate" as const, label: "Simulate", icon: "calculator" as const },
-              { id: "three" as const, label: "3D", icon: "orbit" as const, disabled: !has3DAnimation(experiment.id) },
-              { id: "quiz" as const, label: "Quiz", icon: "check" as const },
-              { id: "coach" as const, label: "Coach", icon: "teacher" as const },
-            ].map((pane) => (
-              <button
-                key={pane.id}
-                className={activePane === pane.id ? "experiment-tab experiment-tab-active" : "experiment-tab"}
-                type="button"
-                disabled={pane.disabled}
-                onClick={() => setActivePane(pane.id)}
-              >
-                <PhysicsIcon name={pane.icon} className="h-4 w-4" />
-                {pane.label}
-              </button>
-            ))}
-          </div>
           <div className="experiment-tab-pane" key={`${experiment.id}-${activePane}`}>
             {activePane === "guide" && <ExperimentGuidePane experiment={experiment} learningLevel={modeLearningLevel} />}
             {activePane === "simulate" && (
               <>
-                <LessonUXStudio experiment={experiment} />
                 <div id={`live-lab-${experiment.id}`}>
                   {DedicatedExperimentLab ? (
                     <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} />
@@ -180,11 +137,9 @@ export function ExperimentDetailPage() {
                     <GenericExperiment experiment={experiment} learningLevel={modeLearningLevel} assignment={assignment} />
                   )}
                 </div>
-                <LessonInvestigationConsole experiment={experiment} />
-                <LessonTheoryExamples experiment={experiment} />
               </>
             )}
-            {activePane === "three" && <ExperimentThreePane experiment={experiment} />}
+            {activePane === "three" && (["chaotic-coupled-oscillators", "atomic-interactions", "newton-s-second-law"].includes(experiment.id) && DedicatedExperimentLab ? <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} /> : <ExperimentThreePane experiment={experiment} assignment={assignment} />)}
             {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={modeLearningLevel} />}
             {activePane === "coach" && <ExperimentCoachPane experiment={experiment} learningLevel={modeLearningLevel} />}
           </div>
@@ -197,11 +152,8 @@ export function ExperimentDetailPage() {
 function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof experiments[number]; learningLevel: LearningLevel }) {
   return (
     <div className="experiment-bento-pane experiment-guide-pane">
-      <LessonUXStudio experiment={experiment} />
-      <LessonTheoryExamples experiment={experiment} />
       <ConceptExplainer experiment={experiment} level={learningLevel} />
-      <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
-      <GuidePanel guide={guideForExperiment(experiment)} compact />
+      <GuidePanel guide={guideForExperiment(experiment)} compact defaultOpen />
       <CoreLearningToolkit experiment={experiment} />
       <LearningPanel experiment={experiment} />
       <LabReferenceStack experiment={experiment} values={labValuesFor(experiment.id)} />
@@ -209,13 +161,30 @@ function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof
   );
 }
 
-function ExperimentThreePane({ experiment }: { experiment: typeof experiments[number] }) {
-  const values = labValuesFor(experiment.id);
+function ExperimentThreePane({ experiment, assignment }: { experiment: typeof experiments[number]; assignment?: ActiveAssignment }) {
+  const [values, setValues] = useState<[number, number, number]>(() => readLabSnapshotFromSearch(experiment.id)?.values ?? labValuesFor(experiment.id));
+  const [resetKey, setResetKey] = useState(0);
   const result = calculateLab(experiment.id, values[0], values[1], values[2]);
   return (
-    <div className="experiment-bento-pane">
+    <div className="live-lesson-workbench">
+      <aside className="live-lesson-controls panel p-4" aria-label={`${experiment.title} controls`}>
+        <h2>Experiment controls</h2>
+        <p>{result.description}</p>
+        {result.controls.map((control, index) => <label key={control.label}>
+          <span>{control.label}</span>
+          <input disabled={Boolean(assignment?.lockVariables)} type="number" aria-label={`${control.label} value`} min={control.min} max={control.max} step={control.step} value={values[index]} onChange={event => {
+            if (event.target.value === "") return;
+            const next = Math.max(control.min, Math.min(control.max, Number(event.target.value)));
+            if (Number.isFinite(next)) setValues(previous => previous.map((value, valueIndex) => valueIndex === index ? next : value) as [number, number, number]);
+          }} />
+          <input disabled={Boolean(assignment?.lockVariables)} type="range" aria-label={control.label} min={control.min} max={control.max} step={control.step} value={values[index]} onChange={event => setValues(previous => previous.map((value, valueIndex) => valueIndex === index ? Number(event.target.value) : value) as [number, number, number])} />
+        </label>)}
+        <button className="hero-btn" onClick={() => { if (!assignment?.lockVariables) setValues(labValuesFor(experiment.id)); setResetKey(value => value + 1); }}>Reset experiment</button>
+        <p className="live-lesson-formula">{result.formula}</p>
+        <dl aria-label="Live measurements">{result.outputs.map(output => <div key={output.label}><dt>{output.label}</dt><dd>{output.value}</dd></div>)}</dl>
+      </aside>
       {has3DAnimation(experiment.id) ? (
-        <Experiment3DAnimation experiment={experiment} values={values} outputs={result.outputs} fixedShell />
+        <Experiment3DAnimation key={resetKey} experiment={experiment} values={values} outputs={result.outputs} fixedShell />
       ) : (
         <div className="panel p-5">This experiment uses a 2D guided visualization.</div>
       )}

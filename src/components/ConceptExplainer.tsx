@@ -2,31 +2,41 @@ import { ExperimentDefinition } from "../types";
 import { commonMistakesForExperiment } from "../lib/commonMistakes";
 import { LearningLevel, learningLevelProfiles } from "../lib/learningLevels";
 import { PhysicsIcon } from "../lib/icons";
+import { lessonTeachingContent } from "../lib/lessonTeachingContent";
+import { lessonUiUpgrades } from "../lib/lessonUiUpgrades";
 
 export function ConceptExplainer({ experiment, level, controls = [] }: { experiment: ExperimentDefinition; level: LearningLevel; controls?: Array<{ label: string; unit?: string }> }) {
   const profile = learningLevelProfiles[level];
   const formula = experiment.formulae[0];
   const variables = formula?.variables ?? [];
   const mistakes = commonMistakesForExperiment(experiment);
-  const realWorld = realWorldExample(experiment);
+  const teaching = lessonTeachingContent[experiment.id];
+  const lessonUi = lessonUiUpgrades[experiment.id];
   const sliderCue = controls[0]?.label ?? variables[0]?.name ?? "the first variable";
+  const formulaSummary = formula
+    ? `${formula.name}: ${formula.expression}. ${variables.length ? `Here ${variables.map((variable) => `${variable.symbol} means ${variable.name}${variable.unit ? ` in ${variable.unit}` : ""}`).join(", ")}.` : "Use the displayed measurements to test this relationship."}`
+    : "This lesson is evidence-led: compare the visible change with the measured result and state the pattern in words.";
+  const whyItHappens = teaching?.theory ?? experiment.theory;
+  const realWorld = teaching ? `${teaching.application.title}: ${teaching.application.explanation}` : realWorldExample(experiment);
+  const investigationCue = teaching?.watchFor ?? `${experiment.procedure[0]} Keep the other controls fixed so the cause remains clear.`;
 
   return (
     <section className="phase4-panel">
       <div className="phase4-panel-head">
         <div>
-          <p className="ui-label">Concept explainer</p>
-          <h2>Learn the idea before the math</h2>
+          <p className="ui-label">{experiment.title} · concept guide</p>
+          <h2>{teaching?.title ?? "Understand the physical relationship"}</h2>
+          <p className="phase4-summary">Start with the cause, watch the response, then connect the measurement to the equation.</p>
         </div>
         <span className="status-chip status-chip-cyan">{profile.audience}</span>
       </div>
       <div className="phase4-grid">
-        <ExplainerCard title="What is happening?" icon="eye" body={experiment.aim} />
-        <ExplainerCard title="Why does it happen?" icon="compass" body={explainWhy(experiment, profile.explanationDepth)} />
-        <ExplainerCard title="Formula involved" icon="calculator" body={formula ? `${formula.name}: ${formula.expression}` : "This experiment is mainly visual; use observations to infer the rule."} />
+        <ExplainerCard title="Question this lesson answers" icon="eye" body={experiment.aim} />
+        <ExplainerCard title="Why it happens" icon="compass" body={whyItHappens} />
+        <ExplainerCard title="Equation and quantities" icon="calculator" body={formulaSummary} />
         <ExplainerCard title="Real-world example" icon="field" body={realWorld} />
         <ExplainerCard title="Common mistake" icon="spark" body={mistakes[0] ?? "Changing too many variables at once hides the cause."} />
-        <ExplainerCard title="Try changing this" icon="ruler" body={`Change ${sliderCue} slowly, keep other variables fixed, and predict the graph trend before reading values.`} />
+        <ExplainerCard title="What to change and watch" icon="ruler" body={`${lessonUi?.mode ? `${lessonUi.mode}: ` : ""}Change ${sliderCue} slowly. ${investigationCue}`} />
       </div>
       {variables.length > 0 && (
         <div className="phase4-variable-table">
@@ -58,12 +68,6 @@ function ExplainerCard({ title, body, icon }: { title: string; body: string; ico
       <p>{body}</p>
     </article>
   );
-}
-
-function explainWhy(experiment: ExperimentDefinition, depth: number) {
-  if (depth <= 1) return `${experiment.title} shows how one change causes another physical change.`;
-  if (depth <= 3) return experiment.theory;
-  return `${experiment.theory} The key is to connect the measurable variable, its SI unit, the formula assumptions, and the graph shape into one causal model.`;
 }
 
 function realWorldExample(experiment: ExperimentDefinition) {

@@ -1,0 +1,48 @@
+{
+  "checks": [
+    "Playback elapsed time, pause, all speed controls and reset",
+    "Control limits, numeric drafts, all velocity programs, reverse selected interval and window clamping",
+    "Graph keyboard, pointer selection and Shift first-point selection",
+    "Every mode, predictions, experiment checkpoints, settings tangent and Help",
+    "All three challenges reject wrong states and accept correct states",
+    "Fullscreen with usable portal dialog, and exit"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+    "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+  ],
+  "failed": []
+}

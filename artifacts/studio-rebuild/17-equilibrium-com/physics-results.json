@@ -1,0 +1,119 @@
+{
+  "checks": [
+    "Correct default right-biased mass, distance, square margin and zero equilibrium torque",
+    "Weighted COM, mass conservation, gravity projection, reaction forces and all control boundaries",
+    "Exact marginal contact and signed transition on either side",
+    "True linear COM locus for constant total transferred ballast"
+  ],
+  "default": {
+    "input": {
+      "distribution": 0.7,
+      "width": 4,
+      "tilt": 0
+    },
+    "bodies": [
+      {
+        "id": "plate",
+        "mass": 0.18218161060899615,
+        "x": -0.00836547052355264,
+        "y": -0.14086544250361066,
+        "z": 0.175,
+        "size": [
+          0,
+          0,
+          0.35
+        ],
+        "color": "#727e88"
+      },
+      {
+        "id": "left",
+        "mass": 0.08700000000000001,
+        "x": -4,
+        "y": 1,
+        "z": 1.55,
+        "size": [
+          4,
+          3,
+          2.4
+        ],
+        "color": "#34424b"
+      },
+      {
+        "id": "gold",
+        "mass": 0.07,
+        "x": -4,
+        "y": 1,
+        "z": 3.4,
+        "size": [
+          2,
+          1.7,
+          1.3
+        ],
+        "color": "#bda475"
+      },
+      {
+        "id": "right",
+        "mass": 0.183,
+        "x": 4,
+        "y": 1.5,
+        "z": 1.6,
+        "size": [
+          2.5,
+          2.5,
+          2.5
+        ],
+        "color": "#9facb8"
+      },
+      {
+        "id": "bronze",
+        "mass": 0.015,
+        "x": 5,
+        "y": -2.5,
+        "z": 0.95,
+        "size": [
+          1.2,
+          1.2,
+          1.2
+        ],
+        "color": "#856452"
+      }
+    ],
+    "mass": 0.5371816106089962,
+    "com": {
+      "x": 0.3303835455300017,
+      "y": 0.6856841327609191,
+      "z": 1.3250300602242062
+    },
+    "worldCom": {
+      "x": 0.3303835455300017,
+      "y": 0.6856841327609191,
+      "z": 1.3250300602242062
+    },
+    "projection": {
+      "x": 0.3303835455300017,
+      "y": 0.6856841327609191,
+      "z": 0
+    },
+    "contact": {
+      "x": 0.3303835455300017,
+      "y": 0.6856841327609191,
+      "z": 0
+    },
+    "margin": 1.314315867239081,
+    "distance": 0.761128121328511,
+    "netTorque": 0,
+    "torqueX": 0,
+    "torqueY": 0,
+    "status": "Stable",
+    "normalForce": 5.269751600074253,
+    "frictionRequired": 0,
+    "minimumFriction": 0
+  },
+  "plate": {
+    "area": 192.78477313121286,
+    "mass": 0.18218161060899615,
+    "x": -0.00836547052355264,
+    "y": -0.14086544250361066,
+    "z": 0.175
+  }
+}

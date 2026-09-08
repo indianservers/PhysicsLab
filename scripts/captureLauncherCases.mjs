@@ -1,0 +1,6 @@
+import {chromium} from 'playwright-core';import fs from 'node:fs/promises';
+const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+try{const p=await b.newPage({viewport:{width:1536,height:1024}});await p.goto('http://127.0.0.1:5371/experiments');await p.locator('.el-page').waitFor();
+for(const [name,studio,kit,parameters] of [['tir','optics','standard',{ 'Incident angle':'0'}],['white-light','optics','white-light',{}],['high-incidence','optics','standard',{'Incident angle':'75','Index at 532 nm':'1.3'}],['pendulum','mechanics','standard',{'Pendulum length':'2'}],['circuit','circuits','standard',{'Voltage':'-12'}],['heated-water','thermal','standard',{'Heater power':'500','Mass':'0.1'}],['sound','waves','standard',{'Sound frequency':'1000'}]]){
+await p.getByLabel('Studio Type',{exact:true}).selectOption(studio);await p.getByRole('button',{name:'Reset',exact:true}).click();await p.getByLabel('Equipment Set',{exact:true}).selectOption(kit);await p.locator('.el-tabs').getByRole('button',{name:'Setup',exact:true}).click();for(const [label,value] of Object.entries(parameters))await p.getByLabel(label,{exact:true}).fill(value);await p.waitForTimeout(700);await p.screenshot({path:`artifacts/studio-rebuild/04-experiment-launcher/case-${name}.png`});}
+}finally{await b.close()}

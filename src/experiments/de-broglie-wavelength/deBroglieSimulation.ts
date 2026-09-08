@@ -11,6 +11,12 @@ export const particles = {
 } as const;
 export type ParticleKey = keyof typeof particles;
 
+export function diffractionRadius(wavelengthPm: number, spacingNm: number, distanceM: number, order = 1) {
+  const sine = order * wavelengthPm / (2000 * spacingNm);
+  if (!Number.isFinite(sine) || sine < 0 || sine >= Math.SQRT1_2 || distanceM <= 0) return null;
+  return distanceM * Math.tan(2 * Math.asin(sine));
+}
+
 export function matterWave(
   particle: ParticleKey,
   speedMps: number,

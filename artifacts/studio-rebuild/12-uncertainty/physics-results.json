@@ -1,0 +1,78 @@
+{
+  "checks": [
+    "Mean, n−1 SD, SEM and calibration RSS across all counts/precision/models",
+    "Histogram conserves observations, correction removes signed systematic offset",
+    "Empty/single observations and report formatting/invalid inputs"
+  ],
+  "readings": [
+    {
+      "trial": 1,
+      "raw": 66.4,
+      "value": 66.4,
+      "bias": 0
+    },
+    {
+      "trial": 2,
+      "raw": 65.5,
+      "value": 65.5,
+      "bias": 0
+    },
+    {
+      "trial": 3,
+      "raw": 66.2,
+      "value": 66.2,
+      "bias": 0
+    },
+    {
+      "trial": 4,
+      "raw": 66.9,
+      "value": 66.9,
+      "bias": 0
+    },
+    {
+      "trial": 5,
+      "raw": 65.8,
+      "value": 65.8,
+      "bias": 0
+    },
+    {
+      "trial": 6,
+      "raw": 66.2,
+      "value": 66.2,
+      "bias": 0
+    },
+    {
+      "trial": 7,
+      "raw": 66.1,
+      "value": 66.1,
+      "bias": 0
+    },
+    {
+      "trial": 8,
+      "raw": 66.9,
+      "value": 66.9,
+      "bias": 0
+    },
+    {
+      "trial": 9,
+      "raw": 67.4,
+      "value": 67.4,
+      "bias": 0
+    },
+    {
+      "trial": 10,
+      "raw": 66.8,
+      "value": 66.8,
+      "bias": 0
+    }
+  ],
+  "stats": {
+    "n": 10,
+    "mean": 66.41999999999999,
+    "std": 0.5769652406245038,
+    "sem": 0.18245242911205417,
+    "uB": 0.2886751345948129,
+    "combined": 0.3414999593297523,
+    "percent": 0.03012048192768345
+  }
+}

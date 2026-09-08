@@ -122,6 +122,16 @@
   border: 1px solid #cec5b9;
   border-radius: 10px;
 }
+.db-live-apparatus, .db-three-mount { position: absolute; inset: 0; }
+.db-three-mount canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.db-stage { width: 100%; min-width: 0; aspect-ratio: auto; height: 420px; }
+.db-layout, .db-center { min-width: 0; max-width: 100%; }
+.db-head button { color: #17212a; }
+.db-detector { display: block; width: min(100%, 170px); margin: 8px auto; }
+@media (max-width: 760px) { .db-stage { height: 320px; } .db-head p { overflow-wrap: anywhere; } }
+.db-scene-help { position: absolute; bottom: 6px; left: 8px; right: 8px; color: #d2edff; font-size: 11px; pointer-events: none; background: #06131dcc; padding: 6px; border-radius: 5px; }
+.db-lab .db-reset-view { position: absolute; top: 8px; right: 8px; font-size: 11px; padding: 5px 8px; }
+.db-lab button:disabled { opacity: .45; cursor: not-allowed; }
 .db-stage > img {
   position: absolute;
   inset: 4%;

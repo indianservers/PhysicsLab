@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Prediction and all three signed-acceleration challenges",
+    "All slider endpoints and numeric upper clamps",
+    "Vector labels, playback speed and all zoom options",
+    "Refresh, parent entry and both navigation selectors"
+  ],
+  "errors": [],
+  "failed": []
+}

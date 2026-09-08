@@ -1,0 +1,60 @@
+{
+  "checks": [
+    "Independent default periods and SI/day/mF conversions",
+    "All model reciprocal identities, phase quadrants and every control boundary",
+    "Pendulum, Kepler and LC scaling laws",
+    "Zero-amplitude stationary states and reversed capacitor polarity",
+    "Travelling-wave speed, wavelength and graph point agree",
+    "LC energy conserved across signed voltage and phase"
+  ],
+  "defaults": [
+    {
+      "kind": "pendulum",
+      "period": 2.0060666807106475,
+      "frequency": 0.4984879164862809,
+      "angular": 3.1320919526731648,
+      "amplitude": 0.2,
+      "wavelength": 1,
+      "timeUnit": "s",
+      "timeScale": 1,
+      "playback": 1,
+      "axis": "Arc displacement (m)"
+    },
+    {
+      "kind": "orbit",
+      "period": 2357389.940933382,
+      "frequency": 4.2419795835900666e-7,
+      "angular": 0.0000026653143792968887,
+      "amplitude": 384.4,
+      "wavelength": 1,
+      "timeUnit": "d",
+      "timeScale": 86400,
+      "playback": 345600,
+      "axis": "Position (Mm)"
+    },
+    {
+      "kind": "wave",
+      "period": 0.5,
+      "frequency": 2,
+      "angular": 12.566370614359172,
+      "amplitude": 0.8,
+      "wavelength": 1,
+      "timeUnit": "s",
+      "timeScale": 1,
+      "playback": 1,
+      "axis": "Displacement (m)"
+    },
+    {
+      "kind": "lc",
+      "period": 0.6283185307179586,
+      "frequency": 1.5915494309189535,
+      "angular": 10,
+      "amplitude": 5,
+      "wavelength": 1,
+      "timeUnit": "s",
+      "timeScale": 1,
+      "playback": 1,
+      "axis": "Voltage (V)"
+    }
+  ]
+}

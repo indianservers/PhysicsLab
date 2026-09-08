@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "default impulse and velocities",
+    "all limits and numeric clamp",
+    "prediction and experiment modes",
+    "reset and six responsive captures"
+  ],
+  "errors": [],
+  "failed": []
+}

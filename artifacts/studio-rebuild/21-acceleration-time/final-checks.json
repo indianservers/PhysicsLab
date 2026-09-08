@@ -1,0 +1,142 @@
+{
+  "routes": [
+    {
+      "text": "Physics Studio",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Home",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Motion & Kinematics",
+      "href": "/concept-studio/motion-kinematics",
+      "title": "MOTION & KINEMATICS"
+    },
+    {
+      "text": "Forces & Newton’s Laws",
+      "href": "/mechanics/free-body-diagrams",
+      "title": "Free-Body Diagrams"
+    },
+    {
+      "text": "Energy & Work",
+      "href": "/concept-studio/work-energy-power",
+      "title": "WORK, ENERGY & POWER"
+    },
+    {
+      "text": "Momentum",
+      "href": "/mechanics/momentum-collisions",
+      "title": "MECHANICS — MOMENTUM & COLLISIONS"
+    },
+    {
+      "text": "Rotational Motion",
+      "href": "/mechanics/torque-levers",
+      "title": "Mechanics›Torque & Levers"
+    },
+    {
+      "text": "Oscillations",
+      "href": "/concept-studio/oscillations",
+      "title": "OSCILLATIONS STUDIO"
+    },
+    {
+      "text": "Fluids",
+      "href": "/concept-studio/fluid-mechanics",
+      "title": "FLUID MECHANICS STUDIO"
+    },
+    {
+      "text": "Electromagnetism",
+      "href": "/concept-studio/electricity",
+      "title": "ELECTRICITY STUDIO"
+    },
+    {
+      "text": "Thermodynamics",
+      "href": "/concept-studio/thermodynamics",
+      "title": "THERMODYNAMICS STUDIO"
+    },
+    {
+      "text": "Waves & Optics",
+      "href": "/concept-studio/waves-sound",
+      "title": "WAVES & SOUND STUDIO"
+    },
+    {
+      "text": "Modern Physics",
+      "href": "/concept-studio/modern-physics",
+      "title": "MODERN PHYSICS STUDIO"
+    },
+    {
+      "text": "Tools",
+      "href": "/measurement/meter-scale",
+      "title": "Measurement — Meter Scale"
+    },
+    {
+      "text": "Browse Experiments",
+      "href": "/experiments",
+      "title": "EXPERIMENT LAUNCHER"
+    },
+    {
+      "href": "/experiments/uniform-motion",
+      "title": "Original lab preserved"
+    }
+  ],
+  "states": [
+    {
+      "width": 1536,
+      "name": "maximum",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n10.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 1536,
+      "name": "minimum",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n-10.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 1536,
+      "name": "short-slow",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.250 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 1536,
+      "name": "short-fast",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.250 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 1536,
+      "name": "zero",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 390,
+      "name": "maximum",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n10.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 390,
+      "name": "minimum",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n-10.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 390,
+      "name": "short-slow",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.250 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 390,
+      "name": "short-fast",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.250 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    },
+    {
+      "width": 390,
+      "name": "zero",
+      "readings": "LIVE READINGS\nAcceleration a\n0.00 m/s²\nChange in velocity Δv\n0.000 m/s\nSampled jerk jₛ\n0.00 m/s³"
+    }
+  ],
+  "performance": {
+    "median": 7,
+    "p95": 13.900000000001455,
+    "max": 14.099999999998545
+  },
+  "errors": [],
+  "failed": []
+}

@@ -1,0 +1,63 @@
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import type { PhysicsIconName } from '../lib/icons';
+import { PhysicsAtlasIcon as PhysicsIcon } from '../components/PhysicsAtlasIcon';
+import { PhysicsAtlasMap } from '../components/PhysicsAtlasMap';
+import { atlasReadings, atlasTopics, ATLAS_DEFAULTS } from '../lib/physicsAtlas';
+import '../physics-atlas.css';
+
+type Panel = 'Topics'|'Simulations'|'Challenges'|'Notebook'|'Resources'|'Settings'|'Predict'|'Experiment'|'Explain'|'Search'|null;
+const modes: Array<[string,PhysicsIconName]> = [['Observe','eye'],['Predict','chart'],['Experiment','flask'],['Explain','spark']];
+const navigation: Array<[string,PhysicsIconName]> = [['Physics Atlas','atom'],['Topics','folder'],['Simulations','play'],['Challenges','teacher'],['Notebook','clipboard'],['Resources','book'],['Settings','settings']];
+
+export function PhysicsAtlasPage() {
+ const [scale,setScale]=useState(5),[depth,setDepth]=useState(3),[filter,setFilter]=useState('all'),[selected,setSelected]=useState(''),[running,setRunning]=useState(true),[panel,setPanel]=useState<Panel>(null),[mode,setMode]=useState('Observe');
+ const [parameters,setParameters]=useState({...ATLAS_DEFAULTS}),[prediction,setPrediction]=useState(''),[checked,setChecked]=useState(false),[query,setQuery]=useState(''),[notes,setNotes]=useState(()=>{try{return localStorage.getItem('physics-atlas-notes')??'';}catch{return '';}}),[saved,setSaved]=useState(false);
+ const [resetVersion,setResetVersion]=useState(0);
+ const dialogRef=useRef<HTMLDivElement>(null),lastFocus=useRef<HTMLElement|null>(null);
+ const readings=atlasReadings(parameters),topic=atlasTopics.find(t=>t.id===selected);
+ useEffect(()=>{
+  if(!panel)return;lastFocus.current=document.activeElement as HTMLElement;
+  dialogRef.current?.querySelector<HTMLElement>('button,input,textarea')?.focus();
+  const keyboard=(e:KeyboardEvent)=>{if(e.key==='Escape')setPanel(null);if(e.key==='Tab'){const items=dialogRef.current?.querySelectorAll<HTMLElement>('button,a[href],input,textarea,select');if(!items?.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}};
+  document.addEventListener('keydown',keyboard);return()=>{document.removeEventListener('keydown',keyboard);lastFocus.current?.focus();};
+ },[panel]);
+ function reset(){setScale(5);setDepth(3);setFilter('all');setSelected('');setRunning(true);setResetVersion(v=>v+1);setMode('Observe');setPanel(null);setParameters({...ATLAS_DEFAULTS});setPrediction('');setChecked(false);setQuery('');}
+ const openPanel=(name:Panel)=>{setPanel(name);setChecked(false);};
+ return <div className="pa-page" data-ui-theme="dark">
+  <header className="pa-header"><Link to="/concept-studio" className="pa-brand"><span className="pa-brand-orbit"/>CONCEPT STUDIO</Link><h1>PHYSICS ATLAS</h1><span className="pa-tagline">Explore. Connect. Understand.</span><button aria-label="Search physics topics" onClick={()=>openPanel('Search')}><PhysicsIcon name="search"/></button></header>
+  <main id="content" className="pa-workspace">
+   <nav className="pa-navigation" aria-label="Atlas navigation">{navigation.map(([label,icon])=><button key={label} aria-label={label} className={(panel===label||(!panel&&label==='Physics Atlas'))?'active':''} onClick={()=>label==='Physics Atlas'?setPanel(null):openPanel(label as Panel)}><PhysicsIcon name={icon}/><span>{label}</span></button>)}</nav>
+   <section className="pa-scene" aria-label="Physics Atlas"><PhysicsAtlasMap key={resetVersion} running={running} scale={scale} depth={depth} filter={filter} selected={selected} onSelect={id=>{setSelected(id);}}/><div className="pa-mobile-topics">{atlasTopics.map(t=><button key={t.id} className={selected===t.id?"active":""} onClick={()=>setSelected(t.id)}>{t.label}</button>)}</div>{topic&&<div className="pa-selection" role="status"><b>{topic.label}</b><span>{topic.description}</span><Link to={topic.route}>Open studio →</Link><button aria-label="Clear selected topic" onClick={()=>setSelected('')}>×</button></div>}</section>
+   <aside className="pa-inspector" aria-label="Map controls and live values">
+    <section className="pa-controls"><h2>MAP CONTROLS</h2><div className="pa-control-box">
+     <label className="pa-control"><PhysicsIcon name="orbit"/><span>Scale Level<span className="pa-range-row"><input aria-label="Scale Level" type="range" min="1" max="10" value={scale} onChange={e=>setScale(+e.target.value)}/><output>{scale}</output></span></span></label>
+     <label className="pa-control"><PhysicsIcon name="field"/><span>Topic Filter<select aria-label="Topic Filter" value={filter} onChange={e=>{setFilter(e.target.value);setSelected(e.target.value==='all'?'':e.target.value);}}><option value="all">All Topics</option>{atlasTopics.map(t=><option key={t.id} value={t.id}>{t.label}</option>)}</select></span></label>
+     <label className="pa-control"><PhysicsIcon name="atom"/><span>Connection Depth<span className="pa-range-row"><input aria-label="Connection Depth" type="range" min="1" max="5" value={depth} onChange={e=>setDepth(+e.target.value)}/><output>{depth}</output></span></span></label>
+    </div></section>
+    <section className="pa-readings"><h2>LIVE VALUES</h2><dl>
+     <div title="Wave speed = frequency × wavelength"><dt>v</dt><dd>{readings.speed.toFixed(1)} <small>m/s</small></dd></div>
+     <div title="Net force = mass × acceleration"><dt>F</dt><dd>{readings.force.toFixed(1)} <small>N</small></dd></div>
+     <div title="Wavelength of the traveling wave example"><dt>λ</dt><dd>{readings.wavelength.toFixed(2)} <small>m</small></dd></div>
+     <div title="Temperature of the thermal example, in kelvin"><dt>T</dt><dd>{readings.temperature} <small>K</small></dd></div>
+    </dl></section>
+    <section className="pa-relationship"><h2>RELATIONSHIP</h2><div className="pa-equation"><i>F = G</i><span className="pa-fraction"><i>m₁m₂</i><i>r²</i></span></div><p>Gravitational attraction connects matter across space.</p></section>
+   </aside>
+  </main>
+  <section className="pa-console" aria-label="Exploration controls"><div className="pa-modes"><h2>EXPLORE MODE</h2><div>{modes.map(([label,icon])=><button key={label} className={mode===label?'active':''} aria-pressed={mode===label} onClick={()=>{setMode(label);label==='Observe'?setPanel(null):openPanel(label as Panel);}}><PhysicsIcon name={icon}/><span>{label}</span></button>)}</div></div><div className="pa-view"><h2>VIEW</h2><div><button aria-label="Reset" onClick={reset}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 7a8 8 0 1 0 2 9M18 7h-6M18 7l-3-5"/></svg>Reset</button><button aria-label={running?"Pause":"Play"} onClick={()=>setRunning(v=>!v)} aria-pressed={!running}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">{running?<path d="M8 4v16M16 4v16" strokeWidth="3" strokeLinecap="round"/>:<path d="M7 4l13 8-13 8z"/>}</svg>{running?'Pause':'Play'}</button><button aria-label="Zoom" onClick={()=>setScale(v=>v>=10?5:v+1)}><PhysicsIcon name="search"/>Zoom</button></div></div><button className="pa-next" onClick={()=>{setMode('Predict');openPanel('Challenges');}}>Next Challenge <span>→</span></button></section>
+  <footer className="pa-footer"><Link to="/" aria-label="Home"><PhysicsIcon name="home"/></Link><span>Physics Atlas</span><span>›</span><span>Map</span><div aria-label="Explore mode progress">{modes.map(([label],i)=><button key={label} aria-label={`${label} mode`} className={mode===label?'active':''} onClick={()=>{setMode(label);label==='Observe'?setPanel(null):openPanel(label as Panel);}}><span>{i+1}</span></button>)}</div></footer>
+  {panel&&<div className="pa-dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setPanel(null);}}><div className="pa-dialog" role="dialog" aria-modal="true" aria-labelledby="pa-dialog-title" ref={dialogRef}><header><h2 id="pa-dialog-title">{panel}</h2><button aria-label="Close panel" onClick={()=>setPanel(null)}>×</button></header>
+   {(panel==='Topics'||panel==='Search'||panel==='Simulations')&&<><label className="pa-search-label">Find a concept<input autoComplete="off" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search matter, motion, waves…"/></label><div className="pa-topic-list">{atlasTopics.filter(t=>(t.label+' '+t.description).toLowerCase().includes(query.toLowerCase())).map(t=><Link key={t.id} to={t.route}><b>{t.label} →</b><span>{t.description}</span></Link>)}{!atlasTopics.some(t=>(t.label+' '+t.description).toLowerCase().includes(query.toLowerCase()))&&<p>No topics found. Try “waves” or “motion”.</p>}</div></>}
+   {(panel==='Challenges'||panel==='Predict')&&<><p>Two point masses attract with gravitational force F. Keep both masses fixed and double their separation. What is the new force?</p><div className="pa-answers">{['4F','2F','F / 2','F / 4'].map(answer=><button key={answer} aria-pressed={prediction===answer} className={prediction===answer?'active':''} onClick={()=>{setPrediction(answer);setChecked(false);}}>{answer}</button>)}</div><button className="pa-action" disabled={!prediction} onClick={()=>setChecked(true)}>Check prediction</button>{checked&&<p role="status">{prediction==='F / 4'?'Correct.':'Try again.'} F ∝ 1/r², so doubling r divides the force by 2² = 4.</p>}<button className="pa-text-button" onClick={()=>{setMode('Experiment');openPanel('Experiment');}}>Test the relationship →</button></>}
+   {panel==='Experiment'&&<><p>Three independent examples connect the Atlas readings to their equations. Map scale only changes the view.</p><div className="pa-experiment-controls">{([['mass','Mass',.1,10,.1,'kg'],['acceleration','Acceleration',-10,10,.1,'m/s²'],['frequency','Wave frequency',0,100,1,'Hz'],['wavelength','Wavelength',.1,2,.01,'m'],['temperature','Temperature',0,1000,1,'K'],['separation','Mass separation',1,10,.1,'m']] as const).map(([key,label,min,max,step,unit])=><label key={key}><span>{label}<output>{parameters[key]} {unit}</output></span><input aria-label={label} type="range" min={min} max={max} step={step} value={parameters[key]} onChange={e=>setParameters(p=>({...p,[key]:+e.target.value}))}/></label>)}</div><dl className="pa-experiment-values"><div><dt>F = ma</dt><dd>{readings.force.toFixed(2)} N</dd></div><div><dt>v = fλ</dt><dd>{readings.speed.toFixed(2)} m/s</dd></div><div><dt>Fɢ = Gm₁m₂/r²</dt><dd>{readings.gravity.toFixed(3)} N</dd></div></dl><p className="pa-hint">Gravity example: m₁ is the mass control; m₂ = 10¹² kg. Ideal point masses in vacuum. Negative acceleration means a net force in the negative direction.</p><button className="pa-action" onClick={()=>setParameters({...ATLAS_DEFAULTS})}>Reset experiment</button></>}
+   {panel==='Explain'&&<><p>{topic?.description??'Select a topic on the map to explore its connections. These are conceptual links, not physical trajectories or a diagram drawn to scale.'}</p><p><b>F = ma:</b> the displayed force is the net force on the selected mass.</p><p><b>v = fλ:</b> frequency and wavelength determine the traveling wave speed.</p><p><b>F = Gm₁m₂/r²:</b> the gravitational force is attractive and falls with separation squared.</p><p>The atom is a schematic symbol: electrons do not follow classical planetary orbits. Glowing connections animate relationships; they do not measure energy flow.</p></>}
+   {panel==='Notebook'&&<><label className="pa-search-label">Your observations<textarea value={notes} onChange={e=>{setNotes(e.target.value);setSaved(false);}} rows={7} placeholder="What changed when you doubled the separation?"/></label><button className="pa-action" onClick={()=>{try{localStorage.setItem('physics-atlas-notes',notes);setSaved(true);}catch{setSaved(false);}}}>Save notes</button>{saved&&<p role="status">Saved on this device.</p>}</>}
+   {panel==='Resources'&&<div className="pa-topic-list"><Link to="/formulas">Formula reference →</Link><Link to="/dictionary">Physics dictionary →</Link><Link to="/concepts">Concept library →</Link><p>G = 6.67430 × 10⁻¹¹ m³ kg⁻¹ s⁻². Kelvin is an absolute temperature scale. The displayed thermal example is independent of the star symbol.</p></div>}
+   {panel==='Settings'&&<><label className="pa-setting"><input type="checkbox" checked={running} onChange={e=>setRunning(e.target.checked)}/> Animate conceptual connections</label><p>Pause stops the map animation. Every topic supports keyboard selection with Enter or Space.</p><button className="pa-action" onClick={reset}>Restore Atlas defaults</button></>}
+  </div></div>}
+ </div>;
+}
+
+
+
+

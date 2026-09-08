@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Every subject accordion and lesson destination renders",
+    "All mobile subject popovers fit width"
+  ],
+  "runtime": {
+    "median": 6.900000000000091,
+    "p95": 7.100000000000136,
+    "max": 41.700000000000045
+  }
+}

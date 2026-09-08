@@ -6,6 +6,7 @@ import {
   normalizeAngle,
   type AcGeneratorInput,
 } from "./acGeneratorPhysics";
+import { GeneratorThreeScene } from "./GeneratorThreeScene";
 import "./ac-generator.css";
 import "./ac-generator-overrides.css";
 
@@ -31,6 +32,7 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
   );
   const [introComplete, setIntroComplete] = useState(false);
   const [introTravel, setIntroTravel] = useState(0);
+  const [resetViewSignal, setResetViewSignal] = useState(0);
   const input = useMemo<AcGeneratorInput>(
     () => ({ ...values, direction, polarity }),
     [values, direction, polarity],
@@ -54,9 +56,10 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - previous) / 1000);
       previous = now;
-      const delta =
-        runState === "narrated"
-          ? dt * 0.8 * playback
+      const delta = values.angularSpeed === 0
+        ? 0
+        : runState === "narrated"
+          ? dt * 0.8 * direction * playback
           : dt * values.angularSpeed * direction * playback * (reducedMotion ? 0.05 : 1);
       setValues((current) => ({
         ...current,
@@ -87,6 +90,9 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
     setRunState("idle");
     setIntroComplete(false);
     setIntroTravel(0);
+    setPlayback(1);
+    setReducedMotion(matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false);
+    setResetViewSignal((value) => value + 1);
   };
   const start = () => setRunState(introComplete ? "running" : "narrated");
   const cue =
@@ -123,10 +129,11 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
       </header>
       <div className="ac-workbench">
         <main className="ac-stage">
-          <GeneratorScene
+          <GeneratorThreeScene
             input={input}
             running={runState === "running" || runState === "narrated"}
             reducedMotion={reducedMotion}
+            resetViewSignal={resetViewSignal}
             onAngle={(angleRad) => { update("angleRad", angleRad); setRunState("paused"); }}
           />
           <div className="ac-stage-badge">
@@ -136,9 +143,9 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
             </strong>
           </div>
           <div className="ac-poles">
-            <span>N</span>
-            <i>Magnetic field B →</i>
-            <span>S</span>
+            <span className={polarity === 1 ? "north" : "south"}>{polarity === 1 ? "N" : "S"}</span>
+            <i>Magnetic field B {polarity === 1 ? "→" : "←"}</i>
+            <span className={polarity === 1 ? "south" : "north"}>{polarity === 1 ? "S" : "N"}</span>
           </div>
           <div className="ac-cue" data-phase={result.phase}>
             <b>

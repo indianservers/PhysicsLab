@@ -1,0 +1,7 @@
+import { useEffect, useRef, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+export function MasteryChallengeDialog({title,close,children}:{title:string;close:()=>void;children:ReactNode}) {
+ const ref=useRef<HTMLDivElement>(null),latest=useRef(close);latest.current=close;
+ useEffect(()=>{const previous=document.activeElement as HTMLElement,overflow=document.body.style.overflow;document.body.style.overflow='hidden';ref.current?.querySelector('button')?.focus({preventScroll:true});const key=(e:KeyboardEvent)=>{if(e.key==='Escape')latest.current();if(e.key!=='Tab')return;const nodes=[...(ref.current?.querySelectorAll<HTMLElement>('button:not(:disabled),input,select,textarea,a[href]')??[])].filter(n=>n.getClientRects().length),first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}};document.addEventListener('keydown',key);return()=>{document.body.style.overflow=overflow;document.removeEventListener('keydown',key);previous?.focus({preventScroll:true});}},[]);
+ return createPortal(<div className="mc-backdrop" data-ui-theme="dark" onClick={e=>{if(e.target===e.currentTarget)close();}}><div className="mc-dialog" ref={ref} role="dialog" aria-modal="true" aria-label={title}><header><h2>{title}</h2><button aria-label="Close dialog" onClick={close}>×</button></header>{children}</div></div>,document.body);
+}

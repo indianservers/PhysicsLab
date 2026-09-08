@@ -1,0 +1,1 @@
+export type KineticInput={mass:number;speed:number};export const KINETIC_DEFAULTS={mass:.5,speed:1};export function kineticSettings(v:KineticInput){return{mass:Math.max(.1,Math.min(2,Number(v.mass)||.1)),speed:Math.max(.1,Math.min(4,Number(v.speed)||.1))}}export function kineticSolution(v:KineticInput){return{energy:.5*v.mass*v.speed*v.speed,momentum:v.mass*v.speed}}

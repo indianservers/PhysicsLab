@@ -1,7 +1,9 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
+import { MatterWaveScene } from "./MatterWaveScene";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import {
   electronSpeedFromVoltage,
+  diffractionRadius,
   matterWave,
   particles,
   type ParticleKey,
@@ -16,13 +18,16 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
   const [speed, setSpeed] = useState(electronSpeedFromVoltage(150));
   const [spacing, setSpacing] = useState(0.335);
   const [intensity, setIntensity] = useState(68);
+  const [distance, setDistance] = useState(0.25);
+  const [sceneReset, setSceneReset] = useState(0);
   const [running, setRunning] = useState(true);
   const [phase, setPhase] = useState(0);
   const [playback, setPlayback] = useState(1);
   const [reduced, setReduced] = useState(false);
   const [mission, setMission] = useState(false);
   const [feedback, setFeedback] = useState("");
-  const wave = matterWave(particle, speed, spacing);
+  const wave = matterWave(particle, speed, spacing, distance);
+  const ringRadius = diffractionRadius(wave.wavelengthPm, spacing, distance);
   const charged = particles[particle].chargeE !== 0;
   const targetPm = 70.81;
 
@@ -37,8 +42,7 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
 
   const setVoltageLinked = (v: number) => {
     setVoltage(v);
-    setParticle("electron");
-    setSpeed(electronSpeedFromVoltage(v));
+    setSpeed(Math.sqrt(2 * 1.602176634e-19 * v / particles[particle].massKg));
     setFeedback("");
   };
   const setSpeedLinked = (v: number) => {
@@ -47,10 +51,12 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
     setFeedback("");
   };
   const reset = () => {
+    setSceneReset(value => value + 1);
     setParticle("electron");
     setVoltage(150);
     setSpeed(electronSpeedFromVoltage(150));
     setSpacing(0.335);
+    setDistance(0.25);
     setIntensity(68);
     setRunning(true);
     setPhase(0);
@@ -59,12 +65,10 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
     setMission(false);
     setFeedback("");
   };
-  const ringGap = Math.max(13, Math.min(35, 16 + wave.fringeSpacingMm * 75));
   const waveCycles = Math.max(
     5,
     Math.min(18, 8 + 500 / Math.max(wave.wavelengthPm, 30)),
   );
-  const dots = Array.from({ length: 13 }, (_, i) => i);
   const path = Array.from({ length: 61 }, (_, i) => {
     const x = i * 10;
     const envelope = Math.sin((Math.PI * i) / 60) ** 1.4;
@@ -118,6 +122,7 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
               min="50"
               max="5000"
               step="10"
+              disabled={!charged}
               value={Math.min(5000, voltage)}
               onChange={(e) => setVoltageLinked(+e.target.value)}
             />
@@ -147,20 +152,24 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
             />
           </label>
           <label>
+            Screen distance <output>{f(distance, 2)} m</output>
+            <input aria-label="Screen distance" type="range" min="0.1" max="0.5" step="0.01" value={distance} onChange={event => setDistance(Number(event.target.value))} />
+          </label>
+          <label>
             Beam intensity <output>{intensity}%</output>
             <input
               aria-label="Beam intensity"
               type="range"
-              min="10"
+              min="0"
               max="100"
               value={intensity}
               onChange={(e) => setIntensity(+e.target.value)}
             />
           </label>
           <div className="db-presets">
-            <button onClick={() => setVoltageLinked(50)}>Minimums</button>
-            <button onClick={() => setVoltageLinked(150)}>Typical</button>
-            <button onClick={() => setVoltageLinked(5000)}>Maximums</button>
+            <button disabled={!charged} onClick={() => setVoltageLinked(50)}>Minimums</button>
+            <button disabled={!charged} onClick={() => setVoltageLinked(150)}>Typical</button>
+            <button disabled={!charged} onClick={() => setVoltageLinked(5000)}>Maximums</button>
           </div>
           {!charged && (
             <p>
@@ -179,10 +188,10 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
           <div className="db-transport">
             <button onClick={() => setRunning(true)}>▶ Play</button>
             <button onClick={() => setRunning(false)}>Ⅱ Pause</button>
-            <button onClick={() => setPhase((p) => (p + 0.04) % 1)}>
+            <button onClick={() => { setRunning(false); setPhase((p) => (p + 0.04) % 1); }}>
               ▷ Step
             </button>
-            <button onClick={() => setPhase(0)}>↺ Replay</button>
+            <button onClick={() => { setPhase(0); setRunning(true); }}>↺ Replay</button>
             <label>
               Speed{" "}
               <select
@@ -207,53 +216,12 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
           </div>
           <div
             className="db-stage"
-            role="img"
             aria-label={`${particles[particle].label} beam with wavelength ${f(wave.wavelengthPm, 2)} picometres and fringe spacing ${f(wave.fringeSpacingMm, 3)} millimetres`}
           >
-            <img
-              src="/assets/experiments/de-broglie-wavelength/electron-diffraction-apparatus.png"
-              alt="Electron diffraction tube apparatus"
-            />
-            <div
-              className="db-beam"
-              style={{ "--beam-opacity": intensity / 100 } as CSSProperties}
-            >
-              {dots.map((i) => (
-                <i
-                  key={i}
-                  style={{
-                    left: `${28 + i * 3.1}%`,
-                    animationDelay: `${-phase * 1.2 + i * 0.07}s`,
-                  }}
-                />
-              ))}
-            </div>
-            <div
-              className="db-rings"
-              style={
-                {
-                  "--gap": `${ringGap}px`,
-                  "--glow": intensity / 100,
-                } as CSSProperties
-              }
-            >
-              {[1, 2, 3, 4].map((i) => (
-                <i
-                  key={i}
-                  style={{
-                    width: `calc(var(--gap) * ${i})`,
-                    height: `calc(var(--gap) * ${i})`,
-                  }}
-                />
-              ))}
-            </div>
-            <b className="db-cathode">HEATED CATHODE</b>
-            <b className="db-crystal">CRYSTAL</b>
-            <b className="db-screen">DIFFRACTION SCREEN</b>
+            <MatterWaveScene key={sceneReset} phase={phase} wavelengthPm={wave.wavelengthPm} spacingNm={spacing} distanceM={distance} intensity={intensity} onDistance={setDistance} onSpacing={setSpacing} />
           </div>
           <p className="db-caption">
-            Particles build a phase wave from source to screen; shorter λ
-            tightens the diffraction pattern.
+            Shorter λ tightens the diffraction pattern. Beam motion and wave amplitude are slowed and enlarged for visibility. Screen radius: {ringRadius === null ? "no forward ring" : `${f(ringRadius * 1000, 2)} mm`}.
           </p>
         </main>
         <aside className="db-readings">
@@ -279,12 +247,21 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
           <div className="db-equation">
             λ = h/p
             <br />
-            electron: λ = h/√(2mₑeV)<small>Δy ≈ Lλ/d · L=0.250 m</small>
+            electron: λ = h/√(2mₑeV)<small>2d sin θ = λ · ring radius = L tan 2θ<br />Δy ≈ Lλ/d · L={f(distance, 3)} m</small>
           </div>
           <h3>Wavelength ruler</h3>
           <div className="db-ruler">
             <i style={{ left: `${Math.min(100, wave.wavelengthPm / 2)}%` }} />
           </div>
+          <h3 style={{ marginTop: 20 }}>Detector · front view</h3>
+          <svg className="db-detector" viewBox="-170 -170 340 340" role="img" aria-label="Diffraction pattern on a screen of radius 167 millimetres">
+            <circle r="167" fill="#081e19" stroke="#637d82" strokeWidth="3" />
+            {[1, 2, 3].map(order => {
+              const radius = diffractionRadius(wave.wavelengthPm, spacing, distance, order);
+              return radius !== null && radius * 1000 < 167 ? <circle key={order} r={radius * 1000} fill="none" stroke="#91ffa6" strokeWidth="2" opacity={intensity / 100} /> : null;
+            })}
+            <circle r="3" fill="#baffc2" opacity={intensity / 100} />
+          </svg>
         </aside>
       </div>
       <div className="db-bottom">
@@ -303,7 +280,7 @@ export function DeBroglieLab({ experiment }: DedicatedExperimentLabProps) {
           {[0.5, 1, 2, 4].map((k) => (
             <p key={k}>
               <span>{f(k, 1)}p</span>
-              <i style={{ width: `${100 / Math.sqrt(k)}%` }} />
+              <i style={{ width: `${50 / k}%` }} />
               <b>{f(wave.wavelengthPm / k, 1)} pm</b>
             </p>
           ))}

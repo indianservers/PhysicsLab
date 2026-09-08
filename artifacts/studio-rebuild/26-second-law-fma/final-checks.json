@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "animation/play/pause/reset",
+    "six viewport screenshots and no horizontal overflow"
+  ],
+  "errors": [],
+  "failed": []
+}

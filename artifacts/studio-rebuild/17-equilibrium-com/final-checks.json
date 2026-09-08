@@ -1,0 +1,221 @@
+{
+  "checks": [
+    "All slider endpoints",
+    "Ballast scan reverses at both bounds",
+    "Info and Explain dialogs",
+    "Direct refresh, all sidebar links, parent entry and existing related routes"
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n\n\n\u0000"
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/thermodynamics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/thermodynamics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/waves-sound",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/waves-sound",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/electricity",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/electricity",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/optics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/optics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/modern-physics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/modern-physics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/measurement",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/measurement",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/equilibrium-com",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/concept-studio/mechanics",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/torque-levers",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/torque-levers",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/pulley-systems",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/mechanics/pulley-systems",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "url": "http://127.0.0.1:5371/experiments/balancing-act",
+      "message": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "url": "http://127.0.0.1:5371/experiments/balancing-act",
+      "message": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    }
+  ],
+  "failed": [],
+  "runtime": {
+    "median": 7,
+    "p95": 13.900000000000091,
+    "max": 14
+  }
+}

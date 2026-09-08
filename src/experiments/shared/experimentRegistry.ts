@@ -20,12 +20,13 @@ import { FreeFallLab } from "../free-fall/FreeFallLab";
 import { CapacitorLab } from "../capacitor-lab/CapacitorLab";
 import { CalorimetryMixingLab } from "../calorimetry-mixing/CalorimetryMixingLab";
 import { ChladniPlateLab } from "../chladni-plate/ChladniPlateLab";
-import { ChaoticCoupledOscillatorsLab } from "../chaotic-coupled-oscillators/ChaoticCoupledOscillatorsLab";
+import { PhysicalOscillatorLab as ChaoticCoupledOscillatorsLab } from "../chaotic-coupled-oscillators/PhysicalOscillatorLab";
+import { AtomicInteractionsLab } from "../expansion-labs/AtomicInteractionsLab";
 import { ChemicalEffectsLab } from "../chemical-effects-current/ChemicalEffectsLab";
 import { CircularMotionLab } from "../circular-motion/CircularMotionLab";
 import { ConservationOfEnergyLab } from "../conservation-of-energy/ConservationOfEnergyLab";
 import { ComputationalPhysicsWorkflowLab } from "../computational-physics-workflow/ComputationalPhysicsWorkflowLab";
-import { ElasticCollisionLab } from "../elastic-collision/ElasticCollisionLab";
+import { ElasticCollisionEntry } from "../elastic-collision/ElasticCollisionEntry";
 import { ElectromagnetLab } from "../electromagnet/ElectromagnetLab";
 import { ElectricPowerLab } from "../electric-power/ElectricPowerLab";
 import { ElectrostaticFieldLab } from "../electrostatic-field-potential/ElectrostaticFieldLab";
@@ -80,6 +81,7 @@ import { VectorResolutionLab } from "../vector-resolution/VectorResolutionLab";
 import { WorkPowerLab } from "../work-power/WorkPowerLab";
 import { WaveLab } from "../wave-lab/WaveLab";
 import { YoungDoubleSlitLab } from "../young-double-slit/YoungDoubleSlitLab";
+import { PhysicsExpansionLab } from "../expansion-labs/PhysicsExpansionLab";
 import type { LearningLevel } from "../../lib/learningLevels";
 import type { ExperimentDefinition } from "../../types";
 import type { ExperimentMode } from "./experimentModes";
@@ -109,6 +111,20 @@ export interface DedicatedExperimentRegistryEntry {
   premiumPlan?: Top30ExperimentMeta;
 }
 
+const expansionLabIds = [
+  "balancing-act", "blackbody-spectrum", "build-a-nucleus", "color-vision",
+  "fourier-making-waves", "resistance-in-a-wire", "rutherford-scattering",
+  "states-of-matter", "atomic-interactions", "diffusion", "greenhouse-effect",
+  "molecules-and-light",
+] as const;
+
+const expansionLabRegistry = Object.fromEntries(expansionLabIds.map((id) => [id, {
+  id,
+  component: id === "atomic-interactions" ? AtomicInteractionsLab : PhysicsExpansionLab,
+  accuracy: "formula-only" as const,
+  notes: "Dedicated interactive teaching model with live controls, calculated evidence, a topic-specific visualization, and explicit model scope.",
+}])) as Record<string, DedicatedExperimentRegistryEntry>;
+
 // Migration note: keep this registry intentionally sparse. Add an experiment id
 // only after a dedicated lab is ready. Unlisted ids must continue through the
 // existing GenericExperiment and GuidedVisualization fallback.
@@ -116,6 +132,7 @@ export const dedicatedExperimentRegistry: Record<
   string,
   DedicatedExperimentRegistryEntry
 > = {
+  ...expansionLabRegistry,
   "advanced-quantum-operators": {
     id: "advanced-quantum-operators",
     component: AdvancedQuantumOperatorsLab,
@@ -383,7 +400,7 @@ export const dedicatedExperimentRegistry: Record<
   },
   "elastic-collision": {
     id: "elastic-collision",
-    component: ElasticCollisionLab,
+    component: ElasticCollisionEntry,
     accuracy: "validated",
     notes:
       "Dedicated 2D air-track lab validated for analytic restitution velocities, momentum conservation, elastic kinetic energy, continuous contact, and the first-cart-stop condition.",

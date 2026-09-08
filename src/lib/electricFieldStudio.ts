@@ -1,0 +1,4 @@
+export type ElectricFieldInput={q1:number;q2:number;x1:number;x2:number;px:number;py:number;density:number};
+export const ELECTRIC_FIELD_DEFAULTS={q1:5,q2:-3,x1:-.6,x2:.6,px:.32,py:.18,density:100};
+export function electricFieldSettings(v:ElectricFieldInput){return{q1:Math.max(-10,Math.min(10,Number(v.q1)||0)),q2:Math.max(-10,Math.min(10,Number(v.q2)||0)),x1:Math.max(-1,Math.min(1,Number(v.x1)||0)),x2:Math.max(-1,Math.min(1,Number(v.x2)||0)),px:Math.max(-1,Math.min(1,Number(v.px)||0)),py:Math.max(-1,Math.min(1,Number(v.py)||0)),density:Math.max(20,Math.min(160,Number(v.density)||20))}}
+export function electricFieldSolution(v:ElectricFieldInput){const k=8.99e9;let ex=0,ey=0;for(const [q,x] of [[v.q1,v.x1],[v.q2,v.x2]]){const dx=v.px-x,dy=v.py,r2=dx*dx+dy*dy;const r=Math.max(.03,Math.sqrt(r2));const c=k*q*1e-6/(r*r*r);ex+=c*dx;ey+=c*dy}const mag=Math.hypot(ex,ey),angle=Math.atan2(ey,ex)*180/Math.PI;return{ex,ey,mag,angle}}

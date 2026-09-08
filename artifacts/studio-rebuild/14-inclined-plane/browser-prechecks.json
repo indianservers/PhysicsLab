@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Initial readings, every slider keyboard endpoints, reset",
+    "Views, zoom, pause/resume and physical end-stop",
+    "All experiment presets and uphill acceleration sign",
+    "Six viewport screenshots and horizontal overflow checks"
+  ],
+  "errors": [],
+  "failed": []
+}

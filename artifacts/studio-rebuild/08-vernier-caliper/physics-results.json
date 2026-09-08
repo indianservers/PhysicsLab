@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Default 27 mm plus sixth division times 0.02 mm",
+    "Every jaw step across signed zero errors: corrected opening and actual coincident engraving geometry",
+    "Rigid specimen enforces contact and open-jaw gap",
+    "Negative zero uses preceding main millimeter and positive vernier fraction"
+  ]
+}

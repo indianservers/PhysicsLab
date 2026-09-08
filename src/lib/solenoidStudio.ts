@@ -1,0 +1,2 @@
+export type SolenoidInput={turns:number;current:number;mu:number};export const SOL_DEFAULTS={turns:800,current:1.5,mu:200};export function solenoidSettings(v:SolenoidInput){return{turns:Math.max(100,Math.min(2000,Math.round(Number(v.turns)||100)),),current:Math.max(0,Math.min(5,Number(v.current)||0)),mu:Math.max(1,Math.min(1000,Number(v.mu)||1))}}export function solenoidSolution(v:SolenoidInput){const B=4*Math.PI*1e-7*v.mu*(v.turns/125)*v.current;return{B}}
+

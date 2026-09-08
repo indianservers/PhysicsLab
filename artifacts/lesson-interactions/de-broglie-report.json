@@ -1,0 +1,14 @@
+{
+  "lessons": 0,
+  "failures": [],
+  "deBroglie": {
+    "paused": true,
+    "wavelengthRatio": 0.5,
+    "stepChangesPhase": true,
+    "retainedParticle": "proton",
+    "neutralVoltageDisabled": true,
+    "dragChangesDistance": true,
+    "mobileOverflow": false
+  },
+  "rows": []
+}

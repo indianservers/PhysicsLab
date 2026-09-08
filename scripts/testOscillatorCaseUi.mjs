@@ -1,0 +1,38 @@
+import assert from "node:assert/strict";
+import { chromium } from "playwright-core";
+import { mkdir } from "node:fs/promises";
+const browser = await chromium.launch({ executablePath: "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe", headless: true });
+const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+const errors = [];
+page.on("pageerror", error => errors.push(error.message));
+try {
+  await page.goto("http://localhost:5367/experiments/chaotic-coupled-oscillators");
+  await page.locator(".physical-oscillator-scene canvas").waitFor({ timeout: 60000 });
+  assert.equal(await page.getByRole("radio").count(), 3);
+  await page.getByRole("radio", { name: "Ideal · no damping", exact: true }).check();
+  assert.equal(await page.getByRole("slider", { name: "Damping (N m s/rad)", exact: true }).count(), 0);
+  await page.getByRole("button", { name: "Pause", exact: true }).click();
+  const timeBefore = await page.getByTestId("oscillator-time").textContent();
+  await page.waitForTimeout(200);
+  assert.equal(await page.getByTestId("oscillator-time").textContent(), timeBefore);
+  await page.getByRole("button", { name: "Step 0.1 s", exact: true }).click();
+  assert.ok(Math.abs(parseFloat(await page.getByTestId("oscillator-time").textContent()) - parseFloat(timeBefore) - .1) < .011);
+  await page.getByRole("radio", { name: "Damped · free motion", exact: true }).check();
+  assert.equal(await page.getByRole("slider", { name: "Damping (N m s/rad)", exact: true }).inputValue(), "0.06");
+  const startEnergy = parseFloat(await page.getByTestId("oscillator-energy").textContent());
+  await page.waitForTimeout(1000);
+  assert.ok(parseFloat(await page.getByTestId("oscillator-energy").textContent()) < startEnergy);
+  await page.getByRole("radio", { name: "Driven · motor on", exact: true }).check();
+  assert.equal(await page.getByRole("slider", { name: "Drive torque amplitude (N m)", exact: true }).inputValue(), "0.15");
+  await page.getByRole("button", { name: "Reset case", exact: true }).click();
+  assert.ok(parseFloat(await page.getByTestId("oscillator-time").textContent()) < .5);
+  await mkdir("artifacts/oscillator-cases", { recursive: true });
+  await page.screenshot({ path: "artifacts/oscillator-cases/desktop.png", fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForTimeout(100);
+  await page.screenshot({ path: "artifacts/oscillator-cases/mobile.png", fullPage: true });
+  const bounds = await page.locator(".physical-oscillator-scene").boundingBox();
+  assert.ok(bounds.x + bounds.width <= 392);
+  assert.deepEqual(errors, []);
+  console.log("PASS: all three case selectors, damping controls, motor controls, pause, step, reset, energy decay, mobile bounds, no browser errors.");
+} finally { await browser.close(); }

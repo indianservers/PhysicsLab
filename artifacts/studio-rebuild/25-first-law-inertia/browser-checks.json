@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "animation updates live velocity label and pauses",
+    "six viewport screenshots without horizontal overflow"
+  ],
+  "errors": [],
+  "failed": []
+}

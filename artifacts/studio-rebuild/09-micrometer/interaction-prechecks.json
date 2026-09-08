@@ -1,0 +1,47 @@
+{
+  "checks": [
+    "Wire selections, default open gap, pause/resume and actual contact measurement",
+    "Signed calibration and full keyboard travel",
+    "Negative and positive correction challenges",
+    "Prediction, bookmark, notes and search controls"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

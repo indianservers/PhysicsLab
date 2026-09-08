@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "Default signed torques, actual force ratio and ideal arm ratio",
+    "Signs, mirrored arrangements, zero-force and zero-arm boundaries",
+    "Energy with damping and impact loss, both stops, exact balance and timestep convergence"
+  ],
+  "default": {
+    "rL": -0.3,
+    "rE": 0.45,
+    "armL": -0.3,
+    "armE": 0.45,
+    "loadTorque": 3,
+    "effortTorque": -3.015,
+    "net": -0.015000000000000124,
+    "clockwise": 3.015,
+    "counterclockwise": 3,
+    "inertia": 0.2646788990825688,
+    "damping": 0,
+    "reaction": 0,
+    "alpha": -0.056672443674177245,
+    "potential": 0,
+    "kinetic": 0,
+    "totalEnergy": 0,
+    "ratio": 1.4925373134328357,
+    "ideal": 1.5,
+    "required": 6.666666666666666
+  }
+}

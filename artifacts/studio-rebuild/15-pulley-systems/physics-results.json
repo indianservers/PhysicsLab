@@ -1,0 +1,34 @@
+{
+  "checks": [
+    "Correct default acceleration and unequal tensions with pulley inertia",
+    "Newton equations, torque, mass reversal, equal masses and zero inertia across boundaries",
+    "No-slip, exact steps, both travel stops and energy including brake dissipation",
+    "Default brake loss equals released gravitational potential energy"
+  ],
+  "default": {
+    "massA": 1,
+    "massB": 1.5,
+    "inertia": 0.01,
+    "effectiveMass": 6.499999999999999,
+    "freeAcceleration": 0.7546153846153848,
+    "acceleration": 0.7546153846153848,
+    "tensionA": 10.564615384615385,
+    "tensionB": 13.583076923076923,
+    "omega": 0,
+    "alpha": 15.092307692307696,
+    "angle": 0,
+    "translation": 0,
+    "rotation": 0,
+    "potential": 0,
+    "kinetic": 0,
+    "totalEnergy": 0,
+    "brakeTorque": 0
+  },
+  "stopped": {
+    "q": 0.08,
+    "velocity": 0,
+    "time": 2,
+    "braked": true,
+    "dissipated": 0.3924
+  }
+}

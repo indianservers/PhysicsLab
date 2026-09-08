@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Zero input remains at ambient with zero current; wrong prediction receives corrective feedback",
+    "Defocused mission predicts failure; refocusing reaches actual 70 degree target",
+    "Leaky hold mission predicts failure; insulation reaches 60 degrees at 12 seconds and records completion",
+    "Reset restores mission preset while retaining playback preference"
+  ],
+  "errors": [],
+  "performance": {
+    "frames": 120,
+    "medianMs": 34.70000000000073,
+    "p95Ms": 36.19999999999709,
+    "maxMs": 38.79999999999927
+  }
+}

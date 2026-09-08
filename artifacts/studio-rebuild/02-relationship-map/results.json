@@ -1,0 +1,67 @@
+{
+  "checks": [
+    "Default route, complete graph and correct readings",
+    "Every focus concept updates selected node and details",
+    "Pointer selection, drag, keyboard selection and movement",
+    "Prerequisite layers and visual strength respond",
+    "Pause, resume and bounded zoom",
+    "Three challenge questions, feedback and experiment handoff",
+    "All nine physics families, signed values, zero and extrema",
+    "Details, links, examples and explanations",
+    "Accessible sidebar, settings, help, notes persistence and modal focus",
+    "Full reset restores parameters, layout, zoom, filters and playback",
+    "Six responsive sizes without overlap, clipping or horizontal overflow",
+    "Original experiment graph remains accessible"
+  ],
+  "responsive": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "documentHeight": 1024,
+      "overlap": -10,
+      "clipped": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "documentHeight": 900,
+      "overlap": -10,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "documentHeight": 1140,
+      "overlap": -10,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "documentHeight": 1140,
+      "overlap": -10,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "documentHeight": 1830,
+      "overlap": -10,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "documentHeight": 2194,
+      "overlap": -10,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

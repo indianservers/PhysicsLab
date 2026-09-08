@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
@@ -13,7 +13,14 @@ const bestScoreKey = "physicslab-quiz-best-v1";
 const weakConceptKey = "physicslab-quiz-weak-concepts-v1";
 type WeakConceptMap = Record<string, number>;
 
+const MasteryChallengePage = lazy(() => import('./MasteryChallengePage'));
+
 export function QuizPage() {
+ const [params] = useSearchParams();
+ return params.size ? <QuizPracticePage /> : <Suspense fallback={<div>Loading challenge…</div>}><MasteryChallengePage /></Suspense>;
+}
+
+function QuizPracticePage() {
   const [searchParams] = useSearchParams();
   const focusTag = searchParams.get("focus")?.trim() ?? "";
   const [categoryId, setCategoryId] = useState("all");

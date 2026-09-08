@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Ten-step drag advances one centimeter without accumulating window displacement",
+    "Both-end parallax cancels and Reset restores the reading procedure",
+    "Second and third missions accept correct procedure and endpoint readings",
+    "Session notes survive reopening and full screen enters/exits",
+    "Direct refresh, discoverable Measurement studio link and preserved uncertainty route"
+  ],
+  "errors": [],
+  "failed": []
+}

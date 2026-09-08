@@ -1,0 +1,14 @@
+{
+  "assets": [
+    {
+      "src": "/assets/uncertainty/volume-bench.png",
+      "width": 1448,
+      "height": 1086
+    }
+  ],
+  "frames": {
+    "medianMs": 6.900000000000091,
+    "p95Ms": 7.100000000000136,
+    "maxMs": 7.5
+  }
+}

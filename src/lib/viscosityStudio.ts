@@ -1,0 +1,2 @@
+export type ViscosityInput={fluid:string;radius:number;temp:number};export const VISCOSITY_DEFAULTS={fluid:'silicone',radius:5,temp:25};export function viscositySettings(v:ViscosityInput){return{fluid:v.fluid,radius:Math.max(1,Math.min(20,Number(v.radius)||1)),temp:Math.max(0,Math.min(100,Number(v.temp)||0))}}export function viscositySolution(v:ViscosityInput){const mu=v.fluid==='glycerin'?1.2*Math.exp(-.02*(v.temp-20)):.842*Math.exp(-.015*(v.temp-25));const r=v.radius/1000;const vt=2*r*r*190*9.81/(9*mu);const drag=6*Math.PI*mu*r*vt;return{mu,vt,drag,re:1000*vt*2*r/mu}}
+

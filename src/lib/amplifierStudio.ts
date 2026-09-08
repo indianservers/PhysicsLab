@@ -1,0 +1,2 @@
+export type AmplifierInput={vin:number;gain:number;bias:number};export const AMP_DEFAULTS={vin:.4,gain:-10.5,bias:1.2};export function ampSettings(v:AmplifierInput){return{vin:Math.max(.05,Math.min(2,Number(v.vin)||.05)),gain:Math.max(-50,Math.min(-2,Number(v.gain)||-2)),bias:Math.max(.6,Math.min(2,Number(v.bias)||.6))}}export function ampSolution(v:AmplifierInput){const out=Math.min(8.4,Math.abs(v.gain)*v.vin*2);return{out,gain:v.gain,vc:12-out*.7,ve:v.bias-.1,ic:out/7.6}}
+
