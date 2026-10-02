@@ -111,8 +111,8 @@ export function scaleUniverseSpritePath(assetKey) {
 }
 
 export function scaleUniverseSpriteSpec(assetKey) {
-  const metadata = scaleUniverseSpriteCatalog[assetKey];
-  if (!metadata) return null;
+  if (!assetKey) return null;
+  const metadata = scaleUniverseSpriteCatalog[assetKey] ?? { aspect: 1.33, scale: 2.65 };
   return {
     assetPath: scaleUniverseSpritePath(assetKey),
     assetAspect: metadata.aspect,

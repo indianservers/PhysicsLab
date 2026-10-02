@@ -219,7 +219,9 @@ export function normalizedScaleUniverseObjects() {
       scaleBand.toLowerCase(),
     ];
     const bestUnitLabel = formatBestUnit(object.sizeMeters);
+    const defaultSprite = object.assetPath ? {} : spriteOptions(object.id);
     return {
+      ...defaultSprite,
       ...object,
       ...enrichment,
       logSize,
