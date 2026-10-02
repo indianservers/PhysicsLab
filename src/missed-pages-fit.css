@@ -1,0 +1,118 @@
+/* Full-width, responsive framing for student-facing routes outside the experiment catalog. */
+:root {
+  --missed-page-gutter: clamp(0.65rem, 1.25vw, 1.4rem);
+}
+
+#content,
+.desktop-page,
+.concepts-shell,
+.concept-studio-shell,
+.particle-page,
+.string-theory-page,
+.innovation-page,
+.quantum-lab-shell,
+.scale-universe-shell,
+.pro-lab-shell,
+.pro-program-shell,
+.rp-shell {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+
+#content:not(.knowledge-graph-page):not(.st-shell) {
+  padding-inline: var(--missed-page-gutter) !important;
+}
+
+#content > *,
+.desktop-page > *,
+.concept-studio-shell > *,
+.particle-page > *,
+.string-theory-page > *,
+.innovation-page > *,
+.quantum-lab-shell > *,
+.scale-universe-shell > *,
+.pro-lab-shell > *,
+.pro-program-shell > *,
+.rp-shell > * {
+  min-width: 0;
+}
+
+#content > * {
+  width: 100%;
+  max-width: none;
+}
+
+.concepts-page .page-hero,
+.concepts-page .topic-lens-panel,
+.concepts-page .concepts-browser-layout {
+  width: 100%;
+}
+
+.concepts-hero-focused {
+  padding-block: clamp(0.9rem, 1.5vw, 1.4rem) !important;
+}
+
+.concepts-browser-layout-focused .concepts-card-grid {
+  align-content: start;
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.concepts-browser-layout-focused {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.concepts-browser-layout-focused .concept-detail-panel {
+  position: static !important;
+  width: 100%;
+}
+
+.concepts-browser-layout-focused .concept-card {
+  min-height: 0;
+}
+
+@media (max-width: 1279px) {
+  .concept-detail-panel {
+    order: -1;
+    position: static !important;
+  }
+
+  .concepts-browser-layout-focused {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .concepts-page .concepts-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .concepts-page .topic-lens-panel > .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .concepts-page .page-hero > .flex {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .concepts-page .page-hero .min-w-\[280px\] {
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --missed-page-gutter: 0.5rem;
+  }
+
+  .concepts-page .page-hero .min-w-\[280px\] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .concepts-page .concept-card-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

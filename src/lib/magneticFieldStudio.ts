@@ -1,0 +1,2 @@
+export type MagneticFieldInput={separation:number;probe:number};export const MAG_DEFAULTS={separation:6,probe:50};export function magneticSettings(v:MagneticFieldInput){return{separation:Math.max(2,Math.min(10,Number(v.separation)||2)),probe:Math.max(10,Math.min(100,Number(v.probe)||10))}}export function magneticSolution(v:MagneticFieldInput){const mu0=4*Math.PI*1e-7,m=3.0,r=Math.max(.02,v.separation/100);const B=mu0/(4*Math.PI)*2*m/(r*r*r);return{B}}
+

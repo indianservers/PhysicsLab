@@ -1,0 +1,31 @@
+# Motion & Kinematics — Velocity–Time
+
+Status: VERIFIED, page20/102. Position–Time page19 passed all gates before work began. This is the second of six pages in04_motion_kinematics; no later page has started.
+
+## Reference inspection
+
+02_velocity_time.png,1536×1024. Sidebar237px with Physics Studio brand, flat subject links, Tools/Notebook/Settings. Header starts263,21 with Motion & Kinematics / Velocity–Time, subtitle and Kinematics Lab brand upper right. Four modes x246y90w617h42. Two main columns: left820px, right449px, gap10. Left apparatusx246y137h336, gray/blue lab, photogates A/B, trolley with peg on a realistic silver track, clock3.20s upper right. Left graphx246y484h434, header and Show area checked / Show equation unchecked. Grid x321y546w724h303, t0..5s,v−1..5m/s, cyan slope and shaded area to3.2s, current dashed vertical cursor/readout. Right controlsx1076y131h344: initialvelocity.50 range−2..2; acceleration.80 range−3..3; duration4 range.5..8, all sliders and numeric fields. Collapsible header. Right live readingsy485h197: v3.06,dx5.70,average1.78. Equation panely694h224 displays v=v0+at and integrated signed displacement, all current parameters. Footerx246y935h73 Reset/Pause, Zoom−1×+,NextChallenge.
+
+Physics: printed numeric example is correct: v=.5+.8×3.2=3.06m/s; dx=.5×3.2+.5×.8×3.2²=5.696m; average1.78m/s. The plotted intercept is around.2 instead of.5, and the trolley at~1.6m on a2m track cannot represent5.696m displacement. Preserve parameters and visual composition, correct intercept and adapt ruler to full trajectory including turns. At t0 average is undefined, not a division by zero. Negative velocity areas must subtract; a return can have zero displacement with nonzero distance travelled.
+
+## Existing route and engine inspection
+
+Opened /experiments/uniform-motion default and Simulate tab, captured before-default.png and before-simulate.png in artifacts/studio-rebuild/20-velocity-time. Read UniformMotionLab.tsx, uniform-motionSimulation.ts and uniform-motionData.ts. The correct existing engine is x=x0+vt, constant v, acceleration0. Lab defaults speed.45,directionright,x0.2,observationinterval.5. Existing controls include signed direction, speed/start/interval, presets, play/pause/step/replay, playback speed/reduced motion, scrubber, prediction mission. Preserve this route, formulas, parameters, contracts and content. It cannot represent nonzero acceleration without extending its contract. Work-power/Newton engines have force/work-specific constraints, so use a small dedicated analytical segment module.
+
+## Implementation checkpoint
+
+src/lib/velocityTime.ts provides sanitized settings, exact v(t), signed displacement, averagevelocity(null at0), samples including exact turning points, and signed areas split at v=0. Range/defaults match reference. scripts/testVelocityTimePhysics.mjs passes default numbers, all signed/max/min/zero cases, derivative checks, time boundaries, area integration, exact reversal cancellation and finite values. physics-results.json records evidence.
+
+## Implemented UI and verification
+
+Dedicated /motion/velocity-time uses a lazy route and visible parent hero link, preserving /experiments/uniform-motion and page19. VelocityTimePage owns controls and elapsed-time playback; VelocityTimeScene draws a calibrated perspective track, generated photogates and cart sprite with actual earlier-time trails. Zoom1..3 follows the cart without changing readings; ruler extent includes all positions and exact turning points. A/B are reference positions on the full track. Sprite magnification is explained in the scene and Explain mode. VelocityTimeGraph uses actual available pixel width, exact signed-area polygons split at zero, dynamic axes, keyboard/click/drag time selection, and current velocity. Values remain synchronized in the model card and readings; averagevelocity is undefined at time0.
+
+Every control tested: all three sliders and numeric fields including blank/max/min input, play/pause/reset/restart, graph Home/End/arrows/pointer capture, area/equation toggles, collapsible controls, all zoom buttons and limits, all four modes, wrong/correct prediction, five experimental checkpoints, Settings trail toggle/pause/restore, notebook capture/session notes/reopen/clear, all three challenge wrong/correct solutions/reopen. Reset restores the simulation and view; session notebook entries remain separate until Clear notebook.
+
+Visual iterations corrected the oversized tab row caused by an existing #content child rule, replaced the flat gate drawing with a genuine RGBA photogate, strengthened rail contrast, enlarged mobile ruler labels and reserved room for the unit, corrected cart rail-height projection, removed duplicate trail keys at time0, and widened the mobile velocity-axis margin to keep negative labels clear. Desktop1536×1024 composition closely matches the target; physics-correct intercept and calibrated track differ intentionally. All six required viewport screenshots pass2-* reviewed; no horizontal overflow. Twelve extreme screenshots cover maximum/minimum/zero/turning/reversal/zoom at1536 and390. Reviewed maximum desktop, minimum/zoom mobile, then corrected mobile negative/zero/reversal captures final-390-*. testVelocityGraphLabels.mjs verifies actual label rectangles do not collide.
+
+Browser-checks.json: all controls pass, zero page errors or failed requests, only existing React Router future migration warnings. Final-checks.json:15 route entries including every sidebar link and the preserved legacy uniform-motion lab with original.45m/s speed and working Play/Pause; parent link click and direct reload pass.12 extreme states verify sum of rendered signed areas equals exact displacement.90 animation frames:median7ms,p95 13.9ms,max14.1ms. Physics-results.json covers default3.06m/s,5.696m,1.78m/s; all range boundaries, signs, zeros, derivatives and cancelling areas.
+
+Final production build43554 exited0 after the last graph-margin edit,798precache entries. Existing large-chunk advisory only. No build configuration changes. Asset and exact prompt provenance:20-velocity-assets.md. Page21 has not started.
+
+All page gates VERIFIED. No live process handles remain. Next: page21 Acceleration–Time in the same studio.

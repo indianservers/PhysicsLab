@@ -1,0 +1,32 @@
+{
+  "lessonId": 69,
+  "experimentId": "statistical-ensemble-lab",
+  "renderingMode": "2d",
+  "assets": [
+    {
+      "file": "ensemble-chamber.png",
+      "role": "transparent gas chamber, piston, probe, and reservoir coupling",
+      "source": "generated with built-in image generation",
+      "dynamicOverlays": [
+        "sampled particles",
+        "ground and excited states",
+        "macrostate badge",
+        "selection focus"
+      ]
+    },
+    {
+      "file": "concept-effect.png",
+      "role": "supplied blue particle effect"
+    },
+    {
+      "file": "interaction-overlay.png",
+      "role": "supplied amber particle effect"
+    }
+  ],
+  "deferred": [
+    {
+      "file": "statistical-ensemble-lab.glb",
+      "reason": "3D intentionally deferred under the current 2D lesson direction"
+    }
+  ]
+}

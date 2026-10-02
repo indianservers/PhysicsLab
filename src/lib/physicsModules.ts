@@ -124,7 +124,7 @@ export const physicsModuleGroups: PhysicsModuleGroup[] = [
     icon: "teacher",
     modules: [
       moduleLink("roadmap", "Student Roadmap", "Class-wise launch paths into labs and mastery practice.", "/roadmap", "compass", ["roadmap", "class", "mastery"]),
-      moduleLink("quiz", "Quiz Practice", "Practice conceptual and numerical physics questions.", "/quiz", "check", ["quiz", "practice", "assessment"]),
+      moduleLink("quiz", "Quiz Practice", "Practice conceptual and numerical physics questions.", "/quiz?view=practice", "check", ["quiz", "practice", "assessment"]),
       moduleLink("teacher", "Teacher Tools", "Assignments, snapshots, classroom reports, and evidence review.", "/teacher", "teacher", ["teacher", "assignment", "classroom"]),
       moduleLink("trust", "Scientific Trust", "Accuracy checks, validation status, sources, and model assumptions.", "/trust", "check", ["trust", "accuracy", "source"], "warning"),
       moduleLink("simulation-depth", "Simulation Depth", "2D/3D polish, accuracy, probes, replay, and launch tracking.", "/simulation-depth", "eye", ["phet", "simulation", "depth"]),

@@ -41,6 +41,7 @@ export function createScaleUniverseExplorer(host) {
         <aside class="scale-filter-panel" aria-label="Object category filters"></aside>
         <nav class="scale-path-panel" aria-label="Mini scale path"></nav>
         <canvas aria-label="Scale of Universe canvas visualization" role="img" tabindex="0"></canvas>
+        <div class="scale-reference-badge"><span>REALISTIC REFERENCE LAYER</span><b>Scientific composite · logarithmic scale</b></div>
         <div class="scale-legend" aria-live="polite">
           <span>Current Scale</span>
           <strong>10<sup>0</sup> meters</strong>

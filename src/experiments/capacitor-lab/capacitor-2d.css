@@ -1,0 +1,17 @@
+.cap-stage > .cap-field { display: none; }
+.cap-2d { position:absolute; inset:0; overflow:hidden; user-select:none; }
+.cap-2d > img { position:absolute; left:50%; top:54%; width:min(94%,900px); transform:translate(-50%,-50%); pointer-events:none; }
+.cap-live-plates { position:absolute; z-index:2; left:50%; top:43%; width:1px; height:1px; transform-origin:center; }
+.cap-plate { position:absolute!important; top:-112px; left:-14px; width:28px; height:224px; border:2px solid #eef7ff!important; border-radius:4px!important; background:linear-gradient(90deg,#75838b,#eef5f7 45%,#7d8b92)!important; box-shadow:0 0 15px #bfeeff55; touch-action:none; cursor:ew-resize; }
+.cap-plate span { position:absolute; top:8px; left:6px; color:#142027; font-size:16px; }
+.cap-live-field { position:absolute; z-index:-1; left:50%; top:-82px; height:164px; transform:translateX(-50%); display:flex; flex-direction:column; justify-content:space-around; color:#ffad43; overflow:hidden; }
+.cap-live-field i { font-style:normal; text-align:center; letter-spacing:16px; }
+.cap-dielectric-handle { position:absolute!important; left:-38px; bottom:-86px; width:76px; min-height:20px; border:2px solid #8af2ff!important; background:linear-gradient(#67dcea88,#247c9c99)!important; touch-action:none; cursor:ns-resize; }
+.cap-dielectric-handle span { position:absolute; left:80px; top:2px; color:#baf6ff; white-space:nowrap; font:700 10px ui-monospace; }
+.cap-charge-flow { position:absolute; z-index:3; left:12%; right:14%; bottom:19%; display:flex; justify-content:space-around; pointer-events:none; }
+.cap-charge-flow i { width:7px; height:7px; border-radius:50%; background:#ffde66; opacity:.2; }
+.cap-charge-flow[data-running="true"] i { animation:capCharge .9s infinite alternate; }
+.cap-direct-hint,.cap-live-output { position:absolute; z-index:4; border:1px solid #586a72; background:#111a20dd; color:#dce9ed; }
+.cap-direct-hint { left:50%; top:14px; transform:translateX(-50%); padding:5px 8px; font-size:8px; letter-spacing:.07em; white-space:nowrap; }
+.cap-live-output { left:13px; bottom:12px; padding:7px 9px; font:700 10px ui-monospace; }
+@keyframes capCharge { to { opacity:1; transform:translateY(-5px); box-shadow:0 0 8px #ffe374; } }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useCountUp } from "../hooks/useCountUp";
 import { Toolbar } from "../components/Toolbar";
@@ -13,8 +13,9 @@ import { PhysicsIcon, iconForCategory } from "../lib/icons";
 
 const schoolClasses = classOptions.filter((item) => item.grade >= 6 && item.grade <= 12);
 const tierOrder = ["All", "Mastery ready", "Guided practice", "Needs support", "Build prerequisite"];
+const GuidedPathPage = lazy(() => import('./GuidedPathPage').then(module => ({default:module.GuidedPathPage})));
 
-export function RoadmapPage() {
+function CurriculumRoadmapPage() {
   const [params, setParams] = useSearchParams();
   const initialClass = params.get("class") ?? schoolClasses[0]?.id ?? "class-6";
   const initialTopic = params.get("topic") ?? "";
@@ -185,4 +186,9 @@ function RoadMetric({ icon, label, value }: { icon: Parameters<typeof PhysicsIco
 
 function Count({ value }: { value: number }) {
   return <>{useCountUp(value)}</>;
+}
+
+export function RoadmapPage(){
+ const [params]=useSearchParams();
+ return params.get('view')==='curriculum'||params.has('class')||params.has('topic')?<CurriculumRoadmapPage/>:<Suspense fallback={<main aria-busy="true" style={{minHeight:'100vh',background:'#010c18',color:'#cbe4ff',padding:24}}>Loading guided learning path…</main>}><GuidedPathPage/></Suspense>;
 }

@@ -1,0 +1,19 @@
+{
+  "assets": [
+    {
+      "src": "/assets/mass-time/measurement-bench.png",
+      "width": 1619,
+      "height": 971
+    },
+    {
+      "src": "/assets/vernier-caliper/brushed-steel.png",
+      "width": 1774,
+      "height": 887
+    }
+  ],
+  "frames": {
+    "medianMs": 6.900000000000091,
+    "p95Ms": 7.200000000000273,
+    "maxMs": 41.70000000000027
+  }
+}

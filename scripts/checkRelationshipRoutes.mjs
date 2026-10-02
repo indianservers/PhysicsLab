@@ -1,0 +1,2 @@
+import {chromium} from 'playwright-core';
+const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const p=await b.newPage();await p.goto('http://127.0.0.1:5371/graph');console.log(await p.evaluate(async()=>{const {experiments}=await import('/src/lib/experiments.ts');const {relationshipConcepts}=await import('/src/lib/conceptRelationships.ts');return relationshipConcepts.map(c=>({concept:c.label,route:c.route,valid:experiments.some(e=>e.id===c.route.split('/').pop())}))}));await b.close();

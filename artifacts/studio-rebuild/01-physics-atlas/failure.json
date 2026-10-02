@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "Direct route and default readings",
+    "Pause freezes SVG and CSS; Play resumes",
+    "Scale min/max and Zoom",
+    "All five depth settings have distinct content",
+    "Every topic filters and selects; keyboard selection",
+    "Every navigation panel opens and closes with Escape",
+    "Search handles match and empty results",
+    "Prediction wrong/right answers and next challenge",
+    "Six physics controls: zero, negative, extrema, inverse square, reset",
+    "Explain, settings animation, observe, and mode step buttons",
+    "Notes save and persist across direct refresh",
+    "Reset restores state and restarts map clock"
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: 1280: clipped panels\n+ actual - expected\n\n+ [\n+   'pa-readings'\n+ ]\n- []\n",
+  "errors": [],
+  "failedRequests": []
+}

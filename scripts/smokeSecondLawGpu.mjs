@@ -1,0 +1,3 @@
+import{chromium}from'playwright-core';
+const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--disable-gpu']});
+try{const p=await b.newPage({viewport:{width:1536,height:1024}});await p.goto('http://127.0.0.1:5371/motion/second-law-fma',{timeout:10000});await p.locator('.s2-readings').waitFor({timeout:10000});console.log(await p.locator('.s2-readings').innerText());console.log(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth))}finally{await b.close()}

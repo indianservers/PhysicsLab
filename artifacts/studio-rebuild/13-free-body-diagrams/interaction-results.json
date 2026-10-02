@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "Slider keyboard boundaries and numeric min/max/empty handling",
+    "Controls accordion and zoom clamps",
+    "Prediction outcomes, explanation, observe, Escape and close",
+    "Three distinct challenge states, wrong and correct answers",
+    "Negative velocity preset: friction reverses and stops without chatter",
+    "Live animation sampled over 90 rendered frames",
+    "Direct refresh restores initial state",
+    "All subject accordion links navigate to registered studio pages",
+    "Previous measurement page and original force route still render"
+  ],
+  "errors": [],
+  "runtime": {
+    "median": 7,
+    "p95": 7.100000000000364,
+    "max": 7.200000000000728
+  }
+}

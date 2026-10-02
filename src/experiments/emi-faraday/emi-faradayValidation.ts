@@ -1,5 +1,15 @@
 import { approximatelyEqual, runBenchmarkCases } from "../shared/validation";
-import { emiFaradayBenchmarks } from "./emi-faradaySimulation";
+import { emiFaradayBenchmarks as emiFaradayBenchmarkInputs } from "./emi-faradaySimulation";
 
-export const emiFaradayValidation = runBenchmarkCases(emiFaradayBenchmarks.map((item) => ({ ...item, input: item.actual, actual: (value: number) => value })));
-export const emiFaradayValidated = emiFaradayBenchmarks.every((item) => approximatelyEqual(item.actual, item.expected, item.tolerance));
+export const emiFaradayBenchmarks = runBenchmarkCases(
+  emiFaradayBenchmarkInputs.map((item) => ({
+    ...item,
+    input: item.actual,
+    actual: (value: number) => value,
+  })),
+);
+
+export const emiFaradayValidated = emiFaradayBenchmarks.every(
+  (item) =>
+    item.pass && approximatelyEqual(item.actual, item.expected, item.tolerance),
+);

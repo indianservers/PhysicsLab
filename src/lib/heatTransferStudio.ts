@@ -1,0 +1,2 @@
+export type HeatInput={delta:number;time:number;material:number};export const HEAT_DEFAULTS={delta:80,time:60,material:237};export function heatSettings(v:HeatInput){return{delta:Math.max(10,Math.min(200,Number(v.delta)||10)),time:Math.max(0,Math.min(600,Number(v.time)||0)),material:v.material}}export function heatSolution(v:HeatInput){const flux=.1*v.material*v.delta;return{hot:20+v.delta,cold:20,flux,rate:flux*.005}}
+

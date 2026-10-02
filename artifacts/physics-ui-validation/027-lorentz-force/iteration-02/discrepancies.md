@@ -1,0 +1,13 @@
+# Lesson 027 — Lorentz Force on Moving Charge visual review
+
+- The supplied GLB and effect layers were deliberately not loaded under the user's current 2D-first direction. A generated transparent PNG establishes the vacuum chamber, source, field plates and detector; live SVG layers render the particle, field guides, vectors and trajectory.
+- The generated PNG is presentation-only. Motion, charge colour, trajectory, vector direction, plots and all readings are driven by one authoritative SI-unit simulation state.
+- The mockup's chamber hierarchy is retained inside the existing app shell: particle/field controls, large dark chamber stage, projected-view controls, live measurements, dual trajectory plots, equations and velocity-selector challenge.
+- Force uses the full vector equation `F⃗ = q(E⃗ + v⃗ × B⃗)`. The deterministic trajectory is integrated in three spatial coordinates with a fourth-order Runge–Kutta stepper; the 2D stage provides a rotatable projection rather than a GLB orbit camera.
+- Magnetic radius, cyclotron period and helix pitch use `r = mv⊥/(|q|B)`, `T = 2πm/(|q|B)` and `p = v∥T`. The velocity selector uses opposing crossed fields and `v = E/B`.
+- Proton and electron masses/charges use CODATA values. The chamber projection is normalized to keep microscopic electron and macroscopic proton trajectories readable; displayed measurements remain in SI units.
+- Dedicated presets browser-verified straight parallel motion with zero magnetic force, circular motion, helical motion and crossed-field motion. Switching proton to electron reversed signed transverse force from −6.41×10⁻¹⁴ N to +6.41×10⁻¹⁴ N for the same perpendicular velocity and field.
+- Playback launch/pause/step, 0.25×–2× speed, reduced motion, pointer/touch projected-view drag, keyboard view rotation, view presets, field reversal and reset are supported. Reduced motion settles the trajectory immediately.
+- The challenge passed at `E = 3.00×10⁵ N/C`, `B = 0.150 T`, `θ = 90°`: `E/B = 2.00×10⁶ m/s`; the target beam passes while a `1.50×10⁶ m/s` beam is rejected.
+- Generated source: `C:\Users\saisa\.codex\generated_images\01a064f9-4270-7ab3-88a1-9c5c3aa9a5a9\exec-96191c2a-d249-4f8d-9830-738afd209c8c.png`; app copy: `public/assets/experiments/lorentz-force/charged-particle-chamber.png` (2048×768, 32-bit alpha).
+- Desktop 1440×900, tablet 1024×768 and mobile 390×844 were captured. The mobile DOM contains one lesson and one stage; repeated sticky-shell fragments in the stitched `mobile-full.png` are a capture artifact, not duplicated application content. A fresh console had no runtime errors; its only warnings were the two pre-existing React Router future-flag notices.

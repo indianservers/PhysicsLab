@@ -6,6 +6,10 @@ import { curriculum, curriculumCoverageStats, findTopicsByDomainSlug } from "../
 import { iconForExperiment, iconForTool, PhysicsIcon, PhysicsIconName } from "../lib/icons";
 import { GuidePanel } from "../components/GuidePanel";
 import { guideForTool } from "../lib/guides";
+import { ConceptExperience } from "../components/ConceptExperience";
+import { conceptExperienceById } from "../lib/conceptExperiences";
+
+const topicExperience: Record<string,string> = { measurement:"measurement", mechanics:"mechanics", energy:"work-energy-power", oscillations:"oscillations", waves:"waves-sound", optics:"optics", electricity:"electricity", magnetism:"magnetism", electronics:"electronics", thermodynamics:"thermodynamics", "fluid-mechanics":"fluid-mechanics", "modern-physics":"modern-physics", astronomy:"astronomy-astrophysics", astrophysics:"astronomy-astrophysics" };
 
 export function TopicPage({ topic }: { topic: string }) {
   const title = topic.split("-").map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
@@ -22,6 +26,7 @@ export function TopicPage({ topic }: { topic: string }) {
   }, [topic]);
   const activeClass = classGroups.find((klass) => klass.id === activeClassId) ?? classGroups[0];
   const labCount = new Set(matchingTopics.flatMap((item) => item.experimentIds)).size;
+  const liveExperience = conceptExperienceById.get(topicExperience[topic] ?? "mechanics");
 
   return (
     <div className="min-h-screen">
@@ -51,6 +56,8 @@ export function TopicPage({ topic }: { topic: string }) {
             </div>
           </div>
         </section>
+
+        {liveExperience && <ConceptExperience experience={liveExperience} compact />}
 
         <section className="desktop-tab-panel desktop-two-pane">
           <aside className="panel p-4 desktop-sidebar-scroll">

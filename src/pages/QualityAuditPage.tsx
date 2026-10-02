@@ -69,7 +69,7 @@ export function QualityAuditPage() {
                 <p className="ui-label">Top 25 upgrade queue</p>
                 <h2>Priority simulations to make great first</h2>
               </div>
-              <Link className="hero-btn-secondary" to="/comparison">
+              <Link className="hero-btn-secondary" to="/comparison?view=benchmark">
                 <PhysicsIcon name="chart" className="h-4 w-4" />
                 Benchmark
               </Link>

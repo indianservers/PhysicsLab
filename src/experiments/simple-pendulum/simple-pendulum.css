@@ -1,3 +1,365 @@
-.mechanics-cinema-simple-pendulum {
-  --mechanics-scene-accent: #a78bfa;
+.sp-lab {
+  --o: #d76b0c;
+  width: min(100%, calc(100vw - 96px));
+  color: #292622;
+  font-family: Inter, system-ui, sans-serif;
+}
+.sp-lab h2,
+.sp-lab h3,
+.sp-lab p {
+  margin: 0;
+}
+.sp-lab button,
+.sp-lab input,
+.sp-lab select {
+  border: 1px solid #ddd7d0;
+  border-radius: 8px;
+  background: #fff;
+  color: #2d2925;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 800;
+}
+.sp-lab button {
+  cursor: pointer;
+}
+.sp-lab > header,
+.sp-toolbar,
+.sp-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.sp-lab > header {
+  padding: 17px 22px;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 3px solid #f29a44;
+  background: linear-gradient(100deg, #35200e, #825019);
+  color: #fff;
+}
+.sp-lab > header span,
+.sp-mission span {
+  color: #ffd3a4;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.sp-lab > header h2 {
+  background: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: clamp(22px, 2.5vw, 34px);
+}
+.sp-lab > header p {
+  color: #ffe8d1 !important;
+  font-size: 11px;
+}
+.sp-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(460px, 1fr) 245px;
+  min-height: 660px;
+  border: 1px solid #ddd;
+  background: #f2ede7;
+}
+.sp-controls,
+.sp-data {
+  padding: 15px;
+  background: #fff;
+}
+.sp-controls {
+  border-right: 1px solid #ddd;
+}
+.sp-data {
+  border-left: 1px solid #ddd;
+}
+.sp-controls h3,
+.sp-data h3 {
+  margin-bottom: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.sp-range {
+  display: block;
+  margin-bottom: 12px;
+}
+.sp-range span,
+.sp-range small {
+  display: flex;
+  justify-content: space-between;
+}
+.sp-range span {
+  font-size: 9px;
+}
+.sp-range b,
+.sp-data dd {
+  color: var(--o);
+}
+.sp-range input {
+  width: 100%;
+  padding: 0;
+  accent-color: var(--o);
+}
+.sp-range small {
+  color: #8c8580;
+  font-size: 8px;
+}
+.sp-range i {
+  font-style: normal;
+}
+.sp-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin: 8px 0;
+}
+.sp-presets button {
+  padding: 7px 2px;
+  font-size: 8px;
+}
+.sp-controls p {
+  padding: 8px;
+  border-radius: 7px;
+  background: #eef6eb;
+  color: #48683d;
+  font-size: 9px;
+}
+.sp-controls p.warn {
+  background: #fff0df;
+  color: #8b4b13;
+}
+.sp-main {
+  min-width: 0;
+  padding: 11px;
+}
+.sp-toolbar {
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.sp-toolbar button {
+  font-size: 9px;
+}
+.sp-toolbar label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 8px;
+  font-weight: 900;
+}
+.sp-toolbar input {
+  width: auto;
+}
+.sp-stage {
+  position: relative;
+  contain: paint;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: radial-gradient(circle, #fff, #ded8d0);
+}
+.sp-stage > img {
+  position: absolute;
+  z-index: 1;
+  inset: 1% auto 1% 7%;
+  height: 98%;
+  max-width: none;
+}
+.sp-swing {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 14%;
+  width: 2px;
+  transform-origin: top center;
+}
+.sp-swing i {
+  position: absolute;
+  inset: 0;
+  background: #4d453c;
+}
+.sp-swing button {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  padding: 0 !important;
+  translate: -50% 50%;
+  border: 3px solid #fff !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 35% 30%, #ffcf71, #96600f) !important;
+  box-shadow: 0 4px 10px #0005;
+}
+.sp-angle,
+.sp-gate,
+.sp-force {
+  position: absolute;
+  z-index: 4;
+  padding: 8px;
+  border-radius: 7px;
+  background: #202020;
+  color: #fff;
+  font-size: 9px;
+}
+.sp-angle {
+  left: 54%;
+  top: 16%;
+}
+.sp-gate {
+  right: 8%;
+  bottom: 12%;
+  text-align: center;
+}
+.sp-gate b {
+  color: #8de37c;
+}
+.sp-force {
+  left: 10%;
+  bottom: 10%;
+  color: #ffb3a9;
+}
+.sp-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-top: 8px;
+}
+.sp-equations b {
+  padding: 8px;
+  border-radius: 7px;
+  background: #fff;
+  text-align: center;
+  font-size: 9px;
+}
+.sp-data dl {
+  margin: 0;
+}
+.sp-data dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #e7e2dd;
+  font-size: 9px;
+}
+.sp-data dd {
+  margin: 0;
+  font-weight: 900;
+}
+.sp-graphs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #ddd;
+  border-top: 0;
+  background: #fff;
+}
+.sp-graphs > div {
+  padding: 14px;
+  border-right: 1px solid #ddd;
+}
+.sp-graphs b {
+  font-size: 10px;
+}
+.sp-graphs svg {
+  width: 100%;
+  height: 140px;
+}
+.sp-graphs line {
+  stroke: #aaa;
+}
+.sp-graphs polyline {
+  fill: none;
+  stroke: #cf382e;
+  stroke-width: 2;
+}
+.sp-graphs .ke {
+  stroke: #2673c5;
+}
+.sp-graphs .pe {
+  stroke: #4c9b3f;
+}
+.sp-graphs small {
+  font-size: 8px;
+}
+.sp-mission {
+  flex-wrap: wrap;
+  padding: 13px 20px;
+  border-radius: 0 0 18px 18px;
+  background: #fff1c4;
+  border: 1px solid #e3c369;
+}
+.sp-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.sp-mission span {
+  color: #8d5c12;
+}
+.sp-mission small {
+  color: #685b3e;
+}
+.sp-mission input {
+  width: 90px;
+}
+.sp-mission output {
+  flex-basis: 100%;
+  min-height: 15px;
+  color: #187139;
+  font-size: 10px;
+  font-weight: 900;
+}
+@media (max-width: 1050px) {
+  .sp-layout {
+    grid-template-columns: 210px minmax(430px, 1fr);
+  }
+  .sp-data {
+    grid-column: 1/-1;
+    border-left: 0;
+  }
+  .sp-data dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+  }
+}
+@media (max-width: 760px) {
+  .sp-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .sp-lab > header {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .sp-lab > header p {
+    display: none;
+  }
+  .sp-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .sp-main {
+    order: 1;
+    padding: 8px;
+  }
+  .sp-controls {
+    order: 2;
+  }
+  .sp-data {
+    order: 3;
+  }
+  .sp-stage {
+    min-height: 450px;
+  }
+  .sp-stage > img {
+    left: -10%;
+  }
+  .sp-equations,
+  .sp-graphs {
+    grid-template-columns: 1fr;
+  }
+  .sp-mission {
+    align-items: stretch;
+  }
+  .sp-mission button {
+    flex: 1;
+  }
 }

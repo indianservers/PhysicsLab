@@ -1,0 +1,9 @@
+{
+  "lessonId": "072",
+  "experimentId": "echo-speed-sound",
+  "renderingMode": "2d-png-svg",
+  "generatedApparatus": "echo-apparatus.png",
+  "suppliedEffects": ["concept-effect.png", "interaction-overlay.png"],
+  "deferredAssets": ["echo-speed-sound.glb"],
+  "note": "GLB intentionally deferred per project direction; pulse fronts, distance markers and oscilloscope are live 2D layers."
+}

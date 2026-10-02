@@ -1,0 +1,61 @@
+{
+  "checks": [
+    "Direct page and seven selectable scientific workspaces",
+    "Model equations and boundary calculations agree with independent results",
+    "Path length, goal, level, search, keyboard and progress selection",
+    "Pause freezes time, replay reaches the floor, and reset restores release state",
+    "Every parameter control handles minimum, maximum and signed or zero values",
+    "Scene responds to physical parameters and zoom controls are bounded",
+    "Challenge feedback earns and persists progress; notes and settings work",
+    "All seven challenges and advanced energy question have correct feedback",
+    "All full lab routes exist in the current experiment catalog",
+    "Six responsive viewports without clipping or document horizontal overflow",
+    "Existing curriculum roadmap remains accessible"
+  ],
+  "responsive": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "documentHeight": 1024,
+      "clipped": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "documentHeight": 900,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "documentHeight": 1032,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "documentHeight": 1124,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "documentHeight": 1595,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "documentHeight": 1898,
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

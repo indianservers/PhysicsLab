@@ -1,0 +1,22 @@
+.live-lesson-workbench { display: grid; grid-template-columns: minmax(210px, 270px) minmax(0, 1fr); gap: 14px; align-items: start; }
+.live-lesson-workbench > * { min-width: 0; }
+.live-lesson-workbench .three-lab-card { margin-top: 0; }
+.live-lesson-controls h2 { font-size: 17px; font-weight: 800; }
+.live-lesson-controls > p { font-size: 12px; line-height: 1.5; margin: 10px 0; }
+.live-lesson-controls label { display: grid; grid-template-columns: 1fr 86px; gap: 8px; align-items: center; margin: 17px 0; font-size: 12px; }
+.live-lesson-controls input[type=number] { min-width: 0; width: 100%; padding: 5px; border: 1px solid #7893a6; border-radius: 5px; color: #112938; background: #fff; }
+.live-lesson-controls input[type=range] { grid-column: 1 / -1; width: 100%; accent-color: #0891b2; }
+.live-lesson-controls dl > div { padding: 9px 0; border-top: 1px solid #7893a644; }
+.live-lesson-controls dt { font-size: 11px; }
+.live-lesson-controls dd { font-weight: 700; font-size: 14px; overflow-wrap: anywhere; }
+.live-lesson-formula { overflow-wrap: anywhere; }
+.three-simulation-transport { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 9px; font-size: 12px; color: #d5edf8; }
+.three-simulation-transport select { color: #102d42; background: #fff; border-radius: 4px; padding: 4px; }
+#root .experiment-detail-page .three-lab-card h2 { color: #edf8ff !important; -webkit-text-fill-color: #edf8ff !important; }
+#root .experiment-detail-page .three-lab-card p, #root .experiment-detail-page .three-lab-card .ui-label { color: #b6cdda !important; -webkit-text-fill-color: #b6cdda !important; }
+@media (max-width: 760px) { .live-lesson-workbench { grid-template-columns: 1fr; } .live-lesson-controls { order: 1; } .live-lesson-workbench .three-lab-canvas { min-height: 300px; } }
+@media (max-width: 680px) {
+  .experiment-detail-page .lesson-command-bar { grid-template-columns: minmax(0, 1fr); overflow-x: visible; }
+  .experiment-detail-page .lesson-command-tabs { flex-wrap: wrap; }
+  .experiment-detail-page .lesson-level-compact { justify-self: start; }
+}

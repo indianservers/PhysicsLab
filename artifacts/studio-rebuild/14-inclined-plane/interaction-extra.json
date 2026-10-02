@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "Prediction feedback and complete-force explanation",
+    "All three challenges with empty and correct answers",
+    "Graph visibility, half-speed control and reset",
+    "Block drag changes its starting position"
+  ],
+  "errors": []
+}

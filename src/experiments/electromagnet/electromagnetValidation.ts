@@ -1,5 +1,1 @@
-import { approximatelyEqual, runBenchmarkCases } from "../shared/validation";
-import { electromagnetBenchmarks } from "./electromagnetSimulation";
-
-export const electromagnetValidation = runBenchmarkCases(electromagnetBenchmarks.map((item) => ({ ...item, input: item.actual, actual: (value: number) => value })));
-export const electromagnetValidated = electromagnetBenchmarks.every((item) => approximatelyEqual(item.actual, item.expected, item.tolerance));
+import{runBenchmarkCases}from"../shared/validation";import{electromagnetBenchmarks as raw}from"./electromagnetSimulation";export const electromagnetBenchmarks=runBenchmarkCases(raw.map(x=>({...x,input:x.actual,actual:(v:number)=>v})));export const electromagnetValidation=electromagnetBenchmarks;export const electromagnetValidated=electromagnetBenchmarks.every(x=>x.pass);

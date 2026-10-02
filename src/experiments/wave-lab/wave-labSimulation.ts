@@ -1,49 +1,159 @@
-import { degreesToRadians, distance } from "../shared/waveMath";
 import { runBenchmarkCases } from "../shared/validation";
 
+export type WaveMode = "traveling" | "standing" | "fixed" | "free";
+
 export interface WaveLabInput {
-  frequency: number;
-  speed: number;
-  sourceSeparation: number;
+  amplitudeM: number;
+  frequencyHz: number;
+  wavelengthM: number;
   phaseDeg: number;
-  probeX: number;
-  probeY: number;
+  secondWave: boolean;
+  mode: WaveMode;
+  timeS: number;
+  sampleXM: number;
+  lengthM?: number;
 }
 
-export function simulateWaveLab(input: WaveLabInput) {
-  const wavelength = input.speed / input.frequency;
-  const sourceA = { x: -input.sourceSeparation / 2, y: 0 };
-  const sourceB = { x: input.sourceSeparation / 2, y: 0 };
-  const r1 = distance(sourceA.x, sourceA.y, input.probeX, input.probeY);
-  const r2 = distance(sourceB.x, sourceB.y, input.probeX, input.probeY);
-  const pathDifference = r2 - r1;
-  const phaseAtProbe = (2 * Math.PI * pathDifference / wavelength) + degreesToRadians(input.phaseDeg);
-  const detectorAmplitude = Math.sqrt(Math.max(0, 2 + 2 * Math.cos(phaseAtProbe)));
-  const patternType = Math.abs(Math.cos(phaseAtProbe)) > 0.85 ? "constructive" : Math.abs(Math.cos(phaseAtProbe)) < 0.2 ? "destructive" : "partial";
-  const graphPoints = Array.from({ length: 32 }, (_, index) => {
-    const t = index / 31;
-    return { x: t, y: detectorAmplitude * Math.sin(2 * Math.PI * t) };
-  });
-  return { wavelength, sourceA, sourceB, pathDifference, phaseAtProbe, detectorAmplitude, patternType, graphPoints };
+const TAU = Math.PI * 2;
+export const wrapDegrees = (degrees: number) =>
+  ((((degrees + 180) % 360) + 360) % 360) - 180;
+
+export function nodePhaseDegrees(xM: number, wavelengthM: number) {
+  return wrapDegrees((-720 * xM) / wavelengthM);
 }
+
+export function solveWaveLab(input: WaveLabInput) {
+  const lengthM = input.lengthM ?? 1;
+  const omega = TAU * input.frequencyHz;
+  const waveNumber = TAU / input.wavelengthM;
+  const phaseRad = (input.phaseDeg * Math.PI) / 180;
+  const speedMs = input.frequencyHz * input.wavelengthM;
+  const firstAt = (xM: number, timeS = input.timeS) =>
+    input.amplitudeM * Math.sin(waveNumber * xM - omega * timeS);
+  const secondAt = (xM: number, timeS = input.timeS) => {
+    if (!input.secondWave) return 0;
+    if (input.mode === "fixed") {
+      return (
+        -input.amplitudeM *
+        Math.sin(waveNumber * (2 * lengthM - xM) - omega * timeS)
+      );
+    }
+    if (input.mode === "free") {
+      return (
+        input.amplitudeM *
+        Math.sin(waveNumber * (2 * lengthM - xM) - omega * timeS)
+      );
+    }
+    if (input.mode === "standing") {
+      return (
+        input.amplitudeM * Math.sin(waveNumber * xM + omega * timeS + phaseRad)
+      );
+    }
+    return (
+      input.amplitudeM * Math.sin(waveNumber * xM - omega * timeS + phaseRad)
+    );
+  };
+  const resultantAt = (xM: number, timeS = input.timeS) =>
+    firstAt(xM, timeS) + secondAt(xM, timeS);
+  const y1 = firstAt(input.sampleXM);
+  const y2 = secondAt(input.sampleXM);
+  const resultant = y1 + y2;
+  const fixedBoundaryResidual =
+    input.mode === "fixed" ? resultantAt(lengthM) : 0;
+  const freeBoundarySlope =
+    input.mode === "free"
+      ? (resultantAt(lengthM + 1e-5) - resultantAt(lengthM - 1e-5)) / 2e-5
+      : 0;
+  const targetNodePhaseDeg = nodePhaseDegrees(
+    input.sampleXM,
+    input.wavelengthM,
+  );
+  const nodeEnvelopeM =
+    input.secondWave && input.mode === "standing"
+      ? 2 *
+        input.amplitudeM *
+        Math.abs(Math.sin(waveNumber * input.sampleXM + phaseRad / 2))
+      : Math.abs(resultant);
+  return {
+    omega,
+    waveNumber,
+    speedMs,
+    periodS: 1 / input.frequencyHz,
+    y1,
+    y2,
+    resultant,
+    fixedBoundaryResidual,
+    freeBoundarySlope,
+    targetNodePhaseDeg,
+    nodeEnvelopeM,
+    firstAt,
+    secondAt,
+    resultantAt,
+  };
+}
+
+const reference: WaveLabInput = {
+  amplitudeM: 0.005,
+  frequencyHz: 12,
+  wavelengthM: 0.0417,
+  phaseDeg: 0,
+  secondWave: true,
+  mode: "standing",
+  timeS: 0,
+  sampleXM: 0.6,
+};
 
 export const waveLabBenchmarks = runBenchmarkCases<WaveLabInput>([
   {
-    id: "wave-frequency-wavelength",
-    name: "Frequency increase lowers wavelength at fixed speed",
-    input: { frequency: 10, speed: 20, sourceSeparation: 4, phaseDeg: 0, probeX: 2, probeY: 5 },
-    expected: 1,
-    unit: "boolean",
-    tolerance: 0,
-    actual: (input) => simulateWaveLab({ ...input, frequency: 20 }).wavelength < simulateWaveLab(input).wavelength ? 1 : 0,
+    id: "wave-speed-relation",
+    name: "Wave speed equals frequency times wavelength",
+    input: reference,
+    expected: 0.5004,
+    unit: "m/s",
+    tolerance: 1e-12,
+    actual: (input) => solveWaveLab(input).speedMs,
   },
   {
-    id: "wave-zero-separation-single-source",
-    name: "Zero separation same phase acts like stronger single source",
-    input: { frequency: 10, speed: 20, sourceSeparation: 0, phaseDeg: 0, probeX: 2, probeY: 5 },
-    expected: 2,
-    unit: "relative amplitude",
-    tolerance: 1e-9,
-    actual: (input) => simulateWaveLab(input).detectorAmplitude,
+    id: "wave-superposition",
+    name: "Resultant equals algebraic component sum",
+    input: { ...reference, timeS: 0.017, sampleXM: 0.41 },
+    expected: 0,
+    unit: "m",
+    tolerance: 1e-12,
+    actual: (input) => {
+      const r = solveWaveLab(input);
+      return r.resultant - r.y1 - r.y2;
+    },
+  },
+  {
+    id: "fixed-boundary-inversion",
+    name: "Fixed-end reflection cancels at the boundary",
+    input: { ...reference, mode: "fixed", timeS: 0.013 },
+    expected: 0,
+    unit: "m",
+    tolerance: 1e-12,
+    actual: (input) => solveWaveLab(input).fixedBoundaryResidual,
+  },
+  {
+    id: "free-boundary-slope",
+    name: "Free-end reflection has zero boundary slope",
+    input: { ...reference, mode: "free", timeS: 0.013 },
+    expected: 0,
+    unit: "m/m",
+    tolerance: 1e-6,
+    actual: (input) => solveWaveLab(input).freeBoundarySlope,
+  },
+  {
+    id: "standing-node-phase",
+    name: "Solved phase creates a stationary node",
+    input: {
+      ...reference,
+      wavelengthM: 0.08,
+      phaseDeg: nodePhaseDegrees(0.6, 0.08),
+    },
+    expected: 0,
+    unit: "m",
+    tolerance: 1e-12,
+    actual: (input) => solveWaveLab(input).nodeEnvelopeM,
   },
 ]);

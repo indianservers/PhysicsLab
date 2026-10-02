@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
 import { experiments } from "../lib/experiments";
@@ -10,11 +10,18 @@ import { ExperimentMaturityLevel, ModelEvidenceType } from "../types";
 import { flagshipLabModelIds } from "../lib/flagshipLabModels";
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
 
-export function ExperimentsPage() {
+const ExperimentLauncherPage=lazy(()=>import('./ExperimentLauncherPage').then(module=>({default:module.ExperimentLauncherPage})));
+export function ExperimentsPage(){
+ const [params]=useSearchParams();
+ return params.toString()?<ExperimentLibraryPage/>:<Suspense fallback={<main aria-busy="true" style={{minHeight:'100vh',background:'#01101e',color:'#b8d8fc',padding:24}}>Loading experiment launcher…</main>}><ExperimentLauncherPage/></Suspense>;
+}
+
+function ExperimentLibraryPage() {
   const [searchParams] = useSearchParams();
-  const [query, setQuery] = useState("");
+  const selectedGroup = searchParams.get("group");
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [selectedClass, setSelectedClass] = useState(searchParams.get("class") ?? "all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") ?? "all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [selectedMaturity, setSelectedMaturity] = useState<"all" | ExperimentMaturityLevel>("all");
   const [selectedEvidence, setSelectedEvidence] = useState<"all" | ModelEvidenceType>("all");
@@ -44,6 +51,14 @@ export function ExperimentsPage() {
       .slice(0, 8);
   }, [selectedGrade, topics]);
   const filteredBase = experiments.filter((experiment) => {
+    const groupCategories: Record<string, string[]> = {
+      motion: ["Mechanics", "Fluid Mechanics", "Measurement"],
+      matter: ["Energy", "Thermodynamics"],
+      electricity: ["Electricity", "Magnetism", "Electronics"],
+      waves: ["Waves", "Oscillations", "Optics"],
+      modern: ["Modern Physics", "Astronomy"],
+    };
+    const groupMatch = !selectedGroup || !groupCategories[selectedGroup] || groupCategories[selectedGroup].includes(experiment.category);
     const classMatch = selectedGrade === null || experiment.curriculumTags?.classes.includes(selectedGrade) || selectedGradeExperimentIds.has(experiment.id);
     const categoryMatch = selectedCategory === "all" || experiment.category === selectedCategory;
     const difficultyMatch = (selectedDifficulty === "all" || experiment.difficulty === selectedDifficulty) && (!beginnerMode || experiment.difficulty !== "Advanced");
@@ -55,7 +70,7 @@ export function ExperimentsPage() {
     const trustText = `${experiment.modelClass ?? ""} ${experiment.evidenceType ?? ""} ${experiment.maturityLevel ?? ""} ${experiment.validationStatus ?? ""} ${experiment.sourceRefs?.join(" ") ?? ""} ${flagshipIds.has(experiment.id) ? "flagship lab model prediction measurement graph presets" : ""}`;
     const searchText = `${experiment.title} ${experiment.aim} ${experiment.category} ${experiment.classLevel} ${experiment.curriculumTags?.domains.join(" ") ?? ""} ${topicText} ${formulaText} ${trustText}`.toLowerCase();
     const queryMatch = !query.trim() || searchText.includes(query.trim().toLowerCase());
-    return classMatch && categoryMatch && difficultyMatch && maturityMatch && evidenceMatch && flagshipMatch && queryMatch;
+    return groupMatch && classMatch && categoryMatch && difficultyMatch && maturityMatch && evidenceMatch && flagshipMatch && queryMatch;
   });
   const filtered = [...filteredBase].sort((left, right) => sortExperiments(left, right, sortBy));
   const activeFilters = [

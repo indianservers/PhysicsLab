@@ -1,0 +1,9 @@
+{
+  "lessonId": "075",
+  "experimentId": "polarization-lab",
+  "renderingMode": "2d-png-svg",
+  "generatedApparatus": "polarization-bench.png",
+  "suppliedEffects": ["concept-effect.png", "interaction-overlay.png"],
+  "deferredAssets": ["polarization-lab.glb"],
+  "note": "GLB intentionally deferred per project direction; transmission axes, E-field waves, attenuation, detector glow, graph and mission are live 2D layers."
+}

@@ -1,0 +1,650 @@
+.experiment-detail-internal-resistance-cell .page-hero,
+.experiment-detail-internal-resistance-cell .experiment-tab-strip {
+  display: none !important;
+}
+.experiment-detail-internal-resistance-cell .experiment-main,
+.experiment-detail-internal-resistance-cell .experiment-workspace,
+.experiment-detail-internal-resistance-cell .experiment-workspace-main {
+  padding: 0 !important;
+  max-width: none !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.ir-lab {
+  --ink: #17251d;
+  --green: #28653b;
+  --line: #c7cec6;
+  --paper: #f7f7f2;
+  --blue: #126aa1;
+  color: var(--ink);
+  background: #e8ebe6;
+  border: 1px solid #9ca89d;
+  font-family: Georgia, "Times New Roman", serif;
+  min-width: 0;
+}
+.ir-lab * {
+  box-sizing: border-box;
+}
+.ir-lab button,
+.ir-lab input,
+.ir-lab select {
+  font: inherit;
+}
+.ir-lab button {
+  border: 1px solid #8c978c;
+  border-radius: 4px;
+  background: linear-gradient(#fff, #eceee9);
+  color: #17251d;
+  padding: 0.56rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px #0002;
+}
+.ir-lab button:hover {
+  border-color: #28653b;
+  background: #f4fff5;
+}
+.ir-lab button:focus-visible,
+.ir-lab input:focus-visible,
+.ir-lab select:focus-visible {
+  outline: 3px solid #ffb42a;
+  outline-offset: 2px;
+}
+.ir-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ir-lab button.primary {
+  color: white;
+  border-color: #28653b;
+  background: linear-gradient(#3f8f51, #28653b);
+}
+.ir-head {
+  min-height: 76px;
+  padding: 13px 18px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #f8f9f6;
+  border-bottom: 1px solid #a8b0a8;
+}
+.ir-head span,
+.ir-table-panel header span,
+.ir-physics > span,
+.ir-graph header span,
+.ir-mission > span {
+  color: var(--green);
+  font:
+    700 0.72rem/1.2 system-ui,
+    sans-serif;
+  letter-spacing: 0.1em;
+}
+.ir-head h2 {
+  margin: 3px 0 1px;
+  font-size: 1.5rem;
+}
+.ir-head p {
+  margin: 0;
+  color: #536056;
+  font:
+    0.78rem/1.4 system-ui,
+    sans-serif;
+}
+.ir-head > div:last-child {
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+.ir-bench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  border-bottom: 1px solid #a4aea5;
+}
+.ir-stage {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 48% 28%,
+    #85958b 0,
+    #586860 55%,
+    #34483f 100%
+  );
+}
+.ir-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 37%;
+  background: linear-gradient(170deg, transparent 0 20%, #26372fdd 21%);
+  pointer-events: none;
+}
+.ir-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  touch-action: none;
+}
+.ir-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.ir-status {
+  position: absolute;
+  z-index: 4;
+  left: 16px;
+  top: 16px;
+  padding: 9px 12px;
+  border: 1px solid #c5dac9;
+  background: #183e2fe8;
+  color: white;
+  border-radius: 5px;
+  display: grid;
+  gap: 3px;
+  font:
+    0.78rem system-ui,
+    sans-serif;
+}
+.ir-status span {
+  color: #d2ead7;
+  font-size: 0.68rem;
+}
+.ir-status.danger {
+  background: #701f1fe8;
+  border-color: #ffb7a9;
+}
+.ir-current-flow {
+  position: absolute;
+  z-index: 3;
+  left: 13%;
+  right: 13%;
+  bottom: 31%;
+  display: flex;
+  justify-content: space-between;
+  color: #f5eee0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.ir-current-flow i {
+  font-style: normal;
+  animation: ir-pulse 1.4s linear infinite;
+}
+.ir-lab:not([data-run-state="running"]) .ir-current-flow i,
+.ir-lab:has(.ir-status.danger) .ir-current-flow i {
+  animation-play-state: paused;
+  opacity: 0.15;
+}
+@keyframes ir-pulse {
+  0%,
+  100% {
+    transform: translateX(-7px);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translateX(7px);
+    opacity: 1;
+  }
+}
+.ir-part-select {
+  position: absolute;
+  z-index: 5;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.ir-part-select button {
+  padding: 0.32rem 0.48rem;
+  color: #f7fff8;
+  border-color: #a9c8b4;
+  background: #1d342bd9;
+  font:
+    600 0.64rem system-ui,
+    sans-serif;
+  text-transform: capitalize;
+}
+.ir-part-select button.active {
+  background: #d98a22;
+  border-color: #ffd38b;
+  color: #15120e;
+}
+.ir-controls {
+  background: #f4f5f0;
+  border-left: 1px solid #a4aea5;
+  padding: 13px;
+}
+.ir-controls h3 {
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 9px;
+  font-size: 0.93rem;
+}
+.ir-control {
+  display: block;
+  padding: 9px 0;
+  border-top: 1px solid #ccd2cb;
+}
+.ir-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.83rem;
+}
+.ir-control b i {
+  color: #9d351e;
+  font-size: 1rem;
+}
+.ir-control strong {
+  font:
+    600 0.86rem system-ui,
+    sans-serif;
+}
+.ir-control input {
+  width: 100%;
+  accent-color: #3a7d48;
+}
+.ir-control > small {
+  display: block;
+  text-align: right;
+  color: #68746b;
+  font:
+    0.64rem system-ui,
+    sans-serif;
+}
+.ir-warning {
+  margin: 5px 0 8px;
+  padding: 7px;
+  color: #7e1f17;
+  background: #fff0e8;
+  border: 1px solid #e5a08f;
+  font:
+    700 0.7rem/1.3 system-ui,
+    sans-serif;
+}
+.ir-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 7px 0;
+}
+.ir-presets button {
+  padding: 0.4rem 0.25rem;
+  font:
+    700 0.67rem system-ui,
+    sans-serif;
+}
+.ir-connection {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 7px;
+  padding: 9px 0;
+  border-block: 1px solid #ccd2cb;
+  font:
+    700 0.75rem system-ui,
+    sans-serif;
+}
+.ir-connection input {
+  grid-row: 1/3;
+  accent-color: #2f7a42;
+}
+.ir-connection small {
+  font-weight: 400;
+  color: #68746b;
+}
+.ir-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 10px 0;
+}
+.ir-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  font:
+    0.7rem system-ui,
+    sans-serif;
+}
+.ir-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ir-meters {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr 1fr;
+  gap: 1px;
+  background: #aab3aa;
+  border-bottom: 1px solid #a4aea5;
+}
+.ir-meter,
+.ir-readout {
+  background: #f6f6f1;
+  min-height: 132px;
+  padding: 10px 14px;
+  text-align: center;
+}
+.ir-meter > span,
+.ir-readout > span {
+  color: #3e5143;
+  font:
+    700 0.68rem system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+}
+.ir-meter > div {
+  position: relative;
+  width: 150px;
+  height: 65px;
+  margin: 3px auto;
+  border: 1px solid #777;
+  border-radius: 90px 90px 3px 3px;
+  background: repeating-linear-gradient(
+      102deg,
+      transparent 0 14px,
+      #404840 15px 16px,
+      transparent 17px 25px
+    ),
+    #eeeadd;
+  overflow: hidden;
+}
+.ir-meter > div i {
+  position: absolute;
+  width: 55px;
+  height: 2px;
+  left: 20px;
+  bottom: 9px;
+  transform-origin: 100% 50%;
+  background: #b93021;
+  transition: transform 0.25s;
+}
+.ir-meter > div b {
+  position: absolute;
+  bottom: 3px;
+  right: 8px;
+  font: 700 0.62rem monospace;
+}
+.ir-meter > strong,
+.ir-readout strong {
+  display: block;
+  color: #09557e;
+  font:
+    700 1.15rem ui-monospace,
+    monospace;
+}
+.ir-readout {
+  display: grid;
+  place-content: center;
+  gap: 8px;
+}
+.ir-readout small {
+  color: #6a746d;
+  font:
+    0.66rem system-ui,
+    sans-serif;
+}
+.ir-readout.heat strong {
+  color: #a15216;
+}
+.ir-data-grid {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.9fr) minmax(400px, 1.2fr) minmax(
+      280px,
+      0.8fr
+    );
+  gap: 1px;
+  background: #aab3aa;
+}
+.ir-table-panel,
+.ir-graph,
+.ir-physics {
+  min-width: 0;
+  background: #fafaf7;
+  padding: 14px;
+}
+.ir-table-panel header,
+.ir-graph header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+.ir-table-panel h3,
+.ir-physics h3 {
+  margin: 3px 0 8px;
+  font-size: 1rem;
+}
+.ir-collect {
+  display: flex;
+  gap: 7px;
+  margin: 8px 0;
+}
+.ir-table-wrap {
+  overflow: auto;
+}
+.ir-table-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.76rem;
+}
+.ir-table-panel th,
+.ir-table-panel td {
+  border: 1px solid #adb5ad;
+  padding: 7px 5px;
+}
+.ir-table-panel th {
+  background: #eef0ea;
+  font:
+    700 0.67rem system-ui,
+    sans-serif;
+}
+.ir-table-panel tbody tr:last-child {
+  background: #fff8d8;
+  color: #134f91;
+  font-weight: 700;
+}
+.ir-table-panel > small {
+  display: block;
+  margin-top: 8px;
+  color: #58655c;
+  font:
+    0.66rem system-ui,
+    sans-serif;
+}
+.ir-graph header b {
+  padding: 5px 8px;
+  border: 1px solid #a8b2a8;
+  background: #f0f3ed;
+  font-size: 0.75rem;
+}
+.ir-graph svg {
+  width: 100%;
+  display: block;
+  margin-top: 7px;
+  background: linear-gradient(#fff, #f8f8f5);
+}
+.ir-graph svg line {
+  stroke: #d9ddd7;
+  stroke-width: 1;
+}
+.ir-graph svg .axis {
+  stroke: #27342c;
+  stroke-width: 1.5;
+}
+.ir-graph svg text {
+  fill: #4e5a51;
+  font:
+    11px system-ui,
+    sans-serif;
+}
+.ir-graph svg .label {
+  fill: #18251c;
+  font-weight: 700;
+}
+.ir-graph svg .fit-line {
+  fill: none;
+  stroke: #242e28;
+  stroke-width: 2;
+}
+.ir-graph svg circle {
+  fill: #0c58a5;
+  stroke: white;
+  stroke-width: 2;
+}
+.ir-graph footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 15px;
+  justify-content: center;
+  color: #405447;
+  font:
+    700 0.68rem system-ui,
+    sans-serif;
+}
+.ir-physics > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid #c6ccc5;
+  border-bottom: 0;
+}
+.ir-physics > p:nth-of-type(3) {
+  border-bottom: 1px solid #c6ccc5;
+}
+.ir-physics > p b {
+  font-size: 1.02rem;
+}
+.ir-physics > p small {
+  color: #56635a;
+}
+.ir-fit {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0;
+  padding: 8px;
+  background: #eaf4eb;
+  border-left: 3px solid #4a8d55;
+  font:
+    0.74rem system-ui,
+    sans-serif;
+}
+.ir-mission {
+  padding: 10px;
+  border: 1px solid #bd7a2b;
+  border-radius: 5px;
+  background: #fff8ec;
+}
+.ir-mission h3 {
+  color: #87480d;
+}
+.ir-mission label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 7px 0;
+  font:
+    700 0.72rem system-ui,
+    sans-serif;
+}
+.ir-mission input {
+  min-width: 0;
+  width: 80px;
+  padding: 5px;
+}
+.ir-mission p {
+  min-height: 34px;
+  color: #774611;
+  font:
+    0.7rem/1.35 system-ui,
+    sans-serif;
+}
+.ir-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ir-current-flow i {
+    animation: none !important;
+  }
+}
+@media (max-width: 1100px) {
+  .experiment-detail-internal-resistance-cell .experiment-workspace {
+    margin-top: 40px !important;
+  }
+  .ir-bench {
+    grid-template-columns: 1fr 300px;
+  }
+  .ir-stage {
+    min-height: 430px;
+  }
+  .ir-data-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ir-physics {
+    grid-column: 1/-1;
+  }
+  .ir-meters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .ir-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ir-head > div:last-child {
+    width: 100%;
+  }
+  .ir-head button {
+    flex: 1;
+  }
+  .ir-bench {
+    display: block;
+  }
+  .ir-stage {
+    min-height: 400px;
+  }
+  .ir-controls {
+    border: 0;
+    border-top: 1px solid #a4aea5;
+  }
+  .ir-meters,
+  .ir-data-grid {
+    display: block;
+  }
+  .ir-meter,
+  .ir-readout,
+  .ir-table-panel,
+  .ir-graph,
+  .ir-physics {
+    border-bottom: 1px solid #a4aea5;
+  }
+  .ir-graph {
+    padding-inline: 6px;
+  }
+  .ir-part-select {
+    bottom: 8px;
+  }
+  .ir-part-select button {
+    font-size: 0.57rem;
+  }
+  .ir-status {
+    max-width: calc(100% - 32px);
+  }
+}

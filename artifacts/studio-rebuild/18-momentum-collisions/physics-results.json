@@ -1,0 +1,51 @@
+{
+  "checks": [
+    "Correct default final velocities, contact duration, impulses and energy",
+    "All mass, velocity and restitution limits conserve momentum; force is equal/opposite, impulse integral agrees, trajectories differentiate to velocities/forces, contact continuous, bumpers never interpenetrate",
+    "Late contact and equal negative velocities do not fabricate a collision"
+  ],
+  "defaultTrial": {
+    "input": {
+      "ratio": 1,
+      "u1": 0.6,
+      "u2": 0,
+      "e": 0.8
+    },
+    "m1": 1,
+    "m2": 1,
+    "closing": 0.6,
+    "contactTime": 0.1,
+    "duration": 0.18,
+    "endTime": 0.28,
+    "impulse": 0.54,
+    "result": {
+      "v1": 0.06,
+      "v2": 0.54,
+      "momentumBefore": 0.6,
+      "momentumAfter": 0.6000000000000001,
+      "kineticBefore": 0.18,
+      "kineticAfter": 0.1476,
+      "dissipatedEnergy": 0.032399999999999984,
+      "conservationErrorPercent": 17.99999999999999,
+      "restitution": 0.8
+    }
+  },
+  "defaultFinal": {
+    "time": 1,
+    "x1": 0.4625999999999999,
+    "x2": 1.0373999999999999,
+    "v1": 0.05999999999999994,
+    "v2": 0.54,
+    "p1": 0.05999999999999994,
+    "p2": 0.54,
+    "momentum": 0.6,
+    "kinetic": 0.1476,
+    "kineticChange": -0.032399999999999984,
+    "impulse1": -0.54,
+    "impulse2": 0.54,
+    "force1": 0,
+    "force2": 0,
+    "compression": 0.010799999999999997,
+    "phase": "After collision"
+  }
+}

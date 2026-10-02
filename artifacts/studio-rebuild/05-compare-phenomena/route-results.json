@@ -1,0 +1,26 @@
+[
+  {
+    "route": "/quality-audit",
+    "benchmarkLink": true
+  },
+  {
+    "route": "/excellence-benchmark",
+    "benchmarkLink": true
+  },
+  {
+    "route": "/client-demos",
+    "benchmarkLink": true
+  },
+  {
+    "route": "/all-modules",
+    "benchmarkLink": true
+  },
+  {
+    "route": "/comparison?view=benchmark",
+    "original": true
+  },
+  {
+    "route": "/comparison",
+    "models": 4
+  }
+]

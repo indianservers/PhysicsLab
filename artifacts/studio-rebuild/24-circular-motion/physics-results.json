@@ -1,0 +1,38 @@
+{
+  "checks": [
+    "Default period2.094s, speed.750m/s, inward acceleration2.250m/s2 and force.450N; consistent eastward position and northward velocity at t=pi/6",
+    "All parameter limits, stationary zero omega, velocity tangency, inward acceleration, derivatives, radius and force identities"
+  ],
+  "default": {
+    "angularVelocity": 3,
+    "tangentialSpeed": 0.75,
+    "centripetalAcceleration": 2.25,
+    "centripetalForce": 0.45,
+    "period": 2.0943951023931953,
+    "input": {
+      "omega": 3,
+      "radius": 0.25,
+      "mass": 0.2
+    }
+  },
+  "state": {
+    "t": 0.5235987755982988,
+    "angle": 0,
+    "position": {
+      "x": 0.25,
+      "y": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0.75
+    },
+    "acceleration": {
+      "x": -2.25,
+      "y": 0
+    },
+    "force": {
+      "x": -0.45,
+      "y": 0
+    }
+  }
+}

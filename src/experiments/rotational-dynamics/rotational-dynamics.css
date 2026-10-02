@@ -1,0 +1,390 @@
+.rd-lab {
+  --red: #c63b2f;
+  --blue: #236ac5;
+  width: min(100%, calc(100vw - 96px));
+  color: #272523;
+  font-family: Inter, system-ui, sans-serif;
+}
+.rd-lab h2,
+.rd-lab h3,
+.rd-lab p {
+  margin: 0;
+}
+.rd-lab button,
+.rd-lab input,
+.rd-lab select {
+  border: 1px solid #ddd8d2;
+  border-radius: 8px;
+  background: #fff;
+  color: #2c2926;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 800;
+}
+.rd-lab button {
+  cursor: pointer;
+}
+.rd-lab > header,
+.rd-toolbar,
+.rd-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.rd-lab > header {
+  padding: 17px 22px;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 3px solid #e25445;
+  background: linear-gradient(100deg, #321313, #7d2924);
+  color: #fff;
+}
+.rd-lab > header span,
+.rd-mission span {
+  color: #ffc2b8;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.rd-lab > header h2 {
+  background: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: clamp(22px, 2.5vw, 34px);
+}
+.rd-lab > header p {
+  color: #ffe1dc !important;
+  font-size: 11px;
+}
+.rd-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(470px, 1fr) 245px;
+  min-height: 650px;
+  border: 1px solid #ddd8d2;
+  background: #f1ede8;
+}
+.rd-controls,
+.rd-data {
+  padding: 15px;
+  background: #fff;
+}
+.rd-controls {
+  border-right: 1px solid #ddd;
+}
+.rd-data {
+  border-left: 1px solid #ddd;
+}
+.rd-controls h3,
+.rd-data h3 {
+  margin-bottom: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.rd-range {
+  display: block;
+  margin-bottom: 12px;
+}
+.rd-range span,
+.rd-range small {
+  display: flex;
+  justify-content: space-between;
+}
+.rd-range span {
+  font-size: 9px;
+}
+.rd-range b,
+.rd-data dd {
+  color: var(--blue);
+}
+.rd-range input {
+  width: 100%;
+  padding: 0;
+  accent-color: var(--red);
+}
+.rd-range small {
+  color: #8c8580;
+  font-size: 8px;
+}
+.rd-range i {
+  font-style: normal;
+}
+.rd-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin: 8px 0;
+}
+.rd-presets button {
+  padding: 7px 2px;
+  font-size: 8px;
+}
+.rd-controls p {
+  padding: 8px;
+  border-radius: 7px;
+  background: #f3eeee;
+  color: #695e5b;
+  font-size: 9px;
+}
+.rd-main {
+  min-width: 0;
+  padding: 11px;
+}
+.rd-toolbar {
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.rd-toolbar button {
+  font-size: 9px;
+}
+.rd-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  font-weight: 900;
+}
+.rd-toolbar input {
+  width: auto;
+}
+.rd-stage {
+  position: relative;
+  contain: paint;
+  isolation: isolate;
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: radial-gradient(circle, #fdfcf9, #ddd6ce);
+}
+.rd-stage > img {
+  position: absolute;
+  z-index: 1;
+  inset: auto 3% 4%;
+  width: 94%;
+  max-height: 94%;
+  object-fit: contain;
+}
+.rd-rotor {
+  position: absolute;
+  z-index: 3;
+  left: 45%;
+  top: 43%;
+  width: min(49vw, 370px);
+  aspect-ratio: 1;
+  border: 2px dashed #9b9187;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.rd-rotor:after {
+  position: absolute;
+  inset: 8%;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  content: "";
+}
+.rd-mass {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  padding: 0 !important;
+  border: 3px solid #fff !important;
+  border-radius: 50% !important;
+  translate: -50% -50%;
+  pointer-events: auto;
+}
+.rd-mass.red {
+  background: #d33c31;
+}
+.rd-mass.blue {
+  background: #286bc3;
+}
+.rd-force {
+  position: absolute;
+  z-index: 4;
+  right: 7%;
+  bottom: 11%;
+  width: 58px !important;
+  min-height: 45px;
+  border: 0 !important;
+  border-right: 5px solid #4c9b3f !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #28742c !important;
+  font-size: 9px !important;
+}
+.rd-force:after {
+  position: absolute;
+  right: -10px;
+  bottom: -2px;
+  border: 8px solid transparent;
+  border-top-color: #4c9b3f;
+  content: "";
+}
+.rd-torque,
+.rd-stage > strong {
+  position: absolute;
+  z-index: 5;
+  padding: 8px;
+  border-radius: 7px;
+  background: #202020;
+  color: #fff;
+  font-size: 8px;
+}
+.rd-torque {
+  left: 4%;
+  top: 6%;
+  display: grid;
+}
+.rd-torque b {
+  color: #ffb1a9;
+}
+.rd-stage > strong {
+  right: 4%;
+  top: 6%;
+  background: #a22f29;
+}
+.rd-equations {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 8px;
+}
+.rd-equations b {
+  padding: 8px;
+  border-radius: 7px;
+  background: #fff;
+  text-align: center;
+  font-size: 9px;
+}
+.rd-data dl {
+  margin: 0;
+}
+.rd-data dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #e7e3df;
+  font-size: 9px;
+}
+.rd-data dd {
+  margin: 0;
+  font-weight: 900;
+}
+.rd-graphs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #ddd;
+  border-top: 0;
+  background: #fff;
+}
+.rd-graphs > div {
+  padding: 14px;
+  border-right: 1px solid #ddd;
+}
+.rd-graphs b {
+  font-size: 10px;
+}
+.rd-graphs svg {
+  width: 100%;
+  height: 150px;
+}
+.rd-graphs line {
+  stroke: #aaa;
+}
+.rd-graphs .fit {
+  stroke: #2972bd;
+  stroke-width: 2;
+}
+.rd-graphs circle {
+  fill: #c43a31;
+}
+.rd-graphs polyline {
+  fill: none;
+  stroke: #754bb6;
+  stroke-width: 2;
+}
+.rd-graphs small {
+  font-size: 8px;
+}
+.rd-mission {
+  flex-wrap: wrap;
+  padding: 13px 20px;
+  border-radius: 0 0 18px 18px;
+  background: #fff1c6;
+  border: 1px solid #e2c263;
+}
+.rd-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.rd-mission span {
+  color: #8b5b13;
+}
+.rd-mission small {
+  color: #675b40;
+}
+.rd-mission output {
+  flex-basis: 100%;
+  min-height: 15px;
+  color: #167139;
+  font-size: 10px;
+  font-weight: 900;
+}
+@media (max-width: 1050px) {
+  .rd-layout {
+    grid-template-columns: 210px minmax(430px, 1fr);
+  }
+  .rd-data {
+    grid-column: 1/-1;
+    border-left: 0;
+  }
+  .rd-data dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+  }
+}
+@media (max-width: 760px) {
+  .rd-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .rd-lab > header {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .rd-lab > header p {
+    display: none;
+  }
+  .rd-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .rd-main {
+    order: 1;
+    padding: 8px;
+  }
+  .rd-controls {
+    order: 2;
+  }
+  .rd-data {
+    order: 3;
+  }
+  .rd-stage {
+    min-height: 410px;
+  }
+  .rd-rotor {
+    width: 220px;
+  }
+  .rd-equations,
+  .rd-graphs {
+    grid-template-columns: 1fr;
+  }
+  .rd-mission {
+    align-items: stretch;
+  }
+  .rd-mission button {
+    flex: 1;
+  }
+}

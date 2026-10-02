@@ -13,4 +13,11 @@ export const soundWaveAnatomyValidation = runBenchmarkCases(
   })),
 );
 
-export const soundWaveAnatomyValidated = soundWaveAnatomyBenchmarks.every((benchmark) => approximatelyEqual(benchmark.actual, benchmark.expected, benchmark.tolerance));
+export const soundWaveAnatomyValidated = soundWaveAnatomyBenchmarks.every(
+  (benchmark) =>
+    approximatelyEqual(
+      benchmark.actual,
+      benchmark.expected,
+      benchmark.tolerance,
+    ),
+);

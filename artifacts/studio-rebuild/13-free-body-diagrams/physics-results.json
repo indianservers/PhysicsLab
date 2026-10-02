@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "Default 2 kg crate lifts under 100 N at 30 degrees; normal and friction vanish",
+    "Newton balance, contact constraint and friction direction across all boundary combinations",
+    "Static friction adapts below its limit; kinetic friction stops without velocity chatter",
+    "Event-split flight, landing and friction agree with fine time steps"
+  ],
+  "default": {
+    "force": 100,
+    "angle": 30,
+    "mu": 0.4,
+    "mass": 2,
+    "fx": 86.60254037844388,
+    "fy": 49.99999999999999,
+    "weight": 19.6133,
+    "contact": false,
+    "normal": 0,
+    "friction": 0,
+    "frictionLimit": 0,
+    "netX": 86.60254037844388,
+    "netY": 30.386699999999994,
+    "ax": 43.30127018922194,
+    "ay": 15.193349999999997,
+    "regime": "airborne"
+  }
+}

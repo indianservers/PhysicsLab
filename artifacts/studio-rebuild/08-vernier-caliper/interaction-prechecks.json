@@ -1,0 +1,48 @@
+{
+  "checks": [
+    "Contact, open-jaw reading suppression and signed zero correction",
+    "Calibration removal, negative-zero scale and keyboard jaw boundaries",
+    "Demonstration advances, pauses and stops at rigid contact",
+    "Positive and negative zero-error challenge solutions",
+    "Learning feedback, explanation, zoom and lighting"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

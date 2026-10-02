@@ -1,0 +1,27 @@
+[
+  {
+    "route": "simple-pendulum",
+    "title": "Simple Pendulum",
+    "loaded": true
+  },
+  {
+    "route": "glass-slab-refraction",
+    "title": "Glass Slab Refraction",
+    "loaded": true
+  },
+  {
+    "route": "ohms-law",
+    "title": "Ohm's Law V-I Graph",
+    "loaded": true
+  },
+  {
+    "route": "heat-and-temperature",
+    "title": "Heat and Temperature",
+    "loaded": true
+  },
+  {
+    "route": "wave-lab",
+    "title": "Wave Lab",
+    "loaded": true
+  }
+]

@@ -59,7 +59,7 @@ export function ExcellenceBenchmarkPage() {
                 <p className="ui-label">Competitive target</p>
                 <h2>Where PhysicsLab stands</h2>
               </div>
-              <Link className="tool-btn inline-flex items-center gap-2" to="/comparison"><PhysicsIcon name="chart" className="h-4 w-4" />Compare</Link>
+              <Link className="tool-btn inline-flex items-center gap-2" to="/comparison?view=benchmark"><PhysicsIcon name="chart" className="h-4 w-4" />Compare</Link>
             </div>
             <div className="excellence-competitor-list">
               {excellenceCompetitorTargets.map((target) => (

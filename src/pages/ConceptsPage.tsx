@@ -24,6 +24,7 @@ export function ConceptsPage() {
   const [domain, setDomain] = useState(params.get("domain") ?? "all");
   const [classFilter, setClassFilter] = useState(params.get("class") ?? "all");
   const selectedId = params.get("concept") ?? cards[0]?.id ?? "";
+  const isFocusedConcept = params.has("concept");
   const filtered = cards.filter((card) => {
     const searchText = [
       card.id,
@@ -43,6 +44,7 @@ export function ConceptsPage() {
     return textMatch && domainMatch && classMatch;
   });
   const selected = filtered.find((card) => card.id === selectedId) ?? cards.find((card) => card.id === selectedId) ?? filtered[0] ?? cards[0];
+  const visibleCards = isFocusedConcept && selected ? [selected] : filtered;
 
   const selectConcept = (id: string) => {
     const next = new URLSearchParams(params);
@@ -62,28 +64,30 @@ export function ConceptsPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="concepts-page min-h-screen">
       <Toolbar />
-      <div id="content" className="mx-auto max-w-[1500px] px-3 py-4">
-        <section className="page-hero mesh-bg">
+      <div id="content" className="concepts-shell mx-auto max-w-[1500px] px-3 py-4">
+        <section className={isFocusedConcept ? "page-hero mesh-bg concepts-hero-focused" : "page-hero mesh-bg"}>
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-3xl">
-              <p className="ui-label">Phase 2 concept library</p>
-              <h1 className="text-3xl font-black text-gradient">Physics concepts</h1>
+              <p className="ui-label">{isFocusedConcept && selected ? `${selected.classLabel} · ${selected.domain}` : "Physics concept library"}</p>
+              <h1 className="text-3xl font-black text-gradient">{isFocusedConcept && selected ? selected.title : "Physics concepts"}</h1>
               <p className="mt-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                Short concept cards with essentials, misconception repair, learning path, and direct jumps into 2D and 3D labs.
+                {isFocusedConcept && selected ? selected.summary : "Explore each idea through essentials, misconception repair, a learning path, and direct links to its interactive lab."}
               </p>
             </div>
-            <div className="grid min-w-[280px] gap-2 sm:grid-cols-4">
-              <Metric icon="book" label="Concepts" value={stats.concepts} />
-              <Metric icon="flask" label="Interactive" value={stats.interactive} />
-              <Metric icon="compass" label="Domains" value={stats.domains} />
-              <Metric icon="spark" label="Advanced" value={stats.advanced} />
-            </div>
+            {!isFocusedConcept && (
+              <div className="grid min-w-[280px] gap-2 sm:grid-cols-4">
+                <Metric icon="book" label="Concepts" value={stats.concepts} />
+                <Metric icon="flask" label="Interactive" value={stats.interactive} />
+                <Metric icon="compass" label="Domains" value={stats.domains} />
+                <Metric icon="spark" label="Advanced" value={stats.advanced} />
+              </div>
+            )}
           </div>
         </section>
 
-        <section className="topic-lens-panel mt-4">
+        {!isFocusedConcept && <section className="topic-lens-panel mt-4">
           <div className="grid gap-3 lg:grid-cols-[1fr_220px_360px]">
             <label className="grid gap-1">
               <span className="ui-label">Search</span>
@@ -106,17 +110,17 @@ export function ConceptsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section>}
 
-        <section className="mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
-          <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
+        <section className={isFocusedConcept ? "concepts-browser-layout concepts-browser-layout-focused mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]" : "concepts-browser-layout mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]"}>
+          {!isFocusedConcept && <div className="concepts-card-grid grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
             {filtered.length === 0 && (
               <div className="panel p-5 md:col-span-2 2xl:col-span-3">
                 <h2 className="panel-title">No concepts found</h2>
                 <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-slate-300">Try a broader word like force, field, light, current, heat, wave, or motion.</p>
               </div>
             )}
-            {filtered.map((card) => {
+            {visibleCards.map((card) => {
               const firstLab = card.experimentIds[0] ? experimentById.get(card.experimentIds[0]) : undefined;
               const launchTarget = firstLab ? `/experiments/${firstLab.id}` : card.topicPath;
               return (
@@ -152,10 +156,10 @@ export function ConceptsPage() {
                 </article>
               );
             })}
-          </div>
+          </div>}
 
           {selected && (
-            <aside className="panel h-fit p-4 xl:sticky xl:top-20">
+            <aside className="concept-detail-panel panel h-fit p-4 xl:sticky xl:top-20">
               <InteractionModePanel experiment={selected.experimentIds[0] ? experimentById.get(selected.experimentIds[0]) : undefined} conceptTitle={selected.title} compact />
               <p className="ui-label">{selected.classLabel} learning journey</p>
               <h2 className="mt-1 text-2xl font-black">{selected.title}</h2>

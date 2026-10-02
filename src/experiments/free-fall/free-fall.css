@@ -1,0 +1,382 @@
+.ff-lab {
+  --navy: #0e263b;
+  --cyan: #1684c7;
+  width: min(100%, calc(100vw - 96px));
+  margin: 0;
+  color: #172b3e;
+  font-family: Inter, system-ui, sans-serif;
+}
+.ff-lab > header,
+.ff-toolbar,
+.ff-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.ff-lab > header {
+  padding: 18px 22px;
+  border-radius: 20px 20px 0 0;
+  color: #fff;
+  background: var(--navy);
+  border-bottom: 3px solid #3ba6e7;
+}
+.ff-lab h2,
+.ff-lab h3,
+.ff-lab p {
+  margin: 0;
+}
+.ff-lab > header span,
+.ff-mission span {
+  color: #76cff8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+.ff-lab > header h2 {
+  background: none !important;
+  color: #fff !important;
+  -webkit-background-clip: border-box !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: clamp(22px, 2.5vw, 34px);
+}
+.ff-lab > header p {
+  color: #c9dae5 !important;
+  font-size: 12px;
+}
+.ff-lab button,
+.ff-lab select,
+.ff-lab input {
+  border: 1px solid #c8d3dc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  color: #26394b;
+  font: inherit;
+  font-weight: 800;
+}
+.ff-lab button {
+  cursor: pointer;
+}
+.ff-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(440px, 1fr) 285px;
+  min-height: 700px;
+  border: 1px solid #ced8df;
+  background: #f3eee7;
+}
+.ff-controls,
+.ff-data {
+  padding: 17px;
+  background: #fff;
+}
+.ff-controls {
+  border-right: 1px solid #d8e0e5;
+}
+.ff-data {
+  border-left: 1px solid #d8e0e5;
+}
+.ff-controls h3,
+.ff-data h3 {
+  margin-bottom: 15px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.ff-range {
+  display: block;
+  margin-bottom: 17px;
+}
+.ff-range span,
+.ff-range small {
+  display: flex;
+  justify-content: space-between;
+}
+.ff-range span {
+  font-size: 10px;
+}
+.ff-range b {
+  color: #1673b1;
+}
+.ff-range input {
+  width: 100%;
+  accent-color: var(--cyan);
+}
+.ff-range small {
+  color: #84929d;
+  font-size: 9px;
+}
+.ff-range i {
+  font-style: normal;
+}
+.ff-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  background: #eaf4f9;
+  font-size: 10px;
+}
+.ff-switch input {
+  width: auto;
+}
+.ff-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+.ff-presets button {
+  padding: 7px 2px;
+  font-size: 9px;
+}
+.ff-condition-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 6px;
+}
+.ff-condition-presets button {
+  padding: 7px 2px;
+  font-size: 8px;
+}
+.ff-controls > p {
+  margin-top: 13px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #eef2f4;
+  color: #5d6d77;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.ff-main {
+  min-width: 0;
+  padding: 14px;
+}
+.ff-toolbar {
+  margin-bottom: 10px;
+}
+.ff-toolbar > div {
+  display: flex;
+  gap: 5px;
+}
+.ff-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  font-weight: 800;
+}
+.ff-stage {
+  position: relative;
+  min-height: 540px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(#f8f4ed, #fff 72%, #b98658);
+}
+.ff-stage > img {
+  position: absolute;
+  inset: 2% auto 0 50%;
+  height: 96%;
+  translate: -50% 0;
+  object-fit: contain;
+}
+.ff-ball {
+  position: absolute;
+  z-index: 3;
+  left: 55%;
+  width: 34px;
+  height: 34px;
+  border: 5px solid #ffe3ad;
+  border-radius: 50%;
+  translate: -50% 0;
+  background: radial-gradient(circle at 35% 30%, #fff2ba, #df7c20 56%, #7b350c);
+  box-shadow: 0 4px 8px #0006;
+}
+.ff-ball.impact {
+  animation: ff-impact 0.35s ease-out;
+}
+.ff-vector {
+  position: absolute;
+  z-index: 4;
+  left: 61%;
+  width: 4px;
+  min-height: 18px;
+  color: #ef4444;
+  background: #ef4444;
+  font-size: 18px;
+}
+.ff-stage > strong {
+  position: absolute;
+  z-index: 5;
+  inset: 42% auto auto 50%;
+  translate: -50% -50%;
+  font-size: 70px;
+  color: #fff;
+  text-shadow: 0 3px 12px #0d243b;
+}
+.ff-clock {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #71ef99;
+  background: #07140c;
+  font-weight: 900;
+}
+.ff-stage > em {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  translate: -50% 0;
+  padding: 7px 11px;
+  border-radius: 99px;
+  color: #fff;
+  background: #c53c2d;
+  font-size: 10px;
+  font-weight: 900;
+  font-style: normal;
+}
+.ff-equations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+.ff-equations b {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+  font-size: 11px;
+}
+.ff-data dl {
+  margin: 0 0 12px;
+}
+.ff-data dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e6ea;
+  font-size: 10px;
+}
+.ff-data dd {
+  margin: 0;
+  color: #1572b2;
+  font-weight: 900;
+}
+.ff-graph {
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid #d9e1e6;
+  border-radius: 8px;
+}
+.ff-graph > b {
+  font-size: 10px;
+}
+.ff-graph svg {
+  width: 100%;
+  height: 80px;
+}
+.ff-graph line {
+  stroke: #9babb5;
+}
+.ff-graph polyline {
+  fill: none;
+  stroke: #1684c7;
+  stroke-width: 3;
+}
+.ff-mission {
+  flex-wrap: wrap;
+  padding: 15px 20px;
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  background: #153e59;
+}
+.ff-mission > div {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+}
+.ff-mission small {
+  color: #c8dfea;
+}
+.ff-mission input {
+  width: 95px;
+}
+.ff-mission output {
+  flex-basis: 100%;
+  min-height: 17px;
+  color: #c8f4d4;
+  font-size: 11px;
+}
+@keyframes ff-impact {
+  50% {
+    scale: 1.45 0.55;
+  }
+}
+@media (max-width: 1050px) {
+  .ff-layout {
+    grid-template-columns: 210px minmax(420px, 1fr);
+  }
+  .ff-data {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    border-left: 0;
+  }
+  .ff-data h3,
+  .ff-data dl {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 760px) {
+  .ff-lab {
+    width: min(100%, calc(100vw - 24px));
+  }
+  .ff-lab > header {
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .ff-lab > header p {
+    display: none;
+  }
+  .ff-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .ff-main {
+    order: 1;
+    padding: 9px;
+  }
+  .ff-controls {
+    order: 2;
+  }
+  .ff-data {
+    order: 3;
+    display: block;
+  }
+  .ff-toolbar {
+    flex-wrap: wrap;
+  }
+  .ff-toolbar > div {
+    width: 100%;
+  }
+  .ff-toolbar > div button {
+    flex: 1;
+  }
+  .ff-stage {
+    min-height: 440px;
+  }
+  .ff-equations {
+    grid-template-columns: 1fr;
+  }
+  .ff-mission {
+    align-items: stretch;
+  }
+  .ff-mission button {
+    flex: 1;
+  }
+}

@@ -1,0 +1,1 @@
+import{chromium}from'playwright-core';const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const p=await b.newPage();await p.goto('http://127.0.0.1:5371/motion/first-law-inertia');await p.locator('.ils-stage').waitFor();console.log(await p.getByRole('button').allTextContents());await b.close();

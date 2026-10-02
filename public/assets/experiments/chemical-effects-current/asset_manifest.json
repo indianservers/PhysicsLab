@@ -1,0 +1,336 @@
+{
+  "schema_version": "1.0",
+  "lesson_id": 7,
+  "lesson_code": "chemical-effects-current",
+  "lesson_name": "Chemical Effects of Current",
+  "category": "Electricity",
+  "class_level": "Class 8",
+  "source_mockup": "007__lesson__chemical-effects-of-current__chemical-effects-current__Mockup.png",
+  "model": "chemical-effects-current.glb",
+  "preview": "preview.png",
+  "effects": [
+    "effects/concept_effect.png",
+    "effects/interaction_overlay.png"
+  ],
+  "coordinate_system": "Y-up",
+  "units": "metres",
+  "parts": [
+    {
+      "name": "bench",
+      "movable": false,
+      "pivot": [
+        0,
+        0,
+        -0.9
+      ],
+      "role": "base"
+    },
+    {
+      "name": "battery_body",
+      "movable": true,
+      "pivot": [
+        -1.65,
+        -0.55,
+        -0.35
+      ],
+      "role": "source"
+    },
+    {
+      "name": "battery_positive",
+      "movable": true,
+      "pivot": [
+        -1.65,
+        -0.55,
+        0.1
+      ],
+      "role": "apparatus"
+    },
+    {
+      "name": "wire_0",
+      "movable": false,
+      "pivot": [
+        -1.1,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_1",
+      "movable": false,
+      "pivot": [
+        -0.55,
+        0.55,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_2",
+      "movable": false,
+      "pivot": [
+        0.0,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_3",
+      "movable": false,
+      "pivot": [
+        0.55,
+        0.55,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "wire_4",
+      "movable": false,
+      "pivot": [
+        1.1,
+        -0.2,
+        -0.2
+      ],
+      "role": "conductor"
+    },
+    {
+      "name": "electrolyte_vessel",
+      "movable": false,
+      "pivot": [
+        0.3,
+        0.25,
+        -0.1
+      ],
+      "role": "vessel"
+    },
+    {
+      "name": "electrode_anode",
+      "movable": true,
+      "pivot": [
+        -0.05,
+        0.25,
+        0.2
+      ],
+      "role": "electrode"
+    },
+    {
+      "name": "electrode_cathode",
+      "movable": true,
+      "pivot": [
+        0.65,
+        0.25,
+        0.2
+      ],
+      "role": "electrode"
+    },
+    {
+      "name": "ion_00",
+      "movable": true,
+      "pivot": [
+        -0.275,
+        -0.1640625,
+        -0.27329545454545456
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_01",
+      "movable": true,
+      "pivot": [
+        -0.07150000000000001,
+        0.12187500000000004,
+        0.04431818181818187
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_02",
+      "movable": true,
+      "pivot": [
+        0.132,
+        -0.046875,
+        -0.29545454545454547
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_03",
+      "movable": true,
+      "pivot": [
+        -0.22000000000000003,
+        -0.215625,
+        0.022159090909090906
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_04",
+      "movable": true,
+      "pivot": [
+        -0.016500000000000015,
+        0.07031250000000003,
+        -0.3176136363636364
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_05",
+      "movable": true,
+      "pivot": [
+        0.187,
+        -0.09843750000000001,
+        0.0
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_06",
+      "movable": true,
+      "pivot": [
+        -0.165,
+        0.18749999999999997,
+        0.31761363636363643
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_07",
+      "movable": true,
+      "pivot": [
+        0.03849999999999998,
+        0.01874999999999999,
+        -0.022159090909090906
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_08",
+      "movable": true,
+      "pivot": [
+        0.242,
+        -0.15000000000000002,
+        0.29545454545454547
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_09",
+      "movable": true,
+      "pivot": [
+        -0.11000000000000001,
+        0.13593750000000002,
+        -0.04431818181818181
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_10",
+      "movable": true,
+      "pivot": [
+        0.09350000000000003,
+        -0.03281250000000002,
+        0.2732954545454545
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_11",
+      "movable": true,
+      "pivot": [
+        -0.2585,
+        -0.2015625,
+        -0.06647727272727272
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_12",
+      "movable": true,
+      "pivot": [
+        -0.05499999999999999,
+        0.084375,
+        0.25113636363636366
+      ],
+      "role": "particle"
+    },
+    {
+      "name": "ion_13",
+      "movable": true,
+      "pivot": [
+        0.14850000000000002,
+        -0.084375,
+        -0.08863636363636362
+      ],
+      "role": "particle"
+    }
+  ],
+  "runtime": {
+    "lesson": "Chemical Effects of Current",
+    "interaction_targets": [
+      "battery_body",
+      "battery_positive",
+      "electrode_anode",
+      "electrode_cathode",
+      "ion_00",
+      "ion_01",
+      "ion_02",
+      "ion_03",
+      "ion_04",
+      "ion_05"
+    ],
+    "controls": [
+      {
+        "id": "voltage",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "electrode_gap",
+        "type": "slider",
+        "bind": "simulation"
+      },
+      {
+        "id": "electrolyte",
+        "type": "slider",
+        "bind": "simulation"
+      }
+    ],
+    "gestures": {
+      "orbit": "drag_background",
+      "rotate_part": "drag_target",
+      "zoom": "wheel_or_pinch",
+      "select": "tap_part"
+    },
+    "animation": {
+      "clip": "concept_cycle",
+      "duration_seconds": 8,
+      "loop": true,
+      "pauseable": true,
+      "scrubbable": true,
+      "speed_range": [
+        0.25,
+        2.0
+      ]
+    },
+    "states": [
+      "idle",
+      "prediction",
+      "running",
+      "paused",
+      "result",
+      "reset"
+    ],
+    "accessibility": {
+      "reduced_motion": true,
+      "keyboard_rotation": true,
+      "descriptions_required": true
+    }
+  },
+  "rendering": {
+    "pbr": true,
+    "transparent_effects": true,
+    "recommended_viewer": "Three.js/Babylon.js/model-viewer"
+  }
+}

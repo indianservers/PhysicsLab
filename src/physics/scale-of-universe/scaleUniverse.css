@@ -193,6 +193,36 @@
   cursor: grabbing;
 }
 
+.scale-reference-badge {
+  position: absolute;
+  z-index: 4;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  gap: 0.12rem;
+  border: 1px solid rgba(103, 232, 249, 0.28);
+  border-radius: 0.7rem;
+  padding: 0.55rem 0.7rem;
+  color: #e0f2fe;
+  background: rgba(2, 6, 23, 0.78);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.28);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.scale-reference-badge span {
+  color: #67e8f9;
+  font-size: 0.62rem;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+}
+
+.scale-reference-badge b {
+  color: #cbd5e1;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
 .scale-legend,
 .scale-instructions,
 .scale-info-panel,
@@ -792,7 +822,7 @@
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
   color: #ffffff;
-  background: #8b5cf6;
+  background: #6d28d9;
   box-shadow: 0 0 28px rgba(139, 92, 246, 0.45);
   transform: translate(-50%, -50%);
   transition: left 180ms ease, box-shadow 180ms ease, transform 180ms ease;

@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Default radius is 1071.64 mm, with equilateral support radius distinct from leg separation",
+    "All signed surfaces and boundary values lie on the governing sphere; flat limit is explicit",
+    "Independent finite-difference uncertainty propagation agrees with analytic sensitivities",
+    "Increasing sagitta decreases radius; larger support radius increases inferred radius"
+  ],
+  "default": {
+    "h": 0.42,
+    "r": 30,
+    "sign": 1,
+    "curvature": 0.0009331504358479071,
+    "radius": 1071.6385714285714,
+    "radiusUncertainty": 12.832368259131412,
+    "curvatureUncertainty": 0.000011174037920272333,
+    "flat": false,
+    "signedHeight": 0.42,
+    "legSeparation": 51.96152422706631
+  }
+}

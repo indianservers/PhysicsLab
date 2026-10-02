@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "Default heading measured from north: vector sum, crossing time, full downstream displacement and current-only drift",
+    "All bounds, upstream/downstream signs, stationary water/boat, parallel headings, finite crossing endpoint and Galilean frame transform",
+    "Exact cancellation at -30 degrees with boat4/current2; upstream drift and impossible finite cancellation when current >= boat"
+  ],
+  "default": {
+    "input": {
+      "boat": 5,
+      "current": 2,
+      "heading": 30
+    },
+    "boatX": 2.4999999999999996,
+    "boatY": 4.330127018922194,
+    "groundX": 4.5,
+    "groundY": 4.330127018922194,
+    "groundSpeed": 6.244997998398398,
+    "crossingTime": 69.28203230275508,
+    "drift": 311.76914536239786,
+    "currentDrift": 138.56406460551017
+  }
+}

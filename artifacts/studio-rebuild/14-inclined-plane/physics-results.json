@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "Default components and acceleration use g=9.81 and visible kinetic coefficient",
+    "Force balance, friction sign, static limit and all control boundaries",
+    "Exact stopping/reversal/end impacts agree with 400 fine steps",
+    "Trajectory includes exact pre/post impact points and zero acceleration at bumper"
+  ],
+  "default": {
+    "angle": 25,
+    "mass": 2,
+    "mu": 0.3,
+    "normal": 17.78175878165907,
+    "downhill": 8.291770295352524,
+    "weight": 19.62,
+    "friction": -5.3345276344977215,
+    "limit": 5.3345276344977215,
+    "bumper": 0,
+    "net": 2.957242660854803,
+    "acceleration": 1.4786213304274014,
+    "regime": "sliding",
+    "criticalAngle": 16.69924423399362
+  },
+  "impact": {
+    "time": 1.549478994238666,
+    "position": 2.775,
+    "velocity": 0
+  }
+}

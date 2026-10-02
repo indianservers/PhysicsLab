@@ -1,0 +1,399 @@
+.experiment-detail-electrostatic-field-potential .page-hero,
+.experiment-detail-electrostatic-field-potential .experiment-tab-strip {
+  display: none !important;
+}
+.experiment-detail-electrostatic-field-potential .experiment-main,
+.experiment-detail-electrostatic-field-potential .experiment-workspace,
+.experiment-detail-electrostatic-field-potential .experiment-workspace-main {
+  padding: 0 !important;
+  max-width: none !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.electro-lab {
+  --violet: #6d35bc;
+  --ink: #202533;
+  color: var(--ink);
+  background: #f5f6fa;
+  border: 1px solid #c8cad2;
+  font-family: Inter, system-ui, sans-serif;
+  min-width: 0;
+}
+.electro-lab * {
+  box-sizing: border-box;
+}
+.electro-lab button,
+.electro-lab input,
+.electro-lab select {
+  font: inherit;
+}
+.electro-lab button {
+  border: 1px solid #c3c4ce;
+  border-radius: 5px;
+  background: linear-gradient(#fff, #f0f0f5);
+  color: #29263a;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+}
+.electro-lab button:hover {
+  border-color: #7440bd;
+  background: #faf6ff;
+}
+.electro-lab button:focus-visible,
+.electro-lab input:focus-visible,
+.electro-lab select:focus-visible {
+  outline: 3px solid #ffb52b;
+  outline-offset: 2px;
+}
+.electro-lab button:disabled {
+  opacity: 0.45;
+}
+.electro-lab button.primary {
+  background: #7440bd;
+  color: #fff;
+  border-color: #5d2ca2;
+}
+.electro-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  padding: 12px 18px;
+  background: #fff;
+  border-bottom: 1px solid #d0d1d9;
+}
+.electro-head > div:last-child {
+  display: flex;
+  gap: 7px;
+}
+.electro-head span,
+.electro-results > span,
+.electro-mission > span {
+  color: #6c3db0;
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+.electro-head h2 {
+  margin: 3px 0;
+  font:
+    700 1.45rem Georgia,
+    serif;
+}
+.electro-head p {
+  margin: 0;
+  color: #686b77;
+  font-size: 0.75rem;
+}
+.electro-work {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 290px;
+  gap: 1px;
+  background: #c8cad2;
+}
+.electro-controls,
+.electro-results {
+  min-width: 0;
+  background: #fbfbfd;
+  padding: 12px;
+}
+.electro-controls h3 {
+  margin: 2px 0 6px;
+  color: #32254b;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+.electro-control {
+  display: block;
+  padding: 7px 0;
+  border-top: 1px solid #dddde3;
+}
+.electro-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.69rem;
+}
+.electro-control strong {
+  font-family: ui-monospace, monospace;
+}
+.electro-control input {
+  width: 100%;
+  accent-color: #7240b8;
+}
+.electro-control > small {
+  display: block;
+  text-align: right;
+  color: #777886;
+  font-size: 0.58rem;
+}
+.electro-warning {
+  padding: 7px;
+  color: #8c251b;
+  background: #fff0eb;
+  border: 1px solid #dd9b8e;
+  font-size: 0.65rem;
+}
+.electro-presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-top: 8px;
+}
+.electro-presets button {
+  font-size: 0.66rem;
+}
+.electro-stage {
+  display: grid;
+  grid-template-rows: minmax(390px, 1fr) 230px;
+  min-width: 0;
+  background: #eaf0f5;
+}
+.electro-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  touch-action: none;
+}
+.electro-map .axis {
+  stroke: #66727c;
+  stroke-width: 1;
+}
+.electro-map .contour {
+  stroke: #fff;
+  stroke-width: 1.2;
+  opacity: 0.8;
+}
+.electro-map .vector {
+  stroke: #293c4a;
+  stroke-width: 1;
+}
+.electro-map .arrow {
+  fill: #293c4a;
+}
+.electro-map .charge {
+  cursor: grab;
+}
+.electro-map .charge circle {
+  stroke: white;
+  stroke-width: 3;
+}
+.electro-map .charge text {
+  fill: white;
+  font: bold 21px Inter;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.electro-map .positive circle {
+  fill: #dc493e;
+}
+.electro-map .negative circle {
+  fill: #326bd4;
+}
+.electro-map .probe {
+  cursor: crosshair;
+}
+.electro-map .probe circle {
+  fill: #fff;
+  stroke: #782ac3;
+  stroke-width: 4;
+}
+.electro-map .probe line {
+  stroke: #782ac3;
+  stroke-width: 4;
+}
+.electro-map .probe text,
+.electro-map .map-label {
+  fill: #34214d;
+  font: bold 10px Inter;
+}
+.electro-3d {
+  position: relative;
+  background: #071426;
+  border-top: 1px solid #8e9bac;
+  min-height: 230px;
+}
+.electro-canvas {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+.electro-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.electro-3d > div:last-child {
+  position: absolute;
+  z-index: 3;
+  left: 8px;
+  bottom: 8px;
+  display: flex;
+  gap: 5px;
+}
+.electro-3d button {
+  font-size: 0.6rem;
+  background: #102641d9;
+  color: white;
+  border-color: #6a88a9;
+}
+.electro-3d button.active {
+  background: #703fc0;
+}
+.electro-results > h3 {
+  margin: 4px 0 8px;
+  font:
+    700 1rem Georgia,
+    serif;
+}
+.electro-readout {
+  display: grid;
+  gap: 3px;
+  padding: 8px;
+  border: 1px solid #d8d9df;
+  border-bottom: 0;
+}
+.electro-readout:nth-of-type(4) {
+  border-bottom: 1px solid #d8d9df;
+}
+.electro-readout span {
+  font-size: 0.62rem;
+  color: #70727e;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.electro-readout strong {
+  font:
+    700 0.84rem ui-monospace,
+    monospace;
+  color: #4f238e;
+  overflow-wrap: anywhere;
+}
+.electro-equations {
+  margin-top: 10px;
+  padding: 9px;
+  border-left: 3px solid #7b43c5;
+  background: #f3eefb;
+}
+.electro-equations h3 {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+}
+.electro-equations p {
+  margin: 4px 0;
+  font-family: Georgia, serif;
+  font-size: 0.83rem;
+}
+.electro-mission {
+  margin-top: 10px;
+  padding: 9px;
+  background: #fff8e8;
+  border: 1px solid #d7a047;
+  border-radius: 5px;
+}
+.electro-mission h3 {
+  margin: 4px 0;
+  color: #70470c;
+  font:
+    700 0.94rem Georgia,
+    serif;
+}
+.electro-mission p {
+  font-size: 0.66rem;
+  line-height: 1.4;
+}
+.electro-mission.complete {
+  background: #eaf8e8;
+  border-color: #439650;
+}
+.electro-play {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: #fff;
+  border-top: 1px solid #cacbd3;
+  font-size: 0.7rem;
+}
+.electro-play label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.electro-play > span {
+  margin-left: auto;
+  color: #666a76;
+}
+.electro-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 1100px) {
+  .experiment-detail-electrostatic-field-potential .experiment-workspace {
+    margin-top: 40px !important;
+  }
+  .electro-work {
+    grid-template-columns: 230px 1fr;
+  }
+  .electro-results {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+  .electro-results > span,
+  .electro-results > h3 {
+    grid-column: 1/-1;
+  }
+  .electro-mission {
+    margin-top: 0;
+  }
+  .electro-equations {
+    margin-top: 0;
+  }
+}
+@media (max-width: 720px) {
+  .electro-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .electro-head > div:last-child {
+    width: 100%;
+  }
+  .electro-head button {
+    flex: 1;
+  }
+  .electro-work {
+    display: flex;
+    flex-direction: column;
+  }
+  .electro-stage {
+    order: -1;
+    grid-template-rows: 360px 220px;
+  }
+  .electro-map {
+    min-height: 360px;
+  }
+  .electro-results {
+    display: block;
+  }
+  .electro-play {
+    flex-wrap: wrap;
+  }
+  .electro-play > span {
+    width: 100%;
+    margin: 0;
+  }
+  .electro-presets {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

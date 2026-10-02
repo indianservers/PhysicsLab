@@ -1,0 +1,1 @@
+import{runBenchmarkCases}from"../shared/validation";import{contactPressureCases as raw}from"./contactPressurePhysics";export const contactPressureBenchmarks=runBenchmarkCases(raw.map(x=>({...x,input:x.actual,actual:(v:number)=>v})));

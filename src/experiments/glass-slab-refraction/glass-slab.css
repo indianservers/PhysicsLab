@@ -1,0 +1,470 @@
+.gs-lab {
+  --blue: #0b70d1;
+  border: 1px solid #d8d7d2;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f7f8f8;
+  color: #17232b;
+  box-shadow: 0 18px 45px #2035441e;
+}
+.gs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(115deg, #082942, #0d5a7a);
+  color: #fff;
+}
+.gs-head span,
+.gs-mission > span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+.gs-head h2 {
+  margin: 4px 0;
+  font-size: clamp(25px, 3vw, 38px);
+}
+.gs-head p {
+  margin: 0;
+  color: #d5eff8;
+}
+.gs-lab button,
+.gs-lab select,
+.gs-lab input {
+  font: inherit;
+}
+.gs-lab button {
+  border: 1px solid #d3d8dc;
+  border-radius: 8px;
+  background: #fff;
+  color: #172a36;
+  padding: 9px 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.gs-lab button:hover,
+.gs-lab button:focus-visible,
+.gs-lab button.active {
+  border-color: #11a9c7;
+  box-shadow: 0 0 0 3px #15b8d128;
+}
+.gs-lab button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.gs-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 245px;
+}
+.gs-controls,
+.gs-readings {
+  background: #fff;
+  padding: 16px;
+}
+.gs-controls {
+  border-right: 1px solid #d9dddf;
+}
+.gs-readings {
+  border-left: 1px solid #d9dddf;
+}
+.gs-controls h3,
+.gs-readings h3,
+.gs-lower h3 {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.gs-controls label {
+  display: block;
+  margin: 0 0 15px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.gs-controls output {
+  float: right;
+  color: #bd530b;
+}
+.gs-controls input[type="range"] {
+  display: block;
+  width: 100%;
+  margin: 8px 0 3px;
+  accent-color: #1686e0;
+}
+.gs-controls small {
+  display: flex;
+  justify-content: space-between;
+  color: #64737e;
+}
+.gs-controls select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #ccd3d7;
+  border-radius: 7px;
+  background: #fff;
+}
+.gs-controls > button {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.gs-presets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+.gs-presets button {
+  font-size: 10px;
+  padding: 7px 3px;
+}
+.gs-main {
+  min-width: 0;
+  padding: 12px;
+  background: #edf3f5;
+}
+.gs-transport {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.gs-transport label {
+  font-size: 11px;
+  margin-left: auto;
+}
+.gs-transport select {
+  padding: 5px;
+}
+.gs-transport .gs-check {
+  margin-left: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.gs-stage {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border: 1px solid #c7d8dd;
+  border-radius: 10px;
+  background: radial-gradient(circle at 57% 47%, #fff, #eef2f0 72%, #dce4e5);
+  isolation: isolate;
+}
+.gs-stage img,
+.gs-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gs-stage img {
+  object-fit: cover;
+  opacity: 0.58;
+  filter: saturate(0.75) contrast(0.95);
+  z-index: 0;
+}
+.gs-stage svg {
+  z-index: 1;
+}
+.gs-slab {
+  fill: #bdefff4a;
+  stroke: #1a99ad;
+  stroke-width: 2;
+}
+.gs-normal {
+  stroke: #53626a;
+  stroke-width: 1.6;
+  stroke-dasharray: 7 5;
+}
+.gs-ray {
+  stroke: var(--ray);
+  stroke-opacity: var(--ray-opacity);
+  stroke-width: 4.5;
+  fill: none;
+  filter: drop-shadow(0 0 3px var(--ray));
+}
+.gs-inside {
+  stroke-width: 5;
+}
+.gs-fan-ray {
+  stroke: var(--ray);
+  stroke-width: 1.5;
+  opacity: 0.32;
+}
+.gs-ghost {
+  stroke: #3e5fd4;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 6;
+}
+.gs-shift {
+  stroke: #293ecc;
+  stroke-width: 2;
+  marker-start: none;
+}
+.gs-angle {
+  fill: none;
+  stroke: #253b4b;
+  stroke-width: 2;
+}
+.gs-label,
+.gs-medium {
+  font-size: 15px;
+  font-weight: 900;
+  fill: #182b37;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+.gs-medium {
+  fill: #087587;
+}
+.gs-caption {
+  margin: 8px 4px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #40525c;
+}
+.gs-readings dl {
+  margin: 0;
+}
+.gs-readings dl > div {
+  display: contents;
+}
+.gs-readings dt,
+.gs-readings dd {
+  border-bottom: 1px solid #e4e7e8;
+  padding: 9px 0;
+  margin: 0;
+  font-size: 12px;
+}
+.gs-readings dt {
+  float: left;
+  clear: left;
+}
+.gs-readings dd {
+  text-align: right;
+  color: #0874be;
+  font-weight: 900;
+}
+.gs-equation {
+  clear: both;
+  margin-top: 16px;
+  padding: 13px 8px;
+  background: #fff5df;
+  text-align: center;
+  font:
+    italic 17px/1.8 Georgia,
+    serif;
+}
+.gs-snell {
+  margin-top: 10px;
+  padding: 10px;
+  background: #e9f8ee;
+  font-size: 11px;
+}
+.gs-snell strong {
+  display: block;
+  color: #17683c;
+  margin-top: 4px;
+}
+.gs-lower {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid #d9dddf;
+}
+.gs-data,
+.gs-graph,
+.gs-mission {
+  min-width: 0;
+  border: 1px solid #d8dddf;
+  border-radius: 9px;
+  background: #fff;
+  padding: 12px;
+}
+.gs-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.gs-section-head button {
+  padding: 6px 8px;
+  font-size: 11px;
+}
+.gs-table-wrap {
+  overflow-x: auto;
+}
+.gs-data table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.gs-data th,
+.gs-data td {
+  padding: 7px;
+  border: 1px solid #e1e4e5;
+  text-align: center;
+}
+.gs-data tbody tr:nth-child(odd) {
+  background: #f3faf5;
+}
+.gs-graph svg {
+  width: 100%;
+  height: auto;
+}
+.gs-graph line {
+  stroke: #839097;
+  stroke-width: 1;
+}
+.gs-graph polyline {
+  fill: none;
+  stroke: #16833b;
+  stroke-width: 3;
+}
+.gs-graph text {
+  font-size: 11px;
+  fill: #4b5961;
+}
+.gs-mission {
+  background: #fff8e5;
+  border-color: #e7c66a;
+}
+.gs-mission p {
+  font-size: 12px;
+}
+.gs-target {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  color: #1744d3;
+}
+.gs-mission .success {
+  color: #17683c;
+  font-weight: 900;
+}
+.gs-mission .hint {
+  color: #9a4d0a;
+  font-weight: 800;
+}
+@media (max-width: 1050px) {
+  .gs-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .gs-readings {
+    grid-column: 1/-1;
+    border-left: 0;
+    border-top: 1px solid #d9dddf;
+  }
+  .gs-readings dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .gs-readings dt {
+    float: none;
+  }
+  .gs-readings dd {
+    text-align: left;
+  }
+  .gs-lower {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gs-mission {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 720px) {
+  .gs-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .gs-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .gs-main {
+    order: 1;
+  }
+  .gs-controls {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid #d9dddf;
+  }
+  .gs-readings {
+    order: 3;
+  }
+  .gs-stage {
+    aspect-ratio: 1.2;
+  }
+  .gs-stage img {
+    object-fit: cover;
+  }
+  .gs-transport button {
+    padding: 7px;
+    font-size: 11px;
+  }
+  .gs-transport label {
+    margin-left: 0;
+  }
+  .gs-readings dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gs-lower {
+    grid-template-columns: 1fr;
+  }
+  .gs-mission {
+    grid-column: auto;
+  }
+  .gs-data {
+    order: 2;
+  }
+  .gs-graph {
+    order: 1;
+  }
+  .gs-mission {
+    order: 3;
+  }
+}
+@media (max-width: 430px) {
+  .gs-head {
+    padding: 18px;
+  }
+  .gs-main {
+    padding: 8px;
+  }
+  .gs-stage {
+    aspect-ratio: 1;
+  }
+  .gs-stage svg {
+    width: 125%;
+    left: -13%;
+  }
+  .gs-controls,
+  .gs-readings {
+    padding: 14px;
+  }
+  .gs-readings dl {
+    grid-template-columns: 1fr;
+  }
+  .gs-lower {
+    padding: 8px;
+  }
+  .gs-target {
+    flex-direction: column;
+  }
+  .gs-transport {
+    gap: 4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gs-ray {
+    filter: none;
+  }
+}

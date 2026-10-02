@@ -1,0 +1,12 @@
+.rail-nav-empty {
+  margin: 8px;
+  padding: 12px 7px;
+  border: 1px dashed rgba(103, 216, 255, 0.25);
+  color: #8fa8b3;
+  font-size: 9px;
+  text-align: center;
+}
+.rail-nav-empty b { display: block; color: #d8edf5; margin-bottom: 7px; }
+.rail-nav-empty button { border: 0; background: transparent; color: #67d8ff; font-weight: 800; }
+.rail-submenu-panel .rail-submenu-panel { margin-left: 7px; border-left-color: rgba(182, 149, 255, 0.35); }
+.rail-submenu-panel .nav-chip { min-height: 34px; }

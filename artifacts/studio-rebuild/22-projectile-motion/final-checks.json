@@ -1,0 +1,80 @@
+{
+  "routes": [
+    {
+      "text": "Physics Studio",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Home",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Motion & Kinematics",
+      "href": "/concept-studio/motion-kinematics",
+      "title": "MOTION & KINEMATICS"
+    },
+    {
+      "text": "Forces & Newton’s Laws",
+      "href": "/mechanics/free-body-diagrams",
+      "title": "Free-Body Diagrams"
+    },
+    {
+      "text": "Work, Energy & Power",
+      "href": "/concept-studio/work-energy-power",
+      "title": "WORK, ENERGY & POWER"
+    },
+    {
+      "text": "Rotational Motion",
+      "href": "/mechanics/torque-levers",
+      "title": "Mechanics›Torque & Levers"
+    },
+    {
+      "text": "Gravitation",
+      "href": "/concept-studio/gravitation",
+      "title": "GRAVITATION STUDIO"
+    },
+    {
+      "text": "Waves",
+      "href": "/concept-studio/waves-sound",
+      "title": "WAVES & SOUND STUDIO"
+    },
+    {
+      "text": "Thermodynamics",
+      "href": "/concept-studio/thermodynamics",
+      "title": "THERMODYNAMICS STUDIO"
+    },
+    {
+      "text": "Electricity & Magnetism",
+      "href": "/concept-studio/electricity",
+      "title": "ELECTRICITY STUDIO"
+    },
+    {
+      "text": "Modern Physics",
+      "href": "/concept-studio/modern-physics",
+      "title": "MODERN PHYSICS STUDIO"
+    },
+    {
+      "text": "Tools",
+      "href": "/measurement/meter-scale",
+      "title": "Measurement — Meter Scale"
+    },
+    {
+      "text": "Resources",
+      "href": "/experiments",
+      "title": "EXPERIMENT LAUNCHER"
+    },
+    {
+      "href": "/experiments/projectile-motion",
+      "title": "Original height/drag lab retained"
+    }
+  ],
+  "performance": {
+    "median": 6.900000000000091,
+    "p95": 7.099999999999909,
+    "max": 7.2000000000000455
+  },
+  "errors": [],
+  "failed": []
+}

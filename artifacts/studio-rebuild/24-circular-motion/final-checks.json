@@ -1,0 +1,89 @@
+{
+  "routes": [
+    {
+      "text": "PHYSICS STUDIOExplore. Experiment. Understand.",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Home",
+      "href": "/concept-studio",
+      "title": "PHYSICS ATLAS"
+    },
+    {
+      "text": "Kinematics",
+      "href": "/concept-studio/motion-kinematics",
+      "title": "MOTION & KINEMATICS"
+    },
+    {
+      "text": "Dynamics",
+      "href": "/mechanics/free-body-diagrams",
+      "title": "Free-Body Diagrams"
+    },
+    {
+      "text": "Circular Motion",
+      "href": "/motion/circular-motion",
+      "title": "MOTION & KINEMATICS"
+    },
+    {
+      "text": "Energy",
+      "href": "/concept-studio/work-energy-power",
+      "title": "WORK, ENERGY & POWER"
+    },
+    {
+      "text": "Momentum",
+      "href": "/mechanics/momentum-collisions",
+      "title": "MECHANICS — MOMENTUM & COLLISIONS"
+    },
+    {
+      "text": "Rotational Motion",
+      "href": "/mechanics/torque-levers",
+      "title": "Mechanics›Torque & Levers"
+    },
+    {
+      "text": "Waves & Optics",
+      "href": "/concept-studio/waves-sound",
+      "title": "WAVES & SOUND STUDIO"
+    },
+    {
+      "text": "Thermodynamics",
+      "href": "/concept-studio/thermodynamics",
+      "title": "THERMODYNAMICS STUDIO"
+    },
+    {
+      "text": "Electromagnetism",
+      "href": "/concept-studio/electricity",
+      "title": "ELECTRICITY STUDIO"
+    },
+    {
+      "text": "Modern Physics",
+      "href": "/concept-studio/modern-physics",
+      "title": "MODERN PHYSICS STUDIO"
+    },
+    {
+      "text": "Tools",
+      "href": "/measurement/meter-scale",
+      "title": "Measurement — Meter Scale"
+    },
+    {
+      "text": "Reference",
+      "href": "/roadmap",
+      "title": "GUIDED LEARNING PATH"
+    },
+    {
+      "href": "/experiments/projectile-motion",
+      "title": "Original height/drag lab retained"
+    },
+    {
+      "href": "/experiments/circular-motion",
+      "title": "Original direction and release lab retained"
+    }
+  ],
+  "performance": {
+    "median": 7,
+    "p95": 12.900000000000091,
+    "max": 13.700000000000045
+  },
+  "errors": [],
+  "failed": []
+}

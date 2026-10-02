@@ -1,0 +1,724 @@
+.se-lab {
+  --se-ink: #17191c;
+  --se-muted: #6e6b66;
+  --se-orange: #d97816;
+  --se-blue: #2f85cc;
+  color: var(--se-ink);
+  background: linear-gradient(150deg, #fbfaf6, #f2eee7);
+  border: 1px solid #ddd6cb;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 26px 70px rgba(45, 42, 36, 0.14);
+}
+
+.se-header,
+.se-mode-tabs,
+.se-transport,
+.se-readouts div,
+.se-bottom,
+.se-mission > div {
+  display: flex;
+  align-items: center;
+}
+
+.se-lab > .se-header {
+  min-height: 0;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 14px;
+  padding: 0;
+  border: 0;
+  color: var(--se-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+.se-header span,
+.se-card > span,
+.se-result > span {
+  color: #a75517;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.se-header h1 {
+  margin: 4px 0 2px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1;
+}
+
+.se-header p {
+  margin: 7px 0 0;
+  color: #55534f;
+}
+
+.se-mode-tabs {
+  flex: 0 0 auto;
+  padding: 4px;
+  border: 1px solid #d9d3ca;
+  border-radius: 10px;
+  background: #f4f1eb;
+}
+
+.se-mode-tabs button,
+.se-transport button,
+.se-card button,
+.se-default,
+.se-lab select {
+  min-height: 38px;
+  border: 1px solid #d7d1c8;
+  border-radius: 8px;
+  color: #373634;
+  background: #fff;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.se-mode-tabs button {
+  min-width: 112px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.se-mode-tabs button.active {
+  color: #b65d10;
+  border-color: #e4a45f;
+  background: #fff;
+  box-shadow: 0 2px 7px rgba(75, 54, 30, 0.1);
+}
+
+.se-type {
+  flex: 0 0 auto;
+  border: 1px solid #d9b88f;
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: #9b4f10;
+  background: #fff8ef;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.se-type.total {
+  color: #f1f5ff;
+  border-color: #6477a3;
+  background: #283249;
+}
+
+.se-type.partial,
+.se-type.penumbral {
+  color: #934d09;
+  background: #fff2d7;
+}
+
+.se-layout {
+  display: grid;
+  grid-template-columns: minmax(215px, 0.7fr) minmax(520px, 2.45fr) minmax(
+      220px,
+      0.78fr
+    );
+  gap: 10px;
+  align-items: start;
+}
+
+.se-controls,
+.se-workspace,
+.se-readouts,
+.se-card {
+  border: 1px solid #ddd7ce;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  overflow: hidden;
+}
+
+.se-controls,
+.se-readouts {
+  padding: 12px;
+}
+
+.se-controls h2,
+.se-readouts h2 {
+  margin: 0 0 9px;
+  text-transform: uppercase;
+  font-size: 0.83rem;
+  letter-spacing: 0.09em;
+}
+
+.se-controls section,
+.se-readouts section {
+  padding: 10px 0;
+  border-top: 1px solid #e7e2db;
+}
+
+.se-controls h3,
+.se-readouts h3 {
+  margin: 0 0 8px;
+  color: #30302e;
+  font-size: 0.75rem;
+}
+
+.se-range {
+  display: block;
+  margin-top: 10px;
+}
+
+.se-range span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #66635e;
+  font-size: 0.7rem;
+}
+
+.se-range output {
+  color: #a95113;
+  font-weight: 850;
+}
+
+.se-range input,
+.se-scrubber input {
+  width: 100%;
+  accent-color: var(--se-orange);
+}
+
+.se-switches label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  color: #5f5c57;
+  font-size: 0.72rem;
+}
+
+.se-switches input,
+.se-transport input {
+  accent-color: var(--se-blue);
+}
+
+.se-default {
+  width: 100%;
+  padding: 0 9px;
+}
+
+.se-transport {
+  flex-wrap: wrap;
+  gap: 7px;
+  min-height: 52px;
+  padding: 7px 10px;
+  background: #0e151d;
+}
+
+.se-transport button,
+.se-card button {
+  padding: 0 12px;
+}
+
+.se-transport .play,
+.se-card .check {
+  color: #fff;
+  border-color: #31853c;
+  background: #2f8b3b;
+}
+
+.se-transport label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #d5d9de;
+  font-size: 0.67rem;
+}
+
+.se-transport select {
+  min-height: 32px;
+  padding: 0 6px;
+}
+
+.se-scrubber {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  color: #d3d9df;
+  background: #121d27;
+  font-size: 0.68rem;
+}
+
+.se-scrubber span {
+  color: #eeb15f;
+  font-weight: 800;
+}
+
+.se-stage {
+  position: relative;
+  min-height: 390px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 18% 50%,
+      rgba(161, 81, 13, 0.22),
+      transparent 27%
+    ),
+    linear-gradient(135deg, #07101a, #0b1722 55%, #050b12);
+}
+
+.se-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle, #fff 0 1px, transparent 1.4px),
+    radial-gradient(circle, #9fc5e8 0 0.8px, transparent 1.2px);
+  background-position:
+    0 0,
+    31px 23px;
+  background-size:
+    69px 73px,
+    97px 89px;
+}
+
+.se-stage svg {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.se-penumbra {
+  fill: rgba(199, 205, 214, 0.12);
+  stroke: rgba(226, 231, 237, 0.48);
+  stroke-width: 1.5;
+}
+
+.se-umbra {
+  fill: rgba(0, 0, 0, 0.52);
+  stroke: rgba(137, 116, 175, 0.7);
+  stroke-width: 1.5;
+}
+
+.se-umbra.antumbra {
+  fill: rgba(70, 43, 94, 0.23);
+  stroke-dasharray: 7 5;
+}
+
+.se-rays line {
+  stroke: #f3c23c;
+  stroke-width: 1.5;
+}
+
+.se-rays .inner {
+  stroke: #bc83da;
+  stroke-dasharray: 7 5;
+}
+
+.se-axis {
+  stroke: rgba(122, 177, 220, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+}
+
+.se-orbit {
+  fill: none;
+  stroke: #277cc2;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+
+.se-observer-pin {
+  fill: #30d7ff;
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 7px #31d6ff);
+}
+
+.se-hit-target {
+  fill: transparent;
+  stroke: transparent;
+  cursor: grab;
+  outline: none;
+}
+
+.se-hit-target:focus-visible {
+  stroke: #ffcf50;
+  stroke-width: 3;
+  stroke-dasharray: 5 4;
+}
+
+.se-stage text {
+  fill: #f4f6f8;
+  font-size: 13px;
+  font-weight: 850;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #07101a;
+  stroke-width: 4px;
+}
+
+.se-stage .se-shadow-label {
+  fill: #ded3ef;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.se-stage .se-shadow-label.pen {
+  fill: #e4e7eb;
+}
+
+.se-body {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-image: url("/assets/experiments/shadows-eclipses/sun-earth-moon-atlas.png");
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  pointer-events: none;
+}
+
+.se-body.sun {
+  width: 19%;
+  aspect-ratio: 1;
+  background-position: left center;
+  filter: drop-shadow(0 0 22px rgba(255, 159, 26, 0.72));
+}
+
+.se-body.earth {
+  width: 13.5%;
+  aspect-ratio: 1;
+  background-position: center center;
+  filter: drop-shadow(0 0 11px rgba(68, 162, 231, 0.42));
+}
+
+.se-body.moon {
+  width: 6.8%;
+  aspect-ratio: 1;
+  background-position: right center;
+  filter: drop-shadow(0 0 5px rgba(234, 236, 240, 0.28));
+}
+
+.se-body.moon.eclipsed {
+  filter: sepia(0.8) saturate(2.3) brightness(0.54) drop-shadow(0 0 7px #8d311c);
+}
+
+.se-order {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(151, 190, 219, 0.35);
+  border-radius: 999px;
+  padding: 6px 11px;
+  color: #dcebf7;
+  background: rgba(3, 10, 17, 0.72);
+  font-size: 0.72rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.se-readouts section:first-of-type {
+  padding-top: 4px;
+  border-top: 0;
+}
+
+.se-readouts div {
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 0.68rem;
+}
+
+.se-readouts div b {
+  color: #315d83;
+  text-align: right;
+}
+
+.se-readouts b.positive {
+  color: #26763a;
+}
+
+.se-readouts b.negative {
+  color: #aa5413;
+}
+
+.se-result {
+  border-radius: 9px;
+  padding: 10px !important;
+  background: #f4f1eb;
+}
+
+.se-result strong {
+  display: block;
+  margin: 3px 0;
+  color: #283b59;
+  font-size: 1.35rem;
+}
+
+.se-result p {
+  margin: 0;
+  color: #635f59;
+  font-size: 0.7rem;
+}
+
+.se-view {
+  text-align: center;
+}
+
+.se-view-disc {
+  position: relative;
+  width: 116px;
+  aspect-ratio: 1;
+  margin: 8px auto;
+  overflow: hidden;
+  border: 5px solid #27313b;
+  border-radius: 50%;
+  background-color: #030609;
+  background-image: url("/assets/experiments/shadows-eclipses/sun-earth-moon-atlas.png");
+  background-repeat: no-repeat;
+}
+
+.se-view-disc.solar {
+  background-position: left center;
+  background-size: 300% 100%;
+  box-shadow:
+    inset 0 0 12px #ff9a15,
+    0 0 13px rgba(240, 150, 22, 0.35);
+}
+
+.se-view-disc.lunar {
+  background-position: right center;
+  background-size: 300% 100%;
+}
+
+.se-view-moon,
+.se-view-shadow {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+}
+
+.se-view-moon {
+  background: #141517;
+  box-shadow: inset -4px -3px 8px #37393c;
+}
+
+.se-view-disc.lunar .se-view-moon {
+  display: none;
+}
+
+.se-view-shadow {
+  display: none;
+  width: 76%;
+  height: 76%;
+  background: rgba(74, 17, 14, 0.72);
+  box-shadow: 0 0 16px rgba(194, 63, 32, 0.5);
+}
+
+.se-view-disc.lunar .se-view-shadow {
+  display: block;
+}
+
+.se-view small {
+  color: #68635d;
+  font-size: 0.65rem;
+}
+
+.se-bottom {
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.se-card {
+  flex: 1;
+  padding: 13px;
+}
+
+.se-card h2 {
+  margin: 4px 0 7px;
+  font-size: 0.98rem;
+}
+
+.se-card p,
+.se-card label {
+  margin: 0;
+  color: #605d58;
+  font-size: 0.73rem;
+  line-height: 1.45;
+}
+
+.se-equation strong {
+  display: block;
+  margin: 9px 0;
+  color: #344e76;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+}
+
+.se-mission {
+  flex: 1.45;
+  border-color: #e7c9a7;
+  background: #fffaf1;
+}
+
+.se-mission > div {
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.se-mission .success,
+.se-mission .hint {
+  margin-top: 8px;
+  font-weight: 750;
+}
+
+.se-mission .success {
+  color: #217536;
+}
+
+.se-mission .hint {
+  color: #a04d15;
+}
+
+.se-predict label {
+  display: block;
+}
+
+.se-predict select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 0 8px;
+}
+
+.se-lab button:hover {
+  filter: brightness(0.97);
+}
+
+.se-lab button:active {
+  transform: translateY(1px);
+}
+
+.se-lab button:focus-visible,
+.se-lab input:focus-visible,
+.se-lab select:focus-visible {
+  outline: 3px solid rgba(109, 44, 164, 0.42);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1050px) {
+  .se-layout {
+    grid-template-columns: minmax(210px, 0.72fr) minmax(420px, 1.5fr);
+  }
+
+  .se-readouts {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .se-readouts h2 {
+    grid-column: 1 / -1;
+  }
+
+  .se-readouts section {
+    border-top: 0;
+    border-left: 1px solid #e7e2db;
+    padding: 5px 0 5px 12px;
+  }
+}
+
+@media (max-width: 720px) {
+  .se-lab {
+    padding: 11px;
+    border-radius: 18px;
+  }
+
+  .se-lab > .se-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .se-header h1 {
+    font-size: 2.05rem;
+  }
+
+  .se-mode-tabs {
+    width: 100%;
+  }
+
+  .se-mode-tabs button {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .se-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .se-workspace {
+    order: 1;
+    width: 100%;
+  }
+
+  .se-controls {
+    order: 2;
+    width: 100%;
+  }
+
+  .se-readouts {
+    order: 3;
+    display: block;
+    width: 100%;
+  }
+
+  .se-readouts section {
+    border-top: 1px solid #e7e2db;
+    border-left: 0;
+    padding: 10px 0;
+  }
+
+  .se-stage {
+    min-height: 245px;
+  }
+
+  .se-transport .play {
+    flex: 1;
+  }
+
+  .se-scrubber {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .se-bottom {
+    flex-direction: column;
+  }
+
+  .se-stage text {
+    font-size: 23px;
+    stroke-width: 7px;
+  }
+
+  .se-stage .se-shadow-label {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .se-lab *,
+  .se-lab *::before,
+  .se-lab *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

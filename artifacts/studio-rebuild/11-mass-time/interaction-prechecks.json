@@ -1,0 +1,47 @@
+{
+  "checks": [
+    "Tare, negative mass, g/kg, power and calibration",
+    "Single trial, playback, pause/resume and completion",
+    "Setup, maximum gap and sample count, keyboard mass",
+    "Prediction and longer-gap challenge"
+  ],
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

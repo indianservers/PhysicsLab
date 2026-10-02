@@ -1,0 +1,288 @@
+.experiment-detail-page .lesson-page-content {
+  width: 100%;
+  max-width: none !important;
+  padding: 8px !important;
+}
+
+.experiment-detail-page [id^="live-lab-"] {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.lesson-command-bar {
+  position: sticky;
+  top: 8px;
+  z-index: 80;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, var(--lesson-accent) 35%, #cbd5e1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(16px);
+  scrollbar-width: thin;
+}
+
+.dark .lesson-command-bar {
+  border-color: color-mix(in srgb, var(--lesson-accent) 32%, #223744);
+  background: rgba(4, 15, 22, 0.96);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+}
+
+.lesson-breadcrumbs {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.lesson-breadcrumbs a {
+  color: #087ea4;
+  text-decoration: none;
+}
+
+.lesson-breadcrumbs strong {
+  min-width: 0;
+  max-width: 320px;
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.86rem;
+  text-overflow: ellipsis;
+}
+
+.dark .lesson-breadcrumbs {
+  color: #829aa6;
+}
+
+.dark .lesson-breadcrumbs a {
+  color: var(--lesson-accent);
+}
+
+.dark .lesson-breadcrumbs strong {
+  color: #edf8fb;
+}
+
+.lesson-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 9px;
+  border: 1px solid color-mix(in srgb, var(--lesson-accent) 38%, #cbd5e1);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--lesson-accent) 8%, white);
+}
+
+.dark .lesson-home-link {
+  background: color-mix(in srgb, var(--lesson-accent) 10%, #071721);
+}
+
+.lesson-command-tabs {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.lesson-command-tabs .experiment-tab {
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 0.75rem;
+}
+
+.dark .lesson-command-tabs .experiment-tab {
+  color: #afc4cd;
+}
+
+.lesson-command-tabs .experiment-tab-active {
+  color: #031117;
+}
+
+.lesson-level-compact {
+  min-height: 38px;
+  margin-left: auto;
+  padding: 3px 4px 3px 8px;
+  border-radius: 8px;
+  background: #f8fafc;
+  white-space: nowrap;
+}
+
+.dark .lesson-level-compact {
+  background: #071721;
+}
+
+.lesson-level-compact span {
+  font-size: 0.58rem;
+}
+
+.lesson-level-compact select {
+  min-width: 130px;
+  padding: 5px 7px;
+  font-size: 0.76rem;
+}
+
+.experiment-detail-page .experiment-tab-shell {
+  border-radius: 12px;
+}
+
+.experiment-detail-page .experiment-tab-pane {
+  padding-top: 8px !important;
+}
+
+.experiment-detail-page .experiment-guide-pane {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.experiment-detail-page .experiment-guide-pane > * {
+  width: 100%;
+  max-width: none;
+  margin: 0 !important;
+}
+
+.experiment-guide-pane .phase4-summary {
+  max-width: 78ch;
+  margin-top: 5px;
+  color: #475569;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-panel,
+html:not(.dark) .experiment-guide-pane .guide-panel,
+html:not(.dark) .experiment-guide-pane .panel {
+  border-color: #cbdbe5 !important;
+  background: #ffffff !important;
+  color: #172033 !important;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-card,
+html:not(.dark) .experiment-guide-pane .phase4-derivation {
+  border-color: #d6e2e9;
+  background: #f7fafc;
+}
+
+html:not(.dark) .experiment-guide-pane h2,
+html:not(.dark) .experiment-guide-pane h3,
+html:not(.dark) .experiment-guide-pane h4,
+html:not(.dark) .experiment-guide-pane strong,
+html:not(.dark) .experiment-guide-pane summary {
+  color: #111c2f !important;
+  -webkit-text-fill-color: #111c2f !important;
+}
+
+html:not(.dark) .experiment-guide-pane p,
+html:not(.dark) .experiment-guide-pane li,
+html:not(.dark) .experiment-guide-pane td,
+html:not(.dark) .experiment-guide-pane label {
+  color: #334155 !important;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-card-title,
+html:not(.dark) .experiment-guide-pane .ui-label,
+html:not(.dark) .experiment-guide-pane .guide-title {
+  color: #086b8c !important;
+  -webkit-text-fill-color: #086b8c !important;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-variable-chip {
+  border-color: #cbdbe5;
+  background: #eaf2f6;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-variable-chip span {
+  color: #1e293b;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-variable-chip em {
+  color: #526477;
+}
+
+html:not(.dark) .experiment-guide-pane .phase4-note {
+  border-color: #e6bd45;
+  background: #fff7d6;
+  color: #713f12 !important;
+}
+
+.dark .experiment-guide-pane .phase4-summary,
+.dark .experiment-guide-pane p,
+.dark .experiment-guide-pane li,
+.dark .experiment-guide-pane td,
+.dark .experiment-guide-pane label {
+  color: #c7d8df !important;
+}
+
+.dark .experiment-guide-pane h2,
+.dark .experiment-guide-pane h3,
+.dark .experiment-guide-pane h4,
+.dark .experiment-guide-pane strong,
+.dark .experiment-guide-pane summary {
+  color: #f2f9fb !important;
+  -webkit-text-fill-color: #f2f9fb !important;
+}
+
+@media (max-width: 980px) {
+  .lesson-command-bar {
+    grid-template-columns: minmax(250px, 1fr) auto auto;
+  }
+
+  .lesson-breadcrumbs strong {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 680px) {
+  .experiment-detail-page .lesson-page-content {
+    padding: 5px !important;
+  }
+
+  .lesson-command-bar {
+    top: 5px;
+    grid-template-columns: max-content max-content max-content;
+    min-height: 44px;
+    padding: 4px;
+    border-radius: 9px;
+  }
+
+  .lesson-breadcrumbs strong {
+    max-width: 150px;
+  }
+
+  .lesson-command-tabs .experiment-tab {
+    min-height: 32px;
+    padding: 0 8px;
+  }
+
+  .lesson-level-compact {
+    width: auto;
+  }
+
+  .lesson-level-compact span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+@media print {
+  .lesson-command-bar {
+    display: none !important;
+  }
+}

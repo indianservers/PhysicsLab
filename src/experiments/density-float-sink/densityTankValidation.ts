@@ -1,0 +1,1 @@
+import{runBenchmarkCases}from"../shared/validation";import{densityTankCases as raw}from"./densityTankPhysics";export const densityTankBenchmarks=runBenchmarkCases(raw.map(x=>({...x,input:x.actual,actual:(v:number)=>v})));

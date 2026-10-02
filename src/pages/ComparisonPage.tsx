@@ -1,3 +1,6 @@
+import { lazy, Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
+const ComparePhenomenaPage = lazy(() => import('./ComparePhenomenaPage'));
 import { Toolbar } from "../components/Toolbar";
 import { PhysicsIcon } from "../lib/icons";
 
@@ -20,6 +23,11 @@ const criteria = [
 ];
 
 export function ComparisonPage() {
+  const location = useLocation();
+  return location.search ? <PlatformComparisonPage /> : <Suspense fallback={<div>Loading comparison…</div>}><ComparePhenomenaPage /></Suspense>;
+}
+
+function PlatformComparisonPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />

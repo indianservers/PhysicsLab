@@ -1,0 +1,1 @@
+Page 28 asset provenance\n\nGenerated photorealistic apparatus photograph without text or UI.\n

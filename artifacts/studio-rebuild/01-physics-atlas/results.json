@@ -1,0 +1,70 @@
+{
+  "checks": [
+    "Direct route and default readings",
+    "Connection particles start on their paths and visibly travel",
+    "Pause freezes SVG and CSS; Play resumes",
+    "Scale min/max and Zoom",
+    "All five depth settings have distinct content",
+    "Every topic filters and selects; keyboard selection",
+    "Every navigation panel opens and closes with Escape",
+    "Search handles match and empty results",
+    "Prediction wrong/right answers and next challenge",
+    "Six physics controls: zero, negative, extrema, inverse square, reset",
+    "Explain, settings animation, observe, and mode step buttons",
+    "Notes save and persist across direct refresh",
+    "Reset restores state and restarts map clock",
+    "All requested viewports: screenshots, no overflow/clipping, live control use",
+    "Topic links resolve to preserved studio routes"
+  ],
+  "responsive": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 1024
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 900
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 720
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 768
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 1156
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "clipped": [],
+      "documentHeight": 1282
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "relatedRouteWarnings": [
+    "THREE.WebGLProgram: Program Info Log: (210,81-129): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,37-61): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,82-106): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n\n\n\u0000",
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead.",
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  ]
+}

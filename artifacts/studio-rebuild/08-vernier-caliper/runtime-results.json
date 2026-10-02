@@ -1,0 +1,24 @@
+{
+  "assets": [
+    {
+      "src": "/assets/meter-scale/empty-bench.png",
+      "width": 1638,
+      "height": 960
+    },
+    {
+      "src": "/assets/vernier-caliper/brushed-steel.png",
+      "width": 1774,
+      "height": 887
+    }
+  ],
+  "frames": {
+    "medianMs": 20.800000000000182,
+    "p95Ms": 34.80000000000018,
+    "maxMs": 48.600000000000364
+  },
+  "checks": [
+    "Default challenge accepts exact reading and rejects wrong reading",
+    "All image materials decode",
+    "120 live frames sampled"
+  ]
+}

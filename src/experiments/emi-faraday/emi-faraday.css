@@ -1,3 +1,622 @@
-.premium-experiment-shell[data-domain="magnetism"] .circuit-board-card {
-  box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.14), 0 24px 80px rgba(59, 130, 246, 0.12);
+.faraday-lab {
+  --orange: #e65f13;
+  --ink: #152033;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dee7;
+  border-radius: 18px;
+  background: #f8fafc;
+  color: var(--ink);
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
+}
+.faraday-lab button,
+.faraday-lab select,
+.faraday-lab input {
+  font: inherit;
+}
+.faraday-lab button {
+  border: 1px solid #cfd5de;
+  border-radius: 7px;
+  background: #fff;
+  color: #273244;
+  min-height: 37px;
+  padding: 0.52rem 0.78rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    background 0.18s,
+    transform 0.18s;
+}
+.faraday-lab button:hover:not(:disabled) {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+}
+.faraday-lab button:focus-visible,
+.faraday-lab input:focus-visible,
+.faraday-lab select:focus-visible,
+.faraday-magnet:focus-visible {
+  outline: 3px solid rgba(24, 145, 220, 0.35);
+  outline-offset: 2px;
+}
+.faraday-lab button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.faraday-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #dfe4eb;
+  background: #fff;
+}
+.faraday-head span,
+.faraday-controls h3,
+.faraday-graphs h3,
+.faraday-challenges section > span {
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.faraday-head h2 {
+  margin: 0.12rem 0;
+  font:
+    800 clamp(1.45rem, 2.4vw, 2.2rem)/1.05 Georgia,
+    serif;
+}
+.faraday-head p {
+  margin: 0;
+  color: #5b6473;
+}
+.faraday-head-actions {
+  display: flex;
+  gap: 0.55rem;
+}
+.faraday-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 270px;
+}
+.faraday-controls,
+.faraday-graphs {
+  padding: 1rem;
+  background: #fff;
+}
+.faraday-controls {
+  border-right: 1px solid #e0e4ea;
+}
+.faraday-graphs {
+  border-left: 1px solid #e0e4ea;
+}
+.faraday-controls h3,
+.faraday-graphs h3 {
+  margin: 0 0 0.8rem;
+}
+.faraday-controls h3:not(:first-child) {
+  margin-top: 1.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #e5e7eb;
+}
+.faraday-control {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0 0 0.95rem;
+}
+.faraday-control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+.faraday-control strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.faraday-control input {
+  width: 100%;
+  accent-color: var(--orange);
+}
+.faraday-control small {
+  color: #7b8492;
+  text-align: right;
+}
+.faraday-note {
+  margin: -0.45rem 0 0.85rem;
+  border-left: 3px solid #e7a300;
+  padding-left: 0.45rem;
+  color: #805c00;
+  font-size: 0.74rem;
+}
+.faraday-button-control {
+  display: grid;
+  gap: 0.38rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+.faraday-button-control > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+.faraday-button-control button.active {
+  border-color: var(--orange);
+  background: #fff4ed;
+  color: #b84300;
+}
+.faraday-button-control .pole-button {
+  color: #fff;
+  background: linear-gradient(90deg, #176fc0 0 48%, #d72d35 52%);
+  text-shadow: 0 1px 2px #000;
+}
+.faraday-presets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+.faraday-presets button:first-child {
+  border-color: #91a1b3;
+}
+.faraday-presets button:last-child {
+  border-color: #f1a46f;
+  color: #a84209;
+}
+.faraday-main {
+  min-width: 0;
+  background: linear-gradient(#fff, #f4f5f7);
+}
+.faraday-transport {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+.faraday-instruction {
+  border: 1px solid #efd6bd;
+  border-radius: 7px;
+  background: #fffaf5;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+}
+.faraday-instruction span {
+  color: #1683e2;
+  margin-right: 0.35rem;
+}
+.faraday-play {
+  display: flex;
+  gap: 0.35rem;
+}
+.faraday-play button:first-child,
+.faraday-footer button:first-child {
+  border-color: #46a65c;
+  color: #188432;
+}
+.faraday-stage {
+  position: relative;
+  min-height: 410px;
+  overflow: hidden;
+  touch-action: none;
+  background:
+    linear-gradient(rgba(20, 32, 48, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 32, 48, 0.035) 1px, transparent 1px),
+    linear-gradient(#f7f4ee, #e9e5de);
+  background-size:
+    30px 30px,
+    30px 30px,
+    auto;
+}
+.faraday-apparatus {
+  position: absolute;
+  left: 8%;
+  right: 1%;
+  bottom: 34px;
+  width: 91%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 16px rgba(24, 32, 43, 0.2));
+}
+.faraday-field {
+  position: absolute;
+  z-index: 1;
+  left: 27%;
+  top: 22%;
+  width: 29%;
+  height: 44%;
+  transition: opacity 0.16s;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.faraday-field img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.faraday-magnet {
+  position: absolute;
+  z-index: 3;
+  top: 48%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: clamp(88px, 15%, 142px);
+  height: 54px;
+  transform: translate(-50%, -50%);
+  border: 3px solid #f6f8fb;
+  border-radius: 8px;
+  box-shadow: 0 7px 14px rgba(15, 23, 42, 0.28);
+  cursor: grab;
+  user-select: none;
+}
+.faraday-magnet:active {
+  cursor: grabbing;
+}
+.faraday-magnet span {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #176fc0;
+  font: 900 1.15rem/1 system-ui;
+}
+.faraday-magnet span:last-child {
+  background: #d72d35;
+}
+.faraday-magnet.reversed span {
+  background: #d72d35;
+}
+.faraday-magnet.reversed span:last-child {
+  background: #176fc0;
+}
+.faraday-needle {
+  position: absolute;
+  z-index: 4;
+  left: 67.1%;
+  top: 56.5%;
+  width: 2px;
+  height: 44px;
+  transform-origin: 50% 100%;
+  background: #e4212a;
+  box-shadow: 0 0 4px #fff;
+  transition: transform 80ms linear;
+  pointer-events: none;
+}
+.faraday-current {
+  position: absolute;
+  z-index: 5;
+  left: 49%;
+  bottom: 46px;
+  border-radius: 999px;
+  background: rgba(8, 111, 176, 0.92);
+  color: #fff;
+  padding: 0.38rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+.faraday-current.reverse {
+  background: rgba(204, 47, 54, 0.92);
+}
+.faraday-dimensions {
+  position: absolute;
+  z-index: 5;
+  left: 25%;
+  top: 16%;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.35rem 0.55rem;
+  font:
+    750 0.72rem/1.2 ui-monospace,
+    monospace;
+}
+.faraday-ruler {
+  position: absolute;
+  left: 10%;
+  right: 45%;
+  bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #6e7783;
+  color: #4f5967;
+  font-size: 0.68rem;
+  padding-top: 0.2rem;
+}
+.faraday-phase {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 58px;
+  margin: 0.65rem 0.75rem;
+  border-left: 4px solid #2ea555;
+  background: #f0fbf3;
+  padding: 0.7rem;
+}
+.faraday-phase strong {
+  min-width: 78px;
+  text-transform: capitalize;
+}
+.faraday-phase span {
+  color: #425063;
+  font-size: 0.8rem;
+}
+.faraday-readouts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  padding: 0 0.75rem 0.9rem;
+}
+.faraday-readout,
+.faraday-lenz {
+  display: grid;
+  align-content: center;
+  min-height: 78px;
+  border: 1px solid #dde2e9;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.55rem;
+  text-align: center;
+}
+.faraday-readout span,
+.faraday-lenz span {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.faraday-readout strong {
+  font:
+    850 1rem/1.25 ui-monospace,
+    monospace;
+}
+.faraday-readout small {
+  font-size: 0.64rem;
+}
+.faraday-readout.blue strong {
+  color: #1678cf;
+}
+.faraday-readout.green strong {
+  color: #15823b;
+}
+.faraday-readout.red strong {
+  color: #d72932;
+}
+.faraday-readout.purple strong {
+  color: #7434a3;
+}
+.faraday-lenz strong {
+  color: #273244;
+  font-size: 0.88rem;
+  text-transform: capitalize;
+}
+.faraday-lenz small {
+  color: #677283;
+}
+.faraday-graph {
+  margin: 0 0 0.85rem;
+}
+.faraday-graph figcaption {
+  margin-bottom: 0.2rem;
+  color: #364153;
+  font-size: 0.73rem;
+  font-weight: 850;
+  text-align: center;
+}
+.faraday-graph svg {
+  width: 100%;
+  border: 1px solid #e1e5ea;
+  background:
+    linear-gradient(rgba(20, 30, 40, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 30, 40, 0.055) 1px, transparent 1px), #fff;
+  background-size: 28px 22px;
+}
+.faraday-graph .zero {
+  stroke: #9ba3ae;
+  stroke-width: 1;
+}
+.faraday-graph .cursor {
+  stroke: #e49a00;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.faraday-graph small {
+  display: block;
+  color: #727c89;
+  text-align: right;
+}
+.faraday-equation {
+  border: 1px solid #f1d5c1;
+  background: #fff8f2;
+  padding: 0.65rem;
+  color: #a93b00;
+  font:
+    800 1rem/1.2 Georgia,
+    serif;
+  text-align: center;
+}
+.faraday-challenges {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  border-top: 1px solid #dfe4eb;
+  background: #fff;
+}
+.faraday-challenges section {
+  padding: 1rem;
+  border-right: 1px solid #e0e4ea;
+}
+.faraday-challenges section:last-child {
+  border-right: 0;
+}
+.faraday-challenges section.complete {
+  background: #effbef;
+}
+.faraday-challenges h3 {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+}
+.faraday-challenges p {
+  margin: 0.35rem 0;
+  color: #586376;
+  font-size: 0.77rem;
+}
+.faraday-predictions,
+.faraday-peak-pair {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0.6rem 0;
+}
+.faraday-predictions button {
+  flex: 1;
+  text-transform: capitalize;
+}
+.faraday-predictions button.active {
+  border-color: var(--orange);
+  background: #fff3ea;
+}
+.faraday-peak-pair strong {
+  flex: 1;
+  border-radius: 5px;
+  background: #edf8ef;
+  padding: 0.48rem;
+  color: #187c36;
+  font-family: ui-monospace, monospace;
+  text-align: center;
+}
+.faraday-key strong {
+  display: block;
+  margin: 0.65rem 0;
+  color: #263247;
+  font:
+    italic 800 1.45rem/1.2 Georgia,
+    serif;
+}
+.faraday-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 58px;
+  padding: 0.55rem 1rem;
+  border-top: 1px solid #dfe4eb;
+  background: #f7f8fa;
+}
+.faraday-footer > div {
+  display: flex;
+  gap: 0.35rem;
+}
+.faraday-footer label {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.76rem;
+}
+.faraday-footer > span {
+  margin-left: auto;
+  color: #657083;
+  font-size: 0.74rem;
+}
+
+@media (max-width: 1100px) {
+  .faraday-layout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+  .faraday-graphs {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    border-top: 1px solid #e0e4ea;
+    border-left: 0;
+  }
+  .faraday-graphs h3,
+  .faraday-equation {
+    grid-column: 1 / -1;
+  }
+  .faraday-readouts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .faraday-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .faraday-head-actions {
+    width: 100%;
+  }
+  .faraday-head-actions button {
+    flex: 1;
+  }
+  .faraday-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .faraday-main {
+    order: -1;
+  }
+  .faraday-controls {
+    border-top: 1px solid #e0e4ea;
+    border-right: 0;
+  }
+  .faraday-transport {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .faraday-play button {
+    flex: 1;
+  }
+  .faraday-stage {
+    min-height: 310px;
+  }
+  .faraday-apparatus {
+    left: 3%;
+    width: 100%;
+    bottom: 36px;
+  }
+  .faraday-magnet {
+    top: 49%;
+    height: 40px;
+    width: 84px;
+  }
+  .faraday-needle {
+    left: 68.5%;
+    top: 58%;
+    height: 31px;
+  }
+  .faraday-current {
+    left: 42%;
+    bottom: 43px;
+  }
+  .faraday-phase {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .faraday-readouts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .faraday-readouts > :last-child {
+    grid-column: 1 / -1;
+  }
+  .faraday-graphs {
+    display: block;
+  }
+  .faraday-challenges {
+    display: block;
+  }
+  .faraday-challenges section {
+    border-right: 0;
+    border-bottom: 1px solid #e0e4ea;
+  }
+  .faraday-footer {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .faraday-footer > div {
+    width: 100%;
+  }
+  .faraday-footer > div button {
+    flex: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faraday-lab *,
+  .faraday-lab *::before,
+  .faraday-lab *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
