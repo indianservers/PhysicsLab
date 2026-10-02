@@ -1,4 +1,5 @@
 import { experiments } from "./experiments";
+import { requiresCustom3D } from "./experimentVisualizationSpecs";
 import { simulationQualityScores } from "./simulationQuality";
 import { experimentAccuracyProfiles } from "./accuracyValidation";
 import type { ExperimentDefinition } from "../types";
@@ -72,7 +73,8 @@ function makeDepthProfile(experiment: ExperimentDefinition): SimulationDepthProf
 }
 
 function layersFor(experiment: ExperimentDefinition, visualScore: number, interactionScore: number, accuracyScore: number) {
-  const layers: VisualLayer[] = ["2D diagram", "3D scene"];
+  const layers: VisualLayer[] = ["2D diagram"];
+  if (!requiresCustom3D(experiment.id)) layers.push("3D scene");
   const text = `${experiment.id} ${experiment.category} ${experiment.title}`.toLowerCase();
   if (visualScore >= 68 || /force|motion|field|ray|wave|pressure|energy|current|magnet/.test(text)) layers.push("Vectors");
   if (experiment.observationColumns.length >= 4 || /graph|motion|ohm|wave|gas|decay|photoelectric/.test(text)) layers.push("Graph sync");

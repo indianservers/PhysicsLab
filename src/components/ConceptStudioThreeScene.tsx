@@ -94,7 +94,8 @@ function buildModel(id:string,root:THREE.Group):Model{
   if(id==="magnetism")return buildMagnet(root);
   if(id==="thermodynamics")return buildGas(root);
   if(id==="modern-physics")return buildAtom(root);
-  return buildMechanics(root);
+  if(id==="mechanics")return buildMechanics(root);
+  throw new Error(`No dedicated 3D scene for ${id}`);
 }
 
 function buildAtlas(root:THREE.Group):Model{

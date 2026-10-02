@@ -1,0 +1,4827 @@
+{
+  "routes": [
+    {
+      "url": "/",
+      "group": "Platform",
+      "title": "Home",
+      "expected": "inspect"
+    },
+    {
+      "url": "/client-demos",
+      "group": "Standalone route",
+      "title": "/client-demos",
+      "expected": "inspect"
+    },
+    {
+      "url": "/all-modules",
+      "group": "Standalone route",
+      "title": "/all-modules",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/circular-motion",
+      "group": "Standalone route",
+      "title": "/motion/circular-motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/first-law-inertia",
+      "group": "Standalone route",
+      "title": "/motion/first-law-inertia",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/second-law-fma",
+      "group": "Standalone route",
+      "title": "/motion/second-law-fma",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/third-law-pairs",
+      "group": "Standalone route",
+      "title": "/motion/third-law-pairs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/friction",
+      "group": "Standalone route",
+      "title": "/motion/friction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/tension-normal",
+      "group": "Standalone route",
+      "title": "/motion/tension-normal",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/first-law",
+      "group": "Standalone route",
+      "title": "/thermodynamics/first-law",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/entropy",
+      "group": "Standalone route",
+      "title": "/thermodynamics/entropy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/heat-engines",
+      "group": "Standalone route",
+      "title": "/thermodynamics/heat-engines",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/density-pressure",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/density-pressure",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/hydrostatics",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/hydrostatics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/buoyancy",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/buoyancy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/continuity",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/continuity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/bernoulli",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/bernoulli",
+      "expected": "inspect"
+    },
+    {
+      "url": "/fluid-mechanics/viscosity",
+      "group": "Standalone route",
+      "title": "/fluid-mechanics/viscosity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/quantum-ideas",
+      "group": "Standalone route",
+      "title": "/modern-physics/quantum-ideas",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/photoelectric-effect",
+      "group": "Standalone route",
+      "title": "/modern-physics/photoelectric-effect",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/matter-waves",
+      "group": "Standalone route",
+      "title": "/modern-physics/matter-waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/atomic-spectra",
+      "group": "Standalone route",
+      "title": "/modern-physics/atomic-spectra",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/nuclear-structure",
+      "group": "Standalone route",
+      "title": "/modern-physics/nuclear-structure",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modern-physics/radioactivity",
+      "group": "Standalone route",
+      "title": "/modern-physics/radioactivity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/solar-system",
+      "group": "Standalone route",
+      "title": "/astrophysics/solar-system",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/stellar-life",
+      "group": "Standalone route",
+      "title": "/astrophysics/stellar-life",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/spectroscopy",
+      "group": "Standalone route",
+      "title": "/astrophysics/spectroscopy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/galaxies",
+      "group": "Standalone route",
+      "title": "/astrophysics/galaxies",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/cosmology",
+      "group": "Standalone route",
+      "title": "/astrophysics/cosmology",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics/exoplanets",
+      "group": "Standalone route",
+      "title": "/astrophysics/exoplanets",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/gas-laws",
+      "group": "Standalone route",
+      "title": "/thermodynamics/gas-laws",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/heat-transfer",
+      "group": "Standalone route",
+      "title": "/thermodynamics/heat-transfer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/thermodynamics/temperature",
+      "group": "Standalone route",
+      "title": "/thermodynamics/temperature",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/sensors",
+      "group": "Standalone route",
+      "title": "/electronics/sensors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/logic-gates",
+      "group": "Standalone route",
+      "title": "/electronics/logic-gates",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/amplifiers",
+      "group": "Standalone route",
+      "title": "/electronics/amplifiers",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/transistors",
+      "group": "Standalone route",
+      "title": "/electronics/transistors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/diodes",
+      "group": "Standalone route",
+      "title": "/electronics/diodes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electronics/semiconductors",
+      "group": "Standalone route",
+      "title": "/electronics/semiconductors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/electromagnets",
+      "group": "Standalone route",
+      "title": "/magnetism/electromagnets",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/induction",
+      "group": "Standalone route",
+      "title": "/magnetism/induction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/solenoids",
+      "group": "Standalone route",
+      "title": "/magnetism/solenoids",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/current-wire",
+      "group": "Standalone route",
+      "title": "/magnetism/current-wire",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/lorentz-force",
+      "group": "Standalone route",
+      "title": "/magnetism/lorentz-force",
+      "expected": "inspect"
+    },
+    {
+      "url": "/magnetism/field-lines",
+      "group": "Standalone route",
+      "title": "/magnetism/field-lines",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/capacitors",
+      "group": "Standalone route",
+      "title": "/electricity/capacitors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/circuits",
+      "group": "Standalone route",
+      "title": "/electricity/circuits",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/current",
+      "group": "Standalone route",
+      "title": "/electricity/current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/electric-potential",
+      "group": "Standalone route",
+      "title": "/electricity/electric-potential",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/electric-field",
+      "group": "Standalone route",
+      "title": "/electricity/electric-field",
+      "expected": "inspect"
+    },
+    {
+      "url": "/electricity/coulomb-force",
+      "group": "Standalone route",
+      "title": "/electricity/coulomb-force",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/diffraction",
+      "group": "Standalone route",
+      "title": "/optics/diffraction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/interference",
+      "group": "Standalone route",
+      "title": "/optics/interference",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/mirrors",
+      "group": "Standalone route",
+      "title": "/optics/mirrors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/lenses",
+      "group": "Standalone route",
+      "title": "/optics/lenses",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/refraction",
+      "group": "Standalone route",
+      "title": "/optics/refraction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/optics/reflection",
+      "group": "Standalone route",
+      "title": "/optics/reflection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/doppler-effect",
+      "group": "Standalone route",
+      "title": "/motion/doppler-effect",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/sound-spectrum",
+      "group": "Standalone route",
+      "title": "/motion/sound-spectrum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/standing-waves",
+      "group": "Standalone route",
+      "title": "/motion/standing-waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/interference",
+      "group": "Standalone route",
+      "title": "/motion/interference",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/superposition",
+      "group": "Standalone route",
+      "title": "/motion/superposition",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/wave-properties",
+      "group": "Standalone route",
+      "title": "/motion/wave-properties",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/coupled-oscillators",
+      "group": "Standalone route",
+      "title": "/motion/coupled-oscillators",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/resonance",
+      "group": "Standalone route",
+      "title": "/motion/resonance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/damping",
+      "group": "Standalone route",
+      "title": "/motion/damping",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/energy-exchange",
+      "group": "Standalone route",
+      "title": "/motion/energy-exchange",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/pendulum",
+      "group": "Standalone route",
+      "title": "/motion/pendulum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/spring-shm",
+      "group": "Standalone route",
+      "title": "/motion/spring-shm",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/keplers-laws",
+      "group": "Standalone route",
+      "title": "/motion/keplers-laws",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/escape-velocity",
+      "group": "Standalone route",
+      "title": "/motion/escape-velocity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/orbits",
+      "group": "Standalone route",
+      "title": "/motion/orbits",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/gravitational-potential",
+      "group": "Standalone route",
+      "title": "/motion/gravitational-potential",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/gravitational-field",
+      "group": "Standalone route",
+      "title": "/motion/gravitational-field",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/universal-gravity",
+      "group": "Standalone route",
+      "title": "/motion/universal-gravity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/efficiency",
+      "group": "Standalone route",
+      "title": "/motion/efficiency",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/power",
+      "group": "Standalone route",
+      "title": "/motion/power",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/conservation-energy",
+      "group": "Standalone route",
+      "title": "/motion/conservation-energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/potential-energy",
+      "group": "Standalone route",
+      "title": "/motion/potential-energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/kinetic-energy",
+      "group": "Standalone route",
+      "title": "/motion/kinetic-energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/work",
+      "group": "Standalone route",
+      "title": "/motion/work",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/multi-force-challenge",
+      "group": "Standalone route",
+      "title": "/motion/multi-force-challenge",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/relative-motion",
+      "group": "Standalone route",
+      "title": "/motion/relative-motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/projectile-motion",
+      "group": "Standalone route",
+      "title": "/motion/projectile-motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/acceleration-time",
+      "group": "Standalone route",
+      "title": "/motion/acceleration-time",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/velocity-time",
+      "group": "Standalone route",
+      "title": "/motion/velocity-time",
+      "expected": "inspect"
+    },
+    {
+      "url": "/motion/position-time",
+      "group": "Standalone route",
+      "title": "/motion/position-time",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/momentum-collisions",
+      "group": "Standalone route",
+      "title": "/mechanics/momentum-collisions",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/equilibrium-com",
+      "group": "Standalone route",
+      "title": "/mechanics/equilibrium-com",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/torque-levers",
+      "group": "Standalone route",
+      "title": "/mechanics/torque-levers",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/pulley-systems",
+      "group": "Standalone route",
+      "title": "/mechanics/pulley-systems",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/inclined-plane",
+      "group": "Standalone route",
+      "title": "/mechanics/inclined-plane",
+      "expected": "inspect"
+    },
+    {
+      "url": "/mechanics/free-body-diagrams",
+      "group": "Standalone route",
+      "title": "/mechanics/free-body-diagrams",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/uncertainty",
+      "group": "Standalone route",
+      "title": "/measurement/uncertainty",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/mass-time",
+      "group": "Standalone route",
+      "title": "/measurement/mass-time",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/spherometer",
+      "group": "Standalone route",
+      "title": "/measurement/spherometer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/micrometer",
+      "group": "Standalone route",
+      "title": "/measurement/micrometer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/vernier-caliper",
+      "group": "Standalone route",
+      "title": "/measurement/vernier-caliper",
+      "expected": "inspect"
+    },
+    {
+      "url": "/measurement/meter-scale",
+      "group": "Standalone route",
+      "title": "/measurement/meter-scale",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concept-studio",
+      "group": "Standalone route",
+      "title": "/concept-studio",
+      "expected": "inspect"
+    },
+    {
+      "url": "/lab",
+      "group": "Platform",
+      "title": "Guided Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/pro-lab",
+      "group": "Client Demos",
+      "title": "Pro Lab Mission Program",
+      "expected": "inspect"
+    },
+    {
+      "url": "/pro-lab/launch-vehicle",
+      "group": "Client Demos",
+      "title": "Build & Launch a Rocket",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts",
+      "group": "Client Demos",
+      "title": "Rocket Parts & Systems",
+      "expected": "inspect"
+    },
+    {
+      "url": "/sandbox",
+      "group": "Platform",
+      "title": "Open Sandbox",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments",
+      "group": "Standalone route",
+      "title": "/experiments",
+      "expected": "inspect"
+    },
+    {
+      "url": "/syllabus",
+      "group": "Platform",
+      "title": "Syllabus",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts",
+      "group": "Modules",
+      "title": "Concept Explorer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/modules",
+      "group": "Standalone route",
+      "title": "/modules",
+      "expected": "inspect"
+    },
+    {
+      "url": "/roadmap",
+      "group": "Teaching",
+      "title": "Mastery Roadmap",
+      "expected": "inspect"
+    },
+    {
+      "url": "/solver",
+      "group": "Platform",
+      "title": "Solver Bank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/formulas",
+      "group": "Platform",
+      "title": "Formula Bank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/formulas/revision-grid",
+      "group": "Platform",
+      "title": "Formula Revision Grid",
+      "expected": "inspect"
+    },
+    {
+      "url": "/dictionary",
+      "group": "Platform",
+      "title": "Visual Dictionary",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics",
+      "group": "Platform",
+      "title": "AstroPhysics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/particle-physics",
+      "group": "Platform",
+      "title": "Particle Physics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/atmosphere",
+      "group": "Platform",
+      "title": "Earth Atmosphere",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory",
+      "group": "Platform",
+      "title": "String Theory",
+      "expected": "inspect"
+    },
+    {
+      "url": "/physics-innovations",
+      "group": "Platform",
+      "title": "Physics Innovations",
+      "expected": "inspect"
+    },
+    {
+      "url": "/physics/scale-of-universe",
+      "group": "Platform",
+      "title": "Scale of Universe",
+      "expected": "inspect"
+    },
+    {
+      "url": "/comparison",
+      "group": "Standalone route",
+      "title": "/comparison",
+      "expected": "inspect"
+    },
+    {
+      "url": "/quality-audit",
+      "group": "Teaching",
+      "title": "Quality Audit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/accuracy-center",
+      "group": "Teaching",
+      "title": "Accuracy Center",
+      "expected": "inspect"
+    },
+    {
+      "url": "/learning-studio",
+      "group": "Teaching",
+      "title": "Learning Studio",
+      "expected": "inspect"
+    },
+    {
+      "url": "/simulation-depth",
+      "group": "Teaching",
+      "title": "Simulation Depth",
+      "expected": "inspect"
+    },
+    {
+      "url": "/classroom-deployment",
+      "group": "Teaching",
+      "title": "Classroom Deployment",
+      "expected": "inspect"
+    },
+    {
+      "url": "/accessibility-center",
+      "group": "Teaching",
+      "title": "Accessibility Center",
+      "expected": "inspect"
+    },
+    {
+      "url": "/insights-center",
+      "group": "Teaching",
+      "title": "Insights Center",
+      "expected": "inspect"
+    },
+    {
+      "url": "/release-governance",
+      "group": "Teaching",
+      "title": "Release Governance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/excellence-benchmark",
+      "group": "Teaching",
+      "title": "Excellence Benchmark",
+      "expected": "inspect"
+    },
+    {
+      "url": "/quiz",
+      "group": "Standalone route",
+      "title": "/quiz",
+      "expected": "inspect"
+    },
+    {
+      "url": "/video",
+      "group": "Platform",
+      "title": "Video Analysis",
+      "expected": "inspect"
+    },
+    {
+      "url": "/quantum",
+      "group": "Platform",
+      "title": "Quantum Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/teacher",
+      "group": "Teaching",
+      "title": "Teacher Workspace",
+      "expected": "inspect"
+    },
+    {
+      "url": "/lms-config",
+      "group": "Teaching",
+      "title": "LMS Configuration",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics",
+      "group": "Standalone route",
+      "title": "/topics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/graphs",
+      "group": "Platform",
+      "title": "Graph Studio",
+      "expected": "inspect"
+    },
+    {
+      "url": "/graph",
+      "group": "Platform",
+      "title": "Knowledge Graph",
+      "expected": "inspect"
+    },
+    {
+      "url": "/projects",
+      "group": "Platform",
+      "title": "Projects",
+      "expected": "inspect"
+    },
+    {
+      "url": "/settings",
+      "group": "Platform",
+      "title": "Settings",
+      "expected": "inspect"
+    },
+    {
+      "url": "/backup",
+      "group": "Platform",
+      "title": "Backup & Restore",
+      "expected": "inspect"
+    },
+    {
+      "url": "/help",
+      "group": "Platform",
+      "title": "Help Center",
+      "expected": "inspect"
+    },
+    {
+      "url": "/trust",
+      "group": "Teaching",
+      "title": "Scientific Trust",
+      "expected": "inspect"
+    },
+    {
+      "url": "/privacy",
+      "group": "Platform",
+      "title": "Privacy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/terms",
+      "group": "Platform",
+      "title": "Terms",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/measurement",
+      "group": "Topic page",
+      "title": "measurement",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/mechanics",
+      "group": "Topic page",
+      "title": "mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments?category=Mechanics",
+      "group": "Modules",
+      "title": "Kinematics Labs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/energy",
+      "group": "Topic page",
+      "title": "energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/oscillations",
+      "group": "Topic page",
+      "title": "oscillations",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/satellite-orbit",
+      "group": "Experiment",
+      "title": "Satellite Orbit and Escape Speed",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/waves",
+      "group": "Topic page",
+      "title": "waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/optics",
+      "group": "Topic page",
+      "title": "optics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/shadows-eclipses",
+      "group": "Experiment",
+      "title": "Shadows and Eclipses",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/electricity",
+      "group": "Topic page",
+      "title": "electricity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/magnetism",
+      "group": "Topic page",
+      "title": "magnetism",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/electronics",
+      "group": "Topic page",
+      "title": "electronics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments?category=Electricity",
+      "group": "Modules",
+      "title": "Circuit Labs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments?category=Magnetism",
+      "group": "Modules",
+      "title": "Magnetic Field Labs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/thermodynamics",
+      "group": "Topic page",
+      "title": "thermodynamics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/fluid-mechanics",
+      "group": "Topic page",
+      "title": "fluid-mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments?category=Thermodynamics",
+      "group": "Modules",
+      "title": "Thermal Labs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments?category=Fluids",
+      "group": "Modules",
+      "title": "Fluid Labs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/modern-physics",
+      "group": "Topic page",
+      "title": "modern-physics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/dictionary?q=relativity",
+      "group": "Modules",
+      "title": "Relativity & Spacetime",
+      "expected": "inspect"
+    },
+    {
+      "url": "/particle-physics/higgs-field",
+      "group": "Particle concept",
+      "title": "Higgs Field",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/topics/astronomy",
+      "group": "Topic page",
+      "title": "astronomy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/quiz?view=practice",
+      "group": "Platform",
+      "title": "Quiz",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c6-light-shadows",
+      "group": "Curriculum concept",
+      "title": "Light, Shadows, and Reflection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c6-motion-measurement",
+      "group": "Curriculum concept",
+      "title": "Motion and Measurement",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c6-simple-circuits",
+      "group": "Curriculum concept",
+      "title": "Simple Electric Circuits",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c6-magnets",
+      "group": "Curriculum concept",
+      "title": "Magnets",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-heat-temperature",
+      "group": "Curriculum concept",
+      "title": "Heat and Temperature",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-heat-transfer",
+      "group": "Curriculum concept",
+      "title": "Transfer of Heat",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-speed",
+      "group": "Curriculum concept",
+      "title": "Speed, Distance, and Time",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-distance-time",
+      "group": "Curriculum concept",
+      "title": "Distance-Time Graphs",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-heating-effect",
+      "group": "Curriculum concept",
+      "title": "Heating Effect of Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-magnetic-effect",
+      "group": "Curriculum concept",
+      "title": "Magnetic Effect and Electromagnet",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-reflection",
+      "group": "Curriculum concept",
+      "title": "Reflection by Mirrors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c7-lenses",
+      "group": "Curriculum concept",
+      "title": "Images by Lenses",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-force-effects",
+      "group": "Curriculum concept",
+      "title": "Effects of Force",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-pressure",
+      "group": "Curriculum concept",
+      "title": "Pressure in Solids and Fluids",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-friction",
+      "group": "Curriculum concept",
+      "title": "Friction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-sound",
+      "group": "Curriculum concept",
+      "title": "Sound",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-light",
+      "group": "Curriculum concept",
+      "title": "Light and Multiple Reflection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-chemical-current",
+      "group": "Curriculum concept",
+      "title": "Chemical Effects of Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c8-static-lightning",
+      "group": "Curriculum concept",
+      "title": "Static Electricity and Lightning",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-motion",
+      "group": "Curriculum concept",
+      "title": "Motion in One Dimension",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-newton-laws",
+      "group": "Curriculum concept",
+      "title": "Force and Newton's Laws",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-gravitation",
+      "group": "Curriculum concept",
+      "title": "Gravitation and Free Fall",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-floatation",
+      "group": "Curriculum concept",
+      "title": "Floatation and Buoyancy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-work-energy",
+      "group": "Curriculum concept",
+      "title": "Work, Energy, and Power",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-sound",
+      "group": "Curriculum concept",
+      "title": "Sound",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c9-pendulum-intro",
+      "group": "Curriculum concept",
+      "title": "Pendulum and Periodic Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-mirrors",
+      "group": "Curriculum concept",
+      "title": "Reflection by Spherical Mirrors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-lenses",
+      "group": "Curriculum concept",
+      "title": "Refraction by Lenses",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-glass-prism",
+      "group": "Curriculum concept",
+      "title": "Glass Slab and Prism",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-human-eye",
+      "group": "Curriculum concept",
+      "title": "Human Eye and Defects",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-ohms-law",
+      "group": "Curriculum concept",
+      "title": "Ohm's Law and V-I Graph",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-series-parallel",
+      "group": "Curriculum concept",
+      "title": "Series and Parallel Resistance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-electric-power",
+      "group": "Curriculum concept",
+      "title": "Heating Effect and Electric Power",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-magnetism",
+      "group": "Curriculum concept",
+      "title": "Magnetic Effects of Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c10-sources-energy",
+      "group": "Curriculum concept",
+      "title": "Conventional and Renewable Energy Sources",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-units-errors",
+      "group": "Curriculum concept",
+      "title": "Units, Dimensions, and Errors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-straight-line",
+      "group": "Curriculum concept",
+      "title": "Motion in a Straight Line",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-plane-motion",
+      "group": "Curriculum concept",
+      "title": "Motion in a Plane",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-laws-motion",
+      "group": "Curriculum concept",
+      "title": "Laws of Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-energy-collisions",
+      "group": "Curriculum concept",
+      "title": "Work, Energy, Power, and Collisions",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-rotation",
+      "group": "Curriculum concept",
+      "title": "Rotational Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-gravitation",
+      "group": "Curriculum concept",
+      "title": "Gravitation",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-chaos-pendulum",
+      "group": "Curriculum concept",
+      "title": "Chaotic and Coupled Oscillators",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-solids-fluids",
+      "group": "Curriculum concept",
+      "title": "Solids and Fluids",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-thermal",
+      "group": "Curriculum concept",
+      "title": "Thermal Properties and Thermodynamics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-kinetic-theory",
+      "group": "Curriculum concept",
+      "title": "Kinetic Theory",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-oscillations-waves",
+      "group": "Curriculum concept",
+      "title": "Oscillations and Waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-shm-pendulum",
+      "group": "Curriculum concept",
+      "title": "Simple Harmonic Motion - Pendulum and Spring",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c11-resonance",
+      "group": "Curriculum concept",
+      "title": "Resonance and Forced Oscillations",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-electrostatics",
+      "group": "Curriculum concept",
+      "title": "Electric Charges, Fields, Potential, and Capacitance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-current",
+      "group": "Curriculum concept",
+      "title": "Current Electricity",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-magnetic-effects",
+      "group": "Curriculum concept",
+      "title": "Moving Charges and Magnetism",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-emi-ac",
+      "group": "Curriculum concept",
+      "title": "EMI and Alternating Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-em-waves",
+      "group": "Curriculum concept",
+      "title": "Electromagnetic Waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-ray-optics",
+      "group": "Curriculum concept",
+      "title": "Ray Optics and Instruments",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-wave-optics",
+      "group": "Curriculum concept",
+      "title": "Wave Optics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-dual-atoms",
+      "group": "Curriculum concept",
+      "title": "Dual Nature, Atoms, and Nuclei",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-relativity-bridge",
+      "group": "Curriculum concept",
+      "title": "Special Relativity Bridge",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=c12-semiconductors",
+      "group": "Curriculum concept",
+      "title": "Semiconductor Electronics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=ug-classical-mechanics",
+      "group": "Curriculum concept",
+      "title": "Analytical Mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=ug-electrodynamics",
+      "group": "Curriculum concept",
+      "title": "Electrodynamics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=ug-quantum",
+      "group": "Curriculum concept",
+      "title": "Quantum Mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=ug-stat-thermal",
+      "group": "Curriculum concept",
+      "title": "Statistical and Thermal Physics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=ug-optics-waves",
+      "group": "Curriculum concept",
+      "title": "Optics and Waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=pg-advanced-quantum",
+      "group": "Curriculum concept",
+      "title": "Advanced Quantum Mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=pg-statistical-field",
+      "group": "Curriculum concept",
+      "title": "Statistical Mechanics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=pg-condensed-matter",
+      "group": "Curriculum concept",
+      "title": "Condensed Matter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=pg-nuclear-particle",
+      "group": "Curriculum concept",
+      "title": "Nuclear and Particle Physics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=pg-plasma-astrophysics",
+      "group": "Curriculum concept",
+      "title": "Plasma and Astrophysics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=phd-computation",
+      "group": "Curriculum concept",
+      "title": "Computational Physics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=phd-quantum-info",
+      "group": "Curriculum concept",
+      "title": "Quantum Information",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=phd-materials-devices",
+      "group": "Curriculum concept",
+      "title": "Materials and Devices",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=phd-high-energy",
+      "group": "Curriculum concept",
+      "title": "High Energy and Cosmology",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concepts?concept=phd-biophysics-complexity",
+      "group": "Curriculum concept",
+      "title": "Biophysics and Complex Systems",
+      "expected": "inspect"
+    },
+    {
+      "url": "/concept-studio/measurement",
+      "group": "Concept studio",
+      "title": "Measurement Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/mechanics",
+      "group": "Concept studio",
+      "title": "Mechanics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/motion-kinematics",
+      "group": "Concept studio",
+      "title": "Motion & Kinematics",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/force-newton",
+      "group": "Concept studio",
+      "title": "Force & Newton’s Laws",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/work-energy-power",
+      "group": "Concept studio",
+      "title": "Work, Energy & Power",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/gravitation",
+      "group": "Concept studio",
+      "title": "Gravitation Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/oscillations",
+      "group": "Concept studio",
+      "title": "Oscillations Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/waves-sound",
+      "group": "Concept studio",
+      "title": "Waves & Sound Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/optics",
+      "group": "Concept studio",
+      "title": "Optics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/electricity",
+      "group": "Concept studio",
+      "title": "Electricity Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/magnetism",
+      "group": "Concept studio",
+      "title": "Magnetism Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/electronics",
+      "group": "Concept studio",
+      "title": "Electronics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/thermodynamics",
+      "group": "Concept studio",
+      "title": "Thermodynamics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/fluid-mechanics",
+      "group": "Concept studio",
+      "title": "Fluid Mechanics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/modern-physics",
+      "group": "Concept studio",
+      "title": "Modern Physics Studio",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/concept-studio/astronomy-astrophysics",
+      "group": "Concept studio",
+      "title": "Astronomy & Astrophysics",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/projectile-motion",
+      "group": "Experiment",
+      "title": "Projectile Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/wave-lab",
+      "group": "Experiment",
+      "title": "Wave Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/single-slit-diffraction",
+      "group": "Experiment",
+      "title": "Single Slit Diffraction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/buoyancy",
+      "group": "Experiment",
+      "title": "Buoyancy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/chladni-plate",
+      "group": "Experiment",
+      "title": "Chladni Plate",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/heat-and-temperature",
+      "group": "Experiment",
+      "title": "Heat and Temperature",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/heat-transfer",
+      "group": "Experiment",
+      "title": "Heat Transfer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/heating-effect-current",
+      "group": "Experiment",
+      "title": "Heating Effect of Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/electromagnet",
+      "group": "Experiment",
+      "title": "Electromagnet",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/reflection-plane-mirror",
+      "group": "Experiment",
+      "title": "Reflection by Plane Mirror",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/force-and-pressure",
+      "group": "Experiment",
+      "title": "Force and Pressure",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/fluid-pressure",
+      "group": "Experiment",
+      "title": "Fluid Pressure with Depth",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/sound-pitch-loudness",
+      "group": "Experiment",
+      "title": "Sound Pitch and Loudness",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/static-electricity",
+      "group": "Experiment",
+      "title": "Static Electricity and Lightning",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/chemical-effects-current",
+      "group": "Experiment",
+      "title": "Chemical Effects of Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/free-fall",
+      "group": "Experiment",
+      "title": "Free Fall",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/mass-and-weight",
+      "group": "Experiment",
+      "title": "Mass and Weight",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/work-power",
+      "group": "Experiment",
+      "title": "Work and Power",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/echo-speed-sound",
+      "group": "Experiment",
+      "title": "Echo and Speed of Sound",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/mirror-formula",
+      "group": "Experiment",
+      "title": "Mirror Formula",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/lens-formula",
+      "group": "Experiment",
+      "title": "Lens Formula",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/glass-slab-refraction",
+      "group": "Experiment",
+      "title": "Glass Slab Refraction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/prism-dispersion",
+      "group": "Experiment",
+      "title": "Prism Dispersion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/ohms-law",
+      "group": "Experiment",
+      "title": "Ohm's Law V-I Graph",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/series-parallel-resistance",
+      "group": "Experiment",
+      "title": "Series and Parallel Resistance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/electric-power",
+      "group": "Experiment",
+      "title": "Electric Power and Energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/magnetic-field-current",
+      "group": "Experiment",
+      "title": "Magnetic Field Around Current",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/measurement-errors",
+      "group": "Experiment",
+      "title": "Measurement, Error, and Significant Figures",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/vector-resolution",
+      "group": "Experiment",
+      "title": "Vector Resolution",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/rotational-dynamics",
+      "group": "Experiment",
+      "title": "Rotational Dynamics",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/bernoulli-fluid-flow",
+      "group": "Experiment",
+      "title": "Bernoulli Fluid Flow",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/gas-laws",
+      "group": "Experiment",
+      "title": "Gas Laws and Kinetic Theory",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/thermodynamic-process",
+      "group": "Experiment",
+      "title": "Thermodynamic Processes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/shm-spring",
+      "group": "Experiment",
+      "title": "Spring-Mass SHM",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/electrostatic-field-potential",
+      "group": "Experiment",
+      "title": "Electrostatic Field and Potential",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/capacitor-lab",
+      "group": "Experiment",
+      "title": "Capacitor Energy and Combination",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/kirchhoff-circuit",
+      "group": "Experiment",
+      "title": "Kirchhoff Circuit Rules",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/lorentz-force",
+      "group": "Experiment",
+      "title": "Lorentz Force on Moving Charge",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/emi-faraday",
+      "group": "Experiment",
+      "title": "Faraday Induction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/ac-lcr-resonance",
+      "group": "Experiment",
+      "title": "AC LCR Resonance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/em-spectrum",
+      "group": "Experiment",
+      "title": "Electromagnetic Spectrum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/young-double-slit",
+      "group": "Experiment",
+      "title": "Young's Double Slit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/photoelectric-equation",
+      "group": "Experiment",
+      "title": "Photoelectric Equation",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/nuclear-decay",
+      "group": "Experiment",
+      "title": "Nuclear Decay and Half-Life",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/semiconductor-diode",
+      "group": "Experiment",
+      "title": "Semiconductor Diode and Rectifier",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/multiple-reflection",
+      "group": "Experiment",
+      "title": "Multiple Reflection and Kaleidoscope",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/sound-wave-anatomy",
+      "group": "Experiment",
+      "title": "Longitudinal Sound Wave",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/human-eye-defects",
+      "group": "Experiment",
+      "title": "Human Eye and Vision Defects",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/sources-of-energy",
+      "group": "Experiment",
+      "title": "Sources of Energy Comparator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/meter-bridge",
+      "group": "Experiment",
+      "title": "Meter Bridge",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/internal-resistance-cell",
+      "group": "Experiment",
+      "title": "Cell Internal Resistance",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/ac-generator",
+      "group": "Experiment",
+      "title": "AC Generator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/transformer-lab",
+      "group": "Experiment",
+      "title": "Transformer Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/total-internal-reflection",
+      "group": "Experiment",
+      "title": "Total Internal Reflection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/optical-instruments",
+      "group": "Experiment",
+      "title": "Microscope and Telescope",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/polarization-lab",
+      "group": "Experiment",
+      "title": "Polarization Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/de-broglie-wavelength",
+      "group": "Experiment",
+      "title": "de Broglie Wavelength",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/bohr-model",
+      "group": "Experiment",
+      "title": "Bohr Atom Transitions",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/logic-gates",
+      "group": "Experiment",
+      "title": "Logic Gates",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/distance-time-graph",
+      "group": "Experiment",
+      "title": "Distance-Time Graph Builder",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/balanced-unbalanced-forces",
+      "group": "Experiment",
+      "title": "Balanced and Unbalanced Forces",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/universal-gravitation",
+      "group": "Experiment",
+      "title": "Universal Gravitation Field Map",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/density-float-sink",
+      "group": "Experiment",
+      "title": "Density Float-or-Sink Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/calorimetry-mixing",
+      "group": "Experiment",
+      "title": "Calorimetry Mixing Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/special-relativity-bridge",
+      "group": "Experiment",
+      "title": "Special Relativity Bridge",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/chaotic-coupled-oscillators",
+      "group": "Experiment",
+      "title": "Chaotic and Coupled Oscillators",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/advanced-quantum-operators",
+      "group": "Experiment",
+      "title": "Advanced Quantum Operators",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/statistical-ensemble-lab",
+      "group": "Experiment",
+      "title": "Statistical Ensemble Lab",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/computational-physics-workflow",
+      "group": "Experiment",
+      "title": "Computational Physics Workflow",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/balancing-act",
+      "group": "Experiment",
+      "title": "Balancing Act",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/blackbody-spectrum",
+      "group": "Experiment",
+      "title": "Blackbody Spectrum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/build-a-nucleus",
+      "group": "Experiment",
+      "title": "Build a Nucleus",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/color-vision",
+      "group": "Experiment",
+      "title": "Color Vision",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/fourier-making-waves",
+      "group": "Experiment",
+      "title": "Fourier: Making Waves",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/resistance-in-a-wire",
+      "group": "Experiment",
+      "title": "Resistance in a Wire",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/rutherford-scattering",
+      "group": "Experiment",
+      "title": "Rutherford Scattering",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/states-of-matter",
+      "group": "Experiment",
+      "title": "States of Matter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/atomic-interactions",
+      "group": "Experiment",
+      "title": "Atomic Interactions",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/diffusion",
+      "group": "Experiment",
+      "title": "Diffusion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/greenhouse-effect",
+      "group": "Experiment",
+      "title": "Greenhouse Effect",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/molecules-and-light",
+      "group": "Experiment",
+      "title": "Molecules and Light",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/uniform-motion",
+      "group": "Experiment",
+      "title": "Uniform Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/newton-s-second-law",
+      "group": "Experiment",
+      "title": "Newton's Second Law",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/friction",
+      "group": "Experiment",
+      "title": "Friction",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/inclined-plane",
+      "group": "Experiment",
+      "title": "Inclined Plane",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/elastic-collision",
+      "group": "Experiment",
+      "title": "Elastic Collision",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/conservation-of-energy",
+      "group": "Experiment",
+      "title": "Conservation of Energy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/hooke-s-law",
+      "group": "Experiment",
+      "title": "Hooke's Law",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/simple-pendulum",
+      "group": "Experiment",
+      "title": "Simple Pendulum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/circular-motion",
+      "group": "Experiment",
+      "title": "Circular Motion",
+      "expected": "inspect"
+    },
+    {
+      "url": "/pro-lab/launch-vehicle#mission",
+      "group": "Pro Lab",
+      "title": "Mission Planner",
+      "expected": "inspect"
+    },
+    {
+      "url": "/pro-lab/launch-vehicle#launch",
+      "group": "Pro Lab",
+      "title": "Launch & Ascent",
+      "expected": "inspect"
+    },
+    {
+      "url": "/astrophysics?concept=black-hole-lensing",
+      "group": "Client Demos",
+      "title": "Astrophysics Observatory",
+      "expected": "inspect"
+    },
+    {
+      "url": "/comparison?view=benchmark",
+      "group": "Platform",
+      "title": "Platform Comparison",
+      "expected": "inspect"
+    },
+    {
+      "url": "/experiments/projectile-motion#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Projectile Motion",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/wave-lab#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Wave Lab",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/single-slit-diffraction#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Single Slit Diffraction",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/buoyancy#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Buoyancy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/chladni-plate#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Chladni Plate",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/heat-and-temperature#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Heat and Temperature",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/heat-transfer#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Heat Transfer",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/heating-effect-current#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Heating Effect of Current",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/electromagnet#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Electromagnet",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/reflection-plane-mirror#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Reflection by Plane Mirror",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/force-and-pressure#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Force and Pressure",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/fluid-pressure#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Fluid Pressure with Depth",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/sound-pitch-loudness#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Sound Pitch and Loudness",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/static-electricity#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Static Electricity and Lightning",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/chemical-effects-current#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Chemical Effects of Current",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/free-fall#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Free Fall",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/mass-and-weight#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Mass and Weight",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/work-power#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Work and Power",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/echo-speed-sound#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Echo and Speed of Sound",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/mirror-formula#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Mirror Formula",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/lens-formula#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Lens Formula",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/glass-slab-refraction#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Glass Slab Refraction",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/prism-dispersion#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Prism Dispersion",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/ohms-law#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Ohm's Law V-I Graph",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/series-parallel-resistance#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Series and Parallel Resistance",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/electric-power#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Electric Power and Energy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/magnetic-field-current#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Magnetic Field Around Current",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/measurement-errors#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Measurement, Error, and Significant Figures",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/vector-resolution#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Vector Resolution",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/rotational-dynamics#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Rotational Dynamics",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/satellite-orbit#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Satellite Orbit and Escape Speed",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/bernoulli-fluid-flow#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Bernoulli Fluid Flow",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/gas-laws#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Gas Laws and Kinetic Theory",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/thermodynamic-process#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Thermodynamic Processes",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/shm-spring#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Spring-Mass SHM",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/electrostatic-field-potential#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Electrostatic Field and Potential",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/capacitor-lab#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Capacitor Energy and Combination",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/kirchhoff-circuit#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Kirchhoff Circuit Rules",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/lorentz-force#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Lorentz Force on Moving Charge",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/emi-faraday#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Faraday Induction",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/ac-lcr-resonance#three-d",
+      "group": "Experiment 3D tab",
+      "title": "AC LCR Resonance",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/em-spectrum#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Electromagnetic Spectrum",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/young-double-slit#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Young's Double Slit",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/photoelectric-equation#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Photoelectric Equation",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/nuclear-decay#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Nuclear Decay and Half-Life",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/semiconductor-diode#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Semiconductor Diode and Rectifier",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/shadows-eclipses#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Shadows and Eclipses",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/multiple-reflection#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Multiple Reflection and Kaleidoscope",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/sound-wave-anatomy#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Longitudinal Sound Wave",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/human-eye-defects#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Human Eye and Vision Defects",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/sources-of-energy#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Sources of Energy Comparator",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/meter-bridge#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Meter Bridge",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/internal-resistance-cell#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Cell Internal Resistance",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/ac-generator#three-d",
+      "group": "Experiment 3D tab",
+      "title": "AC Generator",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/transformer-lab#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Transformer Lab",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/total-internal-reflection#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Total Internal Reflection",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/optical-instruments#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Microscope and Telescope",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/polarization-lab#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Polarization Lab",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/de-broglie-wavelength#three-d",
+      "group": "Experiment 3D tab",
+      "title": "de Broglie Wavelength",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/bohr-model#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Bohr Atom Transitions",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/logic-gates#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Logic Gates",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/distance-time-graph#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Distance-Time Graph Builder",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/balanced-unbalanced-forces#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Balanced and Unbalanced Forces",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/universal-gravitation#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Universal Gravitation Field Map",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/density-float-sink#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Density Float-or-Sink Tank",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/calorimetry-mixing#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Calorimetry Mixing Lab",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/special-relativity-bridge#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Special Relativity Bridge",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/chaotic-coupled-oscillators#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Chaotic and Coupled Oscillators",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/advanced-quantum-operators#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Advanced Quantum Operators",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/statistical-ensemble-lab#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Statistical Ensemble Lab",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/computational-physics-workflow#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Computational Physics Workflow",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/balancing-act#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Balancing Act",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/blackbody-spectrum#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Blackbody Spectrum",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/build-a-nucleus#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Build a Nucleus",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/color-vision#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Color Vision",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/fourier-making-waves#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Fourier: Making Waves",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/resistance-in-a-wire#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Resistance in a Wire",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/rutherford-scattering#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Rutherford Scattering",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/states-of-matter#three-d",
+      "group": "Experiment 3D tab",
+      "title": "States of Matter",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/atomic-interactions#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Atomic Interactions",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/diffusion#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Diffusion",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/greenhouse-effect#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Greenhouse Effect",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/molecules-and-light#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Molecules and Light",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/uniform-motion#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Uniform Motion",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/newton-s-second-law#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Newton's Second Law",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/friction#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Friction",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/inclined-plane#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Inclined Plane",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/elastic-collision#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Elastic Collision",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/conservation-of-energy#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Conservation of Energy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/hooke-s-law#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Hooke's Law",
+      "expected": "specific"
+    },
+    {
+      "url": "/experiments/simple-pendulum#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Simple Pendulum",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/experiments/circular-motion#three-d",
+      "group": "Experiment 3D tab",
+      "title": "Circular Motion",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=gravity-orbits",
+      "group": "Astrophysics concept",
+      "title": "Gravity & Orbits",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=kepler-laws",
+      "group": "Astrophysics concept",
+      "title": "Kepler's Laws",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=escape-speed",
+      "group": "Astrophysics concept",
+      "title": "Escape Speed",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=tidal-forces",
+      "group": "Astrophysics concept",
+      "title": "Tidal Forces",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=solar-system",
+      "group": "Astrophysics concept",
+      "title": "Solar System Architecture",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=planetary-atmospheres",
+      "group": "Astrophysics concept",
+      "title": "Planetary Atmospheres",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=exoplanets",
+      "group": "Astrophysics concept",
+      "title": "Exoplanets",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=transit-method",
+      "group": "Astrophysics concept",
+      "title": "Transit Method",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=stellar-luminosity",
+      "group": "Astrophysics concept",
+      "title": "Stellar Luminosity",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=main-sequence",
+      "group": "Astrophysics concept",
+      "title": "Main Sequence Stars",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=stellar-evolution",
+      "group": "Astrophysics concept",
+      "title": "Stellar Evolution",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=supernovae",
+      "group": "Astrophysics concept",
+      "title": "Supernovae",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=nucleosynthesis",
+      "group": "Astrophysics concept",
+      "title": "Nucleosynthesis",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=white-dwarfs",
+      "group": "Astrophysics concept",
+      "title": "White Dwarfs",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=neutron-stars",
+      "group": "Astrophysics concept",
+      "title": "Neutron Stars",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=pulsars",
+      "group": "Astrophysics concept",
+      "title": "Pulsars",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=black-holes",
+      "group": "Astrophysics concept",
+      "title": "Black Holes",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=accretion-disks",
+      "group": "Astrophysics concept",
+      "title": "Accretion Disks",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=gravitational-lensing",
+      "group": "Astrophysics concept",
+      "title": "Gravitational Lensing",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=general-relativity",
+      "group": "Astrophysics concept",
+      "title": "General Relativity",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=gravitational-waves",
+      "group": "Astrophysics concept",
+      "title": "Gravitational Waves",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=redshift",
+      "group": "Astrophysics concept",
+      "title": "Redshift",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=hubble-law",
+      "group": "Astrophysics concept",
+      "title": "Hubble's Law",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=big-bang",
+      "group": "Astrophysics concept",
+      "title": "Big Bang Model",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=cosmic-microwave-background",
+      "group": "Astrophysics concept",
+      "title": "Cosmic Microwave Background",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=dark-matter",
+      "group": "Astrophysics concept",
+      "title": "Dark Matter",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=dark-energy",
+      "group": "Astrophysics concept",
+      "title": "Dark Energy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=galaxy-structure",
+      "group": "Astrophysics concept",
+      "title": "Galaxy Structure",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=milky-way",
+      "group": "Astrophysics concept",
+      "title": "The Milky Way",
+      "expected": "specific"
+    },
+    {
+      "url": "/astrophysics?concept=cosmic-web",
+      "group": "Astrophysics concept",
+      "title": "Cosmic Web",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=quasars",
+      "group": "Astrophysics concept",
+      "title": "Quasars",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=distance-ladder",
+      "group": "Astrophysics concept",
+      "title": "Cosmic Distance Ladder",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=spectroscopy",
+      "group": "Astrophysics concept",
+      "title": "Astronomical Spectroscopy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=parallax",
+      "group": "Astrophysics concept",
+      "title": "Stellar Parallax",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=radio-astronomy",
+      "group": "Astrophysics concept",
+      "title": "Radio Astronomy",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=space-telescopes",
+      "group": "Astrophysics concept",
+      "title": "Space Telescopes",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=cosmic-rays",
+      "group": "Astrophysics concept",
+      "title": "Cosmic Rays",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/astrophysics?concept=gamma-ray-bursts",
+      "group": "Astrophysics concept",
+      "title": "Gamma-Ray Bursts",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/standard-model",
+      "group": "Particle concept",
+      "title": "Standard Model",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=standard-model",
+      "group": "Particle query route",
+      "title": "Standard Model",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/quantum-field-theory",
+      "group": "Particle concept",
+      "title": "Quantum Field Theory",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=quantum-field-theory",
+      "group": "Particle query route",
+      "title": "Quantum Field Theory",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=higgs-field",
+      "group": "Particle query route",
+      "title": "Higgs Field",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/higgs-boson",
+      "group": "Particle concept",
+      "title": "Higgs Boson",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=higgs-boson",
+      "group": "Particle query route",
+      "title": "Higgs Boson",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/quarks",
+      "group": "Particle concept",
+      "title": "Quarks",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=quarks",
+      "group": "Particle query route",
+      "title": "Quarks",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/leptons",
+      "group": "Particle concept",
+      "title": "Leptons",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=leptons",
+      "group": "Particle query route",
+      "title": "Leptons",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/gluons-color-charge",
+      "group": "Particle concept",
+      "title": "Gluons and Color Charge",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=gluons-color-charge",
+      "group": "Particle query route",
+      "title": "Gluons and Color Charge",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/gauge-bosons",
+      "group": "Particle concept",
+      "title": "Gauge Bosons",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=gauge-bosons",
+      "group": "Particle query route",
+      "title": "Gauge Bosons",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/neutrino-oscillation",
+      "group": "Particle concept",
+      "title": "Neutrino Oscillation",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=neutrino-oscillation",
+      "group": "Particle query route",
+      "title": "Neutrino Oscillation",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/antimatter",
+      "group": "Particle concept",
+      "title": "Antimatter",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=antimatter",
+      "group": "Particle query route",
+      "title": "Antimatter",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/symmetry-breaking",
+      "group": "Particle concept",
+      "title": "Symmetry Breaking",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=symmetry-breaking",
+      "group": "Particle query route",
+      "title": "Symmetry Breaking",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics/confinement",
+      "group": "Particle concept",
+      "title": "Quark Confinement",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/particle-physics?concept=confinement",
+      "group": "Particle query route",
+      "title": "Quark Confinement",
+      "expected": "upcoming"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-fairing",
+      "group": "Rocket component lesson",
+      "title": "Payload Fairing",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fairing-half-or-fairing-shell",
+      "group": "Rocket component lesson",
+      "title": "Fairing Half or Fairing Shell",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fairing-separation-joint",
+      "group": "Rocket component lesson",
+      "title": "Fairing Separation Joint",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload",
+      "group": "Rocket component lesson",
+      "title": "Payload",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-adapter",
+      "group": "Rocket component lesson",
+      "title": "Payload Adapter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-attach-fitting",
+      "group": "Rocket component lesson",
+      "title": "Payload Attach Fitting",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-separation-system",
+      "group": "Rocket component lesson",
+      "title": "Payload Separation System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-deployment-mechanism",
+      "group": "Rocket component lesson",
+      "title": "Payload Deployment Mechanism",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-electrical-interface",
+      "group": "Rocket component lesson",
+      "title": "Payload Electrical Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/payload-environmental-control-interface",
+      "group": "Rocket component lesson",
+      "title": "Payload Environmental-Control Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/spacecraft-adapter",
+      "group": "Rocket component lesson",
+      "title": "Spacecraft Adapter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/secondary-payload-dispenser",
+      "group": "Rocket component lesson",
+      "title": "Secondary Payload Dispenser",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/cubesat-deployer",
+      "group": "Rocket component lesson",
+      "title": "CubeSat Deployer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/launch-escape-or-abort-system",
+      "group": "Rocket component lesson",
+      "title": "Launch Escape or Abort System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/crew-module-interface",
+      "group": "Rocket component lesson",
+      "title": "Crew Module Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/nose-cone",
+      "group": "Rocket component lesson",
+      "title": "Nose Cone",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/forward-skirt",
+      "group": "Rocket component lesson",
+      "title": "Forward Skirt",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/airframe-or-rocket-body",
+      "group": "Rocket component lesson",
+      "title": "Airframe or Rocket Body",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/cylindrical-barrel-section",
+      "group": "Rocket component lesson",
+      "title": "Cylindrical Barrel Section",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/structural-ring-frame",
+      "group": "Rocket component lesson",
+      "title": "Structural Ring Frame",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/stringer",
+      "group": "Rocket component lesson",
+      "title": "Stringer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/bulkhead",
+      "group": "Rocket component lesson",
+      "title": "Bulkhead",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tank-dome",
+      "group": "Rocket component lesson",
+      "title": "Tank Dome",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/common-bulkhead",
+      "group": "Rocket component lesson",
+      "title": "Common Bulkhead",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/intertank",
+      "group": "Rocket component lesson",
+      "title": "Intertank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/equipment-bay",
+      "group": "Rocket component lesson",
+      "title": "Equipment Bay",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/thrust-structure",
+      "group": "Rocket component lesson",
+      "title": "Thrust Structure",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-section",
+      "group": "Rocket component lesson",
+      "title": "Engine Section",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/aft-skirt",
+      "group": "Rocket component lesson",
+      "title": "Aft Skirt",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/interstage",
+      "group": "Rocket component lesson",
+      "title": "Interstage",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/stage-adapter",
+      "group": "Rocket component lesson",
+      "title": "Stage Adapter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/access-panel",
+      "group": "Rocket component lesson",
+      "title": "Access Panel",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/service-door",
+      "group": "Rocket component lesson",
+      "title": "Service Door",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/cable-tunnel",
+      "group": "Rocket component lesson",
+      "title": "Cable Tunnel",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/external-systems-tunnel",
+      "group": "Rocket component lesson",
+      "title": "External Systems Tunnel",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/lifting-lug",
+      "group": "Rocket component lesson",
+      "title": "Lifting Lug",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/transportation-support-interface",
+      "group": "Rocket component lesson",
+      "title": "Transportation Support Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/hold-down-fitting",
+      "group": "Rocket component lesson",
+      "title": "Hold-Down Fitting",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/launch-lug-or-rail-guide",
+      "group": "Rocket component lesson",
+      "title": "Launch Lug or Rail Guide",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fixed-fin",
+      "group": "Rocket component lesson",
+      "title": "Fixed Fin",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/movable-fin",
+      "group": "Rocket component lesson",
+      "title": "Movable Fin",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/grid-fin",
+      "group": "Rocket component lesson",
+      "title": "Grid Fin",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fin-root",
+      "group": "Rocket component lesson",
+      "title": "Fin Root",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fin-actuator",
+      "group": "Rocket component lesson",
+      "title": "Fin Actuator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/canard",
+      "group": "Rocket component lesson",
+      "title": "Canard",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/aerodynamic-strake",
+      "group": "Rocket component lesson",
+      "title": "Aerodynamic Strake",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/boat-tail",
+      "group": "Rocket component lesson",
+      "title": "Boat Tail",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/base-heat-shield",
+      "group": "Rocket component lesson",
+      "title": "Base Heat Shield",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/rocket-engine",
+      "group": "Rocket component lesson",
+      "title": "Rocket Engine",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/combustion-chamber",
+      "group": "Rocket component lesson",
+      "title": "Combustion Chamber",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/injector",
+      "group": "Rocket component lesson",
+      "title": "Injector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/injector-face",
+      "group": "Rocket component lesson",
+      "title": "Injector Face",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/igniter",
+      "group": "Rocket component lesson",
+      "title": "Igniter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/nozzle",
+      "group": "Rocket component lesson",
+      "title": "Nozzle",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/nozzle-throat",
+      "group": "Rocket component lesson",
+      "title": "Nozzle Throat",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/nozzle-exit",
+      "group": "Rocket component lesson",
+      "title": "Nozzle Exit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/nozzle-extension",
+      "group": "Rocket component lesson",
+      "title": "Nozzle Extension",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/regeneratively-cooled-chamber",
+      "group": "Rocket component lesson",
+      "title": "Regeneratively Cooled Chamber",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/cooling-channels",
+      "group": "Rocket component lesson",
+      "title": "Cooling Channels",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-mount",
+      "group": "Rocket component lesson",
+      "title": "Engine Mount",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/gimbal-assembly",
+      "group": "Rocket component lesson",
+      "title": "Gimbal Assembly",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/thrust-vector-control-actuator",
+      "group": "Rocket component lesson",
+      "title": "Thrust Vector Control Actuator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/turbopump",
+      "group": "Rocket component lesson",
+      "title": "Turbopump",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fuel-pump",
+      "group": "Rocket component lesson",
+      "title": "Fuel Pump",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/oxidizer-pump",
+      "group": "Rocket component lesson",
+      "title": "Oxidizer Pump",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/turbine",
+      "group": "Rocket component lesson",
+      "title": "Turbine",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/turbopump-shaft",
+      "group": "Rocket component lesson",
+      "title": "Turbopump Shaft",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/gas-generator",
+      "group": "Rocket component lesson",
+      "title": "Gas Generator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/preburner",
+      "group": "Rocket component lesson",
+      "title": "Preburner",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/main-fuel-valve",
+      "group": "Rocket component lesson",
+      "title": "Main Fuel Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/main-oxidizer-valve",
+      "group": "Rocket component lesson",
+      "title": "Main Oxidizer Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-controller",
+      "group": "Rocket component lesson",
+      "title": "Engine Controller",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-sensors",
+      "group": "Rocket component lesson",
+      "title": "Engine Sensors",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-purge-system",
+      "group": "Rocket component lesson",
+      "title": "Engine Purge System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/solid-rocket-motor-case",
+      "group": "Rocket component lesson",
+      "title": "Solid Rocket Motor Case",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/solid-propellant-grain",
+      "group": "Rocket component lesson",
+      "title": "Solid Propellant Grain",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/grain-port",
+      "group": "Rocket component lesson",
+      "title": "Grain Port",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/solid-motor-igniter",
+      "group": "Rocket component lesson",
+      "title": "Solid Motor Igniter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/solid-motor-nozzle",
+      "group": "Rocket component lesson",
+      "title": "Solid Motor Nozzle",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/solid-motor-insulation",
+      "group": "Rocket component lesson",
+      "title": "Solid Motor Insulation",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/hybrid-fuel-grain",
+      "group": "Rocket component lesson",
+      "title": "Hybrid Fuel Grain",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/hybrid-oxidizer-injector",
+      "group": "Rocket component lesson",
+      "title": "Hybrid Oxidizer Injector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fuel-tank",
+      "group": "Rocket component lesson",
+      "title": "Fuel Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/oxidizer-tank",
+      "group": "Rocket component lesson",
+      "title": "Oxidizer Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/cryogenic-tank",
+      "group": "Rocket component lesson",
+      "title": "Cryogenic Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tank-liner",
+      "group": "Rocket component lesson",
+      "title": "Tank Liner",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tank-insulation",
+      "group": "Rocket component lesson",
+      "title": "Tank Insulation",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/ullage-volume",
+      "group": "Rocket component lesson",
+      "title": "Ullage Volume",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/propellant-acquisition-device",
+      "group": "Rocket component lesson",
+      "title": "Propellant Acquisition Device",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/anti-vortex-device",
+      "group": "Rocket component lesson",
+      "title": "Anti-Vortex Device",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/baffle",
+      "group": "Rocket component lesson",
+      "title": "Baffle",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fuel-feed-line",
+      "group": "Rocket component lesson",
+      "title": "Fuel Feed Line",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/oxidizer-feed-line",
+      "group": "Rocket component lesson",
+      "title": "Oxidizer Feed Line",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flexible-feed-line-joint",
+      "group": "Rocket component lesson",
+      "title": "Flexible Feed-Line Joint",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/propellant-isolation-valve",
+      "group": "Rocket component lesson",
+      "title": "Propellant Isolation Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/check-valve",
+      "group": "Rocket component lesson",
+      "title": "Check Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pressure-regulator",
+      "group": "Rocket component lesson",
+      "title": "Pressure Regulator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/relief-valve",
+      "group": "Rocket component lesson",
+      "title": "Relief Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/burst-disk",
+      "group": "Rocket component lesson",
+      "title": "Burst Disk",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fill-and-drain-valve",
+      "group": "Rocket component lesson",
+      "title": "Fill and Drain Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/vent-valve",
+      "group": "Rocket component lesson",
+      "title": "Vent Valve",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tank-vent",
+      "group": "Rocket component lesson",
+      "title": "Tank Vent",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pressurant-tank",
+      "group": "Rocket component lesson",
+      "title": "Pressurant Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/helium-storage-vessel",
+      "group": "Rocket component lesson",
+      "title": "Helium Storage Vessel",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pressurization-line",
+      "group": "Rocket component lesson",
+      "title": "Pressurization Line",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/autogenous-pressurization-heat-exchanger",
+      "group": "Rocket component lesson",
+      "title": "Autogenous Pressurization Heat Exchanger",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/propellant-level-sensor",
+      "group": "Rocket component lesson",
+      "title": "Propellant-Level Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tank-pressure-sensor",
+      "group": "Rocket component lesson",
+      "title": "Tank Pressure Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/temperature-sensor",
+      "group": "Rocket component lesson",
+      "title": "Temperature Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/slosh-sensor",
+      "group": "Rocket component lesson",
+      "title": "Slosh Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/propellant-distribution-manifold",
+      "group": "Rocket component lesson",
+      "title": "Propellant Distribution Manifold",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flight-computer",
+      "group": "Rocket component lesson",
+      "title": "Flight Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/redundant-flight-computer",
+      "group": "Rocket component lesson",
+      "title": "Redundant Flight Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/avionics-bay",
+      "group": "Rocket component lesson",
+      "title": "Avionics Bay",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/data-bus",
+      "group": "Rocket component lesson",
+      "title": "Data Bus",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/wiring-harness",
+      "group": "Rocket component lesson",
+      "title": "Wiring Harness",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/connector",
+      "group": "Rocket component lesson",
+      "title": "Connector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/signal-conditioning-unit",
+      "group": "Rocket component lesson",
+      "title": "Signal-Conditioning Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/data-acquisition-unit",
+      "group": "Rocket component lesson",
+      "title": "Data Acquisition Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/remote-input-output-unit",
+      "group": "Rocket component lesson",
+      "title": "Remote Input/Output Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/mission-sequencer",
+      "group": "Rocket component lesson",
+      "title": "Mission Sequencer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/time-base",
+      "group": "Rocket component lesson",
+      "title": "Time Base",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/health-monitoring-computer",
+      "group": "Rocket component lesson",
+      "title": "Health-Monitoring Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flight-software",
+      "group": "Rocket component lesson",
+      "title": "Flight Software",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/inertial-measurement-unit",
+      "group": "Rocket component lesson",
+      "title": "Inertial Measurement Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/gyroscope",
+      "group": "Rocket component lesson",
+      "title": "Gyroscope",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/accelerometer",
+      "group": "Rocket component lesson",
+      "title": "Accelerometer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/inertial-navigation-system",
+      "group": "Rocket component lesson",
+      "title": "Inertial Navigation System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/gnss-or-gps-receiver",
+      "group": "Rocket component lesson",
+      "title": "GNSS or GPS Receiver",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/navigation-computer",
+      "group": "Rocket component lesson",
+      "title": "Navigation Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/guidance-computer",
+      "group": "Rocket component lesson",
+      "title": "Guidance Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flight-control-computer",
+      "group": "Rocket component lesson",
+      "title": "Flight-Control Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/attitude-control-system",
+      "group": "Rocket component lesson",
+      "title": "Attitude-Control System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/reaction-control-thruster",
+      "group": "Rocket component lesson",
+      "title": "Reaction-Control Thruster",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/reaction-control-propellant-tank",
+      "group": "Rocket component lesson",
+      "title": "Reaction-Control Propellant Tank",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/star-tracker",
+      "group": "Rocket component lesson",
+      "title": "Star Tracker",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/sun-sensor",
+      "group": "Rocket component lesson",
+      "title": "Sun Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/magnetometer",
+      "group": "Rocket component lesson",
+      "title": "Magnetometer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/radar-altimeter",
+      "group": "Rocket component lesson",
+      "title": "Radar Altimeter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/control-allocation-module",
+      "group": "Rocket component lesson",
+      "title": "Control Allocation Module",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/main-battery",
+      "group": "Rocket component lesson",
+      "title": "Main Battery",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/backup-battery",
+      "group": "Rocket component lesson",
+      "title": "Backup Battery",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/battery-management-system",
+      "group": "Rocket component lesson",
+      "title": "Battery Management System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/power-distribution-unit",
+      "group": "Rocket component lesson",
+      "title": "Power Distribution Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/dc-dc-converter",
+      "group": "Rocket component lesson",
+      "title": "DC-DC Converter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/inverter",
+      "group": "Rocket component lesson",
+      "title": "Inverter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/circuit-protection-device",
+      "group": "Rocket component lesson",
+      "title": "Circuit Protection Device",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/ground-power-connector",
+      "group": "Rocket component lesson",
+      "title": "Ground Power Connector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/umbilical-electrical-connector",
+      "group": "Rocket component lesson",
+      "title": "Umbilical Electrical Connector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pyrotechnic-initiator-circuit",
+      "group": "Rocket component lesson",
+      "title": "Pyrotechnic Initiator Circuit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/telemetry-transmitter",
+      "group": "Rocket component lesson",
+      "title": "Telemetry Transmitter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/telemetry-encoder",
+      "group": "Rocket component lesson",
+      "title": "Telemetry Encoder",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/radio-frequency-amplifier",
+      "group": "Rocket component lesson",
+      "title": "Radio-Frequency Amplifier",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/telemetry-antenna",
+      "group": "Rocket component lesson",
+      "title": "Telemetry Antenna",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/command-receiver",
+      "group": "Rocket component lesson",
+      "title": "Command Receiver",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tracking-transponder",
+      "group": "Rocket component lesson",
+      "title": "Tracking Transponder",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/gps-antenna",
+      "group": "Rocket component lesson",
+      "title": "GPS Antenna",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/communication-antenna",
+      "group": "Rocket component lesson",
+      "title": "Communication Antenna",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/onboard-data-recorder",
+      "group": "Rocket component lesson",
+      "title": "Onboard Data Recorder",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/camera-system",
+      "group": "Rocket component lesson",
+      "title": "Camera System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/video-transmitter",
+      "group": "Rocket component lesson",
+      "title": "Video Transmitter",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flight-termination-system",
+      "group": "Rocket component lesson",
+      "title": "Flight Termination System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/autonomous-flight-safety-system",
+      "group": "Rocket component lesson",
+      "title": "Autonomous Flight Safety System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flight-safety-computer",
+      "group": "Rocket component lesson",
+      "title": "Flight-Safety Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/independent-tracking-receiver",
+      "group": "Rocket component lesson",
+      "title": "Independent Tracking Receiver",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fts-antenna",
+      "group": "Rocket component lesson",
+      "title": "FTS Antenna",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/safe-and-arm-device",
+      "group": "Rocket component lesson",
+      "title": "Safe-and-Arm Device",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/range-safety-battery",
+      "group": "Rocket component lesson",
+      "title": "Range-Safety Battery",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/range-tracking-beacon",
+      "group": "Rocket component lesson",
+      "title": "Range Tracking Beacon",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/destruct-system-hardware",
+      "group": "Rocket component lesson",
+      "title": "Destruct-System Hardware",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/stage-separation-plane",
+      "group": "Rocket component lesson",
+      "title": "Stage-Separation Plane",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/separation-ring",
+      "group": "Rocket component lesson",
+      "title": "Separation Ring",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/separation-bolt",
+      "group": "Rocket component lesson",
+      "title": "Separation Bolt",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/frangible-joint",
+      "group": "Rocket component lesson",
+      "title": "Frangible Joint",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/clamp-band",
+      "group": "Rocket component lesson",
+      "title": "Clamp Band",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pneumatic-separation-system",
+      "group": "Rocket component lesson",
+      "title": "Pneumatic Separation System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/spring-ejector",
+      "group": "Rocket component lesson",
+      "title": "Spring Ejector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/separation-motor",
+      "group": "Rocket component lesson",
+      "title": "Separation Motor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/ullage-motor",
+      "group": "Rocket component lesson",
+      "title": "Ullage Motor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/retro-motor",
+      "group": "Rocket component lesson",
+      "title": "Retro Motor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pyrotechnic-initiator",
+      "group": "Rocket component lesson",
+      "title": "Pyrotechnic Initiator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/separation-sensor",
+      "group": "Rocket component lesson",
+      "title": "Separation Sensor",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/deployment-switch",
+      "group": "Rocket component lesson",
+      "title": "Deployment Switch",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/interstage-vent",
+      "group": "Rocket component lesson",
+      "title": "Interstage Vent",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/thermal-protection-system",
+      "group": "Rocket component lesson",
+      "title": "Thermal Protection System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/external-foam-insulation",
+      "group": "Rocket component lesson",
+      "title": "External Foam Insulation",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/thermal-blanket",
+      "group": "Rocket component lesson",
+      "title": "Thermal Blanket",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/heat-shield",
+      "group": "Rocket component lesson",
+      "title": "Heat Shield",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/engine-heat-shield",
+      "group": "Rocket component lesson",
+      "title": "Engine Heat Shield",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/fire-barrier",
+      "group": "Rocket component lesson",
+      "title": "Fire Barrier",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/purge-line",
+      "group": "Rocket component lesson",
+      "title": "Purge Line",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/environmental-control-duct",
+      "group": "Rocket component lesson",
+      "title": "Environmental-Control Duct",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/moisture-barrier",
+      "group": "Rocket component lesson",
+      "title": "Moisture Barrier",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/acoustic-protection",
+      "group": "Rocket component lesson",
+      "title": "Acoustic Protection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/recovery-computer",
+      "group": "Rocket component lesson",
+      "title": "Recovery Computer",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/drogue-parachute",
+      "group": "Rocket component lesson",
+      "title": "Drogue Parachute",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/main-parachute",
+      "group": "Rocket component lesson",
+      "title": "Main Parachute",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/pilot-chute",
+      "group": "Rocket component lesson",
+      "title": "Pilot Chute",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/parachute-canopy",
+      "group": "Rocket component lesson",
+      "title": "Parachute Canopy",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/suspension-lines",
+      "group": "Rocket component lesson",
+      "title": "Suspension Lines",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/parachute-mortar",
+      "group": "Rocket component lesson",
+      "title": "Parachute Mortar",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/parachute-compartment",
+      "group": "Rocket component lesson",
+      "title": "Parachute Compartment",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/deployment-bag",
+      "group": "Rocket component lesson",
+      "title": "Deployment Bag",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/reefing-system",
+      "group": "Rocket component lesson",
+      "title": "Reefing System",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/landing-leg",
+      "group": "Rocket component lesson",
+      "title": "Landing Leg",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/landing-leg-actuator",
+      "group": "Rocket component lesson",
+      "title": "Landing-Leg Actuator",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/crushable-landing-structure",
+      "group": "Rocket component lesson",
+      "title": "Crushable Landing Structure",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flotation-device",
+      "group": "Rocket component lesson",
+      "title": "Flotation Device",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/recovery-beacon",
+      "group": "Rocket component lesson",
+      "title": "Recovery Beacon",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/recovery-gps-unit",
+      "group": "Rocket component lesson",
+      "title": "Recovery GPS Unit",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/launch-mount",
+      "group": "Rocket component lesson",
+      "title": "Launch Mount",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/launch-platform",
+      "group": "Rocket component lesson",
+      "title": "Launch Platform",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/hold-down-clamp",
+      "group": "Rocket component lesson",
+      "title": "Hold-Down Clamp",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/tail-service-mast",
+      "group": "Rocket component lesson",
+      "title": "Tail-Service Mast",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/umbilical",
+      "group": "Rocket component lesson",
+      "title": "Umbilical",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/umbilical-disconnect",
+      "group": "Rocket component lesson",
+      "title": "Umbilical Disconnect",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/quick-disconnect-coupling",
+      "group": "Rocket component lesson",
+      "title": "Quick-Disconnect Coupling",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/propellant-fill-connection",
+      "group": "Rocket component lesson",
+      "title": "Propellant Fill Connection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/drain-connection",
+      "group": "Rocket component lesson",
+      "title": "Drain Connection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/ground-purge-connection",
+      "group": "Rocket component lesson",
+      "title": "Ground Purge Connection",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/strongback-or-transporter-erector",
+      "group": "Rocket component lesson",
+      "title": "Strongback or Transporter-Erector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/launch-rail",
+      "group": "Rocket component lesson",
+      "title": "Launch Rail",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/flame-deflector",
+      "group": "Rocket component lesson",
+      "title": "Flame Deflector",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/water-suppression-interface",
+      "group": "Rocket component lesson",
+      "title": "Water-Suppression Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/rocket-lab/parts/lightning-protection-interface",
+      "group": "Rocket component lesson",
+      "title": "Lightning Protection Interface",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=planck-scale",
+      "group": "String theory lesson",
+      "title": "The Planck Scale",
+      "expected": "specific"
+    },
+    {
+      "url": "/string-theory?concept=points-vs-strings",
+      "group": "String theory lesson",
+      "title": "Points vs. Strings",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=vibration-modes",
+      "group": "String theory lesson",
+      "title": "Vibration Modes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=open-closed-strings",
+      "group": "String theory lesson",
+      "title": "Open & Closed Strings",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=worldsheet",
+      "group": "String theory lesson",
+      "title": "Worldsheet",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=string-quantization",
+      "group": "String theory lesson",
+      "title": "String Quantization",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=particle-spectrum",
+      "group": "String theory lesson",
+      "title": "Particle Spectrum",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=splitting-joining",
+      "group": "String theory lesson",
+      "title": "Splitting & Joining",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=bosonic-string",
+      "group": "String theory lesson",
+      "title": "Bosonic String",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=superstrings",
+      "group": "String theory lesson",
+      "title": "Superstrings",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=supersymmetry",
+      "group": "String theory lesson",
+      "title": "Supersymmetry",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=five-string-theories",
+      "group": "String theory lesson",
+      "title": "Five String Theories",
+      "expected": "specific"
+    },
+    {
+      "url": "/string-theory?concept=why-ten-dimensions",
+      "group": "String theory lesson",
+      "title": "Why 10 Dimensions?",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=compactification",
+      "group": "String theory lesson",
+      "title": "Compactification",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=calabi-yau-space",
+      "group": "String theory lesson",
+      "title": "Calabi–Yau Space",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=kaluza-klein-modes",
+      "group": "String theory lesson",
+      "title": "Kaluza–Klein Modes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=d-branes",
+      "group": "String theory lesson",
+      "title": "D-Branes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=brane-worlds",
+      "group": "String theory lesson",
+      "title": "Brane Worlds",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=m-theory",
+      "group": "String theory lesson",
+      "title": "M-Theory",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=strings-to-membranes",
+      "group": "String theory lesson",
+      "title": "Strings to Membranes",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=t-duality",
+      "group": "String theory lesson",
+      "title": "T-Duality",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=s-duality",
+      "group": "String theory lesson",
+      "title": "S-Duality",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=mirror-symmetry",
+      "group": "String theory lesson",
+      "title": "Mirror Symmetry",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=ads-cft",
+      "group": "String theory lesson",
+      "title": "AdS/CFT",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=graviton",
+      "group": "String theory lesson",
+      "title": "Graviton",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=emergent-geometry",
+      "group": "String theory lesson",
+      "title": "Emergent Geometry",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=holographic-principle",
+      "group": "String theory lesson",
+      "title": "Holographic Principle",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=string-landscape",
+      "group": "String theory lesson",
+      "title": "String Landscape",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=black-hole-microstates",
+      "group": "String theory lesson",
+      "title": "Black-Hole Microstates",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=hawking-information",
+      "group": "String theory lesson",
+      "title": "Hawking Information",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=early-universe",
+      "group": "String theory lesson",
+      "title": "Early Universe",
+      "expected": "inspect"
+    },
+    {
+      "url": "/string-theory?concept=cosmic-superstrings",
+      "group": "String theory lesson",
+      "title": "Cosmic Superstrings",
+      "expected": "inspect"
+    },
+    {
+      "url": "/topics/astrophysics",
+      "group": "Topic page",
+      "title": "astrophysics",
+      "expected": "inspect"
+    }
+  ],
+  "renderers": [
+    "src\\components\\AstroThreeScene.tsx",
+    "src\\components\\ComScene.tsx",
+    "src\\components\\ConceptStudioThreeScene.tsx",
+    "src\\components\\ConceptThreeScene.tsx",
+    "src\\components\\Experiment3DAnimation.tsx",
+    "src\\components\\StringTheoryNetworkThreeScene.tsx",
+    "src\\components\\StringTheoryThreeScene.tsx",
+    "src\\components\\WebGLHero.tsx",
+    "src\\experiments\\ac-generator\\AcGeneratorLab.tsx",
+    "src\\experiments\\ac-generator\\GeneratorThreeScene.tsx",
+    "src\\experiments\\ac-lcr-resonance\\LcrResonanceLab.tsx",
+    "src\\experiments\\capacitor-lab\\CapacitorLab.tsx",
+    "src\\experiments\\chaotic-coupled-oscillators\\PhysicalOscillatorLab.tsx",
+    "src\\experiments\\chemical-effects-current\\ChemicalEffectsLab.tsx",
+    "src\\experiments\\de-broglie-wavelength\\MatterWaveScene.tsx",
+    "src\\experiments\\electric-power\\ElectricPowerLab.tsx",
+    "src\\experiments\\electrostatic-field-potential\\ElectrostaticFieldLab.tsx",
+    "src\\experiments\\expansion-labs\\AtomicInteractionsLab.tsx",
+    "src\\experiments\\internal-resistance-cell\\InternalResistanceLab.tsx",
+    "src\\experiments\\newton-s-second-law\\NewtonTrackScene.tsx",
+    "src\\experiments\\universal-gravitation\\UniversalGravitationLab.tsx"
+  ],
+  "pending": [
+    "single-slit-diffraction",
+    "buoyancy",
+    "heat-and-temperature",
+    "heat-transfer",
+    "heating-effect-current",
+    "force-and-pressure",
+    "fluid-pressure",
+    "free-fall",
+    "work-power",
+    "mirror-formula",
+    "ohms-law",
+    "series-parallel-resistance",
+    "electric-power",
+    "magnetic-field-current",
+    "rotational-dynamics",
+    "satellite-orbit",
+    "gas-laws",
+    "capacitor-lab",
+    "young-double-slit",
+    "sound-wave-anatomy",
+    "total-internal-reflection",
+    "de-broglie-wavelength",
+    "distance-time-graph",
+    "balanced-unbalanced-forces",
+    "special-relativity-bridge",
+    "uniform-motion",
+    "friction",
+    "elastic-collision",
+    "conservation-of-energy",
+    "simple-pendulum",
+    "circular-motion",
+    "balancing-act",
+    "blackbody-spectrum",
+    "build-a-nucleus",
+    "color-vision",
+    "fourier-making-waves",
+    "resistance-in-a-wire",
+    "rutherford-scattering",
+    "states-of-matter",
+    "diffusion",
+    "greenhouse-effect",
+    "molecules-and-light"
+  ],
+  "studioConcepts": [
+    {
+      "id": "measurement",
+      "concepts": [
+        "Length",
+        "Mass",
+        "Time",
+        "Uncertainty",
+        "Significant Figures",
+        "Instrument Errors"
+      ]
+    },
+    {
+      "id": "mechanics",
+      "concepts": [
+        "Force Systems",
+        "Friction",
+        "Torque",
+        "Equilibrium",
+        "Momentum",
+        "Machines"
+      ]
+    },
+    {
+      "id": "motion-kinematics",
+      "concepts": [
+        "Position",
+        "Velocity",
+        "Acceleration",
+        "Projectiles",
+        "Relative Motion",
+        "Circular Motion"
+      ]
+    },
+    {
+      "id": "force-newton",
+      "concepts": [
+        "Inertia",
+        "F = ma",
+        "Action–Reaction",
+        "Friction",
+        "Tension",
+        "Normal Force"
+      ]
+    },
+    {
+      "id": "work-energy-power",
+      "concepts": [
+        "Work",
+        "Kinetic Energy",
+        "Potential Energy",
+        "Conservation",
+        "Power",
+        "Efficiency"
+      ]
+    },
+    {
+      "id": "gravitation",
+      "concepts": [
+        "Universal Gravitation",
+        "Gravitational Field",
+        "Orbits",
+        "Satellites",
+        "Escape Velocity",
+        "Kepler’s Laws"
+      ]
+    },
+    {
+      "id": "oscillations",
+      "concepts": [
+        "Simple Harmonic Motion",
+        "Pendulums",
+        "Springs",
+        "Damping",
+        "Resonance",
+        "Coupled Oscillators"
+      ]
+    },
+    {
+      "id": "waves-sound",
+      "concepts": [
+        "Wave Properties",
+        "Superposition",
+        "Interference",
+        "Standing Waves",
+        "Sound",
+        "Doppler Effect"
+      ]
+    },
+    {
+      "id": "optics",
+      "concepts": [
+        "Reflection",
+        "Refraction",
+        "Lenses",
+        "Mirrors",
+        "Interference",
+        "Diffraction"
+      ]
+    },
+    {
+      "id": "electricity",
+      "concepts": [
+        "Charge",
+        "Electric Field",
+        "Potential",
+        "Current",
+        "Resistance",
+        "Circuits"
+      ]
+    },
+    {
+      "id": "magnetism",
+      "concepts": [
+        "Magnetic Fields",
+        "Force on Charge",
+        "Current & Field",
+        "Solenoids",
+        "Induction",
+        "Electromagnets"
+      ]
+    },
+    {
+      "id": "electronics",
+      "concepts": [
+        "Semiconductors",
+        "Diodes",
+        "Transistors",
+        "Amplifiers",
+        "Logic Gates",
+        "Sensors"
+      ]
+    },
+    {
+      "id": "thermodynamics",
+      "concepts": [
+        "Temperature",
+        "Heat Transfer",
+        "Gas Laws",
+        "First Law",
+        "Entropy",
+        "Heat Engines"
+      ]
+    },
+    {
+      "id": "fluid-mechanics",
+      "concepts": [
+        "Density",
+        "Pressure",
+        "Buoyancy",
+        "Continuity",
+        "Bernoulli",
+        "Viscosity"
+      ]
+    },
+    {
+      "id": "modern-physics",
+      "concepts": [
+        "Quantum Ideas",
+        "Photoelectric Effect",
+        "Matter Waves",
+        "Atomic Models",
+        "Nuclei",
+        "Radioactivity"
+      ]
+    },
+    {
+      "id": "astronomy-astrophysics",
+      "concepts": [
+        "Solar System",
+        "Stars",
+        "Spectra",
+        "Galaxies",
+        "Cosmology",
+        "Exoplanets"
+      ]
+    }
+  ]
+}

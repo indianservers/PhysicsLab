@@ -30,7 +30,7 @@ export function InteractionModePanel({ experiment, conceptTitle, compact = false
         </div>
         <span className="status-chip status-chip-cyan">
           <PhysicsIcon name={experiment ? iconForExperiment(experiment) : "spark"} className="h-3.5 w-3.5" />
-          2D + 3D ready
+          {modes.find(mode => mode.id === "three-d")?.active ? "2D + 3D ready" : "3D · Upcoming"}
         </span>
       </div>
       <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
@@ -71,7 +71,7 @@ export function InteractionModePanel({ experiment, conceptTitle, compact = false
 
 export function interactionModes(experiment?: ExperimentDefinition): InteractionMode[] {
   const experimentPath = experiment ? `/experiments/${experiment.id}` : undefined;
-  const threeReady = experiment ? has3DAnimation(experiment.id) : true;
+  const threeReady = experiment ? has3DAnimation(experiment.id) : false;
   const graphReady = Boolean(experiment?.formulae.length);
   const notebookReady = Boolean(experiment?.observationColumns.length);
   return [
@@ -85,9 +85,9 @@ export function interactionModes(experiment?: ExperimentDefinition): Interaction
     },
     {
       id: "three-d",
-      label: "3D model",
+      label: threeReady ? "3D model" : "3D · Upcoming",
       icon: "orbit",
-      detail: "WebGL model supports rotate, zoom, and spatial inspection.",
+      detail: threeReady ? "WebGL model supports rotate, zoom, and spatial inspection." : "A dedicated 3D simulation is planned.",
       href: experimentPath ? `${experimentPath}#three-d` : undefined,
       active: threeReady,
     },

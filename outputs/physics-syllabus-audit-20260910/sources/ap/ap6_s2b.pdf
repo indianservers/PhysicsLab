@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>::: SIMS :::</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+	
+	     
+	<link rel="stylesheet" href="/resources/css/bootstrap4.5.3.min.css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap-dialog.css">
+	
+ 	<link rel="stylesheet" href="/resources/css/sims-header.css">
+  	<link rel="stylesheet" href="/resources/css_new/style.css">
+  	<link rel="stylesheet" href="/resources/css_new/stylesfooter.css">
+  	<link rel="stylesheet" type="text/css" href="/resources/css_new/login_style.css">
+  	
+  	
+<style type="text/css">
+ 
+  
+	/* This only works with JavaScript, 
+		if it's not present, don't show loader */
+		.no-js #loader { display: none;  }
+		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+		
+		
+
+
+    .latest-update-scroll {
+      height: 220px;
+      overflow: hidden;
+      font-family: cursive;
+    }
+     
+ 
+ 
+ 
+.blink_me 
+{
+  animation: blinker 2s linear infinite;
+  color: #ff9200;
+  font-weight: bold;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+ 
+
+ .txtPassword
+ {
+   -webkit-text-security:disc;
+ } 
+ 
+	 
+		/* This only works with JavaScript, 
+		if it's not present, don't show loader */
+		.no-js #loader { display: none;  }
+		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+		
+	
+	 /* .modal-dialog
+	 {
+	 	width:80% !important;
+	 }	 */
+ 
+ .txtPassword
+ {
+   -webkit-text-security:disc;
+ } 
+
+
+
+	 /* Process Layer Started */
+     	
+     	#processlayer
+			{
+				/* width: 300px;
+				height: 50px; 
+				background:#ECF1EF;
+				 border: red dotted 5px; */
+				text-align: center;
+				position: fixed;
+				margin-right: -50px;
+				margin-top: -200px;
+				right: 50%;
+				top: 50%;
+				z-index: 99999;
+				width:300px;
+				display: none;
+			}
+			
+			#blocklayer
+			{
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				bottom:0;
+				right:0;
+				opacity: 0.7;
+				background: #ECF1EF;
+			}
+     	
+     	/* Process Layer Ended */
+
+</style>
+  	
+
+
+</head>
+
+<body>
+ <div class="loading-overlay">
+<div class='loader_container'>
+<div class='loader'>
+<div class='loader--dot'></div>
+<div class='loader--dot'></div>
+<div class='loader--dot'></div>
+<div class='loader--dot'></div>
+<div class='loader--dot'></div>
+<div class='loader--dot'></div>
+<div class='loader--text'></div>
+</div>
+</div>
+</div> 
+    
+		   
+
+
+ 
+
+<style>
+.dropbtn { 
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  top: -10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+ 
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+ 
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+	
+	
+	.navbar-nav li:hover > ul.dropdown-menu 
+	{
+	    display: block;
+	}
+	.dropdown-submenu {
+	    position:relative;
+	}
+	.dropdown-submenu > .dropdown-menu {
+	    top: 0;
+	    left: 100%;
+	    margin-top:-6px;
+	}
+	
+	/* rotate caret on hover */
+	.dropdown-menu > li > a:hover:after {
+	    text-decoration: underline;
+	    transform: rotate(-90deg);
+	} 
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+  color:#0dcaf0!important;
+  font-weight: bold !important;
+}
+
+
+.blink_me_aided {
+  animation: blinker 1s linear infinite;
+  color:#ffc107!important;
+  font-weight: bold !important;
+}
+.blink_me_rte {
+  animation: blinker 1s linear infinite;
+  color:#07ffa6!important;
+  font-weight: bold !important;
+}
+
+
+.blink_me_deecet {
+  animation: blinker 1s linear infinite;
+  color:#cc640d!important;
+  font-weight: bold !important;
+}
+
+
+.blink_to {
+  animation: blinker 1s linear infinite;
+   color:#red!important; 
+ color:#0dcaf0!important;
+  font-weight: bold !important;
+  font-size: 20px;
+  /* background-color:red; */
+  
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.brand {
+    color: #d8b4b4;
+    text-decoration: none;
+    background-color: #711111;
+    padding: 10px 15px;
+    border-radius: 8px;
+
+
+
+	/* This only works with JavaScript, 
+		if it's not present, don't show loader */
+		.no-js #loader { display: none;  }
+		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+
+
+.mybadge
+{
+  padding: 10px;
+  margin-top: 15px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  padding-left: 15px;"
+}
+
+ 
+
+
+
+
+</style>
+     <section class="sims-header"> 
+     <div class="hdr">
+        <div class="container-xxl">
+            <div class="row py-2 px-3">
+                <div class="col-lg-4">
+                    <div class="sims-logo-box d-flex align-items-center">
+                          <!-- <img src="./img/Logo svg.svg" alt=""> -->
+                           <img src="/resources/img_new/Logo svg.svg" >
+                          <div class="sims-ap-heading-box ms-1" style="text-align: center;padding-left: 20px;">
+                            <p>Government of Andhra Pradesh</p>
+                            <h5>Department of School Education</h5>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 sims-minstrs-box">
+                
+		 	            
+		 	            <div class="row ap_min_link">
+                    <div class="col-sm-6 col-md-3">
+                    	 
+                    	 <a class="badge badge-pill badge-success ap_links_a_1" style="padding: 10px;margin-top: 15px;width: 100%;text-align: center;font-size: 14px;padding-left: 5px;background-color: #1b9730;" href="https://teacherinfo.apcfss.in/" target="_blank">
+                    	 <i class="" aria-hidden="true" style="color:#fff !important;font-size: mediam;"></i> &nbsp;Teachers Transfers 2025
+                    	 </a>
+                    	</div>
+
+                  <!--   	
+                  <div class="col-sm-6 col-md-3">
+                    	 <a class="badge badge-pill badge-success" style="padding: 10px;margin-top: 15px;width: 100%;text-align: center;font-size: 14px;padding-left: 15px;background-color:#e7692c;" href="https://apdsc.apcfss.in/" target="_blank">MEGA DSC-2025</a>
+                    	</div> -->
+                    	
+                    <div class="col-sm-6 col-md-3">
+                    	 <a class="badge badge-pill badge-info" style="padding: 10px; margin-top: 15px; width: 100%; text-align: center; background-color:#7e5bad; font-size: 14px; padding-left: 15px;" href="/RteNotificationsPage" target="_blank">RTE-12(1)C-2026-27</a>
+                    	</div>
+                    	
+                    <div class="col-sm-6 col-md-3">
+                    	  <a class="badge badge-pill badge-primary" style="padding: 10px;  width: 100%; text-align: center; margin-top: 15px; background-color:#00b8ff; font-size: 14px; padding-left: 15px;" href="https://tet2dsc.apcfss.in/" target="_blank">APTET 2026</a>
+                    	</div>
+                    	
+                    	
+                    	 <div class="col-sm-6 col-md-3">
+                    	 	 <a class="badge badge-pill badge-primary" style="padding: 10px;  width: 100%; text-align: center; margin-top: 15px; background-color:#2d5ec5; font-size: 13px; padding-left: 2px;" href="/downloadclickersapk">Clickers POC Schools App</a>
+                    	</div>
+                    	</div>
+                    	
+                    
+                   <!-- 
+	                   <div class="sims-header-min-box d-flex align-items-center">
+	                        <img src="/resources/img_new/APCMnew.png" alt=""  style="width: 22% !important;">
+	                        <div class="sims-ap-min-heading-box ms-1">
+	                          <h6>Sri. Nara Chandrababu Naidu</h6>
+	                          <p>Hon'ble Chief Minister</p>
+	                          <p>Govt. of Andhra Pradesh </p>
+	                        </div>
+	                  </div>
+	                  
+	                  <div class="sims-header-min-box edu d-flex align-items-center">
+	                    <img src="/resources/img_new/APEduMinisternew.png" alt="" style="width: 18% !important;">
+		                    <div class="sims-ap-min-heading-box ms-1" style="width: 80%!important">
+		                      <h6>Sri. Nara Lokesh</h6>
+		                      <p>Hon'ble Minister for Human Resources Development,<br>IT Electronics & Communication, RTG</p>
+		                      <p>Govt. of Andhra Pradesh </p>
+		                    </div>
+	             	  </div> 
+             	  --> 
+             	 
+                </div>
+            </div>
+        </div>
+        
+      </div>
+
+        <div class="sims-navbar">
+            <div class="container-xxl">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark sims-hdr-nvbr">
+                    <div class="container-fluid sims-nav-main-bx">
+                      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sims-nvbr-ul">
+                          <li class="nav-item">
+                          
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              About Us
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/loadaboutus">School Information Management System</a></li> 
+	                    	  <li><a class="dropdown-item" href="/loadorganogram">Oraganogram</a></li> 
+	              
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Contact Us
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/loadcontactus">State Office</a></li> 
+	                   
+	                
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Important Links
+                            </a>
+                            <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://cse.ap.gov.in/DSE/" target="_blank">Old/Pensioners MR Bills</a></li> 
+	                    <li><a class="dropdown-item" href="http://cse.ap.gov.in/RTE" target="_blank">RTE-12(1)C Admissions</a></li> 
+	                  <!--   <li ><a class="dropdown-item" href="https://apdsc2024.apcfss.in/" target="_blank">MEGA DSC-2024</a></li> -->
+	                    <li><a class="dropdown-item" href="https://aptet.apcfss.in/" target="_blank">APTET - July 2024</a></li>
+	                   <!--  <li ><a class="dropdown-item" href="https://apms.apcfss.in/" target="_blank">APMS 2025-26</a></li>  --> 
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Statistics
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2016-17.pdf">Educational Statistics 2016-17</a></li>
+							<li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2017-18.pdf">Educational Statistics 2017-18</a></li>
+							<li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2018-19.pdf">Educational Statistics 2018-19</a></li>
+							<li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2019-20.pdf">Educational Statistics 2019-20</a></li>
+							<li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2020-21.pdf">Educational Statistics 2020-21</a></li>
+							<li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2021-22.pdf">Educational Statistics 2021-22</a></li>
+	                        <li><a class="dropdown-item" href="/MISdownload/MIS_REPORT_NOTIFICATION/Educational Statistics 2022-23.pdf">Educational Statistics 2022-23</a></li>
+	              
+                            </ul>
+                          </li>
+                         <!--  <li class="nav-item">
+                            <a class="nav-link" href="#">APTET-July 2024</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">APMS 2024-25</a>
+                          </li>
+                       
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">DSC-2024</a>
+                          </li> -->
+   						 
+                 		 
+                 		
+	              
+			            <li class="nav-item">
+			                <a class="nav-link" href="/AidedRecruitmentNotifications">Aided Recruitment</a>
+		 	            </li>
+			           
+		 	    
+		 	
+                           <li class="nav-item">
+                           <a class="nav-link" href="/loadManabadiMagzines">Manabadi Magazine</a></li> 
+                           
+                          
+		 	            <li class="nav-item">
+			                <a class="nav-link" href="https://zeropovertyp4.ap.gov.in" target="_blank">AP Zero Poverty</a>
+		 	            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="https://swarnandhra.ap.gov.in/PMP" target="_blank">Swarna Andhra</a>
+		 	            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="https://kys.udiseplus.gov.in/" target="_blank">Know Your School</a>
+		 	            </li>
+		 	           <!--  <li class="nav-item">
+			                <a class="nav-item scrollto active" href="https://apdeecet.apcfss.in/aidedLogin" target="_blank"><span class="blink_me_aided">Aided Teachers Recruitment Test Hallticket Download</span></a>
+		 	            </li> -->
+		 	             
+                        
+                        </ul>
+                       <!--   <button class="sims-header-login-box">
+
+                               Login
+                         </button> 
+                         
+                         <button type="button" id="myBtn" class="sims-header-login-box" data-toggle="modal" data-target="#login_modal" style="  margin-top: 10px; font-size: 15px; ">
+						 <strong>Login</strong>
+						</button>-->
+						
+						  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#login_modal">
+		                  Login
+		                </button>
+                         
+                      </div>
+                    </div>
+                  </nav>
+            </div>
+           
+        </div>
+     
+         <div class="container-xxl"> 
+					<div id="popup1" class="overlay">
+						<div class="popup"> 
+								<a class="close" href="#">&times;</a>
+							<div class="content"> 
+									<h4 style="text-align: center;"> <u>Click here to download</u></h4>
+										<b><a class="dropdown-item" href="/downloadSSCActionablePoints/Notifications/Primary Academic Calendar.pdf"><h5 style="color: blue; text-align: center;">Primary Academic Calendar</h5></a></b>
+										<b><a class="dropdown-item" href="/downloadSSCActionablePoints/Notifications/Secondary Academic Calendar.pdf"><h5 style="color: blue; text-align: center;">Secondary Academic Calendar</h5></a></b>
+							</div>
+						</div>
+					</div>
+					         	
+         </div>
+         
+         
+     </section> 
+     
+     
+<div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="exampleModalPopoversLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="wrap-login100" style="background-image: url('/resources/img_new/Login.svg'); background-position: center;<!-- background-size: 460px; -->background-repeat: no-repeat;position:relative;">
+ 			 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <i class="fa fa-times-circle" aria-hidden="true" style="color:red;"></i> 
+        </button>
+			
+				<form class="login100-form validate-form" id="login_form" name="login_form" action = "/login" method="post" autocomplete="off" >
+					<input type="hidden" id="username" name="username" autocomplete="off">
+					<input type="hidden" id="password" name="password" autocomplete="off">
+					<input type="hidden" id="captcha" name="captcha" autocomplete="off">
+					
+					<span class="login100-form-title p-b-34 p-t-27">
+						<b>Login</b>
+					</span>
+					<div class="container" style="margin-top: 30px;">
+						<div class="label-mar">
+							<label for="uname"><b>Username</b></label>
+							<input type="text" class="login_validate_css" placeholder="Username" name="user_id" id="user_id" style="padding: 3px 12px;" required autocomplete="off">
+					    </div>
+						<div class="label-mar">
+							<label  for="psw"><b>Password</b></label>
+							<input type="password" class="login_validate_css" maxlength="25" placeholder="Password" name="user_pwd" id="user_pwd" oncopy="return false" onpaste="return false" style="padding: 3px 12px;" required autocomplete="off">
+	                        <span><i class="bi bi-eye-slash icon" id="togglePassword"></i>
+	                        </span>
+						</div> 
+						<div class="row" style="padding-top:5px;float: right;"> 
+							<span style="text-decoration: underline;"><a href="/newforgetPassword" style="font-size: 14px;">Forget password?</a></span>
+ 						</div>
+ 						<div class="row" style="padding-top:10px;"> 
+							<div class="label-mar">
+								<label for="uname"><b>Enter Captcha   <img  id="imgCaptcha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAAAXCAIAAABWAzDpAAADZUlEQVR42u1ZL1hUQRC/QqFQKBow
+SNBCoVAoGjRo0GKxWCwaNGjA4AsQIECAQqFQKBAgQIAAAQIEKFdeuXIFvk8IECCA4zefwzizuze7
+994d8r1Jx759u8NvfvP31X5VcuelVkFQGamSykiVkSr5n4xUf1LPH+eNgUbzQfOk/+Ss7wwWr3qu
+bmo3lz2X573np32nx/3Ht/uf1g+HDveH941KjP8Yz7JsYmxi6tuU8ZWjoSOhld6DWjUfNhuPGvlg
+DlqFz1z4sDD/cX728+z01+nJ75P80cyXmblPc/AU9iy+XwyfI7C66L0QWJXlSQSKWKfrpaKDufFk
+BIWbyq49N5V+6iRQS+GmEo/AVPZzyFR80YlVkeHuYPgAQeGLxBSxGfhrORNYiaDgn8BfMJVdpb2R
+PdJKEEjw137m0rsloRVJGoE0rUs00s7oDoIi1smpacUOyvLbZQSFe5UINQHZerbFTSW04qay/5ur
+r1e5qURYTiAQ/km+jsmixMIBQEFTOeMvd2rjgesv1wEUMJUINcbX116tObUiUDSBWsrm800ngUB0
+ALRjJSJQkUYSLg+gbLzYQP4GsoIdlO3RbQAFTCVCjT004Q/UCkAhrchUvrLCJ7sju4JAdIsOgCRY
+VviwckagIj0JruegrLxZQf5iANTxV6RKCyhoKgw1HBRLkscfqBWAQqFG1KV2faAu5V7Ffd1X1znr
+UsJKEKisEpxXNaAoXo/81fFXp8qWAsU6mQpBMb5IBCKtKAAGip0WVdm/dSn3dQrLXHzFDhbrSDhO
+oBKbWWIK7xXQVCL+igSe4FX2/Zy/BAppFSh2AqLrUk4gnQ58GZT6KvL1TkwcqAAV1zuzQoLEtsAg
+2c9Mg8KDUoJWzmaTfN2ZEX0EwhaYfL1DYyFoNvX1zqwQKzQXiHrLNxdoRytfsykIpL1KEyhqhlLk
+7O7PXMB1vQ41dkmYC1BfFU7gCVr5mk0+WKIKMEwgxKo7A9ZAqow9CpvN69p17It8LsBNRaCIaZvF
+VGLapjeAr2NYjpoBtm+qxCl4VFt3n8Q47ipW0j9V2OcC90aiZoBdMxI1mzzU3Dr1388NzlDD2zox
+GE2YC3ReEgaj3fek5Dzkk/A3GPFlCGst0QK3Q6Cwbt0lUAFfZtvpAO6OGH29JAKFdfsN3HHWvozQ
+844AAAAASUVORK5CYII=" />&nbsp;&nbsp;&nbsp;<i class="fa fa-refresh fa-2x" aria-hidden="true" onclick="return refreshCaptcha();" style="cursor:pointer;color:#0d6efd;"></i></b></label>
+								<input type="text" class="login_validate_css" placeholder="Enter Captcha" name="user_captcha" id="user_captcha" maxlength="6"  style="padding: 3px 12px;margin-top:5px;"  required autocomplete="off">
+							</div>
+						  </div>
+						  <div class="row" style="padding-top:10px;float:right;">
+	 						  	<button type="button" id="signin_btn_id" class="btn btn-primary "><strong>Sign In</strong></button>
+						  </div>
+					</div>
+					
+					
+				</form>
+			</div>
+      
+    </div>
+  </div>
+</div> 
+     
+    	
+    
+    <br><br><br><br><br><br><br><br><br>
+
+
+
+
+<div class="col-xs-5 col-sm-5">
+	<div class="col-xs-12 col-sm-12" style="margin-left : 450px;padding-top:50px;">
+	     <div class="searchShadetop" style="border-radius: 60px; padding: 20px 20px 20px 20px; border: #babec1 solid 1px;">
+	    	<p style="color :green;text-align : center;"> 803 - Something went wrong. Please try after some time</p>
+	    </div>
+ 	</div>
+</div>
+
+
+
+ <br><br><br><br><br><br><br>
+
+
+ 
+ 			
+  <!-- ======= Footer ======= -->
+  <footer class="footer-04">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 mb-md-0 mb-4">
+          <h2 class="footer_heading">Reach Us</h2>
+          
+          <!-- <address class="footer_text">Sri Anjaneya Towers, Road No. 7-104, BBlock, 4th Floor, N.T.T.P.S. Road, Ibrahim Patnam, Amarawathi,Vijayawada, Krishna Dt. PIN - 521 456. 
+            <br/>Phone: 0866 - 2883941 <a href="mailto:#"; style="color:#1473E6">csepeshi@apschooledu.in</a></address> -->
+            <address class="footer_text" style="padding-left: 10px;">
+            Commissioner of School Education,<br>
+						D.No.398/3, Vidya bhavan,<br>
+						 Venkatadiri towers, Atmakur(V)<br>
+						 Mangalagiri(M), Guntur District -522503 
+            <br/>Phone: 08645297600 <br>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08645297500 <!-- <a href="mailto:#"; style="color:#1473E6">csepeshi@apschooledu.in</a> --></address>
+          
+        </div>
+        <div class="col-md-4 col-lg-4 mb-md-0 mb-4">
+          <h2 class="footer_heading">Useful Links</h2> 
+       
+           <ul class="list-unstyled footer_text" style="float: left !important;margin-left: 18px;">
+            <li><a href="/copyrightPolicy">> &nbsp;Copyright Policy</a></li>
+            <li><a href="/privacyPolicy">> &nbsp;Privacy Policy</a></li>
+            <li><a href="/hyperLinkingPolicy">> &nbsp;Hyperlinking Policy</a></li>
+            <li><a href="/TermsAndConditions">> &nbsp;Terms & Conditions</a></li>
+            <li><a href="/downloadRequestedData/RTI_4(1)(b).pdf">> &nbsp;RTI-4(1)(B)</a></li>
+      		<li><a href="/RTEAct">> &nbsp;RTE Act</a></li>
+            <!--  <li><a href="#">> &nbsp;Site Map</a></li> -->
+            <li><a href="/textBooksDownloadingPageMinorBilingual">> &nbsp;Download Minor media bilingual Text Books/ Work Books</a></li>
+            <li><a href="/textBooksDownloadingPagetitleWise">> &nbsp;Title wise download count</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-lg-4 mb-md-0 mb-4">
+          <h2 class="footer_heading">Other Links</h2>
+        
+          <ul class="list-unstyled footer_text" style="float: left !important;margin-left: 18px;">
+            <li><a href="/WorldBank">> &nbsp;World Bank</a></li>
+            <li><a href="#">> &nbsp;DSC 1998</a></li>
+             <li><a href="http://cse.ap.gov.in/RTE" class="py-1 d-block">> &nbsp;RTE-12(1)C Admissions</a></li> 
+            <!--  <li><a href="http://cse.ap.gov.in/TPM" class="py-1 d-block">> &nbsp;Teacher Promotions Module</a></li> -->
+            <li><a href="http://cse.ap.gov.in/PSIS" class="py-1 d-block">> &nbsp;Private Schools Opening Permission</a></li>
+             <li><a href="/ApplicationStatusSearch" class="py-1 d-block">> &nbsp;NOC Visa/Passport/Private School Application Status Search</a></li>
+             
+             
+            <li><a href="/loadPrvtSchooldetailsPage" class="py-1 d-block">> &nbsp;Form-1 Private Schools</a></li> 
+             <li><a href="/aidedhallticket" class="py-1 d-block">> <i class="fa fa-bullhorn blink_me" aria-hidden="true" style="color:#57ff22 !important;font-size: mediam;"></i> &nbsp;&nbsp;Aided Hallticket</a></li>
+              
+             
+             
+            <!--  <li><a href="/StudentSearching" class="py-1 d-block">> &nbsp;Student Search</a></li>
+              <li><a href="/TeacherSearching" class="py-1 d-block">> &nbsp;Teacher Search</a></li> -->
+          </ul>
+        </div>
+        
+     <!--    <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+          <h2 class="footer_heading">Join Our Newsletter</h2>
+       
+          <form action="#" class="subscribe-form">
+            <div class="form-group d-flex">
+              <input type="text" class="form-control rounded-left" placeholder="Enter email address" style="margin: 0px;">
+              <button type="submit" class="form-control submit rounded-right">Subscribe</button>
+            </div>
+          </form>
+          
+        </div> -->
+      </div>
+    </div>
+    <div class="w-100 mt-5 border-top py-5" style="padding-top: 1rem !important;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-8">
+
+            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;2026. All rights Reserved by School Education, Govt. of A.P. Designed & Developed by Tata Consultancy Services.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 text-md-right">
+            <p class="mb-0 list-unstyled">
+			        <ul class="ftco-footer-social p-0">
+			        <li><a href="#"  title="Facebook"><span class="fa fa-twitter"></span></a></li>
+			        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-facebook"></span></a></li>
+			        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+			        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Skype"><span class="fa fa-skype"></span></a></li>
+			        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><span class="fa fa-linkedin"></span></a></li>  
+			      </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+    	
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fa fa-arrow-up"></i></a>
+ 
+
+	<div id="dropDownSelect1"></div>
+	
+	  <!-- Screen Lock Started Here   -->
+	<div id="processlayer"> 
+		<img src="/resources/images/loading_img.gif" border="0"/>
+	</div>
+	<div id="blocklayer">
+	</div>
+   <!-- Screen Lock Ended Here --> 
+
+<script src="/resources/js/jquery-3.6.0.min.js"></script>
+<script src="/resources/js/bootstrap.v4.5.0.js"></script>
+<script src="/resources/js/bootstrap-dialog.js"></script>
+<script src="/resources/js/sha512.js"></script>
+<script src="/resources/js/MaskedPassword.js"></script> 
+<script src="/resources/js/CommonJS.js"></script> 
+
+<script src="/resources/js/bootstrap-select.min.js"></script>  
+<script src="/resources/js/select2.js"></script>  
+<script src="/resources/js/bootstrap-toggle.min.js"></script> 
+<script src="/resources/js/bootstrap-datepicker.min.v1.9.0.js"></script> 
+
+</body>
+</html>

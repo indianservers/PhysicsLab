@@ -33,7 +33,7 @@ export interface SyllabusFrameworkBand {
   focus: string[];
   topicIds: string[];
   experimentIds: string[];
-  status: "covered" | "partial" | "needs-lab";
+  status: "covered" | "partial" | "needs-lab" | "upcoming";
 }
 
 export interface SyllabusFramework {
@@ -413,7 +413,7 @@ const band = (
   focus: string[],
   topicIds: string[],
   experimentIds: string[],
-  status: SyllabusFrameworkBand["status"] = experimentIds.length ? "covered" : "needs-lab"
+  status: SyllabusFrameworkBand["status"] = experimentIds.length ? "partial" : "upcoming"
 ): SyllabusFrameworkBand => ({ id, label, grades, focus, topicIds, experimentIds, status });
 
 export const syllabusFrameworks: SyllabusFramework[] = [
@@ -439,6 +439,61 @@ export const syllabusFrameworks: SyllabusFramework[] = [
       band("cbse-9-10", "Classes 9-10", [9, 10], ["motion", "forces", "gravitation", "work", "sound", "optics", "electricity"], ["c9-motion", "c9-newton-laws", "c9-gravitation", "c9-work-energy", "c9-sound", "c10-lenses", "c10-series-parallel"], ["uniform-motion", "newton-s-second-law", "free-fall", "work-power", "sound-wave-anatomy", "lens-formula", "series-parallel-resistance"]),
       band("cbse-11", "Class 11", [11], ["measurement", "kinematics", "laws", "rotation", "thermal", "waves"], ["c11-units-errors", "c11-plane-motion", "c11-laws-motion", "c11-rotation", "c11-thermal", "c11-oscillations-waves"], ["measurement-errors", "projectile-motion", "friction", "rotational-dynamics", "thermodynamic-process", "wave-lab"]),
       band("cbse-12", "Class 12", [12], ["electrostatics", "current", "magnetism", "AC", "optics", "modern", "semiconductors"], ["c12-electrostatics", "c12-current", "c12-magnetic-effects", "c12-emi-ac", "c12-wave-optics", "c12-dual-atoms", "c12-semiconductors"], ["capacitor-lab", "meter-bridge", "lorentz-force", "ac-lcr-resonance", "young-double-slit", "photoelectric-equation", "logic-gates"]),
+    ],
+  },
+  {
+    id: "telangana-state",
+    label: "Telangana State",
+    source: "Telangana SCERT school science and physical-science textbook pathway",
+    note: "Official chapter, activity, and practical mapping is planned. Related app content remains partial until item-level equivalence is reviewed.",
+    bands: [
+      band("ts-6-8", "Classes 6-8", [6, 7, 8], ["measurement", "motion", "force", "heat", "light", "sound", "electricity"], [], [], "upcoming"),
+      band("ts-9-10", "Classes 9-10", [9, 10], ["mechanics", "thermal physics", "waves", "optics", "electricity", "magnetism"], [], [], "upcoming"),
+      band("ts-11-12", "Intermediate", [11, 12], ["mechanics", "properties of matter", "thermodynamics", "waves", "electromagnetism", "optics", "modern physics"], [], [], "upcoming"),
+    ],
+  },
+  {
+    id: "kerala-state",
+    label: "Kerala State",
+    source: "Kerala SCERT Curriculum 2024 and revised Physics textbooks",
+    note: "Dedicated Physics chapter and activity mapping for Standards IX-X is upcoming; present simulations are related content, not completed equivalence.",
+    bands: [
+      band("kerala-6-8", "Classes 6-8", [6, 7, 8], ["measurement", "forces", "energy", "heat", "light", "sound", "electricity"], [], [], "upcoming"),
+      band("kerala-9-10", "Physics IX-X", [9, 10], ["mechanics", "energy", "waves", "optics", "electricity", "magnetism", "electronics"], [], [], "upcoming"),
+      band("kerala-11-12", "Higher Secondary", [11, 12], ["mechanics", "matter", "thermal physics", "waves", "fields", "optics", "modern physics"], [], [], "upcoming"),
+    ],
+  },
+  {
+    id: "tamil-nadu-state",
+    label: "Tamil Nadu",
+    source: "Tamil Nadu state science and Physics textbook pathway",
+    note: "Textbook-year, chapter, learning-outcome, and prescribed-practical records are upcoming.",
+    bands: [
+      band("tn-6-8", "Classes 6-8", [6, 7, 8], ["measurement", "motion", "heat", "light", "sound", "electricity", "space"], [], [], "upcoming"),
+      band("tn-9-10", "Classes 9-10", [9, 10], ["mechanics", "fluids", "thermal physics", "optics", "electricity", "magnetism"], [], [], "upcoming"),
+      band("tn-11-12", "Higher Secondary", [11, 12], ["mechanics", "properties of matter", "heat", "waves", "electromagnetism", "optics", "atomic and nuclear physics", "electronics"], [], [], "upcoming"),
+    ],
+  },
+  {
+    id: "karnataka-state",
+    label: "Karnataka",
+    source: "Karnataka state science and PUC Physics pathway",
+    note: "Official state-textbook and PUC theory/practical extraction is upcoming; no coverage claim is made yet.",
+    bands: [
+      band("ka-6-8", "Classes 6-8", [6, 7, 8], ["motion", "force", "heat", "light", "sound", "electricity"], [], [], "upcoming"),
+      band("ka-9-10", "Classes 9-10", [9, 10], ["mechanics", "energy", "waves", "optics", "electricity", "magnetism"], [], [], "upcoming"),
+      band("ka-11-12", "PUC Physics", [11, 12], ["mechanics", "matter", "thermodynamics", "oscillations", "electromagnetism", "optics", "modern physics", "electronics"], [], [], "upcoming"),
+    ],
+  },
+  {
+    id: "maharashtra-state",
+    label: "Maharashtra",
+    source: "Maharashtra Balbharati science and Physics XI-XII pathway",
+    note: "Balbharati sequencing, activities, and practical equivalence are upcoming and remain separate from generic CBSE mappings.",
+    bands: [
+      band("mh-6-8", "Classes 6-8", [6, 7, 8], ["measurement", "motion", "force", "energy", "light", "sound", "electricity"], [], [], "upcoming"),
+      band("mh-9-10", "Classes 9-10", [9, 10], ["mechanics", "heat", "waves", "optics", "electricity", "magnetism", "space"], [], [], "upcoming"),
+      band("mh-11-12", "Physics XI-XII", [11, 12], ["mathematical methods", "mechanics", "fluids", "thermal physics", "waves", "electromagnetism", "optics", "modern physics", "electronics"], [], [], "upcoming"),
     ],
   },
   {

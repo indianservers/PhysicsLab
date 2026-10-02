@@ -46,7 +46,7 @@ export const physicsModuleGroups: PhysicsModuleGroup[] = [
       moduleLink("kinematics-lab", "Kinematics Labs", "Launch motion, projectile, and free-fall experiments.", "/experiments?category=Mechanics", "rocket", ["kinematics", "projectile", "free fall"]),
       moduleLink("energy", "Work, Energy & Power", "Energy transfer, power, potential energy, and conservation.", "/topics/energy", "flame", ["work", "energy", "power", "conservation"], "warning"),
       moduleLink("oscillations", "Oscillations", "SHM, pendulum motion, springs, resonance, and phase.", "/topics/oscillations", "pendulum", ["shm", "pendulum", "spring", "resonance"]),
-      moduleLink("gravitation", "Gravity & Orbits", "Universal gravitation, orbital motion, escape speed, and satellites.", "/experiments/orbital-motion", "orbit", ["gravity", "orbit", "satellite"]),
+      moduleLink("gravitation", "Gravity & Orbits", "Universal gravitation, orbital motion, escape speed, and satellites.", "/experiments/satellite-orbit", "orbit", ["gravity", "orbit", "satellite"]),
       moduleLink("sandbox", "Mechanics Sandbox", "Build free-form experiments with objects, forces, springs, and tracks.", "/sandbox", "spark", ["sandbox", "simulation", "force"]),
     ],
   },

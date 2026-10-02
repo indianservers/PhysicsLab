@@ -1,3 +1,4 @@
+import { Upcoming3DSimulation } from "./Upcoming3DSimulation";
 import { ExperimentDefinition } from "../types";
 import { PhysicsIcon } from "../lib/icons";
 import {
@@ -13,6 +14,7 @@ interface PendingVisualizationCardProps {
 }
 
 export function PendingVisualizationCard({ experiment, pane }: PendingVisualizationCardProps) {
+  if (pane === "threeD") return <Upcoming3DSimulation title={experiment.title} />;
   const spec = getExperimentVisualizationSpec(experiment.id);
   const paneSpec = pane === "twoD" ? spec?.twoD : spec?.threeD;
 

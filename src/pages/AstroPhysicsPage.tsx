@@ -1,3 +1,4 @@
+import { Upcoming3DSimulation } from "../components/Upcoming3DSimulation";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { AstroThreeScene, type AstroThreeMode } from "../components/AstroThreeScene";
@@ -31,7 +32,7 @@ export function AstroPhysicsPage() {
   const [orbitRadius, setOrbitRadius] = useState(1);
   const [hubbleDistance, setHubbleDistance] = useState(100);
   const [selectedAssetId, setSelectedAssetId] = useState("black-hole-lensing");
-  const [threeMode, setThreeMode] = useState<AstroThreeMode>("black-hole");
+  const [threeMode, setThreeMode] = useState<AstroThreeMode | null>("black-hole");
 
   useEffect(() => {
     const concept = params.get("concept");
@@ -192,7 +193,7 @@ export function AstroPhysicsPage() {
                 </div>
               </div>
               <div className="mt-4">
-                <AstroThreeScene mode={threeMode} intensity={Math.max(0.6, Math.min(2.2, starRadius / 4 + hubbleDistance / 1000))} />
+                {threeMode ? <AstroThreeScene mode={threeMode} /> : <Upcoming3DSimulation title={astrophysicsConcepts.find(item => item.id === selectedId)?.title ?? "this concept"} />}
               </div>
             </section>
           </section>
@@ -296,11 +297,13 @@ function AstroVisualGallery({ selectedAssetId, onSelectAsset }: { selectedAssetI
   );
 }
 
-function modeForConcept(concept: AstroConcept): AstroThreeMode {
-  if (concept.visual === "black-hole" || concept.category === "Relativity") return "black-hole";
-  if (concept.visual === "galaxy" || concept.category === "Galaxies" || concept.id === "dark-matter" || concept.id === "dark-energy") return "galaxy";
-  if (concept.visual === "wave" || concept.id.includes("wave") || concept.id.includes("cmb") || concept.id.includes("redshift")) return "waves";
-  return "orbits";
+function modeForConcept(concept: AstroConcept): AstroThreeMode | null {
+  const modes: Record<string, AstroThreeMode> = {
+    "gravity-orbits": "orbits", "solar-system": "orbits",
+    "black-holes": "black-hole", "accretion-disks": "black-hole",
+    "gravitational-waves": "waves", "galaxy-structure": "galaxy", "milky-way": "galaxy",
+  };
+  return modes[concept.id] ?? null;
 }
 
 function StarField() {

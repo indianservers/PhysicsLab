@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
-import { ConceptThreeScene } from "../components/ConceptThreeScene";
+import { Upcoming3DSimulation } from "../components/Upcoming3DSimulation";
 import { ParticlePhysicsConcept, ParticleVisual, particleConceptLabs, particlePhysicsCategories, particlePhysicsConcepts, particlePhysicsStats } from "../lib/particlePhysics";
 import { PhysicsIcon } from "../lib/icons";
 
@@ -28,8 +28,6 @@ export function ParticlePhysicsPage() {
   const [category, setCategory] = useState("all");
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => new Set(particlePhysicsCategories));
-  const [threeMode, setThreeMode] = useState(0);
-  const [interactionEnergy, setInteractionEnergy] = useState(0.58);
   const requestedConcept = conceptId ?? searchParams.get("concept");
   const initialConcept = particlePhysicsConcepts.some((concept) => concept.id === requestedConcept) ? requestedConcept ?? "" : particlePhysicsConcepts[0]?.id ?? "";
   const [selectedId, setSelectedId] = useState(initialConcept);
@@ -235,27 +233,7 @@ export function ParticlePhysicsPage() {
           </section>
         )}
 
-        <section className="particle-three-lab" aria-label="Interactive 3D particle physics blueprint">
-          <div className="particle-three-copy">
-            <p className="ui-label">Interactive 3D blueprint</p>
-            <h2>Matter, forces, Higgs, and collider view</h2>
-            <p>Switch scenes to compare fermions, force carriers, hadrons, Higgs excitation, and high-energy collision evidence.</p>
-            <div className="particle-three-controls">
-              {["All", "Matter", "Forces", "Collider", "Higgs"].map((item, index) => (
-                <button key={item} className={threeMode === index ? "string-mode-btn string-mode-btn-active" : "string-mode-btn"} type="button" onClick={() => setThreeMode(index)}>
-                  <span>{index + 1}</span>
-                  {item}
-                </button>
-              ))}
-            </div>
-            <label className="string-slider">
-              <span>Interaction energy</span>
-              <input type="range" min="0" max="1" step="0.01" value={interactionEnergy} onChange={(event) => setInteractionEnergy(Number(event.target.value))} />
-              <strong>{Math.round(interactionEnergy * 100)}%</strong>
-            </label>
-          </div>
-          <ConceptThreeScene variant="particles" mode={threeMode} intensity={interactionEnergy} />
-        </section>
+        <Upcoming3DSimulation title={selected.title} />
 
         <section className="particle-workspace">
           <aside className="particle-filter-panel" aria-label="Particle physics controls">

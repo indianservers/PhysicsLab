@@ -324,6 +324,7 @@ function ExperimentLibraryPage() {
                 </div>
                 <p className="experiment-card-aim">{experiment.aim}</p>
                 <div className="experiment-card-tags">
+                  {!has3DAnimation(experiment.id) && <span>3D · Upcoming</span>}
                   {hasFlagshipModel && <span>Flagship model</span>}
                   <span>{experiment.maturityLevel ?? "Starter"}</span>
                   <span>{experiment.evidenceType ?? "Exact Formula"}</span>

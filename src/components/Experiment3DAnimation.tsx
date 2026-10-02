@@ -101,37 +101,12 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Locate peak and landing range",
     ],
   },
-  "distance-time-graph": {
-    kind: "graph3d",
-    title: "3D distance-time graph",
-    cue: "A cart and its live graph move together, so the slope becomes visible as speed instead of just a formula.",
-    cinematic: true,
-    steps: ["Set speed", "Watch distance build", "Read slope as speed"],
-  },
-  "free-fall": {
-    kind: "freeFall",
-    title: "3D free-fall drop tower",
-    cue: "A sphere drops through timer gates; equal-time ghost marks spread farther apart as speed increases.",
-    cinematic: true,
-    steps: [
-      "Release from height",
-      "Pass timer gates",
-      "Read increasing velocity",
-    ],
-  },
   "mass-and-weight": {
     kind: "massWeight",
     title: "3D mass and weight comparison",
     cue: "Mass stays on the balance while the spring scale stretches differently as local gravity changes.",
     cinematic: true,
     steps: ["Set mass", "Change local g", "Compare balance and spring scale"],
-  },
-  "work-power": {
-    kind: "workPower",
-    title: "3D work and power apparatus",
-    cue: "A force pulls a load through a measured distance; the meter separates work in joules from power in watts.",
-    cinematic: true,
-    steps: ["Apply force", "Measure displacement", "Compare work and power"],
   },
   "vector-resolution": {
     kind: "vector3d",
@@ -144,67 +119,15 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Compare components",
     ],
   },
-  "rotational-dynamics": {
-    kind: "rotationalDynamics",
-    title: "3D torque flywheel",
-    cue: "A tangential force on a lever arm creates torque; larger moment of inertia slows angular acceleration.",
-    cinematic: true,
-    steps: [
-      "Set lever radius",
-      "Apply tangential force",
-      "Read angular acceleration",
-    ],
-  },
-  "satellite-orbit": {
-    kind: "satelliteOrbit",
-    title: "3D orbit and escape lab",
-    cue: "A satellite carries a tangential velocity arrow while gravity points inward; high speed bends into escape.",
-    cinematic: true,
-    steps: [
-      "Set orbital radius",
-      "Compare circular speed",
-      "Cross escape threshold",
-    ],
-  },
   "newton-s-second-law": {
     kind: "force",
     title: "3D force and acceleration",
     cue: "The cart responds to net force; the red vector grows when force dominates friction.",
   },
-  friction: {
-    kind: "force",
-    title: "3D friction response",
-    cue: "Surface drag opposes motion, showing why applied force must cross the friction threshold.",
-  },
-  "balanced-unbalanced-forces": {
-    kind: "forceBalance",
-    title: "3D balanced forces",
-    cue: "Opposite pulls compete on the same body; the net arrow only appears when one side wins.",
-    steps: [
-      "Compare left and right pulls",
-      "Find net force",
-      "Predict acceleration",
-    ],
-  },
   "inclined-plane": {
     kind: "incline",
     title: "3D inclined plane",
     cue: "The block slides along a tilted plane while gravity splits into normal and parallel components.",
-  },
-  "conservation-of-energy": {
-    kind: "energy",
-    title: "3D energy conversion",
-    cue: "Height becomes speed as the ball rolls down the ramp; losses reduce the final motion.",
-  },
-  "simple-pendulum": {
-    kind: "pendulum",
-    title: "3D pendulum swing",
-    cue: "The bob swings in depth so length and damping become visible, not just numeric.",
-  },
-  "circular-motion": {
-    kind: "circular",
-    title: "3D circular motion",
-    cue: "The orbiting mass shows velocity around the circle and inward centripetal pull.",
   },
   "universal-gravitation": {
     kind: "gravity",
@@ -217,31 +140,12 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Watch inverse-square weakening",
     ],
   },
-  "uniform-motion": {
-    kind: "uniformMotion",
-    title: "3D uniform motion track",
-    cue: "The cart passes equally spaced markers at equal time intervals, making constant velocity visible.",
-    cinematic: true,
-    steps: ["Set speed", "Watch equal spacing", "Read constant velocity"],
-  },
-  "elastic-collision": {
-    kind: "elasticCollision",
-    title: "3D elastic collision track",
-    cue: "Two carts exchange velocity according to mass while momentum and kinetic energy bars stay balanced.",
-    cinematic: true,
-    steps: ["Set masses", "Watch collision", "Compare momentum and energy"],
-  },
   "hooke-s-law": {
     kind: "hookesLaw",
     title: "3D Hooke's law spring rig",
     cue: "A hanging mass stretches a spring against a ruler; force and extension remain proportional inside the elastic region.",
     cinematic: true,
     steps: ["Set spring constant", "Add force", "Read extension"],
-  },
-  buoyancy: {
-    kind: "buoyancy",
-    title: "3D buoyancy tank",
-    cue: "The block bobs in water while submerged volume represents displaced fluid.",
   },
   "density-float-sink": {
     kind: "densityTank",
@@ -253,16 +157,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Classify the object state",
     ],
   },
-  "fluid-pressure": {
-    kind: "fluid",
-    title: "3D fluid pressure",
-    cue: "The pressure probe moves through depth; flow markers make pressure direction easier to see.",
-  },
-  "force-and-pressure": {
-    kind: "fluid",
-    title: "3D pressure field",
-    cue: "The same force over a smaller contact area creates a stronger pressure response.",
-  },
   "bernoulli-fluid-flow": {
     kind: "bernoulliVenturi",
     title: "3D Bernoulli venturi",
@@ -273,21 +167,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Watch throat velocity increase",
       "Read pressure drop",
     ],
-  },
-  "heat-and-temperature": {
-    kind: "thermal",
-    title: "3D thermal particles",
-    cue: "Particle speed and glow rise with temperature to separate heat energy from temperature reading.",
-  },
-  "heat-transfer": {
-    kind: "thermal",
-    title: "3D heat transfer",
-    cue: "Energy packets migrate through a slab, slowing when the material is thicker.",
-  },
-  "gas-laws": {
-    kind: "thermal",
-    title: "3D gas container",
-    cue: "Particles collide with the walls while volume and temperature change pressure.",
   },
   "thermodynamic-process": {
     kind: "thermoProcess",
@@ -318,26 +197,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Read ensemble mean",
     ],
   },
-  "ohms-law": {
-    kind: "circuit",
-    title: "3D charge flow",
-    cue: "Charges move around the loop; bulb glow and carrier speed track current.",
-  },
-  "series-parallel-resistance": {
-    kind: "circuit",
-    title: "3D circuit paths",
-    cue: "The loop shows how resistance changes the visible charge-flow rate.",
-  },
-  "electric-power": {
-    kind: "circuit",
-    title: "3D power output",
-    cue: "The load glows as voltage and current combine into useful electrical power.",
-  },
-  "heating-effect-current": {
-    kind: "circuit",
-    title: "3D Joule heating",
-    cue: "The resistor warms as current rises, emphasizing the squared current effect.",
-  },
   "static-electricity": {
     kind: "staticElectricity",
     title: "3D static electricity",
@@ -351,11 +210,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
     cue: "Ions move through electrolyte toward electrodes while bubbles rise and deposit builds on the cathode.",
     cinematic: true,
     steps: ["Apply DC supply", "Move ions", "Build deposit"],
-  },
-  "capacitor-lab": {
-    kind: "circuit",
-    title: "3D capacitor charging",
-    cue: "Charge gathers on the plates while stored energy rises with voltage.",
   },
   "electrostatic-field-potential": {
     kind: "electrostaticField",
@@ -396,11 +250,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
     kind: "electromagnet",
     title: "3D electromagnet",
     cue: "A helical coil produces pulsing magnetic field loops around an iron core.",
-  },
-  "magnetic-field-current": {
-    kind: "electromagnet",
-    title: "3D magnetic field",
-    cue: "Current through the conductor wraps field loops around it.",
   },
   "lorentz-force": {
     kind: "lorentz3d",
@@ -452,11 +301,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Bend through lens",
       "Form real or virtual image",
     ],
-  },
-  "mirror-formula": {
-    kind: "lens",
-    title: "3D ray bench",
-    cue: "Rays reflect or focus so object distance and focal length become spatial.",
   },
   "reflection-plane-mirror": {
     kind: "planeMirror3d",
@@ -518,11 +362,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
     title: "3D prism dispersion",
     cue: "White light separates into colored rays after refraction through the prism.",
   },
-  "total-internal-reflection": {
-    kind: "prism",
-    title: "3D total internal reflection",
-    cue: "The ray reflects inside the denser medium after crossing the critical angle.",
-  },
   "optical-instruments": {
     kind: "opticalInstrument3d",
     title: "3D microscope and telescope tube",
@@ -533,21 +372,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
       "Form the intermediate image",
       "Compare objective and eyepiece magnification",
     ],
-  },
-  "young-double-slit": {
-    kind: "interference",
-    title: "3D interference fringes",
-    cue: "Two coherent sources make bright and dark bands on a distant screen.",
-  },
-  "single-slit-diffraction": {
-    kind: "interference",
-    title: "3D diffraction spread",
-    cue: "A narrow opening spreads the wavefront into a broad pattern.",
-  },
-  "sound-wave-anatomy": {
-    kind: "interference",
-    title: "3D sound wave",
-    cue: "Compression bands travel forward while particles vibrate back and forth.",
   },
   "wave-lab": {
     kind: "waveLab3d",
@@ -673,22 +497,6 @@ const animationConfigs: Record<string, AnimationConfig> = {
     title: "3D photoelectric effect",
     cue: "Photons strike the metal; electrons leave only when photon energy beats work function.",
   },
-  "de-broglie-wavelength": {
-    kind: "interference",
-    title: "3D matter-wave spread",
-    cue: "Higher accelerating voltage shortens wavelength and tightens diffraction.",
-  },
-  "special-relativity-bridge": {
-    kind: "graph3d",
-    title: "3D spacetime bridge",
-    cue: "A light-clock path and spacetime graph stretch as speed approaches light speed.",
-    cinematic: true,
-    steps: [
-      "Set speed fraction",
-      "Watch gamma grow",
-      "Compare time and length readings",
-    ],
-  },
   "bohr-model": {
     kind: "bohr",
     title: "Cinematic Bohr transition",
@@ -729,7 +537,7 @@ interface Experiment3DAnimationProps {
 export function has3DAnimation(experimentId: string) {
   if (experimentId === "atomic-interactions") return true;
   const spec = getExperimentVisualizationSpec(experimentId);
-  return Boolean(spec && !isPanePending(spec.threeD));
+  return Boolean(animationConfigs[experimentId] && spec && !isPanePending(spec.threeD));
 }
 
 export function Experiment3DAnimation({
@@ -746,7 +554,7 @@ export function Experiment3DAnimation({
     () =>
       isPending3D
         ? undefined
-        : (animationConfigs[experiment.id] ?? fallback3DConfig(experiment)),
+        : animationConfigs[experiment.id],
     [experiment, isPending3D],
   );
   const panelRef = useRef<HTMLElement | null>(null);
@@ -1230,311 +1038,6 @@ export function Experiment3DAnimation({
   );
 }
 
-function fallback3DConfig(experiment: ExperimentDefinition): AnimationConfig {
-  const category = experiment.category.toLowerCase();
-  const id = experiment.id;
-  const kind = fallback3DKind(experiment);
-  const cinematic =
-    category.includes("optic") ||
-    category.includes("modern") ||
-    category.includes("magnet") ||
-    id.includes("orbit") ||
-    id.includes("generator") ||
-    id.includes("transformer");
-
-  return {
-    kind,
-    title: `3D ${experiment.title} model`,
-    cue: `Use the sliders, then rotate the scene with the pointer. The 3D model highlights the main interaction behind ${experiment.title}.`,
-    cinematic,
-    steps: fallback3DSteps(category, kind),
-  };
-}
-
-function fallback3DKind(experiment: ExperimentDefinition): AnimationKind {
-  const id = experiment.id;
-  const category = experiment.category.toLowerCase();
-  if (id.includes("projectile")) return "projectile";
-  if (
-    id.includes("distance") ||
-    id.includes("graph") ||
-    category.includes("measurement")
-  )
-    return "graph3d";
-  if (id.includes("balanced")) return "forceBalance";
-  if (id.includes("incline") || id.includes("ramp")) return "incline";
-  if (id.includes("pendulum") || id.includes("shm") || id.includes("spring"))
-    return "pendulum";
-  if (id.includes("rotation") || id.includes("circular")) return "circular";
-  if (
-    id.includes("orbit") ||
-    id.includes("satellite") ||
-    id.includes("gravitation")
-  )
-    return "gravity";
-  if (id.includes("buoyancy")) return "buoyancy";
-  if (id.includes("density") || id.includes("float") || id.includes("sink"))
-    return "densityTank";
-  if (
-    id.includes("fluid") ||
-    id.includes("bernoulli") ||
-    id.includes("pressure")
-  )
-    return "fluid";
-  if (id.includes("calorimetry")) return "calorimetry";
-  if (
-    id.includes("gas") ||
-    id.includes("heat") ||
-    id.includes("thermal") ||
-    category.includes("thermo")
-  )
-    return "thermal";
-  if (id.includes("generator")) return "generator";
-  if (id.includes("transformer")) return "transformer";
-  if (id.includes("emi") || id.includes("faraday") || id.includes("induction"))
-    return "induction";
-  if (
-    id.includes("magnetic") ||
-    id.includes("electromagnet") ||
-    id.includes("lorentz") ||
-    category.includes("magnet")
-  )
-    return "electromagnet";
-  if (
-    id.includes("circuit") ||
-    id.includes("current") ||
-    id.includes("ohm") ||
-    id.includes("resistance") ||
-    id.includes("capacitor") ||
-    category.includes("electric")
-  )
-    return "circuit";
-  if (
-    id.includes("logic") ||
-    id.includes("diode") ||
-    category.includes("electronics")
-  )
-    return "logic";
-  if (
-    id.includes("prism") ||
-    id.includes("dispersion") ||
-    id.includes("internal") ||
-    id.includes("polarization") ||
-    id.includes("reflection")
-  )
-    return "prism";
-  if (id.includes("eye")) return "eye";
-  if (
-    id.includes("lens") ||
-    id.includes("mirror") ||
-    category.includes("optic")
-  )
-    return "lens";
-  if (id.includes("photoelectric")) return "photoelectric";
-  if (id.includes("relativity")) return "graph3d";
-  if (id.includes("bohr") || id.includes("nuclear")) return "bohr";
-  if (
-    id.includes("wave") ||
-    id.includes("sound") ||
-    id.includes("slit") ||
-    id.includes("diffraction") ||
-    id.includes("interference") ||
-    id.includes("chladni")
-  )
-    return "interference";
-  if (category.includes("astronomy")) return "gravity";
-  if (category.includes("fluid")) return "fluid";
-  if (category.includes("wave")) return "interference";
-  if (category.includes("modern")) return "bohr";
-  if (category.includes("energy")) return "energy";
-  return "force";
-}
-
-function fallback3DSteps(category: string, kind: AnimationKind) {
-  if (kind === "eye")
-    return [
-      "Compare focus with retina",
-      "Add a concave or convex correction",
-      "Check clear-image formation",
-    ];
-  if (kind === "planeMirror3d")
-    return [
-      "Set incidence angle",
-      "Compare incident and reflected rays",
-      "Verify virtual image distance",
-    ];
-  if (kind === "glassSlab3d")
-    return [
-      "Enter the slab",
-      "Bend by Snell's law",
-      "Compare parallel emergent ray",
-    ];
-  if (kind === "shadowEclipse3d")
-    return ["Align source and occluder", "Find the umbra", "Find the penumbra"];
-  if (kind === "multipleReflection3d")
-    return [
-      "Set mirror angle",
-      "Watch virtual copies",
-      "Check the image-count condition",
-    ];
-  if (kind === "opticalInstrument3d")
-    return [
-      "Set objective and eyepiece",
-      "Locate intermediate image",
-      "Read angular magnification",
-    ];
-  if (kind === "waveLab3d")
-    return [
-      "Set amplitude and frequency",
-      "Track local medium motion",
-      "Read v = f lambda",
-    ];
-  if (kind === "chladni3d")
-    return ["Set plate mode", "Find nodal lines", "Watch sand collect"];
-  if (kind === "echo3d")
-    return ["Send sound pulse", "Reflect from wall", "Halve round-trip time"];
-  if (kind === "soundPitch3d")
-    return ["Set frequency", "Set amplitude", "Compare pitch and loudness"];
-  if (kind === "springShm3d")
-    return [
-      "Displace from equilibrium",
-      "Watch restoring force",
-      "Compare KE and spring PE",
-    ];
-  if (kind === "spectrum3d")
-    return [
-      "Scan wavelength regions",
-      "Find visible band",
-      "Compare frequency inverse relation",
-    ];
-  if (kind === "polarization3d")
-    return [
-      "Set analyzer angle",
-      "Project field direction",
-      "Read Malus intensity",
-    ];
-  if (kind === "measurement3d")
-    return [
-      "Read the instrument",
-      "Compare repeated markers",
-      "Report mean and uncertainty",
-    ];
-  if (kind === "nuclearDecay3d")
-    return [
-      "Start with nuclei population",
-      "Advance half-lives",
-      "Read remaining activity",
-    ];
-  if (kind === "diode3d")
-    return [
-      "Set bias direction",
-      "Watch carriers cross",
-      "Compare rectified output",
-    ];
-  if (kind === "energySources3d")
-    return [
-      "Select source type",
-      "Compare output and reliability",
-      "Check emissions tradeoff",
-    ];
-  if (kind === "quantumOperators3d")
-    return [
-      "Set state vector",
-      "Apply operator axis",
-      "Measure eigenbasis projection",
-    ];
-  if (kind === "computationalWorkflow3d")
-    return ["Build mesh", "Run solver iterations", "Check convergence error"];
-  if (kind === "lens" || kind === "prism")
-    return [
-      "Follow the incoming ray",
-      "Watch the interaction surface",
-      "Locate the image or pattern",
-    ];
-  if (kind === "circuit" || kind === "logic")
-    return [
-      "Set the source/input",
-      "Watch carriers or states move",
-      "Read the output response",
-    ];
-  if (kind === "staticElectricity" || kind === "electrostaticField")
-    return [
-      "Set charge and distance",
-      "Watch field direction",
-      "Read force or potential",
-    ];
-  if (kind === "electrolysis")
-    return ["Apply DC current", "Move ions", "Read deposit or bubbles"];
-  if (kind === "meterBridge")
-    return ["Set resistances", "Move jockey", "Find null balance"];
-  if (kind === "internalCell")
-    return ["Set load current", "Watch internal drop", "Compare E and V"];
-  if (kind === "kirchhoff3d")
-    return ["Trace branch currents", "Check KCL", "Compare voltage drops"];
-  if (kind === "lcr3d")
-    return ["Drive with AC", "Rotate phasors", "Find resonance peak"];
-  if (kind === "lorentz3d")
-    return ["Set charge sign", "Compare v and B", "Read force and path radius"];
-  if (
-    kind === "electromagnet" ||
-    kind === "induction" ||
-    kind === "generator" ||
-    kind === "transformer"
-  )
-    return [
-      "Create changing current or flux",
-      "Watch the field link the device",
-      "Compare the induced response",
-    ];
-  if (kind === "thermal" || kind === "calorimetry")
-    return [
-      "Set energy input",
-      "Watch particles redistribute energy",
-      "Read the final thermal state",
-    ];
-  if (kind === "thermoProcess")
-    return [
-      "Choose process type",
-      "Watch pressure-volume change",
-      "Compare heat and work",
-    ];
-  if (kind === "statisticalEnsemble")
-    return [
-      "Sample many states",
-      "Watch the distribution form",
-      "Read mean and spread",
-    ];
-  if (kind === "fluid" || kind === "buoyancy" || kind === "densityTank")
-    return [
-      "Set depth, density, or flow",
-      "Watch pressure and buoyancy vectors",
-      "Compare the final state",
-    ];
-  if (kind === "interference")
-    return [
-      "Set frequency or opening",
-      "Watch wavefronts overlap",
-      "Read nodes, antinodes, or fringes",
-    ];
-  if (kind === "bohr" || kind === "photoelectric")
-    return [
-      "Add energy",
-      "Watch the quantum event",
-      "Read the emitted or ejected signal",
-    ];
-  if (category.includes("measurement"))
-    return [
-      "Take repeated readings",
-      "See uncertainty spread",
-      "Estimate the best value",
-    ];
-  return [
-    "Set one variable",
-    "Watch the object respond",
-    "Compare vector and result",
-  ];
-}
-
 function buildScene(
   kind: AnimationKind,
   root: THREE.Group,
@@ -1614,7 +1117,8 @@ function buildScene(
   if (kind === "bohr") return buildBohr(root, a, b, c);
   if (kind === "coupledOscillator")
     return buildCoupledOscillator(root, a, b, c);
-  return buildLogic(root, a, b, c);
+  if (kind === "logic") return buildLogic(root, a, b, c);
+  throw new Error(`No dedicated 3D scene for ${kind}`);
 }
 
 function addGrid(root: THREE.Group) {

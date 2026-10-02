@@ -52,6 +52,7 @@ import { ProLabPage } from "./pages/ProLabPage";
 import { ClientDemosPage } from "./pages/ClientDemosPage";
 import { AppDirectoryPage } from "./pages/AppDirectoryPage";
 import { ConceptExperiencesPage } from "./pages/ConceptExperiencesPage";
+import { SimulationStudioEnhancements } from "./components/SimulationStudioEnhancements";
 
 const CircularStudioPage = lazy(() => import("./pages/CircularStudioPage"));
 const InertiaStudioPage = lazy(() => import("./pages/InertiaStudioPage"));
@@ -395,6 +396,7 @@ export default function App() {
               <Route path="/terms" element={<SimplePage title="Terms" />} />
             </Routes>
           </div>
+          <SimulationStudioEnhancements />
           {!isQuietSurface && <AppFooter />}
         </main>
       </ToastProvider>

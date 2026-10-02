@@ -1,3 +1,4 @@
+import { PendingVisualizationCard } from "../components/PendingVisualizationCard";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { experiments } from "../lib/experiments";
@@ -37,6 +38,7 @@ import { getExperimentValidationMetadata } from "../lib/experimentValidationRegi
 import "../components/lesson-premium.css";
 import "../components/lesson-panel-contrast.css";
 import "../components/lesson-compact-shell.css";
+import { VirtualLabEnhancements } from "../components/VirtualLabEnhancements";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
@@ -102,11 +104,10 @@ export function ExperimentDetailPage() {
                   aria-selected={activePane === pane.id}
                   className={activePane === pane.id ? "experiment-tab experiment-tab-active" : "experiment-tab"}
                   type="button"
-                  disabled={disabled}
                   onClick={() => setActivePane(pane.id)}
                 >
                   <PhysicsIcon name={pane.icon} className="h-4 w-4" />
-                  {pane.label}
+                  {disabled ? "3D · Upcoming" : pane.label}
                 </button>
               );
             })}
@@ -145,6 +146,7 @@ export function ExperimentDetailPage() {
           </div>
         </div>
       </div>
+      <VirtualLabEnhancements experiment={experiment} />
     </div>
   );
 }
@@ -164,6 +166,7 @@ function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof
 function ExperimentThreePane({ experiment, assignment }: { experiment: typeof experiments[number]; assignment?: ActiveAssignment }) {
   const [values, setValues] = useState<[number, number, number]>(() => readLabSnapshotFromSearch(experiment.id)?.values ?? labValuesFor(experiment.id));
   const [resetKey, setResetKey] = useState(0);
+  if (!has3DAnimation(experiment.id)) return <PendingVisualizationCard experiment={experiment} pane="threeD" />;
   const result = calculateLab(experiment.id, values[0], values[1], values[2]);
   return (
     <div className="live-lesson-workbench">
@@ -186,7 +189,7 @@ function ExperimentThreePane({ experiment, assignment }: { experiment: typeof ex
       {has3DAnimation(experiment.id) ? (
         <Experiment3DAnimation key={resetKey} experiment={experiment} values={values} outputs={result.outputs} fixedShell />
       ) : (
-        <div className="panel p-5">This experiment uses a 2D guided visualization.</div>
+        <PendingVisualizationCard experiment={experiment} pane="threeD" />
       )}
     </div>
   );
@@ -279,7 +282,7 @@ function LabCommandStrip({ experiment }: { experiment: typeof experiments[number
         <span className="ui-label">Lab flow</span>
         {features.map((feature) => (
           <a key={feature.label} className={feature.active ? "status-chip status-chip-cyan" : "status-chip opacity-55"} href={feature.label === "3D" ? "#three-d" : feature.label === "Coach" ? "#coach" : feature.label === "Notebook" ? "#notebook" : feature.label === "Toolkit" ? "#toolkit" : "#guide"}>
-            <PhysicsIcon name={feature.icon} className="h-3.5 w-3.5" />{feature.label}
+            <PhysicsIcon name={feature.icon} className="h-3.5 w-3.5" />{feature.label === "3D" && !feature.active ? "3D · Upcoming" : feature.label}
           </a>
         ))}
       </div>
@@ -520,16 +523,16 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
                     <PhysicsIcon name="eye" className="h-4 w-4" />
                     2D Visual
                   </button>
-                  <button className={visualPane === "three" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "three"} disabled={!supportsThreeD} onClick={() => setVisualPane("three")}>
+                  <button className={visualPane === "three" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "three"} onClick={() => setVisualPane("three")}>
                     <PhysicsIcon name="orbit" className="h-4 w-4" />
-                    3D Visual
+                    {supportsThreeD ? "3D Visual" : "3D · Upcoming"}
                   </button>
                 </div>
                 <div className="visual-pane-canvas">
                   {visualPane === "two" && (
                     <GuidedVisualization experiment={experiment} values={[a, b, c]} outputs={results.outputs} controls={results.controls} />
                   )}
-                  {visualPane === "three" && supportsThreeD && (
+                  {visualPane === "three" && (
                     <Experiment3DAnimation experiment={experiment} values={[a, b, c]} outputs={results.outputs} timelineTime={activeMoment?.time ?? null} />
                   )}
                 </div>
