@@ -1,0 +1,71 @@
+{
+  "cases": 2754,
+  "maxTransportError": 1.3652273755937472e-15,
+  "maxPDEError": 1.4210854715202004e-14,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 602,
+      "controlsTop": 612
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "stageBottom": 602,
+      "controlsTop": 612
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "stageBottom": 602,
+      "controlsTop": 612
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 857,
+      "controlsTop": 867
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "stageBottom": 1154,
+      "controlsTop": 1164
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "stageBottom": 1154,
+      "controlsTop": 1164
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "SI amplitude",
+    "wave equation",
+    "spatial/time periodicity",
+    "rightward phase speed",
+    "longitudinal order",
+    "four reference learning modes",
+    "both wave types",
+    "parameter sensitivity",
+    "all view toggles",
+    "zoom renderer",
+    "probe keyboard",
+    "actual instance matrix/model synchronization",
+    "recording",
+    "prediction",
+    "explanation",
+    "challenge",
+    "play/pause/reset",
+    "slow time progression",
+    "WebGL fallback"
+  ]
+}

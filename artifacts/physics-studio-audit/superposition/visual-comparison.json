@@ -1,0 +1,15 @@
+{
+  "route": "/motion/superposition",
+  "reference": "09_waves_sound/02_superposition.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 170,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 21.992,
+  "ssim": 0.5438,
+  "frozenTime": 0,
+  "note": "Metrics are diagnostic, not acceptance percentages. Remaining water material/lighting and type differences. Source-distance centreline plots and probe use the same cylindrical approximation as the GPU surface; illustrative reference values are not copied."
+}

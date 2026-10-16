@@ -1,0 +1,53 @@
+{
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "four reference modes",
+    "play/pause/reset",
+    "time nonnegative",
+    "energy partition",
+    "mass sensitivity",
+    "keyboard release",
+    "zoom renderer change",
+    "display switch",
+    "all five view checkboxes",
+    "friction loss",
+    "recording",
+    "prediction feedback",
+    "explanation",
+    "challenge",
+    "three navigation cycles",
+    "WebGL fallback"
+  ]
+}

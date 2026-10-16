@@ -1,0 +1,45 @@
+{
+  "maxEnergyError": 5.329070518200751e-15,
+  "maxEquationError": 1.4210854715202004e-14,
+  "physicsCases": 2700,
+  "layouts": [
+    {
+      "width": 1536,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "overflow": 0
+    },
+    {
+      "width": 320,
+      "overflow": 0
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "model periodicity",
+    "energy conservation",
+    "Newton equation",
+    "mass scaling",
+    "four reference modes",
+    "no screenshot cutouts",
+    "play/pause/reset",
+    "time/scene synchronization",
+    "zoom renderer change",
+    "mass sensitivity",
+    "prediction feedback",
+    "recording",
+    "explanation",
+    "challenge",
+    "navigation cleanup"
+  ]
+}

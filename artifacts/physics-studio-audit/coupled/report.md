@@ -1,0 +1,15 @@
+# Coupled Oscillators rebuild — 2026-10-17
+
+Route `/motion/coupled-oscillators`; target `08_oscillations/06_coupled_oscillators.png`.
+
+Replaced static spring photograph and unrelated decorative pendulums with native Three.js equal-length pendulums, attachment spring, masses scaled to mass ratio, ruler and actual past-state ghosts. Recreated reference-specific layout, control panel, excitation selection, live/normal-frequency results, equations, displacement and energy plots, animated mode-selection cards, stage transport/fullscreen and challenge. Existing sidebar markup and navigation retained. Four reference learning modes; no unrelated 3D or tools dock. No screenshot crops.
+
+Corrected prior model: coupling used to multiply independent cosines by an arbitrary decaying factor; mass ratio incorrectly changed pendulum frequency through length. New frictionless small-angle system has L=1 m, m1=.25 kg, m2=ratio*m1 and spring attachment a=.35 m. Equations include dimensional ka² torque. Exact normal modes are solved analytically; out-of-phase amplitude ratio satisfies m1*theta1+m2*theta2=0 for unequal masses. Initial choices release at rest: left-only, in-phase, out-of-phase. Spring potential energy is included in total energy and split equally for per-pendulum energy bookkeeping. At zero coupling there is no transfer and beat period is infinite. All plots, scene positions, readouts, ghosts and recordings use this solution.
+
+Verification: `node scripts/testCoupledRebuild.mjs` passed 7,236 cases, energy conservation including spring, coupled Newton equations, normal-mode ratios, zero-coupling independence and coupling/beat trend; browser verifies model/scene angles, all controls/excitation choices/mode cards, playback/reset, actual zoom renderer change, fullscreen API, recording, prediction/explanation/challenge, WebGL fallback and six viewport sizes with no horizontal overflow or stage/plot overlap. No page errors. Raw evidence and deterministic time=12.4 s screenshots saved. Geometry/material/environment/renderer and observer disposal on unmount; no extra scene animation loop.
+
+Physics reference: [MIT OCW Chapter 3: Normal Modes](https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/29afe7e96aadefce1bd80486771aeae9_MIT8_03SCF16_Text_Ch3.pdf). Equal-length unequal-mass/attachment-distance case implemented by deriving the mass-weighted common and relative coordinates; verified independently against the original coupled equations.
+
+Visual status: actual metal appearance and camera/background differ from the target; physical constants/attachment placement are explicitly documented, so normal frequencies and beat period differ from illustrative target numbers. Native mode previews are schematic. Metrics/comparisons saved and not presented as completion percentages. Full inventory remains open.
+
+Final production check: `npm run build` passed (TypeScript, Vite, PWA). Shared raw log: `../resonance/build.log`. Broad physics regression passed 581/581; raw output `../resonance/physics-regression.log`. Bundle-size/performance acceptance remains open.

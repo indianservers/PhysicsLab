@@ -1,0 +1,85 @@
+{
+  "cases": 9648,
+  "maxEnergyResidual": 4.440892098500626e-16,
+  "maxNewtonResidual": 1.7763568394002505e-15,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 709,
+        "controlsTop": 721,
+        "stageBottom": 709
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 709,
+        "controlsTop": 721,
+        "stageBottom": 709
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 730,
+        "controlsTop": 742,
+        "stageBottom": 730
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 1372,
+        "controlsTop": 1384,
+        "stageBottom": 750
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 1525.3125,
+        "controlsTop": 1537.3125,
+        "stageBottom": 804
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "geometry": {
+        "workspaceBottom": 1525.3125,
+        "controlsTop": 1537.3125,
+        "stageBottom": 804
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "release at rest",
+    "all damping regimes",
+    "energy dissipation",
+    "underdamped envelope bound",
+    "Q infinity at zero damping",
+    "four reference modes",
+    "play/pause/reset",
+    "mass and damping sensitivity",
+    "model/chamber synchronization",
+    "zoom",
+    "keyboard release",
+    "recording",
+    "prediction",
+    "explanation",
+    "challenge"
+  ]
+}

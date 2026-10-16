@@ -1497,276 +1497,6 @@
     "dock": 0
   },
   {
-    "reference": "08_oscillations/01_spring_shm.png",
-    "route": "/motion/spring-shm",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "08_oscillations/02_pendulum.png",
-    "route": "/motion/pendulum",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "08_oscillations/03_energy_exchange.png",
-    "route": "/motion/energy-exchange",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "08_oscillations/04_damping.png",
-    "route": "/motion/damping",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "08_oscillations/05_resonance.png",
-    "route": "/motion/resonance",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "08_oscillations/06_coupled_oscillators.png",
-    "route": "/motion/coupled-oscillators",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "09_waves_sound/01_wave_properties.png",
-    "route": "/motion/wave-properties",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "09_waves_sound/02_superposition.png",
-    "route": "/motion/superposition",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/interference.png"
-    ],
-    "dock": 0
-  },
-  {
-    "reference": "09_waves_sound/03_interference.png",
-    "route": "/motion/interference",
-    "tabs": [
-      {
-        "text": "Observe",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Predict",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Experiment",
-        "label": null,
-        "group": "frs-modes"
-      },
-      {
-        "text": "Explain",
-        "label": null,
-        "group": "frs-modes"
-      }
-    ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/interference.png"
-    ],
-    "dock": 0
-  },
-  {
     "reference": "09_waves_sound/04_standing_waves.png",
     "route": "/motion/standing-waves",
     "tabs": [
@@ -3211,6 +2941,313 @@
         "text": "Explain",
         "label": null,
         "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/01_spring_shm.png",
+    "route": "/motion/spring-shm",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "ssm-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "ssm-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "ssm-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "ssm-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/02_pendulum.png",
+    "route": "/motion/pendulum",
+    "tabs": [
+      {
+        "text": "Simulation",
+        "label": null,
+        "group": "pds-workspace-switch"
+      },
+      {
+        "text": "Lab Mode",
+        "label": null,
+        "group": "pds-workspace-switch"
+      },
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/03_energy_exchange.png",
+    "route": "/motion/energy-exchange",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Zoom",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Realistic",
+        "label": null,
+        "group": "eex-switch"
+      },
+      {
+        "text": "Schematic",
+        "label": null,
+        "group": "eex-switch"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/04_damping.png",
+    "route": "/motion/damping",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/05_resonance.png",
+    "route": "/motion/resonance",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "⌕Zoom",
+        "label": "Zoom",
+        "group": "rsn-transport"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/06_coupled_oscillators.png",
+    "route": "/motion/coupled-oscillators",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "⌕　Zoom",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "In-phase (ω−)f− = 0.498 Hz",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Out-of-phase (ω+)f+ = 0.576 Hz",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/01_wave_properties.png",
+    "route": "/motion/wave-properties",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Transverse Wave",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Longitudinal Wave",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/02_superposition.png",
+    "route": "/motion/superposition",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "sup-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "sup-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "sup-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "sup-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/03_interference.png",
+    "route": "/motion/interference",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "wif-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "wif-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "wif-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "wif-modes"
       }
     ],
     "assets": [],

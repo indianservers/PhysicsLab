@@ -1,0 +1,11 @@
+{
+  "cases": 13068,
+  "maxEnergyError": 7.105427357601002e-15,
+  "maxEquationResidual": 7.105427357601002e-15,
+  "maxDerivativeResidual": 1.2455450359993847e-7,
+  "extraChecks": [
+    "release conditions",
+    "ideal period mass scaling",
+    "critical and overdamped finite solution"
+  ]
+}

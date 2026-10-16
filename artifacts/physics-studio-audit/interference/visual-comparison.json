@@ -1,0 +1,15 @@
+{
+  "route": "/motion/interference",
+  "reference": "09_waves_sound/03_interference.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 229,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 31.129,
+  "ssim": 0.5249,
+  "frozenTime": 0,
+  "note": "Metrics are diagnostic, not acceptance percentages. Diagnostic only. Native water material/lighting differs from the reference photograph; source distances, wavelength and normalized intensity are computed consistently in SI rather than copying inconsistent reference samples."
+}

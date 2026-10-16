@@ -1,0 +1,15 @@
+{
+  "route": "/motion/spring-shm",
+  "reference": "08_oscillations/01_spring_shm.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "sidebarExcluded": true,
+  "targetSidebar": 245,
+  "currentSidebar": 201,
+  "meanAbsoluteChannelDifference": 18.054,
+  "ssim": 0.554,
+  "beforeSource": "artifacts\\physics-studio-audit\\reference-captures\\08_oscillations__01_spring_shm.png",
+  "note": "Diagnostic metrics are not acceptance percentages. Rebuilt apparatus material/light realism remains different from target photos; current state is frozen at documented model time. Existing sidebar excluded and main region widths aligned. Correct physics values replace inconsistent illustrative reference values."
+}

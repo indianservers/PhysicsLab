@@ -1,0 +1,77 @@
+{
+  "cases": 10206,
+  "maxAdditionResidual": 2.7755575615628914e-17,
+  "maxPeriodError": 1.2073675392798577e-15,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 911,
+      "toolbarTop": 925,
+      "equationBottom": 911
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "stageBottom": 911,
+      "toolbarTop": 925,
+      "equationBottom": 911
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "stageBottom": 1392.15625,
+      "toolbarTop": 1406.15625,
+      "equationBottom": 1392.15625
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 1392.15625,
+      "toolbarTop": 1406.15625,
+      "equationBottom": 1392.15625
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "stageBottom": 1763.5,
+      "toolbarTop": 1777.5,
+      "equationBottom": 1763.5
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "stageBottom": 1763.5,
+      "toolbarTop": 1777.5,
+      "equationBottom": 1763.5
+    }
+  ],
+  "errors": [],
+  "shaderErrors": [],
+  "checks": [
+    "linear sum",
+    "local envelope bound",
+    "coherent stationary amplitude",
+    "destructive midpoint cancellation",
+    "cylindrical spreading law",
+    "medium wavelength",
+    "four reference modes",
+    "play/pause/reset",
+    "all source controls",
+    "medium switch",
+    "all camera views",
+    "zoom renderer",
+    "probe mouse and keyboard",
+    "shader time and physical probe height",
+    "recording",
+    "prediction/explanation/challenge",
+    "WebGL fallback and disabled unsupported camera",
+    "three repeated navigation cycles"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "route": "/motion/pendulum",
+  "reference": "08_oscillations/02_pendulum.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "sidebarExcluded": true,
+  "targetSidebar": 217,
+  "currentSidebar": 217,
+  "meanAbsoluteChannelDifference": 20.279,
+  "ssim": 0.5669,
+  "beforeSource": "artifacts\\physics-studio-audit\\reference-captures\\08_oscillations__02_pendulum.png",
+  "note": "Diagnostic metrics are not acceptance percentages. Rebuilt apparatus material/light realism remains different from target photos; current state is frozen at documented model time. Existing sidebar excluded and main region widths aligned. Correct physics values replace inconsistent illustrative reference values."
+}

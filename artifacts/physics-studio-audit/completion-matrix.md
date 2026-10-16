@@ -1,6 +1,6 @@
 # Current completion matrix
 
-Metrics are automatic triage, not visual acceptance. Every page still needs comparison review; only the two named rebuilds have new per-control checks in this pass.
+Metrics are automatic triage, not visual acceptance. Every page still needs comparison review; the named rebuilds have per-control evidence in their corresponding artifact folders; other rows remain open.
 
 | Studio | Lab | Route | MAE | SSIM | Current verification | Status |
 |---|---|---|---:|---:|---|---|
@@ -46,15 +46,15 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 07_gravitation | orbits | /motion/orbits | 23.683 | 0.4373 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 07_gravitation | escape velocity | /motion/escape-velocity | 23.772 | 0.4895 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 07_gravitation | keplers laws | /motion/keplers-laws | 24.995 | 0.4384 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 08_oscillations | spring shm | /motion/spring-shm | 22.207 | 0.5285 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 08_oscillations | spring shm | /motion/spring-shm | See spring-shm/visual-comparison.json | — | Rebuilt native apparatus; 2,700 physics cases and five responsive/control checks passed | Material realism/refinement open |
 | 08_oscillations | pendulum | /motion/pendulum | 24.291 | 0.5201 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 08_oscillations | energy exchange | /motion/energy-exchange | 23.077 | 0.5269 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 08_oscillations | damping | /motion/damping | 25.986 | 0.5158 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 08_oscillations | resonance | /motion/resonance | 23.677 | 0.5452 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 08_oscillations | coupled oscillators | /motion/coupled-oscillators | 23.949 | 0.5253 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 09_waves_sound | wave properties | /motion/wave-properties | 22.03 | 0.5278 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 09_waves_sound | superposition | /motion/superposition | 31.182 | 0.4214 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 09_waves_sound | interference | /motion/interference | 30.191 | 0.427 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 08_oscillations | energy exchange | /motion/energy-exchange | See energy-exchange/visual-comparison.json | — | Native Three.js bench; 13,068 physics cases and six responsive/control checks passed | Material realism/refinement open |
+| 08_oscillations | damping | /motion/damping | See damping/visual-comparison.json | — | Native chamber; 9,648 physics cases and six responsive/control checks passed | Material realism/refinement open |
+| 08_oscillations | resonance | /motion/resonance | See resonance/visual-comparison.json | — | Three.js oscillator; 2,160 motion cases, singular limit and six responsive/control checks passed | Material realism/refinement open |
+| 08_oscillations | coupled oscillators | /motion/coupled-oscillators | See coupled/visual-comparison.json | — | True coupled model; 7,236 physics cases and six responsive/control checks passed | Material realism/refinement open |
+| 09_waves_sound | wave properties | /motion/wave-properties | See wave-properties/visual-comparison.json | — | Native wave machine; 2,754 wave cases, actual particle-matrix and six responsive/control checks passed | Material/header/type refinement open |
+| 09_waves_sound | superposition | /motion/superposition | See superposition/visual-comparison.json | — | Native ripple shader; 10,206 model cases and six responsive/control checks passed | Water material/type refinement open |
+| 09_waves_sound | interference | /motion/interference | See interference/visual-comparison.json | — | Native source/detector tank; 450 time-average model cases and six responsive/control checks passed | Water material/type refinement open |
 | 09_waves_sound | standing waves | /motion/standing-waves | 24.304 | 0.5075 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 09_waves_sound | sound spectrum | /motion/sound-spectrum | 25.102 | 0.4767 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 09_waves_sound | doppler effect | /motion/doppler-effect | 21.32 | 0.5162 | Reference-size capture and navigation inspection | Visual review/refinement open |

@@ -1,0 +1,69 @@
+{
+  "cases": 7236,
+  "maxEnergyError": 8.326672684688674e-17,
+  "maxNewtonError": 2.220446049250313e-16,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 743,
+      "plotsTop": 755
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "stageBottom": 743,
+      "plotsTop": 755
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "stageBottom": 790,
+      "plotsTop": 802
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 1430,
+      "plotsTop": 1442
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "stageBottom": 1791.34375,
+      "plotsTop": 1803.34375
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "stageBottom": 1791.34375,
+      "plotsTop": 1803.34375
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "total energy including spring",
+    "true coupled equations",
+    "normal mode relations with unequal masses",
+    "zero coupling no transfer",
+    "stronger coupling faster beat",
+    "four modes",
+    "play/pause/reset",
+    "zoom renderer",
+    "fullscreen API",
+    "initial excitation",
+    "mode cards",
+    "recording",
+    "model/scene angles",
+    "prediction",
+    "explanation",
+    "challenge",
+    "WebGL fallback"
+  ]
+}

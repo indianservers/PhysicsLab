@@ -1,0 +1,15 @@
+{
+  "route": "/motion/coupled-oscillators",
+  "reference": "08_oscillations/06_coupled_oscillators.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "sidebarExcluded": true,
+  "targetSidebar": 223,
+  "currentSidebar": 201,
+  "meanAbsoluteChannelDifference": 22.841,
+  "ssim": 0.5291,
+  "beforeSource": "artifacts\\physics-studio-audit\\reference-captures\\08_oscillations__06_coupled_oscillators.png",
+  "note": "Diagnostic metrics are not acceptance percentages. Rebuilt apparatus material/light realism remains different from target photos; current state is frozen at documented model time. Existing sidebar excluded and main region widths aligned. Correct physics values replace inconsistent illustrative reference values."
+}

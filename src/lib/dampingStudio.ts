@@ -1,1 +1,8 @@
-export type DampingInput={b:number;m:number;x0:number;time:number;k:number};export const DAMPING_DEFAULTS={b:.8,m:.25,x0:.08,time:0,k:50};export function dampingSettings(v:DampingInput){return{b:Math.max(0,Math.min(5,Number(v.b)||0)),m:Math.max(.05,Math.min(2,Number(v.m)||.05)),x0:Math.max(0,Math.min(.2,Number(v.x0)||0)),time:Math.max(0,Math.min(25,Number(v.time)||0)),k:50}}export function dampingSolution(v:DampingInput){const w0=Math.sqrt(v.k/v.m),delta=v.b/(2*v.m),wd=Math.sqrt(Math.max(0,w0*w0-delta*delta)),x=v.x0*Math.exp(-delta*v.time)*Math.cos(wd*v.time),returnV=-v.x0*Math.exp(-delta*v.time)*(delta*Math.cos(wd*v.time)+wd*Math.sin(wd*v.time));return{delta,Q:w0/(2*Math.max(delta,.0001)),x,vel:returnV,regime:delta<w0?'Underdamped':delta===w0?'Critical':'Overdamped'}}
+import {energySolution} from './energyExchangeStudio';
+export type DampingInput={b:number;m:number;x0:number;time:number;k:number};
+export const DAMPING_DEFAULTS:DampingInput={b:.8,m:.25,x0:.08,time:0,k:50};
+export function dampingSettings(v:DampingInput):DampingInput{const clamp=(n:number,min:number,max:number)=>Math.max(min,Math.min(max,Number.isFinite(n)?n:min));return{b:clamp(v.b,0,5),m:clamp(v.m,.05,2),x0:clamp(v.x0,0,.2),time:clamp(v.time,0,25),k:50}}
+export function dampingSolution(v:DampingInput){
+ const a=energySolution({amplitude:v.x0,mass:v.m,k:v.k,time:v.time,damping:v.b}),w0=a.w,delta=v.b/(2*v.m),discriminant=w0*w0-delta*delta,wd=Math.sqrt(Math.max(0,discriminant)),regime=Math.abs(discriminant)<1e-8?'Critical':discriminant>0?'Underdamped':'Overdamped';
+ return{...a,w0,delta,wd,Q:v.b===0?Infinity:Math.sqrt(v.k*v.m)/v.b,regime,envelope:discriminant>1e-8?v.x0*Math.sqrt(1+delta*delta/(wd*wd))*Math.exp(-delta*Math.max(0,v.time)):null};
+}

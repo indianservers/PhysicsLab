@@ -1,0 +1,55 @@
+{
+  "cases": 2160,
+  "maxVelocityError": 1.4323333630272828e-9,
+  "maxAccelerationError": 3.101123979831755e-8,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "forcing equation",
+    "transient initial rest",
+    "resonance singular limit",
+    "zero drive",
+    "peak and bandwidth",
+    "four reference modes",
+    "play/pause/reset",
+    "zoom renderer",
+    "response mode",
+    "all parameter sensitivity",
+    "keyboard graph frequency",
+    "recording",
+    "explanation",
+    "prediction",
+    "challenge"
+  ]
+}

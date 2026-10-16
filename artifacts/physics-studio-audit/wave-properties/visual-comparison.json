@@ -1,0 +1,15 @@
+{
+  "route": "/motion/wave-properties",
+  "reference": "09_waves_sound/01_wave_properties.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 164,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 20.086,
+  "ssim": 0.5605,
+  "frozenTime": 0.1,
+  "note": "Metrics are diagnostic, not acceptance percentages. Remaining material/lighting and typography differences; waveform wavelength is the actual v/f and is not copied from inconsistent illustrative reference curves."
+}
