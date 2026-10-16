@@ -60,7 +60,7 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
         ? 0
         : runState === "narrated"
           ? dt * 0.8 * direction * playback
-          : dt * values.angularSpeed * direction * playback * (reducedMotion ? 0.05 : 1);
+          : dt * values.angularSpeed * direction * playback * (reducedMotion ? 0.0025 : 0.01);
       setValues((current) => ({
         ...current,
         angleRad: normalizeAngle(current.angleRad + delta),
@@ -102,7 +102,7 @@ export function AcGeneratorLab({ experiment }: DedicatedExperimentLabProps) {
         ? `${result.phase}: |ε| = NBAω`
         : result.phase.includes("zero")
           ? `${result.phase}: flux linkage is extremal`
-          : "Continuous rotation — waveform and coil are synchronized";
+      : "Slow-motion rotation (0.01×) — voltage and coil use the same angle";
 
   return (
     <section

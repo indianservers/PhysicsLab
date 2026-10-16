@@ -1,3 +1,4 @@
+import { safeStorage } from "../lib/safeStorage";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { useSearchParams } from "react-router-dom";
@@ -9,7 +10,7 @@ import { trackQuizComplete, trackQuizStreak } from "../lib/achievements";
 
 const difficultyOptions: Array<"all" | QuizDifficulty> = ["all", "Basic", "Intermediate", "Difficult"];
 const classOptions = ["all", "6", "7", "8", "9", "10", "11", "12"];
-const bestScoreKey = "physicslab-quiz-best-v1";
+const bestScoreKey = "physicslab-quiz-best-percent-v1";
 const weakConceptKey = "physicslab-quiz-weak-concepts-v1";
 type WeakConceptMap = Record<string, number>;
 
@@ -32,7 +33,7 @@ function QuizPracticePage() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [animatingOption, setAnimatingOption] = useState<{ option: string; type: "correct" | "wrong" } | null>(null);
   const [elapsed, setElapsed] = useState(0);
-  const [bestScore, setBestScore] = useState(() => Number(localStorage.getItem(bestScoreKey) ?? 0));
+  const [bestScore, setBestScore] = useState(() => Math.max(0, Math.min(100, Number(safeStorage.getItem(bestScoreKey)) || 0)));
   const [weakConcepts, setWeakConcepts] = useState<WeakConceptMap>(() => readWeakConcepts());
 
   const subcategoryOptions = useMemo(() => {
@@ -41,12 +42,14 @@ function QuizPracticePage() {
   }, [categoryId]);
 
   const weakConceptList = useMemo(() => mergeFocusTag(topWeakConcepts(weakConcepts), focusTag), [focusTag, weakConcepts]);
-  const session = useMemo(() => makeQuizSession({ categoryId, subcategoryId, difficulty, classFilter, seed: runSeed, weakConcepts: weakConceptList.map((item) => item.tag) }), [categoryId, subcategoryId, difficulty, classFilter, runSeed, weakConceptList]);
+  const sessionWeakConcepts = useMemo(() => weakConceptList.map(item => item.tag), [categoryId, subcategoryId, difficulty, classFilter, runSeed, focusTag]);
+  const session = useMemo(() => makeQuizSession({ categoryId, subcategoryId, difficulty, classFilter, seed: runSeed, weakConcepts: sessionWeakConcepts }), [categoryId, subcategoryId, difficulty, classFilter, runSeed, sessionWeakConcepts]);
   const currentQuestion = session[currentIndex];
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = session.filter(question => answers[question.id] !== undefined).length;
   const score = session.filter((question) => answers[question.id] === question.correctOption).length;
-  const isComplete = answeredCount === session.length;
-  const progress = Math.round((answeredCount / quizStats.sessionSize) * 100);
+  const isComplete = session.length > 0 && answeredCount === session.length;
+  const percentage = session.length ? Math.round(score / session.length * 100) : 0;
+  const progress = session.length ? Math.round((answeredCount / session.length) * 100) : 0;
   const correctCount = session.reduce((count, question) => count + (answers[question.id] === question.correctOption ? 1 : 0), 0);
 
   useEffect(() => {
@@ -57,7 +60,10 @@ function QuizPracticePage() {
     setAnswers({});
     setCurrentIndex(0);
     setElapsed(0);
-  }, [categoryId, subcategoryId, difficulty, classFilter, runSeed]);
+    quizStreakRef.current = 0;
+    setAnimatingOption(null);
+    window.clearTimeout(animationTimerRef.current);
+  }, [categoryId, subcategoryId, difficulty, classFilter, runSeed, focusTag]);
 
   useEffect(() => {
     if (isComplete) return undefined;
@@ -66,10 +72,10 @@ function QuizPracticePage() {
   }, [isComplete, runSeed, categoryId, subcategoryId, difficulty, classFilter]);
 
   useEffect(() => {
-    if (!isComplete || score <= bestScore) return;
-    setBestScore(score);
-    localStorage.setItem(bestScoreKey, String(score));
-  }, [bestScore, isComplete, score]);
+    if (!isComplete || percentage <= bestScore) return;
+    setBestScore(percentage);
+    safeStorage.setItem(bestScoreKey, String(percentage));
+  }, [bestScore, isComplete, percentage]);
 
   useEffect(() => {
     if (!isComplete) return;
@@ -81,13 +87,16 @@ function QuizPracticePage() {
   };
 
   const quizStreakRef = useRef(0);
+  const animationTimerRef = useRef<number>();
+  useEffect(() => () => window.clearTimeout(animationTimerRef.current), []);
   const chooseOption = (option: string, trackConcept = true) => {
     if (!currentQuestion || answers[currentQuestion.id]) return;
     const correct = option === currentQuestion.correctOption;
     quizStreakRef.current = correct ? quizStreakRef.current + 1 : 0;
     trackQuizStreak(quizStreakRef.current);
     setAnimatingOption({ option, type: correct ? "correct" : "wrong" });
-    window.setTimeout(() => setAnimatingOption(null), 600);
+    window.clearTimeout(animationTimerRef.current);
+    animationTimerRef.current = window.setTimeout(() => setAnimatingOption(null), 600);
     setAnswers((state) => ({ ...state, [currentQuestion.id]: option }));
     if (!trackConcept) return;
     setWeakConcepts((state) => {
@@ -98,7 +107,7 @@ function QuizPracticePage() {
         if (adjusted <= 0) delete next[tag];
         else next[tag] = adjusted;
       });
-      localStorage.setItem(weakConceptKey, JSON.stringify(next));
+      safeStorage.setItem(weakConceptKey, JSON.stringify(next));
       return next;
     });
   };
@@ -113,7 +122,7 @@ function QuizPracticePage() {
 
   const clearWeakConcepts = () => {
     setWeakConcepts({});
-    localStorage.removeItem(weakConceptKey);
+    safeStorage.removeItem(weakConceptKey);
     setRunSeed((value) => value + 1);
   };
 
@@ -132,7 +141,7 @@ function QuizPracticePage() {
             </div>
             <div className="grid min-w-72 grid-cols-2 gap-2 sm:grid-cols-4">
               <Metric label="MCQs" value={quizStats.questions} />
-              <Metric label="Round" value={quizStats.sessionSize} />
+              <Metric label="Round" value={session.length} />
               <Metric label="Categories" value={quizStats.categories} />
               <Metric label="Subcats" value={quizStats.subcategories} />
             </div>
@@ -142,7 +151,7 @@ function QuizPracticePage() {
             <span className="status-chip"><PhysicsIcon name="book" className="h-3.5 w-3.5" />Class 7-12</span>
             <span className="status-chip"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />Basic to difficult</span>
             <span className="status-chip"><PhysicsIcon name="clipboard" className="h-3.5 w-3.5" />Concept tagged</span>
-            <span className="status-chip"><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />Best {bestScore}/12</span>
+            <span className="status-chip"><PhysicsIcon name="gauge" className="h-3.5 w-3.5" />Best {bestScore}%</span>
             <span className="status-chip"><PhysicsIcon name="spark" className="h-3.5 w-3.5" />Adaptive weak-concept practice</span>
             {focusTag && <span className="status-chip status-chip-cyan"><PhysicsIcon name="search" className="h-3.5 w-3.5" />Focused: {focusTag}</span>}
           </div>
@@ -184,8 +193,8 @@ function QuizPracticePage() {
           <aside className="panel p-4 desktop-sidebar-scroll">
             <h2 className="panel-title">Quiz dashboard</h2>
             <div className="mt-4 grid gap-3">
-              <DashboardStat icon="check" label="Score" value={`${score}/${quizStats.sessionSize}`} />
-              <DashboardStat icon="gauge" label="Progress" value={`${answeredCount}/${quizStats.sessionSize}`} />
+              <DashboardStat icon="check" label="Score" value={`${score}/${session.length}`} />
+              <DashboardStat icon="gauge" label="Progress" value={`${answeredCount}/${session.length}`} />
               <DashboardStat icon="spark" label="Correct count" value={String(correctCount)} />
               <DashboardStat icon="gauge" label="Time" value={formatTime(elapsed)} />
             </div>
@@ -235,7 +244,7 @@ function QuizPracticePage() {
                   <div className="flex items-start gap-3">
                     <div className="card-icon"><PhysicsIcon name="check" className="h-5 w-5" /></div>
                     <div>
-                      <p className="ui-label">Question {currentIndex + 1} of {quizStats.sessionSize}</p>
+                      <p className="ui-label">Question {currentIndex + 1} of {session.length}</p>
                       <h2 className="mt-1 text-2xl font-black">{currentQuestion.subcategoryTitle}</h2>
                     </div>
                   </div>
@@ -306,7 +315,7 @@ function QuizPracticePage() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="ui-label">Quiz complete</p>
-                    <h2 className="mt-1 text-3xl font-black">Score {score}/{quizStats.sessionSize}</h2>
+                    <h2 className="mt-1 text-3xl font-black">Score {score}/{session.length}</h2>
                     <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{score >= 10 ? "Excellent. You are ready for tougher mixed practice." : score >= 7 ? "Good progress. Review the missed explanations and replay." : "Slow it down: one concept, one formula, one unit check."}</p>
                     {weakConceptList.length > 0 && <p className="mt-2 text-sm font-bold text-amber-600 dark:text-amber-200">Next round will prioritize: {weakConceptList.slice(0, 4).map((item) => item.tag).join(", ")}.</p>}
                   </div>
@@ -367,7 +376,7 @@ function formatTime(totalSeconds: number) {
 
 function readWeakConcepts(): WeakConceptMap {
   try {
-    const parsed = JSON.parse(localStorage.getItem(weakConceptKey) ?? "{}") as WeakConceptMap;
+    const parsed = JSON.parse(safeStorage.getItem(weakConceptKey) ?? "{}") as WeakConceptMap;
     return Object.fromEntries(Object.entries(parsed).filter(([, value]) => Number.isFinite(value) && value > 0));
   } catch {
     return {};

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { safeStorage } from "../lib/safeStorage";
 import "./simulationStudioEnhancements.css";
 
-type Trial = { time: string; values: Array<{ label: string; value: string }> };
+type ControlValue = { key?: string; label: string; value: string; checked?: boolean };
+type Trial = { time: string; values: ControlValue[] };
 type StudioMode = "Observe" | "Predict" | "Experiment" | "Explain";
 
 const MODES: StudioMode[] = ["Observe", "Predict", "Experiment", "Explain"];
@@ -21,48 +23,51 @@ function controls() {
 
 function controlValues() {
   return controls().map((control, index) => ({
+    key: control.id || control.getAttribute("aria-label") || control.name || `${control.tagName}:${index}`,
     label: control.getAttribute("aria-label") || control.closest("label")?.textContent?.replace(control.value, "").trim() || `Control ${index + 1}`,
     value: control.value,
+    checked: control instanceof HTMLInputElement && control.type === "checkbox" ? control.checked : undefined,
   }));
 }
 
 export function SimulationStudioEnhancements() {
   const { pathname } = useLocation();
+  return isStudioPath(pathname) ? <StudioTools key={pathname} /> : null;
+}
+
+function StudioTools() {
+  const { pathname } = useLocation();
   const active = isStudioPath(pathname);
   const storageKey = `simulation-studio:${pathname}`;
+  const [saved] = useState(() => {
+    const value = safeStorage.readJSON<Partial<{ mode: StudioMode; prediction: string; notes: string; trials: Trial[] }> | null>(storageKey, null);
+    return value && typeof value === "object" ? value : {};
+  });
+  const [persistenceAvailable, setPersistenceAvailable] = useState(true);
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState<StudioMode>("Observe");
-  const [prediction, setPrediction] = useState("");
-  const [notes, setNotes] = useState("");
-  const [trials, setTrials] = useState<Trial[]>([]);
+  const [mode, setMode] = useState<StudioMode>(saved.mode && MODES.includes(saved.mode) ? saved.mode : "Observe");
+  const [prediction, setPrediction] = useState(typeof saved.prediction === "string" ? saved.prediction : "");
+  const [notes, setNotes] = useState(typeof saved.notes === "string" ? saved.notes : "");
+  const [trials, setTrials] = useState<Trial[]>(Array.isArray(saved.trials) ? saved.trials.filter(trial => trial && typeof trial.time === "string" && Array.isArray(trial.values) && trial.values.every(value => typeof value?.label === "string" && typeof value?.value === "string")).slice(-20) : []);
   const [baseline, setBaseline] = useState<Array<{ label: string; value: string }> | null>(null);
 
   const pageTitle = useMemo(() => document.title.replace(/\s*[|·].*$/, "") || "Simulation Studio", [pathname]);
 
   useEffect(() => {
     if (!active) return;
-    try {
-      const saved = JSON.parse(localStorage.getItem(storageKey) || "null") as { mode?: StudioMode; prediction?: string; notes?: string; trials?: Trial[] } | null;
-      if (saved) {
-        setMode(saved.mode || "Observe");
-        setPrediction(saved.prediction || "");
-        setNotes(saved.notes || "");
-        setTrials(saved.trials || []);
-      }
-    } catch { /* local storage may be unavailable in private browsing */ }
     return () => document.documentElement.removeAttribute("data-studio-mode");
   }, [active, storageKey]);
 
   useEffect(() => {
     if (!active) return;
     document.documentElement.dataset.studioMode = mode.toLowerCase();
-    localStorage.setItem(storageKey, JSON.stringify({ mode, prediction, notes, trials }));
+    setPersistenceAvailable(safeStorage.writeJSON(storageKey, { mode, prediction, notes, trials }));
   }, [active, mode, notes, prediction, storageKey, trials]);
 
   useEffect(() => {
     if (!active) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+      if (event.ctrlKey || event.metaKey || event.altKey || event.repeat || document.querySelector('[aria-modal="true"]') || event.target instanceof HTMLElement && (event.target.matches("input,select,textarea") || event.target.isContentEditable)) return;
       if (event.key.toLowerCase() === "h") setOpen((value) => !value);
       if (event.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
       if (event.key.toLowerCase() === "e") exportCsv();
@@ -77,15 +82,24 @@ export function SimulationStudioEnhancements() {
 
   const captureTrial = () => setTrials((items) => [...items.slice(-19), { time: new Date().toLocaleTimeString(), values: controlValues() }]);
   const saveState = () => {
-    localStorage.setItem(`${storageKey}:controls`, JSON.stringify(controlValues()));
-    localStorage.setItem(storageKey, JSON.stringify({ mode, prediction, notes, trials }));
+    const controlsSaved = safeStorage.writeJSON(`${storageKey}:controls`, controlValues());
+    const notesSaved = safeStorage.writeJSON(storageKey, { mode, prediction, notes, trials });
+    setPersistenceAvailable(controlsSaved && notesSaved);
   };
   const restoreState = () => {
     try {
-      const saved = JSON.parse(localStorage.getItem(`${storageKey}:controls`) || "[]") as Array<{ value: string }>;
+      const saved = safeStorage.readJSON<ControlValue[]>(`${storageKey}:controls`, []);
+      if (!Array.isArray(saved)) return;
+      const current = controlValues();
       controls().forEach((control, index) => {
-        if (saved[index]) {
-          control.value = saved[index].value;
+        const entry = saved.find(item => item?.key && item.key === current[index]?.key) ?? (!saved[index]?.key ? saved[index] : undefined);
+        if (entry && typeof entry.value === "string" && !control.disabled && !(control instanceof HTMLInputElement && control.readOnly)) {
+          if (control instanceof HTMLInputElement && control.type === "checkbox") {
+            if (typeof entry.checked === "boolean" && control.checked !== entry.checked) control.click();
+            return;
+          }
+          const prototype = control instanceof HTMLInputElement ? HTMLInputElement.prototype : control instanceof HTMLSelectElement ? HTMLSelectElement.prototype : HTMLTextAreaElement.prototype;
+          Object.getOwnPropertyDescriptor(prototype, "value")?.set?.call(control, entry.value);
           control.dispatchEvent(new Event("input", { bubbles: true }));
           control.dispatchEvent(new Event("change", { bubbles: true }));
         }
@@ -93,7 +107,7 @@ export function SimulationStudioEnhancements() {
     } catch { /* ignore malformed local state */ }
   };
   const setCompareBaseline = () => setBaseline(controlValues());
-  const compareCount = baseline ? controlValues().filter((item, index) => item.value !== baseline[index]?.value).length : 0;
+  const compareCount = baseline ? controlValues().filter(item => { const previous = baseline.find(saved => saved.label === item.label); return item.value !== previous?.value || item.checked !== (previous as ControlValue | undefined)?.checked; }).length : 0;
 
   return (
     <aside className={`studio-enhancement-dock ${open ? "is-open" : ""}`} aria-label={`${pageTitle} studio tools`}>
@@ -119,14 +133,14 @@ export function SimulationStudioEnhancements() {
         {baseline && <p className="studio-enhancement-status">Comparison: {compareCount} control value{compareCount === 1 ? "" : "s"} changed.</p>}
         <label className="studio-enhancement-field">Notebook<textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Record observations, units, and conclusions…" /></label>
         <div className="studio-enhancement-trials"><strong>Trial history <span>{trials.length}/20</span></strong>{trials.length === 0 ? <p>No trials captured yet.</p> : trials.slice().reverse().map((trial, index) => <details key={`${trial.time}-${index}`}><summary>{trial.time} · {trial.values.length} values</summary><pre>{trial.values.map((item) => `${item.label}: ${item.value}`).join("\n")}</pre></details>)}</div>
-        <small className="studio-enhancement-help">Shortcuts: H tools · F fullscreen · R reset · S step · E export</small>
+        <small className="studio-enhancement-help">Shortcuts: H tools · F fullscreen · R reset · S step · E export{!persistenceAvailable && " · Local saving unavailable; export CSV to keep your readings."}</small>
       </div>}
     </aside>
   );
 }
 
 function clickButton(pattern: RegExp) {
-  const button = [...document.querySelectorAll<HTMLButtonElement>("button")].find((item) => pattern.test(item.textContent || "") && !item.closest(".studio-enhancement-dock"));
+  const button = [...document.querySelectorAll<HTMLButtonElement>("button")].find((item) => !item.disabled && item.getClientRects().length && pattern.test(`${item.textContent} ${item.getAttribute("aria-label") || ""}`) && !item.closest(".studio-enhancement-dock"));
   button?.click();
 }
 

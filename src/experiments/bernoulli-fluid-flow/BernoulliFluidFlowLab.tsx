@@ -21,7 +21,7 @@ const DEFAULT: BernoulliInput = {
 };
 const fmt = (v: number, d = 2) => v.toFixed(d);
 export function BernoulliFluidFlowLab({
-  experiment,
+  experiment, learningLevel,
 }: DedicatedExperimentLabProps) {
   const [input, setInput] = useState(DEFAULT);
   const [runState, setRunState] = useState<RunState>("idle");
@@ -76,6 +76,7 @@ export function BernoulliFluidFlowLab({
       data-run-state={runState}
       aria-label={`${experiment.title} interactive laboratory`}
     >
+      <section className="bernoulli-level-guide" aria-label="Learning level guidance"><strong>{learningLevel}</strong><p>{learningLevel === "Simple" ? "Narrow the throat and watch water speed up as pressure falls. Keep the flow rate fixed." : (learningLevel === "Undergraduate" || learningLevel === "Research") ? "Check continuity and total head at all three stations, including elevation and the vapor-pressure limit." : "Compare Q = Av and pressure, kinetic and gravitational energy per unit volume at each station."}</p></section>
       <header className="bernoulli-head">
         <div>
           <span>FLUID MECHANICS · CLASS 11</span>
@@ -321,7 +322,7 @@ export function BernoulliFluidFlowLab({
             className="energy-bars"
             aria-label="Bernoulli energy terms at three stations"
           >
-            <header>
+      <header>
               <b>Pressure + kinetic + elevation energy</b>
               <span>Pa · equal totals</span>
             </header>

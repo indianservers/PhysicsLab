@@ -1,4 +1,4 @@
-import { Upcoming3DSimulation } from "../components/Upcoming3DSimulation";
+import { referenceLabsByStudio } from "../lib/studioReferenceLabs";
 import { CSSProperties, ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PhysicsIcon } from "../lib/icons";
@@ -7,7 +7,7 @@ import { studioHomeById, studioHomes, type StudioHome } from "../lib/conceptStud
 import "../concept-studio-homes.css";
 import { PhysicsAtlasPage } from './PhysicsAtlasPage';
 
-const mainNav = ["Learn", "Practice", "Challenges", "Progress", "Reference"];
+const mainNav = ["Concepts", "Activities"];
 
 function StudioShell({children, studio}:{children:ReactNode; studio?:StudioHome}) {
   const navigate=useNavigate();
@@ -31,12 +31,14 @@ function StudioShell({children, studio}:{children:ReactNode; studio?:StudioHome}
 function StudioTop({studio,onSearch}:{studio?:StudioHome;onSearch?:(value:string)=>void}){
   return <header className="csh-top">
     <Link className="csh-brand" to="/concept-studio"><span className="csh-brand-mark"><PhysicsIcon name={studio?.icon??"atom"}/></span><span><b>{studio?.name??"Physics Atlas"}</b><small>{studio?.eyebrow??"CONCEPT STUDIO"}</small></span></Link>
-    <nav aria-label="Studio sections">{mainNav.map((item,index)=><button key={item} onClick={()=>document.querySelector(index<2?"#concepts":"#activities")?.scrollIntoView({behavior:"smooth"})}>{item}</button>)}</nav>
+    <nav aria-label="Studio sections">{mainNav.map((item,index)=><button key={item} onClick={()=>document.querySelector(index===0?"#concepts":"#activities")?.scrollIntoView({behavior:"smooth"})}>{item}</button>)}</nav>
     <label className="csh-search"><PhysicsIcon name="search"/><input aria-label="Search this studio" placeholder="Search this studio" onChange={event=>onSearch?.(event.target.value)}/><kbd>⌘ K</kbd></label>
   </header>
 }
 
 function SubjectHome({studio}:{studio:StudioHome}){
+  const labs=referenceLabsByStudio[studio.id]??[];
+  const startRoute=labs[0]?.route??studio.startRoute;
   const [query,setQuery]=useState(""); const [active,setActive]=useState(0); const [notice,setNotice]=useState("");
   const visible=useMemo(()=>studio.concepts.filter(item=>(item.title+item.detail).toLowerCase().includes(query.toLowerCase())),[query,studio]);
   useEffect(()=>{setActive(0);setNotice("")},[studio.id]);
@@ -44,16 +46,17 @@ function SubjectHome({studio}:{studio:StudioHome}){
   return <StudioShell studio={studio}><main className={`csh-main csh-${studio.variant} csh-subject-${studio.id}`} id="content">
     <StudioTop studio={studio} onSearch={setQuery}/>
     <section className="csh-hero">
-      <div className="csh-hero-copy"><span>{studio.eyebrow}</span><h1>{studio.name}</h1><p className="csh-hero-tagline">{studio.tagline}</p><p className="csh-hero-focus"><b>{studio.concepts[active]?.title}:</b> {studio.concepts[active]?.detail}</p>{studio.id === "motion-kinematics" && <><Link to="/motion/position-time">Position–Time <b>→</b></Link><Link to="/motion/velocity-time" style={{marginLeft:8}}>Velocity–Time <b>→</b></Link><Link to="/motion/acceleration-time" style={{marginLeft:8,marginTop:8}}>Acceleration–Time <b>→</b></Link><Link to="/motion/projectile-motion" style={{marginLeft:8,marginTop:8}}>Projectile Motion <b>→</b></Link><Link to="/motion/relative-motion" style={{marginLeft:8,marginTop:8}}>Relative Motion <b>→</b></Link><Link to="/motion/second-law-fma" style={{marginLeft:8,marginTop:8}}>Second Law <b>→</b></Link><Link to="/motion/first-law-inertia" style={{marginLeft:8,marginTop:8}}>First Law / Inertia <b>→</b></Link><Link to="/motion/circular-motion" style={{marginLeft:8,marginTop:8}}>Circular Motion <b>→</b></Link></>}<div><Link to={studio.startRoute}>Start interactive lab <b>→</b></Link>{studio.id === "mechanics" && <><Link to="/mechanics/free-body-diagrams">Free-Body Diagrams <b>→</b></Link><Link to="/mechanics/inclined-plane">Inclined Plane <b>→</b></Link><Link to="/mechanics/pulley-systems">Pulley Systems <b>→</b></Link><Link to="/mechanics/torque-levers">Torque &amp; Levers <b>→</b></Link><Link to="/mechanics/equilibrium-com">Equilibrium &amp; COM <b>→</b></Link><Link to="/mechanics/momentum-collisions">Momentum &amp; Collisions <b>→</b></Link></>}{studio.id === "measurement" && <><Link to="/measurement/meter-scale">Meter Scale <b>→</b></Link><Link to="/measurement/vernier-caliper">Vernier Caliper <b>→</b></Link><Link to="/measurement/micrometer">Micrometer <b>→</b></Link><Link to="/measurement/spherometer">Spherometer <b>→</b></Link><Link to="/measurement/mass-time">Mass &amp; Time <b>→</b></Link><Link to="/measurement/uncertainty">Uncertainty <b>→</b></Link></>}</div></div>
-      <Upcoming3DSimulation title={studio.concepts[active]?.title ?? studio.name} />
+      <div className="csh-hero-copy"><span>{studio.eyebrow}</span><h1>{studio.name}</h1><p className="csh-hero-tagline">{studio.tagline}</p><p className="csh-hero-focus"><b>{studio.concepts[active]?.title}:</b> {studio.concepts[active]?.detail}</p></div>
+      <aside className="csh-progress"><span>EXPLORE THE SUBJECT</span><h3>{studio.concepts[active]?.title}</h3><p>{studio.concepts[active]?.detail}</p><Link to={startRoute}>Open {labs[0]?.title??"interactive lab"}</Link></aside>
     </section>
+    <section className="csh-reference-labs" id="labs"><header><span>INTERACTIVE LABS</span><h2>Choose a lab</h2></header><div className="csh-lab-links" aria-label={`${studio.name} labs`}>{labs.map(lab=><Link key={lab.route} to={lab.route}>{lab.title} <b>→</b></Link>)}</div></section>
     <section className="csh-concepts" id="concepts"><header><div><span>EXPLORE THE SUBJECT</span><h2>Core concepts</h2></div><p>Select a concept to explore its explanation.</p></header>
       <div className="csh-concept-grid">{visible.map(item=>{const index=studio.concepts.indexOf(item);return <button key={item.title} className={active===index?"active":""} onClick={()=>setActive(index)}><span className="csh-concept-visual" style={{backgroundImage:`url(${studio.asset})`,backgroundPosition:`${index*18}% center`}}><PhysicsIcon name={item.icon}/></span><span><b>{item.title}</b><small>{item.detail}</small></span><em>0{index+1}</em></button>})}</div>
     </section>
     <section className="csh-workspace" id="activities">
       <article className="csh-feature"><span>FEATURED INVESTIGATION</span><h2>{studio.activities[active%studio.activities.length].title}</h2><p>{studio.activities[active%studio.activities.length].detail}</p><button onClick={()=>perform(`${studio.activities[active%studio.activities.length].title} ready`)}>{studio.activities[active%studio.activities.length].action} <b>→</b></button><div className="csh-feature-viz"><img src={studio.asset} alt=""/><i/><i/><i/></div></article>
       <div className="csh-activity-list">{studio.activities.map((item,index)=><button key={item.title} onClick={()=>{setActive(index);perform(`${item.title} selected`)}}><span className="csh-activity-thumb" style={{backgroundImage:`url(${studio.asset})`,backgroundPosition:`${20+index*34}% center`}}><PhysicsIcon name={studio.concepts[index%studio.concepts.length].icon}/></span><div><b>{item.title}</b><small>{item.detail}</small><i style={{width:`${45+index*18}%`}}/></div><em>↗</em></button>)}</div>
-      <aside className="csh-progress"><span>3D SIMULATION</span><h3>Upcoming</h3><p>Explore the dedicated lab for this subject.</p><Link to={studio.startRoute}>Open full lab</Link></aside>
+      <aside className="csh-progress"><span>INTERACTIVE LAB</span><h3>{studio.name}</h3><p>Explore the dedicated lab for this subject.</p><Link to={startRoute}>Open full lab</Link></aside>
     </section>
     {notice&&<div className="csh-toast" role="status"><PhysicsIcon name="check"/>{notice}</div>}
   </main></StudioShell>

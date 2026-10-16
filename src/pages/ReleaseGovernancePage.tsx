@@ -71,7 +71,7 @@ export function ReleaseGovernancePage() {
             <p className="ui-label">Filter release queue</p>
             <div className="release-filter-row">
               <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lab, category, review track" />
-              <select value={gate} onChange={(event) => setGate(event.target.value)}>
+              <select aria-label="Release gate" value={gate} onChange={(event) => setGate(event.target.value)}>
                 {gateOptions.map((item) => <option key={item} value={item}>{item}</option>)}
               </select>
             </div>

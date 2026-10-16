@@ -1,3 +1,4 @@
+import { MathText } from "./MathExpression";
 import { useMemo, useRef, useState } from "react";
 import { ExperimentDefinition } from "../types";
 import { PhysicsIcon, PhysicsIconName } from "../lib/icons";
@@ -125,7 +126,7 @@ export function CoreLearningToolkit({ experiment, defaultOpen = false }: { exper
                 <h3 className="mt-0.5 text-sm font-black">{item.title}</h3>
               </div>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{item.body}</p>
+            <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300"><MathText text={item.body} /></p>
             <div className="mt-3 rounded-md border border-cyan-400/25 bg-cyan-400/10 p-2 text-xs font-bold text-cyan-700 dark:text-cyan-200">{item.action}</div>
           </article>
         ))}

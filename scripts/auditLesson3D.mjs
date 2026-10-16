@@ -22,16 +22,16 @@ for(const item of data.appDirectoryEntries) if(!item.path.includes(':'))add(item
 for(const item of data.buildConceptCards())add(`/concepts?concept=${item.id}`,'Curriculum concept',item.title);
 for(const item of data.experiments){
   add(`/experiments/${item.id}`,'Experiment',item.title);
-  add(`/experiments/${item.id}#three-d`,'Experiment 3D tab',item.title,data.requiresCustom3D(item.id)?'upcoming':'specific');
+  add(`/experiments/${item.id}#three-d`,'Experiment 3D tab',item.title,data.requiresCustom3D(item.id)&&item.id!=='atomic-interactions'?'unavailable':'specific');
 }
-for(const item of data.astrophysicsConcepts)add(`/astrophysics?concept=${item.id}`,'Astrophysics concept',item.title,['gravity-orbits','solar-system','black-holes','accretion-disks','gravitational-waves','galaxy-structure','milky-way'].includes(item.id)?'specific':'upcoming');
+for(const item of data.astrophysicsConcepts)add(`/astrophysics?concept=${item.id}`,'Astrophysics concept',item.title,['gravity-orbits','solar-system','black-holes','accretion-disks','gravitational-waves','galaxy-structure','milky-way'].includes(item.id)?'specific':'unavailable');
 for(const item of data.particlePhysicsConcepts){
-  add(`/particle-physics/${item.id}`,'Particle concept',item.title,'upcoming');
-  add(`/particle-physics?concept=${item.id}`,'Particle query route',item.title,'upcoming');
+  add(`/particle-physics/${item.id}`,'Particle concept',item.title,'unavailable');
+  add(`/particle-physics?concept=${item.id}`,'Particle query route',item.title,'unavailable');
 }
 for(const item of data.rocketParts)add(`/rocket-lab/parts/${item.id}`,'Rocket component lesson',item.name);
 for(const item of data.stringTheoryLessons)add(`/string-theory?concept=${item.id}`,'String theory lesson',item.title,['scale','network'].includes(item.visual)?'specific':'inspect');
-for(const item of data.studioHomes)add(`/concept-studio/${item.id}`,'Concept studio',item.name,'upcoming');
+for(const item of data.studioHomes)add(`/concept-studio/${item.id}`,'Concept studio',item.name,'unavailable');
 const topicBlock=app.match(/const topics = \[([\s\S]*?)\];/)?.[1]??'';
 for(const match of topicBlock.matchAll(/"([^"]+)"/g))add(`/topics/${match[1]}`,'Topic page',match[1]);
 
@@ -48,10 +48,11 @@ for(const item of data.experiments){
 }
 if(!data.assertVisualizationSpecCoverage().ok)throw new Error('Experiment visualization coverage is incomplete');
 const pending = data.experimentVisualizationSpecs.filter(item=>data.requiresCustom3D(item.experimentId)).map(item=>item.experimentId);
-fs.mkdirSync('artifacts',{recursive:true});
+const outputRoot=process.env.LESSON_AUDIT_OUTPUT??'artifacts/physics-studio-audit/full-route';
+fs.mkdirSync(outputRoot,{recursive:true});
 const inventory={routes:[...routes.values()],renderers,pending,studioConcepts:data.studioHomes.map(item=>({id:item.id,concepts:item.concepts.map(c=>c.title)}))};
-fs.writeFileSync('artifacts/lesson-3d-inventory.json',JSON.stringify(inventory,null,2));
-console.log(`Inventory: ${routes.size} routes, ${renderers.length} 3D source files, ${pending.length} upcoming experiment tabs.`);
+fs.writeFileSync(path.join(outputRoot,'lesson-3d-inventory.json'),JSON.stringify(inventory,null,2));
+console.log(`Inventory: ${routes.size} routes, ${renderers.length} 3D source files, ${pending.length} hidden unsupported experiment views.`);
 if(process.argv.includes('--inventory-only'))process.exit(0);
 
 const origin=process.env.AUDIT_ORIGIN??'http://127.0.0.1:5173';
@@ -67,22 +68,25 @@ await context.addInitScript(()=>{
     return result;
   };
 });
-const previous=process.argv.includes('--resume') && fs.existsSync('artifacts/lesson-3d-results.json') ? JSON.parse(fs.readFileSync('artifacts/lesson-3d-results.json','utf8')) : [];
+const previous=process.argv.includes('--resume') && fs.existsSync(path.join(outputRoot,'lesson-3d-results.json')) ? JSON.parse(fs.readFileSync(path.join(outputRoot,'lesson-3d-results.json'),'utf8')) : [];
 const results=previous.filter(item=>item.pass && item.heading && routes.get(item.url)?.expected===item.expected);
 const completed=new Set(results.map(item=>item.url));
 const queue=[...routes.values()].filter(item=>!completed.has(item.url));
 console.log(`Resuming with ${results.length} verified routes; ${queue.length} left.`);
 try{
-  await Promise.all(Array.from({length:Math.max(1,Number(process.env.AUDIT_WORKERS??3))},async()=>{
-    const page=await context.newPage();
+  await Promise.all(Array.from({length:Math.max(1,Number(process.env.AUDIT_WORKERS??1))},async()=>{
     while(queue.length){
+      const page=await context.newPage();
       const route=queue.shift();const errors=[];
       const onError=error=>errors.push(error.message);page.on('pageerror',onError);
       let result={...route,pass:true,errors};
       try{
         await page.goto(origin+route.url,{waitUntil:'domcontentloaded',timeout:60000});
         await page.waitForFunction(()=>Boolean(document.querySelector('h1,h2,h3')) && !/^Loading/.test(document.body.innerText.trim()),{},{timeout:20000});
-        if(route.expected==='upcoming')await page.getByRole('heading',{name:'3D simulation upcoming',exact:true}).waitFor({timeout:15000});
+        if(route.expected==='unavailable' && route.group==='Experiment 3D tab'){
+          await page.locator('.lesson-command-tabs [aria-selected=true]').filter({hasText:'Simulate'}).waitFor();
+          if(await page.locator('.lesson-command-tabs [role=tab]').filter({hasText:/^3D$/}).count())throw new Error('Unsupported 3D tab is visible');
+        }
         if(route.expected==='specific')await page.waitForFunction(()=>document.querySelector('canvas[data-audit-webgl],.three-lab-fallback'),{},{timeout:15000});
         const rendered=await page.evaluate(()=>({
           heading:document.querySelector('h1')?.textContent?.trim()??document.querySelector('h2')?.textContent?.trim()??document.querySelector('h3')?.textContent?.trim()??'',
@@ -92,32 +96,32 @@ try{
         }));
         Object.assign(result,rendered);
         if(rendered.error)throw new Error('Route rendered an error page');
-        if(route.expected==='upcoming' && await page.locator('.three-lab-card canvas,.particle-three-lab canvas,.csh-three:not(.csh-three-atlas) canvas').count())throw new Error('Generic 3D canvas still mounted');
+        if(route.expected==='unavailable' && await page.locator('.three-lab-card canvas,.particle-three-lab canvas,.csh-three:not(.csh-three-atlas) canvas').count())throw new Error('Generic 3D canvas still mounted');
+        if(rendered.upcoming)throw new Error('Unavailable 3D placeholder is visible');
         // Studio concept buttons are additional lessons within each route.
         if(route.group==='Concept studio'){
           const studio=data.studioHomes.find(item=>route.url.endsWith('/'+item.id));
           result.conceptsChecked=[];
           for(const title of studio.concepts.map(item=>item.title)){
             await page.locator('.csh-concept-grid button').filter({has:page.locator('b',{hasText:title})}).first().click();
-            await page.getByRole('region',{name:`${title} 3D simulation upcoming`,exact:true}).waitFor();
+            await page.waitForFunction(title=>document.querySelector('.csh-hero-focus')?.textContent?.includes(title),title);
             result.conceptsChecked.push(title);
           }
         }
         if(errors.length)throw new Error(errors.join('; '));
-      }catch(error){result.pass=false;result.failure=error.message.slice(0,450);}
-      page.off('pageerror',onError);results.push(result);
-      try { fs.writeFileSync('artifacts/lesson-3d-results.json',JSON.stringify(results,null,2)); }
+      }catch(error){if(!browser.isConnected())throw error;result.pass=false;result.failure=error.message.slice(0,450);}
+      page.off('pageerror',onError);await page.close();results.push(result);
+      try { fs.writeFileSync(path.join(outputRoot,'lesson-3d-results.json'),JSON.stringify(results,null,2)); }
       catch(error) { console.warn(`Checkpoint deferred: ${error.code??error.message}`); }
       if(results.length%20===0)console.log(`Checked ${results.length}/${routes.size}; failures ${results.filter(item=>!item.pass).length}`);
     }
-    await page.close();
   }));
 }finally{await browser.close();}
 results.sort((a,b)=>a.group.localeCompare(b.group)||a.url.localeCompare(b.url));
 const failures=results.filter(item=>!item.pass);
 const conceptCount=results.reduce((sum,item)=>sum+(item.conceptsChecked?.length??0),0);
 const counts=Object.fromEntries([...new Set(results.map(item=>item.group))].sort().map(group=>[group,results.filter(item=>item.group===group).length]));
-const report=['# Full lesson 3D audit','',`Checked ${results.length} routes and ${conceptCount} in-page studio concepts.`,`${failures.length} route failures. ${pending.length} experiment 3D tabs are Upcoming.`,'','This audit checks route coverage, rendering, Upcoming notices, and absence of removed generic 3D canvases. It is not a numerical validation of every retained physics model.','', '## Coverage','',...Object.entries(counts).map(([group,count])=>`- ${group}: ${count}`),'','## Retired preview findings','',...Object.entries(JSON.parse(fs.readFileSync('scripts/lesson3DReviewFindings.json','utf8'))).map(([id,reason])=>`- ${id}: ${reason}`),'','## 3D source inventory','','Includes active renderers, unused implementations, and commented legacy scenes. Shared educational 2D/SVG views and decorative home-page graphics are outside the retired 3D simulation list.','',...renderers.map(file=>`- ${file.replaceAll('\\','/')}`),'','## Every route','', '| Route | Group | Rendered 3D canvases | Upcoming notices | Result |','|---|---|---:|---:|---|',...results.map(item=>`| ${item.url} | ${item.group} | ${item.webgl??'—'} | ${item.upcoming??'—'} | ${item.pass?'PASS':item.failure?.replaceAll('|','/').replaceAll('\n',' ')} |`),'','## In-page studio lessons','',...results.filter(item=>item.conceptsChecked).map(item=>`- ${item.url}: ${item.conceptsChecked.join(', ')}`)].join('\n');
+const report=['# Full lesson 3D audit','',`Checked ${results.length} routes and ${conceptCount} in-page studio concepts.`,`${failures.length} route failures. ${pending.length} experiment 3D views are unsupported and hidden.`,'','This audit checks route coverage, rendering, absence of unavailable tabs and placeholders, and absence of removed generic 3D canvases. It is not a numerical validation of every retained physics model.','', '## Coverage','',...Object.entries(counts).map(([group,count])=>`- ${group}: ${count}`),'','## Retired preview findings','',...Object.entries(JSON.parse(fs.readFileSync('scripts/lesson3DReviewFindings.json','utf8'))).map(([id,reason])=>`- ${id}: ${reason}`),'','## 3D source inventory','','Includes active renderers, unused implementations, and commented legacy scenes. Shared educational 2D/SVG views and decorative home-page graphics are outside the retired 3D simulation list.','',...renderers.map(file=>`- ${file.replaceAll('\\','/')}`),'','## Every route','', '| Route | Group | Rendered 3D canvases | Upcoming notices | Result |','|---|---|---:|---:|---|',...results.map(item=>`| ${item.url} | ${item.group} | ${item.webgl??'—'} | ${item.upcoming??'—'} | ${item.pass?'PASS':item.failure?.replaceAll('|','/').replaceAll('\n',' ')} |`),'','## In-page studio lessons','',...results.filter(item=>item.conceptsChecked).map(item=>`- ${item.url}: ${item.conceptsChecked.join(', ')}`)].join('\n');
 fs.writeFileSync('LESSON_3D_AUDIT.md',report+'\n');
 console.log(JSON.stringify({routes:results.length,studioConcepts:conceptCount,failures:failures.map(item=>({url:item.url,error:item.failure})),report:'LESSON_3D_AUDIT.md'},null,2));
 if(failures.length)process.exitCode=1;

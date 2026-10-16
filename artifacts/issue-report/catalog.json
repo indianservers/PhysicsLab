@@ -1,0 +1,1842 @@
+[
+  {
+    "id": "projectile-motion",
+    "title": "Projectile Motion",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 5,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsProjectile Motion: change the input, duration, and loss factor to see the measured result update.Input valueTime / distanceLoss factorReset experimentR=u2sin⁡(2θ"
+    },
+    "errors": []
+  },
+  {
+    "id": "wave-lab",
+    "title": "Wave Lab",
+    "category": "Waves",
+    "simulate": {
+      "controls": 24,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 0,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsWave Lab: change frequency, amplitude, and wave speed to observe wavelength and intensity.Frequency (Hz)AmplitudeWave speed (m/s)Reset experimentv=flambda,intens"
+    },
+    "errors": []
+  },
+  {
+    "id": "single-slit-diffraction",
+    "title": "Single Slit Diffraction",
+    "category": "Waves",
+    "simulate": {
+      "controls": 20,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 0,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Single Slit Diffraction is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "buoyancy",
+    "title": "Buoyancy",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 14,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 0,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Buoyancy is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "chladni-plate",
+    "title": "Chladni Plate",
+    "category": "Waves",
+    "simulate": {
+      "controls": 19,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 0,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsChladni Plate: change frequency, amplitude, and wave speed to observe wavelength and intensity.Frequency (Hz)AmplitudeWave speed (m/s)Reset experimentv=flambda,i"
+    },
+    "errors": []
+  },
+  {
+    "id": "heat-and-temperature",
+    "title": "Heat and Temperature",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 21,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Heat and Temperature is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "heat-transfer",
+    "title": "Heat Transfer",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Heat Transfer is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "heating-effect-current",
+    "title": "Heating Effect of Current",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 22,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Heating Effect of Current is not available yet. Open Simulate to use the interactive 2D lab. No release date has been se"
+    },
+    "errors": []
+  },
+  {
+    "id": "electromagnet",
+    "title": "Electromagnet",
+    "category": "Magnetism",
+    "simulate": {
+      "controls": 16,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsA current-carrying coil behaves like a magnet; more turns or current produce a stronger field.TurnsCurrent (A)Core factorReset experimentB∝NIB \\propto NIB∝NIRela"
+    },
+    "errors": []
+  },
+  {
+    "id": "reflection-plane-mirror",
+    "title": "Reflection by Plane Mirror",
+    "category": "Optics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 2,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsPlane mirror reflection keeps the angle of incidence equal to the angle of reflection.Incidence angle (deg)Object distance (cm)Mirror tilt (deg)Reset experimenti"
+    },
+    "errors": []
+  },
+  {
+    "id": "force-and-pressure",
+    "title": "Force and Pressure",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 15,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Force and Pressure is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "fluid-pressure",
+    "title": "Fluid Pressure with Depth",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 13,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Fluid Pressure with Depth is not available yet. Open Simulate to use the interactive 2D lab. No release date has been se"
+    },
+    "errors": []
+  },
+  {
+    "id": "sound-pitch-loudness",
+    "title": "Sound Pitch and Loudness",
+    "category": "Waves",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsFrequency controls pitch while amplitude and distance control relative intensity.Frequency (Hz)AmplitudeDistance (m)Reset experimentv=fλv = f\\lambdav=fλWavelengt"
+    },
+    "errors": []
+  },
+  {
+    "id": "static-electricity",
+    "title": "Static Electricity and Lightning",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 23,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCharged objects exert force; the force gets weaker very quickly as distance increases.Charge 1 (microC)Charge 2 (microC)Distance (m)Reset experimentF=kq1q2r2F = "
+    },
+    "errors": []
+  },
+  {
+    "id": "chemical-effects-current",
+    "title": "Chemical Effects of Current",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 25,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsA conducting liquid lets charge flow; deposited mass increases with current and time.Current (A)Time (min)Electrochemical factorReset experimentQ=ItQ = ItQ=ItCha"
+    },
+    "errors": []
+  },
+  {
+    "id": "free-fall",
+    "title": "Free Fall",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Free Fall is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "mass-and-weight",
+    "title": "Mass and Weight",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 21,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 2,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsMass stays the same, but weight changes with gravitational field strength.Mass (kg)g (m/s2)Spring stretch per N (mm/N)Reset experimentW=mgW = mgW=mgWeight10.00 N"
+    },
+    "errors": []
+  },
+  {
+    "id": "work-power",
+    "title": "Work and Power",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Work and Power is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "echo-speed-sound",
+    "title": "Echo and Speed of Sound",
+    "category": "Waves",
+    "simulate": {
+      "controls": 18,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsEcho time measures a round trip, so distance to the wall is half the sound travel distance.Echo time (s)Temperature (C)Reflector distance (m)Reset experimentd=vt"
+    },
+    "errors": []
+  },
+  {
+    "id": "mirror-formula",
+    "title": "Mirror Formula",
+    "category": "Optics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Mirror Formula is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "lens-formula",
+    "title": "Lens Formula",
+    "category": "Optics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsConvex lens image position depends strongly on whether the object is outside or inside the focal length.Focal length (cm)Object distance (cm)Object height (cm)Re"
+    },
+    "errors": []
+  },
+  {
+    "id": "glass-slab-refraction",
+    "title": "Glass Slab Refraction",
+    "category": "Optics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsA rectangular glass slab bends light twice, making the emergent ray parallel but laterally shifted.Incidence angle (deg)Refractive indexThickness (cm)Reset exper"
+    },
+    "errors": []
+  },
+  {
+    "id": "prism-dispersion",
+    "title": "Prism Dispersion",
+    "category": "Optics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsA prism refracts light at two faces. Violet has a larger refractive index than red, so the emergent white ray spreads into a VIBGYOR spectrum.Prism angle A (deg)"
+    },
+    "errors": []
+  },
+  {
+    "id": "ohms-law",
+    "title": "Ohm's Law V-I Graph",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 18,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Ohm's Law V-I Graph is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "series-parallel-resistance",
+    "title": "Series and Parallel Resistance",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 25,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Series and Parallel Resistance is not available yet. Open Simulate to use the interactive 2D lab. No release date has be"
+    },
+    "errors": []
+  },
+  {
+    "id": "electric-power",
+    "title": "Electric Power and Energy",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 35,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 2,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Electric Power and Energy is not available yet. Open Simulate to use the interactive 2D lab. No release date has been se"
+    },
+    "errors": []
+  },
+  {
+    "id": "magnetic-field-current",
+    "title": "Magnetic Field Around Current",
+    "category": "Magnetism",
+    "simulate": {
+      "controls": 18,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Magnetic Field Around Current is not available yet. Open Simulate to use the interactive 2D lab. No release date has bee"
+    },
+    "errors": []
+  },
+  {
+    "id": "measurement-errors",
+    "title": "Measurement, Error, and Significant Figures",
+    "category": "Measurement",
+    "simulate": {
+      "controls": 14,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsQuantify uncertainty using absolute error, percentage error, and sensible significant figures.Measured valueAbsolute errorReadingsReset experiment% error=Δxx×100"
+    },
+    "errors": []
+  },
+  {
+    "id": "vector-resolution",
+    "title": "Vector Resolution",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsResolve a vector into x and y components, then reconstruct its magnitude.MagnitudeAngle (deg)ScaleReset experimentAx=Acos⁡θ,Ay=Asin⁡θA_x=A\\cos\\theta,\\quad A_y=A\\"
+    },
+    "errors": []
+  },
+  {
+    "id": "rotational-dynamics",
+    "title": "Rotational Dynamics",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Rotational Dynamics is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "satellite-orbit",
+    "title": "Satellite Orbit and Escape Speed",
+    "category": "Astronomy",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Satellite Orbit and Escape Speed is not available yet. Open Simulate to use the interactive 2D lab. No release date has "
+    },
+    "errors": []
+  },
+  {
+    "id": "bernoulli-fluid-flow",
+    "title": "Bernoulli Fluid Flow",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsEstimate dynamic pressure and static pressure left after speed and height terms.Density (kg/m3)Speed (m/s)Height (m)Reset experimentP+12ρv2+ρgh=constantP+\\frac{1"
+    },
+    "errors": []
+  },
+  {
+    "id": "gas-laws",
+    "title": "Gas Laws and Kinetic Theory",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 2,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Gas Laws and Kinetic Theory is not available yet. Open Simulate to use the interactive 2D lab. No release date has been "
+    },
+    "errors": []
+  },
+  {
+    "id": "thermodynamic-process",
+    "title": "Thermodynamic Processes",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 22,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare work in a gas process using pressure and volume change.Pressure (kPa)Delta volume (L)Process factorReset experimentW=PΔVW=P\\Delta VW=PΔVWork by gas2.00 J"
+    },
+    "errors": []
+  },
+  {
+    "id": "shm-spring",
+    "title": "Spring-Mass SHM",
+    "category": "Waves",
+    "simulate": {
+      "controls": 21,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsSpring-mass SHM period depends on mass and spring constant; max speed depends on amplitude.k (N/m)Mass (kg)Amplitude (m)Reset experimentT=2πmkT=2\\pi\\sqrt{\\frac{m"
+    },
+    "errors": []
+  },
+  {
+    "id": "electrostatic-field-potential",
+    "title": "Electrostatic Field and Potential",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare inverse-square electric field with inverse-distance electric potential.Charge (microC)Distance (m)Test charge (microC)Reset experimentE=kqr2E=\\frac{kq}{r"
+    },
+    "errors": []
+  },
+  {
+    "id": "capacitor-lab",
+    "title": "Capacitor Energy and Combination",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 29,
+      "visuals": 0,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Capacitor Energy and Combination is not available yet. Open Simulate to use the interactive 2D lab. No release date has "
+    },
+    "errors": []
+  },
+  {
+    "id": "kirchhoff-circuit",
+    "title": "Kirchhoff Circuit Rules",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 28,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsAnalyse a simple two-branch circuit using junction and loop ideas.Voltage (V)R1 (ohm)R2 (ohm)Reset experiment∑V=0\\sum V = 0∑V=0Branch I11.200 ABranch I20.600 ATo"
+    },
+    "errors": []
+  },
+  {
+    "id": "lorentz-force",
+    "title": "Lorentz Force on Moving Charge",
+    "category": "Magnetism",
+    "simulate": {
+      "controls": 22,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 2,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCalculate magnetic force and circular path radius for a charge moving perpendicular to B.Charge (microC)Speed (10^5 m/s)B (T)Reset experimentF=qvBF=qvBF=qvBMagne"
+    },
+    "errors": []
+  },
+  {
+    "id": "emi-faraday",
+    "title": "Faraday Induction",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 25,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsInduced emf grows with coil turns and rate of magnetic flux change.TurnsFlux change (mWb)Time (ms)Reset experimentE=−NΔΦΔt\\mathcal{E}=-N\\frac{\\Delta\\Phi}{\\Delta "
+    },
+    "errors": []
+  },
+  {
+    "id": "ac-lcr-resonance",
+    "title": "AC LCR Resonance",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 21,
+      "visuals": 4,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsExplore impedance and current near series LCR resonance with a fixed 0.10 H inductor.Resistance (ohm)Frequency (Hz)Capacitance (microF)Reset experimentZ=R2+(XL−X"
+    },
+    "errors": []
+  },
+  {
+    "id": "em-spectrum",
+    "title": "Electromagnetic Spectrum",
+    "category": "Waves",
+    "simulate": {
+      "controls": 27,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsRelate frequency, wavelength, photon energy, and EM spectrum region.Frequency (THz)Display scaleIntensityReset experimentc=fλc=f\\lambdac=fλWavelength5.45e-7 mPho"
+    },
+    "errors": []
+  },
+  {
+    "id": "young-double-slit",
+    "title": "Young's Double Slit",
+    "category": "Waves",
+    "simulate": {
+      "controls": 18,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Young's Double Slit is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "photoelectric-equation",
+    "title": "Photoelectric Equation",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsEinstein's photoelectric equation compares photon energy with material work function.Photon energy (eV)Work function (eV)IntensityReset experimentKmax=hf−ϕK_{max"
+    },
+    "errors": []
+  },
+  {
+    "id": "nuclear-decay",
+    "title": "Nuclear Decay and Half-Life",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsModel remaining undecayed nuclei after a chosen elapsed time.Initial nucleiHalf-lifeElapsed timeReset experimentN=N0(12)t/TN=N_0\\left(\\frac{1}{2}\\right)^{t/T}N=N"
+    },
+    "errors": []
+  },
+  {
+    "id": "semiconductor-diode",
+    "title": "Semiconductor Diode and Rectifier",
+    "category": "Electronics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsEstimate forward diode current and half-wave rectifier output.Input voltage (V)Diode drop (V)Load (ohm)Reset experimentVout≈Vin−VDV_{out}\\approx V_{in}-V_DVout​≈"
+    },
+    "errors": []
+  },
+  {
+    "id": "shadows-eclipses",
+    "title": "Shadows and Eclipses",
+    "category": "Optics",
+    "simulate": {
+      "controls": 21,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsMove source, object, and screen to see when shadows become sharp or fuzzy.Source size (cm)Object distance (cm)Screen distance (cm)Reset experimentDsDo≈LsLo\\frac{"
+    },
+    "errors": []
+  },
+  {
+    "id": "multiple-reflection",
+    "title": "Multiple Reflection and Kaleidoscope",
+    "category": "Optics",
+    "simulate": {
+      "controls": 24,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsSet the angle between two plane mirrors and predict repeated images.Mirror angle (deg)Object distance (cm)Object offset (cm)Reset experimentn=360θ−1n=\\frac{360}{"
+    },
+    "errors": []
+  },
+  {
+    "id": "sound-wave-anatomy",
+    "title": "Longitudinal Sound Wave",
+    "category": "Waves",
+    "simulate": {
+      "controls": 15,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Longitudinal Sound Wave is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "human-eye-defects",
+    "title": "Human Eye and Vision Defects",
+    "category": "Optics",
+    "simulate": {
+      "controls": 28,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsAdjust eye focus and correction lens power until the final image forms on the retina.Eye focus point (cm)Retina position (cm)Defect modeReset experimentP=1fP=\\fr"
+    },
+    "errors": []
+  },
+  {
+    "id": "sources-of-energy",
+    "title": "Sources of Energy Comparator",
+    "category": "Energy",
+    "simulate": {
+      "controls": 20,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare how input energy, efficiency, and impact factor change useful output.Input energy (MJ)Efficiency (%)Impact factorReset experimentEuseful=ηEinputE_{useful"
+    },
+    "errors": []
+  },
+  {
+    "id": "meter-bridge",
+    "title": "Meter Bridge",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 18,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsUse a null balance to calculate unknown resistance from bridge-wire length.Known R (ohm)Balance length (cm)Contact error (cm)Reset experimentRX=l100−l\\frac{R}{X}"
+    },
+    "errors": []
+  },
+  {
+    "id": "internal-resistance-cell",
+    "title": "Cell Internal Resistance",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 29,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsA real cell loses voltage inside itself when it delivers current to a load.EMF (V)External R (ohm)Internal r (ohm)Reset experimentV=E−IrV=E-IrV=E−IrCurrent2.273 "
+    },
+    "errors": []
+  },
+  {
+    "id": "ac-generator",
+    "title": "AC Generator",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 21,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsRotate a coil in a magnetic field and watch the induced emf become sinusoidal.TurnsMagnetic field (T)Frequency (Hz)Reset experimentE=NBAωsin⁡ωt\\mathcal{E}=NBA\\om"
+    },
+    "errors": []
+  },
+  {
+    "id": "transformer-lab",
+    "title": "Transformer Lab",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 15,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare turns ratio, secondary voltage, and useful output with transformer efficiency.Primary voltage (V)Primary turnsSecondary turnsReset experimentVsVp=NsNp\\fr"
+    },
+    "errors": []
+  },
+  {
+    "id": "total-internal-reflection",
+    "title": "Total Internal Reflection",
+    "category": "Optics",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Total Internal Reflection is not available yet. Open Simulate to use the interactive 2D lab. No release date has been se"
+    },
+    "errors": []
+  },
+  {
+    "id": "optical-instruments",
+    "title": "Microscope and Telescope",
+    "category": "Optics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare objective and eyepiece focal lengths for telescope-style magnification.Objective f (cm)Eyepiece f (cm)ModeReset experimentM=fofeM=\\frac{f_o}{f_e}M=fe​fo​"
+    },
+    "errors": []
+  },
+  {
+    "id": "polarization-lab",
+    "title": "Polarization Lab",
+    "category": "Waves",
+    "simulate": {
+      "controls": 18,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsRotate the analyzer and verify that transmitted intensity follows Malus' law.Initial intensityAnalyzer angle (deg)Polarizer efficiencyReset experimentI=I0cos⁡2θI"
+    },
+    "errors": []
+  },
+  {
+    "id": "de-broglie-wavelength",
+    "title": "de Broglie Wavelength",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for de Broglie Wavelength is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "bohr-model",
+    "title": "Bohr Atom Transitions",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 16,
+      "visuals": 0,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsJump between hydrogen energy levels and identify emitted or absorbed photon energy.Initial nFinal nIntensityReset experimentEn=−13.6n2 eVE_n=-\\frac{13.6}{n^2}\\ e"
+    },
+    "errors": []
+  },
+  {
+    "id": "logic-gates",
+    "title": "Logic Gates",
+    "category": "Electronics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 4,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsToggle digital inputs and complete truth tables for core semiconductor logic gates.Input AInput BGate selectorReset experimentY=A⋅BY=A\\cdot BY=A⋅BGateANDInputs1,"
+    },
+    "errors": []
+  },
+  {
+    "id": "distance-time-graph",
+    "title": "Distance-Time Graph Builder",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Distance-Time Graph Builder is not available yet. Open Simulate to use the interactive 2D lab. No release date has been "
+    },
+    "errors": []
+  },
+  {
+    "id": "balanced-unbalanced-forces",
+    "title": "Balanced and Unbalanced Forces",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Balanced and Unbalanced Forces is not available yet. Open Simulate to use the interactive 2D lab. No release date has be"
+    },
+    "errors": []
+  },
+  {
+    "id": "universal-gravitation",
+    "title": "Universal Gravitation Field Map",
+    "category": "Astronomy",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare mass attraction and the inverse-square distance pattern.Central mass (Earths)Test mass (kg)Distance (10^6 m)Reset experimentF=Gm1m2r2F=G\\frac{m_1m_2}{r^2"
+    },
+    "errors": []
+  },
+  {
+    "id": "density-float-sink",
+    "title": "Density Float-or-Sink Tank",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 14,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare object density with liquid density to predict floating, sinking, and submerged fraction.Fluid density (kg/m3)Object volume (L)Object density (kg/m3)Reset"
+    },
+    "errors": []
+  },
+  {
+    "id": "calorimetry-mixing",
+    "title": "Calorimetry Mixing Lab",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsMix hot and cold water in an insulated calorimeter using heat lost equals heat gained.Hot water mass (kg)Hot temperature (C)Cold water mass (kg)Reset experimentm"
+    },
+    "errors": []
+  },
+  {
+    "id": "special-relativity-bridge",
+    "title": "Special Relativity Bridge",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 15,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Special Relativity Bridge is not available yet. Open Simulate to use the interactive 2D lab. No release date has been se"
+    },
+    "errors": []
+  },
+  {
+    "id": "chaotic-coupled-oscillators",
+    "title": "Chaotic and Coupled Oscillators",
+    "category": "Oscillations",
+    "simulate": {
+      "controls": 11,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsChaotic Coupled Oscillators: change the input, duration, and loss factor to see the measured result update.Input valueTime / distanceLoss factorReset experimentΔ"
+    },
+    "errors": []
+  },
+  {
+    "id": "advanced-quantum-operators",
+    "title": "Advanced Quantum Operators",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 23,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsAdvanced Quantum Operators: compare input energy with a threshold and observe the remaining available energy.Input energyThreshold energyIntensity / scaleReset e"
+    },
+    "errors": []
+  },
+  {
+    "id": "statistical-ensemble-lab",
+    "title": "Statistical Ensemble Lab",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 18,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsStatistical Ensemble Lab: change the input, duration, and loss factor to see the measured result update.Input valueTime / distanceLoss factorReset experimentP(E)"
+    },
+    "errors": []
+  },
+  {
+    "id": "computational-physics-workflow",
+    "title": "Computational Physics Workflow",
+    "category": "Measurement",
+    "simulate": {
+      "controls": 23,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsComputational Physics Workflow: change the input, duration, and loss factor to see the measured result update.Input valueTime / distanceLoss factorReset experime"
+    },
+    "errors": []
+  },
+  {
+    "id": "balancing-act",
+    "title": "Balancing Act",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Balancing Act is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "blackbody-spectrum",
+    "title": "Blackbody Spectrum",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 6,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Blackbody Spectrum is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "build-a-nucleus",
+    "title": "Build a Nucleus",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 6,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Build a Nucleus is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "color-vision",
+    "title": "Color Vision",
+    "category": "Optics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 0,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Color Vision is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "fourier-making-waves",
+    "title": "Fourier: Making Waves",
+    "category": "Waves",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Fourier: Making Waves is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "resistance-in-a-wire",
+    "title": "Resistance in a Wire",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Resistance in a Wire is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "rutherford-scattering",
+    "title": "Rutherford Scattering",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Rutherford Scattering is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "states-of-matter",
+    "title": "States of Matter",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for States of Matter is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "atomic-interactions",
+    "title": "Atomic Interactions",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 15,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "ATOMIC PHYSICS · POTENTIAL ENERGYAtomic InteractionsAt what separation do attraction and repulsion balance?⟳   Reset☷ CONTROL THE ATOMSAdjust the parameters and observe how the pot"
+    },
+    "errors": []
+  },
+  {
+    "id": "diffusion",
+    "title": "Diffusion",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Diffusion is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "greenhouse-effect",
+    "title": "Greenhouse Effect",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Greenhouse Effect is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "molecules-and-light",
+    "title": "Molecules and Light",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Molecules and Light is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "uniform-motion",
+    "title": "Uniform Motion",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Uniform Motion is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "newton-s-second-law",
+    "title": "Newton's Second Law",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 16,
+      "visuals": 4,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsAcceleration is directly proportional to net force and inversely proportional to mass.Applied force (N)Mass (kg)Friction force (N)Reset experimentF=maF = maF=maN"
+    },
+    "errors": []
+  },
+  {
+    "id": "friction",
+    "title": "Friction",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Friction is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "inclined-plane",
+    "title": "Inclined Plane",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 16,
+      "visuals": 0,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsGravity splits into parallel and normal components on an incline.Mass (kg)Angle (deg)Coefficient μReset experimenta=g(sin⁡θ−μcos⁡θ)a = g(\\sin\\theta - \\mu\\cos\\the"
+    },
+    "errors": []
+  },
+  {
+    "id": "elastic-collision",
+    "title": "Elastic Collision",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 0,
+      "overflow": false
+    },
+    "guide": {
+      "math": 6,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Elastic Collision is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "conservation-of-energy",
+    "title": "Conservation of Energy",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 16,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Conservation of Energy is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "hooke-s-law",
+    "title": "Hooke's Law",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 20,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsSpring force is proportional to extension within the elastic limit.k (N/m)Mass (kg)Extension (m)Reset experimentF=−kxF = -kxF=−kxSpring force1.00 NWeight19.62 NP"
+    },
+    "errors": []
+  },
+  {
+    "id": "simple-pendulum",
+    "title": "Simple Pendulum",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 17,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Simple Pendulum is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "circular-motion",
+    "title": "Circular Motion",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Circular Motion is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  }
+]

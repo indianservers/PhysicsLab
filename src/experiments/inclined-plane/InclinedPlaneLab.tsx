@@ -236,7 +236,7 @@ export function InclinedPlaneLab({ experiment }: DedicatedExperimentLabProps) {
               onClick={() => {
                 setRunning(false);
                 setVelocity((v) => v + state.accelerationDownMps2 * 0.08);
-                setPosition((p) => p + velocity * 0.08);
+                setPosition((p) => Math.max(-3.8, Math.min(3.8, p + velocity * 0.08 + 0.5 * state.accelerationDownMps2 * 0.08 ** 2)));
               }}
             >
               ▷ Step

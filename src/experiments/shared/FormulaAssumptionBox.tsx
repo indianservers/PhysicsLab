@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { MathText, MathExpression } from "../../components/MathExpression";
 import { canonicalAccuracyStatus, type AccuracyStatus, type ValidationClaimStatus } from "./validation";
 
 export type FormulaStatus = AccuracyStatus;
@@ -33,7 +34,7 @@ export function FormulaAssumptionBox({ formula, symbols = [], assumptions = [], 
       <div className="formula-assumption-head">
         <div>
           <p className="ui-label">Model formula</p>
-          <strong>{formula}</strong>
+          <strong><MathText text={formula} /></strong>
         </div>
         <span>{statusLabels[normalizedStatus]}</span>
       </div>
@@ -41,7 +42,7 @@ export function FormulaAssumptionBox({ formula, symbols = [], assumptions = [], 
         <div className="formula-symbol-grid">
           {symbols.map((item) => (
             <div key={`${item.symbol}-${item.meaning}`}>
-              <b>{item.symbol}</b>
+              <b><MathExpression expression={item.symbol} /></b>
               <span>{item.meaning}</span>
               <small>{item.unit || "unitless"}</small>
             </div>

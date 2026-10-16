@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Toolbar } from "../components/Toolbar";
-import { Upcoming3DSimulation } from "../components/Upcoming3DSimulation";
 import { ParticlePhysicsConcept, ParticleVisual, particleConceptLabs, particlePhysicsCategories, particlePhysicsConcepts, particlePhysicsStats } from "../lib/particlePhysics";
 import { PhysicsIcon } from "../lib/icons";
 
@@ -233,7 +232,6 @@ export function ParticlePhysicsPage() {
           </section>
         )}
 
-        <Upcoming3DSimulation title={selected.title} />
 
         <section className="particle-workspace">
           <aside className="particle-filter-panel" aria-label="Particle physics controls">

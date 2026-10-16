@@ -33,15 +33,21 @@ import { saveLocalArtifact } from "../lib/offlineDB";
 import { getDedicatedExperimentLab } from "../experiments/shared/experimentRegistry";
 import { liveLessonDefaults } from "../lib/liveLessonDefaults";
 import "../components/live-lesson-workbench.css";
-import { ExperimentMode, learningLevelForMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
+import { ExperimentMode, modeFromLearningLevel } from "../experiments/shared/experimentModes";
 import { getExperimentValidationMetadata } from "../lib/experimentValidationRegistry";
 import "../components/lesson-premium.css";
 import "../components/lesson-panel-contrast.css";
 import "../components/lesson-compact-shell.css";
 import { VirtualLabEnhancements } from "../components/VirtualLabEnhancements";
+import { MathExpression } from "../components/MathExpression";
+import { AtomicInteractionsLab } from "../experiments/expansion-labs/AtomicInteractionsLab";
 
 type LabWorkspaceView = "visual" | "graphs" | "report" | "coach" | "notes";
 type ActiveAssignment = NonNullable<ReturnType<typeof getAssignmentFromSearch>>;
+
+function hasLesson3DAnimation(experimentId: string) {
+  return experimentId !== "measurement-errors" && has3DAnimation(experimentId);
+}
 
 const lessonPanes = [
   { id: "guide" as const, label: "Guide", icon: "book" as const },
@@ -57,9 +63,9 @@ export function ExperimentDetailPage() {
   const experiment = experiments.find((item) => item.id === id) ?? experiments[0];
   const DedicatedExperimentLab = getDedicatedExperimentLab(experiment.id);
   const assignment = getAssignmentFromSearch(location.search);
-  const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && has3DAnimation(experiment.id) ? "three" : "simulate");
+  const [activePane, setActivePane] = useState<"guide" | "simulate" | "three" | "quiz" | "coach">(() => location.hash === "#three-d" && hasLesson3DAnimation(experiment.id) ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && hasLesson3DAnimation(experiment.id) ? "three" : "simulate");
   useEffect(() => {
-    setActivePane(location.hash === "#three-d" ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && has3DAnimation(experiment.id) ? "three" : "simulate");
+    setActivePane(location.hash === "#three-d" && hasLesson3DAnimation(experiment.id) ? "three" : location.hash === "#coach" ? "coach" : liveLessonDefaults.has(experiment.id) && hasLesson3DAnimation(experiment.id) ? "three" : "simulate");
   }, [experiment.id, location.hash]);
   const [learningLevel, setLearningLevel] = useState<LearningLevel>(() => defaultLearningLevelForClass(experiment.classLevel));
   const [experimentMode, setExperimentMode] = useState<ExperimentMode>(() => modeFromLearningLevel(defaultLearningLevelForClass(experiment.classLevel)));
@@ -79,7 +85,7 @@ export function ExperimentDetailPage() {
     setLearningLevel(nextLevel);
     setExperimentMode(modeFromLearningLevel(nextLevel));
   }, [experiment.id, experiment.classLevel]);
-  const modeLearningLevel = learningLevelForMode(experimentMode, learningLevel);
+  const modeLearningLevel = learningLevel;
 
   return (
     <div data-premium-domain={experiment.category} data-premium-lesson={experiment.id} className={`experiment-detail-page min-h-screen experiment-detail-${experiment.id}`}>
@@ -95,8 +101,7 @@ export function ExperimentDetailPage() {
             <strong title={experiment.title}>{experiment.title}</strong>
           </nav>
           <div className="lesson-command-tabs" role="tablist" aria-label="Lesson sections">
-            {lessonPanes.map((pane) => {
-              const disabled = pane.id === "three" && !has3DAnimation(experiment.id);
+            {lessonPanes.filter(pane => pane.id !== "three" || hasLesson3DAnimation(experiment.id)).map((pane) => {
               return (
                 <button
                   key={pane.id}
@@ -107,7 +112,7 @@ export function ExperimentDetailPage() {
                   onClick={() => setActivePane(pane.id)}
                 >
                   <PhysicsIcon name={pane.icon} className="h-4 w-4" />
-                  {disabled ? "3D · Upcoming" : pane.label}
+                  {pane.label}
                 </button>
               );
             })}
@@ -140,13 +145,13 @@ export function ExperimentDetailPage() {
                 </div>
               </>
             )}
-            {activePane === "three" && (["chaotic-coupled-oscillators", "atomic-interactions", "newton-s-second-law"].includes(experiment.id) && DedicatedExperimentLab ? <DedicatedExperimentLab experiment={experiment} learningLevel={modeLearningLevel} experimentMode={experimentMode} assignment={assignment} /> : <ExperimentThreePane experiment={experiment} assignment={assignment} />)}
+            {activePane === "three" && (experiment.id === "atomic-interactions" ? <AtomicInteractionsLab threeD /> : <ExperimentThreePane experiment={experiment} assignment={assignment} />)}
             {activePane === "quiz" && <ExperimentQuizPane experiment={experiment} learningLevel={modeLearningLevel} />}
             {activePane === "coach" && <ExperimentCoachPane experiment={experiment} learningLevel={modeLearningLevel} />}
           </div>
         </div>
       </div>
-      <VirtualLabEnhancements experiment={experiment} />
+      <VirtualLabEnhancements key={experiment.id} experiment={experiment} />
     </div>
   );
 }
@@ -166,10 +171,10 @@ function ExperimentGuidePane({ experiment, learningLevel }: { experiment: typeof
 function ExperimentThreePane({ experiment, assignment }: { experiment: typeof experiments[number]; assignment?: ActiveAssignment }) {
   const [values, setValues] = useState<[number, number, number]>(() => readLabSnapshotFromSearch(experiment.id)?.values ?? labValuesFor(experiment.id));
   const [resetKey, setResetKey] = useState(0);
-  if (!has3DAnimation(experiment.id)) return <PendingVisualizationCard experiment={experiment} pane="threeD" />;
+  if (!hasLesson3DAnimation(experiment.id)) return <PendingVisualizationCard experiment={experiment} pane="threeD" />;
   const result = calculateLab(experiment.id, values[0], values[1], values[2]);
   return (
-    <div className="live-lesson-workbench">
+    <div id={`live-lab-${experiment.id}-three`} className="live-lesson-workbench">
       <aside className="live-lesson-controls panel p-4" aria-label={`${experiment.title} controls`}>
         <h2>Experiment controls</h2>
         <p>{result.description}</p>
@@ -183,10 +188,10 @@ function ExperimentThreePane({ experiment, assignment }: { experiment: typeof ex
           <input disabled={Boolean(assignment?.lockVariables)} type="range" aria-label={control.label} min={control.min} max={control.max} step={control.step} value={values[index]} onChange={event => setValues(previous => previous.map((value, valueIndex) => valueIndex === index ? Number(event.target.value) : value) as [number, number, number])} />
         </label>)}
         <button className="hero-btn" onClick={() => { if (!assignment?.lockVariables) setValues(labValuesFor(experiment.id)); setResetKey(value => value + 1); }}>Reset experiment</button>
-        <p className="live-lesson-formula">{result.formula}</p>
+        <p className="live-lesson-formula"><MathExpression expression={experiment.formulae[0]?.expression ?? result.formula} /></p>
         <dl aria-label="Live measurements">{result.outputs.map(output => <div key={output.label}><dt>{output.label}</dt><dd>{output.value}</dd></div>)}</dl>
       </aside>
-      {has3DAnimation(experiment.id) ? (
+      {hasLesson3DAnimation(experiment.id) ? (
         <Experiment3DAnimation key={resetKey} experiment={experiment} values={values} outputs={result.outputs} fixedShell />
       ) : (
         <PendingVisualizationCard experiment={experiment} pane="threeD" />
@@ -272,7 +277,7 @@ function LabCommandStrip({ experiment }: { experiment: typeof experiments[number
   const features = [
     { label: "Guide", icon: "book" as const, active: true },
     { label: "Toolkit", icon: "spark" as const, active: true },
-    { label: "3D", icon: "orbit" as const, active: has3DAnimation(experiment.id) },
+    { label: "3D", icon: "orbit" as const, active: hasLesson3DAnimation(experiment.id) },
     { label: "Coach", icon: "teacher" as const, active: true },
     { label: "Notebook", icon: "clipboard" as const, active: true },
   ];
@@ -280,9 +285,9 @@ function LabCommandStrip({ experiment }: { experiment: typeof experiments[number
     <div className="lab-command-strip mb-4">
       <div className="flex min-w-0 flex-wrap items-center gap-2">
         <span className="ui-label">Lab flow</span>
-        {features.map((feature) => (
+        {features.filter(feature => feature.active).map((feature) => (
           <a key={feature.label} className={feature.active ? "status-chip status-chip-cyan" : "status-chip opacity-55"} href={feature.label === "3D" ? "#three-d" : feature.label === "Coach" ? "#coach" : feature.label === "Notebook" ? "#notebook" : feature.label === "Toolkit" ? "#toolkit" : "#guide"}>
-            <PhysicsIcon name={feature.icon} className="h-3.5 w-3.5" />{feature.label === "3D" && !feature.active ? "3D · Upcoming" : feature.label}
+            <PhysicsIcon name={feature.icon} className="h-3.5 w-3.5" />{feature.label}
           </a>
         ))}
       </div>
@@ -336,7 +341,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
   const [presentationStep, setPresentationStep] = useState(initialSnapshot?.presentationStep ?? 0);
   const [snapshotState, setSnapshotState] = useState(initialSnapshot ? "Snapshot loaded from this link" : "Ready to share current setup");
   const results = calculateLab(experiment.id, a, b, c);
-  const supportsThreeD = has3DAnimation(experiment.id);
+  const supportsThreeD = hasLesson3DAnimation(experiment.id);
   const variablesLocked = Boolean(assignment?.lockVariables);
   const levelSliderCount = learningLevelProfiles[learningLevel].sliderCount;
   const shownControls = results.controls.slice(0, levelSliderCount);
@@ -471,7 +476,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
                 <ChangeWatchBecause result={results} focusIndex={focusIndex} />
               </CollapsibleSection>
               <CollapsibleSection icon="ruler" title="Formula" hint="Model used by the calculator">
-                <div className="font-mono text-sm">{results.formula}</div>
+                <div className="font-mono text-sm"><MathExpression expression={experiment.formulae[0]?.expression ?? results.formula} /></div>
                 <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{formulaNote(experiment.id)}</p>
                 <FormulaGlossaryPanel compact symbols={symbolsFromText(`${results.formula} ${results.description} ${results.outputs.map((output) => output.label).join(" ")}`)} />
                 <FormulaDerivationPanel experiment={experiment} level={learningLevel} />
@@ -523,10 +528,10 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
                     <PhysicsIcon name="eye" className="h-4 w-4" />
                     2D Visual
                   </button>
-                  <button className={visualPane === "three" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "three"} onClick={() => setVisualPane("three")}>
+                  {supportsThreeD && <button className={visualPane === "three" ? "visual-pane-tab visual-pane-tab-active" : "visual-pane-tab"} type="button" role="tab" aria-selected={visualPane === "three"} onClick={() => setVisualPane("three")}>
                     <PhysicsIcon name="orbit" className="h-4 w-4" />
-                    {supportsThreeD ? "3D Visual" : "3D · Upcoming"}
-                  </button>
+                    3D Visual
+                  </button>}
                 </div>
                 <div className="visual-pane-canvas">
                   {visualPane === "two" && (
@@ -630,7 +635,7 @@ function GenericExperiment({ experiment, learningLevel, assignment }: { experime
           </div>
           <div className="property-section">
             <p className="ui-label">Formula</p>
-            <code>{results.formula}</code>
+            <MathExpression expression={experiment.formulae[0]?.expression ?? results.formula} />
             <p>{formulaNote(experiment.id)}</p>
           </div>
           {flagshipModel && (

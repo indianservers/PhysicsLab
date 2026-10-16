@@ -4,6 +4,7 @@ import { LearningLevel, learningLevelProfiles } from "../lib/learningLevels";
 import { PhysicsIcon } from "../lib/icons";
 import { lessonTeachingContent } from "../lib/lessonTeachingContent";
 import { lessonUiUpgrades } from "../lib/lessonUiUpgrades";
+import { MathExpression, MathText } from "./MathExpression";
 
 export function ConceptExplainer({ experiment, level, controls = [] }: { experiment: ExperimentDefinition; level: LearningLevel; controls?: Array<{ label: string; unit?: string }> }) {
   const profile = learningLevelProfiles[level];
@@ -33,7 +34,7 @@ export function ConceptExplainer({ experiment, level, controls = [] }: { experim
       <div className="phase4-grid">
         <ExplainerCard title="Question this lesson answers" icon="eye" body={experiment.aim} />
         <ExplainerCard title="Why it happens" icon="compass" body={whyItHappens} />
-        <ExplainerCard title="Equation and quantities" icon="calculator" body={formulaSummary} />
+        <article className="phase4-card"><div className="phase4-card-title"><PhysicsIcon name="calculator" className="h-4 w-4" />Equation and quantities</div>{formula ? <p><strong>{formula.name}: </strong><MathExpression expression={formula.expression} /></p> : <p>{formulaSummary}</p>}</article>
         <ExplainerCard title="Real-world example" icon="field" body={realWorld} />
         <ExplainerCard title="Common mistake" icon="spark" body={mistakes[0] ?? "Changing too many variables at once hides the cause."} />
         <ExplainerCard title="What to change and watch" icon="ruler" body={`${lessonUi?.mode ? `${lessonUi.mode}: ` : ""}Change ${sliderCue} slowly. ${investigationCue}`} />
@@ -44,7 +45,7 @@ export function ConceptExplainer({ experiment, level, controls = [] }: { experim
           <div className="mt-2 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
             {variables.map((variable) => (
               <div key={`${variable.symbol}-${variable.name}`} className="phase4-variable-chip">
-                <strong>{variable.symbol}</strong>
+                <strong><MathExpression expression={variable.symbol} /></strong>
                 <span>{variable.name}</span>
                 <em>{variable.unit || "unitless"}</em>
               </div>
@@ -65,7 +66,7 @@ function ExplainerCard({ title, body, icon }: { title: string; body: string; ico
   return (
     <article className="phase4-card">
       <div className="phase4-card-title"><PhysicsIcon name={icon} className="h-4 w-4" />{title}</div>
-      <p>{body}</p>
+      <p><MathText text={body} /></p>
     </article>
   );
 }

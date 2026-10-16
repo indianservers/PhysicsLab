@@ -8,7 +8,7 @@ const checks=[
   ["every concept has real-time examples",(data.match(/examples:\[/g)??[]).length===16],
   ["every concept has applications",(data.match(/applications:\[/g)??[]).length===16],
   ["every concept has observation guidance",(data.match(/observe:\[/g)??[]).length===16],
-  ["studio has direct concept routes",app.includes('path="/concept-studio/:conceptId"')&&page.includes("ConceptExperienceSelector")],
+  ["studio has direct concept routes",app.includes('path="/concept-studio/:conceptId"')&&page.includes("studioHomeById.get(conceptId)")&&page.includes("<SubjectHome studio={studio}/>")],
   ["topic pages embed live concept models",topic.includes("<ConceptExperience")&&Object.keys({measurement:1,mechanics:1,waves:1,optics:1,electricity:1,magnetism:1,electronics:1,thermodynamics:1}).every((key)=>topic.includes(`${key}:`))],
   ["animations respect reduced motion",fs.readFileSync("src/concept-experiences.css","utf8").includes("prefers-reduced-motion")],
   ["every model exposes a synchronized live graph",component.includes("RealtimeGraph")&&component.includes("LIVE DATA STREAM")],

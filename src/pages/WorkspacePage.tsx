@@ -288,7 +288,7 @@ export function WorkspacePage({ mode }: { mode: "guided" | "sandbox" }) {
           </div>
           {leftDockOpen && <LeftSidebar />}
         </aside>
-        <main
+        <main id="content" tabIndex={-1}
           className={
             graphSplit
               ? "grid min-h-0 grid-cols-[minmax(0,0.6fr)_minmax(340px,0.4fr)] gap-3 transition-all duration-300"

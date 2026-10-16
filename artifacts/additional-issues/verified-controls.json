@@ -1,0 +1,1290 @@
+[
+  {
+    "route": "/motion/friction",
+    "name": "Normal Load value",
+    "passed": true,
+    "min": 0,
+    "max": 30,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/friction",
+    "name": "Pull Force value",
+    "passed": true,
+    "min": 0,
+    "max": 30,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Cable Angle A θA value",
+    "passed": true,
+    "min": 10,
+    "max": 80,
+    "step": 1
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Cable Angle B θB value",
+    "passed": true,
+    "min": 10,
+    "max": 80,
+    "step": 1
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Load Mass m value",
+    "passed": true,
+    "min": 1,
+    "max": 20,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "name": "Heat Input Q value",
+    "passed": true,
+    "min": -5,
+    "max": 5,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "name": "External Pressure Pext value",
+    "passed": true,
+    "min": 50,
+    "max": 300,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Particle Count N value",
+    "passed": true,
+    "min": 100,
+    "max": 2000,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Initial Partition value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Temperature Difference value",
+    "passed": true,
+    "min": 0,
+    "max": 1000,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Hot Temperature TH value",
+    "passed": true,
+    "min": 300,
+    "max": 1200,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Cold Temperature TC value",
+    "passed": true,
+    "min": 100,
+    "max": 600,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Compression Ratio value",
+    "passed": true,
+    "min": 2,
+    "max": 20,
+    "step": 1
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "name": "Probe Depth value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "name": "Gravity g value",
+    "passed": true,
+    "min": 1.62,
+    "max": 24.79,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "name": "Probe Depth value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "name": "Gravity g value",
+    "passed": true,
+    "min": 1.62,
+    "max": 24.79,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "name": "Object Density value",
+    "passed": true,
+    "min": 500,
+    "max": 5000,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "name": "Submerged Fraction value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Inlet Area A₁ value",
+    "passed": true,
+    "min": 0.001,
+    "max": 0.01,
+    "step": 0.00001
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Outlet Area A₂ value",
+    "passed": true,
+    "min": 0.0005,
+    "max": 0.005,
+    "step": 0.00001
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Flow Rate Q value",
+    "passed": true,
+    "min": 0.0005,
+    "max": 0.01,
+    "step": 0.00001
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Flow Speed value",
+    "passed": true,
+    "min": 0.2,
+    "max": 3,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Throat Diameter value",
+    "passed": true,
+    "min": 10,
+    "max": 50,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Fluid Density value",
+    "passed": true,
+    "min": 800,
+    "max": 1200,
+    "step": 0.01
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "name": "Sphere Radius value",
+    "passed": true,
+    "min": 1,
+    "max": 20,
+    "step": 0.1
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "name": "Temperature value",
+    "passed": true,
+    "min": 0,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Packet Width σ value",
+    "passed": true,
+    "min": 20,
+    "max": 500,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Barrier Height V₀ value",
+    "passed": true,
+    "min": 0,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Measurement Strength κ value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "name": "Light Frequency f value",
+    "passed": true,
+    "min": 4,
+    "max": 12,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "name": "Light Intensity value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Particle Energy value",
+    "passed": true,
+    "min": 20,
+    "max": 300,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Crystal Spacing value",
+    "passed": true,
+    "min": 0.1,
+    "max": 0.4,
+    "step": 0.001
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Beam Width value",
+    "passed": true,
+    "min": 0.1,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "name": "Proton Number Z value",
+    "passed": true,
+    "min": 1,
+    "max": 118,
+    "step": 1
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "name": "Neutron Number N value",
+    "passed": true,
+    "min": 0,
+    "max": 200,
+    "step": 1
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "name": "Shield Thickness value",
+    "passed": true,
+    "min": 0,
+    "max": 20,
+    "step": 0.1
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "name": "Elapsed Time value",
+    "passed": true,
+    "min": 0,
+    "max": 200,
+    "step": 0.1
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "name": "Time value",
+    "passed": true,
+    "min": 0,
+    "max": 3650,
+    "step": 1
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "name": "Orbit Scale value",
+    "passed": true,
+    "min": 0.5,
+    "max": 4,
+    "step": 0.1
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "name": "Initial Mass value",
+    "passed": true,
+    "min": 0.1,
+    "max": 50,
+    "step": 0.01
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "name": "Metallicity Z value",
+    "passed": true,
+    "min": 0.0001,
+    "max": 0.03,
+    "step": 0.01
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "name": "Spectral Range value",
+    "passed": true,
+    "min": 350,
+    "max": 750,
+    "step": 1
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "name": "Redshift z value",
+    "passed": true,
+    "min": -0.01,
+    "max": 0.01,
+    "step": 0.00001
+  },
+  {
+    "route": "/astrophysics/galaxies",
+    "name": "Radius Probe value",
+    "passed": true,
+    "min": 0.1,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Epoch value",
+    "passed": true,
+    "min": 1000000,
+    "max": 13800000000,
+    "step": 1000000
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Expansion Rate H₀ value",
+    "passed": true,
+    "min": 50,
+    "max": 100,
+    "step": 1
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Matter Density Ωm value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Planet Radius value",
+    "passed": true,
+    "min": 0.5,
+    "max": 4,
+    "step": 0.1
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Orbital Period value",
+    "passed": true,
+    "min": 1,
+    "max": 200,
+    "step": 0.1
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Inclination value",
+    "passed": true,
+    "min": 80,
+    "max": 90,
+    "step": 0.1
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Piston Load value",
+    "passed": true,
+    "min": 0,
+    "max": 20,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Gas Amount n value",
+    "passed": true,
+    "min": 0.01,
+    "max": 0.1,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Temperature T value",
+    "passed": true,
+    "min": 200,
+    "max": 600,
+    "step": 0.01
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "name": "Temperature Difference ΔT value",
+    "passed": true,
+    "min": 10,
+    "max": 200,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 600,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Temperature A (Hot) value",
+    "passed": true,
+    "min": 100,
+    "max": 1200,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Temperature B (Cold) value",
+    "passed": true,
+    "min": 100,
+    "max": 1200,
+    "step": 1
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Particle Count value",
+    "passed": true,
+    "min": 50,
+    "max": 1000,
+    "step": 1
+  },
+  {
+    "route": "/electronics/sensors",
+    "name": "Stimulus Level value",
+    "passed": true,
+    "min": 0,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/electronics/sensors",
+    "name": "Sampling Rate value",
+    "passed": true,
+    "min": 1,
+    "max": 50,
+    "step": 0.1
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Input Amplitude (Vin) value",
+    "passed": true,
+    "min": 0.05,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Gain value",
+    "passed": true,
+    "min": -50,
+    "max": -2,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Bias (Vb) value",
+    "passed": true,
+    "min": 0.6,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Base Current I_B value",
+    "passed": true,
+    "min": 0,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Collector Voltage V_CE value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Load Resistor R_C value",
+    "passed": true,
+    "min": 100,
+    "max": 10000,
+    "step": 0.1
+  },
+  {
+    "route": "/electronics/diodes",
+    "name": "Bias Voltage Vₛ value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/diodes",
+    "name": "Series Resistance R value",
+    "passed": true,
+    "min": 10,
+    "max": 10000,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "name": "Doping Level value",
+    "passed": true,
+    "min": 14,
+    "max": 18,
+    "step": 0.01
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "name": "Temperature value",
+    "passed": true,
+    "min": 100,
+    "max": 500,
+    "step": 0.01
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Coil Current I value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Number of Turns N value",
+    "passed": true,
+    "min": 100,
+    "max": 2000,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Air Gap g value",
+    "passed": true,
+    "min": 0.5,
+    "max": 20,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/induction",
+    "name": "Magnet Speed value",
+    "passed": true,
+    "min": 0,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/magnetism/induction",
+    "name": "Coil Turns N value",
+    "passed": true,
+    "min": 50,
+    "max": 800,
+    "step": 0.01
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "name": "Number of Turns N value",
+    "passed": true,
+    "min": 100,
+    "max": 2000,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "name": "Current I value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "name": "Current I value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "name": "Probe Radius r value",
+    "passed": true,
+    "min": 1,
+    "max": 20,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "name": "Particle Speed v value",
+    "passed": true,
+    "min": 1000000,
+    "max": 10000000,
+    "step": 90000
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "name": "Magnetic Field B value",
+    "passed": true,
+    "min": 0.05,
+    "max": 0.5,
+    "step": 0.0045000000000000005
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "name": "Separation value",
+    "passed": true,
+    "min": 2,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "name": "Probe Density value",
+    "passed": true,
+    "min": 10,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Plate Area A value",
+    "passed": true,
+    "min": 1,
+    "max": 100,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Separation d value",
+    "passed": true,
+    "min": 0.5,
+    "max": 10,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Voltage V value",
+    "passed": true,
+    "min": 0,
+    "max": 12,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/circuits",
+    "name": "Supply Voltage value",
+    "passed": true,
+    "min": 0,
+    "max": 12,
+    "step": 0.1
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Voltage (V) value",
+    "passed": true,
+    "min": 0,
+    "max": 12,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Wire Diameter (d) value",
+    "passed": true,
+    "min": 0.1,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Temperature (T) value",
+    "passed": true,
+    "min": 0,
+    "max": 200,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/electric-potential",
+    "name": "Probe Height z value",
+    "passed": true,
+    "min": 0,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Charge A (q₁) value",
+    "passed": true,
+    "min": -10,
+    "max": 10,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Charge B (q₂) value",
+    "passed": true,
+    "min": -10,
+    "max": 10,
+    "step": 0.01
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Separation (r) value",
+    "passed": true,
+    "min": 0.05,
+    "max": 1,
+    "step": 0.01
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Aperture Width a value",
+    "passed": true,
+    "min": 10,
+    "max": 500,
+    "step": 4.9
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Wavelength λ value",
+    "passed": true,
+    "min": 400,
+    "max": 700,
+    "step": 3
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Screen Distance L value",
+    "passed": true,
+    "min": 0.1,
+    "max": 2,
+    "step": 0.019
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Detector Position y value",
+    "passed": true,
+    "min": -10,
+    "max": 10,
+    "step": 0.2
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Wavelength λ value",
+    "passed": true,
+    "min": 400,
+    "max": 800,
+    "step": 4
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Slit Separation d value",
+    "passed": true,
+    "min": 0.05,
+    "max": 1,
+    "step": 0.0095
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Screen Distance L value",
+    "passed": true,
+    "min": 0.25,
+    "max": 2,
+    "step": 0.0175
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Detector Position y value",
+    "passed": true,
+    "min": -10,
+    "max": 10,
+    "step": 0.2
+  },
+  {
+    "route": "/optics/mirrors",
+    "name": "Curvature Radius R value",
+    "passed": true,
+    "min": 10,
+    "max": 100,
+    "step": 0.1
+  },
+  {
+    "route": "/optics/mirrors",
+    "name": "Object Distance d₀ value",
+    "passed": true,
+    "min": 5,
+    "max": 80,
+    "step": 0.1
+  },
+  {
+    "route": "/optics/lenses",
+    "name": "Focal Length f value",
+    "passed": true,
+    "min": 5,
+    "max": 20,
+    "step": 0.1
+  },
+  {
+    "route": "/optics/lenses",
+    "name": "Object Distance d₀ value",
+    "passed": true,
+    "min": 5,
+    "max": 50,
+    "step": 0.1
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Medium A refractive index n₁ value",
+    "passed": true,
+    "min": 1,
+    "max": 2.5,
+    "step": 0.001
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Medium B refractive index n₂ value",
+    "passed": true,
+    "min": 1,
+    "max": 2.5,
+    "step": 0.001
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Incident Angle θ₁ value",
+    "passed": true,
+    "min": 0,
+    "max": 90,
+    "step": 0.001
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Incident Angle θᵢ value",
+    "passed": true,
+    "min": 0,
+    "max": 80,
+    "step": 0.8
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Mirror Rotation value",
+    "passed": true,
+    "min": -45,
+    "max": 45,
+    "step": 0.9
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Ray Count value",
+    "passed": true,
+    "min": 1,
+    "max": 5,
+    "step": 1
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Source Speed vₛ value",
+    "passed": true,
+    "min": -50,
+    "max": 50,
+    "step": 1
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Observer Speed vₒ value",
+    "passed": true,
+    "min": -50,
+    "max": 50,
+    "step": 1
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Emitted Frequency f value",
+    "passed": true,
+    "min": 100,
+    "max": 2000,
+    "step": 19
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Fundamental Frequency f value",
+    "passed": true,
+    "min": 20,
+    "max": 2000,
+    "step": 19.8
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Gain (Output Level) value",
+    "passed": true,
+    "min": -60,
+    "max": 0,
+    "step": 0.6
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.05
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "String Tension T value",
+    "passed": true,
+    "min": 5,
+    "max": 50,
+    "step": 0.45
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "String Length L value",
+    "passed": true,
+    "min": 0.2,
+    "max": 2,
+    "step": 0.018000000000000002
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "Harmonic n value",
+    "passed": true,
+    "min": 1,
+    "max": 5,
+    "step": 1
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Source Separation d value",
+    "passed": true,
+    "min": 2,
+    "max": 20,
+    "step": 0.18
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Frequency f value",
+    "passed": true,
+    "min": 5,
+    "max": 30,
+    "step": 0.25
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Phase Difference Δφ value",
+    "passed": true,
+    "min": -180,
+    "max": 180,
+    "step": 3.6
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Detector Position value",
+    "passed": true,
+    "min": 0,
+    "max": 20,
+    "step": 0.2
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Amplitude Aₐ value",
+    "passed": true,
+    "min": 0,
+    "max": 0.2,
+    "step": 0.002
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Frequency fₐ value",
+    "passed": true,
+    "min": 0.5,
+    "max": 5,
+    "step": 0.045
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Amplitude Aᵦ value",
+    "passed": true,
+    "min": 0,
+    "max": 0.2,
+    "step": 0.002
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Frequency fᵦ value",
+    "passed": true,
+    "min": 0.5,
+    "max": 5,
+    "step": 0.045
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Phase Offset Δφ value",
+    "passed": true,
+    "min": 0,
+    "max": 6.28,
+    "step": 0.06280000000000001
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Amplitude A value",
+    "passed": true,
+    "min": 0.5,
+    "max": 5,
+    "step": 0.045
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Frequency f value",
+    "passed": true,
+    "min": 0.5,
+    "max": 5,
+    "step": 0.045
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Wave Speed v value",
+    "passed": true,
+    "min": 0.2,
+    "max": 1.5,
+    "step": 0.013000000000000001
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Coupling Strength k value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Mass Ratio m₂/m₁ value",
+    "passed": true,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.025
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 20,
+    "step": 0.2
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Drive Frequency f value",
+    "passed": true,
+    "min": 0.1,
+    "max": 5,
+    "step": 0.049
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Drive Amplitude F₀ value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.05
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Damping b value",
+    "passed": true,
+    "min": 0,
+    "max": 2,
+    "step": 0.02
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Damping Coefficient b value",
+    "passed": true,
+    "min": 0,
+    "max": 5,
+    "step": 0.05
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Mass m value",
+    "passed": true,
+    "min": 0.05,
+    "max": 2,
+    "step": 0.0195
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Initial Displacement x₀ value",
+    "passed": true,
+    "min": 0,
+    "max": 0.2,
+    "step": 0.002
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 25,
+    "step": 0.25
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Amplitude A value",
+    "passed": true,
+    "min": 0.05,
+    "max": 0.3,
+    "step": 0.0025
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Mass m value",
+    "passed": true,
+    "min": 0.1,
+    "max": 2,
+    "step": 0.019
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Spring Constant k value",
+    "passed": true,
+    "min": 10,
+    "max": 200,
+    "step": 1.9
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Length L value",
+    "passed": true,
+    "min": 0.2,
+    "max": 2,
+    "step": 0.018000000000000002
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Release Angle θ₀ value",
+    "passed": true,
+    "min": 1,
+    "max": 60,
+    "step": 0.59
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Gravity g value",
+    "passed": true,
+    "min": 1.62,
+    "max": 24.79,
+    "step": 0.2317
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Spring Constant k value",
+    "passed": true,
+    "min": 10,
+    "max": 200,
+    "step": 1.9
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Mass m value",
+    "passed": true,
+    "min": 0.05,
+    "max": 1,
+    "step": 0.0095
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Amplitude A value",
+    "passed": true,
+    "min": 0.01,
+    "max": 0.3,
+    "step": 0.0029
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Time t value",
+    "passed": true,
+    "min": 0,
+    "max": 10,
+    "step": 0.1
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Semi-major Axis a value",
+    "passed": true,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.025
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Eccentricity e value",
+    "passed": true,
+    "min": 0,
+    "max": 0.9,
+    "step": 0.009000000000000001
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Time Step Δt value",
+    "passed": true,
+    "min": 0.1,
+    "max": 50,
+    "step": 0.499
+  }
+]

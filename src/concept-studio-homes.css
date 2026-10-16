@@ -159,3 +159,13 @@ body:has(.csh){overflow:visible!important;background:#06111b}
   .csh.csh .csh-force-sensor {top:145px;width:140px}
   .csh.csh .csh-diagnostic {top:48px;width:210px}
 }
+
+.csh-reference-labs{padding:24px 34px;border-bottom:1px solid #183544;background:#071722}
+.csh-reference-labs header>span{font-size:10px;letter-spacing:.14em;color:var(--studio-accent)}
+.csh-reference-labs h2{margin:8px 0 18px;color:#e4f4ff;font-size:24px}
+.csh-reference-labs .csh-lab-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.csh-reference-labs .csh-lab-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:12px 16px;border:1px solid #285067;border-radius:7px;background:#0a2332;color:#d8efff;text-decoration:none;font-size:14px}
+.csh-reference-labs .csh-lab-links a:hover,.csh-reference-labs .csh-lab-links a:focus-visible{border-color:var(--studio-accent);background:#10364a}
+.csh-reference-labs .csh-lab-links b{color:var(--studio-accent)}
+@media(max-width:850px){.csh-reference-labs .csh-lab-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.csh-reference-labs{padding:24px 16px}.csh-reference-labs .csh-lab-links{grid-template-columns:minmax(0,1fr)}}

@@ -19,8 +19,9 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
   const [learningRecords, setLearningRecords] = useState(listLearningRecords());
   const [renamingName, setRenamingName] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState("");
+  const [renameError, setRenameError] = useState("");
   const navigate = useNavigate();
-  const { accessibility, setAccessibility, unitSystem, setUnitSystem, significantFigures, setSignificantFigures, loadProject } = useLabStore();
+  const { accessibility, setAccessibility, unitSystem, setUnitSystem, significantFigures, setSignificantFigures, loadProject, theme, setTheme } = useLabStore();
 
   const refreshProjects = () => listProjects().then(setProjects).catch(() => setProjects([]));
 
@@ -35,6 +36,7 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
   };
 
   const startRename = (project: ProjectFile) => {
+    setRenameError("");
     setRenamingName(project.name);
     setRenameValue(project.name);
   };
@@ -44,9 +46,12 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
       setRenamingName(null);
       return;
     }
-    await renameProject(renamingName, renameValue.trim());
-    setRenamingName(null);
-    refreshProjects();
+    try {
+      await renameProject(renamingName, renameValue.trim());
+      setRenamingName(null);
+      setRenameError("");
+      refreshProjects();
+    } catch (error) { setRenameError(error instanceof Error ? error.message : "Unable to rename this project."); }
   };
 
   const openInSandbox = (project: ProjectFile) => {
@@ -67,6 +72,10 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
         {title === "Terms" && <TermsContent />}
         {title === "Settings" && (
           <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <label className="property-row">
+              <span>Theme</span>
+              <select aria-label="Theme" value={theme} onChange={event => setTheme(event.target.value as "light" | "dark")}><option value="light">Light</option><option value="dark">Dark</option></select>
+            </label>
             <label className="property-row">
               <span>Language</span>
               <select value={i18next.language} onChange={(event) => { localStorage.setItem("lang", event.target.value); void i18next.changeLanguage(event.target.value); }} className="rounded bg-slate-100 p-1 dark:bg-slate-800">
@@ -94,7 +103,7 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
             </label>
             <label className="property-row">
               <span>Significant figures</span>
-              <input type="number" min={2} max={8} value={significantFigures} onChange={(event) => setSignificantFigures(Number(event.target.value))} />
+              <input type="number" min={2} max={8} value={significantFigures} onChange={(event) => setSignificantFigures(Math.max(2, Math.min(8, Number(event.target.value) || 2)))} />
             </label>
           </div>
         )}
@@ -124,6 +133,7 @@ export function SimplePage({ title, showProjects = false }: { title: string; sho
               </div>
             </section>
             <section className="mt-8">
+              {renameError && <p role="alert" className="mb-3 text-rose-600">{renameError}</p>}
               <h2 className="mb-3 text-xl font-black">Saved Lab Projects</h2>
               <div className="grid gap-3">
                 {projects.length === 0 && <div className="panel p-4">No local projects saved yet.</div>}

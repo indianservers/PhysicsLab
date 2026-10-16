@@ -4,7 +4,7 @@ import { atomicDefaults, atomicInteraction } from "./atomicInteractionPhysics";
 import "./atomic-interactions.css";
 
 const display = (value: number) => Math.abs(value) >= 10000 ? value.toExponential(2) : value.toFixed(2);
-export function AtomicInteractionsLab() {
+export function AtomicInteractionsLab({ threeD = false }: { threeD?: boolean } = {}) {
   const [values, setValues] = useState(atomicDefaults);
   const [clouds, setClouds] = useState(true);
   const result = atomicInteraction(values.separation, values.sigma, values.epsilon);
@@ -20,7 +20,7 @@ export function AtomicInteractionsLab() {
         <div className="atomic-presets"><h4>QUICK PRESETS</h4><div><button className="repulsive" onClick={() => setPreset("repulsive")}><span aria-hidden="true">◉◉</span>Repulsive</button><button className="balanced" onClick={() => setPreset("balanced")}><span aria-hidden="true">◉◉</span>Equilibrium</button><button className="attractive" onClick={() => setPreset("attractive")}><span aria-hidden="true">◉ ◉</span>Attractive</button></div></div>
       </aside>
       <main className="atomic-card atomic-visual"><div className="atomic-visual-heading"><h3><span>⚛</span> ATOMIC INTERACTION VISUALIZATION</h3><div className="atomic-toggle" role="group" aria-label="Atom appearance"><button aria-pressed={clouds} onClick={() => setClouds(true)}>Electron clouds</button><button aria-pressed={!clouds} onClick={() => setClouds(false)}>Nuclei only</button></div></div>
-        <AtomicObjects separation={values.separation} sigma={values.sigma} force={result.force} clouds={clouds} onDistance={changeDistance} />
+        {threeD ? <AtomicObjects separation={values.separation} sigma={values.sigma} force={result.force} clouds={clouds} onDistance={changeDistance} /> : <svg viewBox="0 0 600 300" role="img" aria-label="2D atomic separation and forces"><circle cx={300-values.separation*25} cy="140" r={clouds ? values.sigma*15 : 18} fill="#ff7280"/><circle cx={300+values.separation*25} cy="140" r={clouds ? values.sigma*15 : 18} fill="#45cafa"/><line x1={300-values.separation*25} x2={300+values.separation*25} y1="225" y2="225" stroke="currentColor"/><text x="300" y="260" textAnchor="middle" fill="currentColor">r = {values.separation.toFixed(2)} Å · {Math.abs(result.force)<1e-7 ? "Balanced" : result.force>0 ? "Repulsive" : "Attractive"}</text></svg>}
         <div className="atomic-graph-title"><h3><span>⌁</span> LENNARD–JONES POTENTIAL ENERGY CURVE</h3><code>U(r) = 4ε[(σ/r)¹² − (σ/r)⁶]</code></div>
         <PotentialGraph values={values} onDistance={changeDistance} />
       </main>

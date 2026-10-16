@@ -1,6 +1,6 @@
 import type { LauncherParameters } from '../lib/experimentLauncher';
 
-export function LauncherCircuitApparatus({p,id}:{p:LauncherParameters;id:string}){
+export function LauncherCircuitApparatus({p,id,time=0}:{p:LauncherParameters;id:string;time?:number}){
  const current=p.voltage/p.resistance;
  return <g>
   <ellipse cx="312" cy="453" rx="140" ry="17" fill="#000" opacity=".4"/>
@@ -34,6 +34,7 @@ export function LauncherCircuitApparatus({p,id}:{p:LauncherParameters;id:string}
 
   <path d="M378 413C428 448 492 332 550 370" fill="none" stroke="#421717" strokeWidth="7"/>
   <path d="M378 411C428 446 492 330 550 368" fill="none" stroke="#ca5147" strokeWidth="4"/>
+  {current !== 0 && <path data-current-cue="true" d="M378 411C428 446 492 330 550 368" fill="none" stroke="#ffe985" strokeWidth="2" strokeDasharray="3 24" strokeDashoffset={-time*30*Math.sign(current)}/>}
   <path d="M695 370C748 402 727 468 589 463S336 468 330 413" fill="none" stroke="#030a10" strokeWidth="7"/>
   <path d="M695 369C748 401 727 467 589 462S336 467 330 412" fill="none" stroke="#52636e" strokeWidth="1"/>
   {[{x:330,color:'#111c24',label:'−'},{x:378,color:'#a63a31',label:'+'}].map(({x,color,label})=><g key={x}><circle cx={x} cy="413" r="9" fill="#778996"/><circle cx={x} cy="413" r="7" fill={color}/><circle cx={x} cy="413" r="3" fill="#02080b"/><text x={x} y="398" textAnchor="middle" fill="#c7d9e5" fontSize="14">{label}</text></g>)}

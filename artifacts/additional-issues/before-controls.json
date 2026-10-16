@@ -1,0 +1,114 @@
+[
+  {
+    "route": "/motion/circular-motion",
+    "controls": [
+      {
+        "name": "Angular velocity value",
+        "number": {
+          "min": "0",
+          "max": "10",
+          "step": "0.1",
+          "value": "3.0"
+        },
+        "range": {
+          "min": "0",
+          "max": "10",
+          "step": "0.1",
+          "value": "3"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      },
+      {
+        "name": "Radius value",
+        "number": {
+          "min": "0.05",
+          "max": "0.5",
+          "step": "0.001",
+          "value": "0.250"
+        },
+        "range": {
+          "min": "0.05",
+          "max": "0.5",
+          "step": "0.001",
+          "value": "0.25"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      },
+      {
+        "name": "Mass value",
+        "number": {
+          "min": "0.05",
+          "max": "1",
+          "step": "0.001",
+          "value": "0.200"
+        },
+        "range": {
+          "min": "0.05",
+          "max": "1",
+          "step": "0.001",
+          "value": "0.2"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      }
+    ]
+  },
+  {
+    "route": "/motion/first-law-inertia",
+    "controls": [
+      {
+        "name": "Surface Drag (friction) value",
+        "number": {
+          "min": "0",
+          "max": "1",
+          "step": "0.01",
+          "value": "0.02"
+        },
+        "range": {
+          "min": "0",
+          "max": "1",
+          "step": "0.01",
+          "value": "0.02"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      },
+      {
+        "name": "Cart Speed value",
+        "number": {
+          "min": "0",
+          "max": "2",
+          "step": "0.01",
+          "value": "0.80"
+        },
+        "range": {
+          "min": "0",
+          "max": "2",
+          "step": "0.01",
+          "value": "0.8"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      },
+      {
+        "name": "Object Mass value",
+        "number": {
+          "min": "0.05",
+          "max": "1",
+          "step": "0.01",
+          "value": "0.20"
+        },
+        "range": {
+          "min": "0.05",
+          "max": "1",
+          "step": "0.01",
+          "value": "0.2"
+        },
+        "stepMismatch": false,
+        "boundsMismatch": false
+      }
+    ]
+  }
+]

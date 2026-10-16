@@ -1,9 +1,9 @@
 # Full lesson 3D audit
 
 Checked 763 routes and 96 in-page studio concepts.
-0 route failures. 42 experiment 3D tabs are Upcoming.
+0 route failures. 42 experiment 3D views are unsupported and hidden.
 
-This audit checks route coverage, rendering, Upcoming notices, and absence of removed generic 3D canvases. It is not a numerical validation of every retained physics model.
+This audit checks route coverage, rendering, absence of unavailable tabs and placeholders, and absence of removed generic 3D canvases. It is not a numerical validation of every retained physics model.
 
 ## Coverage
 
@@ -89,63 +89,63 @@ Includes active renderers, unused implementations, and commented legacy scenes. 
 | Route | Group | Rendered 3D canvases | Upcoming notices | Result |
 |---|---|---:|---:|---|
 | /astrophysics?concept=accretion-disks | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=big-bang | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=big-bang | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=black-holes | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=cosmic-microwave-background | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=cosmic-rays | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=cosmic-web | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=dark-energy | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=dark-matter | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=distance-ladder | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=escape-speed | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=exoplanets | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=cosmic-microwave-background | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=cosmic-rays | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=cosmic-web | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=dark-energy | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=dark-matter | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=distance-ladder | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=escape-speed | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=exoplanets | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=galaxy-structure | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=gamma-ray-bursts | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=general-relativity | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=gravitational-lensing | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=gamma-ray-bursts | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=general-relativity | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=gravitational-lensing | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=gravitational-waves | Astrophysics concept | 1 | 0 | PASS |
 | /astrophysics?concept=gravity-orbits | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=hubble-law | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=kepler-laws | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=main-sequence | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=hubble-law | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=kepler-laws | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=main-sequence | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=milky-way | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=neutron-stars | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=nucleosynthesis | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=parallax | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=planetary-atmospheres | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=pulsars | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=quasars | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=radio-astronomy | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=redshift | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=neutron-stars | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=nucleosynthesis | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=parallax | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=planetary-atmospheres | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=pulsars | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=quasars | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=radio-astronomy | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=redshift | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=solar-system | Astrophysics concept | 1 | 0 | PASS |
-| /astrophysics?concept=space-telescopes | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=spectroscopy | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=stellar-evolution | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=stellar-luminosity | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=supernovae | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=tidal-forces | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=transit-method | Astrophysics concept | 0 | 1 | PASS |
-| /astrophysics?concept=white-dwarfs | Astrophysics concept | 0 | 1 | PASS |
+| /astrophysics?concept=space-telescopes | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=spectroscopy | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=stellar-evolution | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=stellar-luminosity | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=supernovae | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=tidal-forces | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=transit-method | Astrophysics concept | 0 | 0 | PASS |
+| /astrophysics?concept=white-dwarfs | Astrophysics concept | 0 | 0 | PASS |
 | /astrophysics?concept=black-hole-lensing | Client Demos | 1 | 0 | PASS |
 | /pro-lab | Client Demos | 0 | 0 | PASS |
 | /pro-lab/launch-vehicle | Client Demos | 0 | 0 | PASS |
 | /rocket-lab/parts | Client Demos | 0 | 0 | PASS |
-| /concept-studio/astronomy-astrophysics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/electricity | Concept studio | 0 | 1 | PASS |
-| /concept-studio/electronics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/fluid-mechanics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/force-newton | Concept studio | 0 | 1 | PASS |
-| /concept-studio/gravitation | Concept studio | 0 | 1 | PASS |
-| /concept-studio/magnetism | Concept studio | 0 | 1 | PASS |
-| /concept-studio/measurement | Concept studio | 0 | 1 | PASS |
-| /concept-studio/mechanics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/modern-physics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/motion-kinematics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/optics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/oscillations | Concept studio | 0 | 1 | PASS |
-| /concept-studio/thermodynamics | Concept studio | 0 | 1 | PASS |
-| /concept-studio/waves-sound | Concept studio | 0 | 1 | PASS |
-| /concept-studio/work-energy-power | Concept studio | 0 | 1 | PASS |
+| /concept-studio/astronomy-astrophysics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/electricity | Concept studio | 0 | 0 | PASS |
+| /concept-studio/electronics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/fluid-mechanics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/force-newton | Concept studio | 0 | 0 | PASS |
+| /concept-studio/gravitation | Concept studio | 0 | 0 | PASS |
+| /concept-studio/magnetism | Concept studio | 0 | 0 | PASS |
+| /concept-studio/measurement | Concept studio | 0 | 0 | PASS |
+| /concept-studio/mechanics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/modern-physics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/motion-kinematics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/optics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/oscillations | Concept studio | 0 | 0 | PASS |
+| /concept-studio/thermodynamics | Concept studio | 0 | 0 | PASS |
+| /concept-studio/waves-sound | Concept studio | 0 | 0 | PASS |
+| /concept-studio/work-energy-power | Concept studio | 0 | 0 | PASS |
 | /concepts?concept=c10-electric-power | Curriculum concept | 0 | 0 | PASS |
 | /concepts?concept=c10-glass-prism | Curriculum concept | 0 | 0 | PASS |
 | /concepts?concept=c10-human-eye | Curriculum concept | 0 | 0 | PASS |
@@ -316,44 +316,44 @@ Includes active renderers, unused implementations, and commented legacy scenes. 
 | /experiments/ac-lcr-resonance#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/advanced-quantum-operators#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/atomic-interactions#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/balanced-unbalanced-forces#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/balancing-act#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/balanced-unbalanced-forces#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/balancing-act#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/bernoulli-fluid-flow#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/blackbody-spectrum#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/blackbody-spectrum#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/bohr-model#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/build-a-nucleus#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/buoyancy#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/build-a-nucleus#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/buoyancy#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/calorimetry-mixing#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/capacitor-lab#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/capacitor-lab#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/chaotic-coupled-oscillators#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/chemical-effects-current#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/chladni-plate#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/circular-motion#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/color-vision#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/circular-motion#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/color-vision#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/computational-physics-workflow#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/conservation-of-energy#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/de-broglie-wavelength#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/conservation-of-energy#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/de-broglie-wavelength#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/density-float-sink#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/diffusion#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/distance-time-graph#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/diffusion#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/distance-time-graph#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/echo-speed-sound#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/elastic-collision#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/electric-power#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/elastic-collision#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/electric-power#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/electromagnet#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/electrostatic-field-potential#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/em-spectrum#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/emi-faraday#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/fluid-pressure#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/force-and-pressure#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/fourier-making-waves#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/free-fall#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/friction#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/gas-laws#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/fluid-pressure#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/force-and-pressure#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/fourier-making-waves#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/free-fall#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/friction#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/gas-laws#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/glass-slab-refraction#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/greenhouse-effect#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/heat-and-temperature#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/heat-transfer#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/heating-effect-current#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/greenhouse-effect#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/heat-and-temperature#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/heat-transfer#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/heating-effect-current#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/hooke-s-law#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/human-eye-defects#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/inclined-plane#three-d | Experiment 3D tab | 1 | 0 | PASS |
@@ -362,48 +362,48 @@ Includes active renderers, unused implementations, and commented legacy scenes. 
 | /experiments/lens-formula#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/logic-gates#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/lorentz-force#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/magnetic-field-current#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/magnetic-field-current#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/mass-and-weight#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/measurement-errors#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/meter-bridge#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/mirror-formula#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/molecules-and-light#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/mirror-formula#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/molecules-and-light#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/multiple-reflection#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/newton-s-second-law#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/nuclear-decay#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/ohms-law#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/ohms-law#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/optical-instruments#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/photoelectric-equation#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/polarization-lab#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/prism-dispersion#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/projectile-motion#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/reflection-plane-mirror#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/resistance-in-a-wire#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/rotational-dynamics#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/rutherford-scattering#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/satellite-orbit#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/resistance-in-a-wire#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/rotational-dynamics#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/rutherford-scattering#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/satellite-orbit#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/semiconductor-diode#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/series-parallel-resistance#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/series-parallel-resistance#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/shadows-eclipses#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/shm-spring#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/simple-pendulum#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/single-slit-diffraction#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/simple-pendulum#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/single-slit-diffraction#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/sound-pitch-loudness#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/sound-wave-anatomy#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/sound-wave-anatomy#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/sources-of-energy#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/special-relativity-bridge#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/states-of-matter#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/special-relativity-bridge#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/states-of-matter#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/static-electricity#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/statistical-ensemble-lab#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/thermodynamic-process#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/total-internal-reflection#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/total-internal-reflection#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/transformer-lab#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/uniform-motion#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/uniform-motion#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /experiments/universal-gravitation#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/vector-resolution#three-d | Experiment 3D tab | 1 | 0 | PASS |
 | /experiments/wave-lab#three-d | Experiment 3D tab | 1 | 0 | PASS |
-| /experiments/work-power#three-d | Experiment 3D tab | 0 | 1 | PASS |
-| /experiments/young-double-slit#three-d | Experiment 3D tab | 0 | 1 | PASS |
+| /experiments/work-power#three-d | Experiment 3D tab | 0 | 0 | PASS |
+| /experiments/young-double-slit#three-d | Experiment 3D tab | 0 | 0 | PASS |
 | /concepts | Modules | 0 | 0 | PASS |
 | /dictionary?q=relativity | Modules | 0 | 0 | PASS |
 | /experiments?category=Electricity | Modules | 0 | 0 | PASS |
@@ -411,30 +411,30 @@ Includes active renderers, unused implementations, and commented legacy scenes. 
 | /experiments?category=Magnetism | Modules | 0 | 0 | PASS |
 | /experiments?category=Mechanics | Modules | 0 | 0 | PASS |
 | /experiments?category=Thermodynamics | Modules | 0 | 0 | PASS |
-| /particle-physics/antimatter | Particle concept | 0 | 1 | PASS |
-| /particle-physics/confinement | Particle concept | 0 | 1 | PASS |
-| /particle-physics/gauge-bosons | Particle concept | 0 | 1 | PASS |
-| /particle-physics/gluons-color-charge | Particle concept | 0 | 1 | PASS |
-| /particle-physics/higgs-boson | Particle concept | 0 | 1 | PASS |
-| /particle-physics/higgs-field | Particle concept | 0 | 1 | PASS |
-| /particle-physics/leptons | Particle concept | 0 | 1 | PASS |
-| /particle-physics/neutrino-oscillation | Particle concept | 0 | 1 | PASS |
-| /particle-physics/quantum-field-theory | Particle concept | 0 | 1 | PASS |
-| /particle-physics/quarks | Particle concept | 0 | 1 | PASS |
-| /particle-physics/standard-model | Particle concept | 0 | 1 | PASS |
-| /particle-physics/symmetry-breaking | Particle concept | 0 | 1 | PASS |
-| /particle-physics?concept=antimatter | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=confinement | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=gauge-bosons | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=gluons-color-charge | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=higgs-boson | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=higgs-field | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=leptons | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=neutrino-oscillation | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=quantum-field-theory | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=quarks | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=standard-model | Particle query route | 0 | 1 | PASS |
-| /particle-physics?concept=symmetry-breaking | Particle query route | 0 | 1 | PASS |
+| /particle-physics/antimatter | Particle concept | 0 | 0 | PASS |
+| /particle-physics/confinement | Particle concept | 0 | 0 | PASS |
+| /particle-physics/gauge-bosons | Particle concept | 0 | 0 | PASS |
+| /particle-physics/gluons-color-charge | Particle concept | 0 | 0 | PASS |
+| /particle-physics/higgs-boson | Particle concept | 0 | 0 | PASS |
+| /particle-physics/higgs-field | Particle concept | 0 | 0 | PASS |
+| /particle-physics/leptons | Particle concept | 0 | 0 | PASS |
+| /particle-physics/neutrino-oscillation | Particle concept | 0 | 0 | PASS |
+| /particle-physics/quantum-field-theory | Particle concept | 0 | 0 | PASS |
+| /particle-physics/quarks | Particle concept | 0 | 0 | PASS |
+| /particle-physics/standard-model | Particle concept | 0 | 0 | PASS |
+| /particle-physics/symmetry-breaking | Particle concept | 0 | 0 | PASS |
+| /particle-physics?concept=antimatter | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=confinement | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=gauge-bosons | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=gluons-color-charge | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=higgs-boson | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=higgs-field | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=leptons | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=neutrino-oscillation | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=quantum-field-theory | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=quarks | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=standard-model | Particle query route | 0 | 0 | PASS |
+| /particle-physics?concept=symmetry-breaking | Particle query route | 0 | 0 | PASS |
 | / | Platform | 0 | 0 | PASS |
 | /astrophysics | Platform | 1 | 0 | PASS |
 | /atmosphere | Platform | 0 | 0 | PASS |
@@ -870,10 +870,3 @@ Includes active renderers, unused implementations, and commented legacy scenes. 
 - /concept-studio/thermodynamics: Temperature, Heat Transfer, Gas Laws, First Law, Entropy, Heat Engines
 - /concept-studio/waves-sound: Wave Properties, Superposition, Interference, Standing Waves, Sound, Doppler Effect
 - /concept-studio/work-energy-power: Work, Kinetic Energy, Potential Energy, Conservation, Power, Efficiency
-
-## Additional validation for this change
-
-- Production build: PASS.
-- Experiment visualization registry: PASS, all 92 experiments covered.
-- Git whitespace check: PASS.
-- The legacy application-directory test still fails two toolbar-markup assertions. Both expected markup strings are also absent from the unchanged HEAD version of Toolbar.tsx; these failures predate this change.

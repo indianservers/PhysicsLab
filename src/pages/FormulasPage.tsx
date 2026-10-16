@@ -396,7 +396,7 @@ export function FormulasPage() {
                       />
                     </div>
                     <input
-                      type="range"
+                      aria-label={variable.label} type="range"
                       min={variable.min}
                       max={variable.max}
                       step={variable.step}

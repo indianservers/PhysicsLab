@@ -74,10 +74,10 @@ export function InsightsCenterPage() {
             <p className="ui-label">Filter intervention queue</p>
             <div className="insights-filter-row">
               <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search experiment, class, topic" />
-              <select value={urgency} onChange={(event) => setUrgency(event.target.value)}>
+              <select aria-label="Intervention urgency" value={urgency} onChange={(event) => setUrgency(event.target.value)}>
                 {urgencies.map((item) => <option key={item} value={item}>{item}</option>)}
               </select>
-              <select value={focus} onChange={(event) => setFocus(event.target.value)}>
+              <select aria-label="Intervention focus" value={focus} onChange={(event) => setFocus(event.target.value)}>
                 {focusAreas.map((item) => <option key={item} value={item}>{item}</option>)}
               </select>
             </div>

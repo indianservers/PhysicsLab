@@ -1,4 +1,3 @@
-import { Upcoming3DSimulation } from "../components/Upcoming3DSimulation";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { AstroThreeScene, type AstroThreeMode } from "../components/AstroThreeScene";
@@ -178,24 +177,18 @@ export function AstroPhysicsPage() {
 
           <section className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_420px]">
             <AstroVisualGallery selectedAssetId={selectedAsset.id} onSelectAsset={setSelectedAssetId} />
-            <section className="rounded-md border border-cyan-300/20 bg-slate-900 p-4">
+            {threeMode && <section className="rounded-md border border-cyan-300/20 bg-slate-900 p-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <p className="ui-label text-cyan-200">Interactive 3D</p>
-                  <h2 className="mt-1 text-2xl font-black text-white">Orbit, galaxy, lensing, waves</h2>
+                  <h2 className="mt-1 text-2xl font-black text-white">{selected.title}</h2>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {(["black-hole", "galaxy", "orbits", "waves"] as AstroThreeMode[]).map((mode) => (
-                    <button key={mode} type="button" onClick={() => setThreeMode(mode)} className={threeMode === mode ? "rounded-full bg-cyan-300 px-3 py-1 text-xs font-black text-slate-950" : "rounded-full border border-slate-700 px-3 py-1 text-xs font-black text-slate-200 hover:border-cyan-300"}>
-                      {mode.replace("-", " ")}
-                    </button>
-                  ))}
-                </div>
+
               </div>
               <div className="mt-4">
-                {threeMode ? <AstroThreeScene mode={threeMode} /> : <Upcoming3DSimulation title={astrophysicsConcepts.find(item => item.id === selectedId)?.title ?? "this concept"} />}
+                <AstroThreeScene mode={threeMode} />
               </div>
-            </section>
+            </section>}
           </section>
 
           <SolarSystemPanel />

@@ -67,22 +67,29 @@ export async function deleteProject(name: string) {
 }
 
 export async function renameProject(oldName: string, newName: string) {
+  newName = newName.trim();
+  if (!newName) throw new Error("Enter a project name.");
+  if (oldName === newName) return;
   const db = await openDb();
-  const project = await new Promise<ProjectFile | undefined>((resolve, reject) => {
-    const tx = db.transaction(STORE, "readonly");
-    const request = tx.objectStore(STORE).get(oldName);
-    request.onsuccess = () => resolve(request.result as ProjectFile | undefined);
-    request.onerror = () => reject(request.error);
-  });
-  if (!project) { db.close(); return; }
-  const renamed: ProjectFile = { ...project, name: newName, updatedAt: new Date().toISOString() };
-  await new Promise<void>((resolve, reject) => {
-    const tx = db.transaction(STORE, "readwrite");
-    const store = tx.objectStore(STORE);
-    store.delete(oldName);
-    store.put(renamed);
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
-  db.close();
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite"), store = tx.objectStore(STORE);
+      let failure: Error | undefined;
+      const abort = (message: string) => { failure = new Error(message); tx.abort(); };
+      const source = store.get(oldName);
+      source.onsuccess = () => {
+        const project = source.result as ProjectFile | undefined;
+        if (!project) { abort("The project no longer exists."); return; }
+        const destination = store.get(newName);
+        destination.onsuccess = () => {
+          if (destination.result) { abort(`A project named "${newName}" already exists. Choose another name.`); return; }
+          store.add({ ...project, name: newName, updatedAt: new Date().toISOString() });
+          store.delete(oldName);
+        };
+      };
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(failure ?? tx.error ?? new Error("Project rename failed."));
+      tx.onabort = () => reject(failure ?? tx.error ?? new Error("Project rename was cancelled."));
+    });
+  } finally { db.close(); }
 }

@@ -30,6 +30,7 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
     [initial, setInitial] = useState(4),
     [finalLevel, setFinalLevel] = useState(2),
     [progress, setProgress] = useState(0),
+    [orbitAngle, setOrbitAngle] = useState(25),
     [running, setRunning] = useState(false),
     [speed, setSpeed] = useState(1),
     [reduced, setReduced] = useState(false),
@@ -55,6 +56,11 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
   };
   useEffect(() => {
     if (!running) return;
+    const orbitTimer = window.setInterval(() => setOrbitAngle(angle => (angle + (reduced ? 5 : 9) * speed) % 360), reduced ? 100 : 40);
+    return () => clearInterval(orbitTimer);
+  }, [running, reduced, speed]);
+  useEffect(() => {
+    if (!running || progress >= 1) return;
     const id = window.setInterval(
       () =>
         setProgress((old) =>
@@ -71,12 +77,12 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
     speed,
     transition.kind,
     transition.wavelengthNm,
+    progress >= 1,
   ]);
   useEffect(() => {
     if (!running || progress < 1 || completedRunId.current === runId.current)
       return;
     completedRunId.current = runId.current;
-    setRunning(false);
     setHistory((h) =>
       [
         {
@@ -99,7 +105,7 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
   const radius = (n: number) => 55 + n * 28,
     currentRadius =
       radius(initial) + (radius(finalLevel) - radius(initial)) * progress,
-    electronAngle = progress * 160 + 25,
+    electronAngle = orbitAngle,
     ex = 50 + (Math.cos((electronAngle * Math.PI) / 180) * currentRadius) / 5.6,
     ey = 50 - (Math.sin((electronAngle * Math.PI) / 180) * currentRadius) / 5.6;
   const setLevelFromPointer = (event: PointerEvent<HTMLButtonElement>) => {
@@ -119,6 +125,7 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
     setFinalLevel(2);
     setProgress(0);
     setRunning(false);
+    setOrbitAngle(25);
     setSpeed(1);
     setHistory([]);
     setMission(false);
@@ -239,11 +246,12 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
         </aside>
         <main className="bm-center">
           <div className="bm-transport">
-            <button onClick={() => setRunning(true)}>▶ Play</button>
-            <button onClick={() => setRunning(false)}>Ⅱ Pause</button>
+            <button aria-pressed={running} onClick={() => { if (progress >= 1 || runId.current === 0) trigger(); else setRunning(true); }}>▶ Play</button>
+            <button aria-pressed={!running} onClick={() => setRunning(false)}>Ⅱ Pause</button>
             <button
               onClick={() => {
                 setRunning(false);
+                setOrbitAngle(angle => (angle + 18) % 360);
                 setProgress((p) => Math.min(1, p + 0.1));
               }}
             >
@@ -251,8 +259,7 @@ export function BohrModelLab({ experiment }: DedicatedExperimentLabProps) {
             </button>
             <button
               onClick={() => {
-                setProgress(0);
-                setRunning(true);
+                trigger();
               }}
             >
               ↺ Replay

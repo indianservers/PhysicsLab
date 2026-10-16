@@ -1,4 +1,5 @@
 import { ExperimentDefinition } from "../types";
+import { safeStorage } from "./safeStorage";
 
 export type GuidedStage = "concept" | "predict" | "experiment" | "record" | "quiz" | "mastered";
 
@@ -47,20 +48,23 @@ export function getLearningRecord(experimentId: string): LearningRecord {
 }
 
 export function saveLearningRecord(record: LearningRecord) {
+  const normalized = normalizeLearningRecord(record);
+  if (!normalized) return;
   const records = readRecords();
-  records[record.experimentId] = { ...record, updatedAt: new Date().toISOString() };
-  localStorage.setItem(KEY, JSON.stringify(records));
+  records[normalized.experimentId] = { ...normalized, updatedAt: new Date().toISOString() };
+  safeStorage.writeJSON(KEY, records);
 }
 
 export function completeStage(record: LearningRecord, stage: GuidedStage): LearningRecord {
-  const completedStages = Array.from(new Set([...record.completedStages, stage]));
+  if (!stages.includes(stage)) return record;
+  const completedStages = Array.from(new Set([...(Array.isArray(record.completedStages) ? record.completedStages.filter(item => stages.includes(item)) : []), stage]));
   const currentIndex = stages.indexOf(stage);
   const next = stages[Math.min(stages.length - 1, currentIndex + 1)] ?? "mastered";
   return { ...record, completedStages, currentStage: next };
 }
 
 export function progressPercent(record: LearningRecord) {
-  return Math.round((record.completedStages.length / stages.length) * 100);
+  return Math.round((new Set(Array.isArray(record.completedStages) ? record.completedStages.filter(stage => stages.includes(stage)) : []).size / stages.length) * 100);
 }
 
 export function generateQuiz(experiment: ExperimentDefinition): QuizItem[] {
@@ -126,25 +130,40 @@ export function exportLearningPortfolio(experiments: ExperimentDefinition[]) {
 export function importLearningRecords(records: LearningRecord[]) {
   const existing = readRecords();
   let count = 0;
+  if (!Array.isArray(records)) return count;
   for (const record of records) {
-    if (!record.experimentId || !record.currentStage) continue;
-    existing[record.experimentId] = {
-      ...createEmptyRecord(record.experimentId),
-      ...record,
-      updatedAt: record.updatedAt || new Date().toISOString(),
-    };
+    const normalized = normalizeLearningRecord(record);
+    if (!normalized) continue;
+    existing[normalized.experimentId] = normalized;
     count++;
   }
-  localStorage.setItem(KEY, JSON.stringify(existing));
+  safeStorage.writeJSON(KEY, existing);
   return count;
 }
 
 function readRecords(): Record<string, LearningRecord> {
-  try {
-    return JSON.parse(localStorage.getItem(KEY) ?? "{}") as Record<string, LearningRecord>;
-  } catch {
-    return {};
-  }
+  const parsed = safeStorage.readJSON<unknown>(KEY, {});
+  const result: Record<string, LearningRecord> = Object.create(null);
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return result;
+  for (const value of Object.values(parsed)) { const record = normalizeLearningRecord(value); if (record) result[record.experimentId] = record; }
+  return result;
+}
+
+export function normalizeLearningRecord(value: unknown): LearningRecord | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const record = value as Partial<LearningRecord>;
+  if (typeof record.experimentId !== "string" || !record.experimentId.trim() || ["__proto__", "constructor", "prototype"].includes(record.experimentId)) return null;
+  const initial = createEmptyRecord(record.experimentId);
+  return { ...initial,
+    currentStage: record.currentStage && stages.includes(record.currentStage) ? record.currentStage : "concept",
+    completedStages: Array.from(new Set(Array.isArray(record.completedStages) ? record.completedStages.filter(stage => stages.includes(stage)) : [])),
+    prediction: typeof record.prediction === "string" ? record.prediction : "",
+    observation: typeof record.observation === "string" ? record.observation : "",
+    conclusion: typeof record.conclusion === "string" ? record.conclusion : "",
+    quizAnswers: record.quizAnswers && typeof record.quizAnswers === "object" && !Array.isArray(record.quizAnswers) ? Object.fromEntries(Object.entries(record.quizAnswers).filter(([,answer]) => typeof answer === "string")) : {},
+    quizScore: typeof record.quizScore === "number" && Number.isFinite(record.quizScore) ? Math.max(0, Math.min(100, record.quizScore)) : 0,
+    updatedAt: typeof record.updatedAt === "string" && Number.isFinite(Date.parse(record.updatedAt)) ? record.updatedAt : initial.updatedAt,
+  };
 }
 
 function shuffle<T>(items: T[]) {

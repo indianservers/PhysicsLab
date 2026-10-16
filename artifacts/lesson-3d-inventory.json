@@ -994,7 +994,7 @@
       "url": "/particle-physics/higgs-field",
       "group": "Particle concept",
       "title": "Higgs Field",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/topics/astronomy",
@@ -1456,97 +1456,97 @@
       "url": "/concept-studio/measurement",
       "group": "Concept studio",
       "title": "Measurement Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/mechanics",
       "group": "Concept studio",
       "title": "Mechanics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/motion-kinematics",
       "group": "Concept studio",
       "title": "Motion & Kinematics",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/force-newton",
       "group": "Concept studio",
       "title": "Force & Newton’s Laws",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/work-energy-power",
       "group": "Concept studio",
       "title": "Work, Energy & Power",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/gravitation",
       "group": "Concept studio",
       "title": "Gravitation Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/oscillations",
       "group": "Concept studio",
       "title": "Oscillations Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/waves-sound",
       "group": "Concept studio",
       "title": "Waves & Sound Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/optics",
       "group": "Concept studio",
       "title": "Optics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/electricity",
       "group": "Concept studio",
       "title": "Electricity Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/magnetism",
       "group": "Concept studio",
       "title": "Magnetism Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/electronics",
       "group": "Concept studio",
       "title": "Electronics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/thermodynamics",
       "group": "Concept studio",
       "title": "Thermodynamics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/fluid-mechanics",
       "group": "Concept studio",
       "title": "Fluid Mechanics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/modern-physics",
       "group": "Concept studio",
       "title": "Modern Physics Studio",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/concept-studio/astronomy-astrophysics",
       "group": "Concept studio",
       "title": "Astronomy & Astrophysics",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/projectile-motion",
@@ -2128,13 +2128,13 @@
       "url": "/experiments/single-slit-diffraction#three-d",
       "group": "Experiment 3D tab",
       "title": "Single Slit Diffraction",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/buoyancy#three-d",
       "group": "Experiment 3D tab",
       "title": "Buoyancy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/chladni-plate#three-d",
@@ -2146,19 +2146,19 @@
       "url": "/experiments/heat-and-temperature#three-d",
       "group": "Experiment 3D tab",
       "title": "Heat and Temperature",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/heat-transfer#three-d",
       "group": "Experiment 3D tab",
       "title": "Heat Transfer",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/heating-effect-current#three-d",
       "group": "Experiment 3D tab",
       "title": "Heating Effect of Current",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/electromagnet#three-d",
@@ -2176,13 +2176,13 @@
       "url": "/experiments/force-and-pressure#three-d",
       "group": "Experiment 3D tab",
       "title": "Force and Pressure",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/fluid-pressure#three-d",
       "group": "Experiment 3D tab",
       "title": "Fluid Pressure with Depth",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/sound-pitch-loudness#three-d",
@@ -2206,7 +2206,7 @@
       "url": "/experiments/free-fall#three-d",
       "group": "Experiment 3D tab",
       "title": "Free Fall",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/mass-and-weight#three-d",
@@ -2218,7 +2218,7 @@
       "url": "/experiments/work-power#three-d",
       "group": "Experiment 3D tab",
       "title": "Work and Power",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/echo-speed-sound#three-d",
@@ -2230,7 +2230,7 @@
       "url": "/experiments/mirror-formula#three-d",
       "group": "Experiment 3D tab",
       "title": "Mirror Formula",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/lens-formula#three-d",
@@ -2254,25 +2254,25 @@
       "url": "/experiments/ohms-law#three-d",
       "group": "Experiment 3D tab",
       "title": "Ohm's Law V-I Graph",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/series-parallel-resistance#three-d",
       "group": "Experiment 3D tab",
       "title": "Series and Parallel Resistance",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/electric-power#three-d",
       "group": "Experiment 3D tab",
       "title": "Electric Power and Energy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/magnetic-field-current#three-d",
       "group": "Experiment 3D tab",
       "title": "Magnetic Field Around Current",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/measurement-errors#three-d",
@@ -2290,13 +2290,13 @@
       "url": "/experiments/rotational-dynamics#three-d",
       "group": "Experiment 3D tab",
       "title": "Rotational Dynamics",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/satellite-orbit#three-d",
       "group": "Experiment 3D tab",
       "title": "Satellite Orbit and Escape Speed",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/bernoulli-fluid-flow#three-d",
@@ -2308,7 +2308,7 @@
       "url": "/experiments/gas-laws#three-d",
       "group": "Experiment 3D tab",
       "title": "Gas Laws and Kinetic Theory",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/thermodynamic-process#three-d",
@@ -2332,7 +2332,7 @@
       "url": "/experiments/capacitor-lab#three-d",
       "group": "Experiment 3D tab",
       "title": "Capacitor Energy and Combination",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/kirchhoff-circuit#three-d",
@@ -2368,7 +2368,7 @@
       "url": "/experiments/young-double-slit#three-d",
       "group": "Experiment 3D tab",
       "title": "Young's Double Slit",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/photoelectric-equation#three-d",
@@ -2404,7 +2404,7 @@
       "url": "/experiments/sound-wave-anatomy#three-d",
       "group": "Experiment 3D tab",
       "title": "Longitudinal Sound Wave",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/human-eye-defects#three-d",
@@ -2446,7 +2446,7 @@
       "url": "/experiments/total-internal-reflection#three-d",
       "group": "Experiment 3D tab",
       "title": "Total Internal Reflection",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/optical-instruments#three-d",
@@ -2464,7 +2464,7 @@
       "url": "/experiments/de-broglie-wavelength#three-d",
       "group": "Experiment 3D tab",
       "title": "de Broglie Wavelength",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/bohr-model#three-d",
@@ -2482,13 +2482,13 @@
       "url": "/experiments/distance-time-graph#three-d",
       "group": "Experiment 3D tab",
       "title": "Distance-Time Graph Builder",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/balanced-unbalanced-forces#three-d",
       "group": "Experiment 3D tab",
       "title": "Balanced and Unbalanced Forces",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/universal-gravitation#three-d",
@@ -2512,7 +2512,7 @@
       "url": "/experiments/special-relativity-bridge#three-d",
       "group": "Experiment 3D tab",
       "title": "Special Relativity Bridge",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/chaotic-coupled-oscillators#three-d",
@@ -2542,49 +2542,49 @@
       "url": "/experiments/balancing-act#three-d",
       "group": "Experiment 3D tab",
       "title": "Balancing Act",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/blackbody-spectrum#three-d",
       "group": "Experiment 3D tab",
       "title": "Blackbody Spectrum",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/build-a-nucleus#three-d",
       "group": "Experiment 3D tab",
       "title": "Build a Nucleus",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/color-vision#three-d",
       "group": "Experiment 3D tab",
       "title": "Color Vision",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/fourier-making-waves#three-d",
       "group": "Experiment 3D tab",
       "title": "Fourier: Making Waves",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/resistance-in-a-wire#three-d",
       "group": "Experiment 3D tab",
       "title": "Resistance in a Wire",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/rutherford-scattering#three-d",
       "group": "Experiment 3D tab",
       "title": "Rutherford Scattering",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/states-of-matter#three-d",
       "group": "Experiment 3D tab",
       "title": "States of Matter",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/atomic-interactions#three-d",
@@ -2596,25 +2596,25 @@
       "url": "/experiments/diffusion#three-d",
       "group": "Experiment 3D tab",
       "title": "Diffusion",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/greenhouse-effect#three-d",
       "group": "Experiment 3D tab",
       "title": "Greenhouse Effect",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/molecules-and-light#three-d",
       "group": "Experiment 3D tab",
       "title": "Molecules and Light",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/uniform-motion#three-d",
       "group": "Experiment 3D tab",
       "title": "Uniform Motion",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/newton-s-second-law#three-d",
@@ -2626,7 +2626,7 @@
       "url": "/experiments/friction#three-d",
       "group": "Experiment 3D tab",
       "title": "Friction",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/inclined-plane#three-d",
@@ -2638,13 +2638,13 @@
       "url": "/experiments/elastic-collision#three-d",
       "group": "Experiment 3D tab",
       "title": "Elastic Collision",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/conservation-of-energy#three-d",
       "group": "Experiment 3D tab",
       "title": "Conservation of Energy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/hooke-s-law#three-d",
@@ -2656,13 +2656,13 @@
       "url": "/experiments/simple-pendulum#three-d",
       "group": "Experiment 3D tab",
       "title": "Simple Pendulum",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/experiments/circular-motion#three-d",
       "group": "Experiment 3D tab",
       "title": "Circular Motion",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=gravity-orbits",
@@ -2674,19 +2674,19 @@
       "url": "/astrophysics?concept=kepler-laws",
       "group": "Astrophysics concept",
       "title": "Kepler's Laws",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=escape-speed",
       "group": "Astrophysics concept",
       "title": "Escape Speed",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=tidal-forces",
       "group": "Astrophysics concept",
       "title": "Tidal Forces",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=solar-system",
@@ -2698,67 +2698,67 @@
       "url": "/astrophysics?concept=planetary-atmospheres",
       "group": "Astrophysics concept",
       "title": "Planetary Atmospheres",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=exoplanets",
       "group": "Astrophysics concept",
       "title": "Exoplanets",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=transit-method",
       "group": "Astrophysics concept",
       "title": "Transit Method",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=stellar-luminosity",
       "group": "Astrophysics concept",
       "title": "Stellar Luminosity",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=main-sequence",
       "group": "Astrophysics concept",
       "title": "Main Sequence Stars",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=stellar-evolution",
       "group": "Astrophysics concept",
       "title": "Stellar Evolution",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=supernovae",
       "group": "Astrophysics concept",
       "title": "Supernovae",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=nucleosynthesis",
       "group": "Astrophysics concept",
       "title": "Nucleosynthesis",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=white-dwarfs",
       "group": "Astrophysics concept",
       "title": "White Dwarfs",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=neutron-stars",
       "group": "Astrophysics concept",
       "title": "Neutron Stars",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=pulsars",
       "group": "Astrophysics concept",
       "title": "Pulsars",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=black-holes",
@@ -2776,13 +2776,13 @@
       "url": "/astrophysics?concept=gravitational-lensing",
       "group": "Astrophysics concept",
       "title": "Gravitational Lensing",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=general-relativity",
       "group": "Astrophysics concept",
       "title": "General Relativity",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=gravitational-waves",
@@ -2794,37 +2794,37 @@
       "url": "/astrophysics?concept=redshift",
       "group": "Astrophysics concept",
       "title": "Redshift",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=hubble-law",
       "group": "Astrophysics concept",
       "title": "Hubble's Law",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=big-bang",
       "group": "Astrophysics concept",
       "title": "Big Bang Model",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=cosmic-microwave-background",
       "group": "Astrophysics concept",
       "title": "Cosmic Microwave Background",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=dark-matter",
       "group": "Astrophysics concept",
       "title": "Dark Matter",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=dark-energy",
       "group": "Astrophysics concept",
       "title": "Dark Energy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=galaxy-structure",
@@ -2842,193 +2842,193 @@
       "url": "/astrophysics?concept=cosmic-web",
       "group": "Astrophysics concept",
       "title": "Cosmic Web",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=quasars",
       "group": "Astrophysics concept",
       "title": "Quasars",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=distance-ladder",
       "group": "Astrophysics concept",
       "title": "Cosmic Distance Ladder",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=spectroscopy",
       "group": "Astrophysics concept",
       "title": "Astronomical Spectroscopy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=parallax",
       "group": "Astrophysics concept",
       "title": "Stellar Parallax",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=radio-astronomy",
       "group": "Astrophysics concept",
       "title": "Radio Astronomy",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=space-telescopes",
       "group": "Astrophysics concept",
       "title": "Space Telescopes",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=cosmic-rays",
       "group": "Astrophysics concept",
       "title": "Cosmic Rays",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/astrophysics?concept=gamma-ray-bursts",
       "group": "Astrophysics concept",
       "title": "Gamma-Ray Bursts",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/standard-model",
       "group": "Particle concept",
       "title": "Standard Model",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=standard-model",
       "group": "Particle query route",
       "title": "Standard Model",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/quantum-field-theory",
       "group": "Particle concept",
       "title": "Quantum Field Theory",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=quantum-field-theory",
       "group": "Particle query route",
       "title": "Quantum Field Theory",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=higgs-field",
       "group": "Particle query route",
       "title": "Higgs Field",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/higgs-boson",
       "group": "Particle concept",
       "title": "Higgs Boson",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=higgs-boson",
       "group": "Particle query route",
       "title": "Higgs Boson",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/quarks",
       "group": "Particle concept",
       "title": "Quarks",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=quarks",
       "group": "Particle query route",
       "title": "Quarks",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/leptons",
       "group": "Particle concept",
       "title": "Leptons",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=leptons",
       "group": "Particle query route",
       "title": "Leptons",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/gluons-color-charge",
       "group": "Particle concept",
       "title": "Gluons and Color Charge",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=gluons-color-charge",
       "group": "Particle query route",
       "title": "Gluons and Color Charge",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/gauge-bosons",
       "group": "Particle concept",
       "title": "Gauge Bosons",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=gauge-bosons",
       "group": "Particle query route",
       "title": "Gauge Bosons",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/neutrino-oscillation",
       "group": "Particle concept",
       "title": "Neutrino Oscillation",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=neutrino-oscillation",
       "group": "Particle query route",
       "title": "Neutrino Oscillation",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/antimatter",
       "group": "Particle concept",
       "title": "Antimatter",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=antimatter",
       "group": "Particle query route",
       "title": "Antimatter",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/symmetry-breaking",
       "group": "Particle concept",
       "title": "Symmetry Breaking",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=symmetry-breaking",
       "group": "Particle query route",
       "title": "Symmetry Breaking",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics/confinement",
       "group": "Particle concept",
       "title": "Quark Confinement",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/particle-physics?concept=confinement",
       "group": "Particle query route",
       "title": "Quark Confinement",
-      "expected": "upcoming"
+      "expected": "unavailable"
     },
     {
       "url": "/rocket-lab/parts/payload-fairing",

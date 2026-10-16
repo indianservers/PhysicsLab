@@ -1,0 +1,2802 @@
+[
+  {
+    "route": "/motion/friction",
+    "name": "Normal Load value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "30",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/friction",
+    "name": "Pull Force value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "30",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Cable Angle A θA value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "80",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Cable Angle B θB value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "80",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/tension-normal",
+    "name": "Load Mass m value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "20",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "name": "Heat Input Q value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-5",
+      "5",
+      ".01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "name": "External Pressure Pext value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "50",
+      "300",
+      ".01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Particle Count N value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "2000",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Initial Partition value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      "0.01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "name": "Temperature Difference value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1000",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Hot Temperature TH value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "300",
+      "1200",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Cold Temperature TC value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "600",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "name": "Compression Ratio value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "2",
+      "20",
+      "1"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "name": "Probe Depth value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "name": "Gravity g value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1.62",
+      "24.79",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "name": "Probe Depth value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "name": "Gravity g value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1.62",
+      "24.79",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "name": "Object Density value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "500",
+      "5000",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "name": "Submerged Fraction value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Inlet Area A₁ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.001",
+      "0.01",
+      ".00001"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Outlet Area A₂ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.0005",
+      "0.005",
+      ".00001"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "name": "Flow Rate Q value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.0005",
+      "0.01",
+      ".00001"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Flow Speed value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.2",
+      "3",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Throat Diameter value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "50",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "name": "Fluid Density value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "800",
+      "1200",
+      ".01"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "name": "Sphere Radius value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "20",
+      ".1"
+    ]
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "name": "Temperature value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Packet Width σ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "20",
+      "500",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Barrier Height V₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "name": "Measurement Strength κ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "name": "Light Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "4",
+      "12",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "name": "Light Intensity value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Particle Energy value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "20",
+      "300",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Crystal Spacing value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "0.4",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "name": "Beam Width value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "name": "Proton Number Z value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "118",
+      "1"
+    ]
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "name": "Neutron Number N value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "200",
+      "1"
+    ]
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "name": "Shield Thickness value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "20",
+      ".1"
+    ]
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "name": "Elapsed Time value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "200",
+      ".1"
+    ]
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "name": "Time value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "3650",
+      "1"
+    ]
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "name": "Orbit Scale value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      ".5",
+      "4",
+      ".1"
+    ]
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "name": "Initial Mass value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "50",
+      ".01"
+    ]
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "name": "Metallicity Z value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.0001",
+      "0.03",
+      ".01"
+    ]
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "name": "Spectral Range value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "350",
+      "750",
+      "1"
+    ]
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "name": "Redshift z value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-.01",
+      ".01",
+      ".00001"
+    ]
+  },
+  {
+    "route": "/astrophysics/galaxies",
+    "name": "Radius Probe value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      ".1",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Epoch value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1000000",
+      "13800000000",
+      "1000000"
+    ]
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Expansion Rate H₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "50",
+      "100",
+      "1"
+    ]
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "name": "Matter Density Ωm value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      "0.01"
+    ]
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Planet Radius value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "4",
+      ".1"
+    ]
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Orbital Period value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "200",
+      ".1"
+    ]
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "name": "Inclination value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "80",
+      "90",
+      ".1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Piston Load value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "20",
+      ".01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Gas Amount n value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.01",
+      "0.1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "name": "Temperature T value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "200",
+      "600",
+      ".01"
+    ]
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "name": "Temperature Difference ΔT value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "200",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "600",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Temperature A (Hot) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "1200",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Temperature B (Cold) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "1200",
+      "1"
+    ]
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "name": "Particle Count value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "50",
+      "1000",
+      "1"
+    ]
+  },
+  {
+    "route": "/electronics/sensors",
+    "name": "Stimulus Level value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electronics/sensors",
+    "name": "Sampling Rate value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "50",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Input Amplitude (Vin) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Gain value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-50",
+      "-2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "name": "Bias (Vb) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.6",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Base Current I_B value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Collector Voltage V_CE value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electronics/transistors",
+    "name": "Load Resistor R_C value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "10000",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electronics/diodes",
+    "name": "Bias Voltage Vₛ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electronics/diodes",
+    "name": "Series Resistance R value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "10000",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "name": "Doping Level value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "14",
+      "18",
+      "1"
+    ]
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "name": "Temperature value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "500",
+      "1"
+    ]
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Coil Current I value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Number of Turns N value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "2000",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "name": "Air Gap g value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "20",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/induction",
+    "name": "Magnet Speed value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/magnetism/induction",
+    "name": "Coil Turns N value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "50",
+      "800",
+      ".01"
+    ]
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "name": "Number of Turns N value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "2000",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "name": "Current I value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "name": "Current I value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "name": "Probe Radius r value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "20",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "name": "Particle Speed v value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1000000",
+      "10000000",
+      "90000"
+    ]
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "name": "Magnetic Field B value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "0.5",
+      "0.0045000000000000005"
+    ]
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "name": "Separation value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "2",
+      "10",
+      ".1"
+    ]
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "name": "Probe Density value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Plate Area A value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "100",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Separation d value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "10",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/capacitors",
+    "name": "Voltage V value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "12",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/circuits",
+    "name": "Supply Voltage value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "12",
+      ".1"
+    ]
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Voltage (V) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "12",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Wire Diameter (d) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/current",
+    "name": "Temperature (T) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "200",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/electric-potential",
+    "name": "Probe Height z value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Charge A (q₁) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-10",
+      "10",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Charge B (q₂) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-10",
+      "10",
+      ".01"
+    ]
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "name": "Separation (r) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Aperture Width a value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "500",
+      "4.9"
+    ]
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Wavelength λ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "400",
+      "700",
+      "3"
+    ]
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Screen Distance L value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "2",
+      "0.019"
+    ]
+  },
+  {
+    "route": "/optics/diffraction",
+    "name": "Detector Position y value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-10",
+      "10",
+      "0.2"
+    ]
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Wavelength λ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "400",
+      "800",
+      "4"
+    ]
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Slit Separation d value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "1",
+      "0.0095"
+    ]
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Screen Distance L value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.25",
+      "2",
+      "0.0175"
+    ]
+  },
+  {
+    "route": "/optics/interference",
+    "name": "Detector Position y value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-10",
+      "10",
+      "0.2"
+    ]
+  },
+  {
+    "route": "/optics/mirrors",
+    "name": "Curvature Radius R value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/optics/mirrors",
+    "name": "Object Distance d₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "80",
+      ".1"
+    ]
+  },
+  {
+    "route": "/optics/lenses",
+    "name": "Focal Length f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "20",
+      ".1"
+    ]
+  },
+  {
+    "route": "/optics/lenses",
+    "name": "Object Distance d₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "50",
+      ".1"
+    ]
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Medium A refractive index n₁ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "2.5",
+      ".001"
+    ]
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Medium B refractive index n₂ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "2.5",
+      ".001"
+    ]
+  },
+  {
+    "route": "/optics/refraction",
+    "name": "Incident Angle θ₁ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "90",
+      ".001"
+    ]
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Incident Angle θᵢ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "80",
+      "0.8"
+    ]
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Mirror Rotation value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-45",
+      "45",
+      "0.9"
+    ]
+  },
+  {
+    "route": "/optics/reflection",
+    "name": "Ray Count value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "5",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Source Speed vₛ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-50",
+      "50",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Observer Speed vₒ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-50",
+      "50",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "name": "Emitted Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "2000",
+      "19"
+    ]
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Fundamental Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "20",
+      "2000",
+      "19.8"
+    ]
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Gain (Output Level) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-60",
+      "0",
+      "0.6"
+    ]
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      "0.05"
+    ]
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "String Tension T value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "50",
+      "0.45"
+    ]
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "String Length L value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.2",
+      "2",
+      "0.018000000000000002"
+    ]
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "Harmonic n value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "5",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/standing-waves",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Source Separation d value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "2",
+      "20",
+      "0.18"
+    ]
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "30",
+      "0.25"
+    ]
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Phase Difference Δφ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "-180",
+      "180",
+      "3.6"
+    ]
+  },
+  {
+    "route": "/motion/interference",
+    "name": "Detector Position value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "20",
+      "0.2"
+    ]
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Amplitude Aₐ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "0.2",
+      "0.002"
+    ]
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Frequency fₐ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "5",
+      "0.045"
+    ]
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Amplitude Aᵦ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "0.2",
+      "0.002"
+    ]
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Frequency fᵦ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "5",
+      "0.045"
+    ]
+  },
+  {
+    "route": "/motion/superposition",
+    "name": "Phase Offset Δφ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "6.28",
+      "0.06280000000000001"
+    ]
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Amplitude A value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "5",
+      "0.045"
+    ]
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "5",
+      "0.045"
+    ]
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Wave Speed v value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.2",
+      "1.5",
+      "0.013000000000000001"
+    ]
+  },
+  {
+    "route": "/motion/wave-properties",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Coupling Strength k value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Mass Ratio m₂/m₁ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "3",
+      "0.025"
+    ]
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "20",
+      "0.2"
+    ]
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Drive Frequency f value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "5",
+      "0.049"
+    ]
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Drive Amplitude F₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      "0.05"
+    ]
+  },
+  {
+    "route": "/motion/resonance",
+    "name": "Damping b value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "2",
+      "0.02"
+    ]
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Damping Coefficient b value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      "0.05"
+    ]
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Mass m value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "2",
+      "0.0195"
+    ]
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Initial Displacement x₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "0.2",
+      "0.002"
+    ]
+  },
+  {
+    "route": "/motion/damping",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "25",
+      "0.25"
+    ]
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Amplitude A value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "0.3",
+      "0.0025"
+    ]
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Mass m value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "2",
+      "0.019"
+    ]
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Spring Constant k value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "200",
+      "1.9"
+    ]
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Length L value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.2",
+      "2",
+      "0.018000000000000002"
+    ]
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Release Angle θ₀ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "60",
+      "0.59"
+    ]
+  },
+  {
+    "route": "/motion/pendulum",
+    "name": "Gravity g value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1.62",
+      "24.79",
+      "0.2317"
+    ]
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Spring Constant k value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "10",
+      "200",
+      "1.9"
+    ]
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Mass m value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "1",
+      "0.0095"
+    ]
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Amplitude A value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.01",
+      "0.3",
+      "0.0029"
+    ]
+  },
+  {
+    "route": "/motion/spring-shm",
+    "name": "Time t value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "10",
+      "0.1"
+    ]
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Semi-major Axis a value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "3",
+      "0.025"
+    ]
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Eccentricity e value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "0.9",
+      "0.009000000000000001"
+    ]
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "name": "Time Step Δt value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "50",
+      "0.499"
+    ]
+  },
+  {
+    "route": "/motion/escape-velocity",
+    "name": "Planet Radius value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1000",
+      "20000",
+      "190"
+    ]
+  },
+  {
+    "route": "/motion/escape-velocity",
+    "name": "Planet Mass value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "50",
+      "0.499"
+    ]
+  },
+  {
+    "route": "/motion/escape-velocity",
+    "name": "Launch Speed value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "20",
+      "0.2"
+    ]
+  },
+  {
+    "route": "/motion/orbits",
+    "name": "Launch Altitude value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "10000",
+      "99"
+    ]
+  },
+  {
+    "route": "/motion/orbits",
+    "name": "Tangential Speed value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "3",
+      "12",
+      "0.09"
+    ]
+  },
+  {
+    "route": "/motion/orbits",
+    "name": "Central Mass value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "50",
+      "0.499"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "name": "Planet Mass value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1e+23",
+      "1e+26",
+      "9.99e+23"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "name": "Moon Mass value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1e+21",
+      "1e+24",
+      "9.99e+21"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "name": "Probe Radius value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1000000",
+      "300000000",
+      "2990000"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "name": "Orbital Angle value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "180",
+      "1.8"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-field",
+    "name": "Planet Mass M value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1e+23",
+      "1e+26",
+      "9.99e+23"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-field",
+    "name": "Probe Radius r value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1000000",
+      "1000000000",
+      "9990000"
+    ]
+  },
+  {
+    "route": "/motion/gravitational-field",
+    "name": "Vector Density value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "40",
+      "0.35"
+    ]
+  },
+  {
+    "route": "/motion/universal-gravity",
+    "name": "Mass 1 (m1) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "20",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/universal-gravity",
+    "name": "Mass 2 (m2) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "20",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/universal-gravity",
+    "name": "Separation (r) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.05",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/efficiency",
+    "name": "Voltage (V) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "100",
+      "300",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/efficiency",
+    "name": "Load value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "100",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/efficiency",
+    "name": "Bearing Loss value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "50",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/power",
+    "name": "Load (mass) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1",
+      "10",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/power",
+    "name": "Lift Speed value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/power",
+    "name": "Motor Torque value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.5",
+      "4",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/power",
+    "name": "Elapsed Time value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.01",
+      "10",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/conservation-energy",
+    "name": "Start Height value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "5",
+      "50",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/conservation-energy",
+    "name": "Drag (friction) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "0.1",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/conservation-energy",
+    "name": "Track Position value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "250",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/potential-energy",
+    "name": "Mass (kg) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "50",
+      "1000",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/potential-energy",
+    "name": "Height (m) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "30",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/potential-energy",
+    "name": "Gravity, g value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "1.62",
+      "24.79",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/kinetic-energy",
+    "name": "Mass (kg) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/kinetic-energy",
+    "name": "Speed (m/s) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0.1",
+      "4",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/work",
+    "name": "Force Magnitude F value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "200",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/work",
+    "name": "Pull Angle θ value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "90",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/work",
+    "name": "Distance d value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "5",
+      ".1"
+    ]
+  },
+  {
+    "route": "/motion/multi-force-challenge",
+    "name": "Winch Tension (T) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "2000",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/multi-force-challenge",
+    "name": "Slope Angle (θ) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "40",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/multi-force-challenge",
+    "name": "Wind Force (Fwind) value",
+    "n": [
+      "",
+      "",
+      ""
+    ],
+    "s": [
+      "0",
+      "800",
+      "1"
+    ]
+  },
+  {
+    "route": "/motion/position-time",
+    "name": "Initial position value",
+    "n": [
+      "-1",
+      "2",
+      "0.01"
+    ],
+    "s": [
+      "-1",
+      "2",
+      ".01"
+    ]
+  },
+  {
+    "route": "/motion/position-time",
+    "name": "Time window value",
+    "n": [
+      "2",
+      "12",
+      "0.1"
+    ],
+    "s": [
+      "2",
+      "12",
+      ".1"
+    ]
+  }
+]

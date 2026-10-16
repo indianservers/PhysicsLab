@@ -103,8 +103,7 @@ export function getQuizQuestions(filters: QuizFilters = {}) {
 
 export function makeQuizSession(filters: QuizFilters = {}) {
   const strictPool = getQuizQuestions(filters);
-  const relaxedPool = strictPool.length >= quizStats.sessionSize ? strictPool : getQuizQuestions({ ...filters, subcategoryId: "all" });
-  const finalPool = relaxedPool.length >= quizStats.sessionSize ? relaxedPool : quizQuestions;
+  const finalPool = strictPool;
   const seed = `session-${filters.seed ?? 1}-${filters.categoryId ?? "all"}-${filters.subcategoryId ?? "all"}-${filters.difficulty ?? "all"}-${filters.classFilter ?? "all"}`;
   const weakConcepts = new Set((filters.weakConcepts ?? []).map((concept) => concept.toLowerCase()));
   if (weakConcepts.size === 0) return stableShuffle(finalPool, seed).slice(0, quizStats.sessionSize);

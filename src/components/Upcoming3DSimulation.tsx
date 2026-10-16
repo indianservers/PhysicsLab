@@ -7,7 +7,7 @@ export function Upcoming3DSimulation({ title }: { title: string }) {
         <span className="card-icon"><PhysicsIcon name="orbit" className="h-5 w-5" /></span>
         <div><p className="ui-label">Upcoming</p><h3>3D simulation upcoming</h3></div>
       </div>
-      <p className="pending-visualization-goal">A dedicated 3D simulation for {title} is planned.</p>
+      <p className="pending-visualization-goal">A dedicated 3D simulation for {title} is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set.</p>
     </section>
   );
 }

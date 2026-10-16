@@ -112,10 +112,10 @@ export function QualityAuditPage() {
               </div>
               <div className="quality-filter-row">
                 <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search simulation, risk, class..." />
-                <select className="select-field" value={risk} onChange={(event) => setRisk(event.target.value)}>
+                <select aria-label="Risk filter" className="select-field" value={risk} onChange={(event) => setRisk(event.target.value)}>
                   {riskOptions.map((option) => <option key={option}>{option}</option>)}
                 </select>
-                <select className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
+                <select aria-label="Physics category" className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
                   {categories.map((option) => <option key={option}>{option}</option>)}
                 </select>
               </div>

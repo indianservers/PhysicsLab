@@ -1,0 +1,230 @@
+[
+  {
+    "id": "gravity-orbits",
+    "title": "Gravity & Orbits",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "kepler-laws",
+    "title": "Kepler's Laws",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "escape-speed",
+    "title": "Escape Speed",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "tidal-forces",
+    "title": "Tidal Forces",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "solar-system",
+    "title": "Solar System Architecture",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "planetary-atmospheres",
+    "title": "Planetary Atmospheres",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "exoplanets",
+    "title": "Exoplanets",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "transit-method",
+    "title": "Transit Method",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "stellar-luminosity",
+    "title": "Stellar Luminosity",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "main-sequence",
+    "title": "Main Sequence Stars",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "stellar-evolution",
+    "title": "Stellar Evolution",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "supernovae",
+    "title": "Supernovae",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "nucleosynthesis",
+    "title": "Nucleosynthesis",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "white-dwarfs",
+    "title": "White Dwarfs",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "neutron-stars",
+    "title": "Neutron Stars",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "pulsars",
+    "title": "Pulsars",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "black-holes",
+    "title": "Black Holes",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "accretion-disks",
+    "title": "Accretion Disks",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "gravitational-lensing",
+    "title": "Gravitational Lensing",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "general-relativity",
+    "title": "General Relativity",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "gravitational-waves",
+    "title": "Gravitational Waves",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "redshift",
+    "title": "Redshift",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "hubble-law",
+    "title": "Hubble's Law",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "big-bang",
+    "title": "Big Bang Model",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "cosmic-microwave-background",
+    "title": "Cosmic Microwave Background",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "dark-matter",
+    "title": "Dark Matter",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "dark-energy",
+    "title": "Dark Energy",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "galaxy-structure",
+    "title": "Galaxy Structure",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "milky-way",
+    "title": "The Milky Way",
+    "scene": true,
+    "pass": true
+  },
+  {
+    "id": "cosmic-web",
+    "title": "Cosmic Web",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "quasars",
+    "title": "Quasars",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "distance-ladder",
+    "title": "Cosmic Distance Ladder",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "spectroscopy",
+    "title": "Astronomical Spectroscopy",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "parallax",
+    "title": "Stellar Parallax",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "radio-astronomy",
+    "title": "Radio Astronomy",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "space-telescopes",
+    "title": "Space Telescopes",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "cosmic-rays",
+    "title": "Cosmic Rays",
+    "scene": false,
+    "pass": true
+  },
+  {
+    "id": "gamma-ray-bursts",
+    "title": "Gamma-Ray Bursts",
+    "scene": false,
+    "pass": true
+  }
+]

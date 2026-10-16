@@ -1,0 +1,3219 @@
+[
+  {
+    "reference": "01_concept_overview/01_physics_atlas.png",
+    "route": "/concept-studio",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Reset",
+        "label": "Reset",
+        "group": ""
+      },
+      {
+        "text": "Pause",
+        "label": "Pause",
+        "group": ""
+      },
+      {
+        "text": "Zoom",
+        "label": "Zoom",
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/physics-atlas/starfield.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/earth.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/magnet.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/sun.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/galaxy.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "01_concept_overview/02_relationship_map.png",
+    "route": "/graph",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Connections",
+        "label": null,
+        "group": "cr-selected"
+      },
+      {
+        "text": "Details",
+        "label": null,
+        "group": "cr-selected"
+      },
+      {
+        "text": "Examples",
+        "label": null,
+        "group": "cr-selected"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/concept-relationships/rocket-launch.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "01_concept_overview/03_guided_path.png",
+    "route": "/roadmap",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "gp-modes gp-card"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "gp-modes gp-card"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "gp-modes gp-card"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "gp-modes gp-card"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/physics-atlas/starfield.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/earth.png",
+      "http://127.0.0.1:5173/assets/physics-atlas/galaxy.png",
+      "http://127.0.0.1:5173/assets/guided-path/saturn.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "01_concept_overview/04_experiment_launcher.png",
+    "route": "/experiments",
+    "tabs": [
+      {
+        "text": "Dark",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Light",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "T = 2.01 sSmall-angle model · g = 9.81 m/s²Mechanics",
+        "label": null,
+        "group": "el-gallery"
+      },
+      {
+        "text": "Angular relayOptics",
+        "label": null,
+        "group": "el-gallery"
+      },
+      {
+        "text": "DC SUPPLY6.0 V0.060 AIDEAL SOURCE100 ΩRESISTOR TEST BOARD−+I = 0.060 AP = 0.36 WCircuits",
+        "label": null,
+        "group": "el-gallery"
+      },
+      {
+        "text": "20.00 °CQ = 0.0 JThermal",
+        "label": null,
+        "group": "el-gallery"
+      },
+      {
+        "text": "λ = 0.780 mPressure over 0–2 m · sound speed 343 m/sWaves",
+        "label": null,
+        "group": "el-gallery"
+      },
+      {
+        "text": "Live Values",
+        "label": null,
+        "group": "el-tabs"
+      },
+      {
+        "text": "Setup",
+        "label": null,
+        "group": "el-tabs"
+      },
+      {
+        "text": "ObserveExplore the setup",
+        "label": null,
+        "group": "el-modes"
+      },
+      {
+        "text": "PredictMake a hypothesis",
+        "label": null,
+        "group": "el-modes"
+      },
+      {
+        "text": "ExperimentRun and adjust",
+        "label": null,
+        "group": "el-modes"
+      },
+      {
+        "text": "ExplainConnect results",
+        "label": null,
+        "group": "el-modes"
+      },
+      {
+        "text": "ⅡPause",
+        "label": "Pause",
+        "group": "el-navigation"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/experiment-launcher/lab-environment-v2.png",
+      "http://127.0.0.1:5173/assets/experiment-launcher/laser-housing.png",
+      "http://127.0.0.1:5173/assets/experiment-launcher/safety-goggles.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "01_concept_overview/05_compare_phenomena.png",
+    "route": "/comparison",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "cp-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "cp-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "cp-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "cp-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/physics-atlas/earth.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "01_concept_overview/06_mastery_challenge.png",
+    "route": "/quiz",
+    "tabs": [
+      {
+        "text": "Code",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Formula",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Cart v(t)",
+        "label": null,
+        "group": "mc-graph-tabs"
+      },
+      {
+        "text": "Circuit V(t)",
+        "label": null,
+        "group": "mc-graph-tabs"
+      },
+      {
+        "text": "Lens I(x)",
+        "label": null,
+        "group": "mc-graph-tabs"
+      },
+      {
+        "text": "Temp T(t)",
+        "label": null,
+        "group": "mc-graph-tabs"
+      },
+      {
+        "text": "ObserveSee what’s happening",
+        "label": null,
+        "group": "mc-modes"
+      },
+      {
+        "text": "PredictMake a hypothesis",
+        "label": null,
+        "group": "mc-modes"
+      },
+      {
+        "text": "ExperimentRun and adjust",
+        "label": null,
+        "group": "mc-modes"
+      },
+      {
+        "text": "ExplainJustify the outcome",
+        "label": null,
+        "group": "mc-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/experiment-launcher/lab-environment-v2.png",
+      "http://127.0.0.1:5173/assets/mastery-challenge/cart.png",
+      "http://127.0.0.1:5173/assets/mastery-challenge/chamber-housing.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/01_meter_scale.png",
+    "route": "/measurement/meter-scale",
+    "tabs": [
+      {
+        "text": "",
+        "label": "Bright scene",
+        "group": ""
+      },
+      {
+        "text": "",
+        "label": "Dim scene",
+        "group": ""
+      },
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "msr-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "msr-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "msr-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "msr-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/meter-scale/empty-bench.png",
+      "http://127.0.0.1:5173/assets/meter-scale/oak-grain.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/02_vernier_caliper.png",
+    "route": "/measurement/vernier-caliper",
+    "tabs": [
+      {
+        "text": "",
+        "label": "Toggle scene lighting",
+        "group": "vnc-top"
+      },
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "⚑Next ChallengeMeasure an unknown object›",
+        "label": null,
+        "group": "vnc-learning"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/meter-scale/empty-bench.png",
+      "http://127.0.0.1:5173/assets/vernier-caliper/brushed-steel.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/03_micrometer.png",
+    "route": "/measurement/micrometer",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Zoom In",
+        "label": "Zoom in",
+        "group": ""
+      },
+      {
+        "text": "Zoom Out",
+        "label": "Zoom out",
+        "group": ""
+      },
+      {
+        "text": "⛶Fit View",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/meter-scale/empty-bench.png",
+      "http://127.0.0.1:5173/assets/micrometer/hammered-enamel.png",
+      "http://127.0.0.1:5173/assets/vernier-caliper/brushed-steel.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/04_spherometer.png",
+    "route": "/measurement/spherometer",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "",
+        "label": "Convex surface",
+        "group": "sph-surface-buttons"
+      },
+      {
+        "text": "",
+        "label": "Concave surface",
+        "group": "sph-surface-buttons"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/spherometer/optical-bench.png",
+      "http://127.0.0.1:5173/assets/vernier-caliper/brushed-steel.png",
+      "http://127.0.0.1:5173/assets/micrometer/hammered-enamel.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/05_mass_time.png",
+    "route": "/measurement/mass-time",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/mass-time/measurement-bench.png",
+      "http://127.0.0.1:5173/assets/vernier-caliper/brushed-steel.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "02_measurement/06_uncertainty.png",
+    "route": "/measurement/uncertainty",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/uncertainty/volume-bench.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/01_free_body_diagrams.png",
+    "route": "/mechanics/free-body-diagrams",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/free-body/crate.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/02_inclined_plane.png",
+    "route": "/mechanics/inclined-plane",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": "Observe",
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": "Predict",
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": "Experiment",
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": "Explain",
+        "group": ""
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/03_pulley_systems.png",
+    "route": "/mechanics/pulley-systems",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "atw-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "atw-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "atw-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "atw-modes"
+      },
+      {
+        "text": "Equation",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Variables",
+        "label": null,
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/atwood/lab.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/04_torque_levers.png",
+    "route": "/mechanics/torque-levers",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "tlv-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "tlv-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "tlv-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "tlv-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/05_equilibrium_com.png",
+    "route": "/mechanics/equilibrium-com",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Top",
+        "label": null,
+        "group": "ecm-views"
+      },
+      {
+        "text": "Side",
+        "label": null,
+        "group": "ecm-views"
+      },
+      {
+        "text": "Front",
+        "label": null,
+        "group": "ecm-views"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/equilibrium-com/granite.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "03_mechanics/06_momentum_collisions.png",
+    "route": "/mechanics/momentum-collisions",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "mcl-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "mcl-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "mcl-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "mcl-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/momentum-collisions/blue-cart.png",
+      "http://127.0.0.1:5173/assets/momentum-collisions/red-cart.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/01_position_time.png",
+    "route": "/motion/position-time",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "ptm-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "ptm-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "ptm-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "ptm-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/position-time/lab-backdrop.png",
+      "http://127.0.0.1:5173/assets/position-time/motion-sensor.png",
+      "http://127.0.0.1:5173/assets/momentum-collisions/blue-cart.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/02_velocity_time.png",
+    "route": "/motion/velocity-time",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "vtm-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "vtm-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "vtm-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "vtm-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/position-time/lab-backdrop.png",
+      "http://127.0.0.1:5173/assets/velocity-time/photogate.png",
+      "http://127.0.0.1:5173/assets/momentum-collisions/blue-cart.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/03_acceleration_time.png",
+    "route": "/motion/acceleration-time",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "atm-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "atm-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "atm-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "atm-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/position-time/lab-backdrop.png",
+      "http://127.0.0.1:5173/assets/acceleration-time/sensor-cart-compact.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/04_projectile_motion.png",
+    "route": "/motion/projectile-motion",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "pjs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "pjs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "pjs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "pjs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/projectile-studio/field-v2.png",
+      "http://127.0.0.1:5173/assets/projectile-studio/launch-tube.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/05_relative_motion.png",
+    "route": "/motion/relative-motion",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "rvm-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "rvm-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "rvm-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "rvm-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/relative-motion/river.png",
+      "http://127.0.0.1:5173/assets/relative-motion/boat.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "04_motion_kinematics/06_circular_motion.png",
+    "route": "/motion/circular-motion",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "cms-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "cms-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "cms-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "cms-modes"
+      },
+      {
+        "text": "●",
+        "label": "Open challenge 1",
+        "group": ""
+      },
+      {
+        "text": "●",
+        "label": "Open challenge 2",
+        "group": ""
+      },
+      {
+        "text": "●",
+        "label": "Open challenge 3",
+        "group": ""
+      },
+      {
+        "text": "●",
+        "label": "Open challenge 4",
+        "group": ""
+      },
+      {
+        "text": "●",
+        "label": "Open challenge 5",
+        "group": ""
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/circular-studio/turntable.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/01_first_law_inertia.png",
+    "route": "/motion/first-law-inertia",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "ils-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "ils-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "ils-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "ils-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/first-law/inertia-track.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/02_second_law_fma.png",
+    "route": "/motion/second-law-fma",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "s2-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "s2-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "s2-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "s2-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/03_third_law_pairs.png",
+    "route": "/motion/third-law-pairs",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "t3-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "t3-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "t3-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "t3-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/04_friction.png",
+    "route": "/motion/friction",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/wood-block.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/05_tension_normal.png",
+    "route": "/motion/tension-normal",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/tension-lamp.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "05_force_newton/06_multi_force_challenge.png",
+    "route": "/motion/multi-force-challenge",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/sled.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/01_work.png",
+    "route": "/motion/work",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/02_kinetic_energy.png",
+    "route": "/motion/kinetic-energy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/kinetic-track.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/03_potential_energy.png",
+    "route": "/motion/potential-energy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/crane.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/04_energy_conservation.png",
+    "route": "/motion/conservation-energy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/coaster.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/05_power.png",
+    "route": "/motion/power",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/lift-rig.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "06_work_energy_power/06_efficiency.png",
+    "route": "/motion/efficiency",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/efficiency-rig.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/01_universal_gravitation.png",
+    "route": "/motion/universal-gravity",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/torsion.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/02_gravitational_field.png",
+    "route": "/motion/gravitational-field",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "gfield-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "gfield-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "gfield-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "gfield-modes"
+      },
+      {
+        "text": "Field View",
+        "label": null,
+        "group": "gfield-views"
+      },
+      {
+        "text": "Potential View",
+        "label": null,
+        "group": "gfield-views"
+      },
+      {
+        "text": "Trajectories",
+        "label": null,
+        "group": "gfield-views"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/physics-atlas/starfield.png",
+      "http://127.0.0.1:5173/assets/experiments/satellite-orbit/sprites/earth.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/03_gravitational_potential.png",
+    "route": "/motion/gravitational-potential",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/field-earth.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/04_orbits.png",
+    "route": "/motion/orbits",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/field-earth.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/05_escape_velocity.png",
+    "route": "/motion/escape-velocity",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/escape.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "07_gravitation/06_keplers_laws.png",
+    "route": "/motion/keplers-laws",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/field-earth.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/01_spring_shm.png",
+    "route": "/motion/spring-shm",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/02_pendulum.png",
+    "route": "/motion/pendulum",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/03_energy_exchange.png",
+    "route": "/motion/energy-exchange",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/04_damping.png",
+    "route": "/motion/damping",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/05_resonance.png",
+    "route": "/motion/resonance",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "08_oscillations/06_coupled_oscillators.png",
+    "route": "/motion/coupled-oscillators",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/spring.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/01_wave_properties.png",
+    "route": "/motion/wave-properties",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/02_superposition.png",
+    "route": "/motion/superposition",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/interference.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/03_interference.png",
+    "route": "/motion/interference",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/interference.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/04_standing_waves.png",
+    "route": "/motion/standing-waves",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/05_sound_spectrum.png",
+    "route": "/motion/sound-spectrum",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "09_waves_sound/06_doppler_effect.png",
+    "route": "/motion/doppler-effect",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/01_reflection.png",
+    "route": "/optics/reflection",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/02_refraction.png",
+    "route": "/optics/refraction",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/03_lenses.png",
+    "route": "/optics/lenses",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/04_mirrors.png",
+    "route": "/optics/mirrors",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/05_interference.png",
+    "route": "/optics/interference",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "10_optics/06_diffraction.png",
+    "route": "/optics/diffraction",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/01_coulomb_force.png",
+    "route": "/electricity/coulomb-force",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/02_electric_field.png",
+    "route": "/electricity/electric-field",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/03_electric_potential.png",
+    "route": "/electricity/electric-potential",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/04_current.png",
+    "route": "/electricity/current",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [
+      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    ],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/05_circuits.png",
+    "route": "/electricity/circuits",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "11_electricity/06_capacitors.png",
+    "route": "/electricity/capacitors",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/01_field_lines.png",
+    "route": "/magnetism/field-lines",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/02_lorentz_force.png",
+    "route": "/magnetism/lorentz-force",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/03_current_wire.png",
+    "route": "/magnetism/current-wire",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/04_solenoids.png",
+    "route": "/magnetism/solenoids",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/05_induction.png",
+    "route": "/magnetism/induction",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "12_magnetism/06_electromagnets.png",
+    "route": "/magnetism/electromagnets",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/01_semiconductors.png",
+    "route": "/electronics/semiconductors",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/02_diodes.png",
+    "route": "/electronics/diodes",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/03_transistors.png",
+    "route": "/electronics/transistors",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/04_amplifiers.png",
+    "route": "/electronics/amplifiers",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/05_logic_gates.png",
+    "route": "/electronics/logic-gates",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "13_electronics/06_sensors.png",
+    "route": "/electronics/sensors",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/01_temperature.png",
+    "route": "/thermodynamics/temperature",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/02_heat_transfer.png",
+    "route": "/thermodynamics/heat-transfer",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/03_gas_laws.png",
+    "route": "/thermodynamics/gas-laws",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/04_first_law.png",
+    "route": "/thermodynamics/first-law",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/05_entropy.png",
+    "route": "/thermodynamics/entropy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "14_thermodynamics/06_heat_engines.png",
+    "route": "/thermodynamics/heat-engines",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/01_density_pressure.png",
+    "route": "/fluid-mechanics/density-pressure",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/02_hydrostatics.png",
+    "route": "/fluid-mechanics/hydrostatics",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/03_buoyancy.png",
+    "route": "/fluid-mechanics/buoyancy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/04_continuity.png",
+    "route": "/fluid-mechanics/continuity",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/05_bernoulli.png",
+    "route": "/fluid-mechanics/bernoulli",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "15_fluid_mechanics/06_viscosity.png",
+    "route": "/fluid-mechanics/viscosity",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/01_quantum_ideas.png",
+    "route": "/modern-physics/quantum-ideas",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/02_photoelectric_effect.png",
+    "route": "/modern-physics/photoelectric-effect",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/03_matter_waves.png",
+    "route": "/modern-physics/matter-waves",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/04_atomic_spectra.png",
+    "route": "/modern-physics/atomic-spectra",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/05_nuclear_structure.png",
+    "route": "/modern-physics/nuclear-structure",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "16_modern_physics/06_radioactivity.png",
+    "route": "/modern-physics/radioactivity",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/01_solar_system_orbits.png",
+    "route": "/astrophysics/solar-system",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/02_stellar_life.png",
+    "route": "/astrophysics/stellar-life",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/03_spectroscopy.png",
+    "route": "/astrophysics/spectroscopy",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/04_galaxies.png",
+    "route": "/astrophysics/galaxies",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/05_cosmology.png",
+    "route": "/astrophysics/cosmology",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  },
+  {
+    "reference": "17_astronomy_astrophysics/06_exoplanets.png",
+    "route": "/astrophysics/exoplanets",
+    "tabs": [
+      {
+        "text": "Observe",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Predict",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Experiment",
+        "label": null,
+        "group": "frs-modes"
+      },
+      {
+        "text": "Explain",
+        "label": null,
+        "group": "frs-modes"
+      }
+    ],
+    "assets": [],
+    "dock": 0
+  }
+]

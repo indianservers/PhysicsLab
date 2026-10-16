@@ -1,0 +1,860 @@
+[
+  {
+    "file": "src/pages/AmplifiersStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/BernoulliStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/BuoyancyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CapacitorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CircuitsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Supply Voltage value\" type=\"number\" value={input.voltage.toFixed(1)} onChange={e=>update({voltage:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Supply Voltage\" type=\"range\" min=\"0\" max=\"12\" step=\".1\" value={input.voltage} onChange={e=>update({voltage:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/ConservationEnergyStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".01\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ContinuityStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".00001\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CosmologyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CoulombForceStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CoupledOscillatorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CurrentStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/CurrentWireStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/DampingStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(3)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/DensityPressureStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Probe Depth value\" type=\"number\" value={input.depth} onChange={e=>update({depth:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Probe Depth\" type=\"range\" min=\"0\" max=\"1\" step=\".01\" value={input.depth} onChange={e=>update({depth:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/DensityPressureStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Gravity g value\" type=\"number\" value={input.g} onChange={e=>update({g:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Gravity g\" type=\"range\" min=\"1.62\" max=\"24.79\" step=\".01\" value={input.g} onChange={e=>update({g:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/DiffractionStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/DiodesStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/DopplerEffectStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/EfficiencyStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".1\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ElectricFieldStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ElectricPotentialStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Probe Height z value\" type=\"number\" value={input.z.toFixed(2)} onChange={e=>setInput(potentialSettings({...input,z:Number(e.target.value)}))}/>",
+    "range": "<input aria-label=\"Probe Height z\" type=\"range\" min=\"0\" max=\"2\" step=\".01\" value={input.z} onChange={e=>setInput(potentialSettings({...input,z:Number(e.target.value)}))}/>"
+  },
+  {
+    "file": "src/pages/ElectromagnetsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/EnergyExchangeStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(3)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/EntropyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/EscapeVelocityStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ExoplanetsStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/FirstLawStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/FrictionStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={d} onChange={e=>setD(e.target.value)} onBlur={commit} onKeyDown={e=>e.key==='Enter'&&e.currentTarget.blur()}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step={step} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/GalaxiesStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Radius Probe value\" type=\"number\" value={input.radius} onChange={e=>update({radius:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Radius Probe\" type=\"range\" min=\".1\" max=\"100\" step=\".1\" value={input.radius} onChange={e=>update({radius:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/GasLawsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/GravitationalFieldStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toExponential(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step={(max-min)/100} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/GravitationalPotentialStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toExponential(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/HeatEnginesStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\"1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/HeatTransferStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(0)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\"1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/HydrostaticsStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Probe Depth value\" type=\"number\" value={input.depth} onChange={e=>update({depth:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Probe Depth\" type=\"range\" min=\"0\" max=\"1\" step=\".01\" value={input.depth} onChange={e=>update({depth:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/HydrostaticsStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Gravity g value\" type=\"number\" value={input.g} onChange={e=>update({g:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Gravity g\" type=\"range\" min=\"1.62\" max=\"24.79\" step=\".01\" value={input.g} onChange={e=>update({g:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/InductionStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/InterferenceStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/KeplersLawsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/KineticEnergyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".01\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/LensesStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/LorentzForceStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toExponential(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/MagneticFieldLinesStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/MatterWavesStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/MirrorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/MultiForceStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(0)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\"1\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/NuclearStructureStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\"1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/OpticsInterferenceStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/OrbitsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/PendulumStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/PhotoelectricStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/PotentialEnergyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".01\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/PowerStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".01\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/QuantumIdeasStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/RadioactivityStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Shield Thickness value\" type=\"number\" value={input.thickness} onChange={e=>update({thickness:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Shield Thickness\" type=\"range\" min=\"0\" max=\"20\" step=\".1\" value={input.thickness} onChange={e=>update({thickness:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/RadioactivityStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Elapsed Time value\" type=\"number\" value={input.time} onChange={e=>update({time:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Elapsed Time\" type=\"range\" min=\"0\" max=\"200\" step=\".1\" value={input.time} onChange={e=>update({time:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/ReflectionStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={step??(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/RefractionStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(3)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".001\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ResonanceStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SemiconductorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toExponential(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\"1\" value={Math.log10(value)} onChange={e=>onChange(10**Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SensorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SolarSystemStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Time value\" type=\"number\" value={input.time} onChange={e=>update({time:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Time\" type=\"range\" min=\"0\" max=\"3650\" step=\"1\" value={input.time} onChange={e=>update({time:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/SolarSystemStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Orbit Scale value\" type=\"number\" value={input.scale} onChange={e=>update({scale:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Orbit Scale\" type=\"range\" min=\".5\" max=\"4\" step=\".1\" value={input.scale} onChange={e=>update({scale:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/SolenoidStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SoundSpectrumStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(0)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SpectroscopyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Spectral Range value\" type=\"number\" value={input.range} onChange={e=>update({range:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Spectral Range\" type=\"range\" min=\"350\" max=\"750\" step=\"1\" value={input.range} onChange={e=>update({range:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/SpectroscopyStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label=\"Redshift z value\" type=\"number\" value={input.redshift} onChange={e=>update({redshift:Number(e.target.value)})}/>",
+    "range": "<input aria-label=\"Redshift z\" type=\"range\" min=\"-.01\" max=\".01\" step=\".00001\" value={input.redshift} onChange={e=>update({redshift:Number(e.target.value)})}/>"
+  },
+  {
+    "file": "src/pages/SpringShmStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(3)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/StandingWavesStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={step??(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/StellarLifeStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".01\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/SuperpositionStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/TemperatureStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(0)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\"1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/TensionNormalStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\"1\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/TransistorsStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/UniversalGravityStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".01\" onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/ViscosityStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step=\".1\" value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/WavePropertiesStudioPage.tsx",
+    "line": 1,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(2)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" min={min} max={max} step={(max-min)/100} value={value} onChange={e=>onChange(Number(e.target.value))}/>"
+  },
+  {
+    "file": "src/pages/WorkStudioPage.tsx",
+    "line": 2,
+    "attributes": [
+      "min",
+      "max",
+      "step"
+    ],
+    "number": "<input aria-label={label+' value'} type=\"number\" value={value.toFixed(1)} onChange={e=>onChange(Number(e.target.value))}/>",
+    "range": "<input aria-label={label} type=\"range\" value={value} min={min} max={max} step=\".1\" onChange={e=>onChange(Number(e.target.value))}/>"
+  }
+]

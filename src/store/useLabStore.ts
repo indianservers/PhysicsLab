@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { safeStorage } from "../lib/safeStorage";
 import { AccessibilitySettings, GraphPoint, GraphTraceConfig, GraphVariable, ObservationRow, PhysicsObjectInstance, PhysicsObjectKind, ProjectFile, UnitSystem, ViewportState } from "../types";
 import { createObject } from "../lib/objectRegistry";
 import { projectileDefaults } from "../lib/experiments";
@@ -91,6 +92,11 @@ const initialObjects = () => [
   createObject("ramp", 570, 430),
 ];
 
+const preferencesKey = "physicslab-preferences-v1";
+const savedPreferences = safeStorage.readJSON<Record<string, unknown> | null>(preferencesKey, null);
+const preferences = savedPreferences && typeof savedPreferences === "object" ? savedPreferences : {};
+const savedAccessibility = preferences.accessibility && typeof preferences.accessibility === "object" ? preferences.accessibility as Partial<AccessibilitySettings> : {};
+
 export const useLabStore = create<LabState>((set, get) => ({
   objects: initialObjects(),
   undoStack: [],
@@ -103,7 +109,7 @@ export const useLabStore = create<LabState>((set, get) => ({
   showGrid: true,
   showVectors: true,
   showTrails: true,
-  theme: "light",
+  theme: preferences.theme === "dark" ? "dark" : "light",
   graphData: [],
   graphPaused: false,
   graphSplit: false,
@@ -115,9 +121,9 @@ export const useLabStore = create<LabState>((set, get) => ({
   ],
   cursorIndex: 0,
   observationRows: [],
-  unitSystem: "SI",
-  significantFigures: 4,
-  accessibility: { highContrast: false, largeUi: false, colorBlindSafe: false, reducedMotion: false },
+  unitSystem: preferences.unitSystem === "CGS" ? "CGS" : "SI",
+  significantFigures: typeof preferences.significantFigures === "number" && Number.isFinite(preferences.significantFigures) ? Math.round(Math.max(2, Math.min(8, preferences.significantFigures))) : 4,
+  accessibility: { highContrast: savedAccessibility.highContrast === true, largeUi: savedAccessibility.largeUi === true, colorBlindSafe: savedAccessibility.colorBlindSafe === true, reducedMotion: savedAccessibility.reducedMotion === true },
   simulationTime: 0,
   stepSignal: 0,
   engineWarnings: [],
@@ -171,7 +177,7 @@ export const useLabStore = create<LabState>((set, get) => ({
   setRunning: (running) => set({ running }),
   toggleRunning: () => set((state) => ({ running: !state.running })),
   resetSandbox: () => set({ objects: initialObjects(), graphData: [], observationRows: [], simulationTime: 0, running: false, selectedId: undefined, engineWarnings: [], viewport: { offsetX: 0, offsetY: 0, zoom: 1 } }),
-  resetGraph: () => set({ graphData: [], observationRows: [], simulationTime: 0 }),
+  resetGraph: () => set({ graphData: [], observationRows: [], simulationTime: 0, graphPaused: false, cursorIndex: 0 }),
   pushGraphPoint: (point) =>
     set((state) => state.graphPaused ? state : ({
       graphData: [...state.graphData.slice(-399), point],
@@ -187,12 +193,12 @@ export const useLabStore = create<LabState>((set, get) => ({
     }
     return { graphTraces: [...state.graphTraces, withTraceTrust({ id: crypto.randomUUID(), xKey, yKey, label: `${String(yKey)} vs ${String(xKey)}`, color: "#22d3ee", enabled: true, errorPercent: 0 })] };
   }),
-  setCursorIndex: (cursorIndex) => set({ cursorIndex }),
+  setCursorIndex: (cursorIndex) => set(state => ({ cursorIndex: Number.isFinite(cursorIndex) ? Math.max(0, Math.min(Math.max(0, state.graphData.length - 1), Math.round(cursorIndex))) : 0 })),
   addObservationRow: () => set((state) => ({ observationRows: [...state.observationRows, { id: crypto.randomUUID(), label: `Trial ${state.observationRows.length + 1}`, measured: 0, expected: 0, unit: "m", note: "" }] })),
   updateObservationRow: (id, patch) => set((state) => ({ observationRows: state.observationRows.map((row) => row.id === id ? { ...row, ...patch } : row) })),
   removeObservationRow: (id) => set((state) => ({ observationRows: state.observationRows.filter((row) => row.id !== id) })),
   setUnitSystem: (unitSystem) => set({ unitSystem }),
-  setSignificantFigures: (significantFigures) => set({ significantFigures: Math.max(2, Math.min(8, significantFigures)) }),
+  setSignificantFigures: (significantFigures) => set({ significantFigures: Number.isFinite(significantFigures) ? Math.round(Math.max(2, Math.min(8, significantFigures))) : 4 }),
   setAccessibility: (patch) => set((state) => ({ accessibility: { ...state.accessibility, ...patch } })),
   setSimulationTime: (simulationTime) => set({ simulationTime }),
   setGravity: (gravity) => set({ gravity }),
@@ -224,6 +230,8 @@ export const useLabStore = create<LabState>((set, get) => ({
       airResistance: project.simulationSettings.airResistance,
       running: false,
       selectedId: undefined,
+      undoStack: [], redoStack: [], observationRows: [], engineWarnings: [], cursorIndex: 0, graphPaused: false,
+      simulationTime: project.graphs[project.graphs.length - 1]?.t ?? 0,
     }),
   toProject: (name = "PhysicsLab Project", mode = "sandbox") => {
     const state = get();
@@ -248,6 +256,12 @@ export const useLabStore = create<LabState>((set, get) => ({
     };
   },
 }));
+
+let previousPreferences = "";
+useLabStore.subscribe(({ theme, unitSystem, significantFigures, accessibility }) => {
+  const serialized = JSON.stringify({ theme, unitSystem, significantFigures, accessibility });
+  if (serialized !== previousPreferences) { safeStorage.setItem(preferencesKey, serialized); previousPreferences = serialized; }
+});
 
 function withTraceTrust(trace: GraphTraceConfig): GraphTraceConfig {
   const yAdapter = getMeasurementAdapter(trace.yKey);

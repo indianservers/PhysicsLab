@@ -1,3 +1,4 @@
+import { MathText } from "../../components/MathExpression";
 export interface FormulaDerivationStep {
   label: string;
   expression: string;
@@ -8,11 +9,11 @@ export function FormulaDerivationPanel({ formula, steps }: { formula: string; st
   return (
     <section className="formula-derivation-panel" aria-label="Formula derivation">
       <p className="premium-mini-label">Derivation</p>
-      <h3>{formula}</h3>
+      <h3><MathText text={formula} /></h3>
       <ol>
         {steps.map((step) => (
           <li key={step.label}>
-            <strong>{step.label}: {step.expression}</strong>
+            <strong>{step.label}: <MathText text={step.expression} /></strong>
             <p>{step.explanation}</p>
           </li>
         ))}

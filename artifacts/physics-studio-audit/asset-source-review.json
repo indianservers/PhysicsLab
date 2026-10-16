@@ -1,0 +1,394 @@
+[
+  {
+    "reference": "01_concept_overview/02_relationship_map.png",
+    "route": "/graph",
+    "asset": "assets\\concept-relationships\\rocket-launch.png",
+    "featureMatches": 6,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "01_concept_overview/04_experiment_launcher.png",
+    "route": "/experiments",
+    "asset": "assets\\experiment-launcher\\lab-environment-v2.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "01_concept_overview/06_mastery_challenge.png",
+    "route": "/quiz",
+    "asset": "assets\\experiment-launcher\\lab-environment-v2.png",
+    "featureMatches": 0,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/01_meter_scale.png",
+    "route": "/measurement/meter-scale",
+    "asset": "assets\\meter-scale\\empty-bench.png",
+    "featureMatches": 5,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/02_vernier_caliper.png",
+    "route": "/measurement/vernier-caliper",
+    "asset": "assets\\meter-scale\\empty-bench.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/03_micrometer.png",
+    "route": "/measurement/micrometer",
+    "asset": "assets\\meter-scale\\empty-bench.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/04_spherometer.png",
+    "route": "/measurement/spherometer",
+    "asset": "assets\\spherometer\\optical-bench.png",
+    "featureMatches": 0,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/05_mass_time.png",
+    "route": "/measurement/mass-time",
+    "asset": "assets\\mass-time\\measurement-bench.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "02_measurement/06_uncertainty.png",
+    "route": "/measurement/uncertainty",
+    "asset": "assets\\uncertainty\\volume-bench.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "03_mechanics/03_pulley_systems.png",
+    "route": "/mechanics/pulley-systems",
+    "asset": "assets\\atwood\\lab.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "04_motion_kinematics/01_position_time.png",
+    "route": "/motion/position-time",
+    "asset": "assets\\position-time\\lab-backdrop.png",
+    "featureMatches": 0,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "04_motion_kinematics/02_velocity_time.png",
+    "route": "/motion/velocity-time",
+    "asset": "assets\\position-time\\lab-backdrop.png",
+    "featureMatches": 0,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "04_motion_kinematics/03_acceleration_time.png",
+    "route": "/motion/acceleration-time",
+    "asset": "assets\\position-time\\lab-backdrop.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "04_motion_kinematics/04_projectile_motion.png",
+    "route": "/motion/projectile-motion",
+    "asset": "assets\\projectile-studio\\field-v2.png",
+    "featureMatches": 5,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "04_motion_kinematics/05_relative_motion.png",
+    "route": "/motion/relative-motion",
+    "asset": "assets\\relative-motion\\river.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "05_force_newton/01_first_law_inertia.png",
+    "route": "/motion/first-law-inertia",
+    "asset": "assets\\first-law\\inertia-track.png",
+    "featureMatches": 4,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "05_force_newton/04_friction.png",
+    "route": "/motion/friction",
+    "asset": "assets\\friction-studio\\wood-block.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "05_force_newton/05_tension_normal.png",
+    "route": "/motion/tension-normal",
+    "asset": "assets\\friction-studio\\tension-lamp.png",
+    "featureMatches": 11,
+    "consistentMatches": 5,
+    "review": false
+  },
+  {
+    "reference": "05_force_newton/06_multi_force_challenge.png",
+    "route": "/motion/multi-force-challenge",
+    "asset": "assets\\friction-studio\\sled.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "06_work_energy_power/02_kinetic_energy.png",
+    "route": "/motion/kinetic-energy",
+    "asset": "assets\\friction-studio\\kinetic-track.png",
+    "featureMatches": 4,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "06_work_energy_power/03_potential_energy.png",
+    "route": "/motion/potential-energy",
+    "asset": "assets\\friction-studio\\crane.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "06_work_energy_power/04_energy_conservation.png",
+    "route": "/motion/conservation-energy",
+    "asset": "assets\\friction-studio\\coaster.png",
+    "featureMatches": 8,
+    "consistentMatches": 4,
+    "review": false
+  },
+  {
+    "reference": "06_work_energy_power/05_power.png",
+    "route": "/motion/power",
+    "asset": "assets\\friction-studio\\lift-rig.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "06_work_energy_power/06_efficiency.png",
+    "route": "/motion/efficiency",
+    "asset": "assets\\friction-studio\\efficiency-rig.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "07_gravitation/01_universal_gravitation.png",
+    "route": "/motion/universal-gravity",
+    "asset": "assets\\friction-studio\\torsion.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "07_gravitation/03_gravitational_potential.png",
+    "route": "/motion/gravitational-potential",
+    "asset": "assets\\friction-studio\\field-earth.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "07_gravitation/04_orbits.png",
+    "route": "/motion/orbits",
+    "asset": "assets\\friction-studio\\field-earth.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "07_gravitation/05_escape_velocity.png",
+    "route": "/motion/escape-velocity",
+    "asset": "assets\\friction-studio\\escape.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "07_gravitation/06_keplers_laws.png",
+    "route": "/motion/keplers-laws",
+    "asset": "assets\\friction-studio\\field-earth.png",
+    "featureMatches": 0,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/01_spring_shm.png",
+    "route": "/motion/spring-shm",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 12,
+    "consistentMatches": 5,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/02_pendulum.png",
+    "route": "/motion/pendulum",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/03_energy_exchange.png",
+    "route": "/motion/energy-exchange",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/04_damping.png",
+    "route": "/motion/damping",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/05_resonance.png",
+    "route": "/motion/resonance",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "08_oscillations/06_coupled_oscillators.png",
+    "route": "/motion/coupled-oscillators",
+    "asset": "assets\\friction-studio\\spring.png",
+    "featureMatches": 7,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/01_wave_properties.png",
+    "route": "/motion/wave-properties",
+    "asset": "assets\\friction-studio\\wave-machine.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/02_superposition.png",
+    "route": "/motion/superposition",
+    "asset": "assets\\friction-studio\\interference.png",
+    "featureMatches": 5,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/03_interference.png",
+    "route": "/motion/interference",
+    "asset": "assets\\friction-studio\\interference.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/04_standing_waves.png",
+    "route": "/motion/standing-waves",
+    "asset": "assets\\friction-studio\\wave-machine.png",
+    "featureMatches": 8,
+    "consistentMatches": 4,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/05_sound_spectrum.png",
+    "route": "/motion/sound-spectrum",
+    "asset": "assets\\friction-studio\\wave-machine.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "09_waves_sound/06_doppler_effect.png",
+    "route": "/motion/doppler-effect",
+    "asset": "assets\\friction-studio\\wave-machine.png",
+    "featureMatches": 6,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/01_reflection.png",
+    "route": "/optics/reflection",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 4,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/02_refraction.png",
+    "route": "/optics/refraction",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 5,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/03_lenses.png",
+    "route": "/optics/lenses",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/04_mirrors.png",
+    "route": "/optics/mirrors",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 4,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/05_interference.png",
+    "route": "/optics/interference",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 1,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "10_optics/06_diffraction.png",
+    "route": "/optics/diffraction",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 4,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "11_electricity/01_coulomb_force.png",
+    "route": "/electricity/coulomb-force",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 2,
+    "consistentMatches": 0,
+    "review": false
+  },
+  {
+    "reference": "11_electricity/04_current.png",
+    "route": "/electricity/current",
+    "asset": "assets\\friction-studio\\reflection.png",
+    "featureMatches": 3,
+    "consistentMatches": 0,
+    "review": false
+  }
+]

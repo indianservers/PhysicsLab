@@ -132,7 +132,7 @@ export function VideoAnalysisPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Toolbar />
-      <div className="grid min-h-0 flex-1 gap-3 p-3 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div id="content" tabIndex={-1} className="grid min-h-0 flex-1 gap-3 p-3 lg:grid-cols-[minmax(0,1fr)_340px]">
         <section className="panel min-h-0 p-3">
           <GuidePanel guide={videoGuide} compact />
           <div className="relative aspect-video w-full overflow-hidden rounded bg-slate-950">

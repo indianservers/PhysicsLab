@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { MathExpression } from "../../components/MathExpression";
 import type { DedicatedExperimentLabProps } from "../shared/experimentRegistry";
 import "./physics-expansion-lab.css";
 
@@ -107,15 +108,25 @@ export function PhysicsExpansionLab({ experiment }: DedicatedExperimentLabProps)
   const config = LABS[experiment.id];
   const initial = useMemo(() => Object.fromEntries(config.controls.map(item => [item.key, item.initial])), [config]);
   const [values, setValues] = useState<Values>(initial);
-  const result = config.solve(values);
+  const [running, setRunning] = useState(false);
+  const [time, setTime] = useState(0);
+  useEffect(() => {
+    if (!running) return;
+    let frame = 0, previous = performance.now();
+    const tick = (now: number) => { const dt = Math.min(.05, (now - previous) / 1000); previous = now; setTime(t => t + dt); frame = requestAnimationFrame(tick); };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [running]);
+  const result = config.solve(experiment.id === "diffusion" ? {...values, time: values.time + time} : values);
   const update = (key: string, value: number) => setValues(current => ({ ...current, [key]: value }));
 
   return (
     <section className="expansion-lab">
-      <header><div><span>{config.eyebrow}</span><h2>{experiment.title}</h2><p>{config.question}</p></div><button type="button" onClick={() => setValues(initial)}>Reset</button></header>
+      <header><div><span>{config.eyebrow}</span><h2>{experiment.title}</h2><p>{config.question}</p></div><button type="button" onClick={() => {setValues(initial); setTime(0); setRunning(false);}}>Reset</button></header>
+      <nav className="expansion-transport" aria-label="Simulation playback"><button aria-pressed={running} onClick={() => setRunning(true)}>Play</button><button aria-pressed={!running} onClick={() => setRunning(false)}>Pause</button><button onClick={() => {setRunning(false); setTime(t => t + .1);}}>Step</button><output>{time.toFixed(1)} s</output></nav>
       <div className="expansion-layout">
-        <aside className="expansion-controls"><h3>Change one variable</h3>{config.controls.map(item => <label key={item.key}><span>{item.label}<output>{values[item.key]} {item.unit}</output></span><input type="range" min={item.min} max={item.max} step={item.step} value={values[item.key]} onChange={event=>update(item.key,Number(event.target.value))}/></label>)}</aside>
-        <div className="expansion-stage"><LabVisual id={experiment.id} values={values}/><div className="expansion-formula">{config.formula}</div></div>
+        <aside className="expansion-controls"><h3>Change one variable</h3>{config.controls.map(item => <label key={item.key}><span>{item.label}<output>{values[item.key]} {item.unit}</output></span><input aria-label={item.label} type="range" min={item.min} max={item.max} step={item.step} value={values[item.key]} onChange={event=>update(item.key,Number(event.target.value))}/></label>)}</aside>
+        <div className="expansion-stage"><LabVisual id={experiment.id} values={values} time={time}/><div className="expansion-formula">{experiment.formulae[0] ? <MathExpression expression={experiment.formulae[0].expression} /> : config.formula}</div></div>
         <aside className="expansion-readings"><h3>Live evidence</h3>{result.readings.map(item=><div key={item.label}><span>{item.label}</span><strong>{item.value}</strong></div>)}<p>{result.conclusion}</p></aside>
       </div>
       <footer><b>Investigation:</b> predict first, change only one control, then explain the direction of the result using the displayed relationship.</footer>
@@ -123,16 +134,35 @@ export function PhysicsExpansionLab({ experiment }: DedicatedExperimentLabProps)
   );
 }
 
-function LabVisual({ id, values: v }: { id: string; values: Values }) {
+function LabVisual({ id, values: v, time }: { id: string; values: Values; time: number }) {
   if (id === "balancing-act") { const tilt=Math.max(-12,Math.min(12,(v.m1*v.r1-v.m2)*3)); return <svg viewBox="0 0 600 360" role="img" aria-label="Torque balance"><g transform={`rotate(${-tilt} 300 190)`}><rect x="85" y="178" width="430" height="22" rx="10"/><circle cx={300-v.r1*120} cy="148" r={18+v.m1}/><circle cx="420" cy="148" r={18+v.m2}/></g><path d="M300 190 250 300h100z"/><text x="300" y="330">pivot</text></svg>; }
   if (id === "blackbody-spectrum") { const peak=2.898e6/v.temperature; const x=70+Math.max(0,Math.min(460,(peak-250)/1750*460)); return <svg viewBox="0 0 600 360" role="img" aria-label="Blackbody spectrum"><defs><linearGradient id="spectrum"><stop stopColor="#7347ff"/><stop offset=".25" stopColor="#2ab8ff"/><stop offset=".5" stopColor="#58e06f"/><stop offset=".72" stopColor="#ffd53d"/><stop offset="1" stopColor="#ff3c35"/></linearGradient></defs><rect x="70" y="285" width="460" height="12" fill="url(#spectrum)"/><path d={`M70 285 C ${x-80} 280, ${x-55} 80, ${x} 60 S ${x+90} 260,530 285`} /><line x1={x} x2={x} y1="48" y2="298"/><text x={Math.min(500,x+8)} y="45">λmax</text></svg>; }
   if (id === "color-vision") { const color=`rgb(${v.red*2.55},${v.green*2.55},${v.blue*2.55})`; return <svg viewBox="0 0 600 360" role="img" aria-label="Additive color mixing"><circle cx="245" cy="160" r="100" fill={`rgb(${v.red*2.55},0,0)`}/><circle cx="355" cy="160" r="100" fill={`rgb(0,${v.green*2.55},0)`}/><circle cx="300" cy="245" r="100" fill={`rgb(0,0,${v.blue*2.55})`}/><circle cx="300" cy="190" r="65" fill={color}/></svg>; }
-  if (id === "fourier-making-waves") { const points=Array.from({length:121},(_,i)=>{const t=i/120*Math.PI*4; const y=v.a1*Math.sin(t)+v.a2*Math.sin(2*t)+v.a3*Math.sin(3*t); return `${40+i*4.3},${180-y*75}`}).join(" "); return <svg viewBox="0 0 600 360" role="img" aria-label="Fourier waveform"><line x1="40" x2="560" y1="180" y2="180"/><polyline points={points}/></svg>; }
+  if (id === "fourier-making-waves") { const points=Array.from({length:121},(_,i)=>{const t=i/120*Math.PI*4-time*2; const y=v.a1*Math.sin(t)+v.a2*Math.sin(2*t)+v.a3*Math.sin(3*t); return `${40+i*4.3},${180-y*75}`}).join(" "); return <svg viewBox="0 0 600 360" role="img" aria-label="Fourier waveform"><line x1="40" x2="560" y1="180" y2="180"/><polyline points={points}/></svg>; }
   if (id === "resistance-in-a-wire") { const width=8+v.area*5; return <svg viewBox="0 0 600 360" role="img" aria-label="Resistance wire"><circle cx="80" cy="180" r="42"/><circle cx="520" cy="180" r="42"/><line x1="80" x2="520" y1="180" y2="180" style={{strokeWidth:width}}/><g className="charge-dots">{[150,220,290,360,430].map(x=><circle key={x} cx={x} cy="180" r="6"/>)}</g></svg>; }
-  if (id === "rutherford-scattering") { const theta=2*Math.atan(v.z*2*1.44/(2*v.energy*v.impact)); const y=180-Math.tan(Math.min(1.2,theta))*170; return <svg viewBox="0 0 600 360" role="img" aria-label="Rutherford scattering"><circle cx="360" cy="180" r={12+v.z/8}/><path d={`M40 250 Q 330 250 360 210 Q 390 175 550 ${Math.max(35,y)}`}/><circle cx="65" cy="249" r="9"/><text x="375" y="180">+{v.z}</text></svg>; }
-  if (id === "states-of-matter" || id === "diffusion") { const spread=id==="diffusion"?Math.min(220,35+v.time*3):v.temperature>450?210:v.temperature>220?120:65; return <svg viewBox="0 0 600 360" role="img" aria-label="Particle model"><rect x="70" y="45" width="460" height="265" rx="18"/>{Array.from({length:36},(_,i)=>{const a=i*2.399; const rr=(i%7)/6*spread; return <circle key={i} cx={300+Math.cos(a)*rr} cy={178+Math.sin(a)*rr*.58} r="7"/>})}</svg>; }
+  if (id === "rutherford-scattering") {
+    const theta=2*Math.atan(v.z*2*1.44/(2*v.energy*v.impact)), fraction=(time*.35)%1;
+    const exitX=350+180*Math.cos(theta), exitY=230-180*Math.sin(theta);
+    const x=fraction<.6 ? 40+fraction/.6*310 : 350+(fraction-.6)/.4*(exitX-350);
+    const y=fraction<.6 ? 250-fraction/.6*20 : 230+(fraction-.6)/.4*(exitY-230);
+    return <svg viewBox="0 0 600 360" role="img" aria-label="Alpha particle scattering trajectory"><circle cx="360" cy="180" r={12+v.z/8}/><path d={`M40 250 Q300 250 350 230 L${exitX} ${exitY}`}/><circle cx={x} cy={y} r="9"/><text x="375" y="180">+{v.z}</text><text x="300" y="330">Illustrative trajectory · deflection {(theta*180/Math.PI).toFixed(1)}°</text></svg>;
+  }
+  if (id === "states-of-matter" || id === "diffusion") {
+    const isDiffusion = id === "diffusion";
+    const melt=120+2.2*v.attraction+8*v.pressure, boil=260+3.6*v.attraction+22*v.pressure;
+    const phase = isDiffusion ? "Gas" : v.temperature < melt ? "Solid" : v.temperature < boil ? "Liquid" : "Gas";
+    const spread = phase === "Gas" ? 200 : phase === "Liquid" ? 110 : 65;
+    const diffusionSpread = Math.min(1, Math.sqrt(2*.08*(v.temperature/300)*Math.sqrt(28/v.mass)*(v.time+time))/4);
+    return <svg viewBox="0 0 600 360" role="img" aria-label={isDiffusion ? "Diffusion of two particle species" : `${phase} particle arrangement`}><rect x="70" y="45" width="460" height="265" rx="18"/>{Array.from({length:36},(_,i)=>{
+      const a=i*2.399, jitter=Math.sin(time*2+i)*5;
+      const x=isDiffusion ? 300+(i<18?-100:100)*(1-diffusionSpread)+Math.sin(i*7+time)*180*diffusionSpread : phase === "Solid" ? 235+(i%6)*26+jitter : 300+Math.cos(a+time*.4)*(i%7)/6*spread;
+      const y=isDiffusion ? 180+Math.cos(i*5+time*.7)*105 : phase === "Solid" ? 115+Math.floor(i/6)*25+jitter : 178+Math.sin(a+time*.4)*(i%7)/6*spread*.58;
+      return <circle key={i} cx={x} cy={y} r="7" style={isDiffusion ? {fill:i<18?"#ee6a7a":"#3baedb"} : undefined}/>;
+    })}<text x="300" y="338">{isDiffusion ? "Two species mix by particle motion" : phase}</text></svg>;
+  }
   if (id === "greenhouse-effect") return <svg viewBox="0 0 600 360" role="img" aria-label="Planetary energy balance"><circle cx="110" cy="95" r="50"/><circle cx="390" cy="220" r="105"/><path d="M155 105 315 175M155 85l170 45M370 115q80-90 145 10M420 120q90-45 105 45"/><text x="70" y="175">shortwave in</text><text x="430" y="70">infrared out</text></svg>;
-  if (id === "molecules-and-light") { const absorb=Math.exp(-(((v.wavelength-v.resonance)/(Math.max(60,v.resonance*.09)))**2)); return <svg viewBox="0 0 600 360" role="img" aria-label="Molecular light absorption"><path d="M25 180q25-70 50 0t50 0t50 0t50 0"/><g transform={`rotate(${20*absorb} 330 180)`}><circle cx="290" cy="180" r="38"/><circle cx="370" cy="180" r="38"/><line x1="325" x2="335" y1="180" y2="180"/></g><path d={`M410 180q20-${50*(1-absorb)} 40 0t40 0t40 0`}/></svg>; }
+  if (id === "molecules-and-light") { const absorb=Math.exp(-(((v.wavelength-v.resonance)/(Math.max(60,v.resonance*.09)))**2)); return <svg viewBox="0 0 600 360" role="img" aria-label="Molecular light absorption"><path d="M25 180q25-70 50 0t50 0t50 0t50 0"/><circle cx={25+(time*120)%240} cy="180" r="6"/><g transform={`rotate(${20*absorb*Math.sin(time*8)} 330 180)`}><circle cx="290" cy="180" r="38"/><circle cx="370" cy="180" r="38"/><line x1="325" x2="335" y1="180" y2="180"/></g><path d={`M410 180q20-${50*(1-absorb)} 40 0t40 0t40 0`}/></svg>; }
   if (id === "atomic-interactions") { const gap=(v.distance-2.5)/5.5*240; return <svg viewBox="0 0 600 360" role="img" aria-label="Atomic interaction"><circle cx={300-gap/2} cy="180" r={v.sigma*14}/><circle cx={300+gap/2} cy="180" r={v.sigma*14}/><line x1={300-gap/2} x2={300+gap/2} y1="180" y2="180"/><text x="275" y="300">r = {v.distance.toFixed(2)} Å</text></svg>; }
-  const protons=Math.round(v.protons||6), neutrons=Math.round(v.neutrons||6); return <svg viewBox="0 0 600 360" role="img" aria-label="Nucleus builder"><circle cx="300" cy="180" r="130" className="nucleus-shell"/>{Array.from({length:Math.min(80,protons+neutrons)},(_,i)=>{const a=i*2.4, r=12*Math.sqrt(i); return <circle key={i} cx={300+Math.cos(a)*r} cy={180+Math.sin(a)*r} r="11" className={i<protons?"proton":"neutron"}/>})}</svg>;
+  const protons=Math.round(v.protons ?? 6), neutrons=Math.round(v.neutrons ?? 6), count=protons+neutrons;
+  return <svg viewBox="0 0 600 360" role="img" aria-label={`${protons} protons and ${neutrons} neutrons`}><circle cx="300" cy="180" r="130" className="nucleus-shell"/>{Array.from({length:count},(_,i)=>{const a=i*2.4, r=110*Math.sqrt(i/Math.max(1,count-1)); return <circle key={i} cx={300+Math.cos(a+time*.3)*r} cy={180+Math.sin(a+time*.3)*r} r={Math.min(11,100/Math.sqrt(count))} className={i<protons?"proton":"neutron"}/>})}</svg>;
 }

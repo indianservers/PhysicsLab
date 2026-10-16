@@ -1956,18 +1956,6 @@
     "error": false
   },
   {
-    "url": "/particle-physics/higgs-field",
-    "group": "Particle concept",
-    "title": "Higgs Field",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/topics/astronomy",
     "group": "Topic page",
     "title": "astronomy",
@@ -2892,306 +2880,6 @@
     "error": false
   },
   {
-    "url": "/concept-studio/mechanics",
-    "group": "Concept studio",
-    "title": "Mechanics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Mechanics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Force Systems",
-      "Friction",
-      "Torque",
-      "Equilibrium",
-      "Momentum",
-      "Machines"
-    ]
-  },
-  {
-    "url": "/concept-studio/force-newton",
-    "group": "Concept studio",
-    "title": "Force & Newton’s Laws",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Force & Newton’s Laws",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Inertia",
-      "F = ma",
-      "Action–Reaction",
-      "Friction",
-      "Tension",
-      "Normal Force"
-    ]
-  },
-  {
-    "url": "/concept-studio/work-energy-power",
-    "group": "Concept studio",
-    "title": "Work, Energy & Power",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Work, Energy & Power",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Work",
-      "Kinetic Energy",
-      "Potential Energy",
-      "Conservation",
-      "Power",
-      "Efficiency"
-    ]
-  },
-  {
-    "url": "/concept-studio/gravitation",
-    "group": "Concept studio",
-    "title": "Gravitation Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Gravitation Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Universal Gravitation",
-      "Gravitational Field",
-      "Orbits",
-      "Satellites",
-      "Escape Velocity",
-      "Kepler’s Laws"
-    ]
-  },
-  {
-    "url": "/concept-studio/measurement",
-    "group": "Concept studio",
-    "title": "Measurement Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Measurement Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Length",
-      "Mass",
-      "Time",
-      "Uncertainty",
-      "Significant Figures",
-      "Instrument Errors"
-    ]
-  },
-  {
-    "url": "/concept-studio/oscillations",
-    "group": "Concept studio",
-    "title": "Oscillations Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Oscillations Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Simple Harmonic Motion",
-      "Pendulums",
-      "Springs",
-      "Damping",
-      "Resonance",
-      "Coupled Oscillators"
-    ]
-  },
-  {
-    "url": "/concept-studio/motion-kinematics",
-    "group": "Concept studio",
-    "title": "Motion & Kinematics",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Motion & Kinematics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Position",
-      "Velocity",
-      "Acceleration",
-      "Projectiles",
-      "Relative Motion",
-      "Circular Motion"
-    ]
-  },
-  {
-    "url": "/concept-studio/optics",
-    "group": "Concept studio",
-    "title": "Optics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Optics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Reflection",
-      "Refraction",
-      "Lenses",
-      "Mirrors",
-      "Interference",
-      "Diffraction"
-    ]
-  },
-  {
-    "url": "/concept-studio/magnetism",
-    "group": "Concept studio",
-    "title": "Magnetism Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Magnetism Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Magnetic Fields",
-      "Force on Charge",
-      "Current & Field",
-      "Solenoids",
-      "Induction",
-      "Electromagnets"
-    ]
-  },
-  {
-    "url": "/concept-studio/electronics",
-    "group": "Concept studio",
-    "title": "Electronics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Electronics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Semiconductors",
-      "Diodes",
-      "Transistors",
-      "Amplifiers",
-      "Logic Gates",
-      "Sensors"
-    ]
-  },
-  {
-    "url": "/concept-studio/thermodynamics",
-    "group": "Concept studio",
-    "title": "Thermodynamics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Thermodynamics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Temperature",
-      "Heat Transfer",
-      "Gas Laws",
-      "First Law",
-      "Entropy",
-      "Heat Engines"
-    ]
-  },
-  {
-    "url": "/concept-studio/electricity",
-    "group": "Concept studio",
-    "title": "Electricity Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Electricity Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Charge",
-      "Electric Field",
-      "Potential",
-      "Current",
-      "Resistance",
-      "Circuits"
-    ]
-  },
-  {
-    "url": "/concept-studio/fluid-mechanics",
-    "group": "Concept studio",
-    "title": "Fluid Mechanics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Fluid Mechanics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Density",
-      "Pressure",
-      "Buoyancy",
-      "Continuity",
-      "Bernoulli",
-      "Viscosity"
-    ]
-  },
-  {
-    "url": "/concept-studio/waves-sound",
-    "group": "Concept studio",
-    "title": "Waves & Sound Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Waves & Sound Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Wave Properties",
-      "Superposition",
-      "Interference",
-      "Standing Waves",
-      "Sound",
-      "Doppler Effect"
-    ]
-  },
-  {
-    "url": "/concept-studio/astronomy-astrophysics",
-    "group": "Concept studio",
-    "title": "Astronomy & Astrophysics",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Astronomy & Astrophysics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Solar System",
-      "Stars",
-      "Spectra",
-      "Galaxies",
-      "Cosmology",
-      "Exoplanets"
-    ]
-  },
-  {
     "url": "/experiments/wave-lab",
     "group": "Experiment",
     "title": "Wave Lab",
@@ -3274,26 +2962,6 @@
     "webgl": 0,
     "upcoming": 0,
     "error": false
-  },
-  {
-    "url": "/concept-studio/modern-physics",
-    "group": "Concept studio",
-    "title": "Modern Physics Studio",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Modern Physics Studio",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false,
-    "conceptsChecked": [
-      "Quantum Ideas",
-      "Photoelectric Effect",
-      "Matter Waves",
-      "Atomic Models",
-      "Nuclei",
-      "Radioactivity"
-    ]
   },
   {
     "url": "/experiments/heating-effect-current",
@@ -4508,198 +4176,6 @@
     "error": false
   },
   {
-    "url": "/experiments/buoyancy#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Buoyancy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/heat-and-temperature#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Heat and Temperature",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/single-slit-diffraction#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Single Slit Diffraction",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/heat-transfer#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Heat Transfer",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/fluid-pressure#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Fluid Pressure with Depth",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/heating-effect-current#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Heating Effect of Current",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/force-and-pressure#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Force and Pressure",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/free-fall#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Free Fall",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/work-power#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Work and Power",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/mirror-formula#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Mirror Formula",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/ohms-law#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Ohm's Law V-I Graph",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/electric-power#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Electric Power and Energy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/series-parallel-resistance#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Series and Parallel Resistance",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/magnetic-field-current#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Magnetic Field Around Current",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/rotational-dynamics#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Rotational Dynamics",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/satellite-orbit#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Satellite Orbit and Escape Speed",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/vector-resolution#three-d",
     "group": "Experiment 3D tab",
     "title": "Vector Resolution",
@@ -4721,18 +4197,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/gas-laws#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Gas Laws and Kinetic Theory",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -4769,18 +4233,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/capacitor-lab#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Capacitor Energy and Combination",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -4856,18 +4308,6 @@
     "error": false
   },
   {
-    "url": "/experiments/young-double-slit#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Young's Double Slit",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/photoelectric-equation#three-d",
     "group": "Experiment 3D tab",
     "title": "Photoelectric Equation",
@@ -4925,18 +4365,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/sound-wave-anatomy#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Longitudinal Sound Wave",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5012,18 +4440,6 @@
     "error": false
   },
   {
-    "url": "/experiments/total-internal-reflection#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Total Internal Reflection",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/optical-instruments#three-d",
     "group": "Experiment 3D tab",
     "title": "Microscope and Telescope",
@@ -5033,18 +4449,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/de-broglie-wavelength#three-d",
-    "group": "Experiment 3D tab",
-    "title": "de Broglie Wavelength",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5084,30 +4488,6 @@
     "error": false
   },
   {
-    "url": "/experiments/distance-time-graph#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Distance-Time Graph Builder",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/balanced-unbalanced-forces#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Balanced and Unbalanced Forces",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/density-float-sink#three-d",
     "group": "Experiment 3D tab",
     "title": "Density Float-or-Sink Tank",
@@ -5141,18 +4521,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/special-relativity-bridge#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Special Relativity Bridge",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5192,18 +4560,6 @@
     "error": false
   },
   {
-    "url": "/experiments/balancing-act#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Balancing Act",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/computational-physics-workflow#three-d",
     "group": "Experiment 3D tab",
     "title": "Computational Physics Workflow",
@@ -5213,90 +4569,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/blackbody-spectrum#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Blackbody Spectrum",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/build-a-nucleus#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Build a Nucleus",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/color-vision#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Color Vision",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/fourier-making-waves#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Fourier: Making Waves",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/resistance-in-a-wire#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Resistance in a Wire",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/rutherford-scattering#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Rutherford Scattering",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/states-of-matter#three-d",
-    "group": "Experiment 3D tab",
-    "title": "States of Matter",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5312,78 +4584,6 @@
     "error": false
   },
   {
-    "url": "/experiments/diffusion#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Diffusion",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/greenhouse-effect#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Greenhouse Effect",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/molecules-and-light#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Molecules and Light",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/uniform-motion#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Uniform Motion",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/friction#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Friction",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/experiments/elastic-collision#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Elastic Collision",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/inclined-plane#three-d",
     "group": "Experiment 3D tab",
     "title": "Inclined Plane",
@@ -5393,18 +4593,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/conservation-of-energy#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Conservation of Energy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5420,18 +4608,6 @@
     "error": false
   },
   {
-    "url": "/experiments/simple-pendulum#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Simple Pendulum",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/experiments/hooke-s-law#three-d",
     "group": "Experiment 3D tab",
     "title": "Hooke's Law",
@@ -5441,18 +4617,6 @@
     "heading": "Experiment controls",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/experiments/circular-motion#three-d",
-    "group": "Experiment 3D tab",
-    "title": "Circular Motion",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "3D simulation upcoming",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5468,42 +4632,6 @@
     "error": false
   },
   {
-    "url": "/astrophysics?concept=kepler-laws",
-    "group": "Astrophysics concept",
-    "title": "Kepler's Laws",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=tidal-forces",
-    "group": "Astrophysics concept",
-    "title": "Tidal Forces",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=escape-speed",
-    "group": "Astrophysics concept",
-    "title": "Escape Speed",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/astrophysics?concept=solar-system",
     "group": "Astrophysics concept",
     "title": "Solar System Architecture",
@@ -5513,138 +4641,6 @@
     "heading": "Universe Explorer",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=planetary-atmospheres",
-    "group": "Astrophysics concept",
-    "title": "Planetary Atmospheres",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=exoplanets",
-    "group": "Astrophysics concept",
-    "title": "Exoplanets",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=transit-method",
-    "group": "Astrophysics concept",
-    "title": "Transit Method",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=stellar-luminosity",
-    "group": "Astrophysics concept",
-    "title": "Stellar Luminosity",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=main-sequence",
-    "group": "Astrophysics concept",
-    "title": "Main Sequence Stars",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=stellar-evolution",
-    "group": "Astrophysics concept",
-    "title": "Stellar Evolution",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=supernovae",
-    "group": "Astrophysics concept",
-    "title": "Supernovae",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=nucleosynthesis",
-    "group": "Astrophysics concept",
-    "title": "Nucleosynthesis",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=white-dwarfs",
-    "group": "Astrophysics concept",
-    "title": "White Dwarfs",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=neutron-stars",
-    "group": "Astrophysics concept",
-    "title": "Neutron Stars",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=pulsars",
-    "group": "Astrophysics concept",
-    "title": "Pulsars",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5672,30 +4668,6 @@
     "error": false
   },
   {
-    "url": "/astrophysics?concept=gravitational-lensing",
-    "group": "Astrophysics concept",
-    "title": "Gravitational Lensing",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=general-relativity",
-    "group": "Astrophysics concept",
-    "title": "General Relativity",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
     "url": "/astrophysics?concept=gravitational-waves",
     "group": "Astrophysics concept",
     "title": "Gravitational Waves",
@@ -5705,78 +4677,6 @@
     "heading": "Universe Explorer",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=redshift",
-    "group": "Astrophysics concept",
-    "title": "Redshift",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=hubble-law",
-    "group": "Astrophysics concept",
-    "title": "Hubble's Law",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=big-bang",
-    "group": "Astrophysics concept",
-    "title": "Big Bang Model",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=dark-matter",
-    "group": "Astrophysics concept",
-    "title": "Dark Matter",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=cosmic-microwave-background",
-    "group": "Astrophysics concept",
-    "title": "Cosmic Microwave Background",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=dark-energy",
-    "group": "Astrophysics concept",
-    "title": "Dark Energy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -5801,390 +4701,6 @@
     "heading": "Universe Explorer",
     "webgl": 1,
     "upcoming": 0,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=cosmic-web",
-    "group": "Astrophysics concept",
-    "title": "Cosmic Web",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=quasars",
-    "group": "Astrophysics concept",
-    "title": "Quasars",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=distance-ladder",
-    "group": "Astrophysics concept",
-    "title": "Cosmic Distance Ladder",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=parallax",
-    "group": "Astrophysics concept",
-    "title": "Stellar Parallax",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=spectroscopy",
-    "group": "Astrophysics concept",
-    "title": "Astronomical Spectroscopy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=radio-astronomy",
-    "group": "Astrophysics concept",
-    "title": "Radio Astronomy",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=space-telescopes",
-    "group": "Astrophysics concept",
-    "title": "Space Telescopes",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=cosmic-rays",
-    "group": "Astrophysics concept",
-    "title": "Cosmic Rays",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/standard-model",
-    "group": "Particle concept",
-    "title": "Standard Model",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=standard-model",
-    "group": "Particle query route",
-    "title": "Standard Model",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/quantum-field-theory",
-    "group": "Particle concept",
-    "title": "Quantum Field Theory",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/astrophysics?concept=gamma-ray-bursts",
-    "group": "Astrophysics concept",
-    "title": "Gamma-Ray Bursts",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Universe Explorer",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=quantum-field-theory",
-    "group": "Particle query route",
-    "title": "Quantum Field Theory",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=higgs-field",
-    "group": "Particle query route",
-    "title": "Higgs Field",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/higgs-boson",
-    "group": "Particle concept",
-    "title": "Higgs Boson",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=higgs-boson",
-    "group": "Particle query route",
-    "title": "Higgs Boson",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/quarks",
-    "group": "Particle concept",
-    "title": "Quarks",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=quarks",
-    "group": "Particle query route",
-    "title": "Quarks",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=leptons",
-    "group": "Particle query route",
-    "title": "Leptons",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/leptons",
-    "group": "Particle concept",
-    "title": "Leptons",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=gluons-color-charge",
-    "group": "Particle query route",
-    "title": "Gluons and Color Charge",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/gluons-color-charge",
-    "group": "Particle concept",
-    "title": "Gluons and Color Charge",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/gauge-bosons",
-    "group": "Particle concept",
-    "title": "Gauge Bosons",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=gauge-bosons",
-    "group": "Particle query route",
-    "title": "Gauge Bosons",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/neutrino-oscillation",
-    "group": "Particle concept",
-    "title": "Neutrino Oscillation",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=neutrino-oscillation",
-    "group": "Particle query route",
-    "title": "Neutrino Oscillation",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/antimatter",
-    "group": "Particle concept",
-    "title": "Antimatter",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=antimatter",
-    "group": "Particle query route",
-    "title": "Antimatter",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=symmetry-breaking",
-    "group": "Particle query route",
-    "title": "Symmetry Breaking",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/symmetry-breaking",
-    "group": "Particle concept",
-    "title": "Symmetry Breaking",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics/confinement",
-    "group": "Particle concept",
-    "title": "Quark Confinement",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
-    "error": false
-  },
-  {
-    "url": "/particle-physics?concept=confinement",
-    "group": "Particle query route",
-    "title": "Quark Confinement",
-    "expected": "upcoming",
-    "pass": true,
-    "errors": [],
-    "heading": "Powerful Concepts in Particle Physics",
-    "webgl": 0,
-    "upcoming": 1,
     "error": false
   },
   {
@@ -9282,5 +7798,1297 @@
     "webgl": 0,
     "upcoming": 0,
     "error": false
+  },
+  {
+    "url": "/particle-physics/higgs-field",
+    "group": "Particle concept",
+    "title": "Higgs Field",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Powerful Concepts in Particle Physics",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/concept-studio/mechanics",
+    "group": "Concept studio",
+    "title": "Mechanics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Mechanics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Force Systems",
+      "Friction",
+      "Torque",
+      "Equilibrium",
+      "Momentum",
+      "Machines"
+    ]
+  },
+  {
+    "url": "/concept-studio/force-newton",
+    "group": "Concept studio",
+    "title": "Force & Newton’s Laws",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Force & Newton’s Laws",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Inertia",
+      "F = ma",
+      "Action–Reaction",
+      "Friction",
+      "Tension",
+      "Normal Force"
+    ]
+  },
+  {
+    "url": "/concept-studio/work-energy-power",
+    "group": "Concept studio",
+    "title": "Work, Energy & Power",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Work, Energy & Power",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Work",
+      "Kinetic Energy",
+      "Potential Energy",
+      "Conservation",
+      "Power",
+      "Efficiency"
+    ]
+  },
+  {
+    "url": "/concept-studio/gravitation",
+    "group": "Concept studio",
+    "title": "Gravitation Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Gravitation Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Universal Gravitation",
+      "Gravitational Field",
+      "Orbits",
+      "Satellites",
+      "Escape Velocity",
+      "Kepler’s Laws"
+    ]
+  },
+  {
+    "url": "/concept-studio/oscillations",
+    "group": "Concept studio",
+    "title": "Oscillations Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Oscillations Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Simple Harmonic Motion",
+      "Pendulums",
+      "Springs",
+      "Damping",
+      "Resonance",
+      "Coupled Oscillators"
+    ]
+  },
+  {
+    "url": "/concept-studio/measurement",
+    "group": "Concept studio",
+    "title": "Measurement Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Measurement Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Length",
+      "Mass",
+      "Time",
+      "Uncertainty",
+      "Significant Figures",
+      "Instrument Errors"
+    ]
+  },
+  {
+    "url": "/concept-studio/waves-sound",
+    "group": "Concept studio",
+    "title": "Waves & Sound Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Waves & Sound Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Wave Properties",
+      "Superposition",
+      "Interference",
+      "Standing Waves",
+      "Sound",
+      "Doppler Effect"
+    ]
+  },
+  {
+    "url": "/concept-studio/motion-kinematics",
+    "group": "Concept studio",
+    "title": "Motion & Kinematics",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Motion & Kinematics",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Position",
+      "Velocity",
+      "Acceleration",
+      "Projectiles",
+      "Relative Motion",
+      "Circular Motion"
+    ]
+  },
+  {
+    "url": "/concept-studio/electricity",
+    "group": "Concept studio",
+    "title": "Electricity Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Electricity Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Charge",
+      "Electric Field",
+      "Potential",
+      "Current",
+      "Resistance",
+      "Circuits"
+    ]
+  },
+  {
+    "url": "/concept-studio/electronics",
+    "group": "Concept studio",
+    "title": "Electronics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Electronics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Semiconductors",
+      "Diodes",
+      "Transistors",
+      "Amplifiers",
+      "Logic Gates",
+      "Sensors"
+    ]
+  },
+  {
+    "url": "/concept-studio/thermodynamics",
+    "group": "Concept studio",
+    "title": "Thermodynamics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Thermodynamics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Temperature",
+      "Heat Transfer",
+      "Gas Laws",
+      "First Law",
+      "Entropy",
+      "Heat Engines"
+    ]
+  },
+  {
+    "url": "/concept-studio/fluid-mechanics",
+    "group": "Concept studio",
+    "title": "Fluid Mechanics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Fluid Mechanics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Density",
+      "Pressure",
+      "Buoyancy",
+      "Continuity",
+      "Bernoulli",
+      "Viscosity"
+    ]
+  },
+  {
+    "url": "/concept-studio/optics",
+    "group": "Concept studio",
+    "title": "Optics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Optics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Reflection",
+      "Refraction",
+      "Lenses",
+      "Mirrors",
+      "Interference",
+      "Diffraction"
+    ]
+  },
+  {
+    "url": "/concept-studio/modern-physics",
+    "group": "Concept studio",
+    "title": "Modern Physics Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Modern Physics Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Quantum Ideas",
+      "Photoelectric Effect",
+      "Matter Waves",
+      "Atomic Models",
+      "Nuclei",
+      "Radioactivity"
+    ]
+  },
+  {
+    "url": "/concept-studio/magnetism",
+    "group": "Concept studio",
+    "title": "Magnetism Studio",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Magnetism Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Magnetic Fields",
+      "Force on Charge",
+      "Current & Field",
+      "Solenoids",
+      "Induction",
+      "Electromagnets"
+    ]
+  },
+  {
+    "url": "/experiments/single-slit-diffraction#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Single Slit Diffraction",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Single Slit Diffraction",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/buoyancy#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Buoyancy",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Buoyancy Balance Bench",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/heat-and-temperature#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Heat and Temperature",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Heat is transfer. Temperature is a reading.",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/heat-transfer#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Heat Transfer",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Three ways energy travels",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/heating-effect-current#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Heating Effect of Current",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Joule Heating Calorimeter",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/force-and-pressure#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Force and Pressure",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Contact Pressure Lab",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/fluid-pressure#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Fluid Pressure with Depth",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Pressure-with-Depth Bench",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/concept-studio/astronomy-astrophysics",
+    "group": "Concept studio",
+    "title": "Astronomy & Astrophysics",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Astronomy & Astrophysics",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false,
+    "conceptsChecked": [
+      "Solar System",
+      "Stars",
+      "Spectra",
+      "Galaxies",
+      "Cosmology",
+      "Exoplanets"
+    ]
+  },
+  {
+    "url": "/experiments/free-fall#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Free Fall",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Free Fall & Vertical Motion",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/work-power#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Work and Power",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Same work. Different rate.",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/ohms-law#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Ohm's Law V-I Graph",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Ohm’s Law · Live V–I Graph",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/mirror-formula#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Mirror Formula",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Mirror Formula",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/series-parallel-resistance#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Series and Parallel Resistance",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Circuit Construction · Series vs Parallel",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/electric-power#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Electric Power and Energy",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Electrical Energy in Daily Life",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/rotational-dynamics#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Rotational Dynamics",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Torque competes with rotational inertia.",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/magnetic-field-current#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Magnetic Field Around Current",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Magnetic Field Bench",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/satellite-orbit#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Satellite Orbit and Escape Speed",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Satellite Orbit & Escape Speed",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/gas-laws#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Gas Laws and Kinetic Theory",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Gas Laws and Kinetic Theory",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/capacitor-lab#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Capacitor Energy and Combination",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Capacitor Energy & Combinations",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/young-double-slit#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Young's Double Slit",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Young's Double Slit",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/sound-wave-anatomy#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Longitudinal Sound Wave",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Longitudinal Sound Wave",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/total-internal-reflection#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Total Internal Reflection",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Total Internal Reflection",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/de-broglie-wavelength#three-d",
+    "group": "Experiment 3D tab",
+    "title": "de Broglie Wavelength",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Electron diffraction",
+    "webgl": 1,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/distance-time-graph#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Distance-Time Graph Builder",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Split Interactive Motion Studio",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/balanced-unbalanced-forces#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Balanced and Unbalanced Forces",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Force-Composition Cart",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/special-relativity-bridge#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Special Relativity Bridge",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Same light. Different time.",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/balancing-act#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Balancing Act",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Balancing Act",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/blackbody-spectrum#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Blackbody Spectrum",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Blackbody Spectrum",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/build-a-nucleus#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Build a Nucleus",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Build a Nucleus",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/color-vision#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Color Vision",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Color Vision",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/fourier-making-waves#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Fourier: Making Waves",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Fourier: Making Waves",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/resistance-in-a-wire#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Resistance in a Wire",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Resistance in a Wire",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/rutherford-scattering#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Rutherford Scattering",
+    "expected": "unavailable",
+    "pass": true,
+    "errors": [],
+    "heading": "Rutherford Scattering",
+    "webgl": 0,
+    "upcoming": 0,
+    "error": false
+  },
+  {
+    "url": "/experiments/diffusion#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Diffusion",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.waitForFunction: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/molecules-and-light#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Molecules and Light",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/uniform-motion#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Uniform Motion",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/friction#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Friction",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/elastic-collision#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Elastic Collision",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/conservation-of-energy#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Conservation of Energy",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/simple-pendulum#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Simple Pendulum",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/circular-motion#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Circular Motion",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=kepler-laws",
+    "group": "Astrophysics concept",
+    "title": "Kepler's Laws",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=escape-speed",
+    "group": "Astrophysics concept",
+    "title": "Escape Speed",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=tidal-forces",
+    "group": "Astrophysics concept",
+    "title": "Tidal Forces",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=planetary-atmospheres",
+    "group": "Astrophysics concept",
+    "title": "Planetary Atmospheres",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=exoplanets",
+    "group": "Astrophysics concept",
+    "title": "Exoplanets",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=transit-method",
+    "group": "Astrophysics concept",
+    "title": "Transit Method",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=stellar-luminosity",
+    "group": "Astrophysics concept",
+    "title": "Stellar Luminosity",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=main-sequence",
+    "group": "Astrophysics concept",
+    "title": "Main Sequence Stars",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=stellar-evolution",
+    "group": "Astrophysics concept",
+    "title": "Stellar Evolution",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=supernovae",
+    "group": "Astrophysics concept",
+    "title": "Supernovae",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=nucleosynthesis",
+    "group": "Astrophysics concept",
+    "title": "Nucleosynthesis",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=white-dwarfs",
+    "group": "Astrophysics concept",
+    "title": "White Dwarfs",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=neutron-stars",
+    "group": "Astrophysics concept",
+    "title": "Neutron Stars",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=pulsars",
+    "group": "Astrophysics concept",
+    "title": "Pulsars",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=gravitational-lensing",
+    "group": "Astrophysics concept",
+    "title": "Gravitational Lensing",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=general-relativity",
+    "group": "Astrophysics concept",
+    "title": "General Relativity",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=redshift",
+    "group": "Astrophysics concept",
+    "title": "Redshift",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=hubble-law",
+    "group": "Astrophysics concept",
+    "title": "Hubble's Law",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=big-bang",
+    "group": "Astrophysics concept",
+    "title": "Big Bang Model",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=cosmic-microwave-background",
+    "group": "Astrophysics concept",
+    "title": "Cosmic Microwave Background",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=dark-matter",
+    "group": "Astrophysics concept",
+    "title": "Dark Matter",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=dark-energy",
+    "group": "Astrophysics concept",
+    "title": "Dark Energy",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=cosmic-web",
+    "group": "Astrophysics concept",
+    "title": "Cosmic Web",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=quasars",
+    "group": "Astrophysics concept",
+    "title": "Quasars",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=distance-ladder",
+    "group": "Astrophysics concept",
+    "title": "Cosmic Distance Ladder",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=spectroscopy",
+    "group": "Astrophysics concept",
+    "title": "Astronomical Spectroscopy",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=parallax",
+    "group": "Astrophysics concept",
+    "title": "Stellar Parallax",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=radio-astronomy",
+    "group": "Astrophysics concept",
+    "title": "Radio Astronomy",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=space-telescopes",
+    "group": "Astrophysics concept",
+    "title": "Space Telescopes",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=cosmic-rays",
+    "group": "Astrophysics concept",
+    "title": "Cosmic Rays",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/astrophysics?concept=gamma-ray-bursts",
+    "group": "Astrophysics concept",
+    "title": "Gamma-Ray Bursts",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/standard-model",
+    "group": "Particle concept",
+    "title": "Standard Model",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=standard-model",
+    "group": "Particle query route",
+    "title": "Standard Model",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/quantum-field-theory",
+    "group": "Particle concept",
+    "title": "Quantum Field Theory",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=quantum-field-theory",
+    "group": "Particle query route",
+    "title": "Quantum Field Theory",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=higgs-field",
+    "group": "Particle query route",
+    "title": "Higgs Field",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/greenhouse-effect#three-d",
+    "group": "Experiment 3D tab",
+    "title": "Greenhouse Effect",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.waitForFunction: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/experiments/states-of-matter#three-d",
+    "group": "Experiment 3D tab",
+    "title": "States of Matter",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5173/experiments/states-of-matter#three-d\", waiting until \"domcontentloaded\"\u001b[22m\n"
+  },
+  {
+    "url": "/particle-physics/higgs-boson",
+    "group": "Particle concept",
+    "title": "Higgs Boson",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=higgs-boson",
+    "group": "Particle query route",
+    "title": "Higgs Boson",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/quarks",
+    "group": "Particle concept",
+    "title": "Quarks",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=quarks",
+    "group": "Particle query route",
+    "title": "Quarks",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/leptons",
+    "group": "Particle concept",
+    "title": "Leptons",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=leptons",
+    "group": "Particle query route",
+    "title": "Leptons",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/gluons-color-charge",
+    "group": "Particle concept",
+    "title": "Gluons and Color Charge",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=gluons-color-charge",
+    "group": "Particle query route",
+    "title": "Gluons and Color Charge",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/gauge-bosons",
+    "group": "Particle concept",
+    "title": "Gauge Bosons",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=gauge-bosons",
+    "group": "Particle query route",
+    "title": "Gauge Bosons",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/neutrino-oscillation",
+    "group": "Particle concept",
+    "title": "Neutrino Oscillation",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=neutrino-oscillation",
+    "group": "Particle query route",
+    "title": "Neutrino Oscillation",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/antimatter",
+    "group": "Particle concept",
+    "title": "Antimatter",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=antimatter",
+    "group": "Particle query route",
+    "title": "Antimatter",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/symmetry-breaking",
+    "group": "Particle concept",
+    "title": "Symmetry Breaking",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=symmetry-breaking",
+    "group": "Particle query route",
+    "title": "Symmetry Breaking",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics/confinement",
+    "group": "Particle concept",
+    "title": "Quark Confinement",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
+  },
+  {
+    "url": "/particle-physics?concept=confinement",
+    "group": "Particle query route",
+    "title": "Quark Confinement",
+    "expected": "unavailable",
+    "pass": false,
+    "errors": [],
+    "failure": "page.goto: Target page, context or browser has been closed"
   }
 ]

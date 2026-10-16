@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "runtimeErrors": [],
+  "checks": [
+    "photoelectric play/pause",
+    "Bohr orbit/pause/replay",
+    "Fourier step/play/pause",
+    "all settings",
+    "five subject searches",
+    "launcher play/pause",
+    "learning level content",
+    "seven logic gates",
+    "density/vector/mass reset",
+    "measurement step and 3D transport",
+    "zero-neutron nucleus",
+    "diffusion step",
+    "bounded force graph",
+    "four mobile layouts"
+  ]
+}

@@ -2,6 +2,7 @@ import { ExperimentDefinition } from "../types";
 import { commonMistakesForExperiment } from "../lib/commonMistakes";
 import { LearningLevel } from "../lib/learningLevels";
 import { PhysicsIcon } from "../lib/icons";
+import { MathText } from "./MathExpression";
 
 export function PhysicsCoachPanel({ experiment, level, variables, outputs, formula }: { experiment: ExperimentDefinition; level: LearningLevel; variables: Array<{ label: string; value: number }>; outputs: Array<{ label: string; value: string }>; formula: string }) {
   const mainVariable = variables[0];
@@ -33,7 +34,7 @@ function CoachCell({ title, body }: { title: string; body: string }) {
   return (
     <article className="phase4-card">
       <div className="phase4-card-title"><PhysicsIcon name="teacher" className="h-4 w-4" />{title}</div>
-      <p>{body}</p>
+      <p><MathText text={body} /></p>
     </article>
   );
 }

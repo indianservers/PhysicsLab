@@ -1,0 +1,33 @@
+import {chromium} from 'playwright-core';
+import {writeFile,mkdir} from 'node:fs/promises';
+const browser=await chromium.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:true});
+const page=await browser.newPage({viewport:{width:1366,height:900}});
+await page.goto('http://127.0.0.1:5173/');
+const concepts=await page.evaluate(async()=>{const {astrophysicsConcepts}=await import('/src/lib/astrophysics.ts');return astrophysicsConcepts.map(c=>({id:c.id,title:c.title}));});
+const supported=new Set(['gravity-orbits','solar-system','black-holes','accretion-disks','gravitational-waves','galaxy-structure','milky-way']);
+const results=[];
+for(const c of process.argv.includes('--screenshots-only')?[]:concepts){
+ await page.goto('http://127.0.0.1:5173/astrophysics?concept='+c.id,{waitUntil:'domcontentloaded'});
+ await page.getByRole('heading',{name:'Universe Explorer',exact:true}).waitFor();
+ await page.waitForTimeout(150);
+ const scene=page.locator('section').filter({has:page.locator('h2',{hasText:c.title})}).filter({has:page.getByText('Interactive 3D',{exact:true})});
+ const visible=await scene.count()>0;
+ const placeholders=await page.getByRole('heading',{name:'3D simulation upcoming',exact:true}).count();
+ results.push({...c,scene:visible,pass:visible===supported.has(c.id)&&placeholders===0});
+}
+await mkdir('artifacts/physics-studio-audit/screenshots',{recursive:true});
+await page.goto('http://127.0.0.1:5173/experiments/single-slit-diffraction#three-d');
+await page.locator('.lesson-command-tabs').waitFor();
+await page.locator('.splash-loader').waitFor({state:'hidden'});
+await page.screenshot({path:'artifacts/physics-studio-audit/screenshots/unsupported-lab-desktop.png'});
+await page.setViewportSize({width:390,height:844});
+await page.screenshot({path:'artifacts/physics-studio-audit/screenshots/unsupported-lab-mobile.png'});
+await page.goto('http://127.0.0.1:5173/concept-studio/measurement');
+await page.locator('.csh-concepts').waitFor();
+await page.screenshot({path:'artifacts/physics-studio-audit/screenshots/studio-mobile.png'});
+await page.setViewportSize({width:1366,height:900});
+await page.screenshot({path:'artifacts/physics-studio-audit/screenshots/studio-desktop.png'});
+if(results.length)await writeFile('artifacts/physics-studio-audit/astronomy-navigation.json',JSON.stringify(results,null,2));
+console.log(JSON.stringify({concepts:results.length,failures:results.filter(r=>!r.pass)}));
+await browser.close();
+if(results.some(r=>!r.pass))process.exitCode=1;

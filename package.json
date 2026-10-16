@@ -9,6 +9,7 @@
     "serve": "vite preview --host 0.0.0.0",
     "preview": "vite preview",
     "test:physics": "node scripts/runPhysicsTests.mjs",
+    "test:issue-report": "node scripts/testIssueReport.mjs",
     "test:rocket-parts": "node scripts/validateRocketParts.mjs",
     "test:directory": "node scripts/validateAppDirectory.mjs",
     "test:concepts": "node scripts/validateConceptExperiences.mjs",

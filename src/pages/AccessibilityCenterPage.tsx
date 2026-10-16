@@ -108,10 +108,10 @@ export function AccessibilityCenterPage() {
               </div>
               <div className="accessibility-filter-row">
                 <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search experiment, barrier, category..." />
-                <select className="select-field" value={tier} onChange={(event) => setTier(event.target.value)}>
+                <select aria-label="Accessibility tier" className="select-field" value={tier} onChange={(event) => setTier(event.target.value)}>
                   {tiers.map((item) => <option key={item}>{item}</option>)}
                 </select>
-                <select className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
+                <select aria-label="Physics category" className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
                   {categories.map((item) => <option key={item}>{item}</option>)}
                 </select>
               </div>

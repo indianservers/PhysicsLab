@@ -1,0 +1,60 @@
+{
+  "physicsCases": [
+    {
+      "force": 50,
+      "angle": 30,
+      "distance": 2,
+      "expected": 86.6025403784
+    },
+    {
+      "force": 40,
+      "angle": 60,
+      "distance": 3,
+      "expected": 60
+    },
+    {
+      "force": 25,
+      "angle": 0,
+      "distance": 4,
+      "expected": 100
+    },
+    {
+      "force": 100,
+      "angle": 90,
+      "distance": 5,
+      "expected": 0
+    },
+    {
+      "force": 0,
+      "angle": 45,
+      "distance": 5,
+      "expected": 0
+    },
+    {
+      "force": 200,
+      "angle": 0,
+      "distance": 0,
+      "expected": 0
+    }
+  ],
+  "controls": "distance, angle, live work, prediction, experiment, challenge, reset, zoom",
+  "sizes": [
+    {
+      "width": 1536,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "overflow": 0
+    }
+  ],
+  "errors": []
+}

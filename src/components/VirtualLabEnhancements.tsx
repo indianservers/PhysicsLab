@@ -1,5 +1,7 @@
+import { MathExpression, MathText } from "./MathExpression";
 import { useEffect, useState } from "react";
 import type { ExperimentDefinition } from "../types";
+import { safeStorage } from "../lib/safeStorage";
 import "./virtualLabEnhancements.css";
 
 type Trial = { time: string; values: Array<{ label: string; value: string }> };
@@ -12,33 +14,31 @@ function pageControls() {
 function readControls() {
   return pageControls().map((control, index) => ({
     label: control.getAttribute("aria-label") || control.closest("label")?.textContent?.replace(control.value, "").trim() || `Control ${index + 1}`,
-    value: control.value,
+    value: control instanceof HTMLInputElement && control.type === "checkbox" ? String(control.checked) : control.value,
   }));
 }
 
 export function VirtualLabEnhancements({ experiment }: { experiment: ExperimentDefinition }) {
   const key = `virtual-lab:${experiment.id}`;
+  const [saved] = useState(() => {
+    const value = safeStorage.readJSON<Partial<{ prediction: string; notes: string; trials: Trial[]; checked: string[] }> | null>(key, null);
+    return value && typeof value === "object" ? value : {};
+  });
+  const [persistenceAvailable, setPersistenceAvailable] = useState(true);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
-  const [prediction, setPrediction] = useState("");
-  const [notes, setNotes] = useState("");
-  const [trials, setTrials] = useState<Trial[]>([]);
-  const [checked, setChecked] = useState<string[]>([]);
+  const [prediction, setPrediction] = useState(typeof saved.prediction === "string" ? saved.prediction : "");
+  const [notes, setNotes] = useState(typeof saved.notes === "string" ? saved.notes : "");
+  const [trials, setTrials] = useState<Trial[]>(Array.isArray(saved.trials) ? saved.trials.filter(trial => trial && typeof trial.time === "string" && Array.isArray(trial.values) && trial.values.every(value => typeof value?.label === "string" && typeof value?.value === "string")).slice(-20) : []);
+  const [checked, setChecked] = useState<string[]>(Array.isArray(saved.checked) ? saved.checked.filter(value => typeof value === "string") : []);
 
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem(key) || "null") as Partial<{ prediction: string; notes: string; trials: Trial[]; checked: string[] }> | null;
-      if (saved) { setPrediction(saved.prediction || ""); setNotes(saved.notes || ""); setTrials(saved.trials || []); setChecked(saved.checked || []); }
-    } catch { /* local storage may be unavailable */ }
-  }, [key]);
-
-  useEffect(() => {
-    try { localStorage.setItem(key, JSON.stringify({ prediction, notes, trials, checked })); } catch { /* ignore storage failures */ }
+    setPersistenceAvailable(safeStorage.writeJSON(key, { prediction, notes, trials, checked }));
   }, [checked, key, notes, prediction, trials]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() === "v" && !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLTextAreaElement)) setOpen((value) => !value);
+      if (!event.ctrlKey && !event.metaKey && !event.altKey && !event.repeat && event.key.toLowerCase() === "v" && !(event.target instanceof HTMLElement && (event.target.matches("input,select,textarea") || event.target.isContentEditable))) setOpen((value) => !value);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -61,10 +61,10 @@ export function VirtualLabEnhancements({ experiment }: { experiment: ExperimentD
       <section><b>Safety and setup check</b>{["Identify apparatus and units", "Keep one variable changing", "Stay within the stated range", "Reset after an extreme setup"].map((item) => <label className="virtual-lab-check" key={item}><input type="checkbox" checked={checked.includes(item)} onChange={() => toggleCheck(item)} />{item}</label>)}</section>
       <label className="virtual-lab-field">Prediction<textarea value={prediction} onChange={(event) => setPrediction(event.target.value)} placeholder="Predict the trend before changing controls…" /></label>
       <div className="virtual-lab-actions"><button type="button" onClick={capture}>＋ Capture reading</button><button type="button" onClick={() => download([["Control", "Value"], ...readControls().map((item) => [item.label, item.value])].map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(",")).join("\n"), `${experiment.id}-readings.csv`, "text/csv")}>⇩ Export data</button><button type="button" onClick={report}>Report</button><button type="button" onClick={() => window.print()}>Print worksheet</button></div>
-      <section className="virtual-lab-formula"><b>Formula reference</b>{experiment.formulae.length ? experiment.formulae.map((formula) => <p key={formula.id}><strong>{formula.name}:</strong> {formula.expression}<br /><small>{formula.variables.map((item) => `${item.symbol} = ${item.name}${item.unit ? ` (${item.unit})` : ""}`).join(" · ")}</small></p>) : <p>Build the relationship from repeated observations.</p>}</section>
+      <section className="virtual-lab-formula"><b>Formula reference</b>{experiment.formulae.length ? experiment.formulae.map((formula) => <p key={formula.id}><strong>{formula.name}:</strong> <MathExpression expression={formula.expression} /><br /><small><MathText text={formula.variables.map((item) => `${item.symbol} = ${item.name}${item.unit ? ` (${item.unit})` : ""}`).join(" · ")} /></small></p>) : <p>Build the relationship from repeated observations.</p>}</section>
       <label className="virtual-lab-field">Notebook<textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Units, uncertainty, graph trend, conclusion…" /></label>
       <section className="virtual-lab-history"><b>Observation table · {trials.length} trials</b>{trials.length === 0 ? <p>No readings captured yet.</p> : <table><thead><tr><th>Time</th><th>Values</th></tr></thead><tbody>{trials.slice().reverse().map((trial, index) => <tr key={`${trial.time}-${index}`}><td>{trial.time}</td><td>{trial.values.map((item) => `${item.label}: ${item.value}`).join("; ")}</td></tr>)}</tbody></table>}</section>
-      <small className="virtual-lab-shortcuts">Press V to open tools · all work saves locally</small>
+      <small className="virtual-lab-shortcuts">Press V to open tools · {persistenceAvailable ? "all work saves locally" : "Local saving is unavailable. Export a report to keep your work."}</small>
     </div>}
   </aside>;
 }

@@ -1,0 +1,222 @@
+[
+  {
+    "id": "bernoulli-fluid-flow",
+    "title": "Bernoulli Fluid Flow",
+    "category": "Fluid Mechanics",
+    "simulate": {
+      "controls": 19,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsEstimate dynamic pressure and static pressure left after speed and height terms.Density (kg/m3)Speed (m/s)Height (m)Reset experimentP+12ρv2+ρgh=constantP+\\frac{1"
+    },
+    "errors": []
+  },
+  {
+    "id": "electrostatic-field-potential",
+    "title": "Electrostatic Field and Potential",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 17,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsCompare inverse-square electric field with inverse-distance electric potential.Charge (microC)Distance (m)Test charge (microC)Reset experimentE=kqr2E=\\frac{kq}{r"
+    },
+    "errors": []
+  },
+  {
+    "id": "ac-generator",
+    "title": "AC Generator",
+    "category": "Electricity",
+    "simulate": {
+      "controls": 21,
+      "visuals": 3,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsRotate a coil in a magnetic field and watch the induced emf become sinusoidal.TurnsMagnetic field (T)Frequency (Hz)Reset experimentE=NBAωsin⁡ωt\\mathcal{E}=NBA\\om"
+    },
+    "errors": []
+  },
+  {
+    "id": "chaotic-coupled-oscillators",
+    "title": "Chaotic and Coupled Oscillators",
+    "category": "Oscillations",
+    "simulate": {
+      "controls": 11,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsChaotic Coupled Oscillators: change the input, duration, and loss factor to see the measured result update.Input valueTime / distanceLoss factorReset experimentΔ"
+    },
+    "errors": []
+  },
+  {
+    "id": "build-a-nucleus",
+    "title": "Build a Nucleus",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 6,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 3,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Build a Nucleus is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "rutherford-scattering",
+    "title": "Rutherford Scattering",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Rutherford Scattering is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "states-of-matter",
+    "title": "States of Matter",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for States of Matter is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "atomic-interactions",
+    "title": "Atomic Interactions",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 15,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "ATOMIC PHYSICS · POTENTIAL ENERGYAtomic InteractionsAt what separation do attraction and repulsion balance?⟳   Reset☷ CONTROL THE ATOMSAdjust the parameters and observe how the pot"
+    },
+    "errors": []
+  },
+  {
+    "id": "diffusion",
+    "title": "Diffusion",
+    "category": "Thermodynamics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 2,
+      "overflow": false
+    },
+    "guide": {
+      "math": 5,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Diffusion is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "molecules-and-light",
+    "title": "Molecules and Light",
+    "category": "Modern Physics",
+    "simulate": {
+      "controls": 7,
+      "visuals": 1,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 0,
+      "unavailable": true,
+      "text": "Upcoming3D simulation upcomingA dedicated 3D simulation for Molecules and Light is not available yet. Open Simulate to use the interactive 2D lab. No release date has been set."
+    },
+    "errors": []
+  },
+  {
+    "id": "newton-s-second-law",
+    "title": "Newton's Second Law",
+    "category": "Mechanics",
+    "simulate": {
+      "controls": 16,
+      "visuals": 4,
+      "overflow": false
+    },
+    "guide": {
+      "math": 4,
+      "mathErrors": []
+    },
+    "three": {
+      "canvas": 1,
+      "unavailable": false,
+      "text": "Experiment controlsAcceleration is directly proportional to net force and inversely proportional to mass.Applied force (N)Mass (kg)Friction force (N)Reset experimentF=maF = maF=maN"
+    },
+    "errors": []
+  }
+]

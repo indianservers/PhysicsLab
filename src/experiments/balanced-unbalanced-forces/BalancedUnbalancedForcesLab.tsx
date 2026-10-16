@@ -156,12 +156,13 @@ export function BalancedUnbalancedForcesLab({
     );
     if (pass) setRun("result");
   };
-  const cartX = 500 + motion.positionM * 24,
+  const cartX = Math.max(90, Math.min(910, 500 + motion.positionM * 24)),
     leftLen = Math.min(230, input.leftForceN * 0.7),
     rightLen = Math.min(230, input.rightForceN * 0.7),
     fricLen = Math.min(150, Math.abs(result.frictionN) * 1.5);
+  const graphScale = Math.max(5, ...history.current.map(p => Math.abs(p.velocityMps)));
   const points = history.current
-    .map((p, i) => `${20 + i * 4.4},${105 - p.velocityMps * 20}`)
+    .map((p, i) => `${20 + i * 4.4},${65 - p.velocityMps / graphScale * 50}`)
     .join(" ");
   return (
     <section
@@ -261,7 +262,7 @@ export function BalancedUnbalancedForcesLab({
               <button
                 onClick={() => {
                   setRun("paused");
-                  setMotion((old) => stepMotion(input, old, 0.1));
+                  setMotion((old) => { const next = stepMotion(input, old, 0.1); history.current = [...history.current.slice(-79), next]; return next; });
                 }}
               >
                 ▷ Step
@@ -461,9 +462,9 @@ export function BalancedUnbalancedForcesLab({
             </span>
           </section>
           <section className="force-graph">
-            <b>Velocity vs time</b>
+            <b>Velocity vs time · range ±{f(graphScale, 1)} m/s</b>
             <svg viewBox="0 0 380 130">
-              <line x1="20" y1="105" x2="370" y2="105" />
+              <line x1="20" y1="65" x2="370" y2="65" />
               <polyline points={points} />
             </svg>
           </section>

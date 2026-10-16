@@ -1,0 +1,72 @@
+{
+  "cases": [
+    {
+      "input": {
+        "length": 0.8,
+        "angle": 15,
+        "gravity": 9.81,
+        "damping": 0,
+        "mass": 0.2
+      },
+      "smallAngle": 1.7942805861865494,
+      "finiteAmplitude": 1.8019970319068561,
+      "measured": 1.8019970333198174,
+      "relativeEnergyDrift": 3.958852972325006e-10
+    },
+    {
+      "input": {
+        "length": 0.2,
+        "angle": 60,
+        "gravity": 24.79,
+        "damping": 0,
+        "mass": 0.2
+      },
+      "smallAngle": 0.5643604912225021,
+      "finiteAmplitude": 0.605661524725966,
+      "measured": 0.6056615564017559,
+      "relativeEnergyDrift": 1.0727026904233008e-7
+    },
+    {
+      "input": {
+        "length": 2,
+        "angle": 60,
+        "gravity": 1.62,
+        "damping": 0,
+        "mass": 0.2
+      },
+      "smallAngle": 6.981317007977318,
+      "finiteAmplitude": 7.4922237991670935,
+      "measured": 7.492223799332,
+      "relativeEnergyDrift": 7.165050445960502e-13
+    },
+    {
+      "input": {
+        "length": 0.8,
+        "angle": 1,
+        "gravity": 9.81,
+        "damping": 0,
+        "mass": 0.2
+      },
+      "smallAngle": 1.7942805861865494,
+      "finiteAmplitude": 1.7943147473528915,
+      "measured": 1.7943147461950029,
+      "relativeEnergyDrift": 4.0392500878867854e-10
+    },
+    {
+      "input": {
+        "length": 0.8,
+        "angle": 45,
+        "gravity": 9.81,
+        "damping": 0,
+        "mass": 0.2
+      },
+      "smallAngle": 1.7942805861865494,
+      "finiteAmplitude": 1.8660039798495467,
+      "measured": 1.8660039809278475,
+      "relativeEnergyDrift": 3.8796231662864883e-10
+    }
+  ],
+  "lengthScaling": 1.4142135623730951,
+  "massIndependence": true,
+  "dampingDissipatesEnergy": true
+}

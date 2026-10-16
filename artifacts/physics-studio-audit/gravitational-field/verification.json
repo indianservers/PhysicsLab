@@ -1,0 +1,32 @@
+{
+  "defaultField": 0.9209453587278107,
+  "densityAffectsArrows": true,
+  "inward": true,
+  "quarterAtDoubleRadius": true,
+  "graphChangesWithMass": true,
+  "views": [
+    "Field View",
+    "Potential View",
+    "Trajectories"
+  ],
+  "playPause": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "overflow": 0
+    },
+    {
+      "width": 1024,
+      "overflow": 0
+    },
+    {
+      "width": 768,
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "overflow": 0
+    }
+  ],
+  "errors": []
+}

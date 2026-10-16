@@ -1,0 +1,482 @@
+[
+  {
+    "id": "measurement",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/measurement/meter-scale",
+      "/measurement/vernier-caliper",
+      "/measurement/micrometer",
+      "/measurement/spherometer",
+      "/measurement/mass-time",
+      "/measurement/uncertainty"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "mechanics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/mechanics/free-body-diagrams",
+      "/mechanics/inclined-plane",
+      "/mechanics/pulley-systems",
+      "/mechanics/torque-levers",
+      "/mechanics/equilibrium-com",
+      "/mechanics/momentum-collisions"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "motion-kinematics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/position-time",
+      "/motion/velocity-time",
+      "/motion/acceleration-time",
+      "/motion/projectile-motion",
+      "/motion/relative-motion",
+      "/motion/circular-motion"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "force-newton",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/first-law-inertia",
+      "/motion/second-law-fma",
+      "/motion/third-law-pairs",
+      "/motion/friction",
+      "/motion/tension-normal",
+      "/motion/multi-force-challenge"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "work-energy-power",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/work",
+      "/motion/kinetic-energy",
+      "/motion/potential-energy",
+      "/motion/conservation-energy",
+      "/motion/power",
+      "/motion/efficiency"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "gravitation",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/universal-gravity",
+      "/motion/gravitational-field",
+      "/motion/gravitational-potential",
+      "/motion/orbits",
+      "/motion/escape-velocity",
+      "/motion/keplers-laws"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "oscillations",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/spring-shm",
+      "/motion/pendulum",
+      "/motion/energy-exchange",
+      "/motion/damping",
+      "/motion/resonance",
+      "/motion/coupled-oscillators"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "waves-sound",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/motion/wave-properties",
+      "/motion/superposition",
+      "/motion/interference",
+      "/motion/standing-waves",
+      "/motion/sound-spectrum",
+      "/motion/doppler-effect"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "optics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/optics/reflection",
+      "/optics/refraction",
+      "/optics/lenses",
+      "/optics/mirrors",
+      "/optics/interference",
+      "/optics/diffraction"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "electricity",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/electricity/coulomb-force",
+      "/electricity/electric-field",
+      "/electricity/electric-potential",
+      "/electricity/current",
+      "/electricity/circuits",
+      "/electricity/capacitors"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "magnetism",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/magnetism/field-lines",
+      "/magnetism/lorentz-force",
+      "/magnetism/current-wire",
+      "/magnetism/solenoids",
+      "/magnetism/induction",
+      "/magnetism/electromagnets"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "electronics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/electronics/semiconductors",
+      "/electronics/diodes",
+      "/electronics/transistors",
+      "/electronics/amplifiers",
+      "/electronics/logic-gates",
+      "/electronics/sensors"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "thermodynamics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/thermodynamics/temperature",
+      "/thermodynamics/heat-transfer",
+      "/thermodynamics/gas-laws",
+      "/thermodynamics/first-law",
+      "/thermodynamics/entropy",
+      "/thermodynamics/heat-engines"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "fluid-mechanics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/fluid-mechanics/density-pressure",
+      "/fluid-mechanics/hydrostatics",
+      "/fluid-mechanics/buoyancy",
+      "/fluid-mechanics/continuity",
+      "/fluid-mechanics/bernoulli",
+      "/fluid-mechanics/viscosity"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "modern-physics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/modern-physics/quantum-ideas",
+      "/modern-physics/photoelectric-effect",
+      "/modern-physics/matter-waves",
+      "/modern-physics/atomic-spectra",
+      "/modern-physics/nuclear-structure",
+      "/modern-physics/radioactivity"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  },
+  {
+    "id": "astronomy-astrophysics",
+    "nav": [
+      "Concepts",
+      "Activities"
+    ],
+    "labLinks": [
+      "/astrophysics/solar-system",
+      "/astrophysics/stellar-life",
+      "/astrophysics/spectroscopy",
+      "/astrophysics/galaxies",
+      "/astrophysics/cosmology",
+      "/astrophysics/exoplanets"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "overflow": 0,
+        "visible": true
+      },
+      {
+        "width": 390,
+        "overflow": 0,
+        "visible": true
+      }
+    ],
+    "placeholders": 0,
+    "conceptSelection": true,
+    "pass": true
+  }
+]

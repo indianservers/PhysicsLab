@@ -24,7 +24,7 @@ export function MeasurementErrorsLab({
   const [input, setInput] = useState(D),
     [jaw, setJaw] = useState(24.5),
     [run, setRun] = useState<Run>("idle"),
-    [phase, setPhase] = useState(2),
+    [phase, setPhase] = useState(0),
     [speed, setSpeed] = useState(1),
     [reduced, setReduced] = useState(
       () => matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
@@ -59,7 +59,7 @@ export function MeasurementErrorsLab({
     setInput(D);
     setJaw(24.5);
     setRun("idle");
-    setPhase(2);
+    setPhase(0);
     setMission(false);
     setFeedback("");
   };
@@ -192,7 +192,7 @@ export function MeasurementErrorsLab({
               <button
                 onClick={() => {
                   setRun("paused");
-                  setPhase((old) => Math.min(2, old + 1));
+                  setPhase((old) => old >= 2 ? 0 : old + 1);
                 }}
               >
                 ▷ Step

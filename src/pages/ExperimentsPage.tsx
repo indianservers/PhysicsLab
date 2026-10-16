@@ -22,6 +22,11 @@ function ExperimentLibraryPage() {
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [selectedClass, setSelectedClass] = useState(searchParams.get("class") ?? "all");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") ?? "all");
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+    setSelectedClass(searchParams.get("class") ?? "all");
+    setSelectedCategory(searchParams.get("category") ?? "all");
+  }, [searchParams]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [selectedMaturity, setSelectedMaturity] = useState<"all" | ExperimentMaturityLevel>("all");
   const [selectedEvidence, setSelectedEvidence] = useState<"all" | ModelEvidenceType>("all");
@@ -69,7 +74,7 @@ function ExperimentLibraryPage() {
     const formulaText = experiment.formulae.map((formula) => `${formula.name} ${formula.expression}`).join(" ");
     const trustText = `${experiment.modelClass ?? ""} ${experiment.evidenceType ?? ""} ${experiment.maturityLevel ?? ""} ${experiment.validationStatus ?? ""} ${experiment.sourceRefs?.join(" ") ?? ""} ${flagshipIds.has(experiment.id) ? "flagship lab model prediction measurement graph presets" : ""}`;
     const searchText = `${experiment.title} ${experiment.aim} ${experiment.category} ${experiment.classLevel} ${experiment.curriculumTags?.domains.join(" ") ?? ""} ${topicText} ${formulaText} ${trustText}`.toLowerCase();
-    const queryMatch = !query.trim() || searchText.includes(query.trim().toLowerCase());
+    const queryMatch = query.trim().toLowerCase().split(/\s+/).filter(Boolean).every(token => searchText.includes(token));
     return groupMatch && classMatch && categoryMatch && difficultyMatch && maturityMatch && evidenceMatch && flagshipMatch && queryMatch;
   });
   const filtered = [...filteredBase].sort((left, right) => sortExperiments(left, right, sortBy));
@@ -324,7 +329,6 @@ function ExperimentLibraryPage() {
                 </div>
                 <p className="experiment-card-aim">{experiment.aim}</p>
                 <div className="experiment-card-tags">
-                  {!has3DAnimation(experiment.id) && <span>3D · Upcoming</span>}
                   {hasFlagshipModel && <span>Flagship model</span>}
                   <span>{experiment.maturityLevel ?? "Starter"}</span>
                   <span>{experiment.evidenceType ?? "Exact Formula"}</span>

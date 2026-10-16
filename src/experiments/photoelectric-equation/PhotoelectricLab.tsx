@@ -190,8 +190,8 @@ export function PhotoelectricLab({ experiment }: DedicatedExperimentLabProps) {
         </aside>
         <main className="pe-center">
           <div className="pe-transport">
-            <button onClick={() => setRunning(true)}>▶ Play</button>
-            <button onClick={() => setRunning(false)}>Ⅱ Pause</button>
+            <button aria-pressed={running} onClick={() => setRunning(true)}>▶ Play</button>
+            <button aria-pressed={!running} onClick={() => setRunning(false)}>Ⅱ Pause</button>
             <button onClick={() => setPhase((p) => (p + 0.08) % 1)}>
               ▷ Step
             </button>
@@ -234,7 +234,7 @@ export function PhotoelectricLab({ experiment }: DedicatedExperimentLabProps) {
               {Array.from({ length: photonCount }, (_, i) => (
                 <i
                   key={i}
-                  style={{ animationDelay: `${-phase + i / photonCount}s` }}
+                  style={{ animationPlayState: "paused", animationDelay: `${-(phase + i / photonCount) / playback}s`, animationDuration: `${1 / playback}s` }}
                 />
               ))}
             </div>
@@ -243,7 +243,8 @@ export function PhotoelectricLab({ experiment }: DedicatedExperimentLabProps) {
                 <i
                   key={i}
                   style={{
-                    animationDelay: `${-phase + i / electronCount}s`,
+                    animationPlayState: "paused",
+                    animationDelay: `${-(phase + i / electronCount) * Math.max(0.5, 1.5 - state.kineticMaxEv * 0.12)}s`,
                     animationDuration: `${Math.max(0.5, 1.5 - state.kineticMaxEv * 0.12)}s`,
                   }}
                 />

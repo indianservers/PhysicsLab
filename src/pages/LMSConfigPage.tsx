@@ -22,7 +22,7 @@ export function LMSConfigPage() {
   return (
     <div className="min-h-screen">
       <Toolbar />
-      <main className="mx-auto max-w-4xl px-5 py-8">
+      <main id="content" tabIndex={-1} className="mx-auto max-w-4xl px-5 py-8">
         <h1 className="text-3xl font-bold">LMS / xAPI Configuration</h1>
         <section className="mt-4 rounded-md border border-amber-300/60 bg-amber-300/10 p-4 text-sm font-semibold text-slate-700 dark:text-amber-100">
           Browser-only mode: statements are sent directly from this browser to the LRS endpoint you enter. PhysicsLab 100 does not run a server proxy. Prefer anonymized learner IDs for pilots, and avoid saving Basic auth permanently on shared computers.

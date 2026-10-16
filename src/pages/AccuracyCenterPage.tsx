@@ -98,7 +98,7 @@ export function AccuracyCenterPage() {
               </div>
               <div className="quality-filter-row">
                 <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search experiment or category..." />
-                <select className="select-field" value={mode} onChange={(event) => setMode(event.target.value)}>
+                <select aria-label="Model evidence filter" className="select-field" value={mode} onChange={(event) => setMode(event.target.value)}>
                   {modes.map((item) => <option key={item}>{item}</option>)}
                 </select>
               </div>

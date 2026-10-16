@@ -110,10 +110,10 @@ export function LearningStudioPage() {
               </div>
               <div className="learning-filter-row">
                 <input className="search-field" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lesson, misconception, class..." />
-                <select className="select-field" value={priority} onChange={(event) => setPriority(event.target.value)}>
+                <select aria-label="Learning priority" className="select-field" value={priority} onChange={(event) => setPriority(event.target.value)}>
                   {priorities.map((item) => <option key={item}>{item}</option>)}
                 </select>
-                <select className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
+                <select aria-label="Physics category" className="select-field" value={category} onChange={(event) => setCategory(event.target.value)}>
                   {categories.map((item) => <option key={item}>{item}</option>)}
                 </select>
               </div>
