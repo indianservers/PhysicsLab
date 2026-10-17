@@ -32,3 +32,26 @@ Lenses caches model by configuration, reuses ray/marker instance meshes, dispose
 ## Curved Mirrors checkpoint — 2026-10-17
 
 Curved Mirrors reuses geometry/materials/instanced rays and markers with explicit resize/clock/GPU cleanup. Three SPA remounts checked. A 60-frame headless host sample averaged 6.84 ms, max 7.10 ms. Optional remote fonts no longer block production startup; four deliberately pending stylesheets did not prevent canvas readiness, and later style activation passed. Large-bundle/precache size, cross-device and long-run memory acceptance remain open.
+
+
+## Interference checkpoint — 2026-10-17
+
+Interference: the aperture profile is memoized by optical configuration; detector/time updates do not recalculate the 2,049-sample profile. Native meshes reuse box/cylinder geometry, instanced rays and markers, a dynamic wavefront buffer and a procedural screen texture updated only on model changes. One parent RAF advances physical time; cleanup cancels it, disconnects observers and disposes geometry/materials/textures/renderer/environment on unmount. Three remounts passed. This is code/resource-lifecycle evidence, not a long-duration memory or frame-rate benchmark. Extended GPU memory and cross-browser performance remain unverified. One browser launch failed from temporary disk exhaustion; stale-profile cleanup was policy-rejected and not performed. A subsequent fresh run passed after authoritative free-space checks.
+
+
+Final Interference gates: `npm run build` exited 0 (TypeScript, Vite and PWA); shared physics checks passed 581/581; production smoke passed with native canvas, modes/presets/views, detector/reset, mobile transport and unclipped short-desktop formula/toolbar. Build still warns about the existing large main chunk (5,382.96 kB) and broad PWA precache (1,247 entries / 326,559.94 KiB). These application-wide performance issues remain open. Per-lab `verification-status.json` records source hashes and terminal results.
+
+
+## Diffraction checkpoint - 2026-10-17
+
+Diffraction caches quadrature nodes and memoizes aperture profiles; time and detector changes do not rebuild the optical profile. Original meshes reuse geometry; aperture extrusion is replaced only for aperture type/size changes, and both rendered views dispose resources on unmount. Three SPA remounts verified 14 disposed renderers/context losses with no later renders. While paused, the main renderer produced zero additional frames over 200 ms. Actual marker matrix coordinates agree with the model within 1.4e-08 m; Float32 speed relative error 6.53e-06. This is lifecycle and coordinate evidence, not an extended GPU memory/FPS benchmark. Full build/PWA passed. The application-wide main bundle (5383.07 kB) and precache (1249 entries / 326600.64 KiB) remain large; extended memory, additional browser engines and broad loading optimizations remain open.
+
+
+## Coulomb Force checkpoint - 2026-10-17
+
+Coulomb Force memoizes model/streamlines/contours and skips unchanged parameter updates. Field-strength pixels are regenerated only for source changes when enabled; contour meshes are built only when enabled. Instanced direction markers reuse geometry; replaced line/surface GPU buffers are explicitly disposed. Route cleanup disconnects observers and disposes original geometry/materials/textures/environment/renderer/context. Three SPA remounts verified seven disposed renderers with no further rendering. Runtime inspected 232 native marker matrices, maximum coordinate error 1.85e-08 m and minimum local-E direction cosine 1.0000000000. Paused renderer produced zero additional frames over 200 ms. This is lifecycle/coordinate evidence, not a long-duration GPU-memory or frame-rate benchmark. Full TypeScript/Vite/PWA build passed; broad application bundle/precache size, extended memory, additional browser engines and responsive focus order remain open.
+
+
+## Electric Field checkpoint - 2026-10-17
+
+Electric Field memoizes source geometry/curves separately from probe coordinates and inspection time. Probe-only changes reuse curve GPU buffers; source/density changes replace and dispose them. Instanced fixed/moving arrows share geometry and instance colors. Original grid/glow resources, observers, renderer and context are disposed on unmount; parent RAF is cancelled. Three SPA remounts verified seven disposed renderers with no further renders. Runtime inspected 358 actual instance matrices: max coordinate error 1.24e-07 m, minimum local-E direction cosine 1.0000000000. Paused main renderer produced zero frames over 200 ms. These are lifecycle/coordinate checks, not extended GPU-memory/FPS benchmarks. Full TypeScript/Vite/PWA build passed; broad app precache remains large (1252 entries / 326682.97 KiB). Additional engines, long-duration memory/FPS and global bundle optimization remain open.

@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false,
+      "clippedCards": 0,
+      "sceneToolbarOverlap": false
+    }
+  ],
+  "correctForceSignsAndFieldValues": true,
+  "likeUnlikeAndZeroCharges": true,
+  "tinyForcesUseScientificNotation": true,
+  "allNumericAndRangeInputs": true,
+  "actualNativeSphereAndArrowGeometry": true,
+  "minNativeFieldTangentCosine": 0.9999999992988154,
+  "maxNativeEquipotentialRelativeResidual": 3.393377377874361e-7,
+  "actualStrengthPixels": true,
+  "fourOverlayControls": true,
+  "orthographicZoom": true,
+  "fullscreen": true,
+  "mouseChargeDragging": true,
+  "keyboardAndTouchInspection": true,
+  "pauseResetRecordingQuizzes": true,
+  "assignmentLocks": true,
+  "spaRemounts": 3,
+  "disposedRenderers": 7,
+  "noRenderingAfterDisposal": true,
+  "fallbackAllOverlays": true,
+  "fourReferenceModes": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": [],
+  "externalRequestsExcluded": true
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "route": "/electricity/coulomb-force",
+  "nativeCanvas": true,
+  "forceSignAndFieldCorrections": true,
+  "likeUnlikeAndZeroCharges": true,
+  "overlayControls": true,
+  "graphKeyboard": true,
+  "zoomAndReset": true,
+  "recording": true,
+  "readableProceduralRuler": {
+    "font": "48px \"Segoe UI\"",
+    "physicalAspect": 20.57142857142857,
+    "textureAspect": 20.582914572864322
+  },
+  "shortDesktopAndMobile": true,
+  "noSceneToolbarOverlap": true,
+  "noClippedCards": true,
+  "fourReferenceModes": true,
+  "noGlobalExtraTabs": true,
+  "errors": [],
+  "failedLocalRequests": []
+}

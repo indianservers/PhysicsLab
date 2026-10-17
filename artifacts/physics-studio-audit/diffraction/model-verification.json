@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "configurations": 240,
+  "samples": 1680,
+  "energyCases": 12,
+  "maxSymmetryError": 0,
+  "maxConvergenceError": 3.6810832160227847e-14,
+  "defaultNominalWidthMm": 6.320000000000001,
+  "defaultFirstMinimumDegrees": 0.3621117371519367,
+  "circularWidthFactor": 1.2196698912665045,
+  "farFieldMinima": true,
+  "fresnelCircleAxisFormula": true,
+  "farFieldLimit": true,
+  "physicalMarkerSpeed": true
+}

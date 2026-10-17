@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "actualInstanceMatrixCoordinates": true,
+  "inspectionTimesSeconds": [
+    0,
+    0.37
+  ],
+  "markersChecked": 232,
+  "maxPositionErrorMetres": 1.85006573111017e-8,
+  "minDirectionCosine": 0.999999999996211,
+  "pausedRendererFramesDuring200ms": 0,
+  "diagramMarkerSpeedMetresPerSecond": 0.12,
+  "notPhysicalChargeFlow": true,
+  "note": "Native marker coordinates and cone axes checked against model streamlines and local electric-field direction. Static sources remain fixed."
+}

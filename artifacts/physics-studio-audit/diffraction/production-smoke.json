@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "route": "/optics/diffraction",
+  "twoNativeCanvases": true,
+  "correctDefaultWidthAndAngle": true,
+  "circularAiryPattern": true,
+  "threeReferenceCameraViews": true,
+  "farFieldWarning": true,
+  "fresnelBothApertures": true,
+  "detectorAndRecording": true,
+  "reset": true,
+  "mobileTransportNearScene": true,
+  "shortDesktopToolbarVisible": true,
+  "unclippedCards": true,
+  "fourLearningModes": true,
+  "noGlobalExtraTabs": true,
+  "errors": [],
+  "failedLocalRequests": []
+}

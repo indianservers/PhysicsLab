@@ -48,3 +48,23 @@ Lenses native materials/lighting, optical glow, fine apparatus detail and typogr
 Curved Mirrors materials/lighting, glow, fine hardware and typography still need visual refinement. Correct default real image is beyond the object; matching the mockup placement would contradict its own numbers. Existing sidebar remains unchanged, with light controls relocated into the main scene. Model is explicitly Gaussian/paraxial, not exact curved-surface ray tracing. Cross-browser and extended memory profiling remain open. Lenses/Mirrors finite-screen regressions were corrected; final release gates passed.
 
 Keyboard parameter editing is verified; a complete keyboard focus-order review across CSS-reordered layouts is still pending. Untouched routes and their typography after optional-font loading are not recertified by these scoped tests.
+
+
+## Interference checkpoint — 2026-10-17
+
+Interference visual fidelity remains open: photographic lab/background, material/lighting realism, apparatus proportions, detailed instrument hardware and typography need refinement. Optical transverse scale is explicitly magnified ×50 to make micrometre slits and millimetre fringes legible. The scalar model omits polarization, evanescent and material boundary effects; representative phase fronts are not full aperture-field phase surfaces. Actual intensities replace mockup extrema 0.98/0.02. Extended memory, additional browser engines and responsive keyboard focus order need further auditing. The full 102-reference / 17-studio objective remains active.
+
+
+## Diffraction checkpoint - 2026-10-17
+
+Diffraction remains visually short of the photographic reference: laboratory background, material/lighting realism, apparatus proportions, fine hardware and typography need refinement. Its correct numerical defaults intentionally differ from inconsistent mockup readings. Fraunhofer validity is explicitly limited; the optional Fresnel comparison is paraxial and scalar, omitting polarization, evanescent fields and material-boundary diffraction. A single-slit screen's vertical taper is presentation styling; circular intensity is radial in both transverse dimensions. The red beam is an axis guide, not the diffracted field. Extended GPU memory, additional browser engines and responsive focus-order audits remain unverified. The complete 102-reference / 17-studio objective remains active.
+
+
+## Coulomb Force checkpoint - 2026-10-17
+
+Coulomb Force still differs from the reference photograph in background, metallic surface/lighting detail, fine support/table hardware and typography. Numerical fields and the true slope-minus-two log-log curve intentionally correct inconsistent mockup content. Spheres are point-charge markers, not interacting conductors; induced surface charge, support/table polarization, radiation and retardation are omitted. Equipotential wireframes approximate surfaces between refined endpoints; field-line counts are representative, not quantitative flux. Force arrows use a disclosed logarithmic display scale; moving markers are explicitly not charge flow. Additional browser engines, long-duration GPU/FPS/memory and responsive focus-order checks remain open. The complete 102-reference / 17-studio scope remains active.
+
+
+## Electric Field checkpoint - 2026-10-17
+
+Electric Field visual refinements remain: source glow/material detail, line brightness/arrow rendering, typography, composition and annotation placement need further reference review. Correct physical positions, a consistent metric scale, downward-right default vector and computed contributions differ from contradictory mockup artwork. This is a static scalar vacuum model of held point charges, omitting induced charge, dielectric boundaries, radiation and retardation. The scene is an XY projection of 3D data; projected curves can overlap at different depths. Representative line counts/colors are not calibrated flux or field-strength measurements. Probe arrow length is normalized; marker animation is a direction illustration, not current or charge speed. Additional browser engines, long-duration GPU/FPS/memory and responsive focus order remain unverified. The complete 102-reference / 17-studio objective remains active.

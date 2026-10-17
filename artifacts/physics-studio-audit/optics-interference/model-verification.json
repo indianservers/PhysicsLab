@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "configurations": 180,
+  "samples": 1620,
+  "maxQuadratureError": 1.887379141862766e-15,
+  "maxSymmetryError": 7.771561172376096e-16,
+  "maxWindowPowerMetres": 0.00007801787805377687,
+  "aperturePowerLimitMetres": 0.00008,
+  "defaultSpacingMm": 2.166666666666667,
+  "normalization": true,
+  "finiteApertureEnergyBound": true,
+  "farFieldComparison": true,
+  "narrowLimit": true,
+  "coherenceComparison": true,
+  "physicalMarkerSpeed": true,
+  "sampledFrontPhase": true
+}

@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "cases": 343,
+  "gradientCases": 343,
+  "maxGradientRelativeError": 1.3342981918082352e-10,
+  "lineCases": 10,
+  "lineSegmentsChecked": 66290,
+  "maxTangentAngleRadians": 0.0036375422340653206,
+  "maxLineConvergenceErrorMetres": 0.000007234161847357848,
+  "contourEndpoints": 6104,
+  "maxContourRelativeResidual": 4.839107810671922e-8,
+  "default": {
+    "forceA": 2.497222222222222,
+    "forceB": -2.497222222222222,
+    "fieldA": 499444.4444444444,
+    "fieldB": 499444.4444444444
+  },
+  "newtonsThirdLaw": true,
+  "externalFieldsExcludeSelf": true,
+  "potentialGradient": true,
+  "logLogSlopeMinusTwo": true,
+  "zeroChargeCases": true,
+  "unsoftenedModel": true
+}

@@ -1,0 +1,29 @@
+{
+  "model": "passed — 180 configurations / 1620 positions",
+  "browser": "passed — six sizes, controls, scene geometry, phase fronts, texture, fallback, keyboard/pointer/touch, three remounts, assignment locks",
+  "nativeGeometryAndTexture": "passed — maximum ray endpoint error 5.3644181319256745e-9 m; max texture channel error 0",
+  "renderedPacketMotion": "passed — 787 pixels change by more than 20 levels",
+  "build": "passed — npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedRegression": "passed — 581/581 physics checks, exit 0",
+  "production": "passed — native canvas, presets, modes/views, detector/reset, mobile transport, short desktop toolbar and formula",
+  "sourceHashesSha256": {
+    "src/lib/opticsInterferenceStudio.ts": "36a28531f264da1974e8a2828a19da1280fe9937fe638e2b014820efc222ef0c",
+    "src/components/InterferenceBench.tsx": "88ae9674eddd474734ff3851669e79e81c95090a94d0e9a8a099687db79837e0",
+    "src/pages/OpticsInterferenceStudioPage.tsx": "89461ea7000ed0f5b0761221157af8c5d4dd21bdc5a1a38044c4c092a22ffb39",
+    "src/pages/optics-interference-studio.css": "b41a05267157e25eedd4ead48a9732ea64370632cc5326a1d240ed9393b8e513"
+  },
+  "visualComparison": {
+    "mae": 18.308,
+    "ssim": 0.5491,
+    "sidebarExcluded": true,
+    "sidebarSourcePreserved": true,
+    "acceptancePercentage": false,
+    "status": "visual/material refinement open"
+  },
+  "buildWarnings": [
+    "Existing large JavaScript chunk warning; main bundle 5382.96 kB.",
+    "Application-wide PWA precache remains large: 1247 entries / 326559.94 KiB."
+  ],
+  "overallGoalComplete": false,
+  "remainingScope": "Full 102-reference / 17-studio objective remains active; visual refinement and remaining labs are not complete."
+}

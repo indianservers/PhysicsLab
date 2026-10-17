@@ -1,0 +1,97 @@
+{
+  "physicalPngFiles": 120,
+  "canonicalReferences": 102,
+  "studioDirectories": 17,
+  "nestedCopies": [
+    {
+      "nested": "10_optics/13_electronics/01_semiconductors.png",
+      "canonical": "13_electronics/01_semiconductors.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/13_electronics/02_diodes.png",
+      "canonical": "13_electronics/02_diodes.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/13_electronics/03_transistors.png",
+      "canonical": "13_electronics/03_transistors.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/13_electronics/04_amplifiers.png",
+      "canonical": "13_electronics/04_amplifiers.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/13_electronics/05_logic_gates.png",
+      "canonical": "13_electronics/05_logic_gates.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/13_electronics/06_sensors.png",
+      "canonical": "13_electronics/06_sensors.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/01_temperature.png",
+      "canonical": "14_thermodynamics/01_temperature.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/02_heat_transfer.png",
+      "canonical": "14_thermodynamics/02_heat_transfer.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/03_gas_laws.png",
+      "canonical": "14_thermodynamics/03_gas_laws.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/04_first_law.png",
+      "canonical": "14_thermodynamics/04_first_law.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/05_entropy.png",
+      "canonical": "14_thermodynamics/05_entropy.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/14_thermodynamics/06_heat_engines.png",
+      "canonical": "14_thermodynamics/06_heat_engines.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/01_density_pressure.png",
+      "canonical": "15_fluid_mechanics/01_density_pressure.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/02_hydrostatics.png",
+      "canonical": "15_fluid_mechanics/02_hydrostatics.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/03_buoyancy.png",
+      "canonical": "15_fluid_mechanics/03_buoyancy.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/04_continuity.png",
+      "canonical": "15_fluid_mechanics/04_continuity.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/05_bernoulli.png",
+      "canonical": "15_fluid_mechanics/05_bernoulli.png",
+      "identical": true
+    },
+    {
+      "nested": "10_optics/15_fluid_mechanics/06_viscosity.png",
+      "canonical": "15_fluid_mechanics/06_viscosity.png",
+      "identical": true
+    }
+  ]
+}

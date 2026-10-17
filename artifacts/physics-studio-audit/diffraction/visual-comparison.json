@@ -1,0 +1,33 @@
+{
+  "route": "/optics/diffraction",
+  "reference": "10_optics/06_diffraction.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 203,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 19.949,
+  "ssim": 0.5723,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 12.986
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 21.879
+    },
+    "lowerCards": {
+      "meanAbsoluteChannelDifference": 22.477
+    },
+    "inspector": {
+      "meanAbsoluteChannelDifference": 21.521
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 17.924
+    }
+  },
+  "note": "Diagnostics, not acceptance percentages. Original apparatus, aperture close-up and real Top/Side/Front camera views; four reference learning modes. Corrected default width 6.32 mm and \u00b10.362\u00b0 instead of inconsistent mockup readings. Sidebar preserved. Materials/background, apparatus proportions, instrument detail and typography remain open. No reference pixels are application assets."
+}

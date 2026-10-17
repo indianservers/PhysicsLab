@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false,
+      "clippedCards": 0,
+      "noSceneToolbarOverlap": true
+    }
+  ],
+  "correctDefaultVectorAndContributions": true,
+  "allSourceProbeXYZInputs": true,
+  "actual3DNativePositions": true,
+  "maxNativeVectorError": 1.1102230246251565e-16,
+  "minNativeTangentCosine": 0.9999999948725149,
+  "singularityUndefined": true,
+  "coincidentCancellation": true,
+  "zeroDirectionUndefined": true,
+  "densityChangesGeometryNotField": true,
+  "probeUpdatesReuseFieldGeometry": true,
+  "collapsiblePanels": true,
+  "showVectorToggle": true,
+  "pauseZoomReset": true,
+  "sourceAndProbeDragging": true,
+  "keyboardAndTouch": true,
+  "recordingAndQuizzes": true,
+  "assignmentLocks": true,
+  "spaRemounts": 3,
+  "disposedRenderers": 7,
+  "noRenderingAfterDisposal": true,
+  "webglFallback": true,
+  "fourReferenceModes": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": [],
+  "externalRequestsExcluded": true
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "actualInstanceMatrixCoordinates": true,
+  "physicalTimesNs": [
+    0,
+    0.37,
+    0.38
+  ],
+  "maxPositionErrorMetres": 1.4035483442143004e-8,
+  "maxRelativeSpeedError": 0.0000065258661595248295,
+  "cMetresPerSecond": 299792458,
+  "pausedRendererFramesDuring200ms": 0,
+  "note": "Float32 scene matrices compared with SI-unit propagation coordinates; the renderer performs no continuing loop while paused."
+}

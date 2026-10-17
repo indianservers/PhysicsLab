@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 101,
+  "physicalTimesNs": [
+    0,
+    0.37
+  ],
+  "view": "axis markers",
+  "note": "Actual rendered stage pixels; paused time set through the Experiment control."
+}

@@ -1,0 +1,26 @@
+{
+  "model": "passed - 240 configurations / 1680 positions / 12 finite-window energy bounds",
+  "independentScipy": "passed - 216 complex fields / 6001 Bessel arguments",
+  "browser": "passed - all controls, six sizes, native geometry/texture/cameras, mouse/keyboard/touch, locks, remounts and fallback",
+  "runtime": "passed - physical native marker coordinates and c-speed within Float32 tolerance; paused renderer idle",
+  "build": "passed - npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedPhysicsRegression": "passed - 581/581 checks, exit 0",
+  "production": "passed - two native views, both models/apertures, controls, camera views, recording/reset, short desktop and mobile layout",
+  "sourceHashesSha256": {
+    "src/lib/diffractionStudio.ts": "1aebb67c36cb28d2ee291457acaee6832ee3bb283fb70136a9c7b3c6c3153e74",
+    "src/components/DiffractionBench.tsx": "88d2b3dc26006a3af9193644effc3e5176086d776aaf875fa4ba240e2144a5b6",
+    "src/pages/DiffractionStudioPage.tsx": "f07c45235838a0640f72f2b2d206ca1a8772c5af7cc8b666508482924e84afc3",
+    "src/pages/diffraction-studio.css": "f8e052b460a04215cf8f628deded0f1f4a612e307c2fb11c1e38b330df3f7011"
+  },
+  "visualComparison": {
+    "mae": 19.949,
+    "ssim": 0.5723,
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "mainWidthNormalized": true,
+    "acceptancePercentage": false,
+    "status": "photographic/material refinement open"
+  },
+  "overallGoalComplete": false,
+  "remainingScope": "All 102 canonical references / 17 studios remain in scope. This checkpoint does not prove full visual fidelity or completion of all labs."
+}

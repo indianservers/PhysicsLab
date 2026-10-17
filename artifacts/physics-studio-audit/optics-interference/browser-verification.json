@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false,
+      "formulaClipped": false
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": false,
+      "formulaClipped": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "formulaClipped": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "formulaClipped": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "formulaClipped": false
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false,
+      "formulaClipped": false
+    }
+  ],
+  "nativeRayMaxErrorMetres": 5.3644181319256745e-9,
+  "textureMaxChannelError": 0,
+  "actualThreeSceneInspection": true,
+  "threeViews": true,
+  "threeOpticalModes": true,
+  "threePresets": true,
+  "pointerKeyboardTouchDetector": true,
+  "pauseResetZoom": true,
+  "learningDialogs": true,
+  "recording": true,
+  "assignmentLocks": true,
+  "spaRemounts": 3,
+  "fallback": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": [],
+  "externalRequestsExcluded": true
+}

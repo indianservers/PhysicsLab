@@ -1852,28 +1852,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "oif-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "oif-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "oif-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "oif-modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "interferenceCheckpoint": "Original native aperture bench; shared scalar model; four reference modes, three views; sidebar unchanged. Visual/material refinement open."
   },
   {
     "reference": "10_optics/06_diffraction.png",
@@ -1882,28 +1881,36 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "dfn-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "dfn-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "dfn-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "dfn-modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
+    "assets": [],
+    "dock": 0,
+    "referenceCameraViews": [
+      "Top",
+      "Side",
+      "Front"
     ],
-    "dock": 0
+    "referenceApertureChoices": [
+      "Single Slit",
+      "Circular Aperture"
+    ],
+    "diffractionCheckpoint": "Four learning modes plus three camera views explicitly present in reference. Native apparatus and close-up; sidebar preserved. Model/control/production gates passed; visual/material refinement open."
   },
   {
     "reference": "11_electricity/01_coulomb_force.png",
@@ -1912,28 +1919,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "clb-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "clb-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "clb-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "clb-modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "coulombCheckpoint": "Four reference modes; original native apparatus and calculated overlays; sidebar preserved. Signed forces/external fields corrected. Model/control/production gates passed; visual/material refinement open."
   },
   {
     "reference": "11_electricity/02_electric_field.png",
@@ -1942,26 +1948,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "efv-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "efv-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "efv-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "efv-modes"
       }
     ],
     "assets": [],
-    "dock": 0
+    "dock": 0,
+    "electricFieldCheckpoint": "Four reference modes; original native 3D source/field geometry shown in XY projection; sidebar preserved. All XYZ, density/probe controls and singularity handling verified. Visual refinement open."
   },
   {
     "reference": "11_electricity/03_electric_potential.png",

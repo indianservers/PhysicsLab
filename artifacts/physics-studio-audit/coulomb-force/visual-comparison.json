@@ -1,0 +1,36 @@
+{
+  "route": "/electricity/coulomb-force",
+  "reference": "11_electricity/01_coulomb_force.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 204,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 20.01,
+  "ssim": 0.5446,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 25.477
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 23.355
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 14.661
+    },
+    "readingsAndEquation": {
+      "meanAbsoluteChannelDifference": 17.604
+    },
+    "graph": {
+      "meanAbsoluteChannelDifference": 16.079
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 12.803
+    }
+  },
+  "note": "Diagnostics, not acceptance percentages. Original native point-charge apparatus, model field lines, equipotential wireframes and strength slice. Sidebar unchanged; four reference modes. Field readings and a true slope-minus-two log-log curve correct inconsistent mockup values. Background/material realism, fine hardware and typography remain open. No reference pixels are application assets."
+}

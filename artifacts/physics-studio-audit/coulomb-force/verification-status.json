@@ -1,0 +1,25 @@
+{
+  "model": "passed - 343 configurations / gradients, 66290 line segments, convergence, 6104 contour endpoints",
+  "browser": "passed - all controls, native model agreement, six sizes, pointer/keyboard/touch, locks, fullscreen, remounts and fallback",
+  "runtime": "passed - 232 actual native marker matrices; paused rendering idle",
+  "build": "passed - final npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedPhysicsRegression": "passed - 581/581, exit 0",
+  "production": "passed - native scene, force/field fixes, overlays, sign/zero cases, controls/recording, desktop/mobile layout, current ruler font and aspect",
+  "sourceHashesSha256": {
+    "src/lib/coulombStudio.ts": "92d4d6e0c015738ae86544427ca0e374d423c908188debdacb696aeffea17a7c",
+    "src/components/CoulombBench.tsx": "be6122337add5670b528db2fa6c1e5895bb00fd3db95226f1c79650bef7af8a3",
+    "src/pages/CoulombForceStudioPage.tsx": "5a93a489fb905ab130db6b68be954ef1c32b2724510df502dce4fb6221dbc870",
+    "src/pages/coulomb-force-studio.css": "eac84f52a482cab59b2fdfdfd6c8910eed363ca1b2f68ec0ee30b71b666c6d1e"
+  },
+  "visualComparison": {
+    "mae": 20.01,
+    "ssim": 0.5446,
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "mainWidthNormalized": true,
+    "acceptancePercentage": false,
+    "status": "photographic/material refinement open"
+  },
+  "overallGoalComplete": false,
+  "remainingScope": "All 102 references / 17 studios remain in scope; visual refinements and remaining laboratories are not complete."
+}

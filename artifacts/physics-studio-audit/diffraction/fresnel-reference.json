@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "independentReference": "SciPy integrate.quad and special.jv, independent adaptive quadrature",
+  "complexFieldCases": 216,
+  "maxAbsoluteFieldError": 3.725839081702986e-14,
+  "includesWideApertureShortDistanceHighFresnelNumber": true
+}

@@ -40,3 +40,23 @@ Lenses now follows its reference layout: four learning modes, native bench, ray 
 ## Curved Mirrors checkpoint — 2026-10-17
 
 Curved Mirrors now follows the reference header/four-mode/scene/parameter/lower-card/transport structure, using original native apparatus. Sidebar JSX preserved. Light controls relocated into the main scene to honor that exception. Real-image placement corrects the contradictory mockup. Six responsive sizes captured; MAE 20.169, SSIM 0.5567. Material, lighting, hardware and typography refinement remains open.
+
+
+## Interference checkpoint — 2026-10-17
+
+Interference now uses its reference header, four learning modes, three scene views, native apparatus, three lower parameter controls/presets, right readings/profile/equations and transport. The original sidebar JSX is unchanged. No screenshot pixels or reflection photograph are application assets. Six viewport screenshots show no horizontal overflow or clipped formula content. Camera framing, original PBR materials and instrument details still differ from the photograph. Sidebar-excluded, width-normalized MAE 18.308, SSIM 0.5491; these are diagnostics, not completion percentages.
+
+
+## Diffraction checkpoint - 2026-10-17
+
+Diffraction now follows its reference-specific layout: breadcrumb/four learning modes, a large native apparatus, right aperture selection/profile/readings, and lower aperture close-up, controls, equation and 3D camera preview. Top/Side/Front are explicitly present in the mockup and retained as working camera controls. The existing sidebar JSX is unchanged. No screenshot crops or reflection photograph are used. Six sizes have no horizontal overflow or clipped cards, and desktop transport fits. Sidebar-excluded, width-normalized MAE 19.949, SSIM 0.5723; these are diagnostics, not acceptance percentages. Photographic material/background realism, apparatus composition and detailed typography remain open.
+
+
+## Coulomb Force checkpoint - 2026-10-17
+
+Coulomb Force now follows the reference header/four-mode, native apparatus, right controls/readings/equation/log graph and bottom transport layout. Sidebar JSX is unchanged; the reflection photograph is removed. Original spheres, supports, perforated table, ruler and calculated overlays replace the placeholder. Page-scoped rules correct the competing global gutter and an intrinsic grid-height issue that overlapped scene and toolbar on short desktops. Six viewport sizes now have no horizontal overflow, clipped cards or scene/transport overlap. Sidebar-excluded width-normalized MAE 20.01, SSIM 0.5446; these are diagnostic measurements, not completion percentages. Photographic background, sphere/support material detail, fine hardware and typography remain open.
+
+
+## Electric Field checkpoint - 2026-10-17
+
+Electric Field now follows its reference-specific header/four-mode, projected field/grid, source XYZ, probe XYZ, vector toggle, density, net/contribution readings, equation/definitions and transport layout. Original native spheres/glows, probe/vector, grid and integrated field curves replace control-independent SVG Bezier curves. Sidebar JSX is unchanged and no reference pixels are application assets. Original SVG panel icons replace unrelated text glyphs. Six sizes have no horizontal overflow, clipped cards or scene/transport overlap; desktop transport fits. Sidebar-excluded, width-normalized MAE 14.572, SSIM 0.5988; these are diagnostics, not acceptance percentages. Glow/material detail, curve rendering, typography and composition remain open. Correct metric positions, a consistent 0.5 m scale and calculated probe direction intentionally differ from inconsistent mockup artwork.

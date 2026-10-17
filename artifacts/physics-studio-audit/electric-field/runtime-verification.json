@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "actualNativeInstanceMatrices": true,
+  "inspectionTimesSeconds": [
+    0,
+    0.37
+  ],
+  "markersChecked": 358,
+  "maxPositionErrorMetres": 1.2361388186617833e-7,
+  "minDirectionCosine": 0.9999999999880205,
+  "pausedRendererFramesDuring200ms": 0,
+  "diagramMarkerSpeedMetresPerSecond": 0.25,
+  "notChargeFlow": true,
+  "note": "Native marker coordinates and directions follow model field curves; sources and their fields remain static between configuration edits."
+}

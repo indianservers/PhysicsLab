@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": false,
+      "clippedCards": 0
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "clippedCards": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "clippedCards": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "clippedCards": 0
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false,
+      "clippedCards": 0
+    }
+  ],
+  "twoRealApertures": true,
+  "actualHoleGeometryInspected": true,
+  "actualOpeningFreeOfSolidTriangles": true,
+  "textureMaxChannelError": 0,
+  "actualCameraDirections": [
+    [
+      0,
+      -0.999999995,
+      0.00009999999949994454
+    ],
+    [
+      0,
+      -0.07974522228288998,
+      0.9968152785361251
+    ],
+    [
+      0.6868817658820612,
+      -0.169231739420218,
+      0.7067913822844396
+    ]
+  ],
+  "mainCameraUnaffectedByPreview": true,
+  "allNumericAndRangeInputs": true,
+  "farFieldValidityWarning": true,
+  "fresnelSlitAndCircle": true,
+  "threeLearningLevels": true,
+  "pauseResetZoom": true,
+  "recordingAndQuizzes": true,
+  "pointerKeyboardTouchDetector": true,
+  "assignmentLocks": true,
+  "spaRemounts": 3,
+  "disposedRenderers": 14,
+  "noRenderingAfterDisposal": true,
+  "circularFallback": true,
+  "extraLearningModes": 0,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": [],
+  "externalRequestsExcluded": true
+}

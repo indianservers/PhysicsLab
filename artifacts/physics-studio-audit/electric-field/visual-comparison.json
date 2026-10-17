@@ -1,0 +1,36 @@
+{
+  "route": "/electricity/electric-field",
+  "reference": "11_electricity/02_electric_field.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 230,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 14.572,
+  "ssim": 0.5988,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 14.589
+    },
+    "fieldProjection": {
+      "meanAbsoluteChannelDifference": 16.187
+    },
+    "sourceProbeDensity": {
+      "meanAbsoluteChannelDifference": 12.293
+    },
+    "readings": {
+      "meanAbsoluteChannelDifference": 16.342
+    },
+    "equation": {
+      "meanAbsoluteChannelDifference": 14.851
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 13.456
+    }
+  },
+  "note": "Diagnostics, not acceptance percentages. Four reference learning modes; original grid, charge/probe geometry and 3D field curves in XY projection. Common SI scale and corrected probe direction/numbers intentionally differ from the inconsistent mockup. Sidebar preserved. Glow/material detail, line rendering, typography and composition refinement remain open. No reference pixels are application assets."
+}

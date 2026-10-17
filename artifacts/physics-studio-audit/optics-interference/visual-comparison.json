@@ -1,0 +1,33 @@
+{
+  "route": "/optics/interference",
+  "reference": "10_optics/05_interference.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 222,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 18.308,
+  "ssim": 0.5491,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 15.197
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 20.818
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 18.427
+    },
+    "inspector": {
+      "meanAbsoluteChannelDifference": 21.217
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 12.35
+    }
+  },
+  "note": "Diagnostics, not acceptance percentages. Original reconstructed apparatus; four reference learning modes and three scene views. Profile and readings follow a finite-aperture scalar model rather than the mockup numeric extrema. Photographic materials/background, scene proportions, instrument detail and typography remain open. No reference pixels are application assets."
+}

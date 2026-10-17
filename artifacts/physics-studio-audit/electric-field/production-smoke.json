@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "route": "/electricity/electric-field",
+  "nativeCanvas": true,
+  "correctDefaultFieldAndDirection": true,
+  "xyzControlsAndDepthReadings": true,
+  "axialVectorUndefinedAzimuth": true,
+  "pointSingularityUndefined": true,
+  "densityIndependentOfField": true,
+  "collapsiblePanels": true,
+  "keyboardProbe": true,
+  "vectorToggleAndReset": true,
+  "recording": true,
+  "shortDesktopAndMobile": true,
+  "noClippingOrToolbarOverlap": true,
+  "fourReferenceModes": true,
+  "noGlobalExtraTabs": true,
+  "errors": [],
+  "failedLocalRequests": []
+}

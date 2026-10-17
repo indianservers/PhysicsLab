@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "independentReference": "SciPy scipy.special.jv",
+  "samples": 6001,
+  "argumentRange": [
+    0,
+    600
+  ],
+  "maxAbsoluteErrorJ0": 8.221132108410245e-13,
+  "maxAbsoluteErrorJ1": 8.62837579163056e-13
+}

@@ -52,3 +52,26 @@ Lenses final source type-check completed successfully (exit 0), closing the pend
 Curved Mirrors now has original native apparatus, signed real/virtual/infinite-image calculations, principal reflected rays and working reference controls. Sidebar preserved; four relevant modes only. Corrected real-image placement, finite-screen behavior in Mirrors/Lenses, large virtual-image framing and optional remote-font startup. Model/browser/native/control/shared regression checks passed. Full visual refinement and the remaining inventory are still open.
 
 Final Mirrors/Lenses release checks passed: 6,992 mirror model cases and 2,208 lens cases with finite-screen regressions; actual large-virtual-image framing; current-source type-check; full build/PWA; final bundle; both production smoke tests; 12 final responsive screenshots; touch; and stalled-font startup plus subsequent style activation. Short desktop toolbars fit 1920 x 912 without clipped inspector controls. Logs and JSON evidence are under mirrors/ and lenses/. The full studio goal remains open.
+
+
+## Interference checkpoint — 2026-10-17
+
+Interference's generic photographed placeholder has been replaced by an original native laser/slit/screen bench and a shared finite-aperture model. The reference layout, four modes and three view choices are implemented, the existing sidebar is preserved and no reference pixels are shipped. Six responsive captures, meaningful physics/interaction tests, rendered-scene checks and screenshot comparisons are saved under `optics-interference/`. Visual/material refinements remain open. Inventory recheck found 120 physical PNGs: 102 canonical references plus 18 byte-identical nested copies, still 17 studios (see `reference-file-recheck.json`). No overall completion claim.
+
+
+Final Interference gates: `npm run build` exited 0 (TypeScript, Vite and PWA); shared physics checks passed 581/581; production smoke passed with native canvas, modes/presets/views, detector/reset, mobile transport and unclipped short-desktop formula/toolbar. Build still warns about the existing large main chunk (5,382.96 kB) and broad PWA precache (1,247 entries / 326,559.94 KiB). These application-wide performance issues remain open. Per-lab `verification-status.json` records source hashes and terminal results.
+
+
+## Diffraction checkpoint - 2026-10-17
+
+Diffraction's generic photographed placeholder is replaced with original native apparatus, a parametric single slit/circular opening, a procedural close-up and a genuine Top/Side/Front camera preview. Four reference learning modes remain; unrelated global tabs are absent and sidebar JSX is preserved. Model/control/production checks, six responsive screenshots, native geometry/texture/motion evidence and comparison artifacts are saved under `diffraction/`. Scientific defaults and model assumptions are corrected. Visual/material refinement and the rest of the 102-reference / 17-studio program remain open. This checkpoint does not establish overall completion.
+
+
+## Coulomb Force checkpoint - 2026-10-17
+
+Coulomb Force's reflection-photo placeholder is replaced with an original native electrostatic bench, calculated field lines/equipotential surfaces/strength slice, correct signed forces, external fields and a genuine inverse-square graph. The four reference learning modes, controls and transport are reconstructed while sidebar JSX is preserved. Functional/model/production and six-size checks passed; comparison, motion and native-scene evidence are saved under `coulomb-force/`. A comparison-script output-folder mix-up was corrected and both affected comparison sets regenerated; Diffraction retains MAE 19.949 / SSIM 0.5723. Coulomb Force is a verified native-model checkpoint, with visual/material refinement still open. The full 102-reference / 17-studio goal is not complete.
+
+
+## Electric Field checkpoint - 2026-10-17
+
+Electric Field's decorative Bezier plot is replaced with an original native field projection driven by full XYZ source/probe superposition and adaptive RK4 trajectories. Source/probe coordinates, collapse controls, vector display, density, contributions and transport are functional. Point singularities and zero/coincident/axial cases are explicit. Four reference modes remain and sidebar JSX is preserved. Model/browser/runtime/production checks, six screenshots and visual comparisons are saved under `electric-field/`. Visual refinement and the remaining 102-reference / 17-studio work remain open; this checkpoint does not establish overall completion.

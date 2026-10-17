@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 3104,
+  "inspectionTimesSeconds": [
+    0,
+    0.37
+  ],
+  "view": "field-direction markers",
+  "note": "Actual rendered stage pixels; inspection time set through Experiment. These markers illustrate field direction, not physical charge flow."
+}

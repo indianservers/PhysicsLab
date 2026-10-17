@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 787,
+  "physicalTimesNs": [
+    0,
+    0.37
+  ],
+  "view": "paths",
+  "note": "Actual rendered stage pixels; paused time set through the Experiment control."
+}

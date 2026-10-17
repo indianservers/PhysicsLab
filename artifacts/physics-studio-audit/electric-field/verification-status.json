@@ -1,0 +1,25 @@
+{
+  "model": "passed - 144 configurations / 432 gradients / 67398 streamline segments and default convergence",
+  "browser": "passed - all controls, native 3D geometry, six sizes, singular/zero/depth cases, mouse/keyboard/touch, locks, remounts and fallback",
+  "runtime": "passed - 358 actual marker matrices; paused renderer idle",
+  "build": "passed - npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedPhysicsRegression": "passed - 581/581, exit 0",
+  "production": "passed - normal bundle, values/direction, XYZ/axial/singular cases, controls and short-desktop/mobile layout",
+  "sourceHashesSha256": {
+    "src/lib/electricFieldStudio.ts": "28770f75a55190a45f742743f29b13fe48d5237b0467e2e649e670aa3197157f",
+    "src/components/ElectricFieldCanvas.tsx": "b0f6fcf986e266e8623fdfca24b51acd73c6e023371663f213f5919692d196f5",
+    "src/pages/ElectricFieldStudioPage.tsx": "e842a229f732e3bbd981b0d29b347a5fa46bc09a38faa09e6d8f9db7fa02cb4e",
+    "src/pages/electric-field-studio.css": "ccdadc585c99a0da461f15de66e84937ea593301665cfa096495fe148227e8ac"
+  },
+  "visualComparison": {
+    "mae": 14.572,
+    "ssim": 0.5988,
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "mainWidthNormalized": true,
+    "acceptancePercentage": false,
+    "status": "visual refinement open"
+  },
+  "overallGoalComplete": false,
+  "remainingScope": "All 102 canonical references / 17 studios remain in scope. Visual refinements and remaining laboratories are not complete."
+}

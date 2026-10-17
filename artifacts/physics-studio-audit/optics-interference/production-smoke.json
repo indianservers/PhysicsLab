@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "route": "/optics/interference",
+  "nativeCanvas": true,
+  "spacingAndPreset": true,
+  "incoherence": true,
+  "threeViews": true,
+  "keyboardDetector": true,
+  "reset": true,
+  "mobileTransportNearScene": true,
+  "shortDesktopToolbarVisible": true,
+  "formulaUnclipped": true,
+  "extraTabs": 0,
+  "errors": []
+}
