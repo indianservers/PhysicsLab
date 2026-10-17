@@ -15,3 +15,19 @@ Wave Properties now has a native model-driven rebuild and per-control evidence i
 Superposition has passed model/control/shader checks, but its photographic water detail, exact header/type treatment and multi-browser/performance acceptance remain open. See superposition/report.md.
 
 Interference now has dedicated reconstruction and model/control evidence in interference/. The centimetre/metre mismatch and signed-phase error are corrected. Native water lighting/material appearance, exact type, multi-browser and broad performance acceptance remain open. Standing Waves, Sound Spectrum and Doppler Effect are the remaining Waves & Sound pages awaiting equivalent rebuilds.
+
+## Standing Waves checkpoint — 2026-10-17
+
+Standing Waves native rebuild is functionally/scientifically checked, but material/lighting realism and precise typography remain below the reference. Linear fixed-end model excludes finite moving-support forcing, damping and nonlinear effects. Quarter/real-time high-frequency sampling can alias; Resolve cycles is available and explained. Measured local headless performance is about 29 fps, with long-duration/cross-browser profiling open. Remaining Sound Spectrum, Doppler Effect and the broader 102-page visual/model/control acceptance remain open.
+
+## Sound Spectrum checkpoint — 2026-10-17
+
+Sound Spectrum has validated generated signals, FFT/STFT and working controls, but photographic material/lighting/detail and typography matching remain open. Calibration is assumed, microphone/device audio is not used, periodic digital noise is a finite approximation, and room acoustics/physical speaker transfer are not solved. Correct pure-sine plots intentionally differ from the contradictory mockup. Doppler Effect and the broader 102-page visual/model/control/performance acceptance remain open.
+
+## Doppler Effect checkpoint — 2026-10-17
+
+Doppler Effect now has a validated native rebuild, but photographic material/lighting/fine geometry and typography matching remain open. Correct wave spacing, frequency values and graph cycles differ from the contradictory mockup. Phase-only ideal model omits amplitude spreading, reflections, collisions and actual audio capture; exact source/observer coincidence has undefined instantaneous frequency. All six Waves & Sound labs now have native rebuild checkpoints, but their visual/material and broad cross-browser/performance acceptance remains open, alongside the rest of the 102-page inventory.
+
+## Reflection checkpoint — 2026-10-17
+
+Reflection native/physics/control rebuild is verified, with photographic material/lighting, instrument detail and typography matching still open. Physical plane-mirror rays/protractor centre intentionally correct inconsistent illustrated geometry. The mirror-control setup maintains incidence relative to its rotating normal; fixed-source mirror rotation is explained separately. Small printed graduations benefit from zoom on phones; numeric readings stay legible. Ideal n=1 ray model omits diffraction, polarization, reflectivity calibration and hardware obstruction. Remaining optics pages and the broader 102-page acceptance remain open.

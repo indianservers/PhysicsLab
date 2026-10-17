@@ -1,0 +1,106 @@
+{
+  "cases": 900,
+  "arrivalCases": 225,
+  "maxSpacingError": 1.6431300764452317e-14,
+  "maxRetardedResidual": 7.105427357601002e-15,
+  "maxFrequencyDerivativeError": 2.376291398122534e-10,
+  "maxArrivalPressureError": 0,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 580,
+      "lowerTop": 595,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 580,
+      "lowerTop": 595,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 835.15625,
+      "lowerTop": 850.15625,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 1061.15625,
+      "lowerTop": 1076.15625,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 1093,
+      "lowerTop": 1108,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "noteAxisOverlap": false,
+      "labelOverlap": false,
+      "overflow": 0,
+      "upperBottom": 1093,
+      "lowerTop": 1108,
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "performanceSamples": [
+    {
+      "frames": 60,
+      "meanFrameMs": 9.27000000004967,
+      "maxFrameMs": 14.199999999998909
+    }
+  ],
+  "checks": [
+    "signed source and observer conventions",
+    "front/rear frequency and wavelength",
+    "observer-independent spatial wavelength",
+    "stationary and equal-velocity limits",
+    "velocity-reversal symmetry",
+    "retarded sound-cone equation",
+    "frequency from retarded-time derivative",
+    "moving-source wavefront centers",
+    "radial propagation at c",
+    "crest arrival phase and timing",
+    "native source and observer/model synchronization",
+    "actual rendered ellipse projection/radius",
+    "comparison waveform/model synchronization",
+    "all numeric and range controls",
+    "keyboard input",
+    "zoom all four factors",
+    "time scrubbing and actual microphone recording",
+    "pass-by frequency branch",
+    "play/pause/reset and physical slow time",
+    "real-time track stop and restart",
+    "learning answer keys",
+    "assignment locks",
+    "six sizes",
+    "fallback model and zoom",
+    "three remounts"
+  ]
+}

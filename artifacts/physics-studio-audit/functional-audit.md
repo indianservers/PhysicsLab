@@ -12,3 +12,19 @@ The broader route sweep has 763 passing entries and 96 studio concept selections
 Evidence: lab-tabs.json, studio-navigation.json, astronomy-navigation.json, reference-tabs.json, work/verification.json, gravitational-field/verification.json and full-route/lesson-3d-results.json. Every other control/export still needs individual verification under the master specification.
 
 Superposition checkpoint (2026-10-17): original native ripple shader and three linked plots, reference-specific controls, actual clock and probe readings replaced the static generic layout. `superposition/verification.json` records 10,206 model cases, full visible-control checks, six responsive sizes, fallback, no shader/page errors and actual inspector/toolbar non-overlap. It is an explicitly declared cylindrical far-field approximation. `superposition/report.md` records limits; visual water/material/type fidelity and other Waves & Sound pages remain open.
+
+## Standing Waves checkpoint — 2026-10-17
+
+Standing Waves: all three numeric/range controls, harmonic dropdown, five mode buttons, learning dialogs, time scrubbing/recording, answer keys, reset/play/pause, three playback rates, native zoom, actual fullscreen with in-scene exit, assignment locks, SVG fallback and three remounts passed. Six responsive sizes pass overflow, readout/zoom clipping and panel-overlap checks. Chromium only; standing-waves/verification.json.
+
+## Sound Spectrum checkpoint — 2026-10-17
+
+Sound Spectrum: all five source choices, source-menu toggle, both numeric/range parameter controls, keyboard editing, actual camera zoom, playback/reset, physical-time scrubbing, slow/real-time choice, recording, learning answer keys, assignment locks, six responsive sizes, native/SVG synchronization and three remounts passed. Test scope/assumptions in sound-spectrum/verification.json and report.md; Chromium only.
+
+## Doppler Effect checkpoint — 2026-10-17
+
+Doppler Effect: all three numeric/range parameters, keyboard editing, actual camera/wavefront zoom at four factors, play/pause/reset, physical slow/real-time playback, finite-track stop/restart, time scrubbing, actual microphone records, pass-by/coincidence, learning answer keys, assignment locks, six responsive sizes, fallback and three remounts verified. Source/observer captions and note/axis overlap checks pass. Chromium only; see doppler-effect/verification.json.
+
+## Reflection checkpoint — 2026-10-17
+
+Reflection: all numeric/range/keyboard controls; primary/secondary top/side cameras; native zoom; light-packet play/pause/reset; physical time scrubbing; recorded model configurations retained on reset; quiz answers; assignment locks; six responsive sizes; startup WebGL fallback; and three genuine SPA Home/back remounts with two canvases verified. Last control remains visible. Evidence in reflection/verification.json and visible-packet-motion.json; Chromium only.

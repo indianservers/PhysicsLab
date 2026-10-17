@@ -1,0 +1,93 @@
+{
+  "cases": 540,
+  "maxPDEError": 2.9103830456733704e-11,
+  "maxEnergyError": 4.934324553889583e-16,
+  "maxQuadratureError": 3.33066907387547e-15,
+  "maxFiniteDifferenceError": 9.870019443832694e-8,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 552,
+      "controlsTop": 564,
+      "clippedReadings": []
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "stageBottom": 552,
+      "controlsTop": 564,
+      "clippedReadings": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "stageBottom": 552,
+      "controlsTop": 564,
+      "clippedReadings": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "stageBottom": 552,
+      "controlsTop": 564,
+      "clippedReadings": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "stageBottom": 615.1875,
+      "controlsTop": 627.1875,
+      "clippedReadings": []
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "stageBottom": 615.1875,
+      "controlsTop": 627.1875,
+      "clippedReadings": []
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "performanceSamples": [
+    {
+      "frames": 60,
+      "meanFrameMs": 34.478333333333346,
+      "maxFrameMs": 34.900000000001455
+    }
+  ],
+  "checks": [
+    "linear wave equation",
+    "finite-difference acceleration",
+    "fixed nodes",
+    "antinodes",
+    "small-slope bound",
+    "time periodicity",
+    "f lambda = v",
+    "harmonic scaling",
+    "tension and length scaling",
+    "energy conservation and spatial quadrature",
+    "four reference modes",
+    "all numeric/range inputs",
+    "harmonic dropdown and five mode buttons",
+    "instance matrix/model synchronization",
+    "play/pause/reset",
+    "three physical playback rates",
+    "native render zoom",
+    "actual fullscreen",
+    "experiment time and recording",
+    "prediction and challenge answer keys",
+    "explanation",
+    "assignment variable locks",
+    "six responsive layouts",
+    "WebGL fallback model and zoom",
+    "three route remounts"
+  ]
+}

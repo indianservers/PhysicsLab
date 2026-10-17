@@ -1,0 +1,8 @@
+{
+  "physicalTimeBeforeSeconds": 0,
+  "physicalTimeAfterSeconds": 3.7e-10,
+  "changedPixels": 157,
+  "stronglyChangedPixels": 153,
+  "maxChannelDifference": 196,
+  "scope": "Same paused apparatus and ray geometry; only model packet time changes."
+}

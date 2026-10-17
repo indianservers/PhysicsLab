@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "route": "/optics/reflection",
+  "nativeCanvases": 2,
+  "defaultReflectedAngle": "40.0°",
+  "nearNormalRotationRegression": true,
+  "currentModelExplanation": true,
+  "extraTabs": 0,
+  "errors": []
+}

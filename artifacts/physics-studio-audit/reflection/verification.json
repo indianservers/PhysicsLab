@@ -1,0 +1,102 @@
+{
+  "cases": 2853,
+  "packetCases": 22950,
+  "maxAngleError": 1.4210854715202004e-14,
+  "maxPlaneError": 7.849623728795052e-17,
+  "maxSpeedError": 8.226974657077335e-12,
+  "maxIsochronyError": 2.220446049250313e-16,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "upperBottom": 766,
+      "lowerTop": 781,
+      "controlsBottom": 411,
+      "lastLimitsBottom": 404,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "upperBottom": 766,
+      "lowerTop": 781,
+      "controlsBottom": 411,
+      "lastLimitsBottom": 404,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "upperBottom": 1095,
+      "lowerTop": 1110,
+      "controlsBottom": 1095,
+      "lastLimitsBottom": 1088,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "upperBottom": 1147,
+      "lowerTop": 1162,
+      "controlsBottom": 1147,
+      "lastLimitsBottom": 1140,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "upperBottom": 1494,
+      "lowerTop": 1506,
+      "controlsBottom": 1139,
+      "lastLimitsBottom": 1120,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "upperBottom": 1494,
+      "lowerTop": 1506,
+      "controlsBottom": 1139,
+      "lastLimitsBottom": 1120,
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "performanceSamples": [
+    {
+      "frames": 60,
+      "meanFrameMs": 12.605000000049676,
+      "maxFrameMs": 20.899999999999636
+    }
+  ],
+  "checks": [
+    "vector reflection and involution",
+    "unit directions and normal/tangential components",
+    "plane intersections and finite aperture",
+    "equal angles and all 0.1-degree mirror settings at boundary incidences",
+    "parallel-bundle isochronous path lengths",
+    "packet flight at c in SI time",
+    "fixed-source twice-mirror-angle reference check",
+    "native ray matrices and mirror rotation/model consistency",
+    "native packet/model consistency",
+    "all three numeric/range controls",
+    "both independent cameras and two views",
+    "actual camera zoom",
+    "photon play/pause/reset",
+    "physical time scrubbing",
+    "calculated table cases and recorded model configurations",
+    "reset retains records",
+    "prediction/challenge answer keys",
+    "assignment variable locks",
+    "six responsive sizes and last-control clipping",
+    "WebGL fallback and zoom",
+    "three SPA home/back remounts"
+  ]
+}

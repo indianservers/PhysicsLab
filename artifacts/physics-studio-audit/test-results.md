@@ -22,3 +22,19 @@ Wave Properties checkpoint (2026-10-17): native instanced wave machine, transver
 Superposition: reference layout and shared source-field/scene rebuild verified with 10,206 model cases, all visible controls, six responsive sizes, disabled unsupported fallback camera and three navigation cycles. Broad regression remains 581/581. Native water/material and type fidelity remain open; raw evidence in superposition/. This is a per-page milestone, not a completed global audit.
 
 Interference checkpoint: rebuilt the native tank/reference layout and fixed the centimetre/metre intensity error and unsigned-phase calculation. `interference/verification.json` includes 450 cases with 400-sample time averages each, controls, six responsive sizes, all-panel non-overlap/readout clipping checks, fallback and three remounts. Shared regression passed 581/581. Exact water material/type fidelity and full inventory acceptance remain open.
+
+## Standing Waves checkpoint — 2026-10-17
+
+Standing Waves: dedicated suite passed 540 parameter/time cases and browser checks for all controls, actual instance matrices, fullscreen, SVG fallback, three remounts and six sizes. Shared regression: 581/581 passed. Raw evidence in standing-waves/verification.json, verification.log and regression.log. Production build passed TypeScript, Vite and PWA, recorded in standing-waves/build.log. Production-preview smoke is separately recorded in production-smoke.json. This checkpoint does not recertify untouched pages.
+
+## Sound Spectrum checkpoint — 2026-10-17
+
+Sound Spectrum dedicated suite passed 720 signal/source/frequency/gain/time cases plus direct DFT, Parseval, Hann normalization and noise checks. Browser verified all sources/controls, actual cone-to-waveform signal consistency, six responsive sizes, three remounts and SVG fallback. Shared regression passed 581/581. Raw evidence in sound-spectrum/verification.json, verification.log and regression.log. Production build and production-preview smoke passed, including the updated noise labels/equation. Evidence: sound-spectrum/build.log and production-smoke.json. Untouched pages are not recertified.
+
+## Doppler Effect checkpoint — 2026-10-17
+
+Doppler Effect dedicated suite passed 900 motion/time cases and 225 crest-arrival cases, retarded-distance/frequency checks, all controls, actual source/microphone positions and ellipse projection, pass-by/coincidence, track-end restart, six sizes, fallback and remounts. Shared regression 581/581 passed. Evidence in doppler-effect/verification.json, verification.log and regression.log. Production build and final production-preview smoke passed, including coincidence handling and phone note position. Evidence: doppler-effect/build.log and production-smoke.json. Untouched pages are not recertified.
+
+## Reflection checkpoint — 2026-10-17
+
+Reflection dedicated suite passed 2,853 configuration checks and 22,950 packet samples, including all 0.1° mirror settings at boundary incidences and a reproduced/fixed acos roundoff regression. Actual native ray/packet matrices, visible pixel motion, both camera selectors, all controls, calculated/recorded table, six sizes, fallback and three SPA remounts verified. Shared regression 581/581 passed. Evidence in reflection/verification.json, normal-incidence-regression.json, visible-packet-motion.json and logs. Production build and final production-preview smoke passed, including the rotated-normal regression and current receiver-plane explanation. Evidence: reflection/build.log and production-smoke.json. Untouched pages are not recertified.

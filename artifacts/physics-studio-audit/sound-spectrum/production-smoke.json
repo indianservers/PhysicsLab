@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "route": "/motion/sound-spectrum",
+  "nativeCanvas": true,
+  "frequency": "440.0 Hz",
+  "extraTabs": 0,
+  "errors": []
+}

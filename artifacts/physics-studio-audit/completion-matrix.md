@@ -55,10 +55,10 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 09_waves_sound | wave properties | /motion/wave-properties | See wave-properties/visual-comparison.json | — | Native wave machine; 2,754 wave cases, actual particle-matrix and six responsive/control checks passed | Material/header/type refinement open |
 | 09_waves_sound | superposition | /motion/superposition | See superposition/visual-comparison.json | — | Native ripple shader; 10,206 model cases and six responsive/control checks passed | Water material/type refinement open |
 | 09_waves_sound | interference | /motion/interference | See interference/visual-comparison.json | — | Native source/detector tank; 450 time-average model cases and six responsive/control checks passed | Water material/type refinement open |
-| 09_waves_sound | standing waves | /motion/standing-waves | 24.304 | 0.5075 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 09_waves_sound | sound spectrum | /motion/sound-spectrum | 25.102 | 0.4767 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 09_waves_sound | doppler effect | /motion/doppler-effect | 21.32 | 0.5162 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 10_optics | reflection | /optics/reflection | 21.364 | 0.4767 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 09_waves_sound | standing waves | /motion/standing-waves | 19.263 | 0.5702 | 540 model cases; all controls, instance sampling, fullscreen, fallback, six sizes | Native rebuild verified; material/typography refinement open |
+| 09_waves_sound | sound spectrum | /motion/sound-spectrum | 20.398 | 0.5574 | 720 signal cases; direct DFT/Parseval/Hann, five sources, all controls, six sizes, fallback | Native rebuild verified; material/lighting/typography refinement open |
+| 09_waves_sound | doppler effect | /motion/doppler-effect | 19.663 | 0.5704 | 900 motion cases, 225 crest arrivals; all controls, rendered positions/fronts, six sizes, fallback | Native rebuild verified; photographic material/lighting/typography refinement open |
+| 10_optics | reflection | /optics/reflection | 16.693 | 0.6135 | 2,853 configuration checks, 22,950 packet samples; native matrices, two cameras, all controls, six sizes, fallback | Native rebuild verified; material/lighting/instrument-detail/typography refinement open |
 | 10_optics | refraction | /optics/refraction | 21.036 | 0.5079 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 10_optics | lenses | /optics/lenses | 23.717 | 0.4961 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 10_optics | mirrors | /optics/mirrors | 22.655 | 0.4961 | Reference-size capture and navigation inspection | Visual review/refinement open |

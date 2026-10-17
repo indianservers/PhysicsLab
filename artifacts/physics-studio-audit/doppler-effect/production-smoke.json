@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "route": "/motion/doppler-effect",
+  "nativeCanvas": true,
+  "frontFrequency": "876.7 Hz",
+  "wavefronts": true,
+  "coincidenceHandled": true,
+  "responsiveNote": true,
+  "extraTabs": 0,
+  "errors": []
+}

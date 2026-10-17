@@ -1,0 +1,102 @@
+{
+  "cases": 720,
+  "maxRmsError": 3.552713678800501e-15,
+  "maxDFTError": 9.506284648352903e-16,
+  "maxParsevalError": 3.086420008457935e-14,
+  "maxHannAmplitudeError": 7.138720126143028e-8,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": 0,
+      "workspaceBottom": 717,
+      "lowerTop": 729,
+      "lastReadingBottom": 886,
+      "panelBottom": 919,
+      "clipped": []
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": 0,
+      "workspaceBottom": 717,
+      "lowerTop": 729,
+      "lastReadingBottom": 886,
+      "panelBottom": 919,
+      "clipped": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "workspaceBottom": 1239,
+      "lowerTop": 1251,
+      "lastReadingBottom": 1412,
+      "panelBottom": 1451,
+      "clipped": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "workspaceBottom": 1239,
+      "lowerTop": 1251,
+      "lastReadingBottom": 1412,
+      "panelBottom": 1451,
+      "clipped": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "workspaceBottom": 1798,
+      "lowerTop": 1810,
+      "lastReadingBottom": 1971,
+      "panelBottom": 2010,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": 0,
+      "workspaceBottom": 1798,
+      "lowerTop": 1810,
+      "lastReadingBottom": 1971,
+      "panelBottom": 2010,
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "performanceSamples": [
+    {
+      "frames": 60,
+      "meanFrameMs": 6.896666666517649,
+      "maxFrameMs": 7.100000000000364
+    }
+  ],
+  "checks": [
+    "five source models",
+    "RMS normalization and pressure SPL",
+    "finite Fourier THD",
+    "frequency/wavelength/period",
+    "periodicity",
+    "gain zero normalization fix",
+    "FFT vs direct DFT",
+    "FFT Parseval power",
+    "Hann amplitude calibration",
+    "40 real short-time FFT records",
+    "all controls and source chooser",
+    "numeric and slider synchronization",
+    "keyboard parameter control",
+    "native cone/pressure/waveform synchronization",
+    "camera zoom",
+    "recording and time scrubbing",
+    "both playback rates",
+    "learning quiz answer keys",
+    "assignment variable locks",
+    "six responsive layouts",
+    "WebGL fallback signal and zoom",
+    "three remounts"
+  ]
+}

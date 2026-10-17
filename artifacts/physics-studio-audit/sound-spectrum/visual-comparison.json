@@ -1,0 +1,38 @@
+{
+  "route": "/motion/sound-spectrum",
+  "reference": "09_waves_sound/05_sound_spectrum.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 231,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 20.398,
+  "ssim": 0.5574,
+  "regions": {
+    "header_modes": {
+      "meanAbsoluteChannelDifference": 11.239
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 30.881
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 15.872
+    },
+    "plots": {
+      "meanAbsoluteChannelDifference": 25.393
+    },
+    "lower_cards": {
+      "meanAbsoluteChannelDifference": 17.508
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 11.35
+    }
+  },
+  "frozenTime": 0,
+  "source": "sine",
+  "gain": -6,
+  "frequency": 440,
+  "note": "Diagnostic metrics, not acceptance percentages. Remaining native PBR material/lighting and typography differences. An ideal sine produces one line and zero THD; target sine screenshot shows inconsistent added harmonics. FFT and spectrogram are calculated from actual generated samples, without illustrative fake peaks/noise floor."
+}

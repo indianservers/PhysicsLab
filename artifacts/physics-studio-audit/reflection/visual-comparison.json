@@ -1,0 +1,37 @@
+{
+  "route": "/optics/reflection",
+  "reference": "10_optics/01_reflection.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 200,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 16.693,
+  "ssim": 0.6135,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 16.531
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 18.775
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 18.222
+    },
+    "inspector": {
+      "meanAbsoluteChannelDifference": 16.15
+    },
+    "lower_cards": {
+      "meanAbsoluteChannelDifference": 17.235
+    }
+  },
+  "frozenTimeSeconds": 0,
+  "parameters": {
+    "incidentDegrees": 40,
+    "mirrorDegrees": 0,
+    "rays": 3
+  },
+  "note": "Diagnostic metrics, not acceptance percentages. Main reflector is a straight plane and impact/protractor centers coincide; reference photograph/illustration offsets the vertex and has different apparent ray angles. Native materials/lighting, instrument detail and font treatment remain below photographic target. No screenshot assets used in app."
+}

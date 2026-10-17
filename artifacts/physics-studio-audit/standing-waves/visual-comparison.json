@@ -1,0 +1,32 @@
+{
+  "route": "/motion/standing-waves",
+  "reference": "09_waves_sound/04_standing_waves.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 201,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 19.263,
+  "ssim": 0.5702,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 18.249
+    },
+    "modes": {
+      "meanAbsoluteChannelDifference": 11.847
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 31.308
+    },
+    "lower_panels": {
+      "meanAbsoluteChannelDifference": 12.723
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 8.511
+    }
+  },
+  "frozenTime": 0,
+  "note": "Diagnostic metrics, not acceptance percentages. Remaining PBR material/lighting and typography differences. Native instantaneous string is a single normal mode; ghost trails are prior analytical states. Readouts correct inconsistent reference values: T=25 N, mu=.005 kg/m, L=1 m, n=3 imply v=70.7107 m/s and f=106.066 Hz."
+}

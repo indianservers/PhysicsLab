@@ -1,0 +1,40 @@
+{
+  "route": "/motion/doppler-effect",
+  "reference": "09_waves_sound/06_doppler_effect.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebar": 235,
+  "currentSidebar": 201,
+  "sidebarExcluded": true,
+  "meanAbsoluteChannelDifference": 19.663,
+  "ssim": 0.5704,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 14.366
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 28.423
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 18.276
+    },
+    "waveform": {
+      "meanAbsoluteChannelDifference": 22.658
+    },
+    "readings": {
+      "meanAbsoluteChannelDifference": 13.659
+    },
+    "footer": {
+      "meanAbsoluteChannelDifference": 9.419
+    }
+  },
+  "frozenTime": 0,
+  "parameters": {
+    "source": 30,
+    "observer": 0,
+    "frequency": 800
+  },
+  "note": "Diagnostic metrics, not acceptance percentages. Native apparatus material/lighting and font treatment remain below target. Physically correct crest spacing, signed observer convention and sample frequencies intentionally differ from inconsistent illustrative reference arcs/curves/readouts. Default correct f+876.677, f-735.657 Hz; lambda+.39125, lambda-.46625 m."
+}

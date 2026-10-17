@@ -1503,27 +1503,80 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
+      },
+      {
+        "text": "n = 1",
+        "label": "Select harmonic 1",
+        "group": ""
+      },
+      {
+        "text": "n = 2",
+        "label": "Select harmonic 2",
+        "group": ""
+      },
+      {
+        "text": "n = 3",
+        "label": "Select harmonic 3",
+        "group": ""
+      },
+      {
+        "text": "n = 4",
+        "label": "Select harmonic 4",
+        "group": ""
+      },
+      {
+        "text": "n = 5",
+        "label": "Select harmonic 5",
+        "group": ""
+      },
+      {
+        "text": "⟳ Reset",
+        "label": "Reset",
+        "group": ""
+      },
+      {
+        "text": "▷Play",
+        "label": "Play",
+        "group": ""
+      },
+      {
+        "text": "−",
+        "label": "Zoom out",
+        "group": ""
+      },
+      {
+        "text": "＋",
+        "label": "Zoom in",
+        "group": ""
+      },
+      {
+        "text": "",
+        "label": "Fullscreen",
+        "group": ""
+      },
+      {
+        "text": "Next Challenge →",
+        "label": null,
+        "group": ""
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
-    ],
+    "assets": [],
     "dock": 0
   },
   {
@@ -1533,27 +1586,80 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
+      },
+      {
+        "text": "Sine Wave⌄",
+        "label": "Source Type",
+        "group": ""
+      },
+      {
+        "text": "Sine Wave",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Square Wave",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Triangle Wave",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "Sawtooth Wave",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "White Noise",
+        "label": null,
+        "group": ""
+      },
+      {
+        "text": "⟳Reset",
+        "label": "Reset",
+        "group": ""
+      },
+      {
+        "text": "▷Play",
+        "label": "Play",
+        "group": ""
+      },
+      {
+        "text": "⌕−",
+        "label": "Zoom out",
+        "group": ""
+      },
+      {
+        "text": "⌕+",
+        "label": "Zoom in",
+        "group": ""
+      },
+      {
+        "text": "Next Challenge →",
+        "label": null,
+        "group": ""
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
-    ],
+    "assets": [],
     "dock": 0
   },
   {
@@ -1563,27 +1669,40 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
+      },
+      {
+        "text": "⟳ Reset",
+        "label": "Reset",
+        "group": ""
+      },
+      {
+        "text": "▷ Play",
+        "label": "Play",
+        "group": ""
+      },
+      {
+        "text": "Next Challenge　→",
+        "label": null,
+        "group": ""
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/wave-machine.png"
-    ],
+    "assets": [],
     "dock": 0
   },
   {
@@ -1593,27 +1712,50 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": ""
+      },
+      {
+        "text": "⟳Reset",
+        "label": "Reset",
+        "group": ""
+      },
+      {
+        "text": "▷Play",
+        "label": "Play",
+        "group": ""
+      },
+      {
+        "text": "⌕−",
+        "label": "Zoom out",
+        "group": ""
+      },
+      {
+        "text": "⌕+",
+        "label": "Zoom in",
+        "group": ""
+      },
+      {
+        "text": "Next Challenge　→",
+        "label": null,
+        "group": ""
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
+    "assets": [],
     "dock": 0
   },
   {

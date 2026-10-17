@@ -1,0 +1,19 @@
+{
+  "case": {
+    "incident": 0,
+    "mirror": -44.8,
+    "rays": 3
+  },
+  "initialNativeAcos": {
+    "incident": 8.537736462515939e-7,
+    "reflected": 0.0000017075472925031877,
+    "error": 8.537736462515939e-7,
+    "verified": false
+  },
+  "stableAtan2": {
+    "incident": 0,
+    "reflected": 0,
+    "error": 0,
+    "verified": true
+  }
+}

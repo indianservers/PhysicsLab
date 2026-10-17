@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "route": "/motion/standing-waves",
+  "nativeCanvas": true,
+  "frequency": "106.1 Hz",
+  "extraTabs": 0,
+  "errors": []
+}
