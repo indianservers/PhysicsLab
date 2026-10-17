@@ -1,0 +1,6 @@
+{
+  "src/lib/currentWireStudio.ts": "3a3233e7a777d716bad5867300eef1a1b384caa0380fe18d82875c00c536553c",
+  "src/components/CurrentWireBench.tsx": "31803d6758b5e1eabd459a440d79db14fb3f6e4fa2d957a4e2c784bbf472944a",
+  "src/pages/CurrentWireStudioPage.tsx": "ab505a2299797a470bc09f43f339a620f3001a318d74f41ae50e7851d27fea54",
+  "src/pages/current-wire-studio.css": "1eb1d304eeb360c8d95c4ec4a0f2c119e2919c7df5553120cf9cdcc9f7791d66"
+}

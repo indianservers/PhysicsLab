@@ -2165,22 +2165,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "cwr-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "cwr-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "cwr-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "cwr-modes"
       }
     ],
     "assets": [],
@@ -2193,22 +2193,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "slx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "slx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "slx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "slx-modes"
       }
     ],
     "assets": [],
@@ -2221,22 +2221,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "idx-mode-tabs"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "idx-mode-tabs"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "idx-mode-tabs"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "idx-mode-tabs"
       }
     ],
     "assets": [],

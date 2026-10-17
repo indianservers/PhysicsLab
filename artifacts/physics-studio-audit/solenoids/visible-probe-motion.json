@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 13683,
+  "scanTimesSeconds": [
+    0,
+    4
+  ],
+  "note": "Mechanical Hall probe and its field readout follow the same finite solenoid model. Field traces remain static."
+}

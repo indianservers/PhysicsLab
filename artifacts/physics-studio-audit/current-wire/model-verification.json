@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "configurations": 32,
+  "states": 192,
+  "maxTangency": 4.1359030627651384e-17,
+  "maxDivergenceRelative": 2.061113504985464e-10,
+  "maxCurlRelative": 2.0383674167746104e-10,
+  "circulationConvergence": [
+    {
+      "steps": 16,
+      "integralTm": 0.000003673760950704861,
+      "relativeError": 0.025504641595567538
+    },
+    {
+      "steps": 32,
+      "integralTm": 0.000003745734182709661,
+      "relativeError": 0.006413148855794682
+    },
+    {
+      "steps": 64,
+      "integralTm": 0.000003763858188655128,
+      "relativeError": 0.0016056069643813674
+    },
+    {
+      "steps": 128,
+      "integralTm": 0.0000037683973883456983,
+      "relativeError": 0.00040154685032222807
+    },
+    {
+      "steps": 256,
+      "integralTm": 0.000003769532701119336,
+      "relativeError": 0.00010039578385590319
+    }
+  ],
+  "independentBiotSavartFiniteWireConvergence": [
+    {
+      "halfLengthMetres": 0.1,
+      "B_T": 0.000010733126292084973,
+      "relativeInfiniteWireError": 0.1055728089929189
+    },
+    {
+      "halfLengthMetres": 0.2,
+      "B_T": 0.000011641710001776167,
+      "relativeInfiniteWireError": 0.029857499851986123
+    },
+    {
+      "halfLengthMetres": 0.4,
+      "B_T": 0.000011907334520572914,
+      "relativeInfiniteWireError": 0.0077221232855905425
+    },
+    {
+      "halfLengthMetres": 0.8,
+      "B_T": 0.000011976630941797073,
+      "relativeInfiniteWireError": 0.0019474215169106466
+    },
+    {
+      "halfLengthMetres": 1.6,
+      "B_T": 0.000011994144913045387,
+      "relativeInfiniteWireError": 0.00048792391288442135
+    }
+  ],
+  "default": {
+    "current": 3,
+    "radius": 5,
+    "direction": 1,
+    "bx": 0,
+    "by": 0.000011999999999999999,
+    "bz": 0,
+    "B": 0.000011999999999999999,
+    "r": 0.05,
+    "angle": 1.5707963267948966,
+    "x": 0.05,
+    "y": 0,
+    "probeAngle": 0,
+    "signedCurrent": 3,
+    "circulation": 0.0000037699111843077517
+  },
+  "zeroDirectionUndefined": true,
+  "coreExcluded": true
+}

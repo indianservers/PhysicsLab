@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "correctDefault": true,
+  "nativeCompassHeadingsMatchModel": true,
+  "currentDirectionAndZeroField": true,
+  "parametersAndSliders": true,
+  "nativeSIPositionMatchesModel": true,
+  "probeMouseDragAndKeyboard": true,
+  "playPause": true,
+  "longPlayNoUpdateDepthWarning": true,
+  "zoom": true,
+  "predictionAndChallenge": true,
+  "CSV9ColumnsParsed": true,
+  "recordsSurviveReset": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 232,
+        "y": 96,
+        "width": 846,
+        "height": 790
+      },
+      "toolbar": {
+        "x": 232,
+        "y": 900,
+        "width": 1284,
+        "height": 95
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 232,
+        "y": 96,
+        "width": 1230,
+        "height": 678
+      },
+      "toolbar": {
+        "x": 232,
+        "y": 788,
+        "width": 1668,
+        "height": 95
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 213,
+        "y": 141.796875,
+        "width": 799,
+        "height": 500
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 651.796875,
+        "width": 799,
+        "height": 80
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 192,
+        "y": 141.796875,
+        "width": 564,
+        "height": 500
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 651.796875,
+        "width": 564,
+        "height": 140
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 244.1875,
+        "width": 370,
+        "height": 350
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 604.1875,
+        "width": 370,
+        "height": 116
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 269.375,
+        "width": 300,
+        "height": 350
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 629.375,
+        "width": 300,
+        "height": 116
+      }
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 1610,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

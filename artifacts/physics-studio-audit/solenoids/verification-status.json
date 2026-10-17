@@ -1,0 +1,90 @@
+{
+  "overallGoalComplete": false,
+  "route": "/magnetism/solenoids",
+  "status": "Native rebuild; visual refinement and real-material fidelity open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "touch-verification.json": true,
+    "fallback-verification.json": true,
+    "production-smoke.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    }
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1261,
+    "precacheKiB": 326935.94,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "correctFiniteDefault": true,
+    "keyboardSlider": true,
+    "coreAndZeroCurrent": true,
+    "threeViews": true,
+    "zoomAndFullscreen": true,
+    "playPause": true,
+    "finiteEndCSV9ColumnsParsed": true,
+    "profileMatchesRecord": true,
+    "recordsSurviveReset": true,
+    "shortDesktopBreakpointAndMobile": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/solenoidStudio.ts": "11909517c10f8e5395842b51d9fb82fac65765d04fbb7189a8e940f728e456b4",
+    "src/components/SolenoidBench.tsx": "3bf665f29835fa8af5a4e98faabd93d0acffaace0f775888cfcad99f1171dbc4",
+    "src/pages/SolenoidStudioPage.tsx": "d21a39e3642044ecc4138b70b6b6cd75957809b4b6ae6720f45d1acd36829815",
+    "src/pages/solenoid-studio.css": "459fc80494abfae88aa7768908bd66e521b36ba3eafcd4119d0b43f95daf4eec"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 22.852,
+      "ssim": 0.5222
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 22.818,
+      "ssim": 0.5217
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 193,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 13.56
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 39.548
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 15.252
+      },
+      "profile": {
+        "meanAbsoluteChannelDifference": 11.507
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 13.817
+      },
+      "equation": {
+        "meanAbsoluteChannelDifference": 13.48
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 18.813
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "modelLimit": "Finite current sheet plus uniform magnetization closed at centre; not an exact nonuniform or nonlinear material solution."
+}

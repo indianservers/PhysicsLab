@@ -1,0 +1,35 @@
+{
+  "before": {
+    "meanAbsoluteChannelDifference": 24.011,
+    "ssim": 0.5295
+  },
+  "after": {
+    "meanAbsoluteChannelDifference": 20.192,
+    "ssim": 0.5995
+  },
+  "sidebarExcluded": true,
+  "targetSidebarWidth": 209,
+  "currentSidebarWidth": 201,
+  "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 20.885
+    },
+    "stage": {
+      "meanAbsoluteChannelDifference": 26.916
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 14.511
+    },
+    "readings": {
+      "meanAbsoluteChannelDifference": 13.865
+    },
+    "equation": {
+      "meanAbsoluteChannelDifference": 16.552
+    },
+    "toolbar": {
+      "meanAbsoluteChannelDifference": 10.041
+    }
+  },
+  "sidebarSourceUnchanged": true
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "correctSignedDefault": true,
+  "keyboardGraduatedSlider": true,
+  "polarityAndWithdrawalSetup": true,
+  "threeZooms": true,
+  "playPause": true,
+  "sixRapidPauseResumeChecks": true,
+  "CSV14ColumnsParsed": true,
+  "FaradayAndPowerAndPlotAgree": true,
+  "manualRestZeroEmf": true,
+  "zeroSpeedDisabled": true,
+  "recordsSurviveReset": true,
+  "shortDesktopBreakpointMobileBounds": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

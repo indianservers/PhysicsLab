@@ -1,0 +1,92 @@
+{
+  "overallGoalComplete": false,
+  "route": "/magnetism/induction",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "touch-verification.json": true,
+    "fallback-verification.json": true,
+    "production-smoke.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    }
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1262,
+    "precacheKiB": 326973.52,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "correctSignedDefault": true,
+    "keyboardGraduatedSlider": true,
+    "polarityAndWithdrawalSetup": true,
+    "threeZooms": true,
+    "playPause": true,
+    "sixRapidPauseResumeChecks": true,
+    "CSV14ColumnsParsed": true,
+    "FaradayAndPowerAndPlotAgree": true,
+    "manualRestZeroEmf": true,
+    "zeroSpeedDisabled": true,
+    "recordsSurviveReset": true,
+    "shortDesktopBreakpointMobileBounds": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/inductionStudio.ts": "875f17cc54d4a39b4956bb8635c7fbdc9fde25759205db1626fb28d44267191a",
+    "src/components/InductionBench.tsx": "2aa9350600581fc00b0c8bde61fb7fc411a0ebb0b5133993445d9b511e16391d",
+    "src/pages/InductionStudioPage.tsx": "b0779e0fe537c3c2518e015a09c5315e622d5f7efb8c583eee94323936f8b51a",
+    "src/pages/induction-studio.css": "57c41e6d87d85845a81da926d3270f63736a02e0722fb29fbbfe3ccd5eca259b"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 29.53,
+      "ssim": 0.5002
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 25.379,
+      "ssim": 0.5423
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 228,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 16.869
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 38.913
+      },
+      "flux": {
+        "meanAbsoluteChannelDifference": 16.728
+      },
+      "emf": {
+        "meanAbsoluteChannelDifference": 18.023
+      },
+      "lenz": {
+        "meanAbsoluteChannelDifference": 21.623
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 20.064
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 15.741
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "modelLimit": "Coaxial ideal dipole, finite-width air coil, prescribed motion and purely resistive circuit; finite-bar corrections, coil self-inductance and meter inertia omitted."
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "visibleCalculatedFallback": true,
+  "currentDirection": true,
+  "zeroFieldHasNoNeedleOrLines": true,
+  "probeKeyboard": true,
+  "zoom": true,
+  "reset": true
+}

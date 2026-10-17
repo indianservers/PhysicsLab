@@ -1,0 +1,84 @@
+{
+  "overallGoalComplete": false,
+  "route": "/magnetism/current-wire",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "fallback-verification.json": true,
+    "touch-verification.json": true,
+    "production-smoke.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    }
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1260,
+    "precacheKiB": 326898.75,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "correctDefault": true,
+    "keyboardSlider": true,
+    "currentDirection": true,
+    "zoom": true,
+    "playPause": true,
+    "CSV9ColumnsParsed": true,
+    "recordsSurviveReset": true,
+    "shortDesktopMobile": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/currentWireStudio.ts": "3a3233e7a777d716bad5867300eef1a1b384caa0380fe18d82875c00c536553c",
+    "src/components/CurrentWireBench.tsx": "31803d6758b5e1eabd459a440d79db14fb3f6e4fa2d957a4e2c784bbf472944a",
+    "src/pages/CurrentWireStudioPage.tsx": "ab505a2299797a470bc09f43f339a620f3001a318d74f41ae50e7851d27fea54",
+    "src/pages/current-wire-studio.css": "1eb1d304eeb360c8d95c4ec4a0f2c119e2919c7df5553120cf9cdcc9f7791d66"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 24.011,
+      "ssim": 0.5295
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 20.192,
+      "ssim": 0.5995
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 209,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 20.885
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 26.916
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 14.511
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 13.865
+      },
+      "equation": {
+        "meanAbsoluteChannelDifference": 16.552
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 10.041
+      }
+    },
+    "sidebarSourceUnchanged": true
+  }
+}

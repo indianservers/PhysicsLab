@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "actualTouchProbeDrag": true,
+  "playPauseTouch": true,
+  "currentDirection": true,
+  "reset": true,
+  "errors": []
+}

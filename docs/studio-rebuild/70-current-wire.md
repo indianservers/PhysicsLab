@@ -2,8 +2,12 @@
 
 - Mockup: `12_magnetism/03_current_wire.png`
 - Route: `/magnetism/current-wire`
-- Status: VERIFIED
+- Status: Native rebuild; all current verification gates pass, visual refinement remains open.
 
-Implemented a straight current-carrying wire simulation with current, wire-direction, and probe-radius controls; live magnetic field strength, radius, and current readings; concentric field-line SVG, right-hand-rule direction cue, equation, reset, modes, and challenge dialog. Uses `B = μ₀I/(2πr)`.
+The previous VERIFIED label overstated visual and functional completion. Its scalar field formula was already correct, but the old SVG did not reverse field direction and did not provide the reference apparatus, compass behavior, playback, or genuine experiment recording.
 
-Validation: production build succeeds; direct route load passes; default field is 12.00 μT at 3.0 A and 5.0 cm, matching the reference; current changes update readings and reset restores defaults; no page console errors; all required responsive viewports have no horizontal overflow; screenshot captured at 1536x1024.
+The rebuild preserves the original sidebar and retains only Observe, Predict, Experiment and Explain. An original Three.js bench, calculated field loops, eight outer compasses and a movable cyan probe replace the flat diagram. Native compass positions, headings, readings and CSV values share the same SI field model. An original SVG top view and right-hand illustration replace the missing reference insets. No reference pixels are used as application assets.
+
+See [current evidence](../../artifacts/physics-studio-audit/current-wire/report.md) and [gate status](../../artifacts/physics-studio-audit/current-wire/verification-status.json). A build gate is only passed after its process exits successfully; the full 102-reference / 17-studio goal remains active.
+
+Final TypeScript/Vite/PWA build and normal production checks pass. Direct model, six-size browser/formula bounds, controlled clock, actual touch, WebGL fallback and scoped resource cleanup checks pass. MAE 20.192 / SSIM 0.5995 are diagnostics; apparatus and hand fidelity remain open.

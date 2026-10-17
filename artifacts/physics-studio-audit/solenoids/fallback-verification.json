@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "visibleCalculatedFallback": true,
+  "unsupported3DViewsDisabledAndExplained": true,
+  "zeroFieldHasNoTraces": true,
+  "probeKeyboard": true,
+  "zoom": true,
+  "resetMaintainsFallback": true
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 6006,
+  "scanTimesSeconds": [
+    0,
+    2
+  ],
+  "note": "Mechanical probe position and compass heading follow the same ideal wire model. Field loops remain static."
+}

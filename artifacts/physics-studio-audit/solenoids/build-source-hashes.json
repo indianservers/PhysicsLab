@@ -1,0 +1,6 @@
+{
+  "src/lib/solenoidStudio.ts": "11909517c10f8e5395842b51d9fb82fac65765d04fbb7189a8e940f728e456b4",
+  "src/components/SolenoidBench.tsx": "3bf665f29835fa8af5a4e98faabd93d0acffaace0f775888cfcad99f1171dbc4",
+  "src/pages/SolenoidStudioPage.tsx": "d21a39e3642044ecc4138b70b6b6cd75957809b4b6ae6720f45d1acd36829815",
+  "src/pages/solenoid-studio.css": "459fc80494abfae88aa7768908bd66e521b36ba3eafcd4119d0b43f95daf4eec"
+}

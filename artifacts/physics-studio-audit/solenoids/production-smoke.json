@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "correctFiniteDefault": true,
+  "keyboardSlider": true,
+  "coreAndZeroCurrent": true,
+  "threeViews": true,
+  "zoomAndFullscreen": true,
+  "playPause": true,
+  "finiteEndCSV9ColumnsParsed": true,
+  "profileMatchesRecord": true,
+  "recordsSurviveReset": true,
+  "shortDesktopBreakpointAndMobile": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

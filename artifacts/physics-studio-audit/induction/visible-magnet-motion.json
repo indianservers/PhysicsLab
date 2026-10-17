@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 11257,
+  "simulationTimesSeconds": [
+    0,
+    0.2
+  ],
+  "note": "Magnet position and instantaneous galvanometer needle follow the same induction state. Native stage only; plots are not included."
+}

@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "correctFiniteDefault": true,
+  "turnCountAndSteppers": true,
+  "allFourCorePresetsAndSelector": true,
+  "currentSliderAndZero": true,
+  "probeMouseDragAndKeyboard": true,
+  "nativeSIAndProfileMatchModel": true,
+  "playPauseLongRun": true,
+  "threeReferenceViews": true,
+  "zoomAndFullscreen": true,
+  "predictionAndGradedChallenge": true,
+  "CSV9ColumnsParsed": true,
+  "recordsSurviveReset": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 211,
+        "y": 86,
+        "width": 872,
+        "height": 580
+      },
+      "toolbar": {
+        "x": 216,
+        "y": 916,
+        "width": 1309,
+        "height": 81
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 211,
+        "y": 86,
+        "width": 1256,
+        "height": 468
+      },
+      "toolbar": {
+        "x": 216,
+        "y": 799,
+        "width": 1693,
+        "height": 81
+      }
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "stage": {
+        "x": 211,
+        "y": 86,
+        "width": 649,
+        "height": 456
+      },
+      "toolbar": {
+        "x": 216,
+        "y": 787,
+        "width": 1024,
+        "height": 81
+      }
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "stage": {
+        "x": 213,
+        "y": 127.453125,
+        "width": 1025,
+        "height": 470
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 607.453125,
+        "width": 1025,
+        "height": 81
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 213,
+        "y": 127.453125,
+        "width": 799,
+        "height": 470
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 607.453125,
+        "width": 799,
+        "height": 155
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 192,
+        "y": 126.40625,
+        "width": 564,
+        "height": 470
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 606.40625,
+        "width": 564,
+        "height": 137
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 234.828125,
+        "width": 370,
+        "height": 350
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 594.828125,
+        "width": 370,
+        "height": 234
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 234.828125,
+        "width": 300,
+        "height": 350
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 594.828125,
+        "width": 300,
+        "height": 234
+      }
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 1820,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

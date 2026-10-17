@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "configurations": 64,
+  "axisStates": 576,
+  "nearSheetError": 5.302758061214084e-13,
+  "challengeCases": 12,
+  "maxConstitutiveResidual": 1.267848002631151e-13,
+  "independentBiotSavartConvergence": [
+    {
+      "axialSlices": 32,
+      "azimuthSegments": 512,
+      "maxRelativeVectorError": 0.00234526982084603
+    },
+    {
+      "axialSlices": 64,
+      "azimuthSegments": 512,
+      "maxRelativeVectorError": 0.0005873492502876044
+    },
+    {
+      "axialSlices": 128,
+      "azimuthSegments": 512,
+      "maxRelativeVectorError": 0.00014689857589077277
+    },
+    {
+      "axialSlices": 256,
+      "azimuthSegments": 512,
+      "maxRelativeVectorError": 0.000036728418432726386
+    }
+  ],
+  "maxAzimuthError": 5.8489069369743275e-15,
+  "maxDivergence": 1.6515595107013389e-9,
+  "maxCurl": 6.55167157705355e-10,
+  "calculatedTraces": 12,
+  "lineSegments": 2316,
+  "maxTangency": 0.00021472261510359272,
+  "scanReflection": [
+    {
+      "t": 0,
+      "x": 0
+    },
+    {
+      "t": 1,
+      "x": 0.01999999999999999
+    },
+    {
+      "t": 5,
+      "x": 0.09999999999999992
+    },
+    {
+      "t": 6,
+      "x": 0.08000000000000002
+    },
+    {
+      "t": 10,
+      "x": 0
+    },
+    {
+      "t": 15,
+      "x": -0.1
+    },
+    {
+      "t": 16,
+      "x": -0.07999999999999999
+    },
+    {
+      "t": 20,
+      "x": 0
+    }
+  ],
+  "default": {
+    "turns": 800,
+    "current": 1.5,
+    "mu": 200,
+    "n": 5000,
+    "alpha": 0.9544799780350297,
+    "demag": 0.04552002196497029,
+    "M": 141627.83523533322,
+    "K": 149127.83523533322,
+    "muEffective": 19.883711364711093,
+    "x": 0,
+    "B": 0.17886913234940643,
+    "centerB": 0.17886913234940643,
+    "longCoilB": 1.8849555921538763,
+    "direction": 1
+  },
+  "coreModelIsApproximate": true
+}

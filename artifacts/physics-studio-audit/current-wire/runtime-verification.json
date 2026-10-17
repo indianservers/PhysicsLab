@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "probeAngleRadians": 0.29999999999999993,
+      "positionMetres": [
+        0.047766824456280305,
+        0.014776010333066976,
+        0
+      ],
+      "headingRadians": 1.8707963267948966
+    },
+    {
+      "fps": 30,
+      "probeAngleRadians": 0.29999999999999916,
+      "positionMetres": [
+        0.04776682445628032,
+        0.01477601033306694,
+        0
+      ],
+      "headingRadians": 1.8707963267948957
+    },
+    {
+      "fps": 60,
+      "probeAngleRadians": 0.29999999999999716,
+      "positionMetres": [
+        0.047766824456280346,
+        0.014776010333066844,
+        0
+      ],
+      "headingRadians": 1.8707963267948937
+    }
+  ],
+  "maxHeadingError": 2.886579864025407e-15,
+  "nativeProbeSIPositionAndCompassMatchModel": true,
+  "fieldLinesStatic": true,
+  "geometryReused": true,
+  "scanRateRadiansPerSecond": 0.3,
+  "pausedRenderFrames": 0,
+  "resumePreservesPosition": true,
+  "hiddenTabNoCatchup": true,
+  "zeroCurrentHasNoDirection": true,
+  "noClockAfterRouteUnmount": true
+}

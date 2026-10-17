@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "rates": [
+    {
+      "fps": 10,
+      "timeSeconds": 0.20000000000000007,
+      "xMetres": 0.17,
+      "emfVolts": -0.08149829748687774
+    },
+    {
+      "fps": 30,
+      "timeSeconds": 0.1999999999999996,
+      "xMetres": 0.1699999999999999,
+      "emfVolts": -0.08149829748687769
+    },
+    {
+      "fps": 60,
+      "timeSeconds": 0.1999999999999981,
+      "xMetres": 0.1699999999999995,
+      "emfVolts": -0.08149829748687745
+    }
+  ],
+  "maxMeterError": 0,
+  "nativePositionAndInstantaneousMeterAndPlotsMatch": true,
+  "clockSecondsPerWallSecond": 0.2,
+  "geometryReused": true,
+  "pausedRenderFrames": 0,
+  "centreHasFluxAndZeroEmf": true,
+  "emfReversesAfterCentre": true,
+  "automaticEndStopsMotionAndEmfAndClock": true,
+  "replay": true,
+  "hiddenTabNoCatchup": true,
+  "highSignalAutorangeUnclipped": true,
+  "noClockAfterRouteUnmount": true
+}

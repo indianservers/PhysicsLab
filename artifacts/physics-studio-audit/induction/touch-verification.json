@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actualTouchMagnetDrag": true,
+  "manualPlacementZeroEmf": true,
+  "playPauseTouch": true,
+  "polaritySelector": true,
+  "zoomTouch": true,
+  "reset": true,
+  "errors": []
+}

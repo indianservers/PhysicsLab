@@ -2,8 +2,10 @@
 
 - Mockup: `12_magnetism/05_induction.png`
 - Route: `/magnetism/induction`
-- Status: VERIFIED
+- Status: Native rebuild; current verification gates pass, visual refinement open.
 
-Implemented a moving bar magnet and coil with magnet-speed, coil-turn, and motion-direction controls; live magnetic flux and induced EMF readings; coil and flux SVG, Faraday/Lenz equation, reset, modes, and challenge dialog. Uses `ε = −N dΦ/dt` with `Φ = BA` and the induced EMF magnitude proportional to speed, turns, and field area.
+The old VERIFIED claim is withdrawn. The old page used a constant Φ = BA while setting ε = NBA v, which has units V·m rather than V and does not differentiate that displayed flux. The rebuilt page uses the position-dependent mean flux of a coaxial dipole through a finite-width coil, ε = −N(dΦ/dx)v, and a declared 1 kΩ ideal resistive circuit. Magnet pose, poles, velocity, galvanometer, plots, Lenz direction and CSV share the same state. Normal orientation now has N on the right so the Into Coil (N first) label is true.
 
-Validation: production build succeeds; direct route load passes; defaults reproduce Φ = 3.06 mWb and ε = 153 mV; speed changes EMF and reset restores defaults; no page console errors; all required responsive viewports have no horizontal overflow; screenshot captured at 1536x1024.
+The original sidebar is preserved. Only Observe, Predict, Experiment and Explain are mode tabs. The relevant setup selector changes pole orientation; all three zoom buttons, speed/turn inputs, direction setups, mouse/touch/keyboard placement, playback, prediction, challenge and recording/export work. There is no added 3D tab or fullscreen action. Native apparatus and decorative chalkboard textures are independently generated; no reference crop is imported.
+
+See [current evidence](../../artifacts/physics-studio-audit/induction/report.md) and [gate status](../../artifacts/physics-studio-audit/induction/verification-status.json). The dipole/resistive-drive assumptions are explicit. MAE 25.379 / SSIM 0.5423 are diagnostics; photographic scene refinement and other visual differences remain open. The full 102-reference / 17-studio goal remains active.

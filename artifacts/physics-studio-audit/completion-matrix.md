@@ -72,9 +72,9 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 11_electricity | capacitors | /electricity/capacitors | 23.663 | 0.5799 | Native rebuild; model/browser/runtime evidence; fresh build and production smoke pass | Visual refinement open |
 | 12_magnetism | field lines | /magnetism/field-lines | 27.026 | 0.4337 | Direct dipole model / six-size browser / native runtime / touch / fallback / build / production pass | Native rebuild; visual refinement open (SSIM below baseline) |
 | 12_magnetism | lorentz force | /magnetism/lorentz-force | 21.991 | 0.5419 | Direct model / six-size browser / native runtime / touch / fallback / build / production pass | Native rebuild; visual refinement open |
-| 12_magnetism | current wire | /magnetism/current-wire | 23.946 | 0.5296 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 12_magnetism | solenoids | /magnetism/solenoids | 22.77 | 0.5224 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 12_magnetism | induction | /magnetism/induction | 29.475 | 0.499 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 12_magnetism | current wire | /magnetism/current-wire | 20.192 | 0.5995 | Native SI field/compass model, 32 configurations/192 states, six-size browser/formula bounds, runtime/touch/fallback/CSV, final build and normal production pass | Native rebuild; visual refinement open |
+| 12_magnetism | solenoids | /magnetism/solenoids | 22.818 | 0.5217 | Finite current-sheet / approximate uniform-core model, 64 configurations / 576 axial states, eight-size browser, runtime/touch/fallback/CSV, final build and normal production pass | Native rebuild; visual and real-material refinement open |
+| 12_magnetism | induction | /magnetism/induction | 25.379 | 0.5423 | SI dipole/finite-coil Faraday model, 384 cases and independent convergence, eight-size browser, native runtime/touch/fallback/CSV, final build and normal production pass | Native rebuild; visual refinement open |
 | 12_magnetism | electromagnets | /magnetism/electromagnets | 31.817 | 0.4935 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 13_electronics | semiconductors | /electronics/semiconductors | 25.847 | 0.541 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 13_electronics | diodes | /electronics/diodes | 29.724 | 0.5594 | Reference-size capture and navigation inspection | Visual review/refinement open |

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "xMetres": 0.01999999999999999,
+      "probeB_T": 0.17739424784790003
+    },
+    {
+      "fps": 30,
+      "xMetres": 0.01999999999999999,
+      "probeB_T": 0.17739424784790003
+    },
+    {
+      "fps": 60,
+      "xMetres": 0.019999999999999768,
+      "probeB_T": 0.17739424784790003
+    }
+  ],
+  "maxDirectionError": 4.996003610813204e-16,
+  "nativeSIPositionAndProbeBMatchSharedState": true,
+  "fieldLinesStatic": true,
+  "probeGeometryReused": true,
+  "scanSpeedMetresPerSecond": 0.02,
+  "pausedRenderFrames": 0,
+  "reflectionAndResume": true,
+  "hiddenTabNoCatchup": true,
+  "zeroCurrentNoField": true,
+  "noClockAfterRouteUnmount": true
+}

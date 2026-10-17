@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "cases": 384,
+  "maxDerivativeError": 5.651556560924587e-10,
+  "maxPowerError": 1.9558692366093218e-16,
+  "meanFluxQuadratureConvergence": [
+    {
+      "slices": 8,
+      "maxRelativeFluxError": 0.00028920093018988365
+    },
+    {
+      "slices": 16,
+      "maxRelativeFluxError": 0.00007224824904080839
+    },
+    {
+      "slices": 32,
+      "maxRelativeFluxError": 0.000018058819082170144
+    },
+    {
+      "slices": 64,
+      "maxRelativeFluxError": 0.000004514502162067546
+    },
+    {
+      "slices": 128,
+      "maxRelativeFluxError": 0.0000011286128791949496
+    }
+  ],
+  "independentFiniteLoopDipoleLimit": [
+    {
+      "sourceRadius_m": 0.008,
+      "maxRelativeDipoleLimitError": 0.00900209461883238
+    },
+    {
+      "sourceRadius_m": 0.004,
+      "maxRelativeDipoleLimitError": 0.0022268501113829236
+    },
+    {
+      "sourceRadius_m": 0.002,
+      "maxRelativeDipoleLimitError": 0.0005553355967681845
+    },
+    {
+      "sourceRadius_m": 0.001,
+      "maxRelativeDipoleLimitError": 0.0001388294302559315
+    }
+  ],
+  "faradayIntegralConvergence": [
+    {
+      "steps": 20,
+      "errorVoltSeconds": 0.000003188335589167021
+    },
+    {
+      "steps": 40,
+      "errorVoltSeconds": 7.976800600953404e-7
+    },
+    {
+      "steps": 80,
+      "errorVoltSeconds": 1.9945707750018693e-7
+    },
+    {
+      "steps": 160,
+      "errorVoltSeconds": 4.9866582698190887e-8
+    }
+  ],
+  "nonlinearControlMapping": true,
+  "closedFormTrajectoryAndStop": true,
+  "manualRestHasZeroEmf": true,
+  "default": {
+    "speed": 0.25,
+    "turns": 200,
+    "direction": 1,
+    "x": 0.12,
+    "velocity": 0.25,
+    "polarity": 1,
+    "moment": 8,
+    "flux": 0.00001518615852978293,
+    "gradient": 0.00041130146952614457,
+    "fluxRate": 0.00010282536738153614,
+    "emf": -0.02056507347630723,
+    "current": -0.00002056507347630723,
+    "force": -0.0000016916889883436602,
+    "power": 4.229222470859151e-7,
+    "inducedDirection": -1,
+    "elapsed": 0,
+    "duration": 0.6400000000000001,
+    "finished": false,
+    "hold": false,
+    "start": 0.12
+  }
+}
