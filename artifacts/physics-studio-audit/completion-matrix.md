@@ -66,7 +66,7 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 10_optics | diffraction | /optics/diffraction | 19.949 | 0.5723 | 240 model cases; independent SciPy; all controls, six sizes, native geometry/texture/motion, lifecycle, production/fallback passed | Native rebuild; visual/material refinement open |
 | 11_electricity | coulomb force | /electricity/coulomb-force | 20.01 | 0.5446 | 343 model cases; native field/force/contour/strength checks; all controls, six sizes, lifecycle/fallback/production passed | Native rebuild; visual/material refinement open |
 | 11_electricity | electric field | /electricity/electric-field | 14.572 | 0.5988 | 144 3D model cases, 432 gradients; all controls, native vectors/curves, six sizes, lifecycle/fallback/production passed | Native rebuild; visual refinement open |
-| 11_electricity | electric potential | /electricity/electric-potential | 20.333 | 0.5817 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 11_electricity | electric potential | /electricity/electric-potential | 19.224 | 0.5299 | Model / controls / native signs-picking-runtime / six sizes / build / production passed | Native refinement; visual acceptance open (both metrics better versus prior native checkpoint) |
 | 11_electricity | current | /electricity/current | 24.863 | 0.4901 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 11_electricity | circuits | /electricity/circuits | 35.997 | 0.4766 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 11_electricity | capacitors | /electricity/capacitors | 25.089 | 0.5479 | Reference-size capture and navigation inspection | Visual review/refinement open |

@@ -1,0 +1,84 @@
+{
+  "route": "/electricity/electric-potential",
+  "reference": "11_electricity/03_electric_potential.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 204,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "sidebarHeaderNavPixelMAE": 0.004516307352128247,
+  "sidebarHeaderNavMaxChannelDifference": 1,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 19.224,
+  "ssim": 0.5299,
+  "before": {
+    "meanAbsoluteChannelDifference": 20.398,
+    "ssim": 0.5805
+  },
+  "previousNativeRebuild": {
+    "route": "/electricity/electric-potential",
+    "reference": "11_electricity/03_electric_potential.png",
+    "viewport": [
+      1536,
+      1024
+    ],
+    "targetSidebarWidth": 204,
+    "currentSidebarWidth": 201,
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "sidebarHeaderNavPixelMAE": 0.004516307352128247,
+    "sidebarHeaderNavMaxChannelDifference": 1,
+    "mainWidthNormalized": true,
+    "meanAbsoluteChannelDifference": 24.214,
+    "ssim": 0.5268,
+    "before": {
+      "meanAbsoluteChannelDifference": 20.398,
+      "ssim": 0.5805
+    },
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 18.538
+      },
+      "surface": {
+        "meanAbsoluteChannelDifference": 30.851
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 18.072
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 22.338
+      },
+      "equations": {
+        "meanAbsoluteChannelDifference": 13.344
+      },
+      "transport": {
+        "meanAbsoluteChannelDifference": 14.646
+      }
+    },
+    "note": "Diagnostic metrics, not completion percentages. Native calculated z-slice potential mesh/contours, no reference pixels as assets. Correct kV-scale values differ from the inconsistent mockup. Contours use 5 kV spacing. Surface values clipped at \u00b150 kV; numerical readings unsoftened. Material/contour color, perspective, typography and composition refinement remain open."
+  },
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 17.348
+    },
+    "surface": {
+      "meanAbsoluteChannelDifference": 22.81
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 16.809
+    },
+    "readings": {
+      "meanAbsoluteChannelDifference": 19.118
+    },
+    "equations": {
+      "meanAbsoluteChannelDifference": 15.339
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 12.408
+    }
+  },
+  "note": "Diagnostic metrics, not completion percentages. Native calculated z-slice potential mesh/contours, no reference pixels as assets. Correct kV-scale values differ from the inconsistent mockup. Contours use 5 kV spacing. Surface values clipped at \u00b1100 kV; numerical readings unsoftened. Signed contours, physical grid walls, unclipped default peaks, calculated source projections, SVG controls and larger equations refine the reference match. Perspective/topology and typography refinement remain open."
+}

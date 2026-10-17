@@ -75,3 +75,11 @@ Coulomb Force's reflection-photo placeholder is replaced with an original native
 ## Electric Field checkpoint - 2026-10-17
 
 Electric Field's decorative Bezier plot is replaced with an original native field projection driven by full XYZ source/probe superposition and adaptive RK4 trajectories. Source/probe coordinates, collapse controls, vector display, density, contributions and transport are functional. Point singularities and zero/coincident/axial cases are explicit. Four reference modes remain and sidebar JSX is preserved. Model/browser/runtime/production checks, six screenshots and visual comparisons are saved under `electric-field/`. Visual refinement and the remaining 102-reference / 17-studio work remain open; this checkpoint does not establish overall completion.
+
+## Electric Potential checkpoint - 2026-10-17
+
+Electric Potential now uses an original calculated native surface/contours/probe driven by point-charge SI physics. The four reference modes and existing sidebar remain. All visible controls are functional; model, six-size browser, controlled native runtime, fallback, cleanup, production, build and 581 shared physics gates passed. Evidence is saved under `electric-potential/`. Both image metrics worsened versus the old static SVG, so this is a truthful native/physics/function checkpoint with visual refinement open, not overall completion.
+
+## Electric Potential visual refinement - 2026-10-17
+
+Electric Potential visual refinement adds unclipped default peaks, sign-colored native contours, coordinate-linked source projections, physical grid walls, target-style header/formula/readouts and SVG controls, a functional light/dark view and clearer mobile overlays. Sidebar and four reference modes are preserved. Model, native/CSV/metric-picking, six-size, fallback, resource disposal, timed runtime, final build, normal production and 581 shared physics checks passed. Main-region MAE 19.224 / SSIM 0.5299, versus prior native 24.214 / 0.5268: both metrics improved versus the prior native checkpoint; SSIM remains below the static baseline and visual acceptance remains open. Full goal completion is not established.

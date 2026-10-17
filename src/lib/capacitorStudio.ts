@@ -1,3 +1,21 @@
-export type CapacitorInput={area:number;distance:number;er:number;voltage:number};export const CAP_DEFAULTS={area:50,distance:2,er:3.9,voltage:5};export function capSettings(v:CapacitorInput){return{area:Math.max(1,Math.min(100,Number(v.area)||1)),distance:Math.max(.5,Math.min(10,Number(v.distance)||.5)),er:Math.max(1,Math.min(10,Number(v.er)||1)),voltage:Math.max(0,Math.min(12,Number(v.voltage)||0))}}export function capSolution(v:CapacitorInput){const C=v.er*8.854e-12*(v.area*10)/(v.distance*1e-3);return{C,charge:C*v.voltage,energy:.5*C*v.voltage*v.voltage}}
-
-
+import {EPSILON_0} from '../experiments/capacitor-lab/capacitorPhysics';
+export {EPSILON_0};
+/** UI dimensions: cm², mm, relative permittivity, volts, and MΩ. All calculations convert to SI. */
+export type CapacitorInput={area:number;distance:number;er:number;voltage:number;resistance?:number};
+export const CAP_DEFAULTS:CapacitorInput={area:50,distance:2,er:3.9,voltage:5,resistance:150};
+export const CAP_INITIAL_PHASE=4;
+export const CAP_MATERIALS=[{name:'Air',er:1},{name:'Plastic',er:2.5},{name:'Glass',er:3.9},{name:'Ceramic',er:7}];
+const bounded=(v:number|undefined,a:number,b:number,f:number)=>v!==undefined&&Number.isFinite(Number(v))?Math.max(a,Math.min(b,Number(v))):f;
+export function capSettings(v:CapacitorInput){return{area:bounded(v.area,1,100,50),distance:bounded(v.distance,.5,10,2),er:bounded(v.er,1,10,3.9),voltage:bounded(v.voltage,0,12,5),resistance:bounded(v.resistance,1,1000,150)}}
+/** Ideal, fully filled parallel plates; closed-form charging through a series resistor from Q(0)=0. */
+export function capSolution(value:CapacitorInput,time=Infinity){const input=capSettings(value),area=input.area*1e-4,distance=input.distance*1e-3,R=input.resistance*1e6,C=EPSILON_0*input.er*area/distance,tau=R*C,t=Number.isNaN(time)?0:Math.max(0,time),remaining=Math.exp(-t/tau),fraction=-Math.expm1(-t/tau),capacitorVoltage=input.voltage*fraction,charge=C*capacitorVoltage,energy=.5*C*capacitorVoltage**2,current=input.voltage/R*remaining,E=capacitorVoltage/distance,D=EPSILON_0*input.er*E,P=EPSILON_0*(input.er-1)*E,sourceWork=input.voltage*charge,resistorHeat=.5*C*input.voltage**2*(-Math.expm1(-2*t/tau));return{input,area,distance,R,C,tau,time:t,fraction,capacitorVoltage,charge,energy,current,E,D,P,boundCharge:P*area,freeDensity:charge/area,chargeInfinity:C*input.voltage,energyInfinity:.5*C*input.voltage**2,sourceWork,resistorHeat,side:Math.sqrt(area),uniformApproximation:distance/Math.sqrt(area)<=.1}}
+export type CapacitorSolution=ReturnType<typeof capSolution>;
+export type CapacitorGraph='charge'|'voltage'|'current'|'energy';
+export function capCurve(input:CapacitorInput,kind:CapacitorGraph,horizon:number,n=160){return Array.from({length:n+1},(_,i)=>{const t=horizon*i/n,s=capSolution(input,t);return{t,value:kind==='voltage'?s.capacitorVoltage:kind==='current'?s.current:kind==='energy'?s.energy:s.charge}})}
+/** Gap enlargement is solely a display transform; capacitance/field/time always use physical metres. */
+export const CAP_GAP_SCALE=45;
+export function capDiagram(s:CapacitorSolution){const gap=s.distance*CAP_GAP_SCALE,side=s.side,plateThickness=.002,baseWidth=gap+.08,chargeCount=s.charge===0?0:Math.min(64,Math.max(1,Math.ceil(s.charge/2.5e-11))),dipoleCount=s.P===0?0:Math.min(24,Math.max(1,Math.ceil(s.boundCharge/2.5e-11)));return{gap,side,plateThickness,baseWidth,chargeCount,dipoleCount,plateY:.027+side/2,powerX:-gap/2-.065}}
+export type CapQuantity='capacitance'|'charge'|'energy'|'current';
+/** Engineering display retains nonzero values over the complete supported geometry/time range. */
+export function capMeasurement(value:number,quantity:CapQuantity){const suffix=quantity==='capacitance'?'F':quantity==='charge'?'C':quantity==='current'?'A':'J',choices=quantity==='current'?[{factor:1e-3,prefix:'m'},{factor:1e-6,prefix:'μ'},{factor:1e-9,prefix:'n'},{factor:1e-12,prefix:'p'},{factor:1e-15,prefix:'f'},{factor:1e-18,prefix:'a'}]:quantity==='capacitance'?[{factor:1e-6,prefix:'μ'},{factor:1e-9,prefix:'n'},{factor:1e-12,prefix:'p'},{factor:1e-15,prefix:'f'},{factor:1e-18,prefix:'a'}]:[{factor:1e-9,prefix:'n'},{factor:1e-12,prefix:'p'},{factor:1e-15,prefix:'f'},{factor:1e-18,prefix:'a'}],zero=quantity==='capacitance'||quantity==='current'?choices[2]:choices[0];if(value===0)return{factor:zero.factor,unit:zero.prefix+suffix,text:'0.000 '+zero.prefix+suffix};const choice=choices.find(c=>Math.abs(value)>=c.factor*(quantity==='capacitance'?1:.1));return choice?{factor:choice.factor,unit:choice.prefix+suffix,text:(value/choice.factor).toPrecision(4)+' '+choice.prefix+suffix}:{factor:1,unit:suffix,text:value.toExponential(3)+' '+suffix}}
+export function capTimeUnit(seconds:number){return seconds>=1?{factor:1,unit:'s'}:seconds>=1e-3?{factor:1e3,unit:'ms'}:seconds>=1e-6?{factor:1e6,unit:'μs'}:{factor:1e9,unit:'ns'}}

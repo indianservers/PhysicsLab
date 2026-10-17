@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "allControlsAndPresets": true,
+  "fourGraphQuantities": true,
+  "fourLearningModesAndThreeEquationViews": true,
+  "correctSIUnits": true,
+  "engineeringUnitsAvoidFalseZeros": true,
+  "nanosecondGraphScaleAndInspection": true,
+  "secondsGraphScaleAtHighRC": true,
+  "nativePlateAreaAndGap": true,
+  "fullyFilledDielectric": true,
+  "fieldArrowsPositiveToNegative": true,
+  "polarizationNegativeLeftPositiveRight": true,
+  "maxFieldCoordinateError": 1.7881393449270533e-9,
+  "mouseKeyboardTouchKnob": true,
+  "pauseIdleFrames": 0,
+  "recordsCSVNumericallyVerified": true,
+  "challengeAndPrediction": true,
+  "fringingWarning": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 217,
+        "y": 132,
+        "width": 912,
+        "height": 531
+      },
+      "transport": {
+        "x": 217,
+        "y": 930,
+        "width": 1305,
+        "height": 51
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 217,
+        "y": 132,
+        "width": 1296,
+        "height": 454
+      },
+      "transport": {
+        "x": 217,
+        "y": 818,
+        "width": 1689,
+        "height": 51
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 217,
+        "y": 166.296875,
+        "width": 793,
+        "height": 500
+      },
+      "transport": {
+        "x": 217,
+        "y": 678.296875,
+        "width": 793,
+        "height": 51
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 196,
+        "y": -95.703125,
+        "width": 558,
+        "height": 500
+      },
+      "transport": {
+        "x": 196,
+        "y": 416.296875,
+        "width": 558,
+        "height": 112
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": -16.71875,
+        "width": 370,
+        "height": 330
+      },
+      "transport": {
+        "x": 10,
+        "y": 323.28125,
+        "width": 370,
+        "height": 94
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 60.28125,
+        "width": 300,
+        "height": 330
+      },
+      "transport": {
+        "x": 10,
+        "y": 400.28125,
+        "width": 300,
+        "height": 94
+      }
+    }
+  ],
+  "assignmentLocks": true,
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 242,
+  "fallback": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": []
+}

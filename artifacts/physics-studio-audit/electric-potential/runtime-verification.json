@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "boundaryReflectionAndResumeDirection": true,
+  "beforePause": 1.9800000000000004,
+  "resumed": 1.9700000000000006,
+  "steps": 30,
+  "stepSeconds": 0.016666666666666666,
+  "elapsedSimulationSeconds": 0.5,
+  "expectedPositionMetres": 0.1,
+  "actualNativeProbePositionMetres": 0.10000000000000142,
+  "nativeErrorMetres": 1.4155343563970746e-15,
+  "pauseStopsProbe": true,
+  "speedMetresPerSecond": 0.2,
+  "probeScanNotFreeChargeDynamics": true
+}

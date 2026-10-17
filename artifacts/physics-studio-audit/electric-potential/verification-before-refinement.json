@@ -1,0 +1,30 @@
+{
+  "model": "passed - 225 configurations / 675 derivatives, four mesh resolutions and contour convergence",
+  "browser": "passed - native vertices, layers, layouts, singularities, six sizes, mouse/touch/keyboard, assignment locks, recording/export, remounts and fallback",
+  "runtime": "passed - native probe scan 0.1 m in 0.5 simulation seconds, pause idle",
+  "build": "passed - npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedPhysicsRegression": "passed - 581/581, exit 0",
+  "production": "passed - normal bundle, physical readings, layouts, reference, singularity, playback, recording, desktop/mobile",
+  "sourceHashesSha256": {
+    "src/lib/electricPotentialStudio.ts": "68f2bd0fc1f3dba7ba305b1aa2b700b2dece8fc182e82400408c94fe60d1aff3",
+    "src/components/PotentialSurface.tsx": "e257fe81dfaa6ef8d0df5ead64f14538495a714d3aa32685f040ef791a87a136",
+    "src/pages/ElectricPotentialStudioPage.tsx": "360cf878701816353e5e7e004154c90807dd51f4dbc87667e594463efa6bea79",
+    "src/pages/electric-potential-studio.css": "2288ed4d8df1900ff549be610b86581a5da4768b3a1141b0a828359eb18068ed"
+  },
+  "visualComparison": {
+    "mae": 24.214,
+    "ssim": 0.5268,
+    "before": {
+      "meanAbsoluteChannelDifference": 20.398,
+      "ssim": 0.5805
+    },
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "mainWidthNormalized": true,
+    "acceptancePercentage": false,
+    "status": "visual refinement open; both global metrics worse than the decorative baseline"
+  },
+  "overallGoalComplete": false,
+  "remainingScope": "All 102 canonical references / 17 studios remain in scope. Visual refinements and remaining labs are incomplete.",
+  "archiveNote": "Historical checkpoint; source hashes and metrics apply to the previous implementation, not the current files."
+}

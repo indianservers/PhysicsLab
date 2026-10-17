@@ -1977,22 +1977,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "epv-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "epv-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "epv-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "epv-modes"
       }
     ],
     "assets": [],

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "correctPicofaradDefault": true,
+  "RCReplayPause": true,
+  "recordsSurviveReset": true,
+  "engineeringUnitsAtSmallCapacitance": true,
+  "nanosecondAxis": true,
+  "fringingWarning": true,
+  "materialButtons": true,
+  "fourGraphQuantities": true,
+  "threeEquationViews": true,
+  "keyboardVoltageKnob": true,
+  "customMaterialShortDesktopAndMobile": true,
+  "fourReferenceLearningModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": []
+}

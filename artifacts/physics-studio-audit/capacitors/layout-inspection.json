@@ -1,0 +1,226 @@
+[
+  {
+    "width": 1536,
+    "height": 1024,
+    "overflow": false,
+    "clipped": [],
+    "stage": {
+      "x": 217,
+      "y": 132,
+      "width": 912,
+      "height": 531,
+      "top": 132,
+      "right": 1129,
+      "bottom": 663,
+      "left": 217
+    },
+    "transport": {
+      "x": 217,
+      "y": 930,
+      "width": 1305,
+      "height": 51,
+      "top": 930,
+      "right": 1522,
+      "bottom": 981,
+      "left": 217
+    },
+    "knob": {
+      "x": 264.234375,
+      "y": 495.1875,
+      "width": 33,
+      "height": 33,
+      "top": 495.1875,
+      "right": 297.234375,
+      "bottom": 528.1875,
+      "left": 264.234375
+    }
+  },
+  {
+    "width": 1920,
+    "height": 912,
+    "overflow": false,
+    "clipped": [
+      {
+        "name": "cps-panel cps-control cps-material",
+        "w": 411,
+        "sw": 411,
+        "h": 203,
+        "sh": 208
+      }
+    ],
+    "stage": {
+      "x": 217,
+      "y": 132,
+      "width": 1296,
+      "height": 454,
+      "top": 132,
+      "right": 1513,
+      "bottom": 586,
+      "left": 217
+    },
+    "transport": {
+      "x": 217,
+      "y": 818,
+      "width": 1689,
+      "height": 51,
+      "top": 818,
+      "right": 1906,
+      "bottom": 869,
+      "left": 217
+    },
+    "knob": {
+      "x": 513.328125,
+      "y": 440.0625,
+      "width": 33,
+      "height": 33,
+      "top": 440.0625,
+      "right": 546.328125,
+      "bottom": 473.0625,
+      "left": 513.328125
+    }
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "clipped": [],
+    "stage": {
+      "x": 217,
+      "y": 166.296875,
+      "width": 793,
+      "height": 500,
+      "top": 166.296875,
+      "right": 1010,
+      "bottom": 666.296875,
+      "left": 217
+    },
+    "transport": {
+      "x": 217,
+      "y": 678.296875,
+      "width": 793,
+      "height": 51,
+      "top": 678.296875,
+      "right": 1010,
+      "bottom": 729.296875,
+      "left": 217
+    },
+    "knob": {
+      "x": 232.03125,
+      "y": 506.03125,
+      "width": 33,
+      "height": 33,
+      "top": 506.03125,
+      "right": 265.03125,
+      "bottom": 539.03125,
+      "left": 232.03125
+    }
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "overflow": false,
+    "clipped": [],
+    "stage": {
+      "x": 196,
+      "y": 224.296875,
+      "width": 558,
+      "height": 500,
+      "top": 224.296875,
+      "right": 754,
+      "bottom": 724.296875,
+      "left": 196
+    },
+    "transport": {
+      "x": 196,
+      "y": 736.296875,
+      "width": 558,
+      "height": 112,
+      "top": 736.296875,
+      "right": 754,
+      "bottom": 848.296875,
+      "left": 196
+    },
+    "knob": {
+      "x": 201.96875,
+      "y": 532.46875,
+      "width": 33,
+      "height": 33,
+      "top": 532.46875,
+      "right": 234.96875,
+      "bottom": 565.46875,
+      "left": 201.96875
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "clipped": [],
+    "stage": {
+      "x": 10,
+      "y": 303.28125,
+      "width": 370,
+      "height": 330,
+      "top": 303.28125,
+      "right": 380,
+      "bottom": 633.28125,
+      "left": 10
+    },
+    "transport": {
+      "x": 10,
+      "y": 643.28125,
+      "width": 370,
+      "height": 94,
+      "top": 643.28125,
+      "right": 380,
+      "bottom": 737.28125,
+      "left": 10
+    },
+    "knob": {
+      "x": 13.703125,
+      "y": 506.203125,
+      "width": 23,
+      "height": 23,
+      "top": 506.203125,
+      "right": 36.703125,
+      "bottom": 529.203125,
+      "left": 13.703125
+    }
+  },
+  {
+    "width": 320,
+    "height": 740,
+    "overflow": false,
+    "clipped": [],
+    "stage": {
+      "x": 10,
+      "y": 303.28125,
+      "width": 300,
+      "height": 330,
+      "top": 303.28125,
+      "right": 310,
+      "bottom": 633.28125,
+      "left": 10
+    },
+    "transport": {
+      "x": 10,
+      "y": 643.28125,
+      "width": 300,
+      "height": 94,
+      "top": 643.28125,
+      "right": 310,
+      "bottom": 737.28125,
+      "left": 10
+    },
+    "knob": {
+      "x": 11,
+      "y": 496.796875,
+      "width": 23,
+      "height": 23,
+      "top": 496.796875,
+      "right": 34,
+      "bottom": 519.796875,
+      "left": 11
+    }
+  }
+]

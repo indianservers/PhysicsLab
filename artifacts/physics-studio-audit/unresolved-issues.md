@@ -68,3 +68,11 @@ Coulomb Force still differs from the reference photograph in background, metalli
 ## Electric Field checkpoint - 2026-10-17
 
 Electric Field visual refinements remain: source glow/material detail, line brightness/arrow rendering, typography, composition and annotation placement need further reference review. Correct physical positions, a consistent metric scale, downward-right default vector and computed contributions differ from contradictory mockup artwork. This is a static scalar vacuum model of held point charges, omitting induced charge, dielectric boundaries, radiation and retardation. The scene is an XY projection of 3D data; projected curves can overlap at different depths. Representative line counts/colors are not calibrated flux or field-strength measurements. Probe arrow length is normalized; marker animation is a direction illustration, not current or charge speed. Additional browser engines, long-duration GPU/FPS/memory and responsive focus order remain unverified. The complete 102-reference / 17-studio objective remains active.
+
+## Electric Potential checkpoint - 2026-10-17
+
+Electric Potential native physics/function gates passed, but visual fidelity is not complete: MAE 24.214 / SSIM 0.5268 are both worse than its static baseline. Warm-area distribution, native mesh/contour styling, perspective, glyphs, typography, glow, mobile overlay crowding and axis labels need further refinement. Correct SI values and z-slice plot intentionally differ from inconsistent mockup readings. Other browser engines, long-running GPU/memory and broad accessibility focus-order checks remain unverified. The rest of the full 102-reference / 17-studio program remains open.
+
+## Electric Potential visual refinement - 2026-10-17
+
+Main-region MAE 19.224 / SSIM 0.5299, versus prior native 24.214 / 0.5268: both metrics improved versus the prior native checkpoint; SSIM remains below the static baseline and visual acceptance remains open. Physical source topology/values and coherent axes differ from the inconsistent mockup. Perspective, exact contour placement, typography, lighting/glow and overlay composition need further refinement. Six default viewport checks do not establish all parameter/zoom combinations or broad accessibility/cross-engine acceptance. The remaining 102-reference / 17-studio program stays open.

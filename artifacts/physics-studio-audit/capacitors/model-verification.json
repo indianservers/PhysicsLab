@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "configurations": 720,
+  "states": 5040,
+  "derivatives": 4320,
+  "displayChecks": 20160,
+  "maxEnergyBalanceRelativeError": 2.1353720781087026e-16,
+  "maxCurrentDerivativeRelativeError": 1.717623998354111e-11,
+  "defaultSteady": {
+    "input": {
+      "area": 50,
+      "distance": 2,
+      "er": 3.9,
+      "voltage": 5,
+      "resistance": 150
+    },
+    "area": 0.005,
+    "distance": 0.002,
+    "R": 150000000,
+    "C": 8.632833117480001e-11,
+    "tau": 0.012949249676220001,
+    "time": "Infinity",
+    "fraction": 1,
+    "capacitorVoltage": 5,
+    "charge": 4.3164165587400007e-10,
+    "energy": 1.079104139685e-9,
+    "current": 0,
+    "E": 2500,
+    "D": 8.63283311748e-8,
+    "P": 6.419286164280001e-8,
+    "boundCharge": 3.209643082140001e-10,
+    "freeDensity": 8.63283311748e-8,
+    "chargeInfinity": 4.3164165587400007e-10,
+    "energyInfinity": 1.079104139685e-9,
+    "sourceWork": 2.15820827937e-9,
+    "resistorHeat": 1.079104139685e-9,
+    "side": 0.07071067811865475,
+    "uniformApproximation": true
+  },
+  "initialAtFourTau": {
+    "input": {
+      "area": 50,
+      "distance": 2,
+      "er": 3.9,
+      "voltage": 5,
+      "resistance": 150
+    },
+    "area": 0.005,
+    "distance": 0.002,
+    "R": 150000000,
+    "C": 8.632833117480001e-11,
+    "tau": 0.012949249676220001,
+    "time": 0.051796998704880005,
+    "fraction": 0.9816843611112658,
+    "capacitorVoltage": 4.908421805556329,
+    "charge": 4.237358631756766e-10,
+    "energy": 1.039937175303862e-9,
+    "current": 6.105212962911393e-10,
+    "E": 2454.2109027781644,
+    "D": 8.474717263513531e-8,
+    "P": 6.3017128369716e-8,
+    "boundCharge": 3.1508564184858e-10,
+    "freeDensity": 8.474717263513532e-8,
+    "chargeInfinity": 4.3164165587400007e-10,
+    "energyInfinity": 1.079104139685e-9,
+    "sourceWork": 2.118679315878383e-9,
+    "resistorHeat": 1.078742140574521e-9,
+    "side": 0.07071067811865475,
+    "uniformApproximation": true
+  },
+  "quadrature": [
+    {
+      "intervals": 20,
+      "heatRelativeError": 0.00013955800623411145,
+      "sourceWorkRelativeError": 0.000008846737900660367
+    },
+    {
+      "intervals": 40,
+      "heatRelativeError": 0.000008846737900976595,
+      "sourceWorkRelativeError": 5.54894873485218e-7
+    },
+    {
+      "intervals": 80,
+      "heatRelativeError": 5.548948731640138e-7,
+      "sourceWorkRelativeError": 3.471189084923123e-8
+    },
+    {
+      "intervals": 160,
+      "heatRelativeError": 3.47118906630455e-8,
+      "sourceWorkRelativeError": 2.1699768874672706e-9
+    }
+  ],
+  "areaConversionCorrect": true,
+  "oldHundredThousandMultiplierRemoved": true,
+  "fullyFilledUniformDielectric": true,
+  "fieldAndPolarizationRelations": true,
+  "allFourCurvesMonotonic": true,
+  "diagramGapEnlargement": 45,
+  "fringingRegimeWarning": true
+}

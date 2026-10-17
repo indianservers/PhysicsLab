@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "route": "/electricity/electric-potential",
+  "normalProductionBundle": true,
+  "nativeCanvas": true,
+  "correctDefaults": true,
+  "threeLayouts": true,
+  "referenceShiftPreservesField": true,
+  "singularityExplicit": true,
+  "heightUpdatesPhysics": true,
+  "layersReset": true,
+  "playPauseProbeScan": true,
+  "recordingSurvivesReset": true,
+  "shortDesktopAndMobile": true,
+  "defaultMobileSourcesWithinScene": true,
+  "fourReferenceModes": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocalRequests": []
+}

@@ -47,12 +47,11 @@ export function computeCapacitor(raw: CapacitorInput): CapacitorResult {
     activeVoltage = equivalentCapacitance > 0 ? charge / equivalentCapacitance : 0,
 
     energy = 0.5 * equivalentCapacitance * activeVoltage ** 2,
-    electricField = activeVoltage / i.spacing,
+    voltagePerCapacitor = i.arrangement === "series" ? activeVoltage / i.count : activeVoltage,
+    electricField = voltagePerCapacitor / i.spacing,
     energyDensity = 0.5 * i.dielectric * EPSILON_0 * electricField ** 2,
     plateForce =
       0.5 * i.dielectric * EPSILON_0 * i.plateArea * electricField ** 2,
-    voltagePerCapacitor =
-      i.arrangement === "series" ? activeVoltage / i.count : activeVoltage,
     chargePerCapacitor =
       i.arrangement === "series" ? charge : singleCapacitance * activeVoltage;
   return {

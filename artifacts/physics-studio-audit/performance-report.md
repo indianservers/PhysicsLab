@@ -55,3 +55,11 @@ Coulomb Force memoizes model/streamlines/contours and skips unchanged parameter 
 ## Electric Field checkpoint - 2026-10-17
 
 Electric Field memoizes source geometry/curves separately from probe coordinates and inspection time. Probe-only changes reuse curve GPU buffers; source/density changes replace and dispose them. Instanced fixed/moving arrows share geometry and instance colors. Original grid/glow resources, observers, renderer and context are disposed on unmount; parent RAF is cancelled. Three SPA remounts verified seven disposed renderers with no further renders. Runtime inspected 358 actual instance matrices: max coordinate error 1.24e-07 m, minimum local-E direction cosine 1.0000000000. Paused main renderer produced zero frames over 200 ms. These are lifecycle/coordinate checks, not extended GPU-memory/FPS benchmarks. Full TypeScript/Vite/PWA build passed; broad app precache remains large (1252 entries / 326682.97 KiB). Additional engines, long-duration memory/FPS and global bundle optimization remain open.
+
+## Electric Potential checkpoint - 2026-10-17
+
+Electric Potential caches mesh/contours across probe scans and reuses guide buffers; no idle rendering after pause (200 ms observation). Seven disposed renderer/context pairs observed across StrictMode/remounts. Deterministic native scan reaches 0.10000000000000142 m after 0.5 s. Final TypeScript/Vite/PWA build passed; existing bundle warning and roughly 327 MB PWA precache remain. These checks do not establish long-duration memory or cross-engine/FPS acceptance.
+
+## Electric Potential visual refinement - 2026-10-17
+
+Native camera and sampled geometry reuse across probe updates; memoized SVG fallback avoids rebuilding its static mesh for probe-only movement. Seven renderer/context lifetimes and 147 geometry/material disposals after final use verified across remount activity; zero idle renders after pause in 200 ms. Build passed; existing main-bundle and roughly 327 MB PWA precache limitations remain. Long-duration GPU/memory/FPS and other browser engines remain unverified.

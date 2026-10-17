@@ -65,3 +65,11 @@ Coulomb Force passed all numeric/range inputs, charge-sign changes, like/unlike/
 ## Electric Field checkpoint - 2026-10-17
 
 Electric Field passed source charge and all source/probe XYZ controls, bound normalization, source/probe dragging, arrow-key movement, touch probe dragging, density slider/numeric input, vector visibility, actual orthographic zoom, collapsible Source/Probe/Density panels, pause/reset, learning/recording/quizzes and teacher locks. Source positions were inspected in the actual Three scene, including nonzero depth. Native probe-vector component error is 1.11e-16; sampled native field tangents have minimum cosine 0.999999995. Probe moves reuse the field-geometry attribute. Singular, neutral and coincident-cancellation cases show meaningful undefined/zero states. Three SPA remounts verified seven disposed renderers/context losses with no later rendering; WebGL fallback includes computed curves and arrows. Exactly four reference modes, with no global 3D dock or unrelated lesson tabs.
+
+## Electric Potential checkpoint - 2026-10-17
+
+Electric Potential: four layer checkboxes; three distinct source layouts; z range/number and x/y number/keyboard controls; drag/touch probe; reference selector; reset/play/pause/zoom/fullscreen; Predict/Explain/challenge; recording/CSV and assignment variable locks passed. Point singularity hides the invalid probe, and signed source markers use appropriate plot limits at z=0. Six responsive sizes, repeated remounts and calculated WebGL fallback passed. No captured page errors or failed local requests. See `electric-potential/browser-verification.json` and normal production smoke evidence.
+
+## Electric Potential visual refinement - 2026-10-17
+
+Refinement preserves four modes, layouts, XYZ inputs, references, layers, mouse/keyboard/touch, scan/pause/reset, zoom/fullscreen, records/quoted CSV and quizzes. XY controls moved into Experiment and remain assignment-locked. Light/dark button works. Six default layouts, accurate metric base-plane picking, native and fallback parameter/layer updates and normal production checks passed. No captured page/material console errors or failed local requests.

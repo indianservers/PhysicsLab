@@ -1,0 +1,37 @@
+{
+  "model": "passed - 225 configurations / 675 gradients, default surface not clipped, 20/40/80/160-cell convergence",
+  "browser": "passed - SI mesh vertices, all 4520 contour signs, metric base-plane picking, modes/controls/recording/export/theme, six sizes, touch/keyboard/mouse, locks, fallback and remounts",
+  "runtime": "passed - 0.1 m probe scan in 0.5 simulation seconds, boundary reflection/resume direction, paused idle",
+  "build": "passed - final npm run build exit 0, TypeScript/Vite/PWA",
+  "sharedPhysicsRegression": "passed - 581/581, exit 0",
+  "production": "passed - normal production bundle with no external request masking, model/control/theme and desktop/mobile smoke checks",
+  "nativeGeometryMaterialDisposals": 147,
+  "sourceHashesSha256": {
+    "src/lib/electricPotentialStudio.ts": "310a091fc002cb1acaa2d6bd8984d39aff9fa842920b8099d7fd7230626cdffc",
+    "src/components/PotentialSurface.tsx": "64b779c1d2157fad4ede46966f3788356164e4d8277580f6944baf31fcb7c574",
+    "src/pages/ElectricPotentialStudioPage.tsx": "83c14f0cf72a3655a8b795f42c8285c6fee0e9a40ec93baa30aad8dfb2e0516c",
+    "src/pages/electric-potential-studio.css": "d87b5e9cec869c398f05b21e2a48b215f425ebedb9dec216104ff9d34a23348f",
+    "src/lib/electricFieldStudio.ts": "28770f75a55190a45f742743f29b13fe48d5237b0467e2e649e670aa3197157f",
+    "src/lib/coulombStudio.ts": "92d4d6e0c015738ae86544427ca0e374d423c908188debdacb696aeffea17a7c"
+  },
+  "visualComparison": {
+    "mae": 19.224,
+    "ssim": 0.5299,
+    "previousNativeRebuild": {
+      "mae": 24.214,
+      "ssim": 0.5268
+    },
+    "staticBaseline": {
+      "meanAbsoluteChannelDifference": 20.398,
+      "ssim": 0.5805
+    },
+    "sidebarExcluded": true,
+    "sidebarSourceUnchanged": true,
+    "sidebarHeaderNavMaxChannelDifference": 1,
+    "mainWidthNormalized": true,
+    "acceptancePercentage": false,
+    "status": "visual refinement open; both metrics improved versus prior native checkpoint, SSIM below static baseline"
+  },
+  "overallGoalComplete": false,
+  "remainingScope": "All 102 canonical references / 17 studios remain in scope; remaining laboratories and visual refinements are incomplete."
+}

@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "maxNativeVertexError": 5.958103677095039e-8,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 213,
+        "y": 77,
+        "width": 920,
+        "height": 842
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 942,
+        "width": 1307,
+        "height": 50
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 213,
+        "y": 77,
+        "width": 1304,
+        "height": 730
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 822,
+        "width": 1691,
+        "height": 50
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 213,
+        "y": 126,
+        "width": 795,
+        "height": 600
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 1176,
+        "width": 795,
+        "height": 50
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 192,
+        "y": 126,
+        "width": 560,
+        "height": 600
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 1176,
+        "width": 560,
+        "height": 106
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 204.09375,
+        "width": 370,
+        "height": 410
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 626.09375,
+        "width": 370,
+        "height": 92
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 204.09375,
+        "width": 300,
+        "height": 410
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 626.09375,
+        "width": 300,
+        "height": 92
+      }
+    }
+  ],
+  "positiveContourSegments": 3171,
+  "negativeContourSegments": 1142,
+  "zeroContourSegments": 207,
+  "contourSignsMatchSIModel": true,
+  "probeGuideEndsAtCalculatedSurface": true,
+  "allFourLayers": true,
+  "threeDistinctLayouts": true,
+  "referenceFieldInvariant": true,
+  "singularityExplicit": true,
+  "probeXYZAndKeyboard": true,
+  "mouseAndTouch": true,
+  "basePlanePickingMatchesMetricCoordinates": true,
+  "teacherVariableLocks": true,
+  "pauseIdleRenderFrames": 0,
+  "zoomFullscreenReset": true,
+  "recordsAndCSV": true,
+  "csvQuotedFieldsAndNumericalModelVerified": true,
+  "quizzesAndExplain": true,
+  "lightDarkTheme": true,
+  "nativeGeometryMaterialDisposals": 147,
+  "nativeResourceDisposal": 7,
+  "fallback": true,
+  "fallbackParametersAndLayers": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failed": []
+}

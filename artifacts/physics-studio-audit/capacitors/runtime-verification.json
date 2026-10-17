@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "backgroundPausesWithoutCatchup": true,
+  "noClockAfterRouteUnmount": true,
+  "simulatedSecondsAfterHalfWallSecond": 0.005000000000000001,
+  "expected": 0.005,
+  "maxMarkerPositionError": 3.528830949672823e-9,
+  "markersVerified": 16,
+  "markerPhaseFollowsDeliveredCharge": true,
+  "notPhysicalCarrierSpeed": true,
+  "pausedRenderFrames": 0,
+  "frameRates": [
+    {
+      "fps": 10,
+      "simulatedSeconds": 0.010000000000000002,
+      "chargeText": "0.2322 nC"
+    },
+    {
+      "fps": 30,
+      "simulatedSeconds": 0.009999999999999986,
+      "chargeText": "0.2322 nC"
+    },
+    {
+      "fps": 60,
+      "simulatedSeconds": 0.01000000000000018,
+      "chargeText": "0.2322 nC"
+    }
+  ],
+  "endAtEightTau": true,
+  "endTime": 0.10359399740976001
+}

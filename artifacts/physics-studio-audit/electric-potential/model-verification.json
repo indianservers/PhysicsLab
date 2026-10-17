@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "defaultSurfaceExtrema": {
+    "min": -48258.63544090135,
+    "max": 71491.13582138103
+  },
+  "defaultSurfaceNotClipped": true,
+  "reflectedScanPeriodicity": true,
+  "cases": 225,
+  "derivatives": 675,
+  "maxGradientError": 2.4634288121263963e-9,
+  "default": {
+    "input": {
+      "z": 0.5,
+      "layout": 0,
+      "px": 0,
+      "py": 0,
+      "reference": 0
+    },
+    "sources": [
+      {
+        "q": 0.0000049999999999999996,
+        "point": {
+          "x": -1,
+          "y": 0,
+          "z": 0
+        },
+        "id": 0
+      },
+      {
+        "q": -0.0000049999999999999996,
+        "point": {
+          "x": 0,
+          "y": -1,
+          "z": 0
+        },
+        "id": 1
+      },
+      {
+        "q": 0.000003,
+        "point": {
+          "x": 1.2,
+          "y": 0.8,
+          "z": 0
+        },
+        "id": 2
+      }
+    ],
+    "offset": 0,
+    "probe": {
+      "x": 0,
+      "y": 0,
+      "z": 0.5
+    },
+    "V": 17668.634462708884,
+    "energy": 0.017668634462708884,
+    "gradient": 44809.125134887014,
+    "field": {
+      "x": 23063.875884815905,
+      "y": -38230.085724051,
+      "z": 3791.5524598087736,
+      "mag": 44809.125134887014,
+      "angle": -58.89778723774752,
+      "elevation": 4.8539225999885
+    },
+    "testCharge": 0.000001,
+    "k": 8990000000
+  },
+  "singularityExplicit": true,
+  "nearSourceNotSoftened": true,
+  "referenceFieldInvariant": true,
+  "scalarCancellationNotZeroField": true,
+  "gridSharesSIModel": true,
+  "convergence": [
+    {
+      "n": 20,
+      "triangles": 800,
+      "segments": 1108,
+      "meshHeightRMSE": 0.007648949768608702,
+      "contourVoltageRMSE": 495.0178865992758
+    },
+    {
+      "n": 40,
+      "triangles": 3200,
+      "segments": 2248,
+      "meshHeightRMSE": 0.0019438659105947731,
+      "contourVoltageRMSE": 128.3415971370716
+    },
+    {
+      "n": 80,
+      "triangles": 12800,
+      "segments": 4520,
+      "meshHeightRMSE": 0.000487996021163464,
+      "contourVoltageRMSE": 31.81988906433111
+    },
+    {
+      "n": 160,
+      "triangles": 51200,
+      "segments": 9028,
+      "meshHeightRMSE": 0.00012212704834567323,
+      "contourVoltageRMSE": 7.920019929036229
+    }
+  ]
+}

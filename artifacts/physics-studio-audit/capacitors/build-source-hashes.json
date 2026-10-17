@@ -1,0 +1,8 @@
+{
+  "src/lib/capacitorStudio.ts": "511ee527786bd0c52a21bd0b3613a43640cba4b0bf7b985df35a670d02526cfa",
+  "src/components/CapacitorBench.tsx": "f9a9cf67d5206f4565c583ae16df23a310e46f75a7b40d73bc63b85271c58a5b",
+  "src/pages/CapacitorsStudioPage.tsx": "514498649a823b6483aa10035cfee90925c92f79f5ebc8548497c0d8660b2387",
+  "src/pages/capacitors-studio.css": "df4c11e4268dd94147c866c0c1f014e73b9250cb3afaa011883064a91e69eb56",
+  "src/experiments/capacitor-lab/capacitorPhysics.ts": "8503a48a64d8c566ace0b66834aa79114e1bb83a5982affe057c1112e895ff7c",
+  "src/experiments/capacitor-lab/capacitorValidation.ts": "a9f9ebd1e28cc88f6b29717adbf91813903d4efe58068c0c6885f80a05b65755"
+}

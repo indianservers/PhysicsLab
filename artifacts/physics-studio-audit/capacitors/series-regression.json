@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "cases": 18,
+  "directBenchmarks": 8,
+  "allDirectBenchmarksPass": true,
+  "connectedAndIsolatedCharge": true,
+  "singleSeriesParallel": true,
+  "perCapacitorGaussLaw": true,
+  "energyEqualsDensityTimesAllGapVolumes": true,
+  "before": {
+    "field": 6000,
+    "energyDensity": 0.0001593753806304,
+    "force": 0.0000031875076126080003
+  },
+  "after": {
+    "field": 2000,
+    "energyDensity": 0.0000177083756256,
+    "force": 3.5416751251200005e-7
+  },
+  "seriesFieldWasThreeTimesTooLarge": true,
+  "seriesDensityAndForceWereNineTimesTooLarge": true
+}

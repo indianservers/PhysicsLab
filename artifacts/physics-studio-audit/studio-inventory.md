@@ -106,3 +106,11 @@ Source: recursively collected reference inventory, per-page implementation notes
 | 17_astronomy_astrophysics | galaxies | /astrophysics/galaxies | 17_astronomy_astrophysics/04_galaxies.png | Yes |
 | 17_astronomy_astrophysics | cosmology | /astrophysics/cosmology | 17_astronomy_astrophysics/05_cosmology.png | Yes |
 | 17_astronomy_astrophysics | exoplanets | /astrophysics/exoplanets | 17_astronomy_astrophysics/06_exoplanets.png | Yes |
+
+## Electric Potential checkpoint - 2026-10-17
+
+The existing Electric Potential mapping (`11_electricity/03_electric_potential.png` -> `/electricity/electric-potential`) is unchanged. A native reconstruction and verification checkpoint is saved under `electric-potential/`; visual fidelity is still open. Inventory remains 102 canonical references / 17 studios; nested duplicate PNGs do not create new labs.
+
+## Electric Potential visual refinement - 2026-10-17
+
+Existing Electric Potential route/reference mapping is unchanged. Current native visual-refinement evidence is under `electric-potential/`; all 102 canonical references / 17 studios remain in scope.

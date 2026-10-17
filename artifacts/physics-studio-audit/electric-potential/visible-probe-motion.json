@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 4375,
+  "inspectionTimesSeconds": [
+    0,
+    0.5
+  ],
+  "note": "Native measured probe scan at 0.2 m/s, held static sources. Not free charge motion."
+}
