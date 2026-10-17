@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 10390,
+  "modelTimesSeconds": [
+    0,
+    4e-08
+  ],
+  "note": "Signal colors and output LED follow the same inertial event history as timing and numerical readings."
+}

@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "rates": [
+    {
+      "fps": 10,
+      "time": 0.0001,
+      "IC": 0.0013783313976696097,
+      "VC": 4.802102543893877,
+      "inputAC": 0.11737986228216957,
+      "outputAC": -1.2288962244810522
+    },
+    {
+      "fps": 30,
+      "time": 0.00009999999999999973,
+      "IC": 0.0013783313976696097,
+      "VC": 4.802102543893877,
+      "inputAC": 0.11737986228216957,
+      "outputAC": -1.2288962244810522
+    },
+    {
+      "fps": 60,
+      "time": 0.00009999999999999902,
+      "IC": 0.0013783313976696097,
+      "VC": 4.802102543893877,
+      "inputAC": 0.11737986228216957,
+      "outputAC": -1.2288962244810522
+    }
+  ],
+  "cyclesPerWallSecond": 0.1,
+  "bothTopologyClocks": true,
+  "plotAndNativeShareState": true,
+  "nativeScopePhysicalTime": true,
+  "geometryReused": true,
+  "pausedRenderFrames": 0,
+  "hiddenNoCatchup": true,
+  "automaticStop": true,
+  "replay": true,
+  "noClockAfterRouteUnmount": true
+}

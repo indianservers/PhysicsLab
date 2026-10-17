@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "allSevenNativeInstrumentActions": true,
+  "autoCustomAndLowFrequencyTimebase": true,
+  "numericAndSliderInputs": true,
+  "sharedPlotNativeState": true,
+  "geometryReused": true,
+  "sourceOffZeroUndefinedGain": true,
+  "CSV30ColumnsKCLPower": true,
+  "recordsPreserveClear": true,
+  "topologyChanges": true,
+  "allTheoryTabsAndKeyboardModes": true,
+  "zoomThemeFullscreenChallenge": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "rendererDisposals": 7,
+  "resourceDisposals": 868,
+  "errors": []
+}

@@ -1,0 +1,6 @@
+{
+  "src/lib/amplifierStudio.ts": "0953705cc2cfb6617e4a485e6209b6fc4e4e8161167c76ffcb616532f3773c35",
+  "src/components/AmplifierBench.tsx": "180712c4e349d877ba645d407d1eb14a871f4daaf56cdbbf066f684fb93e21e8",
+  "src/pages/AmplifiersStudioPage.tsx": "db48b6937cdbd129e93dccd7d3e45f4e2a7a54b1d3e68d65371af05fa62b303b",
+  "src/pages/amplifier-studio.css": "3c3b75df6d5745d2a5535294e582dea3ac6efa9994d6fc8e2043d66f12db8520"
+}

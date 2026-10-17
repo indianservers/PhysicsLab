@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "topAndNetworkSwitchTouch": true,
+  "actualCDPTouchZoomSlider": true,
+  "touchPlayPauseStable": true,
+  "allNativeSVGWithoutWebGL": true,
+  "networkSelection": true
+}

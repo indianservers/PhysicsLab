@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "all20TruthConfigurations": 20,
+  "actualDistinctGateSymbols": true,
+  "correctHighLowVoltages": true,
+  "topAndNetworkSwitches": true,
+  "keyboardNetworkSwitchesAndModes": true,
+  "zoomButtonsAndSlider": true,
+  "sharedTimingNetworkAndCSV": true,
+  "CSV12Columns": true,
+  "recordsPreserveAndClear": true,
+  "predictionChallenge": true,
+  "fourReferenceModesOnly": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "errors": []
+}

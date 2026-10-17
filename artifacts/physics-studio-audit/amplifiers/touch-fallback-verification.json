@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "actualTouchAmplitudeSlider": true,
+  "touchPlayPauseStable": true,
+  "touchNativeOutput": true,
+  "calculatedCircuitFallback": true,
+  "twoTopologyResponses": true,
+  "zoomAndThemeFallback": true,
+  "allSevenFallbackInstrumentActions": true,
+  "fallbackActionBounds": [
+    1536,
+    390,
+    320
+  ],
+  "reset": true
+}

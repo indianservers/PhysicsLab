@@ -1,0 +1,73 @@
+{
+  "route": "/electronics/amplifiers",
+  "reference": "13_electronics/04_amplifiers.png",
+  "overallGoalComplete": false,
+  "pageAcceptanceComplete": false,
+  "sourceHashes": {
+    "src/lib/amplifierStudio.ts": "0953705cc2cfb6617e4a485e6209b6fc4e4e8161167c76ffcb616532f3773c35",
+    "src/components/AmplifierBench.tsx": "180712c4e349d877ba645d407d1eb14a871f4daaf56cdbbf066f684fb93e21e8",
+    "src/pages/AmplifiersStudioPage.tsx": "db48b6937cdbd129e93dccd7d3e45f4e2a7a54b1d3e68d65371af05fa62b303b",
+    "src/pages/amplifier-studio.css": "3c3b75df6d5745d2a5535294e582dea3ac6efa9994d6fc8e2043d66f12db8520"
+  },
+  "gates": {
+    "nonlinear54Configurations3456PhaseStates": "passed",
+    "independentEbersMollKCLKVLPower": "passed",
+    "periodicQuadratureConvergence": "passed",
+    "bothEmitterTopologies": "passed",
+    "sevenReferenceTabsOnly": "passed",
+    "eightInteriorBoundViewports": "passed",
+    "defaultInstrumentScreensFramedAllEightSizes": "passed",
+    "nativePlotClock10_30_60Fps": "passed",
+    "sevenInstrumentActionsAndCSV30Columns": "passed",
+    "touchAndCalculatedFallback": "passed",
+    "fullscreenChallengeAccessible": "passed",
+    "cleanup7Renderers868TrackedResources": "passed",
+    "finalBuild": "passed; session 67683 terminal 0",
+    "normalProduction": "passed; port 4203 smoke terminal 0",
+    "catalogPhysics": "581/581 passed"
+  },
+  "visual": {
+    "before": {
+      "meanAbsoluteChannelDifference": 37.524,
+      "ssim": 0.4724
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 32.558,
+      "ssim": 0.5179
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 236,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 10.708
+      },
+      "inputScope": {
+        "meanAbsoluteChannelDifference": 14.52
+      },
+      "outputScope": {
+        "meanAbsoluteChannelDifference": 16.061
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 19.276
+      },
+      "nativeBench": {
+        "meanAbsoluteChannelDifference": 59.522
+      },
+      "bottom": {
+        "meanAbsoluteChannelDifference": 15.126
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "limitations": [
+    "Photographic apparatus finish, camera, proportions and cable framing remain open.",
+    "Illustrative Ebers\u2013Moll parameters are not a calibrated 2N3904 or full Gummel\u2013Poon fit.",
+    "Ideal input/output passband coupling and emitter bypass omit finite capacitor dynamics, rectified bias shift and bandwidth.",
+    "Ideal drive power includes its offset reservoir, not just a zero-DC generator.",
+    "No Early effect, high injection, breakdown or self-heating.",
+    "Breadboard contacts are schematic; explicit conductors define ideal nodes.",
+    "Large app/PWA precache and wider hardware/browser performance remain open."
+  ]
+}

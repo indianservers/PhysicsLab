@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "truthCases": 20,
+  "allFiveNetworks": true,
+  "independentBooleanTruth": true,
+  "oneGateRiseTime_ns": 16.05,
+  "twoGateRiseTime_ns": 22.1,
+  "inertialPulseRejection": true,
+  "pendingTransitionCancellation": true,
+  "simultaneousInputsGrouped": true,
+  "delayedOutputMayDifferFromTruth": true,
+  "idealHighLowVoltages": true,
+  "defaultOutputCorrectedToLow": true,
+  "parametersIllustrative": true
+}

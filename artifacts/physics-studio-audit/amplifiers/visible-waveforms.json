@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 2921,
+  "modelTimesSeconds": [
+    0,
+    0.0001
+  ],
+  "note": "Native scope waveforms follow the same base and collector state as the main scopes. Generator readout remains constant for this fixed sine source."
+}

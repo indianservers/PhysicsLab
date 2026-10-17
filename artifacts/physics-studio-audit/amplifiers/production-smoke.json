@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "normalUnmaskedProduction": true,
+  "defaultCircuitPoint": true,
+  "keyboardAmplitude": true,
+  "sixRapidPauseResumeChecks": true,
+  "bothTopologies": true,
+  "customAutoTimebase": true,
+  "CSV30ColumnsKCLPower": true,
+  "nativeInstrumentActions": true,
+  "zoomAndTheme": true,
+  "desktopBreakpointMobileInteriorBounds": true,
+  "sevenReferenceTabsOnly": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

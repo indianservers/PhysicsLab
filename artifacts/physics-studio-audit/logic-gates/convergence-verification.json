@@ -1,0 +1,389 @@
+{
+  "passed": true,
+  "cases": 20,
+  "independentFixedStepVsEventSolver": true,
+  "integerNanosecondStateSamples": 7200,
+  "maxStateError": 0,
+  "convergence": [
+    {
+      "gate": "complex",
+      "a": false,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.20000000000000284
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0.04999999999999716
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0.025000000000005684
+        }
+      ]
+    },
+    {
+      "gate": "complex",
+      "a": false,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.20000000000000995
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0.025000000000005684
+        }
+      ]
+    },
+    {
+      "gate": "complex",
+      "a": true,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.20000000000000995
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0.025000000000005684
+        }
+      ]
+    },
+    {
+      "gate": "complex",
+      "a": true,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.20000000000000995
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0.025000000000005684
+        }
+      ]
+    },
+    {
+      "gate": "and",
+      "a": false,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0
+        }
+      ]
+    },
+    {
+      "gate": "and",
+      "a": false,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "and",
+      "a": true,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "and",
+      "a": true,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "or",
+      "a": false,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0
+        }
+      ]
+    },
+    {
+      "gate": "or",
+      "a": false,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "or",
+      "a": true,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "or",
+      "a": true,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "xor",
+      "a": false,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "xor",
+      "a": false,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "xor",
+      "a": true,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "xor",
+      "a": true,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "nand",
+      "a": false,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "nand",
+      "a": false,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 1.4210854715202004e-14
+        }
+      ]
+    },
+    {
+      "gate": "nand",
+      "a": true,
+      "b": false,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000000426
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 7.105427357601002e-15
+        }
+      ]
+    },
+    {
+      "gate": "nand",
+      "a": true,
+      "b": true,
+      "errors": [
+        {
+          "step_ns": 0.1,
+          "maxOutputTransitionError_ns": 0.05000000000001137
+        },
+        {
+          "step_ns": 0.05,
+          "maxOutputTransitionError_ns": 0
+        },
+        {
+          "step_ns": 0.025,
+          "maxOutputTransitionError_ns": 0
+        }
+      ]
+    }
+  ]
+}

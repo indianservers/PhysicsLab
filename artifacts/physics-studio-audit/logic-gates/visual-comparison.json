@@ -1,0 +1,41 @@
+{
+  "before": {
+    "meanAbsoluteChannelDifference": 18.634,
+    "ssim": 0.6483
+  },
+  "after": {
+    "meanAbsoluteChannelDifference": 11.68,
+    "ssim": 0.7028
+  },
+  "sidebarExcluded": true,
+  "targetSidebarWidth": 201,
+  "currentSidebarWidth": 201,
+  "note": "Diagnostic metrics, not completion percentages. Native gate diagram and delayed output differ from inconsistent reference values. Visual refinement remains open.",
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 12.741
+    },
+    "controls": {
+      "meanAbsoluteChannelDifference": 14.341
+    },
+    "network": {
+      "meanAbsoluteChannelDifference": 9.354
+    },
+    "timing": {
+      "meanAbsoluteChannelDifference": 13.57
+    },
+    "truthTable": {
+      "meanAbsoluteChannelDifference": 14.86
+    },
+    "readings": {
+      "meanAbsoluteChannelDifference": 10.946
+    },
+    "formula": {
+      "meanAbsoluteChannelDifference": 9.699
+    },
+    "toolbar": {
+      "meanAbsoluteChannelDifference": 16.364
+    }
+  },
+  "sidebarSourceUnchanged": true
+}

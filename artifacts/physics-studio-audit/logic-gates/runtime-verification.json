@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "rates": [
+    {
+      "fps": 10,
+      "a": 0,
+      "b": 1,
+      "y": 0,
+      "na": 1,
+      "ab": 0,
+      "time": 2.999999999999999e-8
+    },
+    {
+      "fps": 30,
+      "a": 0,
+      "b": 1,
+      "y": 0,
+      "na": 1,
+      "ab": 0,
+      "time": 2.999999999999984e-8
+    },
+    {
+      "fps": 60,
+      "a": 0,
+      "b": 1,
+      "y": 0,
+      "na": 1,
+      "ab": 0,
+      "time": 3.0000000000000097e-8
+    }
+  ],
+  "nanosecondsPerWallSecond": 10,
+  "sharedNetworkAndTimingState": true,
+  "pausedStateStable": true,
+  "hiddenNoCatchup": true,
+  "automaticStop": true,
+  "replay": true,
+  "noOwnedClockAfterRouteUnmount": true
+}

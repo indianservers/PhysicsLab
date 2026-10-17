@@ -2381,22 +2381,37 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "apx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "apx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "apx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "apx-modes"
+      },
+      {
+        "text": "Circuit",
+        "label": null,
+        "group": "apx-theory"
+      },
+      {
+        "text": "Waveforms",
+        "label": null,
+        "group": "apx-theory"
+      },
+      {
+        "text": "Equation",
+        "label": null,
+        "group": "apx-theory"
       }
     ],
     "assets": [],
