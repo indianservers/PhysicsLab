@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "fontStylesheetsDeliberatelyPending": 4,
+  "startupMs": 6181,
+  "stylesAppliedAfterRelease": true,
+  "mainCanvasReady": true,
+  "defaultImageDistance": "60.0 cm",
+  "note": "Font stylesheets were held unresolved until the application was ready, then released with CSS sentinels to verify activation. Analytics excluded from the controlled test."
+}

@@ -17,3 +17,18 @@ Doppler Effect: local headless 60-frame sample mean 9.27 ms, maximum 14.20 ms. O
 ## Reflection checkpoint — 2026-10-17
 
 Reflection: two views share one model clock; instanced rays/packets and explicit observer/GPU/context cleanup. Three SPA unmount/remount cycles retain two canvases and produce no normal-run console errors. Local 60-frame headless observation mean 12.61 ms, maximum 20.90 ms. Extended memory, target-device and cross-browser acceptance remain open; global bundle-size warning persists.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Refraction caches the trace by parameters, reuses ray/packet instanced meshes, renders on state/resize updates, and disposes geometry/materials/textures/environment/renderer at unmount. Three SPA remounts tested. A 60-frame headless Chromium sample averaged 9.46 ms, maximum 14.10 ms (host-specific). GPU-memory/leak profiling remains open; three remounts alone do not prove memory stability.
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses caches model by configuration, reuses ray/marker instance meshes, disposes resources, and owns no independent animation loop. Three SPA remounts passed. A 60-frame headless host sample averaged 7.08 ms, max 13.90 ms. GPU-memory/leak profiling and cross-device measurements remain open.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors reuses geometry/materials/instanced rays and markers with explicit resize/clock/GPU cleanup. Three SPA remounts checked. A 60-frame headless host sample averaged 6.84 ms, max 7.10 ms. Optional remote fonts no longer block production startup; four deliberately pending stylesheets did not prevent canvas readiness, and later style activation passed. Large-bundle/precache size, cross-device and long-run memory acceptance remain open.

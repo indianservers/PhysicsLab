@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "route": "/optics/refraction",
+  "nativeCanvas": true,
+  "defaultAngles": [
+    28.8,
+    19.1
+  ],
+  "grazingMiss": true,
+  "errors": []
+}

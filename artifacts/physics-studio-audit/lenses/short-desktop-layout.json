@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "viewport": [
+    1920,
+    912
+  ],
+  "bounds": {
+    ".lns-stage": {
+      "top": 138,
+      "bottom": 588,
+      "height": 450
+    },
+    ".lns-controls": {
+      "top": 126,
+      "bottom": 406,
+      "height": 280
+    },
+    ".lns-readings": {
+      "top": 418,
+      "bottom": 603,
+      "height": 185
+    },
+    ".lns-equation": {
+      "top": 615,
+      "bottom": 785,
+      "height": 170
+    },
+    ".lns-transport": {
+      "top": 818,
+      "bottom": 872,
+      "height": 54
+    }
+  },
+  "controlsNotClipped": true
+}

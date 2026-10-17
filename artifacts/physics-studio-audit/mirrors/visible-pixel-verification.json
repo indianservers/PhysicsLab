@@ -1,0 +1,23 @@
+{
+  "packetMotion": {
+    "changedPixels": 40354,
+    "pixelsChangedOver20Levels": 148,
+    "maximumChannelChange": 209
+  },
+  "hideImage": {
+    "changedPixels": 41877,
+    "pixelsChangedOver20Levels": 1554,
+    "maximumChannelChange": 219
+  },
+  "hideFocus": {
+    "changedPixels": 40939,
+    "pixelsChangedOver20Levels": 738,
+    "maximumChannelChange": 211
+  },
+  "hideAxis": {
+    "changedPixels": 42218,
+    "pixelsChangedOver20Levels": 1872,
+    "maximumChannelChange": 199
+  },
+  "passed": true
+}

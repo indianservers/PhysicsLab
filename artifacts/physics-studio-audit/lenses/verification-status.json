@@ -1,0 +1,34 @@
+{
+  "recordedAtUTC": "2026-10-17T07:08:45.613277+00:00",
+  "model": "passed",
+  "browser": "passed",
+  "runtimeNativeMatricesAndPixels": "passed",
+  "keyboardTouch": "passed",
+  "sharedPhysicsRegression": "581/581 passed",
+  "productionBuildAndPWA": "passed",
+  "finalBundleRefresh": "passed",
+  "finalProductionSmoke": "passed; production-smoke.json",
+  "finalTypecheck": {
+    "status": "passed",
+    "exitCode": 0,
+    "command": "node node_modules/typescript/bin/tsc -b",
+    "log": "../mirrors/final-typecheck.log"
+  },
+  "representativeCaseCapture": {
+    "status": "passed",
+    "cases": [
+      "virtual-convex",
+      "at-focus",
+      "concave",
+      "plano"
+    ],
+    "script": "scripts/captureLensesCases.mjs",
+    "note": "Captured using optional remote font/analytics requests excluded; source and native physics unchanged."
+  },
+  "visualCompletion": "open",
+  "finiteScreenAndVirtualCamera": {
+    "status": "passed",
+    "evidence": "../mirrors/screen-boundary-verification.json"
+  },
+  "shortDesktopLayout": "passed; short-desktop-layout.json and production-layout-verification.json"
+}

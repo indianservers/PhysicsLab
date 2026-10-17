@@ -1,0 +1,33 @@
+{
+  "route": "/optics/mirrors",
+  "reference": "10_optics/04_mirrors.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "targetSidebarWidth": 230,
+  "currentSidebarWidth": 201,
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 20.169,
+  "ssim": 0.5567,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 21.123
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 26.73
+    },
+    "parameterCards": {
+      "meanAbsoluteChannelDifference": 14.796
+    },
+    "lowerCards": {
+      "meanAbsoluteChannelDifference": 15.173
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 18.69
+    }
+  },
+  "note": "Diagnostics, not acceptance percentages. Default numerical values require the real image beyond the object, contrary to the mockup screen position. Scene uses one physical scale. Light controls relocated from the reference sidebar to the scene to preserve the existing sidebar. Lighting, material realism, instrument detail, visual proportions and typography remain open. No reference pixels are app assets."
+}

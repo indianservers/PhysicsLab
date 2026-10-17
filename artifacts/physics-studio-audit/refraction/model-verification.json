@@ -1,0 +1,37 @@
+{
+  "interfaces": 4525,
+  "traces": 4525,
+  "tirEvents": 1681,
+  "default": {
+    "angleA": 28.829922755731346,
+    "angleB": 19.11241164778437,
+    "terminal": "screen",
+    "events": [
+      {
+        "from": "air",
+        "to": "A",
+        "incident": 39.99999999999999,
+        "refracted": 28.829922755731346
+      },
+      {
+        "from": "A",
+        "to": "air",
+        "incident": 28.829922755731346,
+        "refracted": 40.00000000000001
+      },
+      {
+        "from": "air",
+        "to": "B",
+        "incident": 29.20000000000001,
+        "refracted": 19.11241164778437
+      },
+      {
+        "from": "B",
+        "to": "air",
+        "incident": 19.11241164778437,
+        "refracted": 29.20000000000001
+      }
+    ]
+  },
+  "passed": true
+}

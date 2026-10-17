@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "finiteScreenBoundsRegression": true,
+  "configurations": 2208,
+  "rays": 6382,
+  "unavailablePrincipalRays": 242,
+  "packetSamples": 14916,
+  "maxIntersectionErrorMetres": 5.551115123125783e-17,
+  "default": {
+    "di": 20.000000000000004,
+    "m": -1.0000000000000002,
+    "hi": -2.0000000000000004,
+    "kind": "real"
+  },
+  "analyticalCases": 4,
+  "focalBoundaryRegression": true
+}

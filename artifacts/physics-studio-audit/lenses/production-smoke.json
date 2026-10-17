@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "route": "/optics/lenses",
+  "nativeCanvas": true,
+  "finiteAndInfiniteImages": true,
+  "concaveAndPlano": true,
+  "finiteScreenBounds": true,
+  "mobileControlsNearScene": true,
+  "shortDesktopToolbarVisible": true,
+  "extraTabs": 0,
+  "errors": []
+}

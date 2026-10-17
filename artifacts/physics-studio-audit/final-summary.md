@@ -29,3 +29,26 @@ Doppler Effect checkpoint: original native apparatus, emission-centred moving-so
 ## Reflection checkpoint — 2026-10-17
 
 Reflection checkpoint: original laser/mirror/protractor/receiver geometry, true parallel-ray intersections, synchronized top/side views, marker propagation at c, reference layout and functional controls/table. Passed 2,853 configuration checks, 22,950 packet samples, rendered-matrix/visible-pixel checks, six sizes, fallback and actual SPA remounts. Shared regression passed 581/581. Sidebar preserved, no cropped assets. First optics lab now has native rebuild evidence; material/visual and full 102-page acceptance remain open.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Refraction now has original native apparatus and a finite-face vector Snell trace with air gap, TIR and real missed-optic states. Four reference modes; sidebar preserved. Model/browser checks and shared 581/581 passed. Visual refinement remains open. This checkpoint does not certify completion of Refraction or the full studio inventory.
+
+Refraction production type-check/build/PWA passed; final tablet CSS bundle refresh passed. Production smoke verifies native canvas, default angles, grazing missed optics and current air-gap explanation. Evidence: refraction/build.log and production-smoke.json.
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses now uses original native apparatus, real/virtual/infinite-image thin-lens traces, functional reference controls and only four reference modes. Sidebar preserved. Model/browser/native geometry/packet checks and shared 581/581 regression passed. Visual refinement remains open; the full inventory goal remains active.
+
+Lenses full production build/PWA, final bundle refresh and final production smoke passed. Evidence: lenses/build.log, final-bundle.log and production-smoke.json. Final source type-check is tracked separately.
+
+Lenses final source type-check completed successfully (exit 0), closing the pending verification. Native visual refinement remains open.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors now has original native apparatus, signed real/virtual/infinite-image calculations, principal reflected rays and working reference controls. Sidebar preserved; four relevant modes only. Corrected real-image placement, finite-screen behavior in Mirrors/Lenses, large virtual-image framing and optional remote-font startup. Model/browser/native/control/shared regression checks passed. Full visual refinement and the remaining inventory are still open.
+
+Final Mirrors/Lenses release checks passed: 6,992 mirror model cases and 2,208 lens cases with finite-screen regressions; actual large-virtual-image framing; current-source type-check; full build/PWA; final bundle; both production smoke tests; 12 final responsive screenshots; touch; and stalled-font startup plus subsequent style activation. Short desktop toolbars fit 1920 x 912 without clipped inspector controls. Logs and JSON evidence are under mirrors/ and lenses/. The full studio goal remains open.

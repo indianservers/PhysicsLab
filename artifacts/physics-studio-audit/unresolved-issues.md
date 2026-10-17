@@ -31,3 +31,20 @@ Doppler Effect now has a validated native rebuild, but photographic material/lig
 ## Reflection checkpoint — 2026-10-17
 
 Reflection native/physics/control rebuild is verified, with photographic material/lighting, instrument detail and typography matching still open. Physical plane-mirror rays/protractor centre intentionally correct inconsistent illustrated geometry. The mirror-control setup maintains incidence relative to its rotating normal; fixed-source mirror rotation is explained separately. Small printed graduations benefit from zoom on phones; numeric readings stay legible. Ideal n=1 ray model omits diffraction, polarization, reflectivity calibration and hardware obstruction. Remaining optics pages and the broader 102-page acceptance remain open.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Refraction native materials/lighting and fine hardware detail remain below the reference. Incidence-angle arcs and some scene labels need refinement; target water angle label differs from correct Snell calculation. GPU-memory/leak profiling remains open. Assignment locks and host-specific frame cadence were subsequently tested; see runtime-verification.json. Full 102-reference acceptance remains unproven.
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses native materials/lighting, optical glow, fine apparatus detail and typography remain below reference fidelity. Uniform physical scale intentionally differs from inconsistent reference arrow/ruler proportions. Ideal paraxial optics does not include full curved-surface refraction/aberration. GPU-memory profiling remains open; full 102-reference acceptance is not proven.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors materials/lighting, glow, fine hardware and typography still need visual refinement. Correct default real image is beyond the object; matching the mockup placement would contradict its own numbers. Existing sidebar remains unchanged, with light controls relocated into the main scene. Model is explicitly Gaussian/paraxial, not exact curved-surface ray tracing. Cross-browser and extended memory profiling remain open. Lenses/Mirrors finite-screen regressions were corrected; final release gates passed.
+
+Keyboard parameter editing is verified; a complete keyboard focus-order review across CSS-reordered layouts is still pending. Untouched routes and their typography after optional-font loading are not recertified by these scoped tests.

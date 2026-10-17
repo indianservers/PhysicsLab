@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "keyboardRangeStep": true,
+  "numericClamp": true,
+  "scaleTicks": [
+    0.3332958633093525,
+    0.1110611510791367
+  ],
+  "touchRangeUpdatesModel": true
+}

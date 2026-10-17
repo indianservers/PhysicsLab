@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "actualThreeSceneProperties": true,
+  "imageFocusAxisRayVisibility": true,
+  "actualOrthographicZoomRatio": 1.5,
+  "note": "Read actual scene objects through the Three.js devtools observation event in an isolated test context; no application debug changes."
+}

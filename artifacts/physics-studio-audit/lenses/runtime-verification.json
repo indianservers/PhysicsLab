@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "configurationCount": 12,
+  "nativeMatrixEndpointChecks": 136,
+  "maxMatrixErrorMetres": 1.19267482565636e-8,
+  "nativePacketMatrices": true,
+  "actualRayVisibility": true,
+  "performance": {
+    "frames": 60,
+    "meanFrameMs": 7.07833333353201,
+    "maxFrameMs": 13.899999999999636
+  },
+  "note": "Headless Chromium sample on current host, not a cross-device guarantee. No quantitative GPU-memory claim."
+}

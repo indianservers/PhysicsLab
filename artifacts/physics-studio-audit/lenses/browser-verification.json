@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "sizes": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false
+    }
+  ],
+  "assignmentLocks": true,
+  "spaRemounts": 3,
+  "webglFallback": true,
+  "errors": [],
+  "consoleErrors": []
+}

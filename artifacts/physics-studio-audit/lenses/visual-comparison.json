@@ -1,0 +1,33 @@
+{
+  "route": "/optics/lenses",
+  "reference": "10_optics/03_lenses.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "targetSidebarWidth": 265,
+  "currentSidebarWidth": 201,
+  "mainWidthNormalized": true,
+  "meanAbsoluteChannelDifference": 19.218,
+  "ssim": 0.6057,
+  "regions": {
+    "header": {
+      "meanAbsoluteChannelDifference": 17.112
+    },
+    "apparatus": {
+      "meanAbsoluteChannelDifference": 25.391
+    },
+    "lowerCards": {
+      "meanAbsoluteChannelDifference": 19.37
+    },
+    "inspector": {
+      "meanAbsoluteChannelDifference": 16.101
+    },
+    "transport": {
+      "meanAbsoluteChannelDifference": 18.906
+    }
+  },
+  "note": "Diagnostic metrics, not acceptance percentages. Native procedural geometry only; no reference pixels in app assets. Material lighting, typography, hardware detail and brightness remain open. Native object/ruler use one physical scale; mockup apparent object height and ruler spacing are not copied as contradictory geometry."
+}

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "nativeConfigurations": 24,
+  "nativeEndpointChecks": 272,
+  "maxMatrixErrorMetres": 2.53096123404576e-8,
+  "nativeImagePositionAndHeight": true,
+  "packetMatrices": true,
+  "keyboardRangeStep": true,
+  "performance": {
+    "frames": 60,
+    "meanFrameMs": 6.836666666666678,
+    "maxFrameMs": 7.100000000000364
+  },
+  "externalRequestsExcluded": true,
+  "note": "Host-specific headless Chromium timing; no cross-device or GPU-memory stability claim."
+}

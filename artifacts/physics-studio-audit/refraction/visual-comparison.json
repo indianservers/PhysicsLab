@@ -1,0 +1,13 @@
+{
+  "route": "/optics/refraction",
+  "reference": "10_optics/02_refraction.png",
+  "viewport": [
+    1536,
+    1024
+  ],
+  "sidebarExcluded": true,
+  "sidebarSourceUnchanged": true,
+  "meanAbsoluteChannelDifference": 16.093,
+  "ssim": 0.6354,
+  "note": "Diagnostic metrics, not acceptance percentages. Original native geometry; no reference pixels used as app assets. Materials, lighting, surface detail, projected apparatus proportions and typography remain open. The model correctly gives 28.8 degrees in water, differing from the mockup label."
+}

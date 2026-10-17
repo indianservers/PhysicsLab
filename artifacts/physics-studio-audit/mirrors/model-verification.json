@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "finiteScreenBoundsRegression": true,
+  "configurations": 6992,
+  "rays": 19438,
+  "omittedPrincipalRays": 1538,
+  "packetSamples": 97503,
+  "maxIntersectionErrorMetres": 2.220446049250313e-16,
+  "default": {
+    "f": 20,
+    "di": 60.00000000000001,
+    "m": -2.0000000000000004,
+    "hi": -4.000000000000001,
+    "imageXMetres": -0.6000000000000001,
+    "objectXMetres": -0.3
+  },
+  "focalAndCurvatureBoundaryCases": true
+}

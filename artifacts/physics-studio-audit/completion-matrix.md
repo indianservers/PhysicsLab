@@ -59,9 +59,9 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 09_waves_sound | sound spectrum | /motion/sound-spectrum | 20.398 | 0.5574 | 720 signal cases; direct DFT/Parseval/Hann, five sources, all controls, six sizes, fallback | Native rebuild verified; material/lighting/typography refinement open |
 | 09_waves_sound | doppler effect | /motion/doppler-effect | 19.663 | 0.5704 | 900 motion cases, 225 crest arrivals; all controls, rendered positions/fronts, six sizes, fallback | Native rebuild verified; photographic material/lighting/typography refinement open |
 | 10_optics | reflection | /optics/reflection | 16.693 | 0.6135 | 2,853 configuration checks, 22,950 packet samples; native matrices, two cameras, all controls, six sizes, fallback | Native rebuild verified; material/lighting/instrument-detail/typography refinement open |
-| 10_optics | refraction | /optics/refraction | 21.036 | 0.5079 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 10_optics | lenses | /optics/lenses | 23.717 | 0.4961 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 10_optics | mirrors | /optics/mirrors | 22.655 | 0.4961 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 10_optics | refraction | /optics/refraction | 16.093 | 0.6354 | 4,525 interface + 4,525 trace cases; controls/six sizes/fallback/remounts passed | Native rebuild; visual refinement open |
+| 10_optics | lenses | /optics/lenses | 19.218 | 0.6057 | 2,208 model cases; native matrices/packets, controls, six sizes/fallback/remounts passed | Native rebuild; visual refinement open |
+| 10_optics | mirrors | /optics/mirrors | 20.169 | 0.5567 | 6,992 model cases; native matrices/control visibility, finite screen/camera, six sizes, production/fallback/remounts passed | Native rebuild; visual refinement open |
 | 10_optics | interference | /optics/interference | 21.706 | 0.4922 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 10_optics | diffraction | /optics/diffraction | 25.223 | 0.4457 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 11_electricity | coulomb force | /electricity/coulomb-force | 26.619 | 0.4431 | Reference-size capture and navigation inspection | Visual review/refinement open |

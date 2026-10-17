@@ -18,13 +18,20 @@
     <!-- Variable fonts: Inter Variable + JetBrains Mono Variable -->
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
       href="https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&display=swap"
     />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
       href="https://fonts.bunny.net/css?family=jetbrains-mono:400,500,600,700,800&display=swap"
     />
+    <!-- Optional remote font styles must not block simulator startup. -->
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" />
   </head>
   <body>
     <div id="root"></div>

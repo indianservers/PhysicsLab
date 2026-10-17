@@ -25,3 +25,20 @@ Doppler Effect: corrected the receding observer sign and spatial wavelength calc
 ## Reflection checkpoint — 2026-10-17
 
 Reflection: d−2(d·n)n specular vector model; independent parallel-ray intersections, fixed laboratory graduation disc and relative-angle mirror/source configuration. Atan2 avoids a reproduced normal-incidence acos roundoff failure. Passed 2,853 configuration checks and 22,950 packet samples, equal optical paths, native matrix/hit tests and marker speed c. Marker timing uses ideal n=1 propagation and slowed ns playback. Table values are calculated/recorded model states, not real measurements. See reflection/report.md.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Vector Snell model now traces finite tank/prism faces through explicit air gap, handles TIR/critical/grazing cases and Fresnel power coefficients, and propagates representative packets at c/n. 4,525 interface cases and 4,525 traces passed. Default angles 28.8/19.1 degrees. Idealizations documented in refraction/report.md and Explain. Source: https://openstax.org/books/physics/pages/16-2-refraction .
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses signed thin-lens/ray-slope engine uses SI geometry, cm instruments, exact infinity/virtual handling and finite aperture. 2208 configurations, 6382 valid rays and 14916 packet samples passed. Native instance-matrix endpoints/packets checked. Convex/plano equal selected power is explained; finite body surfaces are illustrative. Source and assumptions in lenses/report.md.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors signed Gaussian model and first-order ray construction passed 6992 configurations, 19438 valid rays and 97503 packet samples; 24 native configurations/matrices checked. Correct default image lies beyond object (di=60 cm). Finite screen dimensions are now enforced in Mirrors and Lenses; large virtual images fit the camera. Assumptions/source/evidence: mirrors/report.md and screen-boundary-verification.json.
+
+Curved Mirrors focal readout retains the exact derived half-step precision for fractional radius controls (for example R=11.5 cm gives f=5.75 cm). Production regression covers this near-focus setup.

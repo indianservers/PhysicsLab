@@ -1765,28 +1765,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "refractionCheckpoint": "Native bench rebuilt; four reference modes, no screenshot apparatus asset; visual refinement open."
   },
   {
     "reference": "10_optics/03_lenses.png",
@@ -1795,28 +1794,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "lensesCheckpoint": "Original native apparatus; four reference modes; model verified; visual refinement open."
   },
   {
     "reference": "10_optics/04_mirrors.png",
@@ -1825,28 +1823,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "Learning modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "mirrorsCheckpoint": "Original native bench; four reference modes. Image placement follows the model. Sidebar preserved; visual refinement open."
   },
   {
     "reference": "10_optics/05_interference.png",

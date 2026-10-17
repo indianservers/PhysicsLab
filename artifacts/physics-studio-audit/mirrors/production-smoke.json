@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "route": "/optics/mirrors",
+  "nativeCanvas": true,
+  "correctDefaultImageSideAndHeight": true,
+  "finiteInfinityVirtualCases": true,
+  "actualRayVisibility": true,
+  "dimensionLabels": true,
+  "finiteScreenBounds": true,
+  "mobileControlsNearScene": true,
+  "shortDesktopToolbarVisible": true,
+  "extraTabs": 0,
+  "errors": []
+}

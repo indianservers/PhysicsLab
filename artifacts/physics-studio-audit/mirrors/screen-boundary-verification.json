@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "actualSceneScreenBounds": true,
+  "largeVirtualImageCameraFit": true,
+  "results": [
+    {
+      "route": "/optics/mirrors",
+      "oversized": {
+        "screenVisible": false,
+        "imageVisible": false,
+        "imageTipNdc": {
+          "x": -0.18283225184477037,
+          "y": -0.4454307075304449
+        }
+      },
+      "virtual": {
+        "screenVisible": false,
+        "imageVisible": true,
+        "imageTipNdc": {
+          "x": 0.25794641872800467,
+          "y": 0.858064854209632
+        }
+      }
+    },
+    {
+      "route": "/optics/lenses",
+      "oversized": {
+        "screenVisible": false,
+        "imageVisible": false,
+        "imageTipNdc": {
+          "x": 0.8031651829871419,
+          "y": -0.6717253021844873
+        }
+      },
+      "virtual": {
+        "screenVisible": false,
+        "imageVisible": true,
+        "imageTipNdc": {
+          "x": -0.5158775853669337,
+          "y": 0.8018759498547839
+        }
+      }
+    }
+  ]
+}

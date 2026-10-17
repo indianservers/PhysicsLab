@@ -1,0 +1,10 @@
+{
+  "clockNanoseconds": [
+    0,
+    0.37
+  ],
+  "changedPixels": 61,
+  "pixelsChangedOver20Levels": 58,
+  "maximumChannelChange": 214,
+  "passed": true
+}

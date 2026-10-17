@@ -1,0 +1,9 @@
+{
+  "performance": {
+    "frames": 60,
+    "meanFrameMs": 9.461666666467984,
+    "maxFrameMs": 14.100000000000364
+  },
+  "assignmentLocks": true,
+  "note": "Headless Chromium on current host; not a cross-device performance guarantee."
+}

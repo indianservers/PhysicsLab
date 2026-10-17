@@ -25,3 +25,18 @@ Doppler Effect now has the reference header/modes, native siren/cart/microphone/
 ## Reflection checkpoint — 2026-10-17
 
 Reflection now recreates the reference primary apparatus, right controls/readings/law, transport, independent side view, mirror-frame diagram and calculated data table. Original procedural geometry/textures only; sidebar retained. Fixed clipped Ray Count and controlled environment glare. Main impact/protractor centres coincide and rays use true selected angles. Native material/lighting/detail/type refinement remains open; evidence in reflection/.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Reference header, four learning modes, full-width bench, overlaid controls, three lower cards and transport rebuilt. Sidebar preserved; no cropped assets. Six screenshots and sidebar-excluded comparison saved. MAE 16.093, SSIM 0.6354. Materials, lighting, fine apparatus detail, arcs and typography remain open.
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses now follows its reference layout: four learning modes, native bench, ray toggles, image properties, three lens cards, inspector/equations and transport. Sidebar unchanged; no cropped assets. Six sizes captured. MAE 19.218, SSIM 0.6057, with sidebar excluded and main width normalized. Material/lighting, hardware detail, typography and illustrated-scale differences remain open.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors now follows the reference header/four-mode/scene/parameter/lower-card/transport structure, using original native apparatus. Sidebar JSX preserved. Light controls relocated into the main scene to honor that exception. Real-image placement corrects the contradictory mockup. Six responsive sizes captured; MAE 20.169, SSIM 0.5567. Material, lighting, hardware and typography refinement remains open.

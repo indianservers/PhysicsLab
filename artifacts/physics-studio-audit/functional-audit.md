@@ -28,3 +28,20 @@ Doppler Effect: all three numeric/range parameters, keyboard editing, actual cam
 ## Reflection checkpoint — 2026-10-17
 
 Reflection: all numeric/range/keyboard controls; primary/secondary top/side cameras; native zoom; light-packet play/pause/reset; physical time scrubbing; recorded model configurations retained on reset; quiz answers; assignment locks; six responsive sizes; startup WebGL fallback; and three genuine SPA Home/back remounts with two canvases verified. Last control remains visible. Evidence in reflection/verification.json and visible-packet-motion.json; Chromium only.
+
+
+## Refraction checkpoint — 2026-10-17
+
+Preset/custom indices, numeric/range incident angle, play/pause/reset, actual camera zoom, learning dialogs, recording, six sizes, WebGL fallback and three SPA remounts tested. Recorded values explicitly identified as model configurations. Dedicated assignment-lock regression also passed: both medium selectors and angle slider disabled. Visible native packet movement verified independently in canvas screenshots.
+
+
+## Lenses checkpoint — 2026-10-17
+
+Lenses numeric/range controls, all three types, ray/axis toggles, actual native visibility, camera zoom, reset/play/pause, Predict/Challenge answers, recording/Explain, assignment locks, six sizes, fallback and three SPA remounts passed. Mobile controls moved directly below scene. Image properties are derived outputs, not pretend controls.
+
+Lenses keyboard/touch input and numeric-clamping checks also passed; slider tick labels now follow the linear parameter ranges. One transient screenshot ENOSPC failure was followed by successful suite rerun and PNG validation. Evidence: lenses/input-verification.json.
+
+
+## Curved Mirrors checkpoint — 2026-10-17
+
+Curved Mirrors parameters, type buttons, all five light switches, native scene object visibility, real camera zoom, play/pause/reset, learning dialogs, recording, answer keys, assignment locks, six sizes, fallback, keyboard/touch and three SPA remounts passed. Finite-screen fixes passed both actual scene-object and final production checks in Mirrors and Lenses.

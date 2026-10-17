@@ -1,0 +1,59 @@
+{
+  "recordedAtUTC": "2026-10-17T07:08:45.613277+00:00",
+  "scope": {
+    "mappedReferences": 102,
+    "mappedStudios": 17,
+    "inventorySource": "studio-inventory.md",
+    "fullGoalComplete": false
+  },
+  "mirrorModel": "6992 configurations passed",
+  "lensModel": "2208 configurations passed",
+  "sharedRegression": "581/581 passed",
+  "browser": "passed; six sizes, controls, assignment locks, fallback and three SPA remounts",
+  "nativeScene": "matrix endpoints, image geometry, actual visibility and camera controls passed",
+  "screenBoundaryAndLargeVirtualCamera": "passed in both labs",
+  "typecheck": {
+    "status": "passed",
+    "exitCode": 0,
+    "command": "node node_modules/typescript/bin/tsc -b",
+    "log": "final-typecheck.log"
+  },
+  "fullBuildPWA": {
+    "status": "passed",
+    "log": "verified-build.log"
+  },
+  "finalBundleRefresh": {
+    "status": "passed",
+    "log": "final-bundle.log"
+  },
+  "productionSmoke": {
+    "mirrors": "passed",
+    "lenses": "passed; ../lenses/production-smoke.json"
+  },
+  "productionLayouts": "12 current viewport images and touch passed",
+  "shortDesktop": "both toolbars fit 1920x912; inspector controls not clipped",
+  "fontStartup": {
+    "passed": true,
+    "fontStylesheetsDeliberatelyPending": 4,
+    "startupMs": 6181,
+    "stylesAppliedAfterRelease": true,
+    "mainCanvasReady": true,
+    "defaultImageDistance": "60.0 cm",
+    "note": "Font stylesheets were held unresolved until the application was ready, then released with CSS sentinels to verify activation. Analytics excluded from the controlled test."
+  },
+  "sourceSHA256": {
+    "index.html": "94b57ddbb15a78c02e225604b1aa21b826367cbb1fc80dd5b0835edd0b1c7292",
+    "src/concept-studio-homes.css": "5ba549b692c67724224f3d62b344e9d388f7ebd16968a13c6f9bd0fd7799a9ab",
+    "src/string-theory-studio.css": "d0cb570db01fc6db601b15f02d2875397a98b083818244791a0caf1a9f30b034",
+    "src/lib/mirrorStudio.ts": "2d118c987916d8ec20635098d130f757a9e7fa4ca0f1e781c4a09de30d0c4122",
+    "src/components/MirrorBench.tsx": "5107aba54874ee8e8d79734e4e9e5d4b3bae1b4d21f6c922284b556fe87be62f",
+    "src/pages/MirrorsStudioPage.tsx": "81d39d79613cc8dd29ab6ab7ea6299eddf63f1bc90182be959bdd1db3f7edf11",
+    "src/pages/mirrors-studio.css": "898ef26ded6929d8e30c2e0e26ec959d7b287734e8f7d71c36d9af15a28e4f2f",
+    "src/lib/lensStudio.ts": "37752b560017baf22d0e1765c4452a5c4ece036479fed85fbe141b34eaf26cb8",
+    "src/components/LensBench.tsx": "3c68114712a40c986c3bbc2459fc06e1bacda228b552c64af6f1485a615ede70",
+    "src/pages/LensesStudioPage.tsx": "a8e690a457475847f2da5e849808760fe908822ac76fca1c9de353e7668b592a",
+    "src/pages/lenses-studio.css": "f7bb7cf097f64d6bfd139e1f789d4ee647c346a43d8b0faf882b38f4f0fa0e38"
+  },
+  "visualCompletion": "open; native materials, lighting, detail and typography need refinement",
+  "crossBrowserAndLongRunMemory": "open"
+}
