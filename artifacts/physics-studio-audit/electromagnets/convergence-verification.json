@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "winding": [
+    {
+      "offset_m": 0.0005,
+      "analyticLength_m": 0.0831415926535898,
+      "errors": [
+        {
+          "segments": 512,
+          "relativeError": 0.00016708626298012064
+        },
+        {
+          "segments": 2048,
+          "relativeError": 0.000010258379666949757
+        },
+        {
+          "segments": 8192,
+          "relativeError": 6.468208197940584e-7
+        },
+        {
+          "segments": 32768,
+          "relativeError": 4.052172064561432e-8
+        }
+      ]
+    },
+    {
+      "offset_m": 0.0095,
+      "analyticLength_m": 0.13969026041820606,
+      "errors": [
+        {
+          "segments": 512,
+          "relativeError": 0.000014670752995993297
+        },
+        {
+          "segments": 2048,
+          "relativeError": 9.178382994745604e-7
+        },
+        {
+          "segments": 8192,
+          "relativeError": 5.735547492502491e-8
+        },
+        {
+          "segments": 32768,
+          "relativeError": 3.5850923341129715e-9
+        }
+      ]
+    },
+    {
+      "offset_m": 0.0245,
+      "analyticLength_m": 0.23393804002589985,
+      "errors": [
+        {
+          "segments": 512,
+          "relativeError": 0.000009514550202149863
+        },
+        {
+          "segments": 2048,
+          "relativeError": 5.960790537828942e-7
+        },
+        {
+          "segments": 8192,
+          "relativeError": 3.7247196771339475e-8
+        },
+        {
+          "segments": 32768,
+          "relativeError": 2.328087722602845e-9
+        }
+      ]
+    }
+  ],
+  "convergence": [
+    {
+      "input": {
+        "current": 5,
+        "turns": 2000,
+        "gap": 0.5
+      },
+      "samples": [
+        {
+          "steps": 32,
+          "durationError_s": 0.00428757284396835,
+          "currentError_A": 2.7450264283856995e-14
+        },
+        {
+          "steps": 64,
+          "durationError_s": 0.0005578452857978103,
+          "currentError_A": 2.7450264283856995e-14
+        },
+        {
+          "steps": 128,
+          "durationError_s": 0.000006230550271948965,
+          "currentError_A": 2.7450264283856995e-14
+        },
+        {
+          "steps": 256,
+          "durationError_s": 5.888392268227349e-8,
+          "currentError_A": 2.7450264283856995e-14
+        },
+        {
+          "steps": 512,
+          "durationError_s": 4.0805296641632793e-10,
+          "currentError_A": 2.718658631550852e-14
+        }
+      ]
+    },
+    {
+      "input": {
+        "current": 2,
+        "turns": 800,
+        "gap": 5
+      },
+      "samples": [
+        {
+          "steps": 32,
+          "durationError_s": 3.524958103184872e-14,
+          "currentError_A": 2.9554136915521667e-13
+        },
+        {
+          "steps": 64,
+          "durationError_s": 2.220446049250313e-16,
+          "currentError_A": 2.4424906541753444e-15
+        },
+        {
+          "steps": 128,
+          "durationError_s": 2.220446049250313e-16,
+          "currentError_A": 0
+        },
+        {
+          "steps": 256,
+          "durationError_s": 1.1102230246251565e-16,
+          "currentError_A": 0
+        },
+        {
+          "steps": 512,
+          "durationError_s": 0,
+          "currentError_A": 0
+        }
+      ]
+    },
+    {
+      "input": {
+        "current": 0.1,
+        "turns": 100,
+        "gap": 20
+      },
+      "samples": [
+        {
+          "steps": 32,
+          "durationError_s": 1.0408340855860843e-16,
+          "currentError_A": 2.7755575615628914e-17
+        },
+        {
+          "steps": 64,
+          "durationError_s": 9.71445146547012e-17,
+          "currentError_A": 2.7755575615628914e-17
+        },
+        {
+          "steps": 128,
+          "durationError_s": 1.0408340855860843e-16,
+          "currentError_A": 4.538036613155327e-15
+        },
+        {
+          "steps": 256,
+          "durationError_s": 1.0755285551056204e-16,
+          "currentError_A": 1.7069679003611782e-15
+        },
+        {
+          "steps": 512,
+          "durationError_s": 7.979727989493313e-17,
+          "currentError_A": 2.498001805406602e-16
+        }
+      ]
+    }
+  ]
+}

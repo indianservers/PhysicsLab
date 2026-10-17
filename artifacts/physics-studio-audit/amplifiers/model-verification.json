@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "cases": 54,
+  "phases": 3456,
+  "maxKVLResidual_V": 4.689582056016661e-13,
+  "maxKCLResidual_A": 1.97758476261356e-16,
+  "maxPowerResidual_W": 4.128641872824801e-16,
+  "maxIndependentEbersMollResidual_A": 4.371503159461554e-16,
+  "noExtraVppFactor": true,
+  "outputOffZeroAndUndefinedGain": true,
+  "smallSignalAgreement": true,
+  "cutoffAndSaturationReachable": true,
+  "quadratureConvergence": [
+    {
+      "bypass": false,
+      "errors": [
+        {
+          "samples": 128,
+          "meanCollectorError_V": 0.00007523009671395187,
+          "fundamentalError": 0.00007716023671289207
+        },
+        {
+          "samples": 256,
+          "meanCollectorError_V": 0.000022138880077626766,
+          "fundamentalError": 0.000020064187816082324
+        },
+        {
+          "samples": 512,
+          "meanCollectorError_V": 0.0000011104603849787509,
+          "fundamentalError": 0.0000010095881082250457
+        },
+        {
+          "samples": 1024,
+          "meanCollectorError_V": 7.635355459001403e-9,
+          "fundamentalError": 6.97351243417188e-9
+        }
+      ]
+    },
+    {
+      "bypass": true,
+      "errors": [
+        {
+          "samples": 128,
+          "meanCollectorError_V": 0.012148712111846649,
+          "fundamentalError": 0.0006040342886715067
+        },
+        {
+          "samples": 256,
+          "meanCollectorError_V": 0.0011728349793882487,
+          "fundamentalError": 0.00001735351139320329
+        },
+        {
+          "samples": 512,
+          "meanCollectorError_V": 0.0007497416590158679,
+          "fundamentalError": 0.000028875317950927126
+        },
+        {
+          "samples": 1024,
+          "meanCollectorError_V": 0.00000791222690388338,
+          "fundamentalError": 0.0000012076523674409145
+        }
+      ]
+    }
+  ],
+  "default": {
+    "RC": 5222.182029862953,
+    "sourceVpp": 0.4,
+    "baseVpp": 0.399399522554311,
+    "outputVpp": 4.185868042981246,
+    "fundamentalGain": -10.469715509775902,
+    "smallSignalGain": -10.489459937534917,
+    "meanVc": 6.030998768374929,
+    "meanVe": 0.542586387919178,
+    "meanIc": 0.001143009032908361
+  }
+}

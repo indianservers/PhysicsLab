@@ -1,0 +1,78 @@
+{
+  "route": "/electronics/transistors",
+  "reference": "13_electronics/03_transistors.png",
+  "overallGoalComplete": false,
+  "pageAcceptanceComplete": false,
+  "sourceHashes": {
+    "src/lib/transistorStudio.ts": "af6214415819aa1b632a88df5ac3429aeff4b9fb04c3612c21a076de65a028b5",
+    "src/components/TransistorBench.tsx": "dfe80d4fdb2a062bb94d201c906bf90ba6df7b0d4387d0cdd3c9449f4e2dcc79",
+    "src/pages/TransistorsStudioPage.tsx": "2b19acf3ba332dbfa3596e36772e6b0573c075db98a9c12102da8662617b989d",
+    "src/pages/transistor-studio.css": "c751de1bf2c1fd1354daf037876604504e0247036bc345b2feeb82cd3a3561d8"
+  },
+  "gates": {
+    "continuousBJT180Cases": "passed",
+    "EbersMollLimitAndKCLPowerKVL": "passed",
+    "bothCircuitFixtures": "passed",
+    "chargeAndEnergyConvergence": "passed",
+    "fourReferenceModesOnly": "passed",
+    "eightInteriorBoundViewports": "passed",
+    "nativeTwoBranchCharge10_30_60Fps": "passed",
+    "controlsAndCSV26Columns": "passed",
+    "touchAndCalculatedFallback": "passed",
+    "fullscreenChallengeAccessible": "passed",
+    "cleanup7Renderers784TrackedResources": "passed",
+    "finalBuild": "passed; session 68133 terminal 0",
+    "normalProduction": "passed; port 4202 smoke terminal 0",
+    "catalogPhysics": "581/581 passed"
+  },
+  "visual": {
+    "before": {
+      "meanAbsoluteChannelDifference": 26.341,
+      "ssim": 0.5513
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 21.789,
+      "ssim": 0.552
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 181,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 10.697
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 48.138
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 11.897
+      },
+      "transferAndRegions": {
+        "meanAbsoluteChannelDifference": 16.795
+      },
+      "output": {
+        "meanAbsoluteChannelDifference": 17.868
+      },
+      "parameters": {
+        "meanAbsoluteChannelDifference": 15.456
+      },
+      "relationAndChallenge": {
+        "meanAbsoluteChannelDifference": 16.106
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 10.251
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "limitations": [
+    "Photographic material finish, camera and apparatus proportions remain open.",
+    "Illustrative Ebers\u2013Moll/Early parameters are not a calibrated full Gummel\u2013Poon or real 2N3904 fit.",
+    "Ideal source-measure fixture can require voltages outside real supply/component ratings.",
+    "No charge storage, switching dynamics, high injection, breakdown, self-heating or contact parasitics.",
+    "Packet positions represent integrated conventional branch charge, not electron trajectories.",
+    "Breadboard holes are schematic; explicit conductors define ideal nodes.",
+    "Large app/PWA precache and hardware performance coverage remain app-wide concerns."
+  ]
+}

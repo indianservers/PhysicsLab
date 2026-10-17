@@ -141,7 +141,7 @@
         "group": ""
       },
       {
-        "text": "T = 2.01 sSmall-angle model · g = 9.81 m/s²Mechanics",
+        "text": "T = 2.01 sSmall-angle model \u00b7 g = 9.81 m/s\u00b2Mechanics",
         "label": null,
         "group": "el-gallery"
       },
@@ -151,17 +151,17 @@
         "group": "el-gallery"
       },
       {
-        "text": "DC SUPPLY6.0 V0.060 AIDEAL SOURCE100 ΩRESISTOR TEST BOARD−+I = 0.060 AP = 0.36 WCircuits",
+        "text": "DC SUPPLY6.0 V0.060 AIDEAL SOURCE100 \u03a9RESISTOR TEST BOARD\u2212+I = 0.060 AP = 0.36 WCircuits",
         "label": null,
         "group": "el-gallery"
       },
       {
-        "text": "20.00 °CQ = 0.0 JThermal",
+        "text": "20.00 \u00b0CQ = 0.0 JThermal",
         "label": null,
         "group": "el-gallery"
       },
       {
-        "text": "λ = 0.780 mPressure over 0–2 m · sound speed 343 m/sWaves",
+        "text": "\u03bb = 0.780 mPressure over 0\u20132 m \u00b7 sound speed 343 m/sWaves",
         "label": null,
         "group": "el-gallery"
       },
@@ -196,7 +196,7 @@
         "group": "el-modes"
       },
       {
-        "text": "ⅡPause",
+        "text": "\u2161Pause",
         "label": "Pause",
         "group": "el-navigation"
       }
@@ -273,7 +273,7 @@
         "group": "mc-graph-tabs"
       },
       {
-        "text": "ObserveSee what’s happening",
+        "text": "ObserveSee what\u2019s happening",
         "label": null,
         "group": "mc-modes"
       },
@@ -371,7 +371,7 @@
         "group": ""
       },
       {
-        "text": "⚑Next ChallengeMeasure an unknown object›",
+        "text": "\u2691Next ChallengeMeasure an unknown object\u203a",
         "label": null,
         "group": "vnc-learning"
       }
@@ -417,7 +417,7 @@
         "group": ""
       },
       {
-        "text": "⛶Fit View",
+        "text": "\u26f6Fit View",
         "label": null,
         "group": ""
       }
@@ -916,27 +916,27 @@
         "group": "cms-modes"
       },
       {
-        "text": "●",
+        "text": "\u25cf",
         "label": "Open challenge 1",
         "group": ""
       },
       {
-        "text": "●",
+        "text": "\u25cf",
         "label": "Open challenge 2",
         "group": ""
       },
       {
-        "text": "●",
+        "text": "\u25cf",
         "label": "Open challenge 3",
         "group": ""
       },
       {
-        "text": "●",
+        "text": "\u25cf",
         "label": "Open challenge 4",
         "group": ""
       },
       {
-        "text": "●",
+        "text": "\u25cf",
         "label": "Open challenge 5",
         "group": ""
       }
@@ -1546,22 +1546,22 @@
         "group": ""
       },
       {
-        "text": "⟳ Reset",
+        "text": "\u27f3 Reset",
         "label": "Reset",
         "group": ""
       },
       {
-        "text": "▷Play",
+        "text": "\u25b7Play",
         "label": "Play",
         "group": ""
       },
       {
-        "text": "−",
+        "text": "\u2212",
         "label": "Zoom out",
         "group": ""
       },
       {
-        "text": "＋",
+        "text": "\uff0b",
         "label": "Zoom in",
         "group": ""
       },
@@ -1571,7 +1571,7 @@
         "group": ""
       },
       {
-        "text": "Next Challenge →",
+        "text": "Next Challenge \u2192",
         "label": null,
         "group": ""
       }
@@ -1604,7 +1604,7 @@
         "group": ""
       },
       {
-        "text": "Sine Wave⌄",
+        "text": "Sine Wave\u2304",
         "label": "Source Type",
         "group": ""
       },
@@ -1634,27 +1634,27 @@
         "group": ""
       },
       {
-        "text": "⟳Reset",
+        "text": "\u27f3Reset",
         "label": "Reset",
         "group": ""
       },
       {
-        "text": "▷Play",
+        "text": "\u25b7Play",
         "label": "Play",
         "group": ""
       },
       {
-        "text": "⌕−",
+        "text": "\u2315\u2212",
         "label": "Zoom out",
         "group": ""
       },
       {
-        "text": "⌕+",
+        "text": "\u2315+",
         "label": "Zoom in",
         "group": ""
       },
       {
-        "text": "Next Challenge →",
+        "text": "Next Challenge \u2192",
         "label": null,
         "group": ""
       }
@@ -1687,17 +1687,17 @@
         "group": ""
       },
       {
-        "text": "⟳ Reset",
+        "text": "\u27f3 Reset",
         "label": "Reset",
         "group": ""
       },
       {
-        "text": "▷ Play",
+        "text": "\u25b7 Play",
         "label": "Play",
         "group": ""
       },
       {
-        "text": "Next Challenge　→",
+        "text": "Next Challenge\u3000\u2192",
         "label": null,
         "group": ""
       }
@@ -1730,27 +1730,27 @@
         "group": ""
       },
       {
-        "text": "⟳Reset",
+        "text": "\u27f3Reset",
         "label": "Reset",
         "group": ""
       },
       {
-        "text": "▷Play",
+        "text": "\u25b7Play",
         "label": "Play",
         "group": ""
       },
       {
-        "text": "⌕−",
+        "text": "\u2315\u2212",
         "label": "Zoom out",
         "group": ""
       },
       {
-        "text": "⌕+",
+        "text": "\u2315+",
         "label": "Zoom in",
         "group": ""
       },
       {
-        "text": "Next Challenge　→",
+        "text": "Next Challenge\u3000\u2192",
         "label": null,
         "group": ""
       }
@@ -2249,22 +2249,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "emx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "emx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "emx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "emx-modes"
       }
     ],
     "assets": [],
@@ -2277,22 +2277,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "scx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "scx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "scx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "scx-modes"
       }
     ],
     "assets": [],
@@ -2303,24 +2303,44 @@
     "route": "/electronics/diodes",
     "tabs": [
       {
+        "text": "PN Diode",
+        "label": null,
+        "group": "ddx-kinds"
+      },
+      {
+        "text": "Zener Diode",
+        "label": null,
+        "group": "ddx-kinds"
+      },
+      {
+        "text": "LED",
+        "label": null,
+        "group": "ddx-kinds"
+      },
+      {
+        "text": "Schottky",
+        "label": null,
+        "group": "ddx-kinds"
+      },
+      {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "ddx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "ddx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "ddx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "ddx-modes"
       }
     ],
     "assets": [],
@@ -2333,22 +2353,22 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "btx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "btx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "btx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "btx-modes"
       }
     ],
     "assets": [],
@@ -3272,7 +3292,7 @@
         "group": ""
       },
       {
-        "text": "⌕Zoom",
+        "text": "\u2315Zoom",
         "label": "Zoom",
         "group": "rsn-transport"
       }
@@ -3305,17 +3325,17 @@
         "group": ""
       },
       {
-        "text": "⌕　Zoom",
+        "text": "\u2315\u3000Zoom",
         "label": null,
         "group": ""
       },
       {
-        "text": "In-phase (ω−)f− = 0.498 Hz",
+        "text": "In-phase (\u03c9\u2212)f\u2212 = 0.498 Hz",
         "label": null,
         "group": ""
       },
       {
-        "text": "Out-of-phase (ω+)f+ = 0.576 Hz",
+        "text": "Out-of-phase (\u03c9+)f+ = 0.576 Hz",
         "label": null,
         "group": ""
       }

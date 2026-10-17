@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 2335,
+  "modelTimesSeconds": [
+    0,
+    1
+  ],
+  "note": "Native two-channel supplies and collector/base packets share the model and integrated branch charge. Packet speeds are symbolic charge flux, not electron drift."
+}

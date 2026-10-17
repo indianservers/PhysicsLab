@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 948,
+  "modelTimesSeconds": [
+    0,
+    1
+  ],
+  "note": "Native supply and conventional charge packets follow the same quasistatic voltage ramp and integrated circuit current; packet speeds are not electron drift velocities."
+}

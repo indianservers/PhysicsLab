@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actualTouchTemperatureSlider": true,
+  "touchPlayPause": true,
+  "actualDiamondFallback512Atoms844Bonds": true,
+  "unitCell8Atoms": true,
+  "pTypeFallbackColour": true,
+  "zoom": true,
+  "modeTimeChangesProjectedCoordinates": true
+}

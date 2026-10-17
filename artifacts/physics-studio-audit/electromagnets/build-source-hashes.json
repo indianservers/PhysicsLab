@@ -1,0 +1,6 @@
+{
+  "src/lib/electromagnetStudio.ts": "a29322bd4a1c82e9d4d19a2b7445084d11cca8c19d44aa476ba20fc4adfe09f5",
+  "src/components/ElectromagnetBench.tsx": "4f28ee3fdf7ae0e2d9bdb46c71bcc47ae155e4e3f321509f5f224e05f37e8e04",
+  "src/pages/ElectromagnetsStudioPage.tsx": "3205990228eecfea7f9837942f91af68b38f6577c552487a4276c432e8b013cf",
+  "src/pages/electromagnet-studio.css": "ebf7100107d02810d3179ac95e4fc6ccbea6cff0bfefc915780bec983e2ebc75"
+}

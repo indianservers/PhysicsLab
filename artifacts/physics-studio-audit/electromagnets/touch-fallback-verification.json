@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actualTouchGapSlider": true,
+  "touchPlayPauseStable": true,
+  "reset": true,
+  "calculatedFallback": true,
+  "variableGapGeometry": true,
+  "fiveFallbackZooms": true,
+  "zeroCurrentHidesFlux": true
+}

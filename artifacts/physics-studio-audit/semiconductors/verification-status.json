@@ -1,0 +1,70 @@
+{
+  "route": "/electronics/semiconductors",
+  "reference": "13_electronics/01_semiconductors.png",
+  "overallGoalComplete": false,
+  "pageAcceptanceComplete": false,
+  "sourceHashes": {
+    "src/lib/semiconductorStudio.ts": "c7f37859ee83a34aee130e97c23def59c2ae21db19a014b214b5d509722c6155",
+    "src/components/SemiconductorBench.tsx": "115957ab504551e560e45c8242764d1c16fbba803793e1615ac5df6c14bb7cd7",
+    "src/pages/SemiconductorsStudioPage.tsx": "f6ff53587a61118f6525f80fe894da68b1fdda10503a817978e74de32daca829",
+    "src/pages/semiconductor-studio.css": "2a6f15c46f5b54233d1164f765134ca93e6bef14bfe3d154db8173c0ecd54a10"
+  },
+  "gates": {
+    "nonlinearChargeNeutrality50Cases": "passed",
+    "FermiIntegralValuesAndConvergence": "passed",
+    "independentFreezeoutLimit": "passed",
+    "tetrahedralGeometry": "passed",
+    "harmonicEnergyAndWaveConvergence": "passed",
+    "eightInteriorBoundViewports": "passed",
+    "nativeCoordinatesAnd10_30_60Fps": "passed",
+    "controlsAndCSV15Columns": "passed",
+    "touchAndCalculatedFallback": "passed",
+    "cleanup7Renderers99TrackedResources": "passed",
+    "finalBuild": "passed; session 41557 terminal 0",
+    "normalProduction": "passed; port 4200 smoke terminal 0",
+    "catalogPhysics": "581/581 passed"
+  },
+  "visual": {
+    "before": {
+      "meanAbsoluteChannelDifference": 25.938,
+      "ssim": 0.5394
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 25.086,
+      "ssim": 0.5312
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 210,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 11.581
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 42.509
+      },
+      "bands": {
+        "meanAbsoluteChannelDifference": 20.438
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 17.543
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 15.753
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 10.951
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "limitations": [
+    "Photographic finish and camera/composition fidelity remain open; SSIM is below static baseline.",
+    "Constant illustrative mobilities omit temperature/impurity scattering; high-doping impurity bands and band-gap narrowing omitted.",
+    "Bulk state shown alongside a finite visual lattice; no confinement/surface state computation.",
+    "One illustrative linear acoustic mode, not a calibrated full phonon spectrum or literal quantum trajectory.",
+    "Dopants and carrier symbols are explicitly oversampled/schematic; no physical carrier paths.",
+    "Large PWA precache and bundle remain app-wide concerns."
+  ]
+}

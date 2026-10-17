@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 5332,
+  "wallPlaybackTimesSeconds": [
+    0,
+    1
+  ],
+  "note": "Supply current, flux visibility and field colour follow the electrical start-up state. The fixed fixture and load do not move."
+}

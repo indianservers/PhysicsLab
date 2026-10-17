@@ -1,0 +1,219 @@
+{
+  "passed": true,
+  "cases": 120,
+  "maxKVLResidual_V": 1.7541523789077473e-14,
+  "maxPowerBalanceResidual_W": 4.6629367034256575e-15,
+  "maxIndependentTerminalCharacteristicError_A": 0,
+  "testPoints": [
+    {
+      "kind": "pn",
+      "material": 1,
+      "V": 0.6,
+      "I": 0.0009999999999999966
+    },
+    {
+      "kind": "pn",
+      "material": -0.1,
+      "V": 0.25,
+      "I": 0.001
+    },
+    {
+      "kind": "zener",
+      "material": 1,
+      "V": 0.6,
+      "I": 0.0010000000000058987
+    },
+    {
+      "kind": "led",
+      "material": 1,
+      "V": 1.7,
+      "I": 0.0009999999999999929
+    },
+    {
+      "kind": "schottky",
+      "material": 1,
+      "V": 0.25,
+      "I": 0.001
+    }
+  ],
+  "zenerAtMinus3_3V_A": -0.005,
+  "highCurrentNotClipped_A": 0.39262492246988523,
+  "quadratureConvergence": [
+    {
+      "kind": "pn",
+      "independentCompositeSimpsonSteps": 16384,
+      "errors": [
+        {
+          "steps": 8,
+          "chargeError_C": 3.869943927814479e-9,
+          "sourceEnergyError_J": 6.248524038465764e-8
+        },
+        {
+          "steps": 16,
+          "chargeError_C": 3.4467469711696452e-9,
+          "sourceEnergyError_J": 1.3961674871776353e-10
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 1.671820321069717e-11,
+          "sourceEnergyError_J": 1.0095674296550783e-12
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 6.50868248186498e-15,
+          "sourceEnergyError_J": 1.0422218643668657e-14
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 2.7755575615628914e-17,
+          "sourceEnergyError_J": 9.71445146547012e-17
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 6.245004513516506e-17,
+          "sourceEnergyError_J": 6.938893903907228e-17
+        }
+      ]
+    },
+    {
+      "kind": "zener",
+      "independentCompositeSimpsonSteps": 16384,
+      "errors": [
+        {
+          "steps": 8,
+          "chargeError_C": 4.30691931077587e-9,
+          "sourceEnergyError_J": 1.6049609599666503e-8
+        },
+        {
+          "steps": 16,
+          "chargeError_C": 3.1686210079373556e-11,
+          "sourceEnergyError_J": 1.0136996797527331e-10
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 2.6619331738864105e-15,
+          "sourceEnergyError_J": 3.0461744238152733e-15
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 6.071532165918825e-18,
+          "sourceEnergyError_J": 0
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 8.673617379884035e-19,
+          "sourceEnergyError_J": 3.469446951953614e-18
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 2.6020852139652106e-18,
+          "sourceEnergyError_J": 3.469446951953614e-18
+        }
+      ]
+    },
+    {
+      "kind": "led",
+      "independentCompositeSimpsonSteps": 16384,
+      "errors": [
+        {
+          "steps": 8,
+          "chargeError_C": 2.6235607687025153e-7,
+          "sourceEnergyError_J": 3.475520636286866e-7
+        },
+        {
+          "steps": 16,
+          "chargeError_C": 2.676414402602578e-10,
+          "sourceEnergyError_J": 3.155594674453255e-10
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 1.4036105611126004e-11,
+          "sourceEnergyError_J": 1.8282583780226958e-11
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 5.1486592766991635e-15,
+          "sourceEnergyError_J": 5.842548667089886e-15
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 6.245004513516506e-17,
+          "sourceEnergyError_J": 1.8041124150158794e-16
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 6.591949208711867e-17,
+          "sourceEnergyError_J": 2.220446049250313e-16
+        }
+      ]
+    },
+    {
+      "kind": "schottky",
+      "independentCompositeSimpsonSteps": 16384,
+      "errors": [
+        {
+          "steps": 8,
+          "chargeError_C": 0.0000011944789376980292,
+          "sourceEnergyError_J": 2.064340831331446e-7
+        },
+        {
+          "steps": 16,
+          "chargeError_C": 3.693772313018151e-8,
+          "sourceEnergyError_J": 1.3896543360480962e-9
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 8.51951287295094e-11,
+          "sourceEnergyError_J": 1.5425299926263847e-11
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 9.59621271334754e-13,
+          "sourceEnergyError_J": 1.9098611581114255e-13
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 2.983724378680108e-16,
+          "sourceEnergyError_J": 5.551115123125783e-17
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 1.3877787807814457e-17,
+          "sourceEnergyError_J": 2.220446049250313e-16
+        }
+      ]
+    }
+  ],
+  "default": {
+    "voltage": 0.7,
+    "resistance": 220,
+    "material": 1,
+    "kind": "pn",
+    "model": {
+      "kind": "pn",
+      "n": 1.8,
+      "rs": 0.5,
+      "is": 2.5404697342414863e-9,
+      "vf": 0.6,
+      "zSlope": 0.12,
+      "iz": 0,
+      "zTestV": 3.3,
+      "zTestI": 0.005,
+      "orientation": 1,
+      "name": "PN Silicon"
+    },
+    "sourceVoltage": 0.7,
+    "junctionVoltage": 0.5736048552509403,
+    "diodeVoltage": 0.5738914655564937,
+    "current": 0.0005732206111068474,
+    "circuitCurrent": 0.0005732206111068474,
+    "resistorVoltage": 0.12610853444350642,
+    "power": 0.0003289664165952976,
+    "resistorPower": 0.00007228801117949567,
+    "sourcePower": 0.0004012544277747931,
+    "opticalPower": 0,
+    "diodeHeatPower": 0.0003289664165952976,
+    "powerBalance": -1.3552527156068805e-19,
+    "kvl": -2.220446049250313e-16
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "cases": 180,
+  "maxKCLResidual_A": 1.1384122811097797e-18,
+  "maxPowerResidual_W": 2.330492569757592e-16,
+  "maxKVLResidual_V": 5.329070518200751e-15,
+  "minDevicePower_W": 0,
+  "maxIndependentEbersMollResidual_A": 1.734723475976807e-17,
+  "directControlledLoadChangesSupplyAndPower": true,
+  "loadlineRCAffectsCurrent": true,
+  "noHardPointTwoVoltDiscontinuity": true,
+  "zeroBaseGainUndefined": true,
+  "convergence": [
+    {
+      "fixture": "controlled",
+      "independentCompositeSimpsonSteps": 8192,
+      "errors": [
+        {
+          "steps": 16,
+          "chargeError_C": 1.614674681044148e-7,
+          "energyError_J": 0.0011761129554923588
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 0.0000035313968456684997,
+          "energyError_J": 0.0004449441715115299
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 2.991381297945406e-7,
+          "energyError_J": 2.518757398206617e-7
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 2.190482739639066e-9,
+          "energyError_J": 4.845243162243662e-8
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 1.6450799056322296e-12,
+          "energyError_J": 2.7826030368771626e-10
+        }
+      ]
+    },
+    {
+      "fixture": "loadline",
+      "independentCompositeSimpsonSteps": 8192,
+      "errors": [
+        {
+          "steps": 16,
+          "chargeError_C": 1.8860954464905433e-13,
+          "energyError_J": 2.092701012479381e-13
+        },
+        {
+          "steps": 32,
+          "chargeError_C": 1.2784912017949068e-15,
+          "energyError_J": 1.4016565685892601e-15
+        },
+        {
+          "steps": 64,
+          "chargeError_C": 0,
+          "energyError_J": 6.938893903907228e-18
+        },
+        {
+          "steps": 128,
+          "chargeError_C": 6.938893903907228e-18,
+          "energyError_J": 6.938893903907228e-18
+        },
+        {
+          "steps": 256,
+          "chargeError_C": 0,
+          "energyError_J": 4.163336342344337e-17
+        }
+      ]
+    }
+  ],
+  "default": {
+    "ib": 0.0000241,
+    "vce": 5,
+    "rc": 2200,
+    "fixture": "controlled",
+    "ic": 0.0025305000005405,
+    "ie": 0.0025546000005405,
+    "vbe": 0.6775308331496989,
+    "vbc": -4.3224691668503015,
+    "ibf": 0.000024100000005,
+    "ibr": -5e-15,
+    "transport": 0.0025305000005355002,
+    "beta": 105.00000002242739,
+    "region": "Active",
+    "power": 0.012668828495781407,
+    "kcl": -1.0164395367051604e-20,
+    "baseResidual": 0,
+    "baseCurrent": 0.0000241,
+    "ibMicroamps": 24.1,
+    "controlVoltage": 5,
+    "vcc": 10.5671000011891,
+    "vbb": 0.9185308331496989,
+    "rcPower": 0.014087546556018037,
+    "rbPower": 0.0000058080999999999995,
+    "collectorSourcePower": 0.02674004655872054,
+    "baseSourcePower": 0.00002213659307890774,
+    "powerBalance": 2.5783682914420902e-18,
+    "kvlC": 0,
+    "kvlB": 0
+  },
+  "saturatedLoadline": {
+    "ib": 0.00009999999999999999,
+    "vce": 0.07223759014961825,
+    "rc": 2200,
+    "fixture": "loadline",
+    "ic": 0.0022398920044774478,
+    "ie": 0.0023398920044774476,
+    "vbe": 0.6781067584751334,
+    "vbc": 0.6058691683255151,
+    "ibf": 0.000024642919724465023,
+    "ibr": 0.00007535708027553498,
+    "transport": 0.0023152490847529825,
+    "beta": 22.398920044774478,
+    "region": "Saturation",
+    "power": 0.0002296150764463621,
+    "kcl": -1.6263032587282567e-19,
+    "baseResidual": 0,
+    "baseCurrent": 0.00009999999999999999,
+    "ibMicroamps": 100,
+    "controlVoltage": 5,
+    "vcc": 5,
+    "vbb": 1.6781067584751332,
+    "rcPower": 0.011037655621788397,
+    "rbPower": 0.00009999999999999999,
+    "collectorSourcePower": 0.01119946002238724,
+    "baseSourcePower": 0.0001678106758475133,
+    "powerBalance": -7.535205098774256e-18,
+    "kvlC": -3.552713678800501e-15,
+    "kvlB": 0
+  }
+}

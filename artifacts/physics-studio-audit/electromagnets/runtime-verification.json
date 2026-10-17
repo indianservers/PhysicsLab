@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "rates": [
+    {
+      "fps": 10,
+      "time": 0.10183723479895583,
+      "current": 1.9394122287506455,
+      "B": 0.3731747547251531,
+      "color": [
+        0.06000000000000005,
+        0.7615685388832869,
+        1
+      ]
+    },
+    {
+      "fps": 30,
+      "time": 0.10183723479895561,
+      "current": 1.9394122287506448,
+      "B": 0.3731747547251529,
+      "color": [
+        0.06000000000000005,
+        0.7615685388832869,
+        1
+      ]
+    },
+    {
+      "fps": 60,
+      "time": 0.10183723479895494,
+      "current": 1.9394122287506435,
+      "B": 0.37317475472515266,
+      "color": [
+        0.06000000000000005,
+        0.7615685388832869,
+        1
+      ]
+    }
+  ],
+  "physicalDurationSeconds": 0.40734893919582327,
+  "wallPlaybackSeconds": 4,
+  "pausedRenderFrames": 0,
+  "geometryReused": true,
+  "instantaneousCurrentFieldPowerMatch": true,
+  "hiddenNoCatchup": true,
+  "automaticStop": true,
+  "replay": true,
+  "noClockAfterUnmount": true
+}

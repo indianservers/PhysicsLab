@@ -1,0 +1,6 @@
+{
+  "src/lib/semiconductorStudio.ts": "c7f37859ee83a34aee130e97c23def59c2ae21db19a014b214b5d509722c6155",
+  "src/components/SemiconductorBench.tsx": "115957ab504551e560e45c8242764d1c16fbba803793e1615ac5df6c14bb7cd7",
+  "src/pages/SemiconductorsStudioPage.tsx": "f6ff53587a61118f6525f80fe894da68b1fdda10503a817978e74de32daca829",
+  "src/pages/semiconductor-studio.css": "2a6f15c46f5b54233d1164f765134ca93e6bef14bfe3d154db8173c0ecd54a10"
+}

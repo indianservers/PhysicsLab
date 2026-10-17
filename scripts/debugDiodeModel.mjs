@@ -1,0 +1,1 @@
+import{build}from'esbuild';const b=await build({entryPoints:['src/lib/diodeStudio.ts'],bundle:true,write:false,format:'esm',platform:'node'}),m=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));console.log(m.diodeSolution(m.DIODE_DEFAULTS));console.log(m.diodeSolution({...m.DIODE_DEFAULTS,kind:'zener',voltage:5}));

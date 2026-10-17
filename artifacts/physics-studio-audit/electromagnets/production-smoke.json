@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "normalUnmaskedProduction": true,
+  "defaultModelReadings": true,
+  "keyboardTurns": true,
+  "sixRapidPauseResumeChecks": true,
+  "CSV17ColumnsAndEnergyBalance": true,
+  "zoomAndTheme": true,
+  "desktopBreakpointMobileInteriorBounds": true,
+  "fourReferenceModesOnly": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

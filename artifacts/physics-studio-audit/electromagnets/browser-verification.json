@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "actualTurnsAndSIPoleGaps": true,
+  "correctFluxDirections": true,
+  "zeroCurrentNoField": true,
+  "geometryReused": true,
+  "fiveZooms": true,
+  "themeAndFullscreen": true,
+  "predictionAndKeyboardModes": true,
+  "CSV17Columns": true,
+  "unknownSteadyEnergyBlank": true,
+  "CSVTransientEnergyBalance": true,
+  "recordsSurviveResetAndClearWorks": true,
+  "gradedChallenge": true,
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 917,
+  "errors": []
+}

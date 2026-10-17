@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actualTouchBiasSlider": true,
+  "touchPlayPauseStable": true,
+  "LEDTabTouch": true,
+  "calculatedCircuitFallback": true,
+  "signedZenerFallbackAndCathodeFlip": true,
+  "allFourModelTabs": true,
+  "zoomAndFit": true
+}

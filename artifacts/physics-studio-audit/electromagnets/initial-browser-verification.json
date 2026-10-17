@@ -1,0 +1,49 @@
+{
+  "layouts": [
+    {
+      "width": 1536,
+      "scroll": 1536,
+      "overflow": []
+    },
+    {
+      "width": 1920,
+      "scroll": 1920,
+      "overflow": []
+    },
+    {
+      "width": 1251,
+      "scroll": 1251,
+      "overflow": []
+    },
+    {
+      "width": 1250,
+      "scroll": 1250,
+      "overflow": []
+    },
+    {
+      "width": 1024,
+      "scroll": 1024,
+      "overflow": []
+    },
+    {
+      "width": 768,
+      "scroll": 768,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "scroll": 320,
+      "overflow": []
+    }
+  ],
+  "errors": [],
+  "pauseStable": true,
+  "record": true,
+  "theme": true,
+  "zeroCurrent": true
+}

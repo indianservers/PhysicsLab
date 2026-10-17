@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "normalUnmaskedProduction": true,
+  "defaultCircuitPoint": true,
+  "keyboardBaseCurrent": true,
+  "sixRapidPauseResumeChecks": true,
+  "bothFixturesAndLoadline": true,
+  "CSV26ColumnsKCLPowerAndEnergy": true,
+  "zoomAndTheme": true,
+  "desktopBreakpointMobileInteriorBounds": true,
+  "fourReferenceModesOnly": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

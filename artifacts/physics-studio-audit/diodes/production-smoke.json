@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "normalUnmaskedProduction": true,
+  "defaultCircuitPoint": true,
+  "keyboardBias": true,
+  "sixRapidPauseResumeChecks": true,
+  "fourDistinctReferenceModels": true,
+  "CSV19ColumnsPowerAndEnergy": true,
+  "zoomAndLiveCurve": true,
+  "desktopBreakpointMobileBounds": true,
+  "eightReferenceTabsOnly": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

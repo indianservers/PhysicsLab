@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "nativeDiamond512Atoms844Bonds": true,
+  "pAndNTypeMajorityAndFermiAgree": true,
+  "dopingAndTemperatureInputs": true,
+  "temperatureChangesModeAmplitude": true,
+  "twoActualCrystalViews": true,
+  "zoom": true,
+  "pauseStable": true,
+  "equilibriumUnchangedByModeClock": true,
+  "predictionAndKeyboardModes": true,
+  "CSV15ColumnsAndSIConductivity": true,
+  "recordsPreservedAndClearWorks": true,
+  "challenge": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 99,
+  "errors": []
+}

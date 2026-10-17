@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "normalUnmaskedProduction": true,
+  "defaultGap": true,
+  "keyboardTemperature": true,
+  "sixRapidPauseResumeChecks": true,
+  "pTypeFermiAndMajority": true,
+  "CSV15ColumnsAndSIConductivity": true,
+  "unitCellAndZoom": true,
+  "desktopBreakpointMobileInteriorBounds": true,
+  "fourReferenceModesOnly": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

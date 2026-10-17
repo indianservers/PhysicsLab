@@ -1,0 +1,1 @@
+import{build}from'esbuild';const c=await build({entryPoints:['src/lib/transistorStudio.ts'],bundle:true,write:false,format:'esm',platform:'node'}),m=await import('data:text/javascript;base64,'+Buffer.from(c.outputFiles[0].text).toString('base64'));console.log(m.transSolution(m.TRANS_DEFAULTS));console.log(m.transSolution({...m.TRANS_DEFAULTS,fixture:'loadline',ib:100}));

@@ -1,0 +1,68 @@
+{
+  "route": "/electronics/diodes",
+  "reference": "13_electronics/02_diodes.png",
+  "overallGoalComplete": false,
+  "pageAcceptanceComplete": false,
+  "sourceHashes": {
+    "src/lib/diodeStudio.ts": "8d5d85a390fa5bbe49aad4285a547ac8c516071b32b5a9902dfa2398687129e9",
+    "src/components/DiodeBench.tsx": "dea73af55f1ee0a211e00a801076af8e439c33943b76ea9a611245454be7a89d",
+    "src/pages/DiodesStudioPage.tsx": "839157765c50298a254cfd7b111035c7706d8e860a33d4265d3973f140d33b42",
+    "src/pages/diode-studio.css": "97ff5ee609dce58929965dbf79ea9f845c0147904035ffb8c364bc8e2f3d3c44"
+  },
+  "gates": {
+    "coupledCircuit120Configurations": "passed",
+    "KVLAndPowerBalance": "passed",
+    "forwardAndZenerTestPoints": "passed",
+    "chargeAndEnergyConvergence": "passed",
+    "fourReferenceDeviceModelsAndFourModes": "passed",
+    "eightInteriorBoundViewports": "passed",
+    "nativeIntegratedChargeAnd10_30_60Fps": "passed",
+    "controlsAndCSV19Columns": "passed",
+    "touchAndCalculatedFallback": "passed",
+    "cleanup7Renderers868TrackedResources": "passed",
+    "finalBuild": "passed; session 71246 terminal 0",
+    "normalProduction": "passed; port 4201 smoke terminal 0",
+    "catalogPhysics": "581/581 passed"
+  },
+  "visual": {
+    "before": {
+      "meanAbsoluteChannelDifference": 29.798,
+      "ssim": 0.5597
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 23.47,
+      "ssim": 0.5944
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 220,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 12.814
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 47.986
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 14.963
+      },
+      "curve": {
+        "meanAbsoluteChannelDifference": 12.652
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 9.506
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "limitations": [
+    "Photographic material finish, camera composition and fine apparatus proportions remain open.",
+    "Illustrative device parameters are not calibrated real-part models.",
+    "No capacitance, reverse recovery, heating, high-injection correction, failure or contact parasitics.",
+    "Zener empirical reverse exponential is not a complete avalanche/tunnelling model.",
+    "LED optical fraction is illustrative; emission is not calibrated photometry.",
+    "Quasistatic source ramp assumes instantaneous electrical settling; packets are symbolic charge amounts.",
+    "Large application/PWA precache remains an app-wide issue."
+  ]
+}

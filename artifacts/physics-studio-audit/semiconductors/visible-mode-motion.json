@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 6332,
+  "modelTimesSeconds": [
+    0,
+    1e-13
+  ],
+  "note": "Native lattice coordinates follow the same illustrative harmonic acoustic mode; equilibrium carrier densities remain fixed."
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "rates": [
+    {
+      "fps": 10,
+      "time": 2.0000000000000006e-13,
+      "firstModeX": -0.8145220279693604
+    },
+    {
+      "fps": 30,
+      "time": 1.9999999999999945e-13,
+      "firstModeX": -0.8145220279693604
+    },
+    {
+      "fps": 60,
+      "time": 1.999999999999984e-13,
+      "firstModeX": -0.8145220279693604
+    }
+  ],
+  "maxNativeMatrixErrorDisplayNm": 2.9087066644173376e-8,
+  "clockSecondsPerWallSecond": 2e-13,
+  "geometryReused": true,
+  "all512NativeCoordinatesMatchMode": true,
+  "equilibriumUnchangedByMode": true,
+  "pausedRenderFrames": 0,
+  "hiddenNoCatchup": true,
+  "automaticStop": true,
+  "replay": true,
+  "noClockAfterRouteUnmount": true
+}

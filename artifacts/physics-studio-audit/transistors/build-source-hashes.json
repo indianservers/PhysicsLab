@@ -1,0 +1,6 @@
+{
+  "src/lib/transistorStudio.ts": "af6214415819aa1b632a88df5ac3429aeff4b9fb04c3612c21a076de65a028b5",
+  "src/components/TransistorBench.tsx": "dfe80d4fdb2a062bb94d201c906bf90ba6df7b0d4387d0cdd3c9449f4e2dcc79",
+  "src/pages/TransistorsStudioPage.tsx": "2b19acf3ba332dbfa3596e36772e6b0573c075db98a9c12102da8662617b989d",
+  "src/pages/transistor-studio.css": "c751de1bf2c1fd1354daf037876604504e0247036bc345b2feeb82cd3a3561d8"
+}

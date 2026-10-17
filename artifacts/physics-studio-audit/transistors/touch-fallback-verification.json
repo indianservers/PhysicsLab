@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "actualTouchBaseSlider": true,
+  "touchPlayPauseStable": true,
+  "touchZoom": true,
+  "calculatedCircuitFallback": true,
+  "twoFixtureResponses": true,
+  "zoomAndThemeFallback": true,
+  "cutoffGainUndefined": true,
+  "reset": true
+}

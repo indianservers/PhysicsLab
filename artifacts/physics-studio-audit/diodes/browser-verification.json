@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "allFourReferenceModelsDistinct": true,
+  "SiGeSelector": true,
+  "signedZenerAndCathodeFlip": true,
+  "LEDOpticalEmission": true,
+  "uncappedHighCurrent": true,
+  "sliderAndNumericControls": true,
+  "plotPointUsesActualDiodeVoltage": true,
+  "liveCurveToggle": true,
+  "zoomAndFit": true,
+  "predictionAndKeyboardModes": true,
+  "CSV19ColumnsAndPowerEnergyBalance": true,
+  "unknownSteadyHistoryBlank": true,
+  "recordPreservationAndClear": true,
+  "challenge": true,
+  "zeroBiasDisabled": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 868,
+  "errors": []
+}

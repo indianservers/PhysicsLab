@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "controlledRCChangesSupplyAndPower": true,
+  "loadlineRCChangesOperatingPoint": true,
+  "allSixIncrementButtons": true,
+  "numericAndSliderInputs": true,
+  "cutoffUndefinedGain": true,
+  "plotAndNativeStateMatch": true,
+  "continuousBranchPaths": true,
+  "zoomAndTheme": true,
+  "bothFullscreenControls": true,
+  "fullscreenChallengeDialogAccessible": true,
+  "predictionAndKeyboardModes": true,
+  "CSV26ColumnsKCLPowerAndEnergy": true,
+  "unknownSteadyHistoryBlank": true,
+  "recordsPreserveAndClear": true,
+  "challenge": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "interiorBounds": true
+    },
+    {
+      "width": 1251,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1250,
+      "height": 900,
+      "interiorBounds": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "interiorBounds": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interiorBounds": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interiorBounds": true
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "interiorBounds": true
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 784,
+  "errors": []
+}
