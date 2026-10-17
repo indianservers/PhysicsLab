@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 3156,
+  "inspectionTimesSeconds": [
+    0,
+    1
+  ],
+  "note": "Probe scans a static magnetic field at 0.02 m/s. Includes compass, probe overlay and readout changes; field lines do not move."
+}

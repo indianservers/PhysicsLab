@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "sourceSuperposition": true,
+  "nullDirectionUndefined": true,
+  "bothPolesShown": true,
+  "allLayers": true,
+  "densityAffectsSampling": true,
+  "contextReusedAcrossParameters": true,
+  "keyboardAndMouseProbe": true,
+  "scanPause": true,
+  "fullscreen": true,
+  "unavailableInsideCores": true,
+  "prediction": true,
+  "CSV11ColumnsParsed": true,
+  "recordsSurviveReset": true,
+  "fourReferenceModes": true,
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 3023,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 207,
+        "y": 82,
+        "width": 884,
+        "height": 592
+      },
+      "toolbar": {
+        "x": 207,
+        "y": 950,
+        "width": 1313,
+        "height": 64
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 207,
+        "y": 82,
+        "width": 1268,
+        "height": 510
+      },
+      "toolbar": {
+        "x": 207,
+        "y": 838,
+        "width": 1697,
+        "height": 64
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 213,
+        "y": 141,
+        "width": 799,
+        "height": 500
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 651,
+        "width": 799,
+        "height": 64
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 192,
+        "y": 141,
+        "width": 564,
+        "height": 500
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 651,
+        "width": 564,
+        "height": 64
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 233.78125,
+        "width": 370,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 573.78125,
+        "width": 370,
+        "height": 104
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 233.78125,
+        "width": 300,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 573.78125,
+        "width": 300,
+        "height": 104
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

@@ -1,0 +1,84 @@
+{
+  "overallGoalComplete": false,
+  "route": "/magnetism/lorentz-force",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "fallback-verification.json": true,
+    "touch-verification.json": true,
+    "production-smoke.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    }
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1259,
+    "precacheKiB": 326869.44,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "correctProtonDefault": true,
+    "keyboardSlider": true,
+    "chargeSign": true,
+    "allViewsAndZoom": true,
+    "playPause": true,
+    "quarterPeriodCSV14ColumnsParsed": true,
+    "recordsSurviveReset": true,
+    "shortDesktopMobile": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/lorentzStudio.ts": "a21984415f5283b0b06e87c134c7a75136da5fb3affb26498f1b9e654db09bb8",
+    "src/components/LorentzBench.tsx": "0071dc5eae002f105c6ecda712b578fa1526d4c6975ffef75a9c5dd8085175b3",
+    "src/pages/LorentzForceStudioPage.tsx": "becc674ee2240b2b9a32308927f9e689afe0cfb8ca841e84e8c96e8c233816c9",
+    "src/pages/lorentz-force-studio.css": "df7517a4f5a3e2171a151ac0c52a057e0a44c07f75b3191b8b227339bf39f692"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 22.134,
+      "ssim": 0.5456
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 21.991,
+      "ssim": 0.5419
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 213,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 15.201
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 32.106
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 19.835
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 17.475
+      },
+      "bottom": {
+        "meanAbsoluteChannelDifference": 13.242
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 14.909
+      }
+    },
+    "sidebarSourceUnchanged": true
+  }
+}

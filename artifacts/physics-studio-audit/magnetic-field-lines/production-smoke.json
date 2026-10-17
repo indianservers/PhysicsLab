@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "calculatedDefault": true,
+  "bothPolesInBenchAndMap": true,
+  "nullDirectionUndefined": true,
+  "keyboardProbe": true,
+  "scanPause": true,
+  "coreMeasurementsUnavailable": true,
+  "CSV11ColumnsIndependentlyParsed": true,
+  "recordsSurviveReset": true,
+  "shortDesktopMobile": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

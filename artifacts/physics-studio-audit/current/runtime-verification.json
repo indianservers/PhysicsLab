@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "displacementMetres": 0.00011749474930086373
+    },
+    {
+      "fps": 30,
+      "displacementMetres": 0.0001174947493008634
+    },
+    {
+      "fps": 60,
+      "displacementMetres": 0.00011749474930086262
+    }
+  ],
+  "nativeElectronMatricesVerified": 90,
+  "maxPositionError": 5.905581246246072e-8,
+  "pausedRenderFrames": 0,
+  "zeroVoltageStopsDrift": true,
+  "hiddenTabNoCatchup": true,
+  "noClockAfterRouteUnmount": true,
+  "disposals": 4,
+  "contextLosses": 4
+}

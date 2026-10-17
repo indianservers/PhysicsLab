@@ -1,3 +1,3 @@
 # Circuits asset provenance
 
-The circuit board, branch wiring, resistor symbols, switch, and measurement labels are live SVG geometry. No new raster asset was generated.
+Original procedural Three.js breadboard, holes, resistor bodies/bands, lamps/filaments, switch, instruments, cables and current markers. Screen labels, table texture and glow sprite are generated independently with Canvas. The fallback is calculated SVG. Three.js RoomEnvironment and RoundedBoxGeometry are library code under Three.js licensing. No reference crops or external apparatus raster assets are used.

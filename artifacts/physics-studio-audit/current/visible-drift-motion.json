@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 974,
+  "inspectionTimesSeconds": [
+    0,
+    0.5
+  ],
+  "note": "Mean electron drift follows integrated vd with a fixed diagram scale. Native matrices separately checked."
+}

@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "correctDefault": true,
+  "diameterSquaredScaling": true,
+  "temperatureAndVoltage": true,
+  "playPause": true,
+  "zoom": true,
+  "fourReferenceModes": true,
+  "prediction": true,
+  "recordsSurviveReset": true,
+  "CSVDownload": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 217,
+        "y": 114,
+        "width": 988,
+        "height": 319.609375
+      },
+      "toolbar": {
+        "x": 217,
+        "y": 922.96875,
+        "width": 1303,
+        "height": 49
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 217,
+        "y": 114,
+        "width": 1372,
+        "height": 265.28125
+      },
+      "toolbar": {
+        "x": 217,
+        "y": 815.28125,
+        "width": 1687,
+        "height": 49
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 217,
+        "y": 124,
+        "width": 529,
+        "height": 360
+      },
+      "toolbar": {
+        "x": 217,
+        "y": 1412,
+        "width": 791,
+        "height": 49
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 196,
+        "y": 124,
+        "width": 294,
+        "height": 360
+      },
+      "toolbar": {
+        "x": 196,
+        "y": 1412,
+        "width": 556,
+        "height": 110
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 279.71875,
+        "width": 370,
+        "height": 195
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 484.71875,
+        "width": 370,
+        "height": 92
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 279.71875,
+        "width": 300,
+        "height": 195
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 484.71875,
+        "width": 300,
+        "height": 92
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

@@ -1,0 +1,6 @@
+{
+  "src/lib/magneticFieldStudio.ts": "ac1c734b5fe1291153021cf1c7dc76eedad1a5ff2e132cc2435f1a9751f56148",
+  "src/components/MagneticFieldBench.tsx": "6333c7f201b6bcedbf161154c812cae98f23a7902385c41ffb39462df278691c",
+  "src/pages/MagneticFieldLinesStudioPage.tsx": "db112f590ed833cf1a233dc3f986983f5e5a35dfe470649d248cccfaaef79dd8",
+  "src/pages/magnetic-field-lines-studio.css": "b545bf62b2674d11a04e0df3168b2a5c87346fade3116a9f9f77963973412ea8"
+}

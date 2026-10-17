@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "configurations": 32,
+  "states": 192,
+  "maxWorkRelative": 6.6084547833187e-17,
+  "maxEnergyRelative": 2.358156655076018e-16,
+  "maxAccelerationRelative": 6.620933070217268e-10,
+  "independentRK4Convergence": [
+    {
+      "steps": 16,
+      "positionErrorMetres": 0.0003244292239722116,
+      "velocityRelativeError": 0.0012430613612573328
+    },
+    {
+      "steps": 32,
+      "positionErrorMetres": 0.000020303776510424793,
+      "velocityRelativeError": 0.00007779459494656389
+    },
+    {
+      "steps": 64,
+      "positionErrorMetres": 0.000001269357606566764,
+      "velocityRelativeError": 0.000004863585884884921
+    },
+    {
+      "steps": 128,
+      "positionErrorMetres": 7.934055507379566e-8,
+      "velocityRelativeError": 3.0399597539163985e-7
+    }
+  ],
+  "default": {
+    "sign": 1,
+    "speed": 5000000,
+    "B": 0.2,
+    "q": 1.602176634e-19,
+    "m": 1.67262192595e-27,
+    "F": 1.602176634e-13,
+    "r": 0.260992123223974,
+    "T": 3.279723747860955e-7,
+    "freq": 3049037.2875221665,
+    "omega": 19157666.286001973,
+    "energy": 2.0907774074374998e-14,
+    "relativisticRadiusCorrection": 0.00013911027912816287
+  },
+  "positiveForceIntoPage": true,
+  "negativeMirrorOrbit": true,
+  "maxRelativisticRadiusCorrection": 0.0005567897052045634
+}

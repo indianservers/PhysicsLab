@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "timeSeconds": 9.999999999999998e-8,
+      "position": [
+        0.24561590174213982,
+        0,
+        -0.34925149777621955
+      ]
+    },
+    {
+      "fps": 30,
+      "timeSeconds": 9.999999999999973e-8,
+      "position": [
+        0.24561590174214026,
+        0,
+        -0.34925149777621844
+      ]
+    },
+    {
+      "fps": 60,
+      "timeSeconds": 9.999999999999917e-8,
+      "position": [
+        0.24561590174214118,
+        0,
+        -0.3492514977762158
+      ]
+    }
+  ],
+  "maxVectorError": 1.4765966227514582e-14,
+  "nativePositionAndVectorsMatchModel": true,
+  "clockSecondsPerWallSecond": 1e-7,
+  "pausedRenderFrames": 0,
+  "resumePreservesTime": true,
+  "hiddenTabNoCatchup": true,
+  "noClockAfterRouteUnmount": true
+}

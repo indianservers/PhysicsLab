@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "all16ResistorPairs": true,
+  "voltageSliderAndNumber": true,
+  "switchAndNativeSwitch": true,
+  "nativePowerAndCurrent": true,
+  "geometryReused": true,
+  "mouseAndKeyboardKnob": true,
+  "playPause": true,
+  "zoom": true,
+  "fourReferenceModes": true,
+  "predictionAndChallenge": true,
+  "recordsSurviveReset": true,
+  "CSV15ColumnsIndependentlyParsed": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 202,
+        "y": 121,
+        "width": 974,
+        "height": 811
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 949,
+        "width": 1323,
+        "height": 51
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 202,
+        "y": 121,
+        "width": 1358,
+        "height": 699
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 837,
+        "width": 1707,
+        "height": 51
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 214,
+        "y": 121,
+        "width": 797,
+        "height": 648
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 782,
+        "width": 799,
+        "height": 51
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 193,
+        "y": 121,
+        "width": 562,
+        "height": 648
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 782,
+        "width": 564,
+        "height": 115
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 255.59375,
+        "width": 370,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 595.59375,
+        "width": 370,
+        "height": 96
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 255.59375,
+        "width": 300,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 595.59375,
+        "width": 300,
+        "height": 96
+      }
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 1365,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

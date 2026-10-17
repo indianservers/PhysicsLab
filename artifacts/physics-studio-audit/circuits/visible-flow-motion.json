@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 1522,
+  "inspectionTimesSeconds": [
+    0,
+    0.5
+  ],
+  "note": "Conventional-current markers follow integrated branch charges. Native matrices separately checked; changed lamp/readout pixels are included."
+}

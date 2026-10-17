@@ -1,0 +1,6 @@
+{
+  "src/lib/lorentzStudio.ts": "a21984415f5283b0b06e87c134c7a75136da5fb3affb26498f1b9e654db09bb8",
+  "src/components/LorentzBench.tsx": "0071dc5eae002f105c6ecda712b578fa1526d4c6975ffef75a9c5dd8085175b3",
+  "src/pages/LorentzForceStudioPage.tsx": "becc674ee2240b2b9a32308927f9e689afe0cfb8ca841e84e8c96e8c233816c9",
+  "src/pages/lorentz-force-studio.css": "df7517a4f5a3e2171a151ac0c52a057e0a44c07f75b3191b8b227339bf39f692"
+}

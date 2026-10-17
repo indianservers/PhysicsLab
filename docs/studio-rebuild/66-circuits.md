@@ -1,9 +1,7 @@
 # Electricity Circuits
 
-- Mockup: `11_electricity/05_circuits.png`
-- Route: `/electricity/circuits`
-- Status: VERIFIED
+Status: native rebuild; visual refinement open. The older blanket VERIFIED claim overstated the static SVG implementation.
 
-Implemented a parallel DC circuit with supply-voltage slider, selectable branch resistors, switch toggle, live branch and total currents, total power, circuit SVG, reset, modes, and challenge dialog. Uses `I₁ = V/R₁`, `I₂ = V/R₂`, `Iₜ = I₁ + I₂`, and `P = VI`.
+The current page includes explicit 47 ohm lamps in series with the two selected resistors, so resistor/lamp powers and total source power conserve energy. The reference lists lamp powers without including them in its total; current readings intentionally correct that inconsistency.
 
-Validation: production build succeeds; direct route load passes; defaults reproduce 6.00 V, 27.3 mA, 12.8 mA, and 40.0 mA; opening the switch drives all currents to zero and reset restores the closed circuit; no page console errors; all required responsive viewports have no horizontal overflow; screenshot captured at 1536x1024.
+See [current evidence](../../artifacts/physics-studio-audit/circuits/report.md) and gate status for exact results, assumptions and remaining work.

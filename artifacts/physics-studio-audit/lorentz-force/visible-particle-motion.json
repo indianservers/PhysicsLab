@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 1449,
+  "inspectionTimesSeconds": [
+    0,
+    5e-08
+  ],
+  "note": "Particle position and instantaneous velocity/force arrows follow the exact Lorentz solution. Includes time-overlay changes."
+}

@@ -1,0 +1,85 @@
+{
+  "overallGoalComplete": false,
+  "route": "/magnetism/field-lines",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "fallback-verification.json": true,
+    "touch-verification.json": true,
+    "production-smoke.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    }
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1258,
+    "precacheKiB": 326846.15,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "calculatedDefault": true,
+    "bothPolesInBenchAndMap": true,
+    "nullDirectionUndefined": true,
+    "keyboardProbe": true,
+    "scanPause": true,
+    "coreMeasurementsUnavailable": true,
+    "CSV11ColumnsIndependentlyParsed": true,
+    "recordsSurviveReset": true,
+    "shortDesktopMobile": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/magneticFieldStudio.ts": "ac1c734b5fe1291153021cf1c7dc76eedad1a5ff2e132cc2435f1a9751f56148",
+    "src/components/MagneticFieldBench.tsx": "6333c7f201b6bcedbf161154c812cae98f23a7902385c41ffb39462df278691c",
+    "src/pages/MagneticFieldLinesStudioPage.tsx": "db112f590ed833cf1a233dc3f986983f5e5a35dfe470649d248cccfaaef79dd8",
+    "src/pages/magnetic-field-lines-studio.css": "b545bf62b2674d11a04e0df3168b2a5c87346fade3116a9f9f77963973412ea8"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 31.623,
+      "ssim": 0.4428
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 27.026,
+      "ssim": 0.4337
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 194,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 16.898
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 48.03
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 14.253
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 14.231
+      },
+      "bottom": {
+        "meanAbsoluteChannelDifference": 15.594
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 11.878
+      }
+    },
+    "sidebarSourceUnchanged": true
+  }
+}

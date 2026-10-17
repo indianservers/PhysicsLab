@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "x": 0.020000000000000018,
+      "y": 0.07,
+      "angle": -152.78728998626025
+    },
+    {
+      "fps": 30,
+      "x": 0.02000000000000013,
+      "y": 0.07,
+      "angle": -152.78728998626036
+    },
+    {
+      "fps": 60,
+      "x": 0.019999999999999463,
+      "y": 0.07,
+      "angle": -152.78728998625937
+    }
+  ],
+  "scanSpeedMetresPerSecond": 0.02,
+  "nativeCompassAngleMatchesField": true,
+  "primaryCompassGeometryReused": true,
+  "pausedRenderFrames": 0,
+  "reflectionAndResume": true,
+  "hiddenTabNoCatchup": true,
+  "noClockAfterRouteUnmount": true,
+  "rendererDisposals": 2,
+  "contextLosses": 2
+}

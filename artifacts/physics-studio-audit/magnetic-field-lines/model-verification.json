@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "cases": 120,
+  "gradients": 360,
+  "traceConvergence": [
+    {
+      "stepMetres": 0.001,
+      "end": {
+        "x": 0.015635217111746483,
+        "y": 0.02879821662401823,
+        "z": 0
+      },
+      "errorMetres": 1.3953618319391855e-9
+    },
+    {
+      "stepMetres": 0.0005,
+      "end": {
+        "x": 0.015635218056172035,
+        "y": 0.028798215718876273,
+        "z": 0
+      },
+      "errorMetres": 8.722750609794974e-11
+    },
+    {
+      "stepMetres": 0.00025,
+      "end": {
+        "x": 0.01563521811479388,
+        "y": 0.028798215661858504,
+        "z": 0
+      },
+      "errorMetres": 5.450120232199693e-12
+    }
+  ],
+  "maxGradientRelativeError": 3.822090257322709e-9,
+  "maxDivergenceRelative": 2.5762098018334136e-9,
+  "maxCurlRelative": 3.3268305175710856e-8,
+  "default": {
+    "x": 0.0021947873799725657,
+    "y": 0,
+    "z": 0,
+    "B": 0.0021947873799725657,
+    "angle": 0
+  },
+  "likePoleMidpointNull": true,
+  "sourceCoresMasked": true,
+  "polarityReversal": true,
+  "calculatedLines": 32,
+  "lineSegments": 3648,
+  "maxAlignmentError": 1.780194718303818e-7,
+  "profileSamples": 161,
+  "model": "Two equivalent point dipoles, m=0.5 A m² each; 1.8 cm cores excluded; far-field approximation"
+}

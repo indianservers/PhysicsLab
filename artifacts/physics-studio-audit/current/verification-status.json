@@ -1,0 +1,84 @@
+{
+  "overallGoalComplete": false,
+  "route": "/electricity/current",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "fallback-verification.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    },
+    "production-smoke.json": true
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1256,
+    "precacheKiB": 326789.45,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "correctDefault": true,
+    "keyboardSlider": true,
+    "fullscreenEnterExit": true,
+    "CSVRowsIndependentlyParsed": true,
+    "CSVColumns": 9,
+    "shortDesktopMobile": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/currentStudio.ts": "e0fd7a4bdd82f3f96a58ce562c2cac3ee0dd436acc9c064eb5f447043352aabb",
+    "src/components/CurrentBench.tsx": "8b1d4c1aab30acdfe26fd7ea02121203017967d854b52531bd3ebc6feb1b2967",
+    "src/pages/CurrentStudioPage.tsx": "3dd76b13a88161298ca195d7a7add15a302bac46ae9cca7eedf34904617e2f00",
+    "src/pages/current-studio.css": "35b3ac8af0251bb2407e7fd5a177d6d637704016a9ea1c92b5938e5097ff78b1"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 24.833,
+      "ssim": 0.4918
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 20.71,
+      "ssim": 0.5584
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 190,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 11.874
+      },
+      "modes": {
+        "meanAbsoluteChannelDifference": 10.219
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 34.09
+      },
+      "crossSection": {
+        "meanAbsoluteChannelDifference": 31.156
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 13.045
+      },
+      "bottom": {
+        "meanAbsoluteChannelDifference": 23.488
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 12.731
+      }
+    },
+    "sidebarSourceUnchanged": true
+  }
+}

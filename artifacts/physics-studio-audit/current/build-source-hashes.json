@@ -1,0 +1,6 @@
+{
+  "src/lib/currentStudio.ts": "e0fd7a4bdd82f3f96a58ce562c2cac3ee0dd436acc9c064eb5f447043352aabb",
+  "src/components/CurrentBench.tsx": "8b1d4c1aab30acdfe26fd7ea02121203017967d854b52531bd3ebc6feb1b2967",
+  "src/pages/CurrentStudioPage.tsx": "3dd76b13a88161298ca195d7a7add15a302bac46ae9cca7eedf34904617e2f00",
+  "src/pages/current-studio.css": "35b3ac8af0251bb2407e7fd5a177d6d637704016a9ea1c92b5938e5097ff78b1"
+}

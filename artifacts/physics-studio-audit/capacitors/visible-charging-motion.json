@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "pixelsChangingByMoreThan20": 9626,
+  "inspectionTimesSeconds": [
+    0,
+    0.005
+  ],
+  "note": "Includes model-driven charge, field, callout and marker changes; wire matrices separately checked."
+}

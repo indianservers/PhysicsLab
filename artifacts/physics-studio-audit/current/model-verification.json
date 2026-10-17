@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "configurations": 125,
+  "curvePoints": 3125,
+  "maxPowerBalanceError": 2.842170943040401e-14,
+  "default": {
+    "voltage": 5,
+    "diameter": 0.5,
+    "temperature": 20,
+    "rho": 1.68e-8,
+    "L": 186,
+    "A": 1.9634954084936206e-7,
+    "R": 15.914475717553747,
+    "I": 0.31417937283884095,
+    "J": 1600102.4065540193,
+    "vd": 0.00011749474930086373,
+    "E": 0.026881720430107527,
+    "power": 1.5708968641942047
+  },
+  "clocks": [
+    {
+      "fps": 10,
+      "displacement": 0.00035248424790259143
+    },
+    {
+      "fps": 30,
+      "displacement": 0.0003524842479025904
+    },
+    {
+      "fps": 60,
+      "displacement": 0.0003524842479025917
+    },
+    {
+      "fps": 144,
+      "displacement": 0.000352484247902591
+    }
+  ],
+  "diameterSquaredScaling": true,
+  "currentDensityIndependentOfDiameterAtFixedVoltage": true,
+  "zeroVoltageNoDrift": true,
+  "driftOpposesConventionalCurrent": true,
+  "SIUnits": true,
+  "linearTemperatureApproximation": true
+}

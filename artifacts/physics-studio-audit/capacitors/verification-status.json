@@ -1,0 +1,66 @@
+{
+  "overallGoalComplete": false,
+  "route": "/electricity/capacitors",
+  "status": "Native rebuild; visual refinement open",
+  "evidence": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "series-regression.json": true,
+    "production-smoke.json": true
+  },
+  "sourceHashes": {
+    "src\\lib\\capacitorStudio.ts": "511ee527786bd0c52a21bd0b3613a43640cba4b0bf7b985df35a670d02526cfa",
+    "src\\components\\CapacitorBench.tsx": "f9a9cf67d5206f4565c583ae16df23a310e46f75a7b40d73bc63b85271c58a5b",
+    "src\\pages\\CapacitorsStudioPage.tsx": "514498649a823b6483aa10035cfee90925c92f79f5ebc8548497c0d8660b2387",
+    "src\\pages\\capacitors-studio.css": "df4c11e4268dd94147c866c0c1f014e73b9250cb3afaa011883064a91e69eb56"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 25.12,
+      "ssim": 0.55
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 23.663,
+      "ssim": 0.5799
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 205,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 12.787
+      },
+      "modes": {
+        "meanAbsoluteChannelDifference": 13.817
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 41.363
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 16.942
+      },
+      "graph": {
+        "meanAbsoluteChannelDifference": 15.537
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 14.486
+      },
+      "equation": {
+        "meanAbsoluteChannelDifference": 12.753
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 16.42
+      }
+    },
+    "sidebarSourceUnchanged": true
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sixSourceHashesMatch": true,
+    "precacheKiB": 326764.43,
+    "limitations": "Existing large main bundle and PWA footprint remain open."
+  }
+}

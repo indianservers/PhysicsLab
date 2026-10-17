@@ -1,0 +1,87 @@
+{
+  "overallGoalComplete": false,
+  "route": "/electricity/circuits",
+  "status": "Native rebuild; visual refinement open",
+  "gates": {
+    "model-verification.json": true,
+    "browser-verification.json": true,
+    "runtime-verification.json": true,
+    "fallback-verification.json": true,
+    "physicsCatalog": {
+      "passed": true,
+      "tests": 581,
+      "warnings": 80
+    },
+    "production-smoke.json": true
+  },
+  "build": {
+    "passed": true,
+    "exitCode": 0,
+    "sourceHashesMatch": true,
+    "precacheEntries": 1257,
+    "precacheKiB": 326815.19,
+    "largeBundleWarning": true
+  },
+  "production": {
+    "passed": true,
+    "normalProductionBundle": true,
+    "lampsIncludedInCircuitPower": true,
+    "keyboardSliderAndKnob": true,
+    "nativeAndControlSwitch": true,
+    "allResistorOptions": true,
+    "playPause": true,
+    "recordsSurviveReset": true,
+    "CSV15ColumnsIndependentlyParsed": true,
+    "shortDesktopMobile": true,
+    "headerBeforeApparatus": true,
+    "fourReferenceModes": true,
+    "noUnrelatedTabs": true,
+    "errors": [],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "sourceHashes": {
+    "src/lib/circuitsStudio.ts": "ed8fdb4484d63c0627be3b3062bf49bf99c750148f1ffc39a5c8f3a6bb05f1f3",
+    "src/components/CircuitBench.tsx": "c339a4144dceef846c5ad02094921364f68c6e6fc7496223f694c66a33d51ca2",
+    "src/pages/CircuitsStudioPage.tsx": "e8748eb49c1d05bd57e6f080cdcf6cb536ea25f303681bababf99596ab90ca9f",
+    "src/pages/circuits-studio.css": "66ea478f200180856f4e2fe95e6e7a797ad8693c3e6b8c593e1d6ec78f6370fc"
+  },
+  "visualMetrics": {
+    "before": {
+      "meanAbsoluteChannelDifference": 36.096,
+      "ssim": 0.4753
+    },
+    "after": {
+      "meanAbsoluteChannelDifference": 34.462,
+      "ssim": 0.4795
+    },
+    "sidebarExcluded": true,
+    "targetSidebarWidth": 202,
+    "currentSidebarWidth": 201,
+    "note": "Diagnostic metrics, not completion percentages. Native apparatus and correct SI model differ from the reference. Visual refinement remains open.",
+    "regions": {
+      "header": {
+        "meanAbsoluteChannelDifference": 13.001
+      },
+      "modes": {
+        "meanAbsoluteChannelDifference": 14.067
+      },
+      "stage": {
+        "meanAbsoluteChannelDifference": 49.365
+      },
+      "controls": {
+        "meanAbsoluteChannelDifference": 13.741
+      },
+      "readings": {
+        "meanAbsoluteChannelDifference": 16.419
+      },
+      "equation": {
+        "meanAbsoluteChannelDifference": 14.577
+      },
+      "toolbar": {
+        "meanAbsoluteChannelDifference": 10.935
+      }
+    },
+    "sidebarSourceUnchanged": true
+  }
+}

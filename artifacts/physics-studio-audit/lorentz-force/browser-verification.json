@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "correctDefault": true,
+  "defaultOrbitClearOfPolePieces": true,
+  "chargeSignChangesCrossProduct": true,
+  "parametersAndSliders": true,
+  "nativeSIPositionMatchesModel": true,
+  "playPause": true,
+  "allThreeViewsAndZoom": true,
+  "prediction": true,
+  "quarterPeriodInspection": true,
+  "CSV14ColumnsParsed": true,
+  "recordsSurviveReset": true,
+  "layouts": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "stage": {
+        "x": 215,
+        "y": 120,
+        "width": 941,
+        "height": 594
+      },
+      "toolbar": {
+        "x": 230,
+        "y": 955,
+        "width": 1309,
+        "height": 56
+      }
+    },
+    {
+      "width": 1920,
+      "height": 912,
+      "stage": {
+        "x": 215,
+        "y": 120,
+        "width": 1325,
+        "height": 512
+      },
+      "toolbar": {
+        "x": 230,
+        "y": 842,
+        "width": 1693,
+        "height": 56
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stage": {
+        "x": 213,
+        "y": 130.28125,
+        "width": 799,
+        "height": 470
+      },
+      "toolbar": {
+        "x": 213,
+        "y": 610.28125,
+        "width": 799,
+        "height": 48
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stage": {
+        "x": 192,
+        "y": 186.46875,
+        "width": 564,
+        "height": 470
+      },
+      "toolbar": {
+        "x": 192,
+        "y": 666.46875,
+        "width": 564,
+        "height": 106
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stage": {
+        "x": 10,
+        "y": 289.90625,
+        "width": 370,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 629.90625,
+        "width": 370,
+        "height": 137
+      }
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "stage": {
+        "x": 10,
+        "y": 289.90625,
+        "width": 300,
+        "height": 330
+      },
+      "toolbar": {
+        "x": 10,
+        "y": 629.90625,
+        "width": 300,
+        "height": 137
+      }
+    }
+  ],
+  "nativeRendererDisposals": 7,
+  "nativeResourceDisposals": 819,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

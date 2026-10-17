@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "frameRates": [
+    {
+      "fps": 10,
+      "q1": 0.022471910112359553,
+      "q2": 0.011605415860735014
+    },
+    {
+      "fps": 30,
+      "q1": 0.022471910112359512,
+      "q2": 0.011605415860734984
+    },
+    {
+      "fps": 60,
+      "q1": 0.02247191011235934,
+      "q2": 0.011605415860734903
+    }
+  ],
+  "nativeMarkerMatricesVerified": 26,
+  "maxPositionError": 2.0426594105060758e-7,
+  "pausedRenderFrames": 0,
+  "openSwitchIdleRenderFrames": 0,
+  "openSwitchFreezesCharge": true,
+  "closingSwitchResumesCharge": true,
+  "hiddenTabNoCatchup": true,
+  "noClockAfterRouteUnmount": true,
+  "touchKnobAndSwitch": true
+}

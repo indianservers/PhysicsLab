@@ -1,9 +1,7 @@
 # Magnetism Lorentz Force
 
-- Mockup: `12_magnetism/02_lorentz_force.png`
-- Route: `/magnetism/lorentz-force`
-- Status: VERIFIED
+Status: native rebuild; visual refinement open. The former blanket VERIFIED claim overstated static trajectory/vector behavior.
 
-Implemented a charged-particle orbit in a uniform magnetic field with charge-sign toggle, particle-speed slider, field-strength slider, live curvature radius, Lorentz force, period, circumference, and frequency; trajectory SVG, vector directions, equation, reset, modes, and challenge dialog. Uses `F = qv × B`, `r = mv/(|q|B)`, and `T = 2πm/(|q|B)` for a proton.
+The current model uses signed q v × B and exact nonrelativistic motion with CODATA proton mass. Positive charge with v along +x and B along -y initially bends into the page (-z). Reference force/radius/period values are corrected.
 
-Validation: production build succeeds; direct route load passes; default readings are r = 0.261 m, |F| = 1.60 × 10⁻¹³ N, and f = 3.05 × 10⁶ Hz; field-strength changes update readings and reset restores defaults; no page console errors; all required responsive viewports have no horizontal overflow; screenshot captured at 1536x1024. The mockup’s 0.106 m radius is inconsistent with its displayed proton constants, so the implementation preserves the correct proton physics.
+See [current evidence](../../artifacts/physics-studio-audit/lorentz-force/report.md) and gate status for precise results, assumptions and remaining work.

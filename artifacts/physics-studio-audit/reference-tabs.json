@@ -2005,28 +2005,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "ecs-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "ecs-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "ecs-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "ecs-modes"
       }
     ],
-    "assets": [
-      "http://127.0.0.1:5173/assets/friction-studio/reflection.png"
-    ],
-    "dock": 0
+    "assets": [],
+    "dock": 0,
+    "dockCount": 0
   },
   {
     "reference": "11_electricity/05_circuits.png",
@@ -2035,26 +2034,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "cts-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "cts-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "cts-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "cts-modes"
       }
     ],
     "assets": [],
-    "dock": 0
+    "dock": 0,
+    "dockCount": 0
   },
   {
     "reference": "11_electricity/06_capacitors.png",
@@ -2063,26 +2063,42 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "cps-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "cps-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "cps-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "cps-modes"
+      },
+      {
+        "text": "Capacitance",
+        "label": null,
+        "group": "cps-formula-tabs"
+      },
+      {
+        "text": "Energy",
+        "label": null,
+        "group": "cps-formula-tabs"
+      },
+      {
+        "text": "With Dielectric",
+        "label": null,
+        "group": "cps-formula-tabs"
       }
     ],
     "assets": [],
-    "dock": 0
+    "dock": 0,
+    "dockCount": 0
   },
   {
     "reference": "12_magnetism/01_field_lines.png",
@@ -2091,26 +2107,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "mfl-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "mfl-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "mfl-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "mfl-modes"
       }
     ],
     "assets": [],
-    "dock": 0
+    "dock": 0,
+    "dockCount": 0
   },
   {
     "reference": "12_magnetism/02_lorentz_force.png",
@@ -2119,26 +2136,27 @@
       {
         "text": "Observe",
         "label": null,
-        "group": "frs-modes"
+        "group": "lfx-modes"
       },
       {
         "text": "Predict",
         "label": null,
-        "group": "frs-modes"
+        "group": "lfx-modes"
       },
       {
         "text": "Experiment",
         "label": null,
-        "group": "frs-modes"
+        "group": "lfx-modes"
       },
       {
         "text": "Explain",
         "label": null,
-        "group": "frs-modes"
+        "group": "lfx-modes"
       }
     ],
     "assets": [],
-    "dock": 0
+    "dock": 0,
+    "dockCount": 0
   },
   {
     "reference": "12_magnetism/03_current_wire.png",

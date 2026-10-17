@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "correctDefault": true,
+  "keyboardSlider": true,
+  "fullscreenEnterExit": true,
+  "CSVRowsIndependentlyParsed": true,
+  "CSVColumns": 9,
+  "shortDesktopMobile": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "correctProtonDefault": true,
+  "keyboardSlider": true,
+  "chargeSign": true,
+  "allViewsAndZoom": true,
+  "playPause": true,
+  "quarterPeriodCSV14ColumnsParsed": true,
+  "recordsSurviveReset": true,
+  "shortDesktopMobile": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

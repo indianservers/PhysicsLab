@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "normalProductionBundle": true,
+  "lampsIncludedInCircuitPower": true,
+  "keyboardSliderAndKnob": true,
+  "nativeAndControlSwitch": true,
+  "allResistorOptions": true,
+  "playPause": true,
+  "recordsSurviveReset": true,
+  "CSV15ColumnsIndependentlyParsed": true,
+  "shortDesktopMobile": true,
+  "headerBeforeApparatus": true,
+  "fourReferenceModes": true,
+  "noUnrelatedTabs": true,
+  "errors": [],
+  "consoleErrors": [],
+  "failedLocal": []
+}

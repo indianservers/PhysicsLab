@@ -67,11 +67,11 @@ Metrics are automatic triage, not visual acceptance. Every page still needs comp
 | 11_electricity | coulomb force | /electricity/coulomb-force | 20.01 | 0.5446 | 343 model cases; native field/force/contour/strength checks; all controls, six sizes, lifecycle/fallback/production passed | Native rebuild; visual/material refinement open |
 | 11_electricity | electric field | /electricity/electric-field | 14.572 | 0.5988 | 144 3D model cases, 432 gradients; all controls, native vectors/curves, six sizes, lifecycle/fallback/production passed | Native rebuild; visual refinement open |
 | 11_electricity | electric potential | /electricity/electric-potential | 19.224 | 0.5299 | Model / controls / native signs-picking-runtime / six sizes / build / production passed | Native refinement; visual acceptance open (both metrics better versus prior native checkpoint) |
-| 11_electricity | current | /electricity/current | 24.863 | 0.4901 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 11_electricity | circuits | /electricity/circuits | 35.997 | 0.4766 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 11_electricity | capacitors | /electricity/capacitors | 25.089 | 0.5479 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 12_magnetism | field lines | /magnetism/field-lines | 31.568 | 0.4441 | Reference-size capture and navigation inspection | Visual review/refinement open |
-| 12_magnetism | lorentz force | /magnetism/lorentz-force | 22.055 | 0.5456 | Reference-size capture and navigation inspection | Visual review/refinement open |
+| 11_electricity | current | /electricity/current | 20.710 | 0.5584 | Direct model / native runtime / six-size browser / fallback / build / production pass | Native rebuild; visual refinement open |
+| 11_electricity | circuits | /electricity/circuits | 34.462 | 0.4795 | Direct model / six-size browser / native runtime / touch / fallback / build / production pass | Native rebuild; visual refinement open |
+| 11_electricity | capacitors | /electricity/capacitors | 23.663 | 0.5799 | Native rebuild; model/browser/runtime evidence; fresh build and production smoke pass | Visual refinement open |
+| 12_magnetism | field lines | /magnetism/field-lines | 27.026 | 0.4337 | Direct dipole model / six-size browser / native runtime / touch / fallback / build / production pass | Native rebuild; visual refinement open (SSIM below baseline) |
+| 12_magnetism | lorentz force | /magnetism/lorentz-force | 21.991 | 0.5419 | Direct model / six-size browser / native runtime / touch / fallback / build / production pass | Native rebuild; visual refinement open |
 | 12_magnetism | current wire | /magnetism/current-wire | 23.946 | 0.5296 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 12_magnetism | solenoids | /magnetism/solenoids | 22.77 | 0.5224 | Reference-size capture and navigation inspection | Visual review/refinement open |
 | 12_magnetism | induction | /magnetism/induction | 29.475 | 0.499 | Reference-size capture and navigation inspection | Visual review/refinement open |
