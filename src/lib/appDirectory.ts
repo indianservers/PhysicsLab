@@ -9,6 +9,11 @@ export type DirectorySection = "Modules" | "Concepts" | "Experiments" | "Pro Lab
 export interface DirectoryEntry { id: string; title: string; description: string; path: string; section: DirectorySection; group: string; icon: PhysicsIconName; keywords: string[]; badge?: string; }
 
 const platform: Array<Omit<DirectoryEntry, "section">> = [
+  ["modules","Physics Modules","Browse modules across every branch of physics.","/modules","Learning","atom"],
+  ["topics","Physics Topics","Open the topic-based physics learning pages.","/topics","Learning","book"],
+  ["astrophysics-topic","Astrophysics Topic","Study astrophysics concepts and related experiments.","/topics/astrophysics","Learning","orbit"],
+  ["concepts","Concept Explorer","Browse physics concepts and learning outcomes.","/concepts","Learning","spark"],
+  ["client-demos","Client Demos","Browse demonstration experiences.","/client-demos","Showcase","eye"],
   ["home","Home","Product home and launch point.","/","Core","atom"], ["syllabus","Syllabus","Curriculum structure and topic coverage.","/syllabus","Learning","book"],
   ["formulas","Formula Bank","Searchable equations and variables.","/formulas","Reference","book"], ["revision","Formula Revision Grid","Categorized revision cards.","/formulas/revision-grid","Reference","calculator"],
   ["dictionary","Visual Dictionary","Searchable physics definitions.","/dictionary","Reference","clipboard"], ["solver","Solver Bank","Unit-aware worked problems.","/solver","Practice","calculator"],

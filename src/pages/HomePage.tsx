@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { studioHomes } from "../lib/conceptStudioHomes";
 import { experiments } from "../lib/experiments";
+import { appDirectoryEntries, directorySections } from "../lib/appDirectory";
 import { referenceLabsByStudio } from "../lib/studioReferenceLabs";
 import { PhysicsIcon, type PhysicsIconName } from "../lib/icons";
 import "./home-premium.css";
@@ -18,6 +19,28 @@ const homeStudios = [
   { id: "overview", name: "Concept Overview", tagline: "Explore every branch of physics and choose your learning path.", icon: "atom" as PhysicsIconName, asset: "/assets/concept-studio/mechanics-hero.png", route: "/concept-studio" },
   ...studioHomes.map(studio => ({ ...studio, route: `/concept-studio/${studio.id}` })),
 ];
+
+const immersiveExplorers = appDirectoryEntries.filter(entry => entry.section === "Platform" && entry.group === "Immersive");
+const homeToolIds = ["dictionary", "solver", "video", "knowledge", "guided", "pro-program"];
+const homeTools = homeToolIds.flatMap(id => appDirectoryEntries.filter(entry => entry.id === id));
+
+// Keep every directory destination reachable from home without repeating featured links.
+const featuredPaths = new Set([
+  "/", "/experiments", "/all-modules", "/settings", "/sandbox", "/syllabus", "/formulas", "/graphs", "/quiz", "/teacher",
+  ...homeStudios.map(studio => studio.route),
+  ...Object.values(referenceLabsByStudio).flat().map(topic => topic.route),
+  ...immersiveExplorers.map(entry => entry.path),
+  ...homeTools.map(entry => entry.path),
+]);
+const remainingEntries = appDirectoryEntries.filter(entry => {
+  if (featuredPaths.has(entry.path)) return false;
+  featuredPaths.add(entry.path);
+  return true;
+});
+const remainingSections = directorySections.map(section => ({
+  section,
+  entries: remainingEntries.filter(entry => entry.section === section),
+})).filter(section => section.entries.length > 0);
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -36,6 +59,20 @@ export function HomePage() {
             <form className="simple-search" onSubmit={search} role="search"><PhysicsIcon name="search" /><input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Search torque, waves, colour, nuclei…" aria-label="Search experiments"/><button type="submit">Search</button></form>
           </div>
           <aside className="simple-start-card"><span>QUICK START</span><strong>Learn by experimenting</strong><p style={{ color: "#bcd0d8", WebkitTextFillColor: "#bcd0d8" }}>Pick a guided lab and change one variable at a time.</p><Link to="/experiments">Choose an experiment <b>→</b></Link></aside>
+        </section>
+
+        <section className="simple-section" aria-labelledby="explorers-title">
+          <header><div><span className="simple-kicker">EXPLORE BEYOND THE LAB</span><h2 id="explorers-title">Explore the universe</h2></div><Link to="/all-modules">All tools &rarr;</Link></header>
+          <div className="home-topic-grid">
+            {immersiveExplorers.map(explorer => <Link className="home-topic-card" key={explorer.id} to={explorer.path}><PhysicsIcon name={explorer.icon}/><span><strong>{explorer.title}</strong><small>{explorer.description}</small></span><b aria-hidden="true">&rarr;</b></Link>)}
+          </div>
+        </section>
+
+        <section className="simple-section" aria-labelledby="tools-title">
+          <header><div><span className="simple-kicker">LEARN, ANALYZE & BUILD</span><h2 id="tools-title">Learning tools & labs</h2></div><Link to="/all-modules">All tools &rarr;</Link></header>
+          <div className="home-topic-grid">
+            {homeTools.map(tool => <Link className="home-topic-card" key={tool.id} to={tool.path}><PhysicsIcon name={tool.icon}/><span><strong>{tool.title}</strong><small>{tool.description}</small></span><b aria-hidden="true">&rarr;</b></Link>)}
+          </div>
         </section>
 
         <section className="simple-section" aria-labelledby="studio-title">
@@ -67,6 +104,19 @@ export function HomePage() {
         <section className="simple-section" aria-labelledby="category-title">
           <header><div><span className="simple-kicker">EXPLORE</span><h2 id="category-title">Choose a branch of physics</h2></div><Link to="/experiments">All {experiments.length} experiments</Link></header>
           <div className="simple-category-grid simple-category-five">{categories.map(item => { const count=experiments.filter(experiment=>item.categories.includes(experiment.category)).length; return <Link key={item.group} to={`/experiments?group=${item.group}`}><span className="simple-category-icon"><PhysicsIcon name={item.icon}/></span><span><strong>{item.title}</strong><small>{item.description}</small></span><b>{count}</b></Link>; })}</div>
+        </section>
+
+        <section className="simple-section" aria-labelledby="directory-title">
+          <header><div><span className="simple-kicker">KEEP EXPLORING</span><h2 id="directory-title">More pages & tools</h2></div><p>Every remaining destination, organized by section</p></header>
+          <nav className="home-topic-index" aria-label="Jump to pages and tools">
+            {remainingSections.map(({ section }) => <a key={section} href={`#directory-${section.toLowerCase().replace(/ /g, "-")}`}>{section}</a>)}
+          </nav>
+          {remainingSections.map(({ section, entries }) => <section className="home-topic-category" key={section} id={`directory-${section.toLowerCase().replace(/ /g, "-")}`} aria-labelledby={`directory-heading-${section.toLowerCase().replace(/ /g, "-")}`}>
+            <header><div><h3 id={`directory-heading-${section.toLowerCase().replace(/ /g, "-")}`}>{section}</h3></div></header>
+            <div className="home-topic-grid">
+              {entries.map(entry => <Link className="home-topic-card" key={entry.id} to={entry.path}><PhysicsIcon name={entry.icon}/><span><strong>{entry.title}</strong><small>{entry.description}</small></span><b aria-hidden="true">&rarr;</b></Link>)}
+            </div>
+          </section>)}
         </section>
 
         <details className="simple-more"><summary>Need a specific tool?</summary><div><Link to="/sandbox">Open Lab</Link><Link to="/syllabus">Syllabus</Link><Link to="/formulas">Formula Bank</Link><Link to="/graphs">Graph Studio</Link><Link to="/quiz">Quiz</Link><Link to="/teacher">Teacher Workspace</Link><Link to="/all-modules">All tools</Link></div></details>
