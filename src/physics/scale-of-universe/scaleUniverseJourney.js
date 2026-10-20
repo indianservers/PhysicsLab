@@ -1,4 +1,5 @@
 export const scaleJourneys = [
+  { id: "complete-universe", name: "From Planck Length to the Observable Universe", objectIds: ["planck-length", "proton", "hydrogen-atom", "dna-width", "virus", "red-blood-cell", "human", "school-bus", "burj-khalifa", "mount-everest", "earth", "jupiter", "sun", "solar-system", "light-year", "milky-way", "local-group", "laniakea", "observable-universe"] },
   {
     id: "atom-to-human",
     name: "From Atom to Human",
@@ -12,7 +13,7 @@ export const scaleJourneys = [
   {
     id: "earth-to-sun",
     name: "From Earth to Sun",
-    objectIds: ["moon", "earth", "jupiter", "earth-sun-distance", "sun"],
+    objectIds: ["moon", "earth", "jupiter", "sun", "earth-sun-distance"],
   },
   {
     id: "solar-to-galaxy",
@@ -83,7 +84,7 @@ export function createJourneyController(root, objects, callbacks) {
       <p class="scale-eyebrow">Guided Journey</p>
       <h3>${activeJourney.name}</h3>
       <strong>Step ${stepIndex + 1} of ${activeJourney.objectIds.length}</strong>
-      <p>${object.name}</p>
+      <p>${object.name}</p><p>${object.measurementDefinition ?? object.summary}</p>
       <small>Size: 10<sup>${object.logSize.toFixed(1)}</sup> m</small>
       <div class="scale-journey-actions">
         <button type="button" data-journey-action="previous" ${stepIndex === 0 ? "disabled" : ""}>Previous</button>

@@ -1,0 +1,10 @@
+browser-build/
+dist/
+vite.audit.config.mjs
+browser-results-initial.json
+browser-results-all.json
+browser-results-0.json
+browser-results-32.json
+browser-results-64.json
+button-inventory.json
+recheck-routes.json

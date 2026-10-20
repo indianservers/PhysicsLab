@@ -107,6 +107,7 @@ export const scaleUniverseSpriteCatalog = {
 };
 
 export function scaleUniverseSpritePath(assetKey) {
+  assetKey = ({ andromeda: "andromeda-galaxy", laniakea: "laniakea-supercluster" })[assetKey] ?? assetKey;
   return `/assets/scale-universe/sprites/${assetKey}.png`;
 }
 

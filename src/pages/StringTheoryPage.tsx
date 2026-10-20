@@ -130,7 +130,7 @@ export function StringTheoryPage() {
             <StringTheoryCanvas lesson={lesson} values={values} playing={playing} speed={speed} stage={stage} reducedMotion={reducedMotion} />
             {lesson.visual === "scale" && <div className="st-scale-legend"><span>OBSERVATION SCALE</span>{["10⁻⁵ m","10⁻¹⁰ m","10⁻¹⁵ m","10⁻²⁰ m","10⁻²⁵ m","10⁻³⁰ m","10⁻³⁵ m"].map(item=><i key={item}>{item}</i>)}<strong>10⁻³⁵ m</strong></div>}
             {lesson.visual === "network" && <div className="st-network-labels" aria-hidden="true"><span>TYPE I</span><span>TYPE IIA</span><span>TYPE IIB</span><span>HETEROTIC<br/>SO(32)</span><span>HETEROTIC<br/>E8×E8</span></div>}
-            <div className="st-viewport-tools"><button type="button" title="Pointer interaction">⌖</button><button type="button" onClick={resetLesson} title="Reset view">↺</button></div>
+            <div className="st-viewport-tools"><span title="Drag the scene to rotate; scroll to zoom" aria-label="Drag the scene to rotate; scroll to zoom">⌖</span><button type="button" onClick={resetLesson} title="Reset view">↺</button></div>
           {captions && <div className="st-caption"><b>{lesson.phases[stage]}</b><span>{lesson.observations[stage % lesson.observations.length]}</span></div>}
           <p className="st-sr-state" aria-live="polite">
             {lesson.title}. {lesson.controls[0].label}: {formatValue(values[0], lesson.controls[0].step)}. {lesson.controls[1].label}: {formatValue(values[1], lesson.controls[1].step)}. Current phase: {lesson.phases[stage]}.

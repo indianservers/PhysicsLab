@@ -1,0 +1,585 @@
+{
+  "scope": "96 studio lab routes",
+  "assertions": 264,
+  "chapters": 96,
+  "passed": 96,
+  "failed": 0,
+  "labs": [
+    {
+      "route": "/measurement/meter-scale",
+      "model": "meterScale",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/measurement/vernier-caliper",
+      "model": "vernierCaliper",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/measurement/micrometer",
+      "model": "micrometer",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/measurement/spherometer",
+      "model": "spherometer",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/measurement/mass-time",
+      "model": "massTime",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/measurement/uncertainty",
+      "model": "uncertaintyAnalysis",
+      "status": "pass",
+      "assertions": 5
+    },
+    {
+      "route": "/mechanics/free-body-diagrams",
+      "model": "freeBody",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/mechanics/inclined-plane",
+      "model": "inclineStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/mechanics/pulley-systems",
+      "model": "atwood",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/mechanics/torque-levers",
+      "model": "lever",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/mechanics/equilibrium-com",
+      "model": "centreOfMass",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/mechanics/momentum-collisions",
+      "model": "momentumCollision",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/position-time",
+      "model": "positionTime",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/velocity-time",
+      "model": "velocityTime",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/acceleration-time",
+      "model": "accelerationTime",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/projectile-motion",
+      "model": "projectileStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/relative-motion",
+      "model": "relativeMotion",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/motion/circular-motion",
+      "model": "circularStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/first-law-inertia",
+      "model": "inertiaStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/motion/second-law-fma",
+      "model": "../experiments/newton-s-second-law/newton-s-second-lawSimulation",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/third-law-pairs",
+      "model": "thirdLawStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/motion/friction",
+      "model": "frictionStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/tension-normal",
+      "model": "tensionStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/multi-force-challenge",
+      "model": "multiForceStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/work",
+      "model": "workStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/kinetic-energy",
+      "model": "kineticStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/potential-energy",
+      "model": "potentialStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/motion/conservation-energy",
+      "model": "conservationStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/power",
+      "model": "powerStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/efficiency",
+      "model": "efficiencyStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/universal-gravity",
+      "model": "gravityStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/gravitational-field",
+      "model": "fieldStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/motion/gravitational-potential",
+      "model": "potentialGravityStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/orbits",
+      "model": "orbitStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/escape-velocity",
+      "model": "escapeStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/keplers-laws",
+      "model": "keplerStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/spring-shm",
+      "model": "springStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/pendulum",
+      "model": "pendulumStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/motion/energy-exchange",
+      "model": "energyExchangeStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/damping",
+      "model": "dampingStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/resonance",
+      "model": "resonanceStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/motion/coupled-oscillators",
+      "model": "coupledStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/motion/wave-properties",
+      "model": "wavePropertiesStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/superposition",
+      "model": "superpositionStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/interference",
+      "model": "interferenceStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/standing-waves",
+      "model": "standingStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/motion/sound-spectrum",
+      "model": "spectrumStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/motion/doppler-effect",
+      "model": "dopplerStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/optics/reflection",
+      "model": "reflectionStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/optics/refraction",
+      "model": "refractionStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/optics/lenses",
+      "model": "lensStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/optics/mirrors",
+      "model": "mirrorStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/optics/interference",
+      "model": "opticsInterferenceStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/optics/diffraction",
+      "model": "diffractionStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/electricity/coulomb-force",
+      "model": "coulombStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/electricity/electric-field",
+      "model": "electricFieldStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/electricity/electric-potential",
+      "model": "electricPotentialStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/electricity/current",
+      "model": "currentStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/electricity/circuits",
+      "model": "circuitsStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/electricity/capacitors",
+      "model": "capacitorStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/magnetism/field-lines",
+      "model": "magneticFieldStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/magnetism/lorentz-force",
+      "model": "lorentzStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/magnetism/current-wire",
+      "model": "currentWireStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/magnetism/solenoids",
+      "model": "solenoidStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/magnetism/induction",
+      "model": "inductionStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/magnetism/electromagnets",
+      "model": "electromagnetStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/electronics/semiconductors",
+      "model": "semiconductorStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/electronics/diodes",
+      "model": "diodeStudio",
+      "status": "pass",
+      "assertions": 8
+    },
+    {
+      "route": "/electronics/transistors",
+      "model": "transistorStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/electronics/amplifiers",
+      "model": "amplifierStudio",
+      "status": "pass",
+      "assertions": 8
+    },
+    {
+      "route": "/electronics/logic-gates",
+      "model": "logicGateStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/electronics/sensors",
+      "model": "sensorStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/thermodynamics/temperature",
+      "model": "temperatureStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/thermodynamics/heat-transfer",
+      "model": "heatTransferStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/thermodynamics/gas-laws",
+      "model": "gasLawsStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/thermodynamics/first-law",
+      "model": "firstLawStudio",
+      "status": "pass",
+      "assertions": 15
+    },
+    {
+      "route": "/thermodynamics/entropy",
+      "model": "entropyStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/thermodynamics/heat-engines",
+      "model": "heatEngineStudio",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/fluid-mechanics/density-pressure",
+      "model": "densityPressureStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/fluid-mechanics/hydrostatics",
+      "model": "densityPressureStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/fluid-mechanics/buoyancy",
+      "model": "buoyancyStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/fluid-mechanics/continuity",
+      "model": "continuityStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/fluid-mechanics/bernoulli",
+      "model": "bernoulliStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/fluid-mechanics/viscosity",
+      "model": "viscosityStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/modern-physics/quantum-ideas",
+      "model": "quantumIdeasStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/modern-physics/photoelectric-effect",
+      "model": "photoelectricStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/modern-physics/matter-waves",
+      "model": "matterWavesStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/modern-physics/atomic-spectra",
+      "model": "atomicSpectraStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/modern-physics/nuclear-structure",
+      "model": "nuclearStructureStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/modern-physics/radioactivity",
+      "model": "radioactivityStudio",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/astrophysics/solar-system",
+      "model": "solarSystemStudio",
+      "status": "pass",
+      "assertions": 1
+    },
+    {
+      "route": "/astrophysics/stellar-life",
+      "model": "stellarLifeStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/astrophysics/spectroscopy",
+      "model": "spectroscopyStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/astrophysics/galaxies",
+      "model": "galaxiesStudio",
+      "status": "pass",
+      "assertions": 2
+    },
+    {
+      "route": "/astrophysics/cosmology",
+      "model": "cosmologyStudio",
+      "status": "pass",
+      "assertions": 6
+    },
+    {
+      "route": "/astrophysics/exoplanets",
+      "model": "exoplanetsStudio",
+      "status": "pass",
+      "assertions": 4
+    }
+  ]
+}

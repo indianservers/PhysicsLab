@@ -1,9 +1,11 @@
 import { formatBestUnit } from "./scaleUniverseUnits.js";
 import { localScaleObjectSpecs } from "./scaleUniverseLocalObjects.js";
 import { scaleUniverseSpriteSpec } from "./scaleUniverseSpriteCatalog.js";
+import { scientificMetadata } from "./scaleUniverseScience.js";
+import { scaleCutouts } from "./scaleUniverseCutouts.js";
 
 export const SCALE_MIN_LOG = -35;
-export const SCALE_MAX_LOG = 26;
+export const SCALE_MAX_LOG = 27;
 
 export const scaleBandExplanations = {
   Subatomic: "This scale contains particles smaller than atoms, such as protons, neutrons, and electrons.",
@@ -208,9 +210,10 @@ const localScaleObjects = localScaleObjectSpecs.map((spec, index) =>
 export const scaleUniverseObjects = [...baseScaleUniverseObjects, ...supplementalObjects, ...localScaleObjects];
 
 export function normalizedScaleUniverseObjects() {
-  return scaleUniverseObjects.map((object) => {
+  return scaleUniverseObjects.map((original) => {
+    const object = { ...original, ...scientificMetadata(original) };
     const enrichment = objectDetailEnrichment[object.id] ?? {};
-    const logSize = Number.isFinite(object.logSize) ? object.logSize : Math.log10(object.sizeMeters);
+    const logSize = Math.log10(object.sizeMeters);
     const scaleBand = scaleBandForLog(logSize);
     const categoryGroup = object.categoryGroup ?? categoryGroupFor(object.category, object.name);
     const learningTags = enrichment.learningTags ?? object.learningTags ?? [
@@ -224,8 +227,14 @@ export function normalizedScaleUniverseObjects() {
       ...defaultSprite,
       ...object,
       ...enrichment,
+      assetPath: object.assetPath ?? defaultSprite.assetPath,
+      ...(scaleCutouts[object.id] ? { assetPath: scaleCutouts[object.id].assetPath, assetAspect: scaleCutouts[object.id].aspect, sourceBox: scaleCutouts[object.id].sourceBox, visualType: "generated-transparent-reference" } : {}),
       logSize,
+      log10Size: logSize,
+      description: object.summary,
+      facts: object.facts.map(fact => fact.startsWith("Its size is approximately") ? `Its reference ${object.measurementType} is approximately ${scientificLabel(object.sizeMeters)}.` : fact),
       scaleBand,
+      band: scaleBand,
       categoryGroup,
       bestUnitLabel,
       difficultyLevel: object.difficultyLevel ?? difficultyFor(logSize, object.importance),
@@ -234,7 +243,8 @@ export function normalizedScaleUniverseObjects() {
         "This object helps compare sizes across powers of ten.",
       relatedObjects: enrichment.relatedObjects ?? relatedFor(object.id, categoryGroup),
       learningTags,
-      searchText: `${object.name} ${object.category} ${categoryGroup} ${scaleBand} ${learningTags.join(" ")} ${bestUnitLabel}`.toLowerCase(),
+      formula: scientificLabel(object.sizeMeters),
+      searchText: `${object.name} ${(object.aliases ?? []).join(" ")} ${object.category} ${categoryGroup} ${scaleBand} ${learningTags.join(" ")} ${bestUnitLabel}`.toLowerCase(),
     };
   });
 }

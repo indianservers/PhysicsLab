@@ -1,0 +1,92 @@
+{
+  "human": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/human.png",
+    "sourceBox": [
+      273,
+      39,
+      477,
+      1426
+    ],
+    "aspect": 0.3345021037868163,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  "car": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/car.png",
+    "sourceBox": [
+      48,
+      174,
+      1678,
+      579
+    ],
+    "aspect": 2.8981001727115716,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  "school-bus": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/school-bus.png",
+    "sourceBox": [
+      27,
+      32,
+      2127,
+      643
+    ],
+    "aspect": 3.3079315707620527,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  "door": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/door.png",
+    "sourceBox": [
+      189,
+      34,
+      646,
+      1458
+    ],
+    "aspect": 0.4430727023319616,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  "laptop": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/laptop.png",
+    "sourceBox": [
+      50,
+      68,
+      1436,
+      873
+    ],
+    "aspect": 1.6449026345933562,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  "microscope": {
+    "assetPath": "/assets/scale-universe/cutouts-v2/microscope.png",
+    "sourceBox": [
+      80,
+      13,
+      1068,
+      1225
+    ],
+    "aspect": 0.8718367346938776,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  }
+}

@@ -1,0 +1,2032 @@
+{
+  "transparentCutouts": 204,
+  "scientificSchematics": 21,
+  "remaining": [],
+  "objects": [
+    {
+      "id": "proton",
+      "name": "Proton",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/proton.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "neutron",
+      "name": "Neutron",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/neutron.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "electron",
+      "name": "Electron",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/electron.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "hydrogen-atom",
+      "name": "Hydrogen Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/hydrogen-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "carbon-atom",
+      "name": "Carbon Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/carbon-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "water-molecule",
+      "name": "Water Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "glucose-molecule",
+      "name": "Glucose Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/glucose-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dna-width",
+      "name": "DNA Width",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/dna-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dna-helix",
+      "name": "DNA Helix",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/dna-helix.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "virus",
+      "name": "Virus",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/virus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "e-coli",
+      "name": "E. coli",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/e-coli.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "red-blood-cell",
+      "name": "Red Blood Cell",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/red-blood-cell.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "white-blood-cell",
+      "name": "White Blood Cell",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/white-blood-cell.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "human-hair-width",
+      "name": "Human Hair Width",
+      "category": "Human Scale",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/human-hair-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "grain-of-sand",
+      "name": "Grain of Sand",
+      "category": "Human Scale",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/grain-of-sand.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "ant",
+      "name": "Ant",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/ant.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "coin",
+      "name": "Coin",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/coin.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "football",
+      "name": "Football",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/football.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "human",
+      "name": "Human",
+      "category": "Human Scale",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v2/human.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "giraffe",
+      "name": "Giraffe",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/giraffe.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "elephant",
+      "name": "Elephant",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/elephant.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "blue-whale",
+      "name": "Blue Whale",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/blue-whale.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "tyrannosaurus-rex",
+      "name": "Tyrannosaurus Rex",
+      "category": "Animal / Fossil",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/tyrannosaurus-rex.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mount-everest",
+      "name": "Mount Everest",
+      "category": "Planetary / Earth",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mount-everest.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "earth",
+      "name": "Earth",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/earth.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "category": "Natural Satellite",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/moon.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "jupiter",
+      "name": "Jupiter",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/jupiter.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sun.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sirius",
+      "name": "Sirius",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sirius.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "betelgeuse",
+      "name": "Betelgeuse",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/betelgeuse.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "solar-system",
+      "name": "Planetary Solar System",
+      "category": "Solar System",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/solar-system.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "earth-sun-distance",
+      "name": "Distance from Earth to Sun",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/earth-sun-distance.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "light-year",
+      "name": "Light Year",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/light-year.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "milky-way",
+      "name": "Milky Way Galaxy",
+      "category": "Galaxy",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/milky-way.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "andromeda",
+      "name": "Andromeda Galaxy",
+      "category": "Galaxy",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/andromeda.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "local-group",
+      "name": "Local Group",
+      "category": "Galaxy Group",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/local-group.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "virgo-supercluster",
+      "name": "Virgo Supercluster",
+      "category": "Supercluster",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/virgo-supercluster.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "laniakea",
+      "name": "Laniakea Supercluster",
+      "category": "Supercluster",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/laniakea.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "hercules-corona-borealis",
+      "name": "Hercules-Corona Borealis Great Wall",
+      "category": "Cosmic Structure",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/hercules-corona-borealis.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "observable-universe",
+      "name": "Observable Universe",
+      "category": "Cosmic Horizon",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/observable-universe.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "planck-length",
+      "name": "Planck Length",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/planck-length.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "atomic-nucleus",
+      "name": "Atomic Nucleus",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/atomic-nucleus.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "helium-nucleus",
+      "name": "Helium Nucleus",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/helium-nucleus.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "quark-scale",
+      "name": "Quark Interaction Scale",
+      "category": "Subatomic Particle",
+      "categoryGroup": "Particles",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/quark-scale.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "uranium-atom",
+      "name": "Uranium Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/uranium-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "oxygen-atom",
+      "name": "Oxygen Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/oxygen-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "silicon-atom",
+      "name": "Silicon Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/silicon-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "gold-atom",
+      "name": "Gold Atom",
+      "category": "Atom",
+      "categoryGroup": "Atoms",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/gold-atom.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "oxygen-molecule",
+      "name": "Oxygen Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/oxygen-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "carbon-dioxide",
+      "name": "Carbon Dioxide Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/carbon-dioxide.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "nitrogen-molecule",
+      "name": "Nitrogen Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/nitrogen-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "caffeine-molecule",
+      "name": "Caffeine Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/caffeine-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "protein-molecule",
+      "name": "Protein Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/protein-molecule.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "hemoglobin",
+      "name": "Hemoglobin Molecule",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/hemoglobin.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "ribosome",
+      "name": "Ribosome",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v3/ribosome.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cell-membrane",
+      "name": "Cell Membrane Thickness",
+      "category": "Molecule",
+      "categoryGroup": "Molecules",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/cell-membrane.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "influenza-virus",
+      "name": "Influenza Virus",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/influenza-virus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "bacteriophage",
+      "name": "Bacteriophage",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/bacteriophage.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "coronavirus",
+      "name": "Coronavirus",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/coronavirus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "yeast-cell",
+      "name": "Yeast Cell",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/yeast-cell.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "platelet",
+      "name": "Blood Platelet",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/platelet.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "human-egg-cell",
+      "name": "Human Egg Cell",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/human-egg-cell.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "pollen-grain",
+      "name": "Pollen Grain",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/pollen-grain.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dust-mite",
+      "name": "Dust Mite",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/dust-mite.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "amoeba",
+      "name": "Amoeba",
+      "category": "Biology / Microscopic Physics",
+      "categoryGroup": "Cells and Microbes",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/amoeba.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "salt-crystal",
+      "name": "Salt Crystal",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/salt-crystal.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sesame-seed",
+      "name": "Sesame Seed",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sesame-seed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "rice-grain",
+      "name": "Rice Grain",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/rice-grain.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "paper-thickness",
+      "name": "Paper Thickness",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/paper-thickness.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "pencil",
+      "name": "Pencil",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/pencil.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "smartphone",
+      "name": "Smartphone",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/smartphone.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "basketball",
+      "name": "Basketball",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "honey-bee",
+      "name": "Honey Bee",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/honey-bee.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "butterfly",
+      "name": "Butterfly Wingspan",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/butterfly.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mouse",
+      "name": "Mouse",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mouse.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cat",
+      "name": "Cat",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cat.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dog",
+      "name": "Dog",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/dog.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "horse",
+      "name": "Horse",
+      "category": "Animal",
+      "categoryGroup": "Animals",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/horse.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "school-bus",
+      "name": "School Bus",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v2/school-bus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "car",
+      "name": "Car",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v2/car.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "bicycle",
+      "name": "Bicycle",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/bicycle.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "house",
+      "name": "House",
+      "category": "Building",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/house.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "classroom",
+      "name": "Classroom",
+      "category": "Building",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/classroom.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "statue-of-liberty",
+      "name": "Statue of Liberty",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/statue-of-liberty.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "eiffel-tower",
+      "name": "Eiffel Tower",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/eiffel-tower.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "burj-khalifa",
+      "name": "Burj Khalifa",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/burj-khalifa.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "grand-canyon-width",
+      "name": "Grand Canyon Width",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/grand-canyon-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/city.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "india-width",
+      "name": "India Width",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/india-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "earth-moon-distance",
+      "name": "Earth-Moon Distance",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/earth-moon-distance.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "mars",
+      "name": "Mars",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mars.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "venus",
+      "name": "Venus",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/venus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mercury",
+      "name": "Mercury",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mercury.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "saturn",
+      "name": "Saturn",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/saturn.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "uranus",
+      "name": "Uranus",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/uranus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "neptune",
+      "name": "Neptune",
+      "category": "Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/neptune.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "neptune-orbit",
+      "name": "Neptune Orbit Diameter",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/sprites/neptune-orbit.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "oort-cloud",
+      "name": "Oort Cloud Outer Radius",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/oort-cloud.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "pollux",
+      "name": "Pollux",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/pollux.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "arcturus",
+      "name": "Arcturus",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/arcturus.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "rigel",
+      "name": "Rigel",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/rigel.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "uy-scuti",
+      "name": "UY Scuti",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/uy-scuti.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "stephenson-2-18",
+      "name": "Stephenson 2-18",
+      "category": "Star",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/stephenson-2-18.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "distance-proxima",
+      "name": "Distance to Proxima Centauri",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/distance-proxima.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "orion-nebula",
+      "name": "Orion Nebula",
+      "category": "Nebula",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/orion-nebula.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "crab-nebula",
+      "name": "Crab Nebula",
+      "category": "Nebula",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/crab-nebula.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "large-magellanic-cloud",
+      "name": "Large Magellanic Cloud",
+      "category": "Galaxy",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/large-magellanic-cloud.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "triangulum-galaxy",
+      "name": "Triangulum Galaxy",
+      "category": "Galaxy",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/triangulum-galaxy.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sloan-great-wall",
+      "name": "Sloan Great Wall",
+      "category": "Cosmic Structure",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sloan-great-wall.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "bootes-void",
+      "name": "Bootes Void",
+      "category": "Cosmic Structure",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/bootes-void.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "shapley-supercluster",
+      "name": "Shapley Supercluster",
+      "category": "Cosmic Structure",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/shapley-supercluster.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cosmic-web-filament",
+      "name": "Cosmic Web Filament",
+      "category": "Cosmic Structure",
+      "categoryGroup": "Cosmic Structures",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cosmic-web-filament.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "football-field",
+      "name": "Football Field",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/football-field.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "swimming-pool",
+      "name": "Swimming Pool",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/swimming-pool.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "train",
+      "name": "Train",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/train-reviewed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "airplane",
+      "name": "Passenger Airplane",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/airplane.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "runway",
+      "name": "Airport Runway",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/runway.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mountain-range-width",
+      "name": "Mountain Range Width",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mountain-range-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "earth-atmosphere",
+      "name": "Earth Atmosphere Thickness",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/earth-atmosphere.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "low-earth-orbit",
+      "name": "Low Earth Orbit Height",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/sprites/low-earth-orbit.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "gps-orbit",
+      "name": "GPS Orbit Radius",
+      "category": "Astronomical Distance",
+      "categoryGroup": "Distances",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/sprites/gps-orbit.png",
+      "status": "scientific-schematic"
+    },
+    {
+      "id": "asteroid-bennu",
+      "name": "Asteroid Bennu",
+      "category": "Small Solar System Body",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/asteroid-bennu.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "ceres",
+      "name": "Ceres",
+      "category": "Dwarf Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/ceres.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "pluto",
+      "name": "Pluto",
+      "category": "Dwarf Planet",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/pluto.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "titan",
+      "name": "Titan",
+      "category": "Moon",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/titan.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "europa",
+      "name": "Europa",
+      "category": "Moon",
+      "categoryGroup": "Planets and Moons",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/europa.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "black-hole-stellar",
+      "name": "Stellar Black Hole Horizon",
+      "category": "Compact Object",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/black-hole-stellar.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sagittarius-a",
+      "name": "Sagittarius A* Horizon",
+      "category": "Compact Object",
+      "categoryGroup": "Stars",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sagittarius-a.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "planetary-nebula",
+      "name": "Planetary Nebula",
+      "category": "Nebula",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/planetary-nebula.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "globular-cluster",
+      "name": "Globular Cluster",
+      "category": "Star Cluster",
+      "categoryGroup": "Galaxies",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/globular-cluster.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "needle-tip",
+      "name": "Needle Tip",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/needle-tip-reviewed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dust-speck",
+      "name": "Dust Speck",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v3/dust-speck.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "flour-grain",
+      "name": "Flour Grain",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/flour-grain-reviewed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "sugar-crystal",
+      "name": "Sugar Crystal",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/sugar-crystal-reviewed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mustard-seed",
+      "name": "Mustard Seed",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mustard-seed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "chia-seed",
+      "name": "Chia Seed",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/chia-seed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "lentil",
+      "name": "Lentil",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/lentil.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "peppercorn",
+      "name": "Peppercorn",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/peppercorn.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "eraser",
+      "name": "Eraser",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/eraser.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "paperclip",
+      "name": "Paper Clip",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/paperclip.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "thumbtack",
+      "name": "Thumbtack",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/thumbtack.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "staple",
+      "name": "Staple",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/staple.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/button-reviewed.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "marble",
+      "name": "Marble",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/marble.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dice",
+      "name": "Dice",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/dice.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "battery-aa",
+      "name": "AA Battery",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/battery-aa.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "chalk-stick",
+      "name": "Chalk Stick",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/chalk-stick.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "usb-drive",
+      "name": "USB Drive",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/usb-drive.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "key",
+      "name": "Key",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/key.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "spoon",
+      "name": "Spoon",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/spoon.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "fork",
+      "name": "Fork",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/fork.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "toothbrush",
+      "name": "Toothbrush",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/toothbrush.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "calculator",
+      "name": "Calculator",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/calculator.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "notebook",
+      "name": "Notebook",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/notebook.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "textbook",
+      "name": "Textbook",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/textbook.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "water-bottle",
+      "name": "Water Bottle",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-bottle.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "coffee-mug",
+      "name": "Coffee Mug",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/coffee-mug.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "desk-lamp",
+      "name": "Desk Lamp",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/desk-lamp.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "school-bag",
+      "name": "School Bag",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/school-bag.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "laptop",
+      "name": "Laptop",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v2/laptop.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "tablet",
+      "name": "Tablet",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/tablet.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "monitor",
+      "name": "Computer Monitor",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/monitor.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "chair",
+      "name": "Chair",
+      "category": "Furniture",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/chair.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "desk",
+      "name": "Desk",
+      "category": "Furniture",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/desk.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "category": "Building Part",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v2/door.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "whiteboard",
+      "name": "Whiteboard",
+      "category": "Building Part",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/whiteboard.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "ceiling-fan",
+      "name": "Ceiling Fan",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "diameter",
+      "assetPath": "/assets/scale-universe/cutouts-v4/ceiling-fan.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "classroom-window",
+      "name": "Classroom Window",
+      "category": "Building Part",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/classroom-window.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "student-desk-row",
+      "name": "Student Desk Row",
+      "category": "Classroom Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/student-desk-row.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "laboratory-table",
+      "name": "Laboratory Table",
+      "category": "Classroom Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/laboratory-table.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "microscope",
+      "name": "Microscope",
+      "category": "Scientific Instrument",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v2/microscope.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "telescope",
+      "name": "Small Telescope",
+      "category": "Scientific Instrument",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/telescope.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "football-goal",
+      "name": "Football Goal",
+      "category": "Sports Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/football-goal.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "basketball-hoop",
+      "name": "Basketball Hoop",
+      "category": "Sports Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball-hoop.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cricket-bat",
+      "name": "Cricket Bat",
+      "category": "Sports Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cricket-bat.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "tennis-racket",
+      "name": "Tennis Racket",
+      "category": "Sports Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/tennis-racket.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "skateboard",
+      "name": "Skateboard",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/skateboard.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "scooter",
+      "name": "Scooter",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/scooter.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "motorbike",
+      "name": "Motorbike",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/motorbike.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "auto-rickshaw",
+      "name": "Auto Rickshaw",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/auto-rickshaw.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "minivan",
+      "name": "Minivan",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/minivan.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "bus-stop-shelter",
+      "name": "Bus Stop Shelter",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/bus-stop-shelter.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "traffic-signal",
+      "name": "Traffic Signal",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/traffic-signal.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "street-light",
+      "name": "Street Light",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/street-light.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "utility-pole",
+      "name": "Utility Pole",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/utility-pole.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "small-tree",
+      "name": "Small Tree",
+      "category": "Plant",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/small-tree.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "mango-tree",
+      "name": "Mango Tree",
+      "category": "Plant",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/mango-tree.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "coconut-tree",
+      "name": "Coconut Tree",
+      "category": "Plant",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/coconut-tree.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "garden-bench",
+      "name": "Garden Bench",
+      "category": "Everyday Object",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/garden-bench.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "playground-slide",
+      "name": "Playground Slide",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/playground-slide.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "water-tank",
+      "name": "Water Tank",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-tank.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "apartment-floor",
+      "name": "Apartment Floor Height",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/apartment-floor.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "two-storey-house",
+      "name": "Two Storey House",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/two-storey-house.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "school-building",
+      "name": "School Building",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/school-building.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "basketball-court",
+      "name": "Basketball Court",
+      "category": "Sports Object",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball-court.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cricket-pitch",
+      "name": "Cricket Pitch",
+      "category": "Sports Object",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cricket-pitch.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "swimming-lane",
+      "name": "Swimming Lane",
+      "category": "Sports Object",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/swimming-lane.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "metro-train-car",
+      "name": "Metro Train Car",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/metro-train-car.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "railway-platform",
+      "name": "Railway Platform",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/railway-platform.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "pedestrian-bridge",
+      "name": "Pedestrian Bridge",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/pedestrian-bridge.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cell-tower",
+      "name": "Cell Tower",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cell-tower.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "wind-turbine",
+      "name": "Wind Turbine",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/wind-turbine.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "solar-panel-row",
+      "name": "Solar Panel Row",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/solar-panel-row.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "water-tower",
+      "name": "Water Tower",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "vertical",
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-tower.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "radio-telescope-dish",
+      "name": "Radio Telescope Dish",
+      "category": "Scientific Instrument",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/radio-telescope-dish.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "small-pond",
+      "name": "Small Pond",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/small-pond.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "city-block",
+      "name": "City Block",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/city-block.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "neighborhood",
+      "name": "Neighborhood",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/neighborhood.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "village",
+      "name": "Village",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/village.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "stadium",
+      "name": "Stadium",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/stadium.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "airport-terminal",
+      "name": "Airport Terminal",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/airport-terminal.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "harbor-ship",
+      "name": "Harbor Ship",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/harbor-ship.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cargo-ship",
+      "name": "Cargo Ship",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cargo-ship.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "dam",
+      "name": "Dam",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/dam.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "bridge-span",
+      "name": "Bridge Span",
+      "category": "Building / Landmark",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/bridge-span.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/hill.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "river-width",
+      "name": "River Width",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/river-width.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "lake",
+      "name": "Lake",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/lake.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "island",
+      "name": "Island",
+      "category": "Geography",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/island.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud",
+      "category": "Atmosphere",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/cloud.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "rain-cell",
+      "name": "Rain Cell",
+      "category": "Atmosphere",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/rain-cell.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "thunderstorm",
+      "name": "Thunderstorm Cell",
+      "category": "Atmosphere",
+      "categoryGroup": "Earth and Geography",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/thunderstorm.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "hot-air-balloon",
+      "name": "Hot Air Balloon",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/hot-air-balloon.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "drone",
+      "name": "Drone",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/drone.png",
+      "status": "transparent-cutout"
+    },
+    {
+      "id": "satellite-bus",
+      "name": "Small Satellite Bus",
+      "category": "Vehicle",
+      "categoryGroup": "Human Scale",
+      "dimensionAxis": "horizontal",
+      "assetPath": "/assets/scale-universe/cutouts-v4/satellite-bus.png",
+      "status": "transparent-cutout"
+    }
+  ]
+}

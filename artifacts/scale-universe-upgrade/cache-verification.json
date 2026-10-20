@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "publicPrecacheCandidates": 274,
+  "scaleLibraryFilesPrecached": 0,
+  "lazyCacheMaxEntries": 48,
+  "scope": "Updated source includeAssets exclusion and bounded runtime cache; historical dist/sw.js predates this configuration change."
+}

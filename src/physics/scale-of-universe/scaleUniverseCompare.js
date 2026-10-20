@@ -3,6 +3,7 @@ export function createCompareController(root, objects, callbacks) {
   const select = root.querySelector(".scale-compare-select");
   let objectA = null;
   let objectB = null;
+  let extraObjects = [];
 
   for (const object of objects) {
     const option = document.createElement("option");
@@ -13,6 +14,7 @@ export function createCompareController(root, objects, callbacks) {
 
   const open = (selectedObject) => {
     objectA = selectedObject;
+    extraObjects = [];
     objectB = objects.find((object) => object.id !== objectA.id && object.importance >= 9) ?? objects[0];
     select.value = objectB.id;
     render();
@@ -25,6 +27,8 @@ export function createCompareController(root, objects, callbacks) {
 
   const render = () => {
     if (!objectA || !objectB) return;
+    const collection = [objectA, objectB, ...extraObjects].filter((object, index, all) => all.findIndex(item => item.id === object.id) === index);
+    const maximum = Math.max(...collection.map(object => object.sizeMeters));
     const larger = objectA.sizeMeters >= objectB.sizeMeters ? objectA : objectB;
     const smaller = larger === objectA ? objectB : objectA;
     const ratio = larger.sizeMeters / smaller.sizeMeters;
@@ -32,7 +36,11 @@ export function createCompareController(root, objects, callbacks) {
       <div class="scale-compare-grid">
         ${compareCard(objectA)}
         ${compareCard(objectB)}
+        ${extraObjects.map(compareCard).join("")}
       </div>
+      <div class="scale-compare-physical" aria-label="Shared linear scale comparison">${collection.map(object => `<div style="width:${100 * object.sizeMeters / maximum}px;height:${100 * object.sizeMeters / maximum}px"><span>${object.name}</span></div>`).join("")}</div>
+      <p class="scale-compare-measure-note">Shared linear scale: 100 px = ${formatMeters(maximum)}. Smaller dimensions below one pixel remain subpixel; they are not enlarged. Comparing declared reference lengths, which may use different axes.</p>
+      <button type="button" data-compare-add ${collection.length >= 4 ? "disabled" : ""}>Keep selection and add another (up to 4)</button>
       <p class="scale-compare-ratio"><strong>${larger.name}</strong> is about <strong>${formatRatio(ratio)}</strong> larger than <strong>${smaller.name}</strong>.</p>
       <div class="scale-compare-actions">
         <button type="button" data-compare-zoom="a">Zoom to ${objectA.name}</button>
@@ -48,6 +56,12 @@ export function createCompareController(root, objects, callbacks) {
 
   const onClick = (event) => {
     if (event.target.closest("[data-compare-close]")) close();
+    if (event.target.closest("[data-compare-add]") && objectB && extraObjects.length < 2) {
+      if (!extraObjects.some(object => object.id === objectB.id) && objectB.id !== objectA.id) extraObjects.push(objectB);
+      objectB = objects.find(object => object.id !== objectA.id && !extraObjects.some(extra => extra.id === object.id)) ?? objectB;
+      select.value = objectB.id;
+      render();
+    }
     const zoom = event.target.closest("[data-compare-zoom]")?.dataset.compareZoom;
     if (zoom === "a" && objectA) callbacks.zoomTo(objectA);
     if (zoom === "b" && objectB) callbacks.zoomTo(objectB);

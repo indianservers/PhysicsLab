@@ -1,0 +1,153 @@
+{
+  "screenshots": [
+    {
+      "name": "desktop-human-1366",
+      "file": "artifacts/scale-universe-upgrade/desktop-human-1366.png",
+      "exponent": 0,
+      "visibleObjects": "human,door,microscope,laptop,car,chair,desk,football",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-subatomic",
+      "file": "artifacts/scale-universe-upgrade/desktop-subatomic.png",
+      "exponent": -15,
+      "visibleObjects": "proton,neutron",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-atomic",
+      "file": "artifacts/scale-universe-upgrade/desktop-atomic.png",
+      "exponent": -10,
+      "visibleObjects": "hydrogen-atom,carbon-atom,water-molecule,oxygen-molecule,carbon-dioxide,oxygen-atom,silicon-atom,nitrogen-molecule",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-molecular",
+      "file": "artifacts/scale-universe-upgrade/desktop-molecular.png",
+      "exponent": -8,
+      "visibleObjects": "dna-width,hemoglobin,protein-molecule,ribosome,dna-helix,cell-membrane,caffeine-molecule,glucose-molecule",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-cellular",
+      "file": "artifacts/scale-universe-upgrade/desktop-cellular.png",
+      "exponent": -5,
+      "visibleObjects": "red-blood-cell,e-coli,white-blood-cell,yeast-cell,pollen-grain,platelet",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-planetary",
+      "file": "artifacts/scale-universe-upgrade/desktop-planetary.png",
+      "exponent": 7,
+      "visibleObjects": "earth,moon,india-width,venus,mars,low-earth-orbit,titan,mercury",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-solar",
+      "file": "artifacts/scale-universe-upgrade/desktop-solar.png",
+      "exponent": 11,
+      "visibleObjects": "earth-sun-distance,sagittarius-a,rigel,arcturus,pollux",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-stellar",
+      "file": "artifacts/scale-universe-upgrade/desktop-stellar.png",
+      "exponent": 13,
+      "visibleObjects": "solar-system,betelgeuse,neptune-orbit,stephenson-2-18,uy-scuti",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-galactic",
+      "file": "artifacts/scale-universe-upgrade/desktop-galactic.png",
+      "exponent": 21,
+      "visibleObjects": "milky-way,andromeda,triangulum-galaxy,large-magellanic-cloud",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-cosmic",
+      "file": "artifacts/scale-universe-upgrade/desktop-cosmic.png",
+      "exponent": 26.9,
+      "visibleObjects": "observable-universe,hercules-corona-borealis",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "comparison-shared-scale",
+      "file": "artifacts/scale-universe-upgrade/comparison-shared-scale.png",
+      "exponent": 7.10524,
+      "visibleObjects": "earth,moon,india-width,venus,mars,gps-orbit,titan,mercury",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      }
+    },
+    {
+      "name": "desktop-human-1920",
+      "file": "artifacts/scale-universe-upgrade/desktop-human-1920.png",
+      "exponent": 0,
+      "visibleObjects": "human,door,microscope,laptop,car,chair,desk,football",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "mobile-human",
+      "file": "artifacts/scale-universe-upgrade/mobile-human.png",
+      "exponent": 0,
+      "visibleObjects": "human,door,microscope,laptop",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "interactions": [
+    "All ten bands navigate the logarithmic camera and update selected state",
+    "Zoom In decreases exponent; Zoom Out increases exponent",
+    "Canvas hit testing selects Human; drag pans the scene",
+    "Two-finger spread zooms in toward smaller lengths",
+    "Wheel and keyboard change exponent consistently",
+    "Ruler keyboard reaches both -35 and +27 bounds",
+    "Ruler click and drag scrub to fractional exponents",
+    "Search aliases find, focus and open metadata",
+    "Bookmark and compare three objects with one physical scale",
+    "Complete guided journey starts, advances and exits",
+    "Quiz grades from object data; teacher transitions pause and resume",
+    "Quiz, teacher, bookmarks, units and help open and close",
+    "Fullscreen enters and exits; unavailable sound is disabled",
+    "Desktop 1366/1920 and mobile 390 responsive layouts captured"
+  ],
+  "errors": [],
+  "brokenAssets": [],
+  "passed": true
+}

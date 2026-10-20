@@ -1,0 +1,39 @@
+{
+  "reference": "User supplied cinematic reference image",
+  "automatedChecks": "See react-shell/browser-verification.json",
+  "comparisonMethod": "Manual review of screenshots for palette, panel placement, visual hierarchy, relative dimensions and responsive layout; no automated pixel-similarity claim",
+  "viewports": [
+    "1366\u00d7768",
+    "1920\u00d71080",
+    "768\u00d71024",
+    "390\u00d7844"
+  ],
+  "scenes": [
+    "Human",
+    "Subatomic",
+    "Atomic",
+    "Molecular",
+    "Cellular",
+    "Planetary",
+    "Solar",
+    "Stellar",
+    "Galactic",
+    "Cosmic",
+    "Shared-scale comparison"
+  ],
+  "correctionsAfterReview": [
+    "Reserved space for current-scale overlay",
+    "Separated upper and lower object lanes to avoid object/label overlap",
+    "Replaced key opaque sprites with six transparent generated references",
+    "Removed empty hidden search-results outline",
+    "Changed measurement brackets to vertical for height references",
+    "Reduced overlapping mobile footer text"
+  ],
+  "remainingVisualLimitations": [
+    "Some secondary legacy assets retain background remnants and need replacement",
+    "Procedural planetary surfaces and some secondary scientific schematics are illustrative",
+    "Interactive 3D previews are available for a subset, not all 225 objects",
+    "Reference composition adapted to truthful physical proportions; laptop and microscope are deliberately smaller than in the supplied mockup"
+  ],
+  "status": "Reviewed; remaining visual/scientific limitations explicitly reported"
+}

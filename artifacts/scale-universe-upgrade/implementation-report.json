@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-20",
+  "route": "/physics/scale-of-universe",
+  "framework": "React 18, TypeScript, Vite 5",
+  "rendering": "Canvas 2D physical layout, 204 transparent generated object references, 21 scientific schematics; optional Three.js fallback renderer retained",
+  "state": "Existing imperative module lifecycle, React useEffect owner, local bookmark persistence",
+  "baselineFindings": [
+    "75-item default global display cap and blacklist prevented complete discovery",
+    "Nonlinear compressed object radii distorted relative physical dimensions",
+    "Wheel, pinch and keyboard zoom directions disagreed",
+    "Maximum ruler exponent 26 excluded the requested +27 endpoint",
+    "Fractional exponents were rounded in the current-scale label",
+    "Default sprite assignment could be overwritten with undefined",
+    "Andromeda and Laniakea IDs did not match their asset filenames",
+    "Unit formatting stripped significant trailing zeroes from integer values such as 100 m",
+    "Large Magellanic Cloud reference diameter was a factor of ten too large",
+    "Many legacy sprites include rectangular star-field backings and lack documented scientific art provenance"
+  ],
+  "coverage": {
+    "inventory": 225,
+    "preservedIdentifiersAndNames": 225,
+    "preservedDescriptions": 225,
+    "sourceCheckedReferences": 23,
+    "remainingSourceReviews": 202,
+    "availableAssetFiles": 225,
+    "transparentPNGObjects": 204,
+    "scientificSchematicEntries": 21
+  },
+  "implemented": [
+    "SI-meter authoritative dimensions and log10 exponents",
+    "Range -35 through +27, fractional navigation and continuous physical-size zoom",
+    "Viewport-aware discovery of all objects without blacklist; search can focus each object",
+    "Shared physical dimensions; size brackets remain independent of decorative grid placement",
+    "Bounded image and model caches, lazy asset loading, reduced-effects fallback",
+    "Cinematic responsive header, current-scale glass panel, scale-band pills, numerical ruler, toolbar",
+    "Subject-specific transparent PNG references for 204 objects; PNGs take priority in both the scene and detail previews",
+    "Screen-space label collision avoidance and independent display lanes",
+    "Explicit measurement conventions, approximation, theoretical-scale and disputed-structure annotations",
+    "Search aliases, object focusing, bookmarks, source links",
+    "Multi-object shared linear-scale comparison (up to four)",
+    "Complete Planck-to-Universe guided journey; data-derived quiz questions",
+    "Teacher transitions pause/resume; panels, help, units, fullscreen and disabled unavailable sound",
+    "Module-scoped PWA lazy cache instead of precaching the whole scale asset library",
+    "All 175 remaining non-schematic references replaced, alpha-verified and indexed in a checkerboard review gallery"
+  ],
+  "checks": {
+    "numerical": "249 integer/fractional positions x three viewport sizes; all 225 discoverable at own exponent; known relationships and physical ratios pass",
+    "browser": "Real React entry, shell, router, engine and CSS tested with a fresh review bundle; 14 screenshot targets including tablet and 14 interaction groups; see react-shell/browser-verification.json for final result. Review bundler disables service worker and does not expand Tailwind directives.",
+    "targetedTypeScript": "ScaleOfUniversePage.tsx and its declarations pass TypeScript",
+    "moduleBundle": "Production ESM bundle succeeds using esbuild",
+    "fullApplicationBuild": "Vite production build and PWA generation completed successfully for the earlier build snapshot. Later changes were verified with a freshly rebuilt React-app esbuild review bundle and current module tests. Updated PWA exclusion verified against actual public-file globbing.",
+    "fullTypeScript": "Full project tsc --noEmit completed successfully; targeted Scale page check also passes.",
+    "cache": "Updated source configuration excludes scale assets from public precaching and limits its lazy runtime cache to 48 entries. See cache-verification.json.",
+    "transparentPNGAlpha": "175 additional cutouts passed RGBA alpha checks; see remaining-alpha-verification.json",
+    "latestInteractions": "14 screenshot targets and 14 interaction groups passed on localhost:5181; see final-ui/browser-verification.json",
+    "latestAssetBrowser": "175 PNGs decoded successfully, 21 scale screenshots, four cutout detail previews and nine checkerboard gallery screenshots; zero page errors or broken assets. See remaining-cutouts/browser-verification.json."
+  },
+  "notProductionComplete": true,
+  "remainingWork": [
+    "Independently source-check 202 retained reference estimates; no claim is made that these are validated measurements",
+    "Independently review the scientific accuracy of AI-generated illustrations, including molecular structures",
+    "Astronomical illustrations are not calibrated spacecraft cartography; exact scientific textures remain a separate review task",
+    "PNG reference previews are static; interactive 3D inspection remains separate from this image upgrade",
+    "Visual design follows the supplied composition and palette but is not a pixel-perfect reproduction",
+    "Production-pipeline screenshots of the final revision remain separate from the current native-module and real React-shell review-bundle screenshots."
+  ],
+  "referenceImage": "C:/Users/saisa/AppData/Local/Temp/codex-clipboard-f9aae1ad-0781-47b0-b1eb-0d3a15af24b0.png",
+  "imageGeneration": {
+    "tool": "Built-in imagegen",
+    "background": "public/assets/scale-universe/cosmic-backdrop-v2.png",
+    "foregroundDirectory": "public/assets/scale-universe/cutouts-v2",
+    "provenance": "AI-generated visual references, not measurement evidence",
+    "backgroundPrompt": "Photorealistic deep-space backdrop, wide 16:9, inky navy-black stars, spiral galaxy upper right, blue nebular dust bottom left, central 70 percent quiet; no text/UI/grids/people/planets.",
+    "foregroundPromptTemplate": "Single photorealistic full-object product cutout, transparent alpha, soft studio light upper left with subtle cool cyan rim, orthographic-style view, no text/scenery/stars/ground plane; human, graphite sedan, yellow school bus, walnut door, silver laptop, compound microscope.",
+    "foregroundDirectories": [
+      "public/assets/scale-universe/cutouts-v2",
+      "public/assets/scale-universe/cutouts-v3",
+      "public/assets/scale-universe/cutouts-v4"
+    ],
+    "finalAdditionalPromptSet": "artifacts/scale-universe-upgrade/remaining-generation-final.json"
+  }
+}

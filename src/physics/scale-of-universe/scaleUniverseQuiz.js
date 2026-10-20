@@ -122,7 +122,18 @@ function buildQuestions(objects) {
     };
   });
 
-  return [...largerQuestions, ...bandQuestions];
+  const earth = objects.find(object => object.id === "earth");
+  const jupiter = objects.find(object => object.id === "jupiter");
+  const ratio = (jupiter.sizeMeters / earth.sizeMeters).toFixed(1);
+  const ratioQuestion = {
+    type: "ratio", prompt: "Approximately how many Earth mean diameters fit across Jupiter?",
+    options: [ratio, "2.0", "100.0", "1000.0"].map(value => ({ id: value, label: value })),
+    answerId: ratio, explanation: `Divide Jupiter’s ${jupiter.bestUnitLabel} by Earth’s ${earth.bestUnitLabel}: about ${ratio}.`,
+  };
+  const candidates = ["e-coli", "virus", "red-blood-cell", "human"].map(id => objects.find(object => object.id === id));
+  const nearest = [...candidates].sort((a, b) => Math.abs(a.logSize + 6) - Math.abs(b.logSize + 6))[0];
+  const nearestQuestion = { type: "nearest", prompt: "Which reference length is closest to 10⁻⁶ meters on the logarithmic ruler?", options: candidates.map(object => ({ id: object.id, label: object.name })), answerId: nearest.id, explanation: `${nearest.name} has reference length ${nearest.bestUnitLabel}.` };
+  return [...largerQuestions, ratioQuestion, nearestQuestion, ...bandQuestions];
 }
 
 function pair(a, b) {

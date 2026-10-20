@@ -38,6 +38,7 @@ export function createTeacherMode(root, objects, callbacks) {
   let enabled = false;
   let lesson = classroomLessons[0];
   let stepIndex = 0;
+  let paused = false;
 
   const open = () => {
     enabled = true;
@@ -47,6 +48,8 @@ export function createTeacherMode(root, objects, callbacks) {
   };
 
   const close = () => {
+    paused = false;
+    callbacks.setPaused?.(false);
     enabled = false;
     root.classList.remove("scale-teacher-mode");
     panel.hidden = true;
@@ -71,6 +74,7 @@ export function createTeacherMode(root, objects, callbacks) {
         <button type="button" data-teacher-action="previous" ${stepIndex === 0 ? "disabled" : ""}>Previous</button>
         <button type="button" data-teacher-action="next" ${stepIndex === lesson.steps.length - 1 ? "disabled" : ""}>Next</button>
         <button type="button" data-teacher-action="exit">Exit Teacher Mode</button>
+        <button type="button" data-teacher-action="pause">${paused ? "Resume" : "Pause"} transition</button>
       </div>
       <small>Keyboard: Left/Right arrows move steps, F fullscreen, Escape exits.</small>
     `;
@@ -105,10 +109,12 @@ export function createTeacherMode(root, objects, callbacks) {
     if (action === "next") next();
     if (action === "previous") previous();
     if (action === "exit") close();
+    if (action === "pause") { paused = !paused; callbacks.setPaused?.(paused); event.target.textContent = `${paused ? "Resume" : "Pause"} transition`; }
   };
 
   const onKey = (event) => {
     if (!enabled) return;
+    if (event.target.closest?.("input,textarea,select")) return;
     if (event.key === "ArrowRight") next();
     if (event.key === "ArrowLeft") previous();
     if (event.key === "Escape") close();

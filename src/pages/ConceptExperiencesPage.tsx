@@ -7,7 +7,7 @@ import { studioHomeById, studioHomes, type StudioHome } from "../lib/conceptStud
 import "../concept-studio-homes.css";
 import { PhysicsAtlasPage } from './PhysicsAtlasPage';
 
-const mainNav = ["Concepts", "Activities"];
+const mainNav = ["Labs", "Concepts", "Activities"];
 
 function StudioShell({children, studio}:{children:ReactNode; studio?:StudioHome}) {
   const navigate=useNavigate();
@@ -31,8 +31,8 @@ function StudioShell({children, studio}:{children:ReactNode; studio?:StudioHome}
 function StudioTop({studio,onSearch}:{studio?:StudioHome;onSearch?:(value:string)=>void}){
   return <header className="csh-top">
     <Link className="csh-brand" to="/concept-studio"><span className="csh-brand-mark"><PhysicsIcon name={studio?.icon??"atom"}/></span><span><b>{studio?.name??"Physics Atlas"}</b><small>{studio?.eyebrow??"CONCEPT STUDIO"}</small></span></Link>
-    <nav aria-label="Studio sections">{mainNav.map((item,index)=><button key={item} onClick={()=>document.querySelector(index===0?"#concepts":"#activities")?.scrollIntoView({behavior:"smooth"})}>{item}</button>)}</nav>
-    <label className="csh-search"><PhysicsIcon name="search"/><input aria-label="Search this studio" placeholder="Search this studio" onChange={event=>onSearch?.(event.target.value)}/><kbd>⌘ K</kbd></label>
+    <nav aria-label="Studio sections"><Link to="/studios">All studios</Link>{mainNav.map((item,index)=><button key={item} onClick={()=>document.querySelector(["#labs", "#concepts", "#activities"][index])?.scrollIntoView({behavior:"smooth"})}>{item}</button>)}</nav>
+    <label className="csh-search"><PhysicsIcon name="search"/><input key={studio?.id} aria-label="Search this studio" placeholder="Search this studio" onChange={event=>onSearch?.(event.target.value)}/><kbd>⌘ K</kbd></label>
   </header>
 }
 
@@ -40,8 +40,9 @@ function SubjectHome({studio}:{studio:StudioHome}){
   const labs=referenceLabsByStudio[studio.id]??[];
   const startRoute=labs[0]?.route??studio.startRoute;
   const [query,setQuery]=useState(""); const [active,setActive]=useState(0); const [notice,setNotice]=useState("");
+  const visibleLabs=labs.filter(lab=>lab.title.toLowerCase().includes(query.trim().toLowerCase()));
   const visible=useMemo(()=>studio.concepts.filter(item=>(item.title+item.detail).toLowerCase().includes(query.toLowerCase())),[query,studio]);
-  useEffect(()=>{setActive(0);setNotice("")},[studio.id]);
+  useEffect(()=>{setActive(0);setNotice("");setQuery("")},[studio.id]);
   const perform=(message:string)=>{setNotice(message);window.setTimeout(()=>setNotice(""),2400)};
   return <StudioShell studio={studio}><main className={`csh-main csh-${studio.variant} csh-subject-${studio.id}`} id="content">
     <StudioTop studio={studio} onSearch={setQuery}/>
@@ -49,7 +50,7 @@ function SubjectHome({studio}:{studio:StudioHome}){
       <div className="csh-hero-copy"><span>{studio.eyebrow}</span><h1>{studio.name}</h1><p className="csh-hero-tagline">{studio.tagline}</p><p className="csh-hero-focus"><b>{studio.concepts[active]?.title}:</b> {studio.concepts[active]?.detail}</p></div>
       <aside className="csh-progress"><span>EXPLORE THE SUBJECT</span><h3>{studio.concepts[active]?.title}</h3><p>{studio.concepts[active]?.detail}</p><Link to={startRoute}>Open {labs[0]?.title??"interactive lab"}</Link></aside>
     </section>
-    <section className="csh-reference-labs" id="labs"><header><span>INTERACTIVE LABS</span><h2>Choose a lab</h2></header><div className="csh-lab-links" aria-label={`${studio.name} labs`}>{labs.map(lab=><Link key={lab.route} to={lab.route}>{lab.title} <b>→</b></Link>)}</div></section>
+    <section className="csh-reference-labs" id="labs"><header><span>{labs.length} INTERACTIVE LABS</span><h2>Choose your next investigation</h2><p>Explore {studio.name.replace(" Studio", "").toLowerCase()} through hands-on simulations.</p></header><div className="csh-lab-cards" aria-label={`${studio.name} labs`}>{visibleLabs.map(lab=><Link className="csh-lab-card" key={lab.route} to={lab.route}><div className="csh-lab-art"><img src={studio.asset} alt="" loading="lazy"/><span><PhysicsIcon name={studio.icon}/></span><small>LAB {String(labs.indexOf(lab)+1).padStart(2,"0")}</small></div><div className="csh-lab-copy"><h3>{lab.title}</h3><p>Explore {lab.title.toLowerCase()} in an interactive lab.</p><span>Open lab <b aria-hidden="true">→</b></span></div></Link>)}</div>{visibleLabs.length===0&&<p role="status">No labs match “{query}”. Try another lab name.</p>}</section>
     <section className="csh-concepts" id="concepts"><header><div><span>EXPLORE THE SUBJECT</span><h2>Core concepts</h2></div><p>Select a concept to explore its explanation.</p></header>
       <div className="csh-concept-grid">{visible.map(item=>{const index=studio.concepts.indexOf(item);return <button key={item.title} className={active===index?"active":""} onClick={()=>setActive(index)}><span className="csh-concept-visual" style={{backgroundImage:`url(${studio.asset})`,backgroundPosition:`${index*18}% center`}}><PhysicsIcon name={item.icon}/></span><span><b>{item.title}</b><small>{item.detail}</small></span><em>0{index+1}</em></button>})}</div>
     </section>
@@ -76,3 +77,9 @@ function AtlasHome(){
 }
 
 export function ConceptExperiencesPage(){const {conceptId}=useParams();if(!conceptId)return <PhysicsAtlasPage/>;const studio=studioHomeById.get(conceptId);return studio?<SubjectHome studio={studio}/>:<PhysicsAtlasPage/>}
+
+export function StudiosHomePage(){
+  const [query,setQuery]=useState("");
+  const studios=studioHomes.filter(studio=>(studio.name+" "+studio.tagline).toLowerCase().includes(query.toLowerCase()));
+  return <StudioShell><main className="csh-main csh-directory" id="content"><header className="csh-directory-heading"><Link to="/concept-studio">← Physics Atlas</Link><span>EXPLORE PHYSICS</span><h1>Find your studio</h1><p>16 studios. 96 interactive labs. Choose a subject and start exploring.</p><label>Search studios<input type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Search optics, mechanics, waves…"/></label></header><section className="csh-studio-grid" aria-label="All studios">{studios.map(studio=><Link className="csh-lab-card" key={studio.id} to={`/concept-studio/${studio.id}`} style={{"--studio-accent":studio.accent} as CSSProperties}><div className="csh-lab-art"><img src={studio.asset} alt="" loading="lazy"/><span><PhysicsIcon name={studio.icon}/></span><small>{referenceLabsByStudio[studio.id]?.length??0} LABS</small></div><div className="csh-lab-copy"><h2>{studio.name}</h2><p>{studio.tagline}</p><span>Explore studio <b aria-hidden="true">→</b></span></div></Link>)}</section>{studios.length===0&&<p role="status">No studios found. Try a different subject.</p>}</main></StudioShell>
+}

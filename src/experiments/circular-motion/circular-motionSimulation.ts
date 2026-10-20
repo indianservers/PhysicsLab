@@ -9,7 +9,7 @@ export interface CircularMotionInput {
 
 export function simulateCircularMotion(input: CircularMotionInput) {
   const angularVelocity = input.omega * (input.direction ?? 1);
-  const tangentialSpeed = input.radius * angularVelocity;
+  const tangentialSpeed = input.radius * input.omega;
   const centripetalAcceleration = input.radius * input.omega ** 2;
   const centripetalForce = input.mass * centripetalAcceleration;
   const period = (2 * Math.PI) / input.omega;

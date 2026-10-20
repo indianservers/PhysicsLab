@@ -14,18 +14,20 @@ import { createQuizController } from "./scaleUniverseQuiz.js";
 import { renderScaleUniverse, clamp, getScaleBand } from "./scaleUniverseRenderer.js";
 import { createSearchController } from "./scaleUniverseSearch.js";
 import { createTeacherMode } from "./scaleUniverseTeacherMode.js";
+import { createModelRenderer } from "./scaleUniverseModels.js";
+import { formatBestUnit } from "./scaleUniverseUnits.js";
 import { renderUnitCards } from "./scaleUniverseUnits.js";
 
 export function createScaleUniverseExplorer(host) {
   const objects = normalizedScaleUniverseObjects();
-  const displayObjects = buildCuratedDisplayObjects(objects);
-  const defaultObjectDisplayLimit = Math.min(75, displayObjects.length);
+  const displayObjects = objects;
+  const defaultObjectDisplayLimit = displayObjects.length;
   host.innerHTML = `
     <section class="scale-explorer" aria-label="Scale of Universe Explorer">
       <header class="scale-topbar">
         <div class="scale-title-block">
           <p class="scale-eyebrow">Browser-only physics module</p>
-          <h1>Scale of Universe Explorer</h1>
+          <h1><span class="scale-orbit-mark" aria-hidden="true">◎</span> Scale of Universe <em>Explorer</em></h1>
           <p>Explore sizes from particles to galaxies using powers of ten.</p>
         </div>
         <div class="scale-search">
@@ -38,10 +40,10 @@ export function createScaleUniverseExplorer(host) {
         </div>
       </header>
       <div class="scale-stage">
-        <aside class="scale-filter-panel" aria-label="Object category filters"></aside>
-        <nav class="scale-path-panel" aria-label="Mini scale path"></nav>
+        <details class="scale-filter-drawer"><summary>Object filters</summary><aside class="scale-filter-panel" aria-label="Object category filters"></aside></details>
+
         <canvas aria-label="Scale of Universe canvas visualization" role="img" tabindex="0"></canvas>
-        <div class="scale-reference-badge"><span>REALISTIC REFERENCE LAYER</span><b>Scientific composite · logarithmic scale</b></div>
+        <div class="scale-reference-badge"><span>SCIENTIFIC SCALE · VISUAL REFERENCES</span><b>Shared physical scale · illustrative surfaces</b></div>
         <div class="scale-legend" aria-live="polite">
           <span>Current Scale</span>
           <strong>10<sup>0</sup> meters</strong>
@@ -95,7 +97,7 @@ export function createScaleUniverseExplorer(host) {
           <label class="scale-help-check"><input type="checkbox" data-help-session /> Do not show again during this session</label>
         </section>
       </div>
-      <footer class="scale-control-deck">
+      <footer class="scale-control-deck"><nav class="scale-path-panel" aria-label="Scale categories"></nav>
         <div class="scale-button-row">
           <button type="button" data-action="zoom-in">Zoom In</button>
           <button type="button" data-action="zoom-out">Zoom Out</button>
@@ -107,7 +109,7 @@ export function createScaleUniverseExplorer(host) {
           <button type="button" data-action="help">Help</button>
           <button type="button" data-action="reset">Reset View</button>
           <button type="button" data-action="fullscreen">Fullscreen</button>
-          <button type="button" data-action="sound">Sound Coming Soon</button>
+          <button type="button" data-action="sound" disabled title="Audio is not available">Sound unavailable</button>
         </div>
         <div class="scale-object-count-control" aria-label="Displayed object count control">
           <label for="scale-object-count">
@@ -122,13 +124,29 @@ export function createScaleUniverseExplorer(host) {
             <div class="scale-slider-fill"></div>
             <div class="scale-slider-thumb"></div>
           </div>
-          <div class="scale-slider-labels"><span>10<sup>-35</sup> m</span><span>10<sup>0</sup> m</span><span>10<sup>26</sup> m</span></div>
+          <div class="scale-slider-labels"><span>10<sup>-35</sup> m</span><span>10<sup>0</sup> m</span><span>10<sup>27</sup> m</span></div>
         </div>
       </footer>
     </section>
   `;
 
   const root = host.querySelector(".scale-explorer");
+  const toolbarIcons = {
+    "zoom-in": '<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M10 6v8M6 10h8"/>',
+    "zoom-out": '<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10h8"/>',
+    journey: '<circle cx="12" cy="12" r="9"/><path d="m16 8-3 6-5 2 3-6 5-2Z"/>',
+    quiz: '<path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 1v6m-4 2h8"/>',
+    teacher: '<path d="m2 9 10-5 10 5-10 5L2 9Zm4 3v6c4 3 8 3 12 0v-6m4-3v8"/>',
+    bookmarks: '<path d="M6 3h12v18l-6-4-6 4V3Z"/>',
+    units: '<path d="M3 7h18v10H3V7Zm4 0v4m4-4v3m4-3v4m4-4v3"/>',
+    help: '<circle cx="12" cy="12" r="9"/><path d="M9 8a3 3 0 0 1 6 0c0 2-3 2-3 5m0 3v1"/>',
+    reset: '<path d="M4 10a8 8 0 1 0 3-5M3 3v7h7"/>',
+    fullscreen: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
+    sound: '<path d="m11 4-6 5H2v6h3l6 5V4Zm5 4a7 7 0 0 1 0 8m3-11a11 11 0 0 1 0 14"/>',
+  };
+  for (const button of root.querySelectorAll("[data-action]")) {
+    button.insertAdjacentHTML("afterbegin", `<svg class="scale-toolbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${toolbarIcons[button.dataset.action]}</svg>`);
+  }
   const canvas = host.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const legend = host.querySelector(".scale-legend");
@@ -142,7 +160,11 @@ export function createScaleUniverseExplorer(host) {
   const objectCountInput = host.querySelector("#scale-object-count");
   const objectCountOutput = host.querySelector("[data-object-count-output]");
 
+  const reducedEffects = navigator.connection?.saveData || (navigator.deviceMemory && navigator.deviceMemory <= 4) || navigator.hardwareConcurrency <= 4;
+  root.dataset.reducedEffects = String(Boolean(reducedEffects));
+  const models = reducedEffects ? null : createModelRenderer();
   const state = {
+    models,
     minLog: SCALE_MIN_LOG,
     maxLog: SCALE_MAX_LOG,
     currentLog: 0,
@@ -186,7 +208,7 @@ export function createScaleUniverseExplorer(host) {
 
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     state.width = Math.max(300, rect.width);
     state.height = Math.max(260, rect.height);
     state.isMobile = state.width < 640 || window.matchMedia("(max-width: 640px)").matches;
@@ -206,8 +228,8 @@ export function createScaleUniverseExplorer(host) {
   };
 
   const centerObject = (object) => {
-    state.panX += (-object.x - state.panX) * 0.8;
-    state.panY += (-object.y - state.panY) * 0.8;
+    state.panX = 0;
+    state.panY = 0;
   };
 
   const selectObject = (object) => {
@@ -224,7 +246,7 @@ export function createScaleUniverseExplorer(host) {
         showInfoPanel(panel, selected, panelOptions(selected));
       },
       isBookmarked: (id) => bookmarks.isBookmarked(id),
-      objects,
+      objects, models,
     });
     markDirty();
   };
@@ -236,11 +258,20 @@ export function createScaleUniverseExplorer(host) {
   };
 
   const reset = () => {
+    searchInput.value = "";
+    searchClear.hidden = true;
+    searchResults.hidden = true;
     state.currentLog = 0;
     state.targetLog = 0;
     state.panX = 0;
     state.panY = 0;
     state.scaleBand = getScaleBand(0);
+    filters.reset();
+    teacher.close();
+    quiz.close();
+    bookmarks.close();
+    unitsPanel.hidden = true;
+    helpPanel.hidden = true;
     compare.close();
     journey.exit();
     closeInfo();
@@ -262,7 +293,7 @@ export function createScaleUniverseExplorer(host) {
       showInfoPanel(panel, selected, panelOptions(selected));
     },
     isBookmarked: (id) => bookmarks.isBookmarked(id),
-    objects,
+    objects, models,
   });
 
   const slider = createScaleSlider(host.querySelector(".scale-slider"), state, setTargetLog);
@@ -273,25 +304,26 @@ export function createScaleUniverseExplorer(host) {
   });
   const filters = createFilterController(root, state, { onChange: markDirty });
   const compare = createCompareController(root, objects, { zoomTo });
-  const journey = createJourneyController(root, objects, { zoomTo });
+  const presentationFocus = object => { zoomTo(object); hideInfoPanel(panel); };
+  const journey = createJourneyController(root, objects, { zoomTo: presentationFocus });
   const quiz = createQuizController(root, objects);
-  const teacher = createTeacherMode(root, objects, { zoomTo });
+  const teacher = createTeacherMode(root, objects, { zoomTo: presentationFocus, setPaused: paused => { state.paused = paused; markDirty(); } });
 
   const onWheel = (event) => {
     event.preventDefault();
-    setTargetLog(state.targetLog + (event.deltaY < 0 ? 0.32 : -0.32));
+    setTargetLog(state.targetLog + (event.deltaY < 0 ? -0.18 : 0.18));
   };
 
   const onKey = (event) => {
-    if (event.target === searchInput) {
+    if (event.target.closest?.("input, select, textarea")) {
       if (event.key === "Escape") {
         searchResults.hidden = true;
         searchInput.blur();
       }
       return;
     }
-    if (event.key === "+" || event.key === "=") setTargetLog(state.targetLog + 1);
-    if (event.key === "-" || event.key === "_") setTargetLog(state.targetLog - 1);
+    if (event.key === "+" || event.key === "=") setTargetLog(state.targetLog - 1);
+    if (event.key === "-" || event.key === "_") setTargetLog(state.targetLog + 1);
     if (event.key.toLowerCase() === "r") reset();
     if (event.key === "Escape") {
       helpPanel.hidden = true;
@@ -340,10 +372,11 @@ export function createScaleUniverseExplorer(host) {
       markDirty();
     }
     if (activePointers.size >= 2) {
+      dragDistance = Math.max(dragDistance, 20);
       const gesture = getTwoPointerGesture();
       if (pinchDistance && pinchCenter) {
         const scale = clamp(gesture.distance / pinchDistance, 0.72, 1.32);
-        const deltaLog = Math.log(scale) * 2.8;
+        const deltaLog = -Math.log10(scale) * 2.8;
         setTargetLog(state.targetLog + deltaLog);
         state.panX += gesture.center.x - pinchCenter.x;
         state.panY += gesture.center.y - pinchCenter.y;
@@ -426,7 +459,7 @@ export function createScaleUniverseExplorer(host) {
       helpPanel.hidden = false;
     },
     reset,
-    fullscreen: () => root.requestFullscreen?.(),
+    fullscreen: async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await root.requestFullscreen?.(); } catch { helpPanel.hidden = false; } },
     sound: () => {
       const button = host.querySelector('[data-action="sound"]');
       button.textContent = "Sound Coming Soon";
@@ -437,27 +470,34 @@ export function createScaleUniverseExplorer(host) {
     if (event.target.closest("[data-help-close]")) closeHelp();
     if (event.target.closest("[data-units-close]")) unitsPanel.hidden = true;
     const bandLog = event.target.closest("[data-band-log]")?.dataset.bandLog;
-    if (bandLog) setTargetLog(Number(bandLog));
+    if (bandLog !== undefined) { state.selectedObjectId = null; hideInfoPanel(panel); state.panX = 0; state.panY = 0; setTargetLog(Number(bandLog)); }
     const action = event.target?.closest?.("[data-action]")?.dataset?.action;
+    if (["journey", "quiz", "teacher", "bookmarks", "units", "help"].includes(action)) {
+      hideInfoPanel(panel); compare.close(); journey.exit(); journey.closePicker(); quiz.close(); teacher.close(); bookmarks.close(); helpPanel.hidden = true; unitsPanel.hidden = true;
+    }
     if (action && buttons[action]) buttons[action]();
   };
 
   const animate = () => {
     const diff = state.targetLog - state.currentLog;
-    if (Math.abs(diff) > 0.004) {
+    if (!state.paused && Math.abs(diff) > 0.00001) {
       const ease = Math.abs(diff) > 8 ? 0.075 : 0.145;
       state.currentLog += state.prefersReducedMotion ? diff : diff * ease;
       state.currentLog = clamp(state.currentLog, SCALE_MIN_LOG, SCALE_MAX_LOG);
       dirty = true;
     }
     if (dirty || Math.abs(state.currentLog - lastRenderedLog) > 0.002) {
+      root.dataset.exponent = state.currentLog.toFixed(5);
+      root.dataset.pan = `${state.panX.toFixed(1)},${state.panY.toFixed(1)}`;
+      root.dataset.selectedObject = state.selectedObjectId ?? "";
       state.scaleBand = getScaleBand(state.currentLog);
       state.visibleObjects = renderScaleUniverse(ctx, state);
       updateLegend(legend, state.currentLog, state.isMobile);
       updateScalePath(scalePath, state.currentLog);
       slider.updateVisual();
       lastRenderedLog = state.currentLog;
-      dirty = false;
+      dirty = state.layoutAnimating;
+      root.dataset.visibleObjects = state.visibleObjects.map(entry => entry.object.id).join(",");
     }
     raf = requestAnimationFrame(animate);
   };
@@ -465,9 +505,11 @@ export function createScaleUniverseExplorer(host) {
   resize();
   updateObjectLimit(defaultObjectDisplayLimit);
   updateScalePath(scalePath, 0);
-  openHelp();
+
   raf = requestAnimationFrame(animate);
 
+  const onAssetReady = () => markDirty();
+  window.addEventListener("scale-asset-ready", onAssetReady);
   window.addEventListener("resize", resize);
   window.addEventListener("keydown", onKey);
   canvas.addEventListener("wheel", onWheel, { passive: false });
@@ -486,6 +528,7 @@ export function createScaleUniverseExplorer(host) {
   return {
     destroy() {
       cancelAnimationFrame(raf);
+      window.removeEventListener("scale-asset-ready", onAssetReady);
       window.removeEventListener("resize", resize);
       window.removeEventListener("keydown", onKey);
       canvas.removeEventListener("wheel", onWheel);
@@ -508,6 +551,7 @@ export function createScaleUniverseExplorer(host) {
       journey.destroy();
       quiz.destroy();
       teacher.destroy();
+      models?.destroy();
       host.innerHTML = "";
     },
   };
@@ -534,158 +578,21 @@ function updateScalePath(panel, log) {
     ["Solar", 11],
     ["Stellar", 13],
     ["Galactic", 21],
-    ["Cosmic", 26],
+    ["Cosmic", 26.9],
   ];
-  const active = getScaleBand(log).split(" ")[0];
+  const active = getScaleBand(log).split(" ")[0].replace("Interstellar", "Stellar");
+  const symbols = ["⚛", "◉", "⬡", "◌", "♙", "◍", "☀", "✦", "◎", "✧"];
   panel.innerHTML = bands
-    .map(([label, value]) => `<button type="button" data-band-log="${value}" class="${active.toLowerCase().startsWith(label.toLowerCase().slice(0, 5)) ? "active" : ""}">${label}</button>`)
+    .map(([label, value], index) => `<button type="button" data-band-log="${value}" aria-pressed="${active.toLowerCase().startsWith(label.toLowerCase().slice(0, 5))}" class="${active.toLowerCase().startsWith(label.toLowerCase().slice(0, 5)) ? "active" : ""}"><span aria-hidden="true">${symbols[index]}</span>${label}</button>`)
     .join("");
 }
 
 function updateLegend(legend, log, isMobile) {
   const band = getScaleBand(log);
-  const power = Math.round(log);
-  const label = isMobile
-    ? `<strong>10<sup>${power}</sup> m</strong><em>${band}</em>`
-    : `<span>Current Scale</span><strong>10<sup>${power}</sup> meters</strong><em>Band: ${band}</em>`;
-  legend.innerHTML = `${label}<p>${getScaleBandExplanation(log, getScaleBand)}</p>`;
+  const power = Number(log.toFixed(2));
+  legend.innerHTML = `<span>Current Scale</span><strong>10<sup>${power}</sup> <small>meters</small></strong><em>Band: ${band}</em><p>${getScaleBandExplanation(log, getScaleBand)}</p><small class="scale-actual-length">Reference length ≈ ${formatBestUnit(10 ** log)}</small>`;
 }
 
 function point(event) {
   return { x: event.clientX, y: event.clientY };
-}
-
-const displayBandOrder = [
-  "Subatomic",
-  "Atomic",
-  "Molecular",
-  "Cellular / Microscopic",
-  "Human Scale",
-  "Planetary",
-  "Solar System",
-  "Interstellar",
-  "Galactic",
-  "Cosmic",
-];
-
-const highPriorityScaleObjects = new Set([
-  "planck-length",
-  "proton",
-  "electron",
-  "hydrogen-atom",
-  "water-molecule",
-  "dna-width",
-  "virus",
-  "red-blood-cell",
-  "human-hair-width",
-  "grain-of-sand",
-  "football",
-  "basketball",
-  "school-bag",
-  "notebook",
-  "textbook",
-  "water-bottle",
-  "laptop",
-  "chair",
-  "desk",
-  "door",
-  "whiteboard",
-  "microscope",
-  "football-goal",
-  "car",
-  "bicycle",
-  "school-bus",
-  "human",
-  "giraffe",
-  "elephant",
-  "blue-whale",
-  "mount-everest",
-  "earth",
-  "moon",
-  "jupiter",
-  "sun",
-  "earth-sun-distance",
-  "solar-system",
-  "light-year",
-  "milky-way",
-  "andromeda",
-  "observable-universe",
-]);
-
-const lowPriorityScaleObjects = new Set([
-  "dust-speck",
-  "flour-grain",
-  "mustard-seed",
-  "chia-seed",
-  "peppercorn",
-  "staple",
-  "button",
-  "paperclip",
-  "thumbtack",
-  "usb-drive",
-  "coffee-mug",
-  "spoon",
-  "fork",
-  "toothbrush",
-  "student-desk-row",
-  "laboratory-table",
-  "bus-stop-shelter",
-  "traffic-signal",
-  "utility-pole",
-  "apartment-floor",
-  "basketball-court",
-  "cricket-pitch",
-  "swimming-lane",
-  "railway-platform",
-  "pedestrian-bridge",
-  "city-block",
-  "neighborhood",
-  "village",
-  "rain-cell",
-  "football-field",
-  "swimming-pool",
-  "runway",
-  "mountain-range-width",
-  "gps-orbit",
-  "neptune-orbit",
-  "bootes-void",
-  "sloan-great-wall",
-]);
-
-function buildCuratedDisplayObjects(objects) {
-  const candidates = objects
-    .filter((object) => !lowPriorityScaleObjects.has(object.id))
-    .sort((a, b) => displayScore(b) - displayScore(a));
-  const byBand = new Map(displayBandOrder.map((band) => [band, []]));
-  for (const object of candidates) {
-    const band = displayBandOrder.find((name) => object.scaleBand.startsWith(name)) ?? object.scaleBand;
-    if (!byBand.has(band)) byBand.set(band, []);
-    byBand.get(band).push(object);
-  }
-
-  const ordered = [];
-  let moved = true;
-  while (moved) {
-    moved = false;
-    for (const band of displayBandOrder) {
-      const bucket = byBand.get(band);
-      if (bucket?.length) {
-        ordered.push(bucket.shift());
-        moved = true;
-      }
-    }
-  }
-  return ordered;
-}
-
-function displayScore(object) {
-  let score = object.importance * 100;
-  if (highPriorityScaleObjects.has(object.id)) score += 900;
-  if (object.assetPath) score += 90;
-  if (object.categoryGroup === "Human Scale") score += 120;
-  if (object.categoryGroup === "Planets and Moons") score += 80;
-  if (object.categoryGroup === "Stars") score += 60;
-  if (object.categoryGroup === "Galaxies") score += 60;
-  if (object.name.length > 24) score -= 45;
-  return score;
 }

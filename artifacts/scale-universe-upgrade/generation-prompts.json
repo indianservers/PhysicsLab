@@ -1,0 +1,15 @@
+{
+  "tool": "Built-in imagegen",
+  "backgroundPath": "public/assets/scale-universe/cosmic-backdrop-v2.png",
+  "backgroundPrompt": "Create a premium photorealistic deep-space backdrop texture for a scientific universe scale web application. Wide landscape 16:9 composition. Inky navy black space, subtle dense stars, a beautiful spiral galaxy partly cropped at the upper right and a faint blue nebular dust sweep along the bottom left. Large central 70 percent is dark quiet negative space for separate rendered scientific objects. Restrained cinematic cyan and subtle violet light. No text, no UI, no labels, no icons, no grids, no people, no planets. Scientifically inspired artistic background, not a diagram. Save the output as a usable local image asset.",
+  "foregroundDirectory": "public/assets/scale-universe/cutouts-v2",
+  "foregroundPromptTemplate": "Create a single photorealistic product cutout of {subject}. It is a foreground asset for a premium scientific scale comparison application. Completely transparent background with real alpha, no rectangular backing, no scenery, no stars, no text, no ground plane, no cast shadow extending beyond the object. Soft studio lighting from upper left, subtle cool cyan rim. Entire object visible and centered, sharp detailed materials, consistent orthographic-style camera without strong perspective. Do not stylize as a toy or diagram.",
+  "subjects": {
+    "human.png": "a full-body adult man, neutral standing pose, casual charcoal shirt and blue jeans, anatomically credible",
+    "car.png": "a modern dark metallic graphite four-door sedan, complete car including wheels, clean side profile with very slight view of front",
+    "school-bus.png": "a complete yellow school bus, clean side profile, all wheels visible",
+    "door.png": "a closed upright wooden interior door in a narrow wooden frame, full frame visible, warm walnut panels, brass handle",
+    "laptop.png": "an open silver laptop, nearly side-on frontal three-quarter view, dark deep-blue screen, full keyboard and base visible",
+    "microscope.png": "a complete professional optical compound microscope, white and black metal, side three-quarter view, full base and eyepiece visible"
+  }
+}

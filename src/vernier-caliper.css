@@ -7,3 +7,5 @@
 .vnc-scale-note{position:absolute;left:16px;bottom:45px;font-size:12px;color:#cde4f0}.vnc-page p,.vnc-page label,.vnc-page small{font-weight:400}@media(max-width:500px){.vnc-scale-note{left:12px;font-size:10px;bottom:38px}.vnc-scene>p{font-size:10px;left:12px}}
 
 .vnc-equation>div{line-height:18px}.vnc-equation>p{padding:16px 8px;font-size:23px}@media(max-width:1100px){.vnc-equation>div{line-height:16px}.vnc-equation>p{padding:10px;font-size:21px}}@media(max-width:800px){.vnc-equation>div{line-height:18px}}@media(max-width:500px){.vnc-equation>div{line-height:15px}}
+
+.vnc-page-title{margin:0 0 12px;font-size:22px;line-height:1.4;font-weight:600;color:#d5ebff}

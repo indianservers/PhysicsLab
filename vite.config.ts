@@ -9,7 +9,7 @@ export default defineConfig({
       strategies: "generateSW",
       registerType: "autoUpdate",
       injectRegister: "auto",
-      includeAssets: ["assets/**/*", "index.html"],
+      includeAssets: ["assets/**/*", "!assets/scale-universe/**", "index.html"],
       manifest: {
         name: "PhysicsLab 100",
         short_name: "PhysicsLab",
@@ -24,9 +24,15 @@ export default defineConfig({
       workbox: {
         clientsClaim: true,
         cleanupOutdatedCaches: true,
+        globIgnores: ["**/assets/scale-universe/**"],
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2,ttf}"],
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith("/assets/scale-universe/"),
+            handler: "CacheFirst",
+            options: { cacheName: "physicslab-scale-assets-v2", expiration: { maxEntries: 48, maxAgeSeconds: 30 * 24 * 60 * 60 } },
+          },
           {
             urlPattern: ({ request }) => request.destination === "font",
             handler: "CacheFirst",

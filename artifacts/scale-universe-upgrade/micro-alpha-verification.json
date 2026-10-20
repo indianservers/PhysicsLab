@@ -1,0 +1,623 @@
+[
+  {
+    "id": "virus",
+    "size": [
+      1303,
+      1207
+    ],
+    "transparentFraction": 0.39304492023696513,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/virus.png",
+    "sourceBox": [
+      70,
+      26,
+      1182,
+      1147
+    ],
+    "aspect": 1.0305143853530951,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "coronavirus",
+    "size": [
+      1275,
+      1233
+    ],
+    "transparentFraction": 0.3723804525865496,
+    "cornerAlpha": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/coronavirus.png",
+    "sourceBox": [
+      60,
+      33,
+      1172,
+      1162
+    ],
+    "aspect": 1.008605851979346,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "influenza-virus",
+    "size": [
+      1289,
+      1221
+    ],
+    "transparentFraction": 0.34709813840923226,
+    "cornerAlpha": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/influenza-virus.png",
+    "sourceBox": [
+      67,
+      32,
+      1157,
+      1136
+    ],
+    "aspect": 1.0184859154929577,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "bacteriophage",
+    "size": [
+      1024,
+      1536
+    ],
+    "transparentFraction": 0.7544771830240885,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/bacteriophage.png",
+    "sourceBox": [
+      99,
+      42,
+      865,
+      1462
+    ],
+    "aspect": 0.591655266757866,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "e-coli",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.6774749755859375,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/e-coli.png",
+    "sourceBox": [
+      36,
+      31,
+      1476,
+      970
+    ],
+    "aspect": 1.5216494845360824,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "platelet",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.7190481821695963,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/platelet.png",
+    "sourceBox": [
+      117,
+      25,
+      1288,
+      968
+    ],
+    "aspect": 1.3305785123966942,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "red-blood-cell",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.5163243611653646,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/red-blood-cell.png",
+    "sourceBox": [
+      184,
+      89,
+      1196,
+      851
+    ],
+    "aspect": 1.4054054054054055,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "white-blood-cell",
+    "size": [
+      1287,
+      1222
+    ],
+    "transparentFraction": 0.3881627555931975,
+    "cornerAlpha": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/white-blood-cell.png",
+    "sourceBox": [
+      44,
+      34,
+      1209,
+      1153
+    ],
+    "aspect": 1.0485689505637468,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "human-egg-cell",
+    "size": [
+      1281,
+      1228
+    ],
+    "transparentFraction": 0.4067904248258817,
+    "cornerAlpha": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/human-egg-cell.png",
+    "sourceBox": [
+      103,
+      84,
+      1082,
+      1073
+    ],
+    "aspect": 1.0083876980428705,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "pollen-grain",
+    "size": [
+      1310,
+      1200
+    ],
+    "transparentFraction": 0.400175572519084,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/pollen-grain.png",
+    "sourceBox": [
+      12,
+      6,
+      1288,
+      1188
+    ],
+    "aspect": 1.0841750841750841,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "yeast-cell",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.5502300262451172,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/yeast-cell.png",
+    "sourceBox": [
+      127,
+      107,
+      1317,
+      837
+    ],
+    "aspect": 1.5734767025089607,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "ribosome",
+    "size": [
+      1305,
+      1205
+    ],
+    "transparentFraction": 0.39722802499165355,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/ribosome.png",
+    "sourceBox": [
+      63,
+      33,
+      1168,
+      1128
+    ],
+    "aspect": 1.0354609929078014,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "cell-membrane",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.47381019592285156,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/cell-membrane.png",
+    "sourceBox": [
+      48,
+      165,
+      1444,
+      707
+    ],
+    "aspect": 2.0424328147100423,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "hemoglobin",
+    "size": [
+      1295,
+      1214
+    ],
+    "transparentFraction": 0.35926291082798495,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/hemoglobin.png",
+    "sourceBox": [
+      47,
+      48,
+      1200,
+      1118
+    ],
+    "aspect": 1.073345259391771,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "protein-molecule",
+    "size": [
+      1307,
+      1203
+    ],
+    "transparentFraction": 0.43241679021014157,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/protein-molecule.png",
+    "sourceBox": [
+      51,
+      55,
+      1208,
+      1089
+    ],
+    "aspect": 1.1092745638200183,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "dna-width",
+    "size": [
+      1024,
+      1536
+    ],
+    "transparentFraction": 0.6921819051106771,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/dna-width.png",
+    "sourceBox": [
+      289,
+      24,
+      535,
+      1486
+    ],
+    "aspect": 0.36002691790040375,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "dna-helix",
+    "size": [
+      1024,
+      1536
+    ],
+    "transparentFraction": 0.6945056915283203,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/dna-helix.png",
+    "sourceBox": [
+      280,
+      64,
+      527,
+      1421
+    ],
+    "aspect": 0.37086558761435606,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "glucose-molecule",
+    "size": [
+      1338,
+      1175
+    ],
+    "transparentFraction": 0.7786299017269345,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/glucose-molecule.png",
+    "sourceBox": [
+      59,
+      16,
+      1221,
+      1147
+    ],
+    "aspect": 1.064516129032258,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "caffeine-molecule",
+    "size": [
+      1402,
+      1122
+    ],
+    "transparentFraction": 0.7824631733123804,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/caffeine-molecule.png",
+    "sourceBox": [
+      95,
+      49,
+      1213,
+      1018
+    ],
+    "aspect": 1.1915520628683693,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "human-hair-width",
+    "size": [
+      2079,
+      756
+    ],
+    "transparentFraction": 0.38677401375814074,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/human-hair-width.png",
+    "sourceBox": [
+      65,
+      66,
+      1956,
+      600
+    ],
+    "aspect": 3.26,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "dust-speck",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.45328013102213544,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/dust-speck.png",
+    "sourceBox": [
+      69,
+      28,
+      1434,
+      964
+    ],
+    "aspect": 1.487551867219917,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "amoeba",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.6182645161946615,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/amoeba.png",
+    "sourceBox": [
+      22,
+      17,
+      1490,
+      991
+    ],
+    "aspect": 1.503531786074672,
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  },
+  {
+    "id": "dust-mite",
+    "size": [
+      1376,
+      1143
+    ],
+    "transparentFraction": 0.46634023581354656,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "assetPath": "/assets/scale-universe/cutouts-v3/dust-mite.png",
+    "sourceBox": [
+      9,
+      12,
+      1359,
+      1117
+    ],
+    "aspect": 1.216651745747538,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+  }
+]

@@ -1713,7 +1713,7 @@ body {
   }
 
   .toolbar-menu-panel {
-    @apply absolute left-[calc(100%+10px)] top-0 z-50 grid min-w-64 gap-2 rounded-lg border p-2 backdrop-blur;
+    @apply absolute left-[calc(100%_+_10px)] top-0 z-50 grid min-w-64 gap-2 rounded-lg border p-2 backdrop-blur;
     background: var(--surface-panel-strong);
     border-color: var(--line-soft);
     box-shadow: var(--shadow-float);
@@ -1782,7 +1782,7 @@ body {
   }
 
   .toolbar-submenu-panel {
-    @apply absolute right-[calc(100%+8px)] top-0 z-50 grid min-w-64 gap-1 rounded-lg border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-950/95;
+    @apply absolute right-[calc(100%_+_8px)] top-0 z-50 grid min-w-64 gap-1 rounded-lg border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-950/95;
   }
 
   .toolbar-submenu-panel .nav-chip {

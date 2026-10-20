@@ -1,0 +1,4730 @@
+{
+  "installed": [
+    {
+      "id": "airplane",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7553081018697991,
+      "assetPath": "/assets/scale-universe/cutouts-v4/airplane.png",
+      "sourceBox": [
+        19,
+        79,
+        1735,
+        709
+      ],
+      "aspect": 2.447108603667137,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "airport-terminal",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.45545196533203125,
+      "assetPath": "/assets/scale-universe/cutouts-v4/airport-terminal.png",
+      "sourceBox": [
+        34,
+        1,
+        1487,
+        981
+      ],
+      "aspect": 1.5158002038735983,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "andromeda",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5264415740966797,
+      "assetPath": "/assets/scale-universe/cutouts-v4/andromeda.png",
+      "sourceBox": [
+        15,
+        63,
+        1508,
+        910
+      ],
+      "aspect": 1.6571428571428573,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "ant",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7416489919026693,
+      "assetPath": "/assets/scale-universe/cutouts-v4/ant.png",
+      "sourceBox": [
+        44,
+        149,
+        1448,
+        764
+      ],
+      "aspect": 1.8952879581151831,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "apartment-floor",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3928387959798177,
+      "assetPath": "/assets/scale-universe/cutouts-v4/apartment-floor.png",
+      "sourceBox": [
+        74,
+        70,
+        1416,
+        851
+      ],
+      "aspect": 1.663924794359577,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "arcturus",
+      "size": [
+        1267,
+        1241
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3196304632501604,
+      "assetPath": "/assets/scale-universe/cutouts-v4/arcturus.png",
+      "sourceBox": [
+        33,
+        50,
+        1204,
+        1134
+      ],
+      "aspect": 1.0617283950617284,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "asteroid-bennu",
+      "size": [
+        1304,
+        1206
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.40782602834498266,
+      "assetPath": "/assets/scale-universe/cutouts-v4/asteroid-bennu.png",
+      "sourceBox": [
+        43,
+        47,
+        1218,
+        1117
+      ],
+      "aspect": 1.090420769919427,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "auto-rickshaw",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3983345031738281,
+      "assetPath": "/assets/scale-universe/cutouts-v4/auto-rickshaw.png",
+      "sourceBox": [
+        187,
+        19,
+        1215,
+        989
+      ],
+      "aspect": 1.2285136501516682,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "basketball-court",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.48482004801432294,
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball-court.png",
+      "sourceBox": [
+        12,
+        90,
+        1517,
+        853
+      ],
+      "aspect": 1.7784290738569755,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "basketball-hoop",
+      "size": [
+        1199,
+        1312
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7595010577920625,
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball-hoop.png",
+      "sourceBox": [
+        337,
+        16,
+        670,
+        1267
+      ],
+      "aspect": 0.5288082083662194,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "basketball",
+      "size": [
+        1286,
+        1223
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3500850088187907,
+      "assetPath": "/assets/scale-universe/cutouts-v4/basketball.png",
+      "sourceBox": [
+        0,
+        48,
+        1220,
+        1133
+      ],
+      "aspect": 1.0767872903795235,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "battery-aa",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8215808868408203,
+      "assetPath": "/assets/scale-universe/cutouts-v4/battery-aa.png",
+      "sourceBox": [
+        617,
+        28,
+        297,
+        964
+      ],
+      "aspect": 0.30809128630705396,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "betelgeuse",
+      "size": [
+        1278,
+        1230
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3414188836724048,
+      "assetPath": "/assets/scale-universe/cutouts-v4/betelgeuse.png",
+      "sourceBox": [
+        28,
+        52,
+        1224,
+        1131
+      ],
+      "aspect": 1.0822281167108754,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "bicycle",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5873730977376302,
+      "assetPath": "/assets/scale-universe/cutouts-v4/bicycle.png",
+      "sourceBox": [
+        55,
+        13,
+        1428,
+        996
+      ],
+      "aspect": 1.4337349397590362,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "black-hole-stellar",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.5155582427978516,
+      "assetPath": "/assets/scale-universe/cutouts-v4/black-hole-stellar.png",
+      "sourceBox": [
+        24,
+        99,
+        1498,
+        828
+      ],
+      "aspect": 1.8091787439613527,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "blue-whale",
+      "size": [
+        1981,
+        793
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6291465008374004,
+      "assetPath": "/assets/scale-universe/cutouts-v4/blue-whale.png",
+      "sourceBox": [
+        30,
+        44,
+        1931,
+        704
+      ],
+      "aspect": 2.742897727272727,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "bootes-void",
+      "size": [
+        1334,
+        1179
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.39000092828903615,
+      "assetPath": "/assets/scale-universe/cutouts-v4/bootes-void.png",
+      "sourceBox": [
+        31,
+        60,
+        1276,
+        1078
+      ],
+      "aspect": 1.183673469387755,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "bridge-span",
+      "size": [
+        1983,
+        793
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6738831136539527,
+      "assetPath": "/assets/scale-universe/cutouts-v4/bridge-span.png",
+      "sourceBox": [
+        3,
+        5,
+        1978,
+        772
+      ],
+      "aspect": 2.562176165803109,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "burj-khalifa",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8277289072672526,
+      "assetPath": "/assets/scale-universe/cutouts-v4/burj-khalifa.png",
+      "sourceBox": [
+        236,
+        21,
+        580,
+        1488
+      ],
+      "aspect": 0.3897849462365591,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "bus-stop-shelter",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4407354990641276,
+      "assetPath": "/assets/scale-universe/cutouts-v4/bus-stop-shelter.png",
+      "sourceBox": [
+        113,
+        24,
+        1328,
+        964
+      ],
+      "aspect": 1.3775933609958506,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "butterfly",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5155582427978516,
+      "assetPath": "/assets/scale-universe/cutouts-v4/butterfly.png",
+      "sourceBox": [
+        36,
+        66,
+        1468,
+        886
+      ],
+      "aspect": 1.6568848758465011,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "button",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3746618116723286,
+      "assetPath": "/assets/scale-universe/cutouts-v4/button-reviewed.png",
+      "sourceBox": [
+        62,
+        71,
+        1189,
+        1068
+      ],
+      "aspect": 1.1132958801498127,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "calculator",
+      "size": [
+        1368,
+        1149
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5060000050896024,
+      "assetPath": "/assets/scale-universe/cutouts-v4/calculator.png",
+      "sourceBox": [
+        95,
+        52,
+        1203,
+        1053
+      ],
+      "aspect": 1.1424501424501425,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "carbon-dioxide",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6623824782115207,
+      "assetPath": "/assets/scale-universe/cutouts-v4/carbon-dioxide.png",
+      "sourceBox": [
+        145,
+        190,
+        1534,
+        541
+      ],
+      "aspect": 2.8354898336414047,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cargo-ship",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.45615358510566634,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cargo-ship.png",
+      "sourceBox": [
+        19,
+        9,
+        1739,
+        867
+      ],
+      "aspect": 2.005767012687428,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cat",
+      "size": [
+        1393,
+        1129
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5743375869604889,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cat.png",
+      "sourceBox": [
+        128,
+        11,
+        1119,
+        1082
+      ],
+      "aspect": 1.034195933456562,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "ceiling-fan",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6992607116699219,
+      "assetPath": "/assets/scale-universe/cutouts-v4/ceiling-fan.png",
+      "sourceBox": [
+        6,
+        106,
+        1525,
+        840
+      ],
+      "aspect": 1.8154761904761905,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cell-tower",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7263437906901041,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cell-tower.png",
+      "sourceBox": [
+        175,
+        14,
+        680,
+        1505
+      ],
+      "aspect": 0.45182724252491696,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "ceres",
+      "size": [
+        1283,
+        1226
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.36849617090856845,
+      "assetPath": "/assets/scale-universe/cutouts-v4/ceres.png",
+      "sourceBox": [
+        84,
+        52,
+        1132,
+        1116
+      ],
+      "aspect": 1.014336917562724,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "chair",
+      "size": [
+        1230,
+        1278
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7434157792282148,
+      "assetPath": "/assets/scale-universe/cutouts-v4/chair.png",
+      "sourceBox": [
+        206,
+        25,
+        830,
+        1224
+      ],
+      "aspect": 0.6781045751633987,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "chalk-stick",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7315317789713541,
+      "assetPath": "/assets/scale-universe/cutouts-v4/chalk-stick.png",
+      "sourceBox": [
+        85,
+        149,
+        1410,
+        774
+      ],
+      "aspect": 1.821705426356589,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "chia-seed",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5402056376139323,
+      "assetPath": "/assets/scale-universe/cutouts-v4/chia-seed.png",
+      "sourceBox": [
+        168,
+        99,
+        1230,
+        832
+      ],
+      "aspect": 1.4783653846153846,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "city-block",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4618651072184245,
+      "assetPath": "/assets/scale-universe/cutouts-v4/city-block.png",
+      "sourceBox": [
+        20,
+        64,
+        1499,
+        898
+      ],
+      "aspect": 1.6692650334075725,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "city",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4118143717447917,
+      "assetPath": "/assets/scale-universe/cutouts-v4/city.png",
+      "sourceBox": [
+        17,
+        24,
+        1504,
+        965
+      ],
+      "aspect": 1.5585492227979274,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "classroom-window",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.31095781037043063,
+      "assetPath": "/assets/scale-universe/cutouts-v4/classroom-window.png",
+      "sourceBox": [
+        105,
+        30,
+        1120,
+        1134
+      ],
+      "aspect": 0.9876543209876543,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "classroom",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3168570200602214,
+      "assetPath": "/assets/scale-universe/cutouts-v4/classroom.png",
+      "sourceBox": [
+        26,
+        66,
+        1487,
+        942
+      ],
+      "aspect": 1.578556263269639,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cloud",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.42513593037923175,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cloud.png",
+      "sourceBox": [
+        25,
+        51,
+        1485,
+        936
+      ],
+      "aspect": 1.5865384615384615,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "coconut-tree",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "transparentFraction": 0.49201393127441406,
+      "assetPath": "/assets/scale-universe/cutouts-v4/coconut-tree.png",
+      "sourceBox": [
+        65,
+        19,
+        945,
+        1502
+      ],
+      "aspect": 0.6291611185086551,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "coffee-mug",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3654582578978417,
+      "assetPath": "/assets/scale-universe/cutouts-v4/coffee-mug.png",
+      "sourceBox": [
+        100,
+        54,
+        1169,
+        1089
+      ],
+      "aspect": 1.0734618916437098,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "coin",
+      "size": [
+        1374,
+        1145
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5640147975820445,
+      "assetPath": "/assets/scale-universe/cutouts-v4/coin.png",
+      "sourceBox": [
+        263,
+        71,
+        863,
+        993
+      ],
+      "aspect": 0.8690835850956697,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cosmic-web-filament",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7195936838785807,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cosmic-web-filament.png",
+      "sourceBox": [
+        24,
+        42,
+        1491,
+        955
+      ],
+      "aspect": 1.5612565445026179,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "crab-nebula",
+      "size": [
+        1374,
+        1145
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.36974123300471007,
+      "assetPath": "/assets/scale-universe/cutouts-v4/crab-nebula.png",
+      "sourceBox": [
+        19,
+        12,
+        1340,
+        1113
+      ],
+      "aspect": 1.2039532794249774,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cricket-bat",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7939980824788412,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cricket-bat.png",
+      "sourceBox": [
+        212,
+        15,
+        666,
+        1494
+      ],
+      "aspect": 0.4457831325301205,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "cricket-pitch",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3728567759195964,
+      "assetPath": "/assets/scale-universe/cutouts-v4/cricket-pitch.png",
+      "sourceBox": [
+        28,
+        75,
+        1487,
+        887
+      ],
+      "aspect": 1.6764374295377678,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "dam",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3122266133626302,
+      "assetPath": "/assets/scale-universe/cutouts-v4/dam.png",
+      "sourceBox": [
+        34,
+        49,
+        1480,
+        920
+      ],
+      "aspect": 1.608695652173913,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "desk-lamp",
+      "size": [
+        1275,
+        1233
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7782802983318226,
+      "assetPath": "/assets/scale-universe/cutouts-v4/desk-lamp.png",
+      "sourceBox": [
+        135,
+        42,
+        1036,
+        1161
+      ],
+      "aspect": 0.892334194659776,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "desk",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4670085906982422,
+      "assetPath": "/assets/scale-universe/cutouts-v4/desk.png",
+      "sourceBox": [
+        49,
+        128,
+        1437,
+        785
+      ],
+      "aspect": 1.8305732484076433,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "dice",
+      "size": [
+        1322,
+        1190
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.48037859621912304,
+      "assetPath": "/assets/scale-universe/cutouts-v4/dice.png",
+      "sourceBox": [
+        175,
+        80,
+        998,
+        1046
+      ],
+      "aspect": 0.9541108986615678,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "dog",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4923049441607844,
+      "assetPath": "/assets/scale-universe/cutouts-v4/dog.png",
+      "sourceBox": [
+        35,
+        24,
+        1225,
+        1144
+      ],
+      "aspect": 1.0708041958041958,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "drone",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6905701955159506,
+      "assetPath": "/assets/scale-universe/cutouts-v4/drone.png",
+      "sourceBox": [
+        39,
+        62,
+        1488,
+        877
+      ],
+      "aspect": 1.6966932725199544,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "earth-atmosphere",
+      "size": [
+        1287,
+        1222
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3169234838629274,
+      "assetPath": "/assets/scale-universe/cutouts-v4/earth-atmosphere.png",
+      "sourceBox": [
+        62,
+        34,
+        1164,
+        1159
+      ],
+      "aspect": 1.004314063848145,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "earth",
+      "size": [
+        1268,
+        1240
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3381525389233744,
+      "assetPath": "/assets/scale-universe/cutouts-v4/earth.png",
+      "sourceBox": [
+        59,
+        45,
+        1152,
+        1146
+      ],
+      "aspect": 1.0052356020942408,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "eiffel-tower",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.745812733968099,
+      "assetPath": "/assets/scale-universe/cutouts-v4/eiffel-tower.png",
+      "sourceBox": [
+        38,
+        7,
+        945,
+        1504
+      ],
+      "aspect": 0.6283244680851063,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "elephant",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5205084482828776,
+      "assetPath": "/assets/scale-universe/cutouts-v4/elephant.png",
+      "sourceBox": [
+        193,
+        8,
+        1152,
+        993
+      ],
+      "aspect": 1.1601208459214503,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "eraser",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5673033396402994,
+      "assetPath": "/assets/scale-universe/cutouts-v4/eraser.png",
+      "sourceBox": [
+        77,
+        87,
+        1405,
+        851
+      ],
+      "aspect": 1.6509988249118683,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "europa",
+      "size": [
+        1263,
+        1246
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3571218874269396,
+      "assetPath": "/assets/scale-universe/cutouts-v4/europa.png",
+      "sourceBox": [
+        64,
+        58,
+        1134,
+        1131
+      ],
+      "aspect": 1.0026525198938991,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "flour-grain",
+      "size": [
+        1374,
+        1145
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.46313190061211645,
+      "assetPath": "/assets/scale-universe/cutouts-v4/flour-grain-reviewed.png",
+      "sourceBox": [
+        105,
+        97,
+        1173,
+        951
+      ],
+      "aspect": 1.2334384858044165,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "football-field",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6007964218213987,
+      "assetPath": "/assets/scale-universe/cutouts-v4/football-field.png",
+      "sourceBox": [
+        1,
+        14,
+        1771,
+        869
+      ],
+      "aspect": 2.037974683544304,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "football-goal",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "transparentFraction": 0.4369805653889974,
+      "assetPath": "/assets/scale-universe/cutouts-v4/football-goal.png",
+      "sourceBox": [
+        24,
+        111,
+        1466,
+        785
+      ],
+      "aspect": 1.867515923566879,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "football",
+      "size": [
+        1297,
+        1212
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.37172607006267316,
+      "assetPath": "/assets/scale-universe/cutouts-v4/football.png",
+      "sourceBox": [
+        91,
+        48,
+        1117,
+        1119
+      ],
+      "aspect": 0.998212689901698,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "fork",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8698444366455078,
+      "assetPath": "/assets/scale-universe/cutouts-v4/fork.png",
+      "sourceBox": [
+        27,
+        88,
+        1488,
+        847
+      ],
+      "aspect": 1.756788665879575,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "garden-bench",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5723864237467448,
+      "assetPath": "/assets/scale-universe/cutouts-v4/garden-bench.png",
+      "sourceBox": [
+        97,
+        51,
+        1365,
+        926
+      ],
+      "aspect": 1.4740820734341253,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "giraffe",
+      "size": [
+        1145,
+        1374
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.781731851032589,
+      "assetPath": "/assets/scale-universe/cutouts-v4/giraffe.png",
+      "sourceBox": [
+        216,
+        10,
+        778,
+        1340
+      ],
+      "aspect": 0.5805970149253732,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "globular-cluster",
+      "size": [
+        1374,
+        1145
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.44056368108922406,
+      "assetPath": "/assets/scale-universe/cutouts-v4/globular-cluster.png",
+      "sourceBox": [
+        83,
+        22,
+        1222,
+        1098
+      ],
+      "aspect": 1.1129326047358834,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "grain-of-sand",
+      "size": [
+        1290,
+        1219
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4790583207737948,
+      "assetPath": "/assets/scale-universe/cutouts-v4/grain-of-sand.png",
+      "sourceBox": [
+        63,
+        53,
+        1164,
+        1117
+      ],
+      "aspect": 1.0420769919427038,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "grand-canyon-width",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.31740256670000977,
+      "assetPath": "/assets/scale-universe/cutouts-v4/grand-canyon-width.png",
+      "sourceBox": [
+        26,
+        60,
+        1727,
+        764
+      ],
+      "aspect": 2.2604712041884816,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "harbor-ship",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.4339453379313151,
+      "assetPath": "/assets/scale-universe/cutouts-v4/harbor-ship.png",
+      "sourceBox": [
+        15,
+        41,
+        1507,
+        954
+      ],
+      "aspect": 1.579664570230608,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "hercules-corona-borealis",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6246668335941045,
+      "assetPath": "/assets/scale-universe/cutouts-v4/hercules-corona-borealis.png",
+      "sourceBox": [
+        23,
+        18,
+        1728,
+        849
+      ],
+      "aspect": 2.035335689045936,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "hill",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.43630536397298175,
+      "assetPath": "/assets/scale-universe/cutouts-v4/hill.png",
+      "sourceBox": [
+        20,
+        54,
+        1496,
+        917
+      ],
+      "aspect": 1.6314067611777536,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "honey-bee",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5993785858154297,
+      "assetPath": "/assets/scale-universe/cutouts-v4/honey-bee.png",
+      "sourceBox": [
+        83,
+        31,
+        1393,
+        958
+      ],
+      "aspect": 1.4540709812108559,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "horse",
+      "size": [
+        1384,
+        1136
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.672500228975006,
+      "assetPath": "/assets/scale-universe/cutouts-v4/horse.png",
+      "sourceBox": [
+        221,
+        7,
+        971,
+        1103
+      ],
+      "aspect": 0.8803263825929284,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "hot-air-balloon",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.45102500915527344,
+      "assetPath": "/assets/scale-universe/cutouts-v4/hot-air-balloon.png",
+      "sourceBox": [
+        29,
+        60,
+        974,
+        1435
+      ],
+      "aspect": 0.6787456445993031,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "house",
+      "size": [
+        1485,
+        1059
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.355377508163155,
+      "assetPath": "/assets/scale-universe/cutouts-v4/house.png",
+      "sourceBox": [
+        16,
+        35,
+        1451,
+        961
+      ],
+      "aspect": 1.509885535900104,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "india-width",
+      "size": [
+        1230,
+        1278
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5745817270379276,
+      "assetPath": "/assets/scale-universe/cutouts-v4/india-width.png",
+      "sourceBox": [
+        27,
+        9,
+        1192,
+        1253
+      ],
+      "aspect": 0.951316839584996,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "island",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.46173731486002606,
+      "assetPath": "/assets/scale-universe/cutouts-v4/island.png",
+      "sourceBox": [
+        44,
+        59,
+        1464,
+        927
+      ],
+      "aspect": 1.5792880258899675,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "jupiter",
+      "size": [
+        1261,
+        1247
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.29912169857936605,
+      "assetPath": "/assets/scale-universe/cutouts-v4/jupiter.png",
+      "sourceBox": [
+        34,
+        37,
+        1187,
+        1179
+      ],
+      "aspect": 1.006785411365564,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "key",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6668256123860677,
+      "assetPath": "/assets/scale-universe/cutouts-v4/key.png",
+      "sourceBox": [
+        38,
+        11,
+        1461,
+        997
+      ],
+      "aspect": 1.4653961885656972,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "laboratory-table",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5056597391764323,
+      "assetPath": "/assets/scale-universe/cutouts-v4/laboratory-table.png",
+      "sourceBox": [
+        130,
+        22,
+        1278,
+        980
+      ],
+      "aspect": 1.3040816326530613,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "lake",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3873697916666667,
+      "assetPath": "/assets/scale-universe/cutouts-v4/lake.png",
+      "sourceBox": [
+        22,
+        65,
+        1488,
+        920
+      ],
+      "aspect": 1.617391304347826,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "laniakea",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5332463582356771,
+      "assetPath": "/assets/scale-universe/cutouts-v4/laniakea.png",
+      "sourceBox": [
+        17,
+        19,
+        1504,
+        982
+      ],
+      "aspect": 1.5315682281059062,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "large-magellanic-cloud",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4000403086344401,
+      "assetPath": "/assets/scale-universe/cutouts-v4/large-magellanic-cloud.png",
+      "sourceBox": [
+        40,
+        16,
+        1460,
+        984
+      ],
+      "aspect": 1.483739837398374,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "lentil",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5434220631917318,
+      "assetPath": "/assets/scale-universe/cutouts-v4/lentil.png",
+      "sourceBox": [
+        186,
+        108,
+        1175,
+        801
+      ],
+      "aspect": 1.466916354556804,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "local-group",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "transparentFraction": 0.5589599609375,
+      "assetPath": "/assets/scale-universe/cutouts-v4/local-group.png",
+      "sourceBox": [
+        114,
+        51,
+        1377,
+        888
+      ],
+      "aspect": 1.5506756756756757,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mango-tree",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.38118910067332534,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mango-tree.png",
+      "sourceBox": [
+        13,
+        12,
+        1290,
+        1174
+      ],
+      "aspect": 1.0988074957410563,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "marble",
+      "size": [
+        1327,
+        1186
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4522188659200342,
+      "assetPath": "/assets/scale-universe/cutouts-v4/marble.png",
+      "sourceBox": [
+        141,
+        69,
+        1042,
+        1048
+      ],
+      "aspect": 0.9942748091603053,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mars",
+      "size": [
+        1271,
+        1237
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.33665176847872474,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mars.png",
+      "sourceBox": [
+        63,
+        47,
+        1148,
+        1149
+      ],
+      "aspect": 0.999129677980853,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mercury",
+      "size": [
+        1297,
+        1213
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3760704676464999,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mercury.png",
+      "sourceBox": [
+        96,
+        45,
+        1111,
+        1120
+      ],
+      "aspect": 0.9919642857142857,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "metro-train-car",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3568842951361836,
+      "assetPath": "/assets/scale-universe/cutouts-v4/metro-train-car.png",
+      "sourceBox": [
+        22,
+        54,
+        1730,
+        762
+      ],
+      "aspect": 2.270341207349081,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "milky-way",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "transparentFraction": 0.4454002380371094,
+      "assetPath": "/assets/scale-universe/cutouts-v4/milky-way.png",
+      "sourceBox": [
+        45,
+        42,
+        1467,
+        946
+      ],
+      "aspect": 1.5507399577167018,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "minivan",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.44947052001953125,
+      "assetPath": "/assets/scale-universe/cutouts-v4/minivan.png",
+      "sourceBox": [
+        16,
+        127,
+        1509,
+        769
+      ],
+      "aspect": 1.9622886866059819,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "monitor",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5347976684570312,
+      "assetPath": "/assets/scale-universe/cutouts-v4/monitor.png",
+      "sourceBox": [
+        266,
+        34,
+        1007,
+        957
+      ],
+      "aspect": 1.0522466039707419,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "moon",
+      "size": [
+        1295,
+        1214
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3484412866620445,
+      "assetPath": "/assets/scale-universe/cutouts-v4/moon.png",
+      "sourceBox": [
+        79,
+        45,
+        1140,
+        1128
+      ],
+      "aspect": 1.0106382978723405,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "motorbike",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5089085896809896,
+      "assetPath": "/assets/scale-universe/cutouts-v4/motorbike.png",
+      "sourceBox": [
+        122,
+        9,
+        1274,
+        1006
+      ],
+      "aspect": 1.2664015904572565,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mount-everest",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4200439453125,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mount-everest.png",
+      "sourceBox": [
+        7,
+        65,
+        1524,
+        926
+      ],
+      "aspect": 1.6457883369330453,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mountain-range-width",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.554371105114716,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mountain-range-width.png",
+      "sourceBox": [
+        10,
+        115,
+        1754,
+        646
+      ],
+      "aspect": 2.7151702786377707,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mouse",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.661218007405599,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mouse.png",
+      "sourceBox": [
+        37,
+        113,
+        1459,
+        816
+      ],
+      "aspect": 1.7879901960784315,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "mustard-seed",
+      "size": [
+        1286,
+        1223
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5116246539562481,
+      "assetPath": "/assets/scale-universe/cutouts-v4/mustard-seed.png",
+      "sourceBox": [
+        137,
+        127,
+        1017,
+        967
+      ],
+      "aspect": 1.0517063081695968,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "needle-tip",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7251505842248487,
+      "assetPath": "/assets/scale-universe/cutouts-v4/needle-tip-reviewed.png",
+      "sourceBox": [
+        34,
+        272,
+        1685,
+        398
+      ],
+      "aspect": 4.233668341708543,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "neighborhood",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.45777257283528644,
+      "assetPath": "/assets/scale-universe/cutouts-v4/neighborhood.png",
+      "sourceBox": [
+        37,
+        68,
+        1455,
+        892
+      ],
+      "aspect": 1.6311659192825112,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "neptune",
+      "size": [
+        1265,
+        1243
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.2788415124698311,
+      "assetPath": "/assets/scale-universe/cutouts-v4/neptune.png",
+      "sourceBox": [
+        33,
+        23,
+        1197,
+        1195
+      ],
+      "aspect": 1.001673640167364,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "nitrogen-molecule",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5601679484049479,
+      "assetPath": "/assets/scale-universe/cutouts-v4/nitrogen-molecule.png",
+      "sourceBox": [
+        69,
+        153,
+        1421,
+        731
+      ],
+      "aspect": 1.9439124487004105,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "notebook",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4583873748779297,
+      "assetPath": "/assets/scale-universe/cutouts-v4/notebook.png",
+      "sourceBox": [
+        61,
+        44,
+        1437,
+        940
+      ],
+      "aspect": 1.528723404255319,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "observable-universe",
+      "size": [
+        1270,
+        1239
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.2699846841178751,
+      "assetPath": "/assets/scale-universe/cutouts-v4/observable-universe.png",
+      "sourceBox": [
+        30,
+        30,
+        1212,
+        1178
+      ],
+      "aspect": 1.028862478777589,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "orion-nebula",
+      "size": [
+        1377,
+        1142
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.402597972444475,
+      "assetPath": "/assets/scale-universe/cutouts-v4/orion-nebula.png",
+      "sourceBox": [
+        44,
+        50,
+        1294,
+        1045
+      ],
+      "aspect": 1.2382775119617224,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "oxygen-molecule",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6147308349609375,
+      "assetPath": "/assets/scale-universe/cutouts-v4/oxygen-molecule.png",
+      "sourceBox": [
+        106,
+        137,
+        1351,
+        783
+      ],
+      "aspect": 1.7254150702426565,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "paper-thickness",
+      "size": [
+        2172,
+        724
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8668068231535464,
+      "assetPath": "/assets/scale-universe/cutouts-v4/paper-thickness.png",
+      "sourceBox": [
+        38,
+        282,
+        2097,
+        214
+      ],
+      "aspect": 9.799065420560748,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "paperclip",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8108793894449869,
+      "assetPath": "/assets/scale-universe/cutouts-v4/paperclip.png",
+      "sourceBox": [
+        171,
+        95,
+        1262,
+        856
+      ],
+      "aspect": 1.4742990654205608,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "pedestrian-bridge",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5875250550034381,
+      "assetPath": "/assets/scale-universe/cutouts-v4/pedestrian-bridge.png",
+      "sourceBox": [
+        12,
+        74,
+        1749,
+        755
+      ],
+      "aspect": 2.3165562913907283,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "pencil",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8473873138427734,
+      "assetPath": "/assets/scale-universe/cutouts-v4/pencil.png",
+      "sourceBox": [
+        88,
+        52,
+        1372,
+        911
+      ],
+      "aspect": 1.5060373216245884,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "peppercorn",
+      "size": [
+        1316,
+        1195
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.45038598008419073,
+      "assetPath": "/assets/scale-universe/cutouts-v4/peppercorn.png",
+      "sourceBox": [
+        101,
+        89,
+        1117,
+        1031
+      ],
+      "aspect": 1.0834141610087293,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "planetary-nebula",
+      "size": [
+        1350,
+        1165
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4399593069464314,
+      "assetPath": "/assets/scale-universe/cutouts-v4/planetary-nebula.png",
+      "sourceBox": [
+        60,
+        13,
+        1265,
+        1142
+      ],
+      "aspect": 1.1077057793345009,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "playground-slide",
+      "size": [
+        1350,
+        1165
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5981624542997933,
+      "assetPath": "/assets/scale-universe/cutouts-v4/playground-slide.png",
+      "sourceBox": [
+        17,
+        11,
+        1319,
+        1121
+      ],
+      "aspect": 1.176628010704728,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "pluto",
+      "size": [
+        1271,
+        1237
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3048936317720024,
+      "assetPath": "/assets/scale-universe/cutouts-v4/pluto.png",
+      "sourceBox": [
+        47,
+        33,
+        1176,
+        1172
+      ],
+      "aspect": 1.0034129692832765,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "pollux",
+      "size": [
+        1263,
+        1246
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3510330444596104,
+      "assetPath": "/assets/scale-universe/cutouts-v4/pollux.png",
+      "sourceBox": [
+        64,
+        69,
+        1177,
+        1124
+      ],
+      "aspect": 1.0471530249110321,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "radio-telescope-dish",
+      "size": [
+        1263,
+        1246
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.527129093383864,
+      "assetPath": "/assets/scale-universe/cutouts-v4/radio-telescope-dish.png",
+      "sourceBox": [
+        67,
+        21,
+        1152,
+        1202
+      ],
+      "aspect": 0.9584026622296173,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "railway-platform",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4144107101321989,
+      "assetPath": "/assets/scale-universe/cutouts-v4/railway-platform.png",
+      "sourceBox": [
+        25,
+        27,
+        1727,
+        838
+      ],
+      "aspect": 2.060859188544153,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "rain-cell",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5451208750406901,
+      "assetPath": "/assets/scale-universe/cutouts-v4/rain-cell.png",
+      "sourceBox": [
+        141,
+        56,
+        1245,
+        906
+      ],
+      "aspect": 1.3741721854304636,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "rice-grain",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6057573954264323,
+      "assetPath": "/assets/scale-universe/cutouts-v4/rice-grain.png",
+      "sourceBox": [
+        91,
+        105,
+        1379,
+        819
+      ],
+      "aspect": 1.6837606837606838,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "rigel",
+      "size": [
+        1278,
+        1230
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.23576726847080678,
+      "assetPath": "/assets/scale-universe/cutouts-v4/rigel.png",
+      "sourceBox": [
+        28,
+        26,
+        1232,
+        1181
+      ],
+      "aspect": 1.0431837425910246,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "river-width",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.44481468200683594,
+      "assetPath": "/assets/scale-universe/cutouts-v4/river-width.png",
+      "sourceBox": [
+        36,
+        53,
+        1478,
+        921
+      ],
+      "aspect": 1.6047774158523345,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "runway",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6262212923996752,
+      "assetPath": "/assets/scale-universe/cutouts-v4/runway.png",
+      "sourceBox": [
+        10,
+        23,
+        1752,
+        847
+      ],
+      "aspect": 2.0684769775678866,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sagittarius-a",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5170803070068359,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sagittarius-a.png",
+      "sourceBox": [
+        17,
+        116,
+        1505,
+        781
+      ],
+      "aspect": 1.9270166453265045,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "salt-crystal",
+      "size": [
+        1394,
+        1128
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4928829990740458,
+      "assetPath": "/assets/scale-universe/cutouts-v4/salt-crystal.png",
+      "sourceBox": [
+        209,
+        70,
+        1006,
+        1017
+      ],
+      "aspect": 0.9891838741396264,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "satellite-bus",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6456247965494791,
+      "assetPath": "/assets/scale-universe/cutouts-v4/satellite-bus.png",
+      "sourceBox": [
+        57,
+        67,
+        1437,
+        860
+      ],
+      "aspect": 1.6709302325581394,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "saturn",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.49708427759609236,
+      "assetPath": "/assets/scale-universe/cutouts-v4/saturn.png",
+      "sourceBox": [
+        25,
+        39,
+        1740,
+        813
+      ],
+      "aspect": 2.140221402214022,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "school-bag",
+      "size": [
+        1274,
+        1235
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.37921748581089243,
+      "assetPath": "/assets/scale-universe/cutouts-v4/school-bag.png",
+      "sourceBox": [
+        99,
+        14,
+        1078,
+        1191
+      ],
+      "aspect": 0.9051217464315701,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "school-building",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5068435668945312,
+      "assetPath": "/assets/scale-universe/cutouts-v4/school-building.png",
+      "sourceBox": [
+        14,
+        27,
+        1511,
+        870
+      ],
+      "aspect": 1.7367816091954023,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "scooter",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8700326283772787,
+      "assetPath": "/assets/scale-universe/cutouts-v4/scooter.png",
+      "sourceBox": [
+        412,
+        15,
+        834,
+        986
+      ],
+      "aspect": 0.845841784989858,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sesame-seed",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5784231821695963,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sesame-seed.png",
+      "sourceBox": [
+        196,
+        107,
+        1193,
+        813
+      ],
+      "aspect": 1.4674046740467406,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "shapley-supercluster",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5044879913330078,
+      "assetPath": "/assets/scale-universe/cutouts-v4/shapley-supercluster.png",
+      "sourceBox": [
+        41,
+        15,
+        1467,
+        995
+      ],
+      "aspect": 1.4743718592964825,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sirius",
+      "size": [
+        1283,
+        1226
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3040437189041284,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sirius.png",
+      "sourceBox": [
+        83,
+        50,
+        1136,
+        1131
+      ],
+      "aspect": 1.004420866489832,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "skateboard",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.71881103515625,
+      "assetPath": "/assets/scale-universe/cutouts-v4/skateboard.png",
+      "sourceBox": [
+        43,
+        146,
+        1470,
+        782
+      ],
+      "aspect": 1.8797953964194374,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sloan-great-wall",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6174246470133463,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sloan-great-wall.png",
+      "sourceBox": [
+        29,
+        9,
+        1492,
+        1002
+      ],
+      "aspect": 1.4890219560878244,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "small-pond",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.365353266398112,
+      "assetPath": "/assets/scale-universe/cutouts-v4/small-pond.png",
+      "sourceBox": [
+        49,
+        50,
+        1455,
+        922
+      ],
+      "aspect": 1.5780911062906724,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "small-tree",
+      "size": [
+        1312,
+        1199
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.546060360259566,
+      "assetPath": "/assets/scale-universe/cutouts-v4/small-tree.png",
+      "sourceBox": [
+        22,
+        14,
+        1278,
+        1166
+      ],
+      "aspect": 1.0960548885077186,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "smartphone",
+      "size": [
+        1145,
+        1374
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5533196036180342,
+      "assetPath": "/assets/scale-universe/cutouts-v4/smartphone.png",
+      "sourceBox": [
+        304,
+        29,
+        555,
+        1313
+      ],
+      "aspect": 0.4226961157654227,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "solar-panel-row",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6869722879269519,
+      "assetPath": "/assets/scale-universe/cutouts-v4/solar-panel-row.png",
+      "sourceBox": [
+        87,
+        109,
+        1664,
+        641
+      ],
+      "aspect": 2.5959438377535102,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "solar-system",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.6066576639811198,
+      "assetPath": "/assets/scale-universe/cutouts-v4/solar-system.png",
+      "sourceBox": [
+        24,
+        127,
+        1503,
+        755
+      ],
+      "aspect": 1.9907284768211921,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "spoon",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8381296793619791,
+      "assetPath": "/assets/scale-universe/cutouts-v4/spoon.png",
+      "sourceBox": [
+        55,
+        42,
+        1448,
+        922
+      ],
+      "aspect": 1.5704989154013016,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "stadium",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4041016896565755,
+      "assetPath": "/assets/scale-universe/cutouts-v4/stadium.png",
+      "sourceBox": [
+        23,
+        86,
+        1490,
+        860
+      ],
+      "aspect": 1.7325581395348837,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "staple",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.757623036702474,
+      "assetPath": "/assets/scale-universe/cutouts-v4/staple.png",
+      "sourceBox": [
+        196,
+        49,
+        1184,
+        935
+      ],
+      "aspect": 1.2663101604278075,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "statue-of-liberty",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7099361419677734,
+      "assetPath": "/assets/scale-universe/cutouts-v4/statue-of-liberty.png",
+      "sourceBox": [
+        251,
+        22,
+        582,
+        1494
+      ],
+      "aspect": 0.3895582329317269,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "stephenson-2-18",
+      "size": [
+        1261,
+        1247
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.3150603478483173,
+      "assetPath": "/assets/scale-universe/cutouts-v4/stephenson-2-18.png",
+      "sourceBox": [
+        29,
+        31,
+        1208,
+        1186
+      ],
+      "aspect": 1.0185497470489038,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "street-light",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8943564097086588,
+      "assetPath": "/assets/scale-universe/cutouts-v4/street-light.png",
+      "sourceBox": [
+        291,
+        26,
+        577,
+        1477
+      ],
+      "aspect": 0.3906567366283006,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "student-desk-row",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.506554921468099,
+      "assetPath": "/assets/scale-universe/cutouts-v4/student-desk-row.png",
+      "sourceBox": [
+        21,
+        7,
+        1506,
+        1011
+      ],
+      "aspect": 1.489614243323442,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sugar-crystal",
+      "size": [
+        1374,
+        1145
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5961461451917393,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sugar-crystal-reviewed.png",
+      "sourceBox": [
+        147,
+        84,
+        1113,
+        977
+      ],
+      "aspect": 1.1392016376663254,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "sun",
+      "size": [
+        1266,
+        1242
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.2688307855901784,
+      "assetPath": "/assets/scale-universe/cutouts-v4/sun.png",
+      "sourceBox": [
+        21,
+        20,
+        1230,
+        1213
+      ],
+      "aspect": 1.0140148392415498,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "swimming-lane",
+      "size": [
+        1774,
+        887
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6680042045377995,
+      "assetPath": "/assets/scale-universe/cutouts-v4/swimming-lane.png",
+      "sourceBox": [
+        99,
+        1,
+        1651,
+        880
+      ],
+      "aspect": 1.8761363636363637,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "swimming-pool",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5452016194661459,
+      "assetPath": "/assets/scale-universe/cutouts-v4/swimming-pool.png",
+      "sourceBox": [
+        38,
+        136,
+        1472,
+        806
+      ],
+      "aspect": 1.826302729528536,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "tablet",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5813382466634115,
+      "assetPath": "/assets/scale-universe/cutouts-v4/tablet.png",
+      "sourceBox": [
+        246,
+        26,
+        1055,
+        968
+      ],
+      "aspect": 1.0898760330578512,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "telescope",
+      "size": [
+        1199,
+        1312
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6850519487784535,
+      "assetPath": "/assets/scale-universe/cutouts-v4/telescope.png",
+      "sourceBox": [
+        31,
+        24,
+        1144,
+        1249
+      ],
+      "aspect": 0.9159327461969575,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "tennis-racket",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "transparentFraction": 0.7108980814615885,
+      "assetPath": "/assets/scale-universe/cutouts-v4/tennis-racket.png",
+      "sourceBox": [
+        113,
+        45,
+        734,
+        1462
+      ],
+      "aspect": 0.5020519835841313,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "textbook",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.5164782206217448,
+      "assetPath": "/assets/scale-universe/cutouts-v4/textbook.png",
+      "sourceBox": [
+        166,
+        44,
+        1212,
+        954
+      ],
+      "aspect": 1.270440251572327,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "thumbtack",
+      "size": [
+        1284,
+        1225
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7544363913789816,
+      "assetPath": "/assets/scale-universe/cutouts-v4/thumbtack.png",
+      "sourceBox": [
+        176,
+        42,
+        869,
+        1136
+      ],
+      "aspect": 0.7649647887323944,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "thunderstorm",
+      "size": [
+        1448,
+        1086
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.39027540368120633,
+      "assetPath": "/assets/scale-universe/cutouts-v4/thunderstorm.png",
+      "sourceBox": [
+        27,
+        55,
+        1406,
+        998
+      ],
+      "aspect": 1.408817635270541,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "titan",
+      "size": [
+        1262,
+        1246
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.34300442875203824,
+      "assetPath": "/assets/scale-universe/cutouts-v4/titan.png",
+      "sourceBox": [
+        60,
+        49,
+        1142,
+        1145
+      ],
+      "aspect": 0.9973799126637555,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "toothbrush",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.855804443359375,
+      "assetPath": "/assets/scale-universe/cutouts-v4/toothbrush.png",
+      "sourceBox": [
+        69,
+        88,
+        1422,
+        831
+      ],
+      "aspect": 1.711191335740072,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "traffic-signal",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6844730377197266,
+      "assetPath": "/assets/scale-universe/cutouts-v4/traffic-signal.png",
+      "sourceBox": [
+        216,
+        17,
+        549,
+        1495
+      ],
+      "aspect": 0.36722408026755854,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "train",
+      "size": [
+        2172,
+        724
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6654507900654233,
+      "assetPath": "/assets/scale-universe/cutouts-v4/train-reviewed.png",
+      "sourceBox": [
+        14,
+        196,
+        2140,
+        338
+      ],
+      "aspect": 6.331360946745562,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "triangulum-galaxy",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.42332204182942706,
+      "assetPath": "/assets/scale-universe/cutouts-v4/triangulum-galaxy.png",
+      "sourceBox": [
+        34,
+        38,
+        1470,
+        941
+      ],
+      "aspect": 1.5621679064824654,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "two-storey-house",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.36968739827473956,
+      "assetPath": "/assets/scale-universe/cutouts-v4/two-storey-house.png",
+      "sourceBox": [
+        35,
+        31,
+        1462,
+        960
+      ],
+      "aspect": 1.5229166666666667,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "tyrannosaurus-rex",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6638317108154297,
+      "assetPath": "/assets/scale-universe/cutouts-v4/tyrannosaurus-rex.png",
+      "sourceBox": [
+        71,
+        17,
+        1398,
+        992
+      ],
+      "aspect": 1.409274193548387,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "uranus",
+      "size": [
+        1282,
+        1227
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4417913635860838,
+      "assetPath": "/assets/scale-universe/cutouts-v4/uranus.png",
+      "sourceBox": [
+        40,
+        72,
+        1217,
+        1068
+      ],
+      "aspect": 1.1395131086142323,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "usb-drive",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6519826253255209,
+      "assetPath": "/assets/scale-universe/cutouts-v4/usb-drive.png",
+      "sourceBox": [
+        74,
+        77,
+        1411,
+        847
+      ],
+      "aspect": 1.665879574970484,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "utility-pole",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.8157335917154948,
+      "assetPath": "/assets/scale-universe/cutouts-v4/utility-pole.png",
+      "sourceBox": [
+        15,
+        18,
+        994,
+        1501
+      ],
+      "aspect": 0.6622251832111925,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "uy-scuti",
+      "size": [
+        1254,
+        1254
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.32083171172821134,
+      "assetPath": "/assets/scale-universe/cutouts-v4/uy-scuti.png",
+      "sourceBox": [
+        25,
+        33,
+        1212,
+        1194
+      ],
+      "aspect": 1.015075376884422,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "venus",
+      "size": [
+        1261,
+        1247
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.2880028642890439,
+      "assetPath": "/assets/scale-universe/cutouts-v4/venus.png",
+      "sourceBox": [
+        35,
+        28,
+        1190,
+        1188
+      ],
+      "aspect": 1.0016835016835017,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "village",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.3857320149739583,
+      "assetPath": "/assets/scale-universe/cutouts-v4/village.png",
+      "sourceBox": [
+        11,
+        5,
+        1509,
+        1000
+      ],
+      "aspect": 1.509,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "virgo-supercluster",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.4410101572672526,
+      "assetPath": "/assets/scale-universe/cutouts-v4/virgo-supercluster.png",
+      "sourceBox": [
+        31,
+        32,
+        1475,
+        959
+      ],
+      "aspect": 1.538060479666319,
+      "alphaExtrema": [
+        0,
+        253
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "water-bottle",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6244799296061198,
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-bottle.png",
+      "sourceBox": [
+        268,
+        53,
+        488,
+        1426
+      ],
+      "aspect": 0.34221598877980364,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "water-molecule",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.6710936228434244,
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-molecule.png",
+      "sourceBox": [
+        98,
+        99,
+        1345,
+        835
+      ],
+      "aspect": 1.6107784431137724,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "water-tank",
+      "size": [
+        1305,
+        1206
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transparentFraction": 0.6849558084418266,
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-tank.png",
+      "sourceBox": [
+        349,
+        21,
+        607,
+        1134
+      ],
+      "aspect": 0.5352733686067019,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "water-tower",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6482098897298177,
+      "assetPath": "/assets/scale-universe/cutouts-v4/water-tower.png",
+      "sourceBox": [
+        173,
+        44,
+        677,
+        1441
+      ],
+      "aspect": 0.46981263011797364,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "whiteboard",
+      "size": [
+        1536,
+        1024
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.6116250356038412,
+      "assetPath": "/assets/scale-universe/cutouts-v4/whiteboard.png",
+      "sourceBox": [
+        234,
+        10,
+        1099,
+        1004
+      ],
+      "aspect": 1.094621513944223,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    },
+    {
+      "id": "wind-turbine",
+      "size": [
+        1024,
+        1536
+      ],
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparentFraction": 0.7457930246988932,
+      "assetPath": "/assets/scale-universe/cutouts-v4/wind-turbine.png",
+      "sourceBox": [
+        44,
+        13,
+        948,
+        1513
+      ],
+      "aspect": 0.6265697290152016,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "generation": "OpenAI imagegen; illustrative AI-generated asset, not a scientific measurement source"
+    }
+  ],
+  "rejected": []
+}

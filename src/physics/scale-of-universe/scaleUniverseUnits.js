@@ -22,7 +22,8 @@ export function formatBestUnit(sizeMeters) {
     { limit: 1, factor: 1e-3, symbol: "mm" },
     { limit: 1e3, factor: 1, symbol: "m" },
     { limit: 1e8, factor: 1e3, symbol: "km" },
-    { limit: 5e14, factor: 1.496e11, symbol: "AU" },
+    { limit: 1e10, factor: 1e9, symbol: "Gm" },
+    { limit: 5e14, factor: 1.495978707e11, symbol: "AU" },
     { limit: 2e17, factor: 9.461e15, symbol: "ly" },
     { limit: Infinity, factor: 3.086e16, symbol: "pc" },
   ];
@@ -54,5 +55,6 @@ function formatNumber(value) {
   if (value === 0) return "0";
   const abs = Math.abs(value);
   if (abs >= 1000 || abs < 0.01) return value.toExponential(2).replace("e", " x 10^");
-  return value.toFixed(abs >= 100 ? 0 : abs >= 10 ? 1 : 2).replace(/\.?0+$/, "");
+  const formatted = value.toFixed(abs >= 100 ? 0 : abs >= 10 ? 1 : 2);
+  return formatted.includes(".") ? formatted.replace(/0+$/, "").replace(/\.$/, "") : formatted;
 }

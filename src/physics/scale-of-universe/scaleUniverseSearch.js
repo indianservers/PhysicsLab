@@ -24,15 +24,6 @@ export function createSearchController(input, results, clearButton, objects, onS
       button.type = "button";
       button.dataset.objectId = object.id;
       button.innerHTML = `<strong>${options.isBookmarked?.(object.id) ? "* " : ""}${object.name}</strong><small>${object.category} - ${object.scaleBand} - ${object.difficultyLevel}</small><em>${object.bestUnitLabel}${hiddenByFilter ? " - hidden by filter" : ""}</em>`;
-      const directChoose = (event) => {
-        input.value = object.name;
-        results.hidden = true;
-        onSelect(object);
-        event.preventDefault();
-      };
-      button.addEventListener("mousedown", directChoose);
-      button.addEventListener("pointerdown", directChoose);
-      button.addEventListener("click", directChoose);
       results.appendChild(button);
     }
   };
@@ -47,9 +38,11 @@ export function createSearchController(input, results, clearButton, objects, onS
     event.preventDefault();
   };
   const handleKeydown = (event) => {
+    if (event.key === "ArrowDown") { results.querySelector("button")?.focus(); event.preventDefault(); return; }
     if (event.key !== "Enter") return;
     const query = input.value.trim().toLowerCase();
-    const object = objects.find((candidate) => haystack(candidate).includes(query));
+    if (!query) return;
+    const object = objects.find(candidate => candidate.name.toLowerCase() === query || candidate.aliases?.some(alias => alias.toLowerCase() === query)) ?? objects.find(candidate => haystack(candidate).includes(query));
     if (!object) return;
     input.value = object.name;
     clearButton.hidden = false;
@@ -69,7 +62,7 @@ export function createSearchController(input, results, clearButton, objects, onS
   input.addEventListener("focus", render);
   input.addEventListener("keydown", handleKeydown);
   clearButton.addEventListener("click", clear);
-  results.addEventListener("pointerdown", choose);
+
   results.addEventListener("click", choose);
   document.addEventListener("click", handleOutsideClick);
   return {
@@ -78,7 +71,7 @@ export function createSearchController(input, results, clearButton, objects, onS
       input.removeEventListener("focus", render);
       input.removeEventListener("keydown", handleKeydown);
       clearButton.removeEventListener("click", clear);
-      results.removeEventListener("pointerdown", choose);
+
       results.removeEventListener("click", choose);
       document.removeEventListener("click", handleOutsideClick);
     },

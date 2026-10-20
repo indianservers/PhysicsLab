@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "source": "src/main.tsx",
+  "scope": "Real React shell and latest module; review build uses esbuild and disables service worker. Tailwind directives are not expanded by this test-only bundler. Vite remains the production pipeline.",
+  "unrelatedWarnings": [
+    {
+      "text": "The \"+\" operator only works if there is whitespace on both sides",
+      "file": "src/styles.css"
+    },
+    {
+      "text": "The \"+\" operator only works if there is whitespace on both sides",
+      "file": "src/styles.css"
+    }
+  ]
+}

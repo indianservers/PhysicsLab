@@ -1,3 +1,4 @@
+import { discoverObjects, layoutObjects, physicalScreenSize } from "./scaleUniverseLayout.js";
 export const visibleRange = 2.2;
 
 const assetImageCache = new Map();
@@ -17,169 +18,97 @@ export function getScaleBand(log) {
 
 export function renderScaleUniverse(ctx, state) {
   const { width, height, currentLog, panX, panY, objects, selectedObjectId } = state;
-  const labels = [];
-  const selectedObject = objects.find((object) => object.id === selectedObjectId);
-  const responsiveRange = getResponsiveVisibleRange(width);
-  const displayPool = state.displayObjects ?? objects;
-  const objectLimit = Math.round(clamp(state.objectDisplayLimit ?? displayPool.length, 30, displayPool.length));
-  const viewportLimit = getResponsiveObjectLimit(width);
-  const displayObjects = displayPool.slice(0, objectLimit);
   ctx.clearRect(0, 0, width, height);
   drawBackground(ctx, width, height, currentLog);
   drawScaleGrid(ctx, width, height, currentLog);
-
-  const filters = state.categoryFilters ?? new Set();
-  let visible = displayObjects
-    .filter((object) => filters.size === 0 || filters.has(object.categoryGroup) || object.id === selectedObjectId)
-    .map((object) => {
-      const distance = Math.abs(object.logSize - currentLog);
-      const opacity = clamp(1 - distance / responsiveRange, 0, 1);
-      const radius = clamp(28 * Math.pow(10, (object.logSize - currentLog) * 0.32), 8, 180);
-      const screenX = width / 2 + panX + object.x * 1.05;
-      const screenY = height / 2 + panY + object.y * 1.05;
-      return { object, distance, opacity, radius, screenX, screenY };
-    })
-    .filter((entry) => entry.distance < responsiveRange);
-
-  const selectedEntry = selectedObject
-    ? visible.find((entry) => entry.object.id === selectedObject.id) ??
-      makeEntryForSelected(selectedObject, state, responsiveRange)
-    : null;
-
-  visible = visible
-    .sort((a, b) => b.opacity + b.object.importance / 10 - (a.opacity + a.object.importance / 10))
-    .slice(0, viewportLimit);
-
-  if (selectedEntry && !visible.some((entry) => entry.object.id === selectedEntry.object.id)) {
-    visible.push(selectedEntry);
-  }
-
-  visible.sort((a, b) => a.radius - b.radius);
-
+  const candidates = discoverObjects(objects, currentLog, width, height, selectedObjectId, state.categoryFilters);
+  const visible = layoutObjects(candidates, width, height, panX, panY, selectedObjectId);
+  state.layoutPositions ??= new Map();
+  state.layoutAnimating = false;
   for (const entry of visible) {
-    ctx.save();
-    ctx.globalAlpha = Math.max(0.08, entry.opacity);
-    drawObject(ctx, entry);
+    const previous = state.layoutPositions.get(entry.object.id);
+    if (previous && !state.prefersReducedMotion) {
+      const dx = entry.screenX - previous.x, dy = entry.screenY - previous.y;
+      if (Math.abs(dx) + Math.abs(dy) > .5) {
+        entry.screenX = previous.x + dx * .22; entry.screenY = previous.y + dy * .22;
+        state.layoutAnimating = true;
+      }
+    }
+    state.layoutPositions.set(entry.object.id, { x: entry.screenX, y: entry.screenY });
+  }
+  const activeIds = new Set(visible.map(entry => entry.object.id));
+  for (const id of state.layoutPositions.keys()) if (!activeIds.has(id)) state.layoutPositions.delete(id);
+  const labels = [];
+  if (!visible.length) {
+    ctx.fillStyle = "#a8c6db"; ctx.font = "13px Inter, system-ui"; ctx.textAlign = "center";
+    ctx.fillText("No catalog reference at this length. Use the ruler or search to continue.", width / 2, height * .65, width - 32);
+  }
+  for (const entry of visible) {
+    ctx.save(); ctx.globalAlpha = entry.opacity;
+    const { screenX: x, screenY: y, boxWidth: w, boxHeight: h, object } = entry;
+    const floor = y + h / 2 + 5;
+    ctx.strokeStyle = "rgba(102,210,244,.24)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.ellipse(x, floor, Math.max(14, w * .6), 5, 0, 0, Math.PI * 2); ctx.stroke();
+    // Generated cutouts own their appearance. While their PNG loads, retain the
+    // measurement bracket instead of briefly showing an unrelated fallback model.
+    let useModel;
+    if (object.sourceBox) {
+      drawAssetSprite(ctx, object, x, y, entry.radius);
+      useModel = true;
+    } else useModel = state.models?.draw(ctx, object, x, y, w, h);
+    if (!useModel) {
+      if (object.category === "Astronomical Distance" || object.id === "planck-length" || object.id === "electron" || object.id.includes("quark")) {
+        drawLineDistance(ctx, x, y, entry.extent / 3, "#9edaf0");
+      } else drawObject(ctx, entry);
+    }
+    // Honest measurement bracket is exactly extent pixels, independent of artwork.
+    ctx.strokeStyle = "rgba(139,211,239,.65)"; ctx.lineWidth = 1;
+    if (object.dimensionAxis === "vertical") {
+      const axisX = x + w / 2 + 12;
+      ctx.beginPath(); ctx.moveTo(axisX, y - entry.extent / 2); ctx.lineTo(axisX, y + entry.extent / 2); ctx.stroke();
+      for (const side of [-1, 1]) { ctx.beginPath(); ctx.moveTo(axisX - 4, y + side * entry.extent / 2); ctx.lineTo(axisX + 4, y + side * entry.extent / 2); ctx.stroke(); }
+    } else {
+      ctx.beginPath(); ctx.moveTo(x - entry.extent / 2, floor + 9); ctx.lineTo(x + entry.extent / 2, floor + 9); ctx.stroke();
+      for (const side of [-1, 1]) { ctx.beginPath(); ctx.moveTo(x + side * entry.extent / 2, floor + 5); ctx.lineTo(x + side * entry.extent / 2, floor + 13); ctx.stroke(); }
+    }
     ctx.restore();
+    drawLabel(ctx, entry, labels, currentLog, width, object.id === selectedObjectId, height);
   }
-
-  for (const entry of visible.sort((a, b) => b.object.importance - a.object.importance)) {
-    const isSelected = entry.object.id === selectedObjectId;
-    if (!isSelected && width < 480 && entry.object.importance < 9) continue;
-    if (!isSelected && entry.object.importance < 8 && entry.opacity <= 0.55) continue;
-    drawLabel(ctx, entry, labels, currentLog, width, isSelected);
-  }
-
-  const selected = visible.find((entry) => entry.object.id === selectedObjectId);
+  const selected = visible.find(entry => entry.object.id === selectedObjectId);
   if (selected) drawSelection(ctx, selected);
+  ctx.font = `${width < 600 ? 9 : 11}px Inter, system-ui`; ctx.fillStyle = "#9bb9cc"; ctx.textAlign = "left";
+  ctx.fillText(width < 600 ? `${visible.length} visible / ${objects.length} searchable · shared physical scale` : `${visible.length} visible / ${objects.length} searchable · shared physical scale · illustrative surfaces`, 18, height - 16);
+  // One reference length, not the width of the entire view.
+  if (width >= 600) { ctx.textAlign = "right"; ctx.fillText(`76 px = ${formatScaleLength(currentLog)}`, width - 18, height - 16); }
   return visible;
 }
-
-function getResponsiveVisibleRange(width) {
-  if (width < 480) return 1.28;
-  if (width < 768) return 1.45;
-  return 1.6;
-}
-
-function getResponsiveObjectLimit(width) {
-  if (width < 480) return 5;
-  if (width < 768) return 6;
-  return 7;
-}
-
-function makeEntryForSelected(object, state, responsiveRange) {
-  const distance = Math.abs(object.logSize - state.currentLog);
-  return {
-    object,
-    distance,
-    opacity: Math.max(0.82, clamp(1 - distance / responsiveRange, 0, 1)),
-    radius: clamp(28 * Math.pow(10, (object.logSize - state.currentLog) * 0.32), 8, 180),
-    screenX: state.width / 2 + state.panX + object.x * 1.05,
-    screenY: state.height / 2 + state.panY + object.y * 1.05,
-  };
-}
+function formatScaleLength(log) { return `10^${log.toFixed(2)} m`; }
 
 function drawBackground(ctx, width, height, log) {
-  const band = getScaleBand(log);
-  const palette = {
-    Subatomic: ["#050816", "#20164a", "#090b16"],
-    Atomic: ["#07111f", "#12304a", "#07111f"],
-    Molecular: ["#081d1f", "#164e63", "#092224"],
-    "Cellular / Microscopic": ["#102318", "#3f6f4a", "#dce7df"],
-    "Human Scale": ["#dfe8e2", "#eef5f1", "#d0dbd5"],
-    Planetary: ["#07152f", "#123a6b", "#030712"],
-    "Solar System": ["#020617", "#11194a", "#050816"],
-    Interstellar: ["#030712", "#0f172a", "#020617"],
-    Galactic: ["#020617", "#111827", "#000000"],
-    Cosmic: ["#000006", "#040012", "#000000"],
-  }[band];
-  const gradient = ctx.createLinearGradient(0, 0, width, height);
-  gradient.addColorStop(0, palette[0]);
-  gradient.addColorStop(0.55, palette[1]);
-  gradient.addColorStop(1, palette[2]);
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, width, height);
-
-  const referenceAsset = {
-    Planetary: "/assets/astrophysics/cosmic-timeline.png",
-    "Solar System": "/assets/astrophysics/cosmic-timeline.png",
-    Interstellar: "/assets/astrophysics/stellar-life-cycle.png",
-    Galactic: "/assets/astrophysics/galaxy-atlas.png",
-    Cosmic: "/assets/astrophysics/black-hole-lensing.png",
-  }[band];
-  if (referenceAsset) {
-    const image = getAssetImage(referenceAsset);
-    if (image?.complete && image.naturalWidth > 0) {
-      const imageRatio = image.naturalWidth / image.naturalHeight;
-      const canvasRatio = width / height;
-      const sourceWidth = imageRatio > canvasRatio ? image.naturalHeight * canvasRatio : image.naturalWidth;
-      const sourceHeight = imageRatio > canvasRatio ? image.naturalHeight : image.naturalWidth / canvasRatio;
-      const sourceX = (image.naturalWidth - sourceWidth) / 2;
-      const sourceY = (image.naturalHeight - sourceHeight) / 2;
-      ctx.save();
-      ctx.globalAlpha = band === "Planetary" || band === "Solar System" ? 0.34 : 0.28;
-      ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, width, height);
-      ctx.fillStyle = "rgba(2, 6, 23, 0.34)";
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
-    }
+  ctx.fillStyle = "#030a18"; ctx.fillRect(0, 0, width, height);
+  const image = getAssetImage("/assets/scale-universe/cosmic-backdrop-v2.png");
+  if (image?.complete && image.naturalWidth) {
+    const factor = Math.max(width / image.width, height / image.height);
+    ctx.save(); ctx.globalAlpha = log < -3 ? .2 : .65;
+    ctx.drawImage(image, (width - image.width * factor) / 2, (height - image.height * factor) / 2, image.width * factor, image.height * factor); ctx.restore();
   }
-
-  if (log > 7) {
-    ctx.fillStyle = "rgba(255,255,255,0.32)";
-    for (let i = 0; i < 95; i += 1) {
-      const x = (i * 137.5) % width;
-      const y = (i * 83.7) % height;
-      const r = 0.6 + ((i * 11) % 24) / 18;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
+  const hue = log < -9 ? 255 : log < -3 ? 170 : log < 6 ? 207 : log < 18 ? 225 : 260;
+  const glow = ctx.createRadialGradient(width * .5, height * .65, 0, width * .5, height * .65, width * .7);
+  glow.addColorStop(0, `hsla(${hue},65%,32%,.22)`); glow.addColorStop(1, "transparent");
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = "rgba(222,240,255,.45)";
+  for (let i = 0; i < 110; i++) { ctx.beginPath(); ctx.arc((i * 137.5) % width, (i * 83.7) % height, i % 5 ? .5 : 1, 0, Math.PI * 2); ctx.fill(); }
 }
-
 function drawScaleGrid(ctx, width, height, log) {
-  const dark = log < -3 || log > 3;
-  ctx.strokeStyle = dark ? "rgba(148, 163, 184, 0.08)" : "rgba(15, 23, 42, 0.08)";
-  ctx.lineWidth = 1;
-  const spacing = 82;
-  for (let x = (width / 2) % spacing; x < width; x += spacing) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, height);
-    ctx.stroke();
-  }
-  for (let y = (height / 2) % spacing; y < height; y += spacing) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(width, y);
-    ctx.stroke();
-  }
+  const horizon = height * .2;
+  ctx.strokeStyle = "rgba(112,194,235,.12)"; ctx.lineWidth = 1;
+  for (let i = -12; i <= 12; i++) { ctx.beginPath(); ctx.moveTo(width / 2 + i * 18, horizon); ctx.lineTo(width / 2 + i * 150, height); ctx.stroke(); }
+  for (let i = 0; i < 14; i++) { const y = horizon + (height - horizon) * (i / 13) ** 2; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
 }
 
 function drawObject(ctx, entry) {
   const { object, screenX: x, screenY: y, radius: r } = entry;
-  if (object.assetPath && drawAssetSprite(ctx, object, x, y, r)) return;
+  if (object.assetPath && !["Particles", "Atoms", "Cells and Microbes"].includes(object.categoryGroup) && drawAssetSprite(ctx, object, x, y, r)) return;
   if (object.renderStyle === "atom" || (object.renderStyle === "circle" && object.categoryGroup === "Atoms")) return drawAtom(ctx, x, y, r, object.color);
   if (object.renderStyle === "circle" && object.categoryGroup === "Molecules") return drawMolecule(ctx, x, y, r, object.color);
   if (object.renderStyle === "molecule") return drawMolecule(ctx, x, y, r, object.color);
@@ -209,23 +138,23 @@ function drawAssetSprite(ctx, object, x, y, r) {
   if (!image || !image.complete || image.naturalWidth === 0) return false;
   const { width, height } = getAssetSpriteBox(object, image, r);
   ctx.save();
+  // Luminous deep-space imagery is composited additively, without an opaque
+  // rectangular backing. Everyday reference sprites retain their original art.
+  if (["Galaxy", "Nebula", "Supercluster", "Galaxy Group", "Cosmic Horizon", "Cosmic Structure", "Star Cluster"].includes(object.category)) ctx.globalCompositeOperation = "screen";
   ctx.shadowColor = "rgba(0,0,0,0.34)";
   ctx.shadowBlur = Math.max(6, Math.max(width, height) * 0.08);
   ctx.shadowOffsetY = Math.max(2, Math.max(width, height) * 0.04);
-  ctx.drawImage(image, x - width / 2, y - height / 2, width, height);
+  if (object.sourceBox) ctx.drawImage(image, ...object.sourceBox, x - width / 2, y - height / 2, width, height);
+  else ctx.drawImage(image, x - width / 2, y - height / 2, width, height);
   ctx.restore();
   return true;
 }
 
 function getAssetSpriteBox(object, image, r) {
-  const aspect = object.assetAspect || image.naturalWidth / image.naturalHeight || 1;
-  const base = clamp(r * (object.assetScale ?? 2.55), 26, 190);
-  if (aspect >= 1) {
-    const width = base;
-    return { width, height: clamp(base / aspect, 18, 180) };
-  }
-  const height = base;
-  return { width: clamp(base * aspect, 18, 180), height };
+  const aspect = object.sourceBox ? object.sourceBox[2] / object.sourceBox[3] : image.naturalWidth / image.naturalHeight || 1;
+  const extent = r * 2;
+  if (object.dimensionAxis === "vertical") return { width: extent * aspect, height: extent };
+  return { width: extent, height: extent / aspect };
 }
 
 function getAssetImage(src) {
@@ -235,24 +164,27 @@ function getAssetImage(src) {
   const image = new Image();
   image.decoding = "async";
   image.loading = "eager";
+  image.onload = () => window.dispatchEvent(new Event("scale-asset-ready"));
   image.src = src;
   assetImageCache.set(src, image);
+  if (assetImageCache.size > 48) assetImageCache.delete(assetImageCache.keys().next().value);
   return image;
 }
 
 function drawAtom(ctx, x, y, r, color) {
-  drawParticle(ctx, x, y, r * 0.72, color);
-  ctx.strokeStyle = "rgba(255,255,255,0.52)";
-  ctx.lineWidth = Math.max(1.5, r * 0.035);
-  for (const rotation of [0, Math.PI / 3, -Math.PI / 3]) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(rotation);
-    ctx.beginPath();
-    ctx.ellipse(0, 0, r * 1.25, r * 0.48, 0, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
+  // Probability-density schematic. No fixed classical orbital tracks.
+  const cloud = ctx.createRadialGradient(x, y, 0, x, y, r);
+  cloud.addColorStop(0, "rgba(135,191,255,.65)"); cloud.addColorStop(.4, "rgba(100,160,255,.25)"); cloud.addColorStop(1, "rgba(100,160,255,0)");
+  ctx.fillStyle = cloud; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = color;
+  const baseAlpha = ctx.globalAlpha;
+  for (let i = 0; i < 170; i++) {
+    const fraction = value => value - Math.floor(value);
+    const angle = fraction(Math.sin(i * 127.1 + 19.7) * 43758.5453) * Math.PI * 2;
+    const distance = r * Math.sqrt(fraction(Math.sin(i * 311.7 + 41.3) * 18342.716));
+    ctx.globalAlpha = baseAlpha * (.2 + .5 * (1 - distance / r)); ctx.beginPath(); ctx.arc(x + Math.cos(angle) * distance, y + Math.sin(angle) * distance, .7, 0, Math.PI * 2); ctx.fill();
   }
+  ctx.globalAlpha = baseAlpha;
 }
 
 function drawMolecule(ctx, x, y, r, color) {
@@ -557,17 +489,17 @@ function drawLineDistance(ctx, x, y, r, color) {
   ctx.fill();
 }
 
-function drawLabel(ctx, entry, labels, log, canvasWidth, isSelected = false) {
+function drawLabel(ctx, entry, labels, log, canvasWidth, isSelected = false, canvasHeight = 600) {
   const { object, screenX: x, screenY: y, radius: r, opacity } = entry;
-  const dark = log < -3 || log > 3;
+  const dark = true;
   const maxLabelWidth = Math.max(116, canvasWidth - 24);
-  const fontSize = canvasWidth < 480 ? clamp(10 + object.importance * 0.45, 12, 16) : clamp(12 + object.importance, 14, 22);
+  const fontSize = canvasWidth < 480 ? 11 : 12;
   ctx.font = `${object.importance >= 9 || isSelected ? 800 : 650} ${fontSize}px Inter, system-ui, sans-serif`;
   const text = object.name;
   const metrics = ctx.measureText(text);
   const width = Math.min(metrics.width + 14, maxLabelWidth);
   const height = canvasWidth < 480 ? 24 : 26;
-  let rect = { x: clamp(x - width / 2, 8, canvasWidth - width - 8), y: y + r + 8, width, height };
+  let rect = { x: clamp(x - width / 2, 8, canvasWidth - width - 8), y: clamp(y + entry.boxHeight / 2 + 20, 108, canvasHeight - 54), width, height };
   for (let attempt = 0; attempt < 3; attempt += 1) {
     if (!labels.some((other) => overlaps(rect, other))) break;
     rect = { ...rect, y: rect.y + height + 3 };
@@ -578,7 +510,8 @@ function drawLabel(ctx, entry, labels, log, canvasWidth, isSelected = false) {
   ctx.fillStyle = dark ? "rgba(5, 8, 22, 0.78)" : "rgba(255,255,255,0.82)";
   roundedCapsule(ctx, rect.x, rect.y, rect.width, rect.height, 9);
   ctx.fill();
-  ctx.fillStyle = dark ? "#f8fafc" : "#0f172a";
+  ctx.strokeStyle = "#4d91b7"; ctx.stroke();
+  ctx.fillStyle = "#e6f5ff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(text, rect.x + rect.width / 2, rect.y + height / 2 + 1, rect.width - 10);

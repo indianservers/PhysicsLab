@@ -1,0 +1,27 @@
+{
+  "assets": 23,
+  "screenshots": [
+    {
+      "exponent": -7.92,
+      "file": "artifacts/scale-universe-upgrade/micro-cutouts/scale--7.92.png",
+      "visible": "dna-width,hemoglobin,ribosome,protein-molecule,dna-helix,cell-membrane,caffeine-molecule,glucose-molecule"
+    },
+    {
+      "exponent": -6.98,
+      "file": "artifacts/scale-universe-upgrade/micro-cutouts/scale--6.98.png",
+      "visible": "virus,influenza-virus,coronavirus,bacteriophage,ribosome,hemoglobin,protein-molecule,cell-membrane"
+    },
+    {
+      "exponent": -6,
+      "file": "artifacts/scale-universe-upgrade/micro-cutouts/scale--6.png",
+      "visible": "e-coli,virus,bacteriophage,yeast-cell,coronavirus,influenza-virus,platelet"
+    },
+    {
+      "exponent": -4.42,
+      "file": "artifacts/scale-universe-upgrade/micro-cutouts/scale--4.42.png",
+      "visible": "red-blood-cell,e-coli,human-egg-cell,white-blood-cell,yeast-cell,pollen-grain,dust-speck,human-hair-width"
+    }
+  ],
+  "errors": [],
+  "brokenAssets": []
+}
