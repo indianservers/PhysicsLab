@@ -1,0 +1,15 @@
+{
+  "studios": 16,
+  "labs": 96,
+  "proposals": 2880,
+  "checks": [
+    "inventory counts",
+    "studio filter",
+    "full-text search",
+    "priority filter",
+    "expand/collapse",
+    "mobile width",
+    "no browser errors"
+  ],
+  "status": "passed"
+}

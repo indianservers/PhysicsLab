@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
+import { checkStudioWorkspace, checkStudioHomes } from './checkStudioWorkspace.mjs';
 
 const root='artifacts/studio-physics-audit';
 fs.mkdirSync(root,{recursive:true});
@@ -9,7 +10,7 @@ const chapters=JSON.parse(fs.readFileSync('src/lib/studioTheoryContent.json','ut
 const skip=Number(process.env.STUDIO_AUDIT_SKIP??0),limit=Number(process.env.STUDIO_AUDIT_LIMIT??96);
 const requested=process.env.STUDIO_AUDIT_ROUTES?JSON.parse(process.env.STUDIO_AUDIT_ROUTES):null;
 const entries=Object.entries(chapters).filter(([route])=>!requested||requested.includes(route)).slice(skip,skip+limit);
-const resultFile=process.env.STUDIO_AUDIT_SKIP!==undefined?`${root}/browser-results-${skip}.json`:`${root}/browser-results.json`;
+const resultFile=process.env.STUDIO_AUDIT_RESULT_FILE??(requested?`${root}/browser-results-filtered.json`:process.env.STUDIO_AUDIT_SKIP!==undefined?`${root}/browser-results-${skip}.json`:`${root}/browser-results.json`);
 const staticRoot=path.resolve(`${root}/browser-build`);
 const publicRoot=path.resolve('public');
 const server=http.createServer((request,response)=>{
@@ -27,7 +28,7 @@ const context=await browser.newContext({viewport:{width:1440,height:1000},reduce
 // This audit checks UI state, not animation frame rate. Bound continuous 3D
 // rendering so headless software WebGL does not starve input/focus checks.
 await context.addInitScript(() => {
- window.requestAnimationFrame = callback => window.setTimeout(() => callback(performance.now()), 200);
+ window.requestAnimationFrame = callback => window.setTimeout(() => callback(performance.now()), 500);
  window.cancelAnimationFrame = id => window.clearTimeout(id);
 });
 const page=await context.newPage();
@@ -119,6 +120,7 @@ for(const [route,chapter] of entries){
    if(content.some(text=>text.length<40)||new Set(content).size!==3)throw Error('Inline modes need distinct substantive content');
    await clickVisible(page.getByRole('tab',{name:/^Observe(?:\s|$)/}).first());
   }
+  const workspace=await checkStudioWorkspace(page,route);
   await clickVisible(button);
   const dialog=page.getByRole('dialog',{name:/.+/});
   await dialog.waitFor({state:'visible'});
@@ -132,12 +134,12 @@ for(const [route,chapter] of entries){
   await dialog.waitFor({state:'hidden'});
   // Rendering may finish after the reader, especially for lazy WebGL scenes.
   if(errors.length)throw Error(errors.join('; '));
-  results.push({route,status:'pass',modes:modeResults});
+  results.push({route,status:'pass',modes:modeResults,workspace});
  }catch(error){results.push({route,status:'fail',error:error.message,errors:[...errors]});console.error(`FAIL ${route}: ${error.message}`);await page.keyboard.press('Escape');}
  fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2)+'\n');
  if(results.length%6===0)console.log(`Checked ${results.length}/${entries.length} routes (offset ${skip})`);
 }
-for(const [name,route,width,height] of skip===0?[['theory-desktop','/motion/conservation-energy',1440,1000],['theory-mobile','/modern-physics/matter-waves',390,844]]:[]){
+for(const [name,route,width,height] of skip===0&&!requested?[['theory-desktop','/motion/conservation-energy',1440,1000],['theory-mobile','/modern-physics/matter-waves',390,844]]:[]){
  await page.setViewportSize({width,height});
  await page.evaluate(route=>{window.history.pushState({},'',route);window.dispatchEvent(new PopStateEvent('popstate'));},route);
  await page.getByRole('button',{name:'Theory & worked examples',exact:false}).click({force:true});
@@ -146,6 +148,11 @@ for(const [name,route,width,height] of skip===0?[['theory-desktop','/motion/cons
  const overflow=await page.getByRole('dialog').evaluate(node=>node.scrollWidth>node.clientWidth+1);
  if(overflow)results.push({route,status:'fail',error:`Theory horizontal overflow at ${width}px`});
  await page.keyboard.press('Escape');
+}
+if(skip===0&&!requested){
+ const homes=await checkStudioHomes(page,chapters);
+ fs.mkdirSync('artifacts/studio-ux-audit',{recursive:true});
+ fs.writeFileSync('artifacts/studio-ux-audit/studio-homes.json',JSON.stringify(homes,null,2));
 }
 fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2)+'\n');
 const failed=results.filter(item=>item.status==='fail');

@@ -22,11 +22,13 @@ export function NumberInput({ value, onChange, onFocus, onBlur, ...props }: Inpu
   useEffect(() => { if (!editing.current) setDraft(String(value ?? "")); }, [value]);
   return <input {...props} type="number" value={draft} onFocus={event => { editing.current = true; onFocus?.(event); }} onChange={event => {
     setDraft(event.target.value);
-    if (event.target.value.trim() && Number.isFinite(event.target.valueAsNumber) && event.target.validity.valid) onChange?.(event);
+    // Step controls keyboard increments; it must not reject a valid physical
+    // constant or a baseline that lies between those increments.
+    if (event.target.value.trim() && Number.isFinite(event.target.valueAsNumber) && !event.target.validity.rangeUnderflow && !event.target.validity.rangeOverflow) onChange?.(event);
   }} onBlur={event => {
     editing.current = false;
     const fallback = Number(value);
-    const normalized = normalizeNumericInput(event.target.value, Number.isFinite(fallback) ? fallback : 0, props.min, props.max, props.step);
+    const normalized = normalizeNumericInput(event.target.value, Number.isFinite(fallback) ? fallback : 0, props.min, props.max);
     setDraft(String(normalized));
     if (normalized !== fallback) {
       event.currentTarget.value = String(normalized);

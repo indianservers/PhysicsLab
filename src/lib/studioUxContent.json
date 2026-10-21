@@ -1,0 +1,482 @@
+{
+  "/measurement/meter-scale": {
+    "controls": "left and right endpoint positions",
+    "evidence": "endpoint difference with reading uncertainty",
+    "visual": "eye position and parallax sight line"
+  },
+  "/measurement/vernier-caliper": {
+    "controls": "jaw separation and zero offset",
+    "evidence": "main-scale plus coincident-division reading",
+    "visual": "magnified vernier coincidence"
+  },
+  "/measurement/micrometer": {
+    "controls": "thimble rotation and zero correction",
+    "evidence": "pitch and least-count calculation",
+    "visual": "unwrapped sleeve and thimble scales"
+  },
+  "/measurement/spherometer": {
+    "controls": "leg spacing and central screw height",
+    "evidence": "curvature radius with propagated uncertainty",
+    "visual": "sphere cross-section and sagitta"
+  },
+  "/measurement/mass-time": {
+    "controls": "balance calibration and timing interval",
+    "evidence": "repeated mass and elapsed-time readings",
+    "visual": "reaction delay versus instrument resolution"
+  },
+  "/measurement/uncertainty": {
+    "controls": "input uncertainties and correlations",
+    "evidence": "uncertainty budget and final rounded result",
+    "visual": "correlated versus independent error contributions"
+  },
+  "/mechanics/free-body-diagrams": {
+    "controls": "force magnitude and direction",
+    "evidence": "vector sum and acceleration",
+    "visual": "isolated body with labeled force origins"
+  },
+  "/mechanics/inclined-plane": {
+    "controls": "slope angle and friction coefficient",
+    "evidence": "parallel and normal force components",
+    "visual": "slope-aligned vector decomposition"
+  },
+  "/mechanics/pulley-systems": {
+    "controls": "load mass and rope arrangement",
+    "evidence": "effort, displacement ratio and work",
+    "visual": "continuous rope path and supporting segments"
+  },
+  "/mechanics/torque-levers": {
+    "controls": "force application point and angle",
+    "evidence": "signed torque about the selected pivot",
+    "visual": "perpendicular moment arm"
+  },
+  "/mechanics/equilibrium-com": {
+    "controls": "mass positions and support locations",
+    "evidence": "center of mass and tipping margin",
+    "visual": "support polygon and projected center of mass"
+  },
+  "/mechanics/momentum-collisions": {
+    "controls": "mass ratio and collision restitution",
+    "evidence": "total momentum and kinetic-energy change",
+    "visual": "before-and-after velocity vectors"
+  },
+  "/motion/position-time": {
+    "controls": "position keyframes and time interval",
+    "evidence": "displacement and local slope",
+    "visual": "secant approaching a tangent on x(t)"
+  },
+  "/motion/velocity-time": {
+    "controls": "velocity segments and duration",
+    "evidence": "signed area and displacement",
+    "visual": "positive and negative regions under v(t)"
+  },
+  "/motion/acceleration-time": {
+    "controls": "acceleration segments and initial velocity",
+    "evidence": "velocity change and integrated position",
+    "visual": "linked a(t), v(t) and x(t) plots"
+  },
+  "/motion/projectile-motion": {
+    "controls": "launch angle and initial speed",
+    "evidence": "range, apex and flight time",
+    "visual": "independent horizontal and vertical motion"
+  },
+  "/motion/relative-motion": {
+    "controls": "observer velocity and object velocity",
+    "evidence": "relative position and relative velocity",
+    "visual": "synchronized reference-frame views"
+  },
+  "/motion/circular-motion": {
+    "controls": "radius and angular speed",
+    "evidence": "period and centripetal acceleration",
+    "visual": "tangent velocity and radial acceleration"
+  },
+  "/motion/first-law-inertia": {
+    "controls": "initial velocity and external force",
+    "evidence": "motion before and after a force change",
+    "visual": "inertial motion with force-state markers"
+  },
+  "/motion/second-law-fma": {
+    "controls": "net force and inertial mass",
+    "evidence": "acceleration and F/m ratio",
+    "visual": "matched force and acceleration arrows"
+  },
+  "/motion/third-law-pairs": {
+    "controls": "interaction strength and body masses",
+    "evidence": "equal opposite forces and unequal accelerations",
+    "visual": "force pairs drawn on separate bodies"
+  },
+  "/motion/friction": {
+    "controls": "applied force and surface coefficients",
+    "evidence": "static threshold and kinetic friction",
+    "visual": "stick-slip transition and force balance"
+  },
+  "/motion/tension-normal": {
+    "controls": "rope direction and applied load",
+    "evidence": "tension and normal reaction",
+    "visual": "contact normals and rope-aligned force arrows"
+  },
+  "/motion/multi-force-challenge": {
+    "controls": "multiple force vectors",
+    "evidence": "residual resultant and target acceleration",
+    "visual": "component polygon and cancellation"
+  },
+  "/motion/work": {
+    "controls": "force angle and displacement",
+    "evidence": "signed work and force-displacement area",
+    "visual": "parallel versus perpendicular force components"
+  },
+  "/motion/kinetic-energy": {
+    "controls": "mass and speed",
+    "evidence": "kinetic energy and speed-squared relation",
+    "visual": "energy bars linked to motion"
+  },
+  "/motion/potential-energy": {
+    "controls": "mass, elevation and energy datum",
+    "evidence": "potential-energy difference",
+    "visual": "movable reference level with height markers"
+  },
+  "/motion/conservation-energy": {
+    "controls": "initial height and dissipative force",
+    "evidence": "mechanical energy and thermal transfer",
+    "visual": "stacked energy account through the trajectory"
+  },
+  "/motion/power": {
+    "controls": "load and completion time",
+    "evidence": "work per unit time",
+    "visual": "equal-work tasks with different durations"
+  },
+  "/motion/efficiency": {
+    "controls": "input energy and useful output",
+    "evidence": "efficiency and waste energy",
+    "visual": "proportional input/output/loss flow diagram"
+  },
+  "/motion/universal-gravity": {
+    "controls": "two masses and their separation",
+    "evidence": "inverse-square force and equal force pairs",
+    "visual": "center-to-center distance marker"
+  },
+  "/motion/gravitational-field": {
+    "controls": "source mass and probe position",
+    "evidence": "field strength and direction",
+    "visual": "field vectors with adjustable sampling density"
+  },
+  "/motion/gravitational-potential": {
+    "controls": "source mass and radius",
+    "evidence": "potential and potential difference",
+    "visual": "negative potential curve with infinity reference"
+  },
+  "/motion/orbits": {
+    "controls": "initial speed and orbital radius",
+    "evidence": "orbital energy, eccentricity and period",
+    "visual": "conic orbit with focus and velocity vectors"
+  },
+  "/motion/escape-velocity": {
+    "controls": "launch radius and launch speed",
+    "evidence": "specific energy and escape threshold",
+    "visual": "bound, parabolic and unbound trajectories"
+  },
+  "/motion/keplers-laws": {
+    "controls": "semimajor axis and eccentricity",
+    "evidence": "period-squared ratio and swept area",
+    "visual": "equal-time sectors about the focus"
+  },
+  "/motion/spring-shm": {
+    "controls": "spring constant and attached mass",
+    "evidence": "period, displacement and restoring force",
+    "visual": "phase circle linked to the spring"
+  },
+  "/motion/pendulum": {
+    "controls": "pendulum length and release angle",
+    "evidence": "period and angle-dependent approximation error",
+    "visual": "arc coordinate and tangential acceleration"
+  },
+  "/motion/energy-exchange": {
+    "controls": "oscillation amplitude and phase",
+    "evidence": "kinetic and potential-energy exchange",
+    "visual": "phase-locked energy bars"
+  },
+  "/motion/damping": {
+    "controls": "damping strength and initial displacement",
+    "evidence": "amplitude envelope and energy decay",
+    "visual": "under-, critical- and over-damped responses"
+  },
+  "/motion/resonance": {
+    "controls": "drive frequency and damping",
+    "evidence": "steady-state amplitude and phase lag",
+    "visual": "response peak and driving-force phase"
+  },
+  "/motion/coupled-oscillators": {
+    "controls": "coupling strength and initial displacement",
+    "evidence": "normal-mode frequencies and beat envelope",
+    "visual": "energy exchange between paired oscillators"
+  },
+  "/motion/wave-properties": {
+    "controls": "wavelength and frequency",
+    "evidence": "wave speed and phase difference",
+    "visual": "tracked crest versus medium particle"
+  },
+  "/motion/superposition": {
+    "controls": "individual wave amplitude and phase",
+    "evidence": "instantaneous sum and component displacement",
+    "visual": "components and resultant on shared axes"
+  },
+  "/motion/interference": {
+    "controls": "source separation and phase difference",
+    "evidence": "path difference and resultant amplitude",
+    "visual": "constructive and destructive loci"
+  },
+  "/motion/standing-waves": {
+    "controls": "boundary condition and driving frequency",
+    "evidence": "allowed modes, nodes and antinodes",
+    "visual": "standing-wave envelope and particle motion"
+  },
+  "/motion/sound-spectrum": {
+    "controls": "tone frequency and harmonic amplitudes",
+    "evidence": "spectral peaks and fundamental frequency",
+    "visual": "time waveform linked to frequency spectrum"
+  },
+  "/motion/doppler-effect": {
+    "controls": "source and observer velocity",
+    "evidence": "received frequency and arrival interval",
+    "visual": "emission wavefronts and relative motion"
+  },
+  "/optics/reflection": {
+    "controls": "incident angle and mirror orientation",
+    "evidence": "equal angles measured from the normal",
+    "visual": "incident ray, normal and reflected ray"
+  },
+  "/optics/refraction": {
+    "controls": "refractive indices and incident angle",
+    "evidence": "Snell relation and critical angle",
+    "visual": "ray bending with angle arcs at the interface"
+  },
+  "/optics/lenses": {
+    "controls": "object distance and focal length",
+    "evidence": "image distance and magnification",
+    "visual": "principal rays and signed optical distances"
+  },
+  "/optics/mirrors": {
+    "controls": "object distance and mirror curvature",
+    "evidence": "image position and magnification",
+    "visual": "curved mirror rays with virtual extensions"
+  },
+  "/optics/interference": {
+    "controls": "slit separation and wavelength",
+    "evidence": "fringe spacing and path difference",
+    "visual": "screen intensity aligned to two-slit rays"
+  },
+  "/optics/diffraction": {
+    "controls": "aperture width and wavelength",
+    "evidence": "central-maximum width and minima positions",
+    "visual": "aperture geometry aligned to intensity profile"
+  },
+  "/electricity/coulomb-force": {
+    "controls": "charge signs and separation",
+    "evidence": "force magnitude and inverse-square trend",
+    "visual": "equal opposite force arrows"
+  },
+  "/electricity/electric-field": {
+    "controls": "charge arrangement and probe position",
+    "evidence": "field vector and superposition",
+    "visual": "field lines distinguished from probe force"
+  },
+  "/electricity/electric-potential": {
+    "controls": "source charges and probe position",
+    "evidence": "potential sum and equipotential spacing",
+    "visual": "equipotentials overlaid with field direction"
+  },
+  "/electricity/current": {
+    "controls": "carrier density and drift conditions",
+    "evidence": "charge flow per time and current direction",
+    "visual": "slow carrier drift versus circuit response"
+  },
+  "/electricity/circuits": {
+    "controls": "resistance and source voltage",
+    "evidence": "node potentials, branch current and power",
+    "visual": "schematic aligned to circuit measurements"
+  },
+  "/electricity/capacitors": {
+    "controls": "plate geometry and dielectric",
+    "evidence": "capacitance, charge and stored energy",
+    "visual": "field between plates and dielectric polarization"
+  },
+  "/magnetism/field-lines": {
+    "controls": "magnet orientation and probe position",
+    "evidence": "local field direction and relative strength",
+    "visual": "continuous field loops through the magnet"
+  },
+  "/magnetism/lorentz-force": {
+    "controls": "charge sign, velocity and magnetic field",
+    "evidence": "magnetic force and trajectory curvature",
+    "visual": "right-hand-rule triad with sign reversal"
+  },
+  "/magnetism/current-wire": {
+    "controls": "wire current and radial probe distance",
+    "evidence": "azimuthal field and inverse-distance trend",
+    "visual": "concentric field loops and current direction"
+  },
+  "/magnetism/solenoids": {
+    "controls": "turn density and current",
+    "evidence": "internal field and finite-length variation",
+    "visual": "coil cross-section with central and fringe fields"
+  },
+  "/magnetism/induction": {
+    "controls": "coil orientation and changing flux",
+    "evidence": "induced emf and signed flux rate",
+    "visual": "flux-area geometry and Lenz-law direction"
+  },
+  "/magnetism/electromagnets": {
+    "controls": "coil current and core choice",
+    "evidence": "field change and model validity",
+    "visual": "coil, core and pole labels"
+  },
+  "/electronics/semiconductors": {
+    "controls": "temperature and semiconductor doping",
+    "evidence": "carrier populations and conductivity trend",
+    "visual": "band diagram and carrier-type legend"
+  },
+  "/electronics/diodes": {
+    "controls": "bias voltage and polarity",
+    "evidence": "current-voltage operating point",
+    "visual": "junction barrier and forward/reverse bias"
+  },
+  "/electronics/transistors": {
+    "controls": "base drive and collector circuit",
+    "evidence": "collector current and operating region",
+    "visual": "cutoff, active and saturation boundaries"
+  },
+  "/electronics/amplifiers": {
+    "controls": "signal amplitude and circuit gain",
+    "evidence": "output waveform and clipping",
+    "visual": "input/output traces on shared time axes"
+  },
+  "/electronics/logic-gates": {
+    "controls": "binary inputs and gate selection",
+    "evidence": "truth-table output",
+    "visual": "signal path with high/low labels"
+  },
+  "/electronics/sensors": {
+    "controls": "physical stimulus and sensor settings",
+    "evidence": "calibration curve and output units",
+    "visual": "stimulus-to-electrical-signal chain"
+  },
+  "/thermodynamics/temperature": {
+    "controls": "temperature scale and thermometer state",
+    "evidence": "equivalent Celsius, Kelvin and Fahrenheit readings",
+    "visual": "aligned temperature scales and absolute zero"
+  },
+  "/thermodynamics/heat-transfer": {
+    "controls": "temperature difference and material properties",
+    "evidence": "heat-transfer rate and energy change",
+    "visual": "conduction, convection and radiation pathways"
+  },
+  "/thermodynamics/gas-laws": {
+    "controls": "gas volume, temperature and amount",
+    "evidence": "pressure and state-variable ratios",
+    "visual": "P-V, P-T and V-T views"
+  },
+  "/thermodynamics/first-law": {
+    "controls": "heat input and work interaction",
+    "evidence": "internal-energy change and signed energy balance",
+    "visual": "system boundary with heat/work arrows"
+  },
+  "/thermodynamics/entropy": {
+    "controls": "thermal reservoirs and transferred heat",
+    "evidence": "system and surroundings entropy change",
+    "visual": "separate entropy ledgers and total change"
+  },
+  "/thermodynamics/heat-engines": {
+    "controls": "reservoir temperatures and cycle controls",
+    "evidence": "work output, rejected heat and efficiency",
+    "visual": "cycle path linked to energy-flow diagram"
+  },
+  "/fluid-mechanics/density-pressure": {
+    "controls": "fluid density and measurement depth",
+    "evidence": "pressure difference and unit conversion",
+    "visual": "pressure arrows with depth reference"
+  },
+  "/fluid-mechanics/hydrostatics": {
+    "controls": "connected-vessel geometry and fluid levels",
+    "evidence": "pressure equality at equal elevations",
+    "visual": "horizontal comparison line through the fluid"
+  },
+  "/fluid-mechanics/buoyancy": {
+    "controls": "object density and displaced volume",
+    "evidence": "buoyant force and equilibrium immersion",
+    "visual": "displaced-fluid volume and force balance"
+  },
+  "/fluid-mechanics/continuity": {
+    "controls": "pipe cross-section and inlet flow",
+    "evidence": "volume flow rate and local velocity",
+    "visual": "streamtube area linked to velocity markers"
+  },
+  "/fluid-mechanics/bernoulli": {
+    "controls": "height, cross-section and flow conditions",
+    "evidence": "pressure, kinetic and gravitational head",
+    "visual": "aligned energy-head bars along a streamline"
+  },
+  "/fluid-mechanics/viscosity": {
+    "controls": "fluid viscosity and flow geometry",
+    "evidence": "drag or pressure-flow response within model limits",
+    "visual": "velocity profile and shear layers"
+  },
+  "/modern-physics/quantum-ideas": {
+    "controls": "state amplitudes and measurement basis",
+    "evidence": "normalized outcome probabilities",
+    "visual": "state representation separated from measured counts"
+  },
+  "/modern-physics/photoelectric-effect": {
+    "controls": "light frequency, intensity and stopping voltage",
+    "evidence": "maximum electron energy and photocurrent",
+    "visual": "threshold frequency and stopping-potential graph"
+  },
+  "/modern-physics/matter-waves": {
+    "controls": "particle momentum and kinetic energy",
+    "evidence": "de Broglie wavelength and approximation difference",
+    "visual": "wave scale linked to particle momentum"
+  },
+  "/modern-physics/atomic-spectra": {
+    "controls": "atomic transition and spectral series",
+    "evidence": "photon energy and spectral-line position",
+    "visual": "energy levels connected to emitted wavelengths"
+  },
+  "/modern-physics/nuclear-structure": {
+    "controls": "proton and neutron numbers",
+    "evidence": "binding energy and nuclide identity",
+    "visual": "nuclide chart with evidence-based stability labels"
+  },
+  "/modern-physics/radioactivity": {
+    "controls": "initial population and decay constant",
+    "evidence": "remaining nuclei, activity and half-life",
+    "visual": "stochastic counts beside expected decay curve"
+  },
+  "/astrophysics/solar-system": {
+    "controls": "planet selection and orbital time",
+    "evidence": "orbital distance, period and speed",
+    "visual": "heliocentric orbit with scale-mode indicator"
+  },
+  "/astrophysics/stellar-life": {
+    "controls": "initial stellar mass and evolutionary stage",
+    "evidence": "stage duration and stellar properties",
+    "visual": "H-R path with branch-dependent outcomes"
+  },
+  "/astrophysics/spectroscopy": {
+    "controls": "line identification and redshift",
+    "evidence": "rest versus observed wavelength",
+    "visual": "aligned reference and observed spectra"
+  },
+  "/astrophysics/galaxies": {
+    "controls": "mass-profile parameters and radius",
+    "evidence": "rotation curve and enclosed mass",
+    "visual": "disk, bulge and halo contributions"
+  },
+  "/astrophysics/cosmology": {
+    "controls": "cosmological parameters and redshift",
+    "evidence": "distance measures and expansion history",
+    "visual": "scale factor linked to observable redshift"
+  },
+  "/astrophysics/exoplanets": {
+    "controls": "planet radius, inclination and period",
+    "evidence": "transit depth, duration and detection geometry",
+    "visual": "orbital view linked to a light curve"
+  }
+}

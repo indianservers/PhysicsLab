@@ -1,0 +1,578 @@
+[
+  {
+    "route": "/measurement/meter-scale",
+    "file": "src/pages/MeterScalePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/measurement/vernier-caliper",
+    "file": "src/pages/VernierCaliperPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/measurement/micrometer",
+    "file": "src/pages/MicrometerPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/measurement/spherometer",
+    "file": "src/pages/SpherometerPage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/measurement/mass-time",
+    "file": "src/pages/MassTimePage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/measurement/uncertainty",
+    "file": "src/pages/UncertaintyPage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/free-body-diagrams",
+    "file": "src/pages/FreeBodyPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/inclined-plane",
+    "file": "src/pages/InclineStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/pulley-systems",
+    "file": "src/pages/AtwoodPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/torque-levers",
+    "file": "src/pages/TorqueLeversPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/equilibrium-com",
+    "file": "src/pages/EquilibriumComPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/mechanics/momentum-collisions",
+    "file": "src/pages/MomentumCollisionsPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/position-time",
+    "file": "src/pages/PositionTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/velocity-time",
+    "file": "src/pages/VelocityTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/acceleration-time",
+    "file": "src/pages/AccelerationTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/projectile-motion",
+    "file": "src/pages/ProjectileStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/relative-motion",
+    "file": "src/pages/RelativeMotionPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/circular-motion",
+    "file": "src/pages/CircularStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/first-law-inertia",
+    "file": "src/pages/InertiaStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/second-law-fma",
+    "file": "src/pages/SecondLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/third-law-pairs",
+    "file": "src/pages/ThirdLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/friction",
+    "file": "src/pages/FrictionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/tension-normal",
+    "file": "src/pages/TensionNormalStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/multi-force-challenge",
+    "file": "src/pages/MultiForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/work",
+    "file": "src/pages/WorkStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/kinetic-energy",
+    "file": "src/pages/KineticEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/potential-energy",
+    "file": "src/pages/PotentialEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/conservation-energy",
+    "file": "src/pages/ConservationEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/power",
+    "file": "src/pages/PowerStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/efficiency",
+    "file": "src/pages/EfficiencyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/universal-gravity",
+    "file": "src/pages/UniversalGravityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/gravitational-field",
+    "file": "src/pages/GravitationalFieldStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "file": "src/pages/GravitationalPotentialStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/orbits",
+    "file": "src/pages/OrbitsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/escape-velocity",
+    "file": "src/pages/EscapeVelocityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "file": "src/pages/KeplersLawsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/spring-shm",
+    "file": "src/pages/SpringShmStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/pendulum",
+    "file": "src/pages/PendulumStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "file": "src/pages/EnergyExchangeStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/damping",
+    "file": "src/pages/DampingStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/resonance",
+    "file": "src/pages/ResonanceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "file": "src/pages/CoupledOscillatorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/wave-properties",
+    "file": "src/pages/WavePropertiesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/superposition",
+    "file": "src/pages/SuperpositionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/interference",
+    "file": "src/pages/InterferenceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/standing-waves",
+    "file": "src/pages/StandingWavesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "file": "src/pages/SoundSpectrumStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "file": "src/pages/DopplerEffectStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/reflection",
+    "file": "src/pages/ReflectionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/refraction",
+    "file": "src/pages/RefractionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/lenses",
+    "file": "src/pages/LensesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/mirrors",
+    "file": "src/pages/MirrorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/interference",
+    "file": "src/pages/OpticsInterferenceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/optics/diffraction",
+    "file": "src/pages/DiffractionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "file": "src/pages/CoulombForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/electric-field",
+    "file": "src/pages/ElectricFieldStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/electric-potential",
+    "file": "src/pages/ElectricPotentialStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/current",
+    "file": "src/pages/CurrentStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/circuits",
+    "file": "src/pages/CircuitsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electricity/capacitors",
+    "file": "src/pages/CapacitorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "file": "src/pages/MagneticFieldLinesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "file": "src/pages/LorentzForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "file": "src/pages/CurrentWireStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "file": "src/pages/SolenoidStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/induction",
+    "file": "src/pages/InductionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "file": "src/pages/ElectromagnetsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "file": "src/pages/SemiconductorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/diodes",
+    "file": "src/pages/DiodesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/transistors",
+    "file": "src/pages/TransistorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "file": "src/pages/AmplifiersStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/logic-gates",
+    "file": "src/pages/LogicGatesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/electronics/sensors",
+    "file": "src/pages/SensorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "file": "src/pages/TemperatureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "file": "src/pages/HeatTransferStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "file": "src/pages/GasLawsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "file": "src/pages/FirstLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "file": "src/pages/EntropyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "file": "src/pages/HeatEnginesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "file": "src/pages/DensityPressureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "file": "src/pages/HydrostaticsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "file": "src/pages/BuoyancyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "file": "src/pages/ContinuityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "file": "src/pages/BernoulliStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "file": "src/pages/ViscosityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "file": "src/pages/QuantumIdeasStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "file": "src/pages/PhotoelectricStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "file": "src/pages/MatterWavesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/atomic-spectra",
+    "file": "src/pages/AtomicSpectraStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "file": "src/pages/NuclearStructureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "file": "src/pages/RadioactivityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "file": "src/pages/SolarSystemStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "file": "src/pages/StellarLifeStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "file": "src/pages/SpectroscopyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/galaxies",
+    "file": "src/pages/GalaxiesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "file": "src/pages/CosmologyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "file": "src/pages/ExoplanetsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true
+  }
+]

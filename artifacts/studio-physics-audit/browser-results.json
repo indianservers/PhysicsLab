@@ -1,6 +1,5 @@
 {
   "routes": 96,
-  "learningModeChecks": 288,
   "results": [
     {
       "route": "/measurement/meter-scale",
@@ -9,7 +8,21 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "verificationRun": "focused-after-fixes"
     },
     {
       "route": "/measurement/vernier-caliper",
@@ -18,7 +31,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/measurement/micrometer",
@@ -27,7 +52,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/measurement/spherometer",
@@ -36,7 +73,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/measurement/mass-time",
@@ -45,7 +94,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/measurement/uncertainty",
@@ -54,7 +115,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/free-body-diagrams",
@@ -63,7 +136,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/inclined-plane",
@@ -72,7 +157,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/pulley-systems",
@@ -81,7 +178,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/torque-levers",
@@ -90,7 +199,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/equilibrium-com",
@@ -99,7 +220,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/mechanics/momentum-collisions",
@@ -108,7 +241,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/position-time",
@@ -117,7 +262,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/velocity-time",
@@ -126,7 +283,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/acceleration-time",
@@ -135,7 +304,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/projectile-motion",
@@ -144,7 +325,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/relative-motion",
@@ -153,7 +346,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/circular-motion",
@@ -162,7 +367,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/first-law-inertia",
@@ -171,7 +388,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/second-law-fma",
@@ -180,7 +409,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/third-law-pairs",
@@ -189,7 +430,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/friction",
@@ -198,7 +451,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/tension-normal",
@@ -207,7 +472,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/multi-force-challenge",
@@ -216,7 +493,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/work",
@@ -225,7 +514,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/kinetic-energy",
@@ -234,7 +535,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/potential-energy",
@@ -243,7 +556,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/conservation-energy",
@@ -252,7 +577,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/power",
@@ -261,7 +598,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/efficiency",
@@ -270,7 +619,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/universal-gravity",
@@ -279,7 +640,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/gravitational-field",
@@ -288,7 +661,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/gravitational-potential",
@@ -297,7 +682,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/orbits",
@@ -306,7 +703,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/escape-velocity",
@@ -315,7 +724,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/keplers-laws",
@@ -324,7 +745,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/spring-shm",
@@ -333,7 +766,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/pendulum",
@@ -342,7 +787,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/energy-exchange",
@@ -351,7 +808,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/damping",
@@ -360,7 +829,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/resonance",
@@ -369,7 +850,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/coupled-oscillators",
@@ -378,7 +871,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/wave-properties",
@@ -387,7 +892,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/superposition",
@@ -396,7 +913,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/interference",
@@ -405,7 +934,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/standing-waves",
@@ -414,7 +955,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/sound-spectrum",
@@ -423,7 +976,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/motion/doppler-effect",
@@ -432,7 +997,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/reflection",
@@ -441,7 +1018,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/refraction",
@@ -450,7 +1039,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/lenses",
@@ -459,7 +1060,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/mirrors",
@@ -468,7 +1081,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/interference",
@@ -477,7 +1102,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/optics/diffraction",
@@ -486,7 +1123,21 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "verificationRun": "focused-after-fixes"
     },
     {
       "route": "/electricity/coulomb-force",
@@ -495,7 +1146,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electricity/electric-field",
@@ -504,7 +1167,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electricity/electric-potential",
@@ -513,7 +1188,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electricity/current",
@@ -522,7 +1209,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electricity/circuits",
@@ -531,7 +1230,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electricity/capacitors",
@@ -540,7 +1251,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/field-lines",
@@ -549,7 +1272,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/lorentz-force",
@@ -558,7 +1293,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/current-wire",
@@ -567,7 +1314,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/solenoids",
@@ -576,7 +1335,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/induction",
@@ -585,7 +1356,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/magnetism/electromagnets",
@@ -594,7 +1377,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/semiconductors",
@@ -603,7 +1398,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/diodes",
@@ -612,7 +1419,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/transistors",
@@ -621,7 +1440,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/amplifiers",
@@ -630,7 +1461,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/logic-gates",
@@ -639,7 +1482,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/electronics/sensors",
@@ -648,7 +1503,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/temperature",
@@ -657,7 +1524,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/heat-transfer",
@@ -666,7 +1545,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/gas-laws",
@@ -675,7 +1566,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/first-law",
@@ -684,7 +1587,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/entropy",
@@ -693,7 +1608,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/thermodynamics/heat-engines",
@@ -702,7 +1629,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/density-pressure",
@@ -711,7 +1650,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/hydrostatics",
@@ -720,7 +1671,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/buoyancy",
@@ -729,7 +1692,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/continuity",
@@ -738,7 +1713,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/bernoulli",
@@ -747,7 +1734,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/fluid-mechanics/viscosity",
@@ -756,7 +1755,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/modern-physics/quantum-ideas",
@@ -765,7 +1776,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/modern-physics/photoelectric-effect",
@@ -774,7 +1797,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/modern-physics/matter-waves",
@@ -783,7 +1818,21 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "verificationRun": "focused-after-fixes"
     },
     {
       "route": "/modern-physics/atomic-spectra",
@@ -792,7 +1841,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": false,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/modern-physics/nuclear-structure",
@@ -801,7 +1862,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/modern-physics/radioactivity",
@@ -810,7 +1883,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/solar-system",
@@ -819,7 +1904,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/stellar-life",
@@ -828,7 +1925,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/spectroscopy",
@@ -837,7 +1946,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/galaxies",
@@ -846,7 +1967,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/cosmology",
@@ -855,7 +1988,19 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     },
     {
       "route": "/astrophysics/exoplanets",
@@ -864,7 +2009,20 @@
         "Predict",
         "Experiment",
         "Explain"
-      ]
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390
+      },
+      "verificationRun": "full-sequential"
     }
-  ]
+  ],
+  "verification": "Full 96-route sequential run, followed by targeted rechecks after the default-step and new shared-feature fixes."
 }

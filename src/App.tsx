@@ -53,6 +53,7 @@ import { ClientDemosPage } from "./pages/ClientDemosPage";
 import { AppDirectoryPage } from "./pages/AppDirectoryPage";
 import { ConceptExperiencesPage, StudiosHomePage } from "./pages/ConceptExperiencesPage";
 import { StudioTheoryReader } from "./components/StudioTheoryReader";
+import { StudioLabWorkspace } from "./components/StudioLabWorkspace";
 import { SimulationStudioEnhancements } from "./components/SimulationStudioEnhancements";
 
 const CircularStudioPage = lazy(() => import("./pages/CircularStudioPage"));
@@ -241,7 +242,7 @@ export default function App() {
               {t("offline")}
             </div>
           )}
-          <div key={location.pathname} className="route-fade">
+          <div key={location.pathname} className="route-fade" data-studio-apparatus>
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />
               <Route path="/client-demos" element={<ClientDemosPage />} />
@@ -399,6 +400,7 @@ export default function App() {
               <Route path="/terms" element={<SimplePage title="Terms" />} />
             </Routes>
           </div>
+          <StudioLabWorkspace />
           <StudioTheoryReader />
           {!isDedicatedStudio && <SimulationStudioEnhancements />}
           {!isQuietSurface && <AppFooter />}

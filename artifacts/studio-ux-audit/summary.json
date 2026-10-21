@@ -1,0 +1,17 @@
+{
+  "labs": 96,
+  "studioHomes": 16,
+  "notebookTabChecks": 480,
+  "nativeLearningModeChecks": 288,
+  "numericControlRoundTrips": 95,
+  "mobileNotebookWidthsChecked": 96,
+  "focusedVisualAndSelfAssessmentChecks": 3,
+  "physicsAssertions": 264,
+  "existingPhysicsSuite": 581,
+  "numberInputInteractions": 6,
+  "sourcePagesScanned": 144,
+  "typescript": "passed",
+  "productionBuild": "passed",
+  "deployment": "local only",
+  "failedLabs": 0
+}

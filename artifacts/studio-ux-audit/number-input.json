@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "checks": [
+    "accepts values between step increments",
+    "blur preserves physical value",
+    "empty draft preserves model",
+    "empty blur restores previous value",
+    "upper bound clamps on blur",
+    "lower bound clamps on blur"
+  ]
+}

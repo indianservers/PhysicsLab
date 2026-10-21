@@ -1,3 +1,4 @@
+import {StudioLabNav} from '../components/StudioLabNav';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { NumberInput } from '../components/NumberInput';
@@ -43,7 +44,7 @@ export default function SpringShmStudioPage(){
  const update=(patch:Partial<SpringInput>)=>{if(locked)return;setRunning(false);setInput(old=>springSettings({...old,...patch,time:0}));setAnswer('')};
  const open=(mode:string)=>{setRunning(false);setPanel(mode==='Observe'?null:mode);setAnswer('')};
  return <div className="frs-page ssm-page" data-ui-theme="dark" data-spring-time={input.time}>
- <aside className="frs-side"><Link className="frs-brand" to="/concept-studio">⚛ PHYSICS STUDIO</Link><nav><Link to="/concept-studio">⌂ Home</Link><Link to="/motion/spring-shm">Spring SHM</Link><Link to="/motion/pendulum">Pendulum</Link><Link to="/motion/energy-exchange">Energy Exchange</Link><Link to="/motion/damping">Damping</Link><Link to="/motion/resonance">Resonance</Link></nav></aside>
+ <aside className="frs-side"><Link className="frs-brand" to="/concept-studio/oscillations">⚛ PHYSICS STUDIO</Link><StudioLabNav studioId="oscillations"/></aside>
  <main id="content" className="ssm-main"><header className="ssm-header"><div><h1>OSCILLATIONS — <span>SPRING SHM</span></h1><p>Model a vertical mass–spring system and explore simple harmonic motion.</p></div><small><PhysicsIcon name="wave"/> Small motions. Big insights.</small></header>
  <div className="ssm-layout"><nav className="ssm-modes" aria-label="Learning modes">{['Observe','Predict','Experiment','Explain'].map((m,i)=><button key={m} aria-pressed={m===(panel&&panel!=='Challenge'?panel:'Observe')} onClick={()=>open(m)}><PhysicsIcon name={(['eye','chart','flask','book'] as const)[i]}/>{m}</button>)}</nav>
  <section className="ssm-visuals"><SpringBench input={input} zoom={zoom} onRelease={x=>update({amplitude:Math.abs(x)})}/><div className="ssm-plots"><section className="ssm-panel ssm-motion"><header><h2>Displacement vs Time</h2><span className="ssm-legend">x · v/ω · a/ω²</span></header><Plot input={input} kind="motion"/></section><div className="ssm-small-plots"><section className="ssm-panel"><header><h2>Phase Diagram (x vs v)</h2></header><Plot input={input} kind="phase"/></section><section className="ssm-panel"><header><h2>Energy (J)</h2><span className="ssm-legend">K · U</span></header><Plot input={input} kind="energy"/></section></div></div></section>

@@ -1,0 +1,71 @@
+{
+  "routes": 3,
+  "results": [
+    {
+      "route": "/measurement/meter-scale",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      }
+    },
+    {
+      "route": "/optics/diffraction",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      }
+    },
+    {
+      "route": "/modern-physics/matter-waves",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      }
+    }
+  ]
+}

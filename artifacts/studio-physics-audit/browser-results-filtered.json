@@ -1,0 +1,23 @@
+{
+  "routes": 3,
+  "results": [
+    {
+      "route": "/measurement/meter-scale",
+      "status": "fail",
+      "error": "locator.selectOption: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-lab-workspace] .slw-panel').getByRole('group', { name: 'Self-assess result and reasoning separately' }).getByLabel('Result and units', { exact: true })\u001b[22m\n",
+      "errors": []
+    },
+    {
+      "route": "/optics/diffraction",
+      "status": "fail",
+      "error": "locator.selectOption: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-lab-workspace] .slw-panel').getByRole('group', { name: 'Self-assess result and reasoning separately' }).getByLabel('Result and units', { exact: true })\u001b[22m\n",
+      "errors": []
+    },
+    {
+      "route": "/modern-physics/matter-waves",
+      "status": "fail",
+      "error": "locator.selectOption: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-lab-workspace] .slw-panel').getByRole('group', { name: 'Self-assess result and reasoning separately' }).getByLabel('Result and units', { exact: true })\u001b[22m\n",
+      "errors": []
+    }
+  ]
+}
