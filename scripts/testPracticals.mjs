@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+import assert from 'node:assert/strict';
+const source=fs.readFileSync('src/practicals/model.ts','utf8');
+const js=ts.transpile(source,{module:ts.ModuleKind.ES2022,target:ts.ScriptTarget.ES2022});
+const {solve,defaults}=await import(`data:text/javascript;base64,${Buffer.from(js).toString('base64')}`);
+const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+const spring=solve('springs',defaults.springs,.13);close(spring.kinetic+spring.potential,spring.energy);close(spring.period,2*Math.PI*Math.sqrt(.2/20));
+const cap=solve('capacitor',defaults.capacitor,.47);close(cap.v,5/Math.E);close(cap.tau,.47);close(solve('capacitor',defaults.capacitor,0,true).v,0);
+const wire=solve('wire',defaults.wire,0);close(solve('wire',{...defaults.wire,length:2},0).resistance,wire.resistance*2);close(solve('wire',{...defaults.wire,diameter:1},0).resistance,wire.resistance/4);
+const rule=solve('rule',{pivot:60,position:80,mass:50},0);close(rule.torque,0);close(rule.inferred,.981);
+const sphere=solve('sphere',defaults.sphere,100);close(sphere.x,1);close(sphere.kinetic+sphere.rotation,sphere.energy);close(sphere.kinetic/sphere.rotation,2.5);
+const papers=solve('papers',defaults.papers,0),land=solve('papers',defaults.papers,papers.end);close(land.x,1.5);close(solve('papers',{...defaults.papers,count:4},0).vt,2*papers.vt);
+for(const [id,p] of Object.entries(defaults))for(const t of [0,.1,1,10])for(const [name,value] of Object.entries(solve(id,p,t)))assert.ok(Number.isFinite(value),`${id}.${name} invalid`);
+console.log('Six practical physics models: conservation, scaling, balance and boundary checks passed.');

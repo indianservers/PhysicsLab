@@ -1,3 +1,4 @@
+import { PracticalCards } from "../practicals/PracticalCards";
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { studioHomes } from "../lib/conceptStudioHomes";
@@ -75,6 +76,7 @@ export function HomePage() {
           </div>
         </section>
 
+        <PracticalCards />
         <section className="simple-section" aria-labelledby="studio-title">
           <header><div><span className="simple-kicker">LEARN BY SUBJECT</span><h2 id="studio-title">Explore all {homeStudios.length} studios</h2></div><Link to="/concept-studio">View concept overview &rarr;</Link></header>
           <div className="home-studio-grid">
@@ -124,3 +126,4 @@ export function HomePage() {
     </div>
   );
 }
+

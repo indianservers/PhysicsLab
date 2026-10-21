@@ -1,0 +1,25 @@
+{
+  "passed": [
+    "1. Undo/redo with one history entry per drag",
+    "11. Exact numeric input with validation",
+    "2. Named saved experiments persist and restore settings",
+    "3. Shared links restore the physical setup",
+    "4. Direct rotation handle updates glass and rays",
+    "5. Optional grid snapping moves actual geometry",
+    "6. Alignment guides appear between aligned glass pieces",
+    "7. Zoom and pan leave physical rays unchanged",
+    "8. Fullscreen bench enters and exits",
+    "9. Shape categories filter the library",
+    "10. Favorites and favorites-only filtering",
+    "12. Context menu duplicates and deletes glass",
+    "13. Material hover/focus information",
+    "14. Protractor measures a selected traced interface",
+    "15. Individual ray isolation and measurement",
+    "20. Colour-independent patterns and wavelength labels",
+    "17. Frozen baseline alongside a live physical comparison",
+    "19. Standalone SVG and 1600-pixel PNG exports",
+    "18. Challenges award persistent progress using actual ray results",
+    "16. Collapsible, resizable mobile controls drawer"
+  ],
+  "errors": []
+}

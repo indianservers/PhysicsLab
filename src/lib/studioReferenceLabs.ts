@@ -1,3 +1,4 @@
+import { practicals } from "../practicals/model";
 export interface ReferenceLab { title: string; route: string }
 
 // Dedicated pages corresponding to the six reference images in each studio folder.
@@ -211,6 +212,7 @@ export const referenceLabsByStudio: Record<string, ReferenceLab[]> = {
     }
   ],
   "optics": [
+    { title: "Optical Elements", route: "/optics/optical-elements" },
     {
       "title": "Reflection",
       "route": "/optics/reflection"
@@ -419,3 +421,8 @@ export const referenceLabsByStudio: Record<string, ReferenceLab[]> = {
     }
   ]
 };
+
+// Practical collection supplements the subject concept labs.
+for (const lab of practicals) referenceLabsByStudio[lab.studio].push({title:lab.title,route:`/practicals/${lab.id}`});
+referenceLabsByStudio["motion-kinematics"].push({title:"Filter Papers Falling in Air",route:"/practicals/papers"});
+
