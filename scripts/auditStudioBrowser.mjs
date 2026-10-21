@@ -3,6 +3,8 @@ import http from 'node:http';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
 import { checkStudioWorkspace, checkStudioHomes } from './checkStudioWorkspace.mjs';
+import { checkStudioVisuals } from './checkStudioVisuals.mjs';
+import { checkStudioNativeTabs } from './checkStudioNativeTabs.mjs';
 
 const root='artifacts/studio-physics-audit';
 fs.mkdirSync(root,{recursive:true});
@@ -56,6 +58,30 @@ for(const [route,chapter] of entries){
   const button=page.getByRole('button',{name:'Theory & worked examples',exact:false});
   await button.waitFor({state:'visible'});
   await page.locator('h1').first().waitFor({state:'visible'});
+  await page.waitForFunction(route=>{const node=document.querySelector('[data-studio-visual-explorer]');return node?.getAttribute('data-route')===route&&!!node.querySelector('[data-visual-model]')?.textContent;},route);
+  if(process.env.STUDIO_NATIVE_TABS_ONLY==='1'){
+   const nativeTabs=await checkStudioNativeTabs(page);
+   results.push({route,status:'pass',nativeTabs});
+   fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2));
+   continue;
+  }
+  if(process.env.STUDIO_VISUAL_INVENTORY==='1'){
+   await page.waitForFunction(route=>{const node=document.querySelector('[data-studio-visual-explorer]');return node?.getAttribute('data-route')===route&&!!node.querySelector('[data-visual-model]')?.textContent;},route);
+   const model=JSON.parse(await page.locator('[data-visual-model]').textContent());
+   results.push({route,status:'pass',model,nativeScenes:await page.locator('[data-studio-scene]').count()});
+   fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2));
+   if(results.length%12===0)console.log(`Inventoried ${results.length}/${entries.length} real model frames`);
+   continue;
+  }
+  if(process.env.STUDIO_VISUALS_ONLY==='1'){
+   const nativeTabs=await checkStudioNativeTabs(page);
+   const visuals=await checkStudioVisuals(page,route);
+   if(errors.length)throw Error(errors.join('; '));
+   results.push({route,status:'pass',nativeTabs,visuals});
+   fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2));
+   if(results.length%6===0)console.log(`Checked graph, scene and native tabs ${results.length}/${entries.length}`);
+   continue;
+  }
   if(route==='/optics/diffraction'){
    const choices=page.getByRole('group',{name:'Experiment aperture',exact:true});
    await clickVisible(choices.getByRole('button',{name:'Circular Aperture',exact:true}));
@@ -121,6 +147,7 @@ for(const [route,chapter] of entries){
    await clickVisible(page.getByRole('tab',{name:/^Observe(?:\s|$)/}).first());
   }
   const workspace=await checkStudioWorkspace(page,route);
+  const visuals=await checkStudioVisuals(page,route);
   await clickVisible(button);
   const dialog=page.getByRole('dialog',{name:/.+/});
   await dialog.waitFor({state:'visible'});
@@ -134,7 +161,7 @@ for(const [route,chapter] of entries){
   await dialog.waitFor({state:'hidden'});
   // Rendering may finish after the reader, especially for lazy WebGL scenes.
   if(errors.length)throw Error(errors.join('; '));
-  results.push({route,status:'pass',modes:modeResults,workspace});
+  results.push({route,status:'pass',modes:modeResults,workspace,visuals});
  }catch(error){results.push({route,status:'fail',error:error.message,errors:[...errors]});console.error(`FAIL ${route}: ${error.message}`);await page.keyboard.press('Escape');}
  fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2)+'\n');
  if(results.length%6===0)console.log(`Checked ${results.length}/${entries.length} routes (offset ${skip})`);

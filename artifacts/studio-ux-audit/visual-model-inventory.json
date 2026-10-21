@@ -1,0 +1,4652 @@
+[
+  {
+    "route": "/measurement/meter-scale",
+    "file": "src/pages/MeterScalePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "camera",
+      "zoom",
+      "mode",
+      "panel",
+      "mission",
+      "answer",
+      "feedback",
+      "scanning",
+      "bright",
+      "notes",
+      "root",
+      "state",
+      "update",
+      "reset",
+      "chooseMode",
+      "nextMission",
+      "check",
+      "fullscreen"
+    ],
+    "models": [
+      "state"
+    ],
+    "fields": [
+      "state.onScale",
+      "state.measured",
+      "state.right",
+      "state.decimals",
+      "state.left",
+      "state.division",
+      "state.shift"
+    ],
+    "inputKeys": [
+      "angle",
+      "division",
+      "bothEnds",
+      "length",
+      "position"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "state"
+      ],
+      "scene": [
+        "camera",
+        "zoom",
+        "bright"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/measurement/vernier-caliper",
+    "file": "src/pages/VernierCaliperPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "panel",
+      "zoom",
+      "running",
+      "canResume",
+      "bright",
+      "expanded",
+      "challenge",
+      "answer",
+      "feedback",
+      "s",
+      "update",
+      "reset",
+      "demonstrate",
+      "open",
+      "next",
+      "controls"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.jaw",
+      "s.diameter",
+      "s.contact",
+      "s.main",
+      "s.coincidence",
+      "s.corrected",
+      "s.zeroError",
+      "s.raw"
+    ],
+    "inputKeys": [
+      "objectPresent"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom",
+        "running",
+        "bright"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/measurement/micrometer",
+    "file": "src/pages/MicrometerPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "zoom",
+      "mode",
+      "panel",
+      "running",
+      "bright",
+      "challenge",
+      "answer",
+      "feedback",
+      "notes",
+      "bookmarked",
+      "search",
+      "s",
+      "update",
+      "reset",
+      "open",
+      "next",
+      "fullscreen",
+      "readouts"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.turns",
+      "s.wire",
+      "s.sleeve",
+      "s.divisions",
+      "s.thimble",
+      "s.correction",
+      "s.contact",
+      "s.corrected",
+      "s.gap",
+      "s.opening",
+      "s.raw"
+    ],
+    "inputKeys": [
+      "wirePresent",
+      "wire"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom",
+        "running",
+        "bright"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/measurement/spherometer",
+    "file": "src/pages/SpherometerPage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "zoom",
+      "running",
+      "mode",
+      "panel",
+      "notes",
+      "uncertainty",
+      "challenge",
+      "answer",
+      "feedback",
+      "scanPhase",
+      "s",
+      "radius",
+      "nearFlat",
+      "update",
+      "reset",
+      "open",
+      "next"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.flat",
+      "s.radius",
+      "s.h",
+      "s.r",
+      "s.radiusUncertainty",
+      "s.legSeparation",
+      "s.curvature",
+      "s.curvatureUncertainty"
+    ],
+    "inputKeys": [
+      "surface"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom",
+        "running"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/measurement/mass-time",
+    "file": "src/pages/MassTimePage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "records",
+      "index",
+      "time",
+      "running",
+      "complete",
+      "zoom",
+      "panel",
+      "mode",
+      "powered",
+      "tare",
+      "unit",
+      "light",
+      "notes",
+      "feedback",
+      "answer",
+      "challenge",
+      "clock",
+      "s",
+      "stats",
+      "trial",
+      "mass",
+      "f",
+      "configure",
+      "reset",
+      "play",
+      "open",
+      "balance",
+      "next"
+    ],
+    "models": [
+      "stats",
+      "trial",
+      "mass"
+    ],
+    "fields": [
+      "stats.last",
+      "stats.n",
+      "stats.mean",
+      "stats.std"
+    ],
+    "inputKeys": [
+      "trialCount",
+      "setup",
+      "seed"
+    ],
+    "modelAdapter": {
+      "updater": "configure",
+      "outputs": [
+        "stats",
+        "trial",
+        "mass"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "light"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/measurement/uncertainty",
+    "file": "src/pages/UncertaintyPage.tsx",
+    "sidebarReplaced": false,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "readings",
+      "selected",
+      "running",
+      "complete",
+      "zoom",
+      "mode",
+      "panel",
+      "level",
+      "notes",
+      "customValue",
+      "customUncertainty",
+      "feedback",
+      "challenge",
+      "answer",
+      "elapsed",
+      "index",
+      "s",
+      "stats",
+      "f",
+      "calcValue",
+      "calcUncertainty",
+      "formatted",
+      "configure",
+      "reset",
+      "play",
+      "open",
+      "next"
+    ],
+    "models": [
+      "stats"
+    ],
+    "fields": [
+      "stats.mean",
+      "stats.combined",
+      "stats.std",
+      "stats.percent",
+      "stats.sem",
+      "stats.uB"
+    ],
+    "inputKeys": [
+      "count",
+      "correctBias",
+      "model"
+    ],
+    "modelAdapter": {
+      "updater": "configure",
+      "outputs": [
+        "stats"
+      ],
+      "scene": [
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/free-body-diagrams",
+    "file": "src/pages/FreeBodyPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "motion",
+      "running",
+      "zoom",
+      "display",
+      "panel",
+      "mode",
+      "controls",
+      "feedback",
+      "answer",
+      "challenge",
+      "section",
+      "state",
+      "s",
+      "update",
+      "reset",
+      "open",
+      "next"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.fx",
+      "s.fy",
+      "s.normal",
+      "s.friction",
+      "s.netX",
+      "s.netY",
+      "s.ax",
+      "s.ay",
+      "s.mass",
+      "s.regime",
+      "s.mu"
+    ],
+    "inputKeys": [
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "motion",
+        "running",
+        "zoom",
+        "display"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/inclined-plane",
+    "file": "src/pages/InclineStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "motion",
+      "start",
+      "running",
+      "view",
+      "zoom",
+      "panel",
+      "mode",
+      "graph",
+      "slow",
+      "challenge",
+      "answer",
+      "feedback",
+      "current",
+      "f",
+      "restart",
+      "change",
+      "reset",
+      "open",
+      "next"
+    ],
+    "models": [
+      "f"
+    ],
+    "fields": [
+      "f.bumper",
+      "f.normal",
+      "f.downhill",
+      "f.friction",
+      "f.net",
+      "f.acceleration",
+      "f.regime"
+    ],
+    "inputKeys": [
+      "angle",
+      "mass",
+      "mu"
+    ],
+    "modelAdapter": {
+      "updater": "change",
+      "outputs": [
+        "f"
+      ],
+      "scene": [
+        "motion",
+        "running",
+        "view",
+        "zoom",
+        "slow"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/pulley-systems",
+    "file": "src/pages/AtwoodPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "navigate",
+      "input",
+      "motion",
+      "running",
+      "zoom",
+      "mode",
+      "panel",
+      "section",
+      "theory",
+      "values",
+      "speed",
+      "answer",
+      "feedback",
+      "challenge",
+      "current",
+      "f",
+      "restart",
+      "update",
+      "reset",
+      "open",
+      "next",
+      "subjects"
+    ],
+    "models": [
+      "f"
+    ],
+    "fields": [
+      "f.tensionA",
+      "f.tensionB",
+      "f.omega",
+      "f.acceleration",
+      "f.alpha",
+      "f.translation",
+      "f.rotation",
+      "f.potential",
+      "f.brakeTorque",
+      "f.freeAcceleration"
+    ],
+    "inputKeys": [
+      "massA",
+      "massB"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "f"
+      ],
+      "scene": [
+        "motion",
+        "running",
+        "zoom",
+        "values",
+        "speed"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/torque-levers",
+    "file": "src/pages/TorqueLeversPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "motion",
+      "running",
+      "mode",
+      "panel",
+      "zoom",
+      "labels",
+      "challenge",
+      "feedback",
+      "notes",
+      "records",
+      "current",
+      "s",
+      "horizontal",
+      "restart",
+      "update",
+      "reset",
+      "selectChallenge",
+      "open",
+      "near",
+      "challengeShape",
+      "nav"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.clockwise",
+      "s.counterclockwise",
+      "s.net",
+      "s.ratio",
+      "s.reaction",
+      "s.ideal",
+      "s.kinetic",
+      "s.potential"
+    ],
+    "inputKeys": [
+      "load",
+      "pivot",
+      "attachment",
+      "effort"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "motion",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/equilibrium-com",
+    "file": "src/pages/EquilibriumComPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "running",
+      "view",
+      "zoom",
+      "mode",
+      "panel",
+      "challenge",
+      "feedback",
+      "live",
+      "direction",
+      "s",
+      "update",
+      "reset",
+      "open",
+      "next",
+      "links",
+      "matches"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.status",
+      "s.com",
+      "s.distance",
+      "s.margin",
+      "s.netTorque",
+      "s.mass",
+      "s.minimumFriction",
+      "s.bodies"
+    ],
+    "inputKeys": [
+      "distribution",
+      "tilt",
+      "width"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "view",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/mechanics/momentum-collisions",
+    "file": "src/pages/MomentumCollisionsPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "mode",
+      "panel",
+      "challenge",
+      "feedback",
+      "expanded",
+      "trial",
+      "state",
+      "update",
+      "reset",
+      "nextChallenge",
+      "check",
+      "nav"
+    ],
+    "models": [
+      "state"
+    ],
+    "fields": [
+      "state.momentum",
+      "state.kineticChange",
+      "state.impulse1",
+      "state.impulse2"
+    ],
+    "inputKeys": [
+      "u1",
+      "u2",
+      "e",
+      "ratio"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "state"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/position-time",
+    "file": "src/pages/PositionTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "baseTime",
+      "running",
+      "speed",
+      "tangent",
+      "mode",
+      "panel",
+      "feedback",
+      "challenge",
+      "groups",
+      "fullscreen",
+      "page",
+      "state",
+      "difference",
+      "chooseTime",
+      "chooseBase",
+      "update",
+      "reset",
+      "nextChallenge",
+      "check",
+      "full",
+      "link",
+      "group"
+    ],
+    "models": [
+      "state"
+    ],
+    "fields": [
+      "state.x",
+      "state.v"
+    ],
+    "inputKeys": [
+      "window",
+      "program",
+      "x0"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "state"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "speed",
+        "tangent"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/velocity-time",
+    "file": "src/pages/VelocityTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "area",
+      "equation",
+      "trails",
+      "collapsed",
+      "mode",
+      "panel",
+      "feedback",
+      "challenge",
+      "notes",
+      "records",
+      "state",
+      "chooseTime",
+      "update",
+      "reset",
+      "preset",
+      "nextChallenge",
+      "check"
+    ],
+    "models": [
+      "state"
+    ],
+    "fields": [
+      "state.v",
+      "state.displacement",
+      "state.averageVelocity"
+    ],
+    "inputKeys": [
+      "duration",
+      "v0",
+      "acceleration"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "state"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "area",
+        "equation",
+        "trails"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/acceleration-time",
+    "file": "src/pages/AccelerationTimePage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "expanded",
+      "mode",
+      "panel",
+      "feedback",
+      "challenge",
+      "sensor",
+      "pulse",
+      "chooseTime",
+      "update",
+      "reset",
+      "preset",
+      "nextChallenge",
+      "check"
+    ],
+    "models": [
+      "pulse"
+    ],
+    "fields": [
+      "pulse.totalDeltaV",
+      "pulse.ramp"
+    ],
+    "inputKeys": [
+      "widthMs",
+      "amplitude",
+      "rate"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "pulse"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/projectile-motion",
+    "file": "src/pages/ProjectileStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "expanded",
+      "mode",
+      "panel",
+      "feedback",
+      "challenge",
+      "flight",
+      "update",
+      "reset",
+      "preset",
+      "next",
+      "check",
+      "planet"
+    ],
+    "models": [
+      "flight"
+    ],
+    "fields": [
+      "flight.timeS",
+      "flight.rangeM",
+      "flight.peakM",
+      "flight.vx",
+      "flight.vy"
+    ],
+    "inputKeys": [
+      "gravity",
+      "speed",
+      "angle"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "flight"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/relative-motion",
+    "file": "src/pages/RelativeMotionPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "mode",
+      "panel",
+      "expanded",
+      "vectors",
+      "flow",
+      "rate",
+      "feedback",
+      "challenge",
+      "solution",
+      "duration",
+      "chooseTime",
+      "update",
+      "preset",
+      "reset",
+      "next",
+      "check"
+    ],
+    "models": [
+      "solution"
+    ],
+    "fields": [
+      "solution.crossingTime",
+      "solution.drift",
+      "solution.groundSpeed"
+    ],
+    "inputKeys": [
+      "boat",
+      "current",
+      "heading"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "solution"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "vectors",
+        "flow",
+        "rate"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/circular-motion",
+    "file": "src/pages/CircularStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "overlays",
+      "mode",
+      "panel",
+      "expanded",
+      "challenge",
+      "feedback",
+      "s",
+      "update",
+      "preset",
+      "reset",
+      "next",
+      "check"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.tangentialSpeed",
+      "s.centripetalAcceleration",
+      "s.centripetalForce",
+      "s.period"
+    ],
+    "inputKeys": [
+      "radius",
+      "mass",
+      "omega"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "overlays"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/first-law-inertia",
+    "file": "src/pages/InertiaStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "t",
+      "run",
+      "zoom",
+      "mode",
+      "panel",
+      "challenge",
+      "feedback",
+      "s",
+      "v",
+      "update",
+      "reset",
+      "check"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.velocityAt",
+      "s.stopTime"
+    ],
+    "inputKeys": [
+      "drag",
+      "mass",
+      "speed"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "t",
+        "run",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/second-law-fma",
+    "file": "src/pages/SecondLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "mode",
+      "panel",
+      "zoom",
+      "feedback",
+      "state",
+      "motion",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "state",
+      "motion"
+    ],
+    "fields": [
+      "state.accelerationMps2",
+      "motion.positionM",
+      "motion.velocityMps"
+    ],
+    "inputKeys": [
+      "massKg",
+      "appliedForceN",
+      "frictionN"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "state",
+        "motion"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/third-law-pairs",
+    "file": "src/pages/ThirdLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "run",
+      "mode",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.positionA",
+      "s.positionB",
+      "s.velocityA",
+      "s.velocityB",
+      "s.input",
+      "s.impulseA",
+      "s.impulseB"
+    ],
+    "inputKeys": [
+      "massA",
+      "massB",
+      "compression"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "run",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/friction",
+    "file": "src/pages/FrictionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "run",
+      "zoom",
+      "mode",
+      "panel",
+      "open",
+      "s",
+      "update",
+      "reset",
+      "surf"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.friction",
+      "s.staticLimit",
+      "s.kinetic",
+      "s.muK"
+    ],
+    "inputKeys": [
+      "surface",
+      "normal",
+      "pull"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "run",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/tension-normal",
+    "file": "src/pages/TensionNormalStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.ta",
+      "s.tb",
+      "s.weight",
+      "s.normal"
+    ],
+    "inputKeys": [
+      "angleA",
+      "angleB",
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/multi-force-challenge",
+    "file": "src/pages/MultiForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.friction",
+      "s.gravity",
+      "s.net",
+      "s.acceleration"
+    ],
+    "inputKeys": [
+      "tension",
+      "wind",
+      "angle"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/work",
+    "file": "src/pages/WorkStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "answer",
+      "checked",
+      "challenge",
+      "travelled",
+      "running",
+      "displayInput",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.fx",
+      "s.fy",
+      "s.work"
+    ],
+    "inputKeys": [
+      "distance",
+      "force",
+      "angle"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom",
+        "running"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/kinetic-energy",
+    "file": "src/pages/KineticEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "s2",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.energy",
+      "s.momentum"
+    ],
+    "inputKeys": [
+      "mass",
+      "speed"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/potential-energy",
+    "file": "src/pages/PotentialEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.energy"
+    ],
+    "inputKeys": [
+      "height",
+      "gravity",
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/conservation-energy",
+    "file": "src/pages/ConservationEnergyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.speed",
+      "s.ke",
+      "s.pe",
+      "s.loss"
+    ],
+    "inputKeys": [
+      "height",
+      "drag",
+      "position"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/power",
+    "file": "src/pages/PowerStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.power",
+      "s.work"
+    ],
+    "inputKeys": [
+      "mass",
+      "speed",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/efficiency",
+    "file": "src/pages/EfficiencyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.pin",
+      "s.pout",
+      "s.loss",
+      "s.efficiency"
+    ],
+    "inputKeys": [
+      "voltage",
+      "load",
+      "loss"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/universal-gravity",
+    "file": "src/pages/UniversalGravityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "zoom",
+      "s",
+      "update",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.force",
+      "s.torque",
+      "s.ratio"
+    ],
+    "inputKeys": [
+      "r",
+      "m1",
+      "m2"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/gravitational-field",
+    "file": "src/pages/GravitationalFieldStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "view",
+      "panel",
+      "zoom",
+      "time",
+      "running",
+      "answer",
+      "s",
+      "probe",
+      "update",
+      "reset",
+      "open",
+      "controls"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.g",
+      "s.phi"
+    ],
+    "inputKeys": [
+      "mass",
+      "radius",
+      "density"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "view",
+        "zoom",
+        "time",
+        "running"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/gravitational-potential",
+    "file": "src/pages/GravitationalPotentialStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.V",
+      "s.energy",
+      "s.gradient"
+    ],
+    "inputKeys": [
+      "planet",
+      "moon",
+      "radius",
+      "angle"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/orbits",
+    "file": "src/pages/OrbitsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.intersectsSurface",
+      "s.period",
+      "s.e",
+      "s.radius",
+      "s.vc"
+    ],
+    "inputKeys": [
+      "speed",
+      "altitude",
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/escape-velocity",
+    "file": "src/pages/EscapeVelocityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.ve",
+      "s.residual",
+      "s.energy",
+      "s.status"
+    ],
+    "inputKeys": [
+      "radius",
+      "mass",
+      "speed"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/keplers-laws",
+    "file": "src/pages/KeplersLawsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.T",
+      "s.r",
+      "s.speed",
+      "s.area"
+    ],
+    "inputKeys": [
+      "a",
+      "e",
+      "dt"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/spring-shm",
+    "file": "src/pages/SpringShmStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.period",
+      "s.omega",
+      "s.energy",
+      "s.x",
+      "s.vel",
+      "s.acc"
+    ],
+    "inputKeys": [
+      "time",
+      "amplitude",
+      "m",
+      "k"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true,
+      "timeReplay": "Preserves inspection time; parameter-panel edits retain their native reset-to-zero behavior."
+    }
+  },
+  {
+    "route": "/motion/pendulum",
+    "file": "src/pages/PendulumStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "location",
+      "assignment",
+      "locked",
+      "input",
+      "run",
+      "samples",
+      "running",
+      "motionMode",
+      "labMode",
+      "zoom",
+      "panel",
+      "answer",
+      "challenge",
+      "trials",
+      "runRef",
+      "inputRef",
+      "solution",
+      "measured",
+      "difference",
+      "resetRun",
+      "update",
+      "reset",
+      "open",
+      "release",
+      "activeMode",
+      "dataControls"
+    ],
+    "models": [
+      "solution"
+    ],
+    "fields": [
+      "solution.T",
+      "solution.finiteT"
+    ],
+    "inputKeys": [
+      "angle",
+      "length",
+      "gravity",
+      "damping",
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "solution"
+      ],
+      "scene": [
+        "run",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/energy-exchange",
+    "file": "src/pages/EnergyExchangeStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "panel",
+      "zoom",
+      "display",
+      "answer",
+      "trials",
+      "view",
+      "s",
+      "update",
+      "open",
+      "reset",
+      "energyRows"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.T",
+      "s.w",
+      "s.initial",
+      "s.x",
+      "s.vel",
+      "s.ke",
+      "s.pe",
+      "s.total",
+      "s.phase",
+      "s.lost"
+    ],
+    "inputKeys": [
+      "time",
+      "amplitude",
+      "mass",
+      "k",
+      "damping"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom",
+        "display",
+        "view"
+      ],
+      "nativeScene": true,
+      "timeReplay": "Preserves inspection time; parameter-panel edits retain their native reset-to-zero behavior."
+    }
+  },
+  {
+    "route": "/motion/damping",
+    "file": "src/pages/DampingStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.x",
+      "s.delta",
+      "s.regime",
+      "s.Q"
+    ],
+    "inputKeys": [
+      "x0",
+      "m",
+      "b",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true,
+      "timeReplay": "Preserves inspection time; parameter-panel edits retain their native reset-to-zero behavior."
+    }
+  },
+  {
+    "route": "/motion/resonance",
+    "file": "src/pages/ResonanceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "time",
+      "running",
+      "fromRest",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.peak",
+      "s.fr",
+      "s.singular",
+      "s.phase",
+      "s.amp",
+      "s.bandwidth",
+      "s.Q"
+    ],
+    "inputKeys": [
+      "drive",
+      "b",
+      "mass",
+      "k",
+      "frequency"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "fromRest",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/coupled-oscillators",
+    "file": "src/pages/CoupledOscillatorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "notice",
+      "stage",
+      "s",
+      "update",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.energy",
+      "s.theta1",
+      "s.theta2",
+      "s.th1",
+      "s.th2",
+      "s.kinetic",
+      "s.potential",
+      "s.beat",
+      "s.w1",
+      "s.w2"
+    ],
+    "inputKeys": [
+      "time",
+      "coupling",
+      "ratio",
+      "excitation"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true,
+      "timeReplay": "Preserves inspection time; parameter-panel edits retain their native reset-to-zero behavior."
+    }
+  },
+  {
+    "route": "/motion/wave-properties",
+    "file": "src/pages/WavePropertiesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "view",
+      "zoom",
+      "probe",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "open",
+      "setProbePosition",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.lambda",
+      "s.T"
+    ],
+    "inputKeys": [
+      "amplitude",
+      "frequency",
+      "time",
+      "mode",
+      "speed"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "view",
+        "zoom",
+        "probe"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/superposition",
+    "file": "src/pages/SuperpositionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "view",
+      "zoom",
+      "fallback",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "probe",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.coherent",
+      "s.ya",
+      "s.yb",
+      "s.y",
+      "s.envelope",
+      "s.lambdaA",
+      "s.lambdaB",
+      "s.speed"
+    ],
+    "inputKeys": [
+      "x",
+      "a",
+      "b",
+      "time",
+      "medium",
+      "fa",
+      "fb",
+      "phase"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "view",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/interference",
+    "file": "src/pages/InterferenceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "s",
+      "update",
+      "probe",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.r1",
+      "s.r2",
+      "s.dr",
+      "s.lambda",
+      "s.I"
+    ],
+    "inputKeys": [
+      "probeZ",
+      "distance",
+      "frequency",
+      "phase",
+      "medium",
+      "probe",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/standing-waves",
+    "file": "src/pages/StandingWavesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "locked",
+      "input",
+      "running",
+      "speed",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "fullscreen",
+      "notice",
+      "stage",
+      "s",
+      "rate",
+      "update",
+      "reset",
+      "open",
+      "toggleFullscreen"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.freq",
+      "s.nodes",
+      "s.lambda",
+      "s.velocity",
+      "s.energy"
+    ],
+    "inputKeys": [
+      "time",
+      "harmonic",
+      "tension",
+      "length"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "speed",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/sound-spectrum",
+    "file": "src/pages/SoundSpectrumStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "expanded",
+      "panel",
+      "answer",
+      "trials",
+      "slow",
+      "s",
+      "noise",
+      "rate",
+      "analysis",
+      "profileInput",
+      "update",
+      "reset",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.source",
+      "s.level",
+      "s.thd",
+      "s.wavelength",
+      "s.period"
+    ],
+    "inputKeys": [
+      "frequency",
+      "gain",
+      "source",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom",
+        "slow"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/motion/doppler-effect",
+    "file": "src/pages/DopplerEffectStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "trials",
+      "slow",
+      "s",
+      "rate",
+      "ended",
+      "update",
+      "reset",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.trackEnd",
+      "s.app",
+      "s.rec",
+      "s.la",
+      "s.lr",
+      "s.observed",
+      "s.pressure"
+    ],
+    "inputKeys": [
+      "time",
+      "frequency",
+      "source",
+      "observer"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom",
+        "slow"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/reflection",
+    "file": "src/pages/ReflectionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "running",
+      "zoom",
+      "primary",
+      "secondary",
+      "panel",
+      "answer",
+      "records",
+      "s",
+      "trials",
+      "update",
+      "reset",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.incident",
+      "s.reflected",
+      "s.verified",
+      "s.error"
+    ],
+    "inputKeys": [
+      "incident",
+      "mirror",
+      "rays",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom",
+        "primary",
+        "secondary"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/refraction",
+    "file": "src/pages/RefractionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "panel",
+      "custom",
+      "answer",
+      "records",
+      "s",
+      "update",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.trace",
+      "s.angleA",
+      "s.angleB",
+      "s.speed1",
+      "s.speed2",
+      "s.criticalAngle"
+    ],
+    "inputKeys": [
+      "n1",
+      "n2",
+      "angle"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/lenses",
+    "file": "src/pages/LensesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "panel",
+      "time",
+      "running",
+      "zoom",
+      "visibility",
+      "answer",
+      "records",
+      "s",
+      "update",
+      "open",
+      "reset",
+      "nature"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.atInfinity",
+      "s.real",
+      "s.rays",
+      "s.kind",
+      "s.orientation",
+      "s.size",
+      "s.di",
+      "s.m",
+      "s.hi",
+      "s.focalMeters"
+    ],
+    "inputKeys": [
+      "type",
+      "focal",
+      "object"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "visibility"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/mirrors",
+    "file": "src/pages/MirrorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "records",
+      "visibility",
+      "s",
+      "nature",
+      "update",
+      "reset",
+      "open"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.atInfinity",
+      "s.real",
+      "s.f",
+      "s.di",
+      "s.m",
+      "s.hi"
+    ],
+    "inputKeys": [
+      "type",
+      "radius",
+      "object"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "visibility"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/interference",
+    "file": "src/pages/OpticsInterferenceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "view",
+      "time",
+      "running",
+      "zoom",
+      "panel",
+      "answer",
+      "records",
+      "s",
+      "detector",
+      "update",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.sample",
+      "s.mode",
+      "s.observedSpacing",
+      "s.spacing",
+      "s.max",
+      "s.min",
+      "s.I"
+    ],
+    "inputKeys": [
+      "wavelength",
+      "slit",
+      "screen",
+      "mode",
+      "position"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "view",
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/optics/diffraction",
+    "file": "src/pages/DiffractionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "camera",
+      "level",
+      "panel",
+      "answer",
+      "records",
+      "s",
+      "detector",
+      "update",
+      "open",
+      "reset",
+      "circle",
+      "quiz"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.optics",
+      "s.input",
+      "s.max",
+      "s.profile",
+      "s.sample",
+      "s.farFieldReliable",
+      "s.model",
+      "s.fresnelNumber",
+      "s.exactWidth",
+      "s.angle",
+      "s.I"
+    ],
+    "inputKeys": [
+      "width",
+      "aperture",
+      "wavelength",
+      "screen",
+      "propagation",
+      "position"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "camera"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/coulomb-force",
+    "file": "src/pages/CoulombForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "visibility",
+      "panel",
+      "answer",
+      "records",
+      "fullscreenError",
+      "stage",
+      "s",
+      "lines",
+      "contours",
+      "update",
+      "open",
+      "reset",
+      "toggle",
+      "fullscreen"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.r",
+      "s.mag",
+      "s.q1",
+      "s.q2",
+      "s.forceA",
+      "s.forceB",
+      "s.fieldAX",
+      "s.fieldA",
+      "s.fieldBX",
+      "s.fieldB"
+    ],
+    "inputKeys": [
+      "q1",
+      "q2",
+      "r"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "visibility"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/electric-field",
+    "file": "src/pages/ElectricFieldStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "search",
+      "locked",
+      "input",
+      "time",
+      "running",
+      "zoom",
+      "showVector",
+      "openPanels",
+      "panel",
+      "answer",
+      "records",
+      "s",
+      "sourceState",
+      "lines",
+      "update",
+      "move",
+      "open",
+      "reset"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.defined",
+      "s.field",
+      "s.coincident",
+      "s.sources",
+      "s.probe",
+      "s.hasDepth",
+      "s.ex",
+      "s.ey",
+      "s.ez",
+      "s.mag",
+      "s.angle",
+      "s.elevation",
+      "s.contributions"
+    ],
+    "inputKeys": [
+      "q1",
+      "q2",
+      "x1",
+      "y1",
+      "z1",
+      "x2",
+      "y2",
+      "z2",
+      "density"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/electric-potential",
+    "file": "src/pages/ElectricPotentialStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "dialog",
+      "answer",
+      "running",
+      "zoom",
+      "layers",
+      "records",
+      "notice",
+      "light",
+      "scanPhase",
+      "stage",
+      "location",
+      "assignment",
+      "locked",
+      "s",
+      "update",
+      "reset",
+      "exportData",
+      "fullscreen"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.input",
+      "s.sources",
+      "s.V",
+      "s.energy",
+      "s.gradient"
+    ],
+    "inputKeys": [
+      "layout",
+      "reference",
+      "z"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "zoom",
+        "layers",
+        "light"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/current",
+    "file": "src/pages/CurrentStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "running",
+      "displacement",
+      "time",
+      "zoom",
+      "panel",
+      "answer",
+      "records",
+      "s",
+      "live",
+      "root",
+      "update",
+      "reset",
+      "exportCSV",
+      "radius",
+      "points",
+      "maxI",
+      "crossColor"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.vd",
+      "s.R",
+      "s.J",
+      "s.I",
+      "s.voltage",
+      "s.power"
+    ],
+    "inputKeys": [
+      "voltage",
+      "diameter",
+      "temperature"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "displacement",
+        "time",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/circuits",
+    "file": "src/pages/CircuitsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "running",
+      "charge",
+      "time",
+      "zoom",
+      "challenge",
+      "answer",
+      "records",
+      "s",
+      "live",
+      "update",
+      "reset",
+      "record",
+      "exportCSV",
+      "reading"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.i1",
+      "s.i2",
+      "s.total",
+      "s.pR1",
+      "s.pR2",
+      "s.pL1",
+      "s.pL2",
+      "s.power",
+      "s.voltage",
+      "s.VA",
+      "s.VB",
+      "s.VAB",
+      "s.switchDrop"
+    ],
+    "inputKeys": [
+      "voltage",
+      "r1",
+      "r2",
+      "closed"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "charge",
+        "time",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electricity/capacitors",
+    "file": "src/pages/CapacitorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "mode",
+      "graph",
+      "equation",
+      "custom",
+      "zoom",
+      "topic",
+      "challenge",
+      "answer",
+      "prediction",
+      "records",
+      "search",
+      "locked",
+      "s",
+      "limit",
+      "displayTime",
+      "update",
+      "reset",
+      "exportCSV",
+      "changeTopic"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.tau",
+      "s.time",
+      "s.energyInfinity",
+      "s.input",
+      "s.R",
+      "s.chargeInfinity",
+      "s.capacitorVoltage",
+      "s.current",
+      "s.energy",
+      "s.charge",
+      "s.E",
+      "s.uniformApproximation",
+      "s.C",
+      "s.resistorHeat",
+      "s.sourceWork"
+    ],
+    "inputKeys": [
+      "voltage",
+      "area",
+      "distance",
+      "er",
+      "resistance"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "equation",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/field-lines",
+    "file": "src/pages/MagneticFieldLinesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "probe",
+      "cursor",
+      "layers",
+      "mode",
+      "running",
+      "zoom",
+      "challenge",
+      "answer",
+      "records",
+      "stage",
+      "scanPhase",
+      "field",
+      "cursorField",
+      "profile",
+      "vectorMap",
+      "update",
+      "moveProbe",
+      "reset",
+      "togglePlay",
+      "record",
+      "exportCSV",
+      "maxB",
+      "path"
+    ],
+    "models": [
+      "field"
+    ],
+    "fields": [
+      "field.x",
+      "field.y",
+      "field.z",
+      "field.B",
+      "field.angle",
+      "field.csv"
+    ],
+    "inputKeys": [
+      "separation",
+      "left",
+      "right",
+      "probe"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "field"
+      ],
+      "scene": [
+        "probe",
+        "cursor",
+        "layers",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/lorentz-force",
+    "file": "src/pages/LorentzForceStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "mode",
+      "zoom",
+      "view",
+      "webglFallback",
+      "challenge",
+      "answer",
+      "records",
+      "s",
+      "update",
+      "reset",
+      "record",
+      "exportCSV",
+      "row",
+      "particleX",
+      "particleY"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.q",
+      "s.m",
+      "s.speed",
+      "s.B",
+      "s.x",
+      "s.z",
+      "s.vx",
+      "s.vz",
+      "s.fx",
+      "s.fz",
+      "s.r",
+      "s.T",
+      "s.energy",
+      "s.centerZ",
+      "s.time",
+      "s.F",
+      "s.freq"
+    ],
+    "inputKeys": [
+      "sign",
+      "speed",
+      "B"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "view"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/current-wire",
+    "file": "src/pages/CurrentWireStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "baseAngle",
+      "running",
+      "zoom",
+      "mode",
+      "answer",
+      "challenge",
+      "records",
+      "angle",
+      "s",
+      "update",
+      "probe",
+      "reset",
+      "record",
+      "exportCSV"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.x",
+      "s.y",
+      "s.r",
+      "s.bx",
+      "s.by",
+      "s.B",
+      "s.angle"
+    ],
+    "inputKeys": [
+      "current",
+      "direction",
+      "radius"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "baseAngle",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/solenoids",
+    "file": "src/pages/SolenoidStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "phase",
+      "time",
+      "running",
+      "zoom",
+      "view",
+      "fallback",
+      "mode",
+      "challenge",
+      "challengeIndex",
+      "answer",
+      "records",
+      "fullscreen",
+      "main",
+      "scanPhase",
+      "x",
+      "s",
+      "core",
+      "update",
+      "probe",
+      "reset",
+      "record",
+      "exportCSV",
+      "row",
+      "check"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.centerB",
+      "s.B",
+      "s.M",
+      "s.muEffective",
+      "s.direction"
+    ],
+    "inputKeys": [
+      "mu",
+      "turns",
+      "current"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "phase",
+        "time",
+        "running",
+        "zoom",
+        "view"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/induction",
+    "file": "src/pages/InductionStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "start",
+      "polarity",
+      "hold",
+      "running",
+      "clock",
+      "zoom",
+      "mode",
+      "challenge",
+      "answer",
+      "records",
+      "frame",
+      "series",
+      "meterScale",
+      "stop",
+      "setClock",
+      "trial",
+      "update",
+      "place",
+      "reset",
+      "play",
+      "record",
+      "exportCSV"
+    ],
+    "models": [
+      "frame"
+    ],
+    "fields": [
+      "frame.elapsed",
+      "frame.inducedDirection",
+      "frame.fluxRate",
+      "frame.finished",
+      "frame.x",
+      "frame.velocity",
+      "frame.moment",
+      "frame.flux",
+      "frame.gradient",
+      "frame.emf",
+      "frame.current",
+      "frame.force",
+      "frame.power",
+      "frame.duration"
+    ],
+    "inputKeys": [
+      "speed",
+      "turns",
+      "direction"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "frame"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/magnetism/electromagnets",
+    "file": "src/pages/ElectromagnetsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "time",
+      "steady",
+      "running",
+      "zoom",
+      "light",
+      "full",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "main",
+      "clock",
+      "trial",
+      "frame",
+      "stop",
+      "update",
+      "play",
+      "reset",
+      "record",
+      "download"
+    ],
+    "models": [
+      "frame"
+    ],
+    "fields": [
+      "frame.settled",
+      "frame.time",
+      "frame.current",
+      "frame.g",
+      "frame.B",
+      "frame.H",
+      "frame.sat",
+      "frame.force",
+      "frame.power",
+      "frame.resistance",
+      "frame.linkage",
+      "frame.energy",
+      "frame.sourceWork",
+      "frame.heat",
+      "frame.voltage"
+    ],
+    "inputKeys": [
+      "current",
+      "turns",
+      "gap"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "frame"
+      ],
+      "scene": [
+        "time",
+        "steady",
+        "running",
+        "zoom",
+        "light"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/semiconductors",
+    "file": "src/pages/SemiconductorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "running",
+      "time",
+      "zoom",
+      "cell",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "clock",
+      "s",
+      "wave",
+      "stop",
+      "update",
+      "reset",
+      "play",
+      "record",
+      "download"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.fermi",
+      "s.gap",
+      "s.temperature",
+      "s.nSI",
+      "s.pSI",
+      "s.sigma",
+      "s.ionizedFraction",
+      "s.muN",
+      "s.muP",
+      "s.n",
+      "s.p",
+      "s.dopantFraction"
+    ],
+    "inputKeys": [
+      "temperature",
+      "type",
+      "doping"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "running",
+        "time",
+        "zoom",
+        "cell"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/diodes",
+    "file": "src/pages/DiodesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "steady",
+      "time",
+      "running",
+      "zoom",
+      "live",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "clock",
+      "trial",
+      "frame",
+      "stop",
+      "update",
+      "reset",
+      "play",
+      "record",
+      "download"
+    ],
+    "models": [
+      "frame"
+    ],
+    "fields": [
+      "frame.current",
+      "frame.steady",
+      "frame.time",
+      "frame.diodeVoltage",
+      "frame.power",
+      "frame.finished",
+      "frame.sourceVoltage",
+      "frame.junctionVoltage",
+      "frame.circuitCurrent",
+      "frame.resistorPower",
+      "frame.sourcePower",
+      "frame.charge",
+      "frame.sourceEnergy",
+      "frame.diodeEnergy",
+      "frame.resistorEnergy",
+      "frame.opticalPower",
+      "frame.model",
+      "frame.powerBalance",
+      "frame.kvl"
+    ],
+    "inputKeys": [
+      "kind",
+      "material",
+      "voltage",
+      "resistance"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "frame"
+      ],
+      "scene": [
+        "steady",
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/transistors",
+    "file": "src/pages/TransistorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "mode",
+      "time",
+      "steady",
+      "running",
+      "zoom",
+      "light",
+      "full",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "clock",
+      "main",
+      "trial",
+      "frame",
+      "stop",
+      "update",
+      "reset",
+      "play",
+      "fullscreen",
+      "openChallenge",
+      "record",
+      "download"
+    ],
+    "models": [
+      "frame"
+    ],
+    "fields": [
+      "frame.ic",
+      "frame.vce",
+      "frame.fixture",
+      "frame.vcc",
+      "frame.rc",
+      "frame.controlVoltage",
+      "frame.baseCurrent",
+      "frame.finished",
+      "frame.time",
+      "frame.vbe",
+      "frame.vbc",
+      "frame.ie",
+      "frame.beta",
+      "frame.vbb",
+      "frame.power",
+      "frame.rcPower",
+      "frame.rbPower",
+      "frame.collectorSourcePower",
+      "frame.baseSourcePower",
+      "frame.qc",
+      "frame.qb",
+      "frame.sourceEnergy",
+      "frame.deviceEnergy",
+      "frame.resistorEnergy",
+      "frame.region",
+      "frame.powerBalance",
+      "frame.kcl"
+    ],
+    "inputKeys": [
+      "fixture",
+      "vce",
+      "rc",
+      "ib"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "frame"
+      ],
+      "scene": [
+        "time",
+        "steady",
+        "running",
+        "zoom",
+        "light"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/amplifiers",
+    "file": "src/pages/AmplifiersStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "mode",
+      "theory",
+      "zoom",
+      "light",
+      "full",
+      "settings",
+      "cursors",
+      "measure",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "clock",
+      "main",
+      "settingButton",
+      "cycle",
+      "frame",
+      "stop",
+      "update",
+      "reset",
+      "play",
+      "row",
+      "record",
+      "download",
+      "action",
+      "openChallenge",
+      "tabs"
+    ],
+    "models": [
+      "frame",
+      "cycle"
+    ],
+    "fields": [
+      "frame.time",
+      "frame.inputAC",
+      "frame.outputAC",
+      "frame.sourceAC",
+      "frame.vb",
+      "frame.ve",
+      "frame.vc",
+      "frame.ic",
+      "frame.ie",
+      "frame.ib",
+      "frame.pDevice",
+      "frame.pRC",
+      "frame.pRE",
+      "frame.pRB",
+      "frame.pRG",
+      "frame.pCollector",
+      "frame.pBias",
+      "frame.pDrive",
+      "frame.pClamp",
+      "frame.powerBalance"
+    ],
+    "inputKeys": [
+      "gain"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "frame",
+        "cycle"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom",
+        "light"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/logic-gates",
+    "file": "src/pages/LogicGatesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "time",
+      "running",
+      "mode",
+      "zoom",
+      "challenge",
+      "answer",
+      "grade",
+      "records",
+      "clock",
+      "trial",
+      "s",
+      "stop",
+      "update",
+      "toggle",
+      "reset",
+      "play",
+      "rows",
+      "row",
+      "record",
+      "download"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.a",
+      "s.b",
+      "s.y",
+      "s.aVolts",
+      "s.bVolts",
+      "s.yVolts",
+      "s.na",
+      "s.ab",
+      "s.settled",
+      "s.pending",
+      "s.finished"
+    ],
+    "inputKeys": [
+      "gate"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [
+        "time",
+        "running",
+        "zoom"
+      ],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/electronics/sensors",
+    "file": "src/pages/SensorsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.resistance",
+      "s.voltage",
+      "s.temp"
+    ],
+    "inputKeys": [
+      "type",
+      "stimulus",
+      "rate"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/temperature",
+    "file": "src/pages/TemperatureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.ka",
+      "s.kb",
+      "s.delta",
+      "s.eq"
+    ],
+    "inputKeys": [
+      "a",
+      "b",
+      "particles"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/heat-transfer",
+    "file": "src/pages/HeatTransferStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.hot",
+      "s.flux",
+      "s.energy",
+      "s.cold",
+      "s.rate"
+    ],
+    "inputKeys": [
+      "material",
+      "delta",
+      "time"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/gas-laws",
+    "file": "src/pages/GasLawsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.P",
+      "s.V"
+    ],
+    "inputKeys": [
+      "load",
+      "n",
+      "T"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/first-law",
+    "file": "src/pages/FirstLawStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.V",
+      "s.V0",
+      "s.dU",
+      "s.Q",
+      "s.W",
+      "s.T",
+      "s.pressure"
+    ],
+    "inputKeys": [
+      "process",
+      "work",
+      "Q",
+      "P"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/entropy",
+    "file": "src/pages/EntropyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.t1",
+      "s.N1",
+      "s.t2",
+      "s.N2",
+      "s.S"
+    ],
+    "inputKeys": [
+      "mixed",
+      "count",
+      "partition",
+      "deltaT"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/thermodynamics/heat-engines",
+    "file": "src/pages/HeatEnginesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.eta",
+      "s.work",
+      "s.qc",
+      "s.pressure",
+      "s.volume"
+    ],
+    "inputKeys": [
+      "hot",
+      "cold",
+      "ratio"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/density-pressure",
+    "file": "src/pages/DensityPressureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.rho",
+      "s.pressure"
+    ],
+    "inputKeys": [
+      "fluid",
+      "depth",
+      "g"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/hydrostatics",
+    "file": "src/pages/HydrostaticsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.rho",
+      "s.pressure"
+    ],
+    "inputKeys": [
+      "fluid",
+      "depth",
+      "g"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/buoyancy",
+    "file": "src/pages/BuoyancyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.fb",
+      "s.apparent",
+      "s.weight",
+      "s.V",
+      "s.rho"
+    ],
+    "inputKeys": [
+      "fraction",
+      "density",
+      "fluid"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/continuity",
+    "file": "src/pages/ContinuityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.v1",
+      "s.v2",
+      "s.mass"
+    ],
+    "inputKeys": [
+      "a1",
+      "a2",
+      "q"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/bernoulli",
+    "file": "src/pages/BernoulliStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.p1",
+      "s.p2",
+      "s.v1",
+      "s.v2",
+      "s.drop",
+      "s.ratio",
+      "s.q",
+      "s.reynolds"
+    ],
+    "inputKeys": [
+      "speed",
+      "throat",
+      "rho"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/fluid-mechanics/viscosity",
+    "file": "src/pages/ViscosityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.vt",
+      "s.mu",
+      "s.drag",
+      "s.re"
+    ],
+    "inputKeys": [
+      "radius",
+      "fluid",
+      "temp"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/quantum-ideas",
+    "file": "src/pages/QuantumIdeasStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update",
+      "wave"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.visibility",
+      "s.phase",
+      "s.mean",
+      "s.spread",
+      "s.transmissionAtProbe"
+    ],
+    "inputKeys": [
+      "sigma",
+      "barrier",
+      "measurement"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/photoelectric-effect",
+    "file": "src/pages/PhotoelectricStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.k",
+      "s.current",
+      "s.threshold",
+      "s.stop"
+    ],
+    "inputKeys": [
+      "freq",
+      "intensity",
+      "metal"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/matter-waves",
+    "file": "src/pages/MatterWavesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.radius",
+      "s.lambda",
+      "s.angle"
+    ],
+    "inputKeys": [
+      "width",
+      "energy",
+      "spacing"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/atomic-spectra",
+    "file": "src/pages/AtomicSpectraStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.lambda",
+      "s.energy",
+      "s.series"
+    ],
+    "inputKeys": [
+      "ni",
+      "nf",
+      "element"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/nuclear-structure",
+    "file": "src/pages/NuclearStructureStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update",
+      "balls"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.A",
+      "s.be",
+      "s.per",
+      "s.massDefect",
+      "s.modelReliable"
+    ],
+    "inputKeys": [
+      "z",
+      "n"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/modern-physics/radioactivity",
+    "file": "src/pages/RadioactivityStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.count",
+      "s.n",
+      "s.half",
+      "s.type"
+    ],
+    "inputKeys": [
+      "time",
+      "isotope",
+      "shield",
+      "thickness"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/solar-system",
+    "file": "src/pages/SolarSystemStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.angle",
+      "s.a",
+      "s.period",
+      "s.vel"
+    ],
+    "inputKeys": [
+      "planet",
+      "time",
+      "scale"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/stellar-life",
+    "file": "src/pages/StellarLifeStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.lum",
+      "s.temp",
+      "s.life",
+      "s.stage"
+    ],
+    "inputKeys": [
+      "mass"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/spectroscopy",
+    "file": "src/pages/SpectroscopyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.name",
+      "s.temp",
+      "s.velocity",
+      "s.type"
+    ],
+    "inputKeys": [
+      "star",
+      "range",
+      "redshift"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/galaxies",
+    "file": "src/pages/GalaxiesStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.speed",
+      "s.mass"
+    ],
+    "inputKeys": [
+      "radius",
+      "type",
+      "halo"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/cosmology",
+    "file": "src/pages/CosmologyStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.z",
+      "s.look",
+      "s.velocity",
+      "s.dist"
+    ],
+    "inputKeys": [
+      "epoch",
+      "h0",
+      "omega"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  },
+  {
+    "route": "/astrophysics/exoplanets",
+    "file": "src/pages/ExoplanetsStudioPage.tsx",
+    "sidebarReplaced": true,
+    "sidebarScoped": true,
+    "variables": [
+      "input",
+      "panel",
+      "s",
+      "update"
+    ],
+    "models": [
+      "s"
+    ],
+    "fields": [
+      "s.impact",
+      "s.depth",
+      "s.mass",
+      "s.temp",
+      "s.habitable"
+    ],
+    "inputKeys": [
+      "radius",
+      "period",
+      "inclination"
+    ],
+    "modelAdapter": {
+      "updater": "update",
+      "outputs": [
+        "s"
+      ],
+      "scene": [],
+      "nativeScene": true
+    }
+  }
+]

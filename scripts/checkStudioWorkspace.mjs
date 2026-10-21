@@ -1,4 +1,10 @@
 import assert from 'node:assert/strict';
+import { build } from 'esbuild';
+
+async function registeredLabs() {
+ const bundle=await build({entryPoints:['src/lib/studioReferenceLabs.ts'],bundle:true,platform:'node',format:'esm',write:false});
+ return (await import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].text).toString('base64'))).referenceLabsByStudio;
+}
 
 export async function checkStudioWorkspace(page,route) {
  const launcher=page.getByRole('button',{name:'Lab notebook & tools',exact:false});
@@ -47,12 +53,13 @@ export async function checkStudioWorkspace(page,route) {
 
 export async function checkStudioHomes(page,chapters) {
  const homes=[];
+ const registry=await registeredLabs();
  for(const studio of new Set(Object.values(chapters).map(c=>c.studio))){
   const route='/concept-studio/'+studio;await page.evaluate(route=>{history.pushState({},'',route);dispatchEvent(new PopStateEvent('popstate'));},route);
   const home=page.locator('.csh-labs-only');await home.waitFor();
-  const expected=Object.entries(chapters).filter(([,c])=>c.studio===studio).map(([r])=>r).sort();
-  const links=await home.locator('a').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')).sort());assert.deepEqual(links,expected,'Studio home must contain only its six lab links');
-  const search=home.getByRole('searchbox');await search.fill('no-matching-lab-xyz');assert.equal(await home.locator('.csh-lab-card').count(),0);await search.fill('');assert.equal(await home.locator('.csh-lab-card').count(),6);homes.push({route,status:'pass',labLinks:links.length});
+  const expected=registry[studio].map(lab=>lab.route).sort();
+  const links=await home.locator('a').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')).sort());assert.deepEqual(links,expected,'Studio home must contain only labs registered to this studio');
+  const search=home.getByRole('searchbox');await search.fill('no-matching-lab-xyz');assert.equal(await home.locator('.csh-lab-card').count(),0);await search.fill('');assert.equal(await home.locator('.csh-lab-card').count(),expected.length);homes.push({route,status:'pass',labLinks:links.length});
  }
  return homes;
 }

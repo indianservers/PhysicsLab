@@ -1,0 +1,268 @@
+{
+  "routes": 8,
+  "results": [
+    {
+      "route": "/magnetism/current-wire",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Current wire modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/solenoids",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Solenoid modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/induction",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Induction modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/electromagnets",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/semiconductors",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/diodes",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Diode model",
+          "tabs": [
+            "PN Diode",
+            "Zener Diode",
+            "LED",
+            "Schottky"
+          ]
+        },
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/transistors",
+      "status": "pass",
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/atomic-spectra",
+      "status": "pass",
+      "nativeTabs": [],
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 4,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    }
+  ]
+}

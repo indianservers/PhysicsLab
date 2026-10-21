@@ -1,0 +1,51 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-10-21T10:01:22.976080+00:00",
+  "scope": "96 subject labs across 16 studios; supplementary practical work is separate",
+  "labRoutes": 96,
+  "studioHomes": 16,
+  "notebookTabs": 480,
+  "nativeLearningModes": 288,
+  "graphSceneTabs": 288,
+  "nativeTabGroups": 18,
+  "nativeTabInteractions": 70,
+  "numericControlRoundTrips": 95,
+  "mobileWidth": 390,
+  "solverSweeps": 96,
+  "exactSolverCursorReplays": 96,
+  "sceneResetsPreservingPhysics": 96,
+  "CSVandSVGExports": 96,
+  "studioPhysicsAssertions": 264,
+  "existingPhysicsTests": 581,
+  "plotSpectrumAssertions": 75,
+  "adapterChecks": 7,
+  "numericInputAssertions": 6,
+  "sourcePagesScanned": 144,
+  "rechecks": {
+    "oscillatorFullWorkflows": [
+      "/motion/spring-shm",
+      "/motion/energy-exchange",
+      "/motion/damping",
+      "/motion/coupled-oscillators"
+    ],
+    "nativeContentAndDiscreteConstraints": [
+      "/magnetism/current-wire",
+      "/magnetism/solenoids",
+      "/magnetism/induction",
+      "/magnetism/electromagnets",
+      "/electronics/semiconductors",
+      "/electronics/diodes",
+      "/electronics/transistors",
+      "/modern-physics/atomic-spectra"
+    ],
+    "nestedSVGViewport": [
+      "/motion/position-time",
+      "/motion/energy-exchange",
+      "/optics/reflection"
+    ]
+  },
+  "typeScript": "pass",
+  "productionBuild": "pass",
+  "physicsVerification": "264 assertions on the isolated staged release",
+  "viewportComposition": "Native transforms preserved; nested SVG assets magnified once; three regression routes passed"
+}

@@ -53,19 +53,44 @@ unreadable/empty WebGL buffers fall back to the labeled comparison table.
 Previews stay in the current session and notebook exports; local persistence omits
 image data so it does not crowd out saved notes for other labs.
 
-The shared layer does not redraw every domain-specific graph or add a new plot
-cursor to every visualization. Existing plot interactions remain; the shared
-inspector provides a textual evidence alternative. Optional challenge feedback
-provides reference reasoning and separate saved self-assessment of result/units
-and reasoning/assumptions rather than automatically grading free-form prose.
-These distinctions matter when reviewing the original proposals: shared coverage
-is not a claim of 2,880 independently implemented bespoke scene changes.
+## Graph and native scene completion
+
+All 96 subject labs now publish typed snapshots from their actual production
+solver into Graph & scene tools, available on the primary apparatus viewport.
+Each lab has explicit physical axis labels and units. The response plot supports
+bounded sweeps, cursor replay, a point table, immutable baseline traces, zoom,
+pan, logarithmic axes, and CSV/SVG/JSON export. JSON includes original input and
+scene snapshots, model assumptions and a solver source fingerprint.
+
+A sweep holds other physical inputs fixed and restores the original input and
+playback state. Cursor selection replays the exact saved setting through the
+native model; an undo action restores the pre-inspection setting. Changing a held
+parameter starts a new current trace. Undefined outputs remain gaps, and paths
+break at physical branch changes. Logic states and integer quantum/nucleon
+settings are shown as discrete points without interpolating impossible states.
+These curves are sampled solver evaluations, not independent measurements.
+
+Every primary native scene supports keyboard pan/magnification, enlarged view,
+a reset restricted to presentation settings, and optional native grid/trail layers
+where authored. View actions preserve experiment inputs and physical units.
+Viewport magnification applies once to outer graphics; nested SVG artwork retains its native placement.
+Native camera controls, specialized graphs and apparatus interactions remain
+available. The atomic spectrum scene now uses the same transition solver for its
+energy levels, selected arrow and wavelength positions; it labels schematic
+level spacing and wavelengths outside the visible window explicitly.
+
+This completes the graph and scene interaction layer across the 96-lab roadmap.
+It does not claim 2,880 independently built bespoke visualizations. Supplementary
+practical collections have separate implementations and verification suites.
 
 ## Verification artifacts
 
 - `artifacts/studio-physics-audit/results.json`: physics-model and theory checks.
-- `artifacts/studio-physics-audit/browser-results.json`: final lab-browser results.
-- `artifacts/studio-ux-audit/studio-homes.json`: six-link/search checks for 16 homes.
+- `artifacts/studio-ux-audit/visual-browser-results.json`: combined learning, graph and native-scene browser results.
+- `artifacts/studio-ux-audit/visual-release-browser-results.json`: graph, scene and native-tab checks against the isolated staged release.
+- `artifacts/studio-ux-audit/visual-math-tests.json`: graph domains, singularities, units, spectrum transitions and solver fingerprints.
+- `artifacts/studio-ux-audit/visual-adapter-tests.json`: development lifecycle, exact replay, clock ordering and assignment locks.
+- `artifacts/studio-ux-audit/studio-homes.json`: studio-scoped lab-link/search checks for 16 homes.
 - `artifacts/studio-physics-audit/page-interactions.json`: source interaction scan.
 - `artifacts/studio-ux-audit/*-mobile.png`: representative notebook screenshots.
 
@@ -81,13 +106,15 @@ verification, not a claim of screen-reader or WCAG conformance certification.
 - 96/96 lab routes passed after the full sequential run and focused rechecks.
 - 16/16 studio homes passed six-link and search checks.
 - 480 notebook-tab and 288 native learning-mode checks passed.
-- All 96 notebook layouts checked at 390 px; 95 numeric control round trips.
+- 70 native ARIA tab interactions checked for selection, visible content, arrow navigation and focus; seven Observe associations and two keyboard handlers corrected.
+- All 96 notebook and graph-panel layouts checked at 390 px; 95 notebook numeric control round trips.
+- 288 graph/scene tabs; all 96 real-solver sweeps, cursor replays, camera resets and CSV/SVG exports checked.
 - Three representative labs additionally checked visual captures and self-assessment.
-- 264 studio physics assertions, 581 existing physics tests and six focused numeric-input assertions passed.
+- 264 studio physics assertions, 581 existing physics tests, 75 graph/spectrum assertions, seven adapter checks and six numeric-input assertions passed.
 - 144 page components scanned without dead-button/Observe-handler findings.
 - TypeScript and the final Vite/PWA production build passed. The build retains
   the existing large-bundle warning.
 
 The merged per-route report identifies which results came from focused rechecks;
-its summary is `artifacts/studio-ux-audit/summary.json`. Changes are local and have
-not been deployed.
+the latest graph/scene summary is `artifacts/studio-ux-audit/visual-summary.json`.
+A Git push does not independently confirm the deployed website has refreshed.

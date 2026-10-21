@@ -1,3 +1,4 @@
+import {useStudioVisualModel} from '../lib/studioVisualModel';
 import {StudioLabNav} from '../components/StudioLabNav';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -20,10 +21,11 @@ export default function GravitationalFieldStudioPage() {
  const reset=()=>{setInput(FIELD_DEFAULTS);setView("Field View");setZoom(1);setTime(0);setRunning(false);setAnswer("");setPanel(null)};
  const open=(name:string)=>{setRunning(false);setAnswer("");setPanel(name==="Observe"?null:name)};
  const controls=<><Control label="Planet Mass M" value={input.mass} min={1e23} max={1e26} unit="kg" logarithmic onChange={mass=>update({mass})}/><Control label="Probe Radius r" value={input.radius} min={1e6} max={1e9} unit="m" logarithmic onChange={radius=>update({radius})}/><Control label="Vector Density" value={input.density} min={5} max={40} unit="" onChange={density=>update({density})}/></>;
- return <div className="frs-page gravitational-field-page" data-ui-theme="dark"><aside className="frs-side"><Link className="frs-brand" to="/concept-studio/gravitation">⚛ PHYSICS STUDIO</Link><StudioLabNav studioId="gravitation"/></aside><main id="content" className="frs-main gfield-main">
+ useStudioVisualModel({route:"/motion/gravitational-field",input,outputs:{s},apply:update,scene:{view,zoom,time,running},sceneSetters:{view:setView,zoom:setZoom,time:setTime,running:setRunning}});
+return <div className="frs-page gravitational-field-page" data-ui-theme="dark"><aside className="frs-side"><Link className="frs-brand" to="/concept-studio/gravitation">⚛ PHYSICS STUDIO</Link><StudioLabNav studioId="gravitation"/></aside><main id="content" className="frs-main gfield-main">
  <header className="gfield-header"><h1>GRAVITATION — GRAVITATIONAL FIELD</h1><p>Explore the gravitational field around a massive body.</p></header>
  <div className="gfield-mode-row"><nav className="gfield-modes" aria-label="Learning modes">{["Observe","Predict","Experiment","Explain"].map(mode=><button key={mode} aria-pressed={(panel??"Observe")===mode} onClick={()=>open(mode)}>{mode}</button>)}</nav><nav className="gfield-views" aria-label="Field views">{(["Field View","Potential View","Trajectories"] as FieldView[]).map(name=><button key={name} aria-pressed={view===name} onClick={()=>setView(name)}>{name}</button>)}</nav></div>
- <div className="gfield-layout"><section className="gfield-scene" aria-label="Gravitational field apparatus"><GravitationalFieldScene input={input} view={view} time={time} zoom={zoom}/></section>
+ <div className="gfield-layout"><section className="gfield-scene" aria-label="Gravitational field apparatus" data-studio-scene><GravitationalFieldScene input={input} view={view} time={time} zoom={zoom}/></section>
  <aside className="gfield-inspector"><section className="gfield-panel"><h2>CONTROLS</h2>{controls}</section>
  <section className="gfield-panel gfield-readings"><h2>LIVE READINGS (AT PROBE)</h2><dl><div><dt>Field Strength |g|</dt><dd data-field-reading="">{s.g.toFixed(3)} m/s²</dd></div><div><dt>Direction θ (from +x)</dt><dd>{probe.direction.toFixed(1)}°</dd></div><div><dt>Position (x, y)</dt><dd>({probe.x.toExponential(2)}, {probe.y.toExponential(2)}) m</dd></div><div><dt>Gravitational Potential Φ</dt><dd>{s.phi.toExponential(2)} J/kg</dd></div></dl></section>
  <section className="gfield-panel gfield-equation"><h2>EQUATION</h2><b>g(r) = GM / r²</b><small>G = 6.674 × 10⁻¹¹ m³ kg⁻¹ s⁻²</small></section>

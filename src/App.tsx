@@ -54,6 +54,7 @@ import { AppDirectoryPage } from "./pages/AppDirectoryPage";
 import { ConceptExperiencesPage, StudiosHomePage } from "./pages/ConceptExperiencesPage";
 import { StudioTheoryReader } from "./components/StudioTheoryReader";
 import { StudioLabWorkspace } from "./components/StudioLabWorkspace";
+import { StudioVisualExplorer } from "./components/StudioVisualExplorer";
 import { SimulationStudioEnhancements } from "./components/SimulationStudioEnhancements";
 
 const CircularStudioPage = lazy(() => import("./pages/CircularStudioPage"));
@@ -400,6 +401,7 @@ export default function App() {
               <Route path="/terms" element={<SimplePage title="Terms" />} />
             </Routes>
           </div>
+          <StudioVisualExplorer />
           <StudioLabWorkspace />
           <StudioTheoryReader />
           {!isDedicatedStudio && <SimulationStudioEnhancements />}
