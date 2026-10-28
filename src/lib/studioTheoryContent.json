@@ -2110,5 +2110,166 @@
     "question": "How does a full-transit depth change when radius doubles?",
     "answer": "It quadruples if both transits remain fully inside the stellar disk.",
     "extension": "Limb darkening changes the light curve, and radial velocities or timing interactions can add mass constraints. Atmosphere, stellar activity and albedo are essential to any habitability inference."
+  },
+  "/practicals/springs": {
+    "studio": "oscillations",
+    "core": "A displacement from the loaded equilibrium produces a restoring force −kx. Combining Hooke’s law with Newton’s second law gives sinusoidal motion. The equilibrium extension mg/k is separate from the oscillation displacement: changing mass moves the equilibrium and changes the period. Kinetic and elastic oscillation energies exchange while their sum remains constant.",
+    "equation": "m x″ + kx = 0; T = 2π√(m/k); E = ½kA²",
+    "symbols": "m in kg; k in N/m; x and amplitude A in m, measured from equilibrium; t and period T in s; E in J.",
+    "derivation": [
+      "Write F = −kx for displacement relative to the loaded equilibrium. Gravity cancels the equilibrium spring force.",
+      "Substitute x = A cos(ωt), released from rest, into m x″ = −kx: ω² = k/m.",
+      "One cycle advances phase by 2π, giving T = 2π/ω. Squaring gives T² = (4π²/k)m, the straight-line practical test.",
+      "Using v = −Aω sin(ωt), show ½mv² + ½kx² = ½kA² at every instant."
+    ],
+    "example": [
+      "Set m = 0.20 kg, k = 20 N/m and A = 0.10 m.",
+      "ω = √100 = 10 rad/s, so T = 2π/10 = 0.628319 s.",
+      "Ten cycles take 6.28319 s; total oscillation energy is ½ × 20 × 0.10² = 0.100 J."
+    ],
+    "assumptions": "A massless linear spring, point load and fixed support; no damping, air resistance or large-extension nonlinearity. The scene exaggerates apparatus dimensions. The graph displacement is relative to the loaded equilibrium, not the spring’s unloaded length.",
+    "misconception": "Increasing amplitude increases energy, but does not change the period in this linear model. Timing ten oscillations reduces fractional reaction-time error; it does not remove systematic calibration error.",
+    "investigation": "Hold k and amplitude fixed. Record at least five masses, time ten complete cycles for each, and fit T² against m. Infer k = 4π²/gradient; repeat timings and compare scatter with the model.",
+    "question": "What happens to period and energy if amplitude doubles at fixed mass and stiffness?",
+    "answer": "The period remains 2π√(m/k); the energy rises by a factor of four because E is proportional to A².",
+    "extension": "Estimate timing uncertainty: u(T) = u(10T)/10, then u(T²) ≈ 2T u(T). Investigate how adding spring mass or damping would alter the ideal straight-line interpretation."
+  },
+  "/practicals/capacitor": {
+    "studio": "electricity",
+    "core": "Capacitance relates stored charge to potential difference. During discharge the resistor carries current away from the charged plate, so charge conservation and Ohm’s law give an exponential voltage decay. The time constant RC is the time to fall to 1/e of the initial voltage; it is not the time to become exactly uncharged.",
+    "equation": "Q = CV; Vdis = V₀e^(−t/RC); Vcharge = V₀(1 − e^(−t/RC)); E = ½CV²",
+    "symbols": "C in F (control uses μF = 10⁻⁶ F); R in Ω; t and τ in s; V in V; current magnitude in mA; stored energy in J.",
+    "derivation": [
+      "Use I = −dQ/dt = −C dV/dt during discharge, with the positive current direction chosen out of the charged plate.",
+      "Substitute I = V/R: dV/V = −dt/(RC).",
+      "Integrate with V(0) = V₀ to obtain V = V₀ exp(−t/RC). The charging solution has initial voltage zero and asymptote V₀.",
+      "Taking ln(V/1 V) gives a dimensionless logarithm with gradient −1/(RC). Energy decays as exp(−2t/RC), twice the voltage exponent."
+    ],
+    "example": [
+      "Choose R = 1000 Ω, C = 470 μF and V₀ = 5 V.",
+      "τ = 1000 × 470 × 10⁻⁶ = 0.470 s.",
+      "At t = τ, discharge voltage is 5/e = 1.83940 V and current magnitude is 1.83940 mA. Initially E = 0.005875 J."
+    ],
+    "assumptions": "Ideal lumped resistor, capacitor and voltage source; no leakage, internal resistance, dielectric absorption or voltmeter loading. Charge and Discharge start separate ideal trials with their stated initial conditions. The current graph shows magnitude; charging and discharging current directions differ.",
+    "misconception": "After one time constant the discharge retains about 36.8% of its voltage, not zero. Charge-mode ln(V) data are not linear in time and must not be mixed into the discharge fit.",
+    "investigation": "At fixed R, C and initial voltage, record discharge voltage at several times. Plot ln(V/1 V) versus t and estimate C = −1/(R × gradient). Compare the result at a second resistance.",
+    "question": "If resistance doubles at fixed capacitance, what happens to the time constant?",
+    "answer": "τ = RC doubles. At a fixed multiple of the new time constant, the voltage fraction V/V₀ is unchanged.",
+    "extension": "Propagate fractional R and fit-gradient uncertainties into C. Explain why near-zero voltages amplify fractional and logarithmic uncertainty, and why a real voltmeter can shorten the apparent decay time."
+  },
+  "/practicals/wire": {
+    "studio": "electricity",
+    "core": "For a uniform ohmic wire at fixed temperature, equal lengths contribute equal resistance. Resistivity is a material property whereas resistance also depends on geometry. The movable contact selects the active length; the voltage-current graph is a constitutive relation for that selected wire, rather than a history of the contact’s motion.",
+    "equation": "R = ρL/A; A = πd²/4; V = IR",
+    "symbols": "ρ in Ω·m; L in m; d in m (control uses mm); A in m²; R in Ω; V in V; I in A.",
+    "derivation": [
+      "Write the local conduction law E = ρJ for a uniform wire.",
+      "Use V = EL and I = JA to obtain V/I = ρL/A.",
+      "For a circular cross-section, A = πd²/4, so doubling diameter quarters resistance.",
+      "At fixed material and diameter, the gradient of R versus L is ρ/A; the gradient of V versus I is R."
+    ],
+    "example": [
+      "For nichrome, take ρ = 1.1 × 10⁻⁶ Ω·m, L = 1 m and d = 0.50 mm.",
+      "A = π(0.00050)²/4 = 1.96350 × 10⁻⁷ m².",
+      "R = 5.60225 Ω; at 2 V the current is 0.35700 A."
+    ],
+    "assumptions": "Uniform circular cross-section, constant resistivity and temperature, ideal supply, and negligible lead/contact resistance. Heating is omitted, even at settings that would heat a real wire significantly.",
+    "misconception": "A larger cross-sectional area gives a smaller resistance. Resistivity does not have units of Ω alone. Diameter uncertainty contributes twice its fractional uncertainty to calculated area.",
+    "investigation": "Keep diameter, material and supply voltage fixed. Measure V and I at five contact lengths, calculate R = V/I and fit R against L. Repeat with a different diameter.",
+    "question": "At fixed length and material, what happens to current if the diameter doubles while voltage remains fixed?",
+    "answer": "Area increases fourfold, resistance falls to one quarter, and current increases fourfold in the fixed-temperature ohmic model.",
+    "extension": "Include a nonzero intercept to represent lead resistance. Estimate u(ρ)/ρ from gradient uncertainty and 2u(d)/d, using quadrature for independent standard uncertainties."
+  },
+  "/practicals/rule": {
+    "studio": "mechanics",
+    "core": "Static rotational equilibrium requires the algebraic sum of moments about the pivot to vanish. A uniform rule’s weight acts at 50 cm. A known hanging load must act on the opposite side of the pivot from the rule’s centre of mass. The displayed tilt indicates the sign of net torque; it is not an angular equation of motion.",
+    "equation": "τ = Wrule(50 − p)/100 + mg(x − p)/100; Wrule = −mg(x − p)/(50 − p) at balance",
+    "symbols": "p and x are pivot/load positions in cm; mass m is kg (control uses g); g = 9.81 m/s²; torque τ in N·m; weights in N.",
+    "derivation": [
+      "Choose positive moment for a downward force acting to the right of the pivot.",
+      "The rule weight contributes Wrule(0.50 − p/100); the load contributes mg(x − p)/100.",
+      "Set their sum to zero and solve for Wrule. The cm-to-m factor cancels in the moment-arm ratio.",
+      "The inference is undefined at p = 50 cm and is valid as a measurement only for balanced arrangements."
+    ],
+    "example": [
+      "Set pivot p = 40 cm, load position x = 20 cm and hanging mass 50 g.",
+      "Load weight is 0.050 × 9.81 = 0.4905 N and its moment is −0.09810 N·m.",
+      "A rule weight of 0.9810 N gives +0.09810 N·m; net moment is zero and the inferred mass is 0.100 kg."
+    ],
+    "assumptions": "A uniform 0.100 kg metre rule, frictionless ideal point pivot, vertical forces, negligible hanger mass and small schematic tilt. The numerical balance indicator uses |τ| < 0.002 N·m as a display tolerance, not an experimental uncertainty bound.",
+    "misconception": "A zero net force alone does not ensure zero net moment. An unbalanced arrangement cannot be used to infer an unknown weight using the equilibrium equation.",
+    "investigation": "Place the pivot away from 50 cm. Move a known load onto the opposite side until balanced, then record the arrangement and inferred weight. Repeat with a different pivot and load mass.",
+    "question": "Why is a pivot at the rule’s centre unsuitable for this weight determination?",
+    "answer": "The rule weight has zero moment arm at 50 cm. The equilibrium equation then contains no information about its magnitude, so the weight cannot be inferred from that arrangement.",
+    "extension": "Compare uncertainty from load position, pivot position and mass. Avoid very short moment arms, where a millimetre position error becomes a large fractional error."
+  },
+  "/practicals/sphere": {
+    "studio": "mechanics",
+    "core": "A solid sphere rolling without slipping converts gravitational potential energy into both translation and rotation. Static friction supplies the rotational torque but does no work at an ideal stationary contact. The resulting acceleration is smaller than g sinθ for a frictionless sliding particle and independent of sphere mass and radius.",
+    "equation": "I = (2/5)mr²; a = (5/7)g sinθ; s = ½at²; Krot/Ktrans = 2/5",
+    "symbols": "θ in degrees in the controls; a in m/s²; s in m; t in s; sphere radius in cm in the controls and m in energy calculations; energies in J.",
+    "derivation": [
+      "Along the incline, mg sinθ − f = ma. About the centre, fr = Iα.",
+      "For pure rolling, a = rα and I = (2/5)mr²; therefore f = (2/5)ma.",
+      "Substitution gives mg sinθ = (7/5)ma and a = (5/7)g sinθ.",
+      "From rest, s = ½at². Energy is ½mv² + ½I(v/r)² = (7/10)mv² = mgh."
+    ],
+    "example": [
+      "Set θ = 20° and travel distance s = 1.00 m.",
+      "a = (5/7) × 9.81 × sin20° = 2.39658 m/s².",
+      "Arrival time is √(2s/a) = 0.91352 s and arrival speed is √(2as) = 2.18933 m/s."
+    ],
+    "assumptions": "Homogeneous solid sphere, sufficient static friction for rolling, rigid track, no slipping, rolling resistance or air drag. The scene stops the sphere at the chosen track end; the constant-acceleration model applies to the travel segment before arrival.",
+    "misconception": "Changing radius changes the mass and absolute energy in this constant-density model, but not the acceleration or arrival time at fixed angle and distance.",
+    "investigation": "Keep angle fixed and record arrival time for several distances. Plot s against t²; twice the gradient estimates acceleration. Compare the measured acceleration with (5/7)g sinθ.",
+    "question": "What fractions of total kinetic energy are translation and rotation?",
+    "answer": "Translation is 5/7 and rotation is 2/7 of the total; their ratio is 5:2.",
+    "extension": "Use u(a)/a ≈ √[(u(s)/s)² + (2u(t)/t)²] for a timing-derived acceleration. Compare a hollow sphere or a sliding particle to test the role of rotational inertia."
+  },
+  "/practicals/papers": {
+    "studio": "fluid-mechanics",
+    "core": "Nested filter papers approximately preserve exposed area while increasing mass. In a quadratic-drag model the speed initially rises under gravity and approaches a terminal value when drag equals weight. A finite-height fall generally includes an acceleration phase, so average speed over the drop is smaller than terminal speed.",
+    "equation": "m dv/dt = mg − kv²; k = ½ρCdA; vt = √(mg/k); v = vt tanh(gt/vt)",
+    "symbols": "m in kg (paper mass control uses g); A = πr² in m² (radius control uses cm); air density ρ in kg/m³; speed in m/s; fall distance in m; t in s.",
+    "derivation": [
+      "At terminal speed, set dv/dt = 0 to obtain mg = kvt².",
+      "Separate variables in dv/(1 − v²/vt²) = g dt with v(0) = 0; integration gives v = vt tanh(gt/vt).",
+      "Integrating speed gives distance y = (vt²/g) ln cosh(gt/vt). The simulator uses a numerically stable form of ln cosh.",
+      "For fixed area and drag coefficient, vt² is proportional to mass. Inverting y(t) gives the predicted arrival time at the chosen height."
+    ],
+    "example": [
+      "For one 0.10 g paper with radius 3.0 cm, A = π × 0.03² = 0.00282743 m².",
+      "With ρ = 1.225 kg/m³ and Cd = 1.2, k = 0.00207816 kg/m and vt ≈ 0.68706 m/s.",
+      "Four identical nested papers at the same area have four times the mass and twice the terminal speed. A short-drop average speed should not be substituted for vt without checking the transient."
+    ],
+    "assumptions": "Fixed frontal area and Cd = 1.2; air density 1.225 kg/m³; release from rest; no flutter, tumbling, buoyancy or wall effects. Drag is always opposite the downward motion. The scene stops at the floor and does not model impact.",
+    "misconception": "A heavier stack does not have a proportionally larger terminal speed: vt scales with √mass. Equal drop heights do not guarantee all stacks reach terminal speed.",
+    "investigation": "Keep paper radius, individual paper mass and release height fixed. Repeat falls for integer stack sizes. Compare average speed height/time with terminal speed, and plot weight against vt².",
+    "question": "At unchanged mass and drag coefficient, what happens to terminal speed when paper radius doubles?",
+    "answer": "Area increases fourfold, so terminal speed halves because vt is proportional to 1/√A.",
+    "extension": "Increase release height to distinguish the approach to terminal speed from a terminal-speed fall. Discuss why a fitted Cd from real fluttering paper may differ from the fixed model value."
+  },
+  "/optics/optical-elements": {
+    "studio": "optics",
+    "core": "The bench traces each ray through the actual sequence of separated glass boundaries. At every hit the local surface normal, current refractive index and next refractive index determine refraction or total internal reflection. The exit direction of a complete optical system is therefore a result of its geometry and every intervening material; one prism formula cannot describe an arbitrary multi-piece setup.",
+    "equation": "n₁ sinθ₁ = n₂ sinθ₂; θc = asin(n₂/n₁) for n₁ > n₂; n(λ) ≈ A + B/λ²",
+    "symbols": "Angles at interfaces are measured from their local normals, in degrees in readouts. Beam direction and signed exit deviation are in degrees. Wavelength controls use nm; bench coordinates and grid use cm. Refractive index is dimensionless.",
+    "derivation": [
+      "Conserve the tangential component of wavevector at a plane boundary to obtain n₁ sinθ₁ = n₂ sinθ₂.",
+      "Given an incident ray and oriented local normal, solve for the refracted direction. If (n₁/n₂)sinθ₁ exceeds one, no propagating transmitted ray exists: use specular reflection.",
+      "Find the next positive intersection with any boundary, update the medium only on transmission, then repeat. Reflected rays may revisit earlier boundaries or pieces.",
+      "Measure signed total deviation by wrapping the final propagation direction minus the original beam direction into [−180°, 180°]. A trace capped at 64 interactions has no trustworthy final exit deviation."
+    ],
+    "example": [
+      "For a flat air-to-glass boundary, take n₁ = 1, n₂ = 1.5 and incidence 30°.",
+      "sinθ₂ = sin30°/1.5 = 1/3, so refraction is 19.4712° from the normal.",
+      "At a parallel exit face into air the direction returns to 30° while the path is laterally shifted. The glass-to-air critical angle is asin(1/1.5) = 41.8103°."
+    ],
+    "assumptions": "Two-dimensional geometric optics; polygonal approximations to curved boundaries, with up to 480 segments. Pieces must be separated by air. No diffraction, absorption, polarization or weak Fresnel-reflected branches. Catalog dispersion is an approximate two-term Cauchy fit to refractive-index and Abbe data, not a full Sellmeier material model. A 64-hit trace cap is a computational limit. No-hit, laser-off and truncated traces have undefined exit deviation in the response plot.",
+    "misconception": "An incidence angle is measured from the local normal, not a global bench axis. A large signed exit angle alone does not prove total internal reflection; inspect the individual interface events.",
+    "investigation": "Pin a baseline, sweep the incident beam direction and inspect points on both sides of a change in interface sequence. Compare monochromatic and three-colour setups while holding every glass position and material fixed.",
+    "question": "Why can a ray bend at both faces of a parallel glass slab yet emerge parallel to its original direction?",
+    "answer": "With parallel surface normals and the same external medium, the two Snell relations are inverses. The second refraction restores the original direction, but the internal segment creates a lateral displacement.",
+    "extension": "Compare coarse and finely sampled curved outlines, identify near-grazing paths sensitive to geometry, and distinguish a physical TIR transition from a trace that simply misses a piece."
   }
 }

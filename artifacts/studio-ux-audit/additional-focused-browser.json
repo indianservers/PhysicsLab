@@ -1,0 +1,339 @@
+{
+  "routes": 7,
+  "results": [
+    {
+      "route": "/practicals/springs",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/capacitor",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/wire",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/rule",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/sphere",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/papers",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 10,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/optical-elements",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Optical investigation views",
+          "tabs": [
+            "Measurements",
+            "Theory",
+            "Experiments"
+          ]
+        }
+      ],
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    }
+  ]
+}

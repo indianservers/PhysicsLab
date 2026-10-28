@@ -1,0 +1,67 @@
+{
+  "routes": 1,
+  "results": [
+    {
+      "route": "/practicals/springs",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 3,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    }
+  ]
+}

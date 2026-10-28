@@ -101,9 +101,9 @@ radius|Galactocentric radius|kpc|s.speed|Circular speed|km/s
 h0|Hubble constant|km/s/Mpc|s.dist|Comoving distance|Gly
 radius|Planet radius|R⊕|s.depth|Fractional transit depth|1
 '''.strip().splitlines()
-registry=Path('src/lib/studioReferenceLabs.ts').read_text(encoding='utf-8')
-registry=json.JSONDecoder().raw_decode(registry[registry.index('{',registry.index('= {')):])[0]
-labs=[lab for entries in registry.values() for lab in entries]
+existing=json.loads(Path('src/lib/studioVisualDefinitions.json').read_text(encoding='utf-8'))
+report=json.loads(Path('artifacts/studio-physics-audit/results.json').read_text(encoding='utf-8'))['labs']
+labs=[{'route':item['route'],'title':existing[item['route']]['title']} for item in report if not item['model'].startswith('../')]
 assert len(rows)==len(labs)==96
 definitions={}
 models={item['route']:item['model'] for item in json.loads(Path('artifacts/studio-physics-audit/results.json').read_text(encoding='utf-8'))['labs']}
@@ -111,5 +111,6 @@ for lab,row in zip(labs,rows):
     key,xlabel,xunit,quantity,ylabel,yunit=row.split('|')
     model_file=Path('src/lib')/(models[lab['route']]+'.ts')
     definitions[lab['route']]={'title':lab['title'],'parameter':key.removeprefix('@'),'source':'scene' if key.startswith('@') else 'input','xLabel':xlabel,'xUnit':xunit,'quantity':quantity,'yLabel':ylabel,'yUnit':yunit,'discrete':lab['route'] in ['/electronics/logic-gates','/modern-physics/atomic-spectra','/modern-physics/nuclear-structure'],'solverVersion':hashlib.sha256(model_file.read_bytes()).hexdigest()[:12]}
+definitions.update({route:d for route,d in existing.items() if route not in definitions})
 Path('src/lib/studioVisualDefinitions.json').write_text(json.dumps(definitions,ensure_ascii=False,indent=2),encoding='utf-8')
 print('Wrote 96 explicit graph definitions; verify units against the production solvers before release.')

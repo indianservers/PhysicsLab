@@ -478,5 +478,40 @@
     "controls": "planet radius, inclination and period",
     "evidence": "transit depth, duration and detection geometry",
     "visual": "orbital view linked to a light curve"
+  },
+  "/practicals/springs": {
+    "controls": "mass",
+    "evidence": "period with s units",
+    "visual": "A displacement from the loaded equilibrium produces a restoring force −kx. Combining Hooke’s law with Newton’s second law gives sinusoidal motion. The equilibrium extension mg/k is separate from the oscillation displacement: changing mass moves the equilibrium and changes the period. Kinetic and elastic oscillation energies exchange while their sum remains constant."
+  },
+  "/practicals/capacitor": {
+    "controls": "capacitance",
+    "evidence": "time constant with s units",
+    "visual": "Capacitance relates stored charge to potential difference. During discharge the resistor carries current away from the charged plate, so charge conservation and Ohm’s law give an exponential voltage decay. The time constant RC is the time to fall to 1/e of the initial voltage; it is not the time to become exactly uncharged."
+  },
+  "/practicals/wire": {
+    "controls": "contact length",
+    "evidence": "resistance with Ω units",
+    "visual": "For a uniform ohmic wire at fixed temperature, equal lengths contribute equal resistance. Resistivity is a material property whereas resistance also depends on geometry. The movable contact selects the active length; the voltage-current graph is a constitutive relation for that selected wire, rather than a history of the contact’s motion."
+  },
+  "/practicals/rule": {
+    "controls": "load position",
+    "evidence": "net moment with N·m units",
+    "visual": "Static rotational equilibrium requires the algebraic sum of moments about the pivot to vanish. A uniform rule’s weight acts at 50 cm. A known hanging load must act on the opposite side of the pivot from the rule’s centre of mass. The displayed tilt indicates the sign of net torque; it is not an angular equation of motion."
+  },
+  "/practicals/sphere": {
+    "controls": "track angle",
+    "evidence": "acceleration with m/s² units",
+    "visual": "A solid sphere rolling without slipping converts gravitational potential energy into both translation and rotation. Static friction supplies the rotational torque but does no work at an ideal stationary contact. The resulting acceleration is smaller than g sinθ for a frictionless sliding particle and independent of sphere mass and radius."
+  },
+  "/practicals/papers": {
+    "controls": "nested papers",
+    "evidence": "terminal speed with m/s units",
+    "visual": "Nested filter papers approximately preserve exposed area while increasing mass. In a quadratic-drag model the speed initially rises under gravity and approaches a terminal value when drag equals weight. A finite-height fall generally includes an acceleration phase, so average speed over the drop is smaller than terminal speed."
+  },
+  "/optics/optical-elements": {
+    "controls": "incident beam direction while glass geometry and materials remain fixed",
+    "evidence": "signed exit deviation and the sequence of transmitted/reflected interfaces",
+    "visual": "Follow the selected ray, local normals and interface table. Different polygon faces and interaction sequences form separate branches of the response plot."
   }
 }

@@ -1,0 +1,4696 @@
+{
+  "routes": 103,
+  "status": "pass",
+  "batches": [
+    {
+      "file": "browser-batch-first.json",
+      "pixelRatio": 1
+    },
+    {
+      "file": "browser-batch-next.json",
+      "pixelRatio": 0.5
+    },
+    {
+      "file": "browser-batch-final.json",
+      "pixelRatio": 1
+    },
+    {
+      "file": "practical-full-recheck.json",
+      "pixelRatio": 1
+    },
+    {
+      "file": "optical-full-recheck.json",
+      "pixelRatio": 1
+    }
+  ],
+  "rechecks": [
+    {
+      "route": "/practicals/springs",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/practicals/capacitor",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/practicals/wire",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/practicals/rule",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/practicals/sphere",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/practicals/papers",
+      "previousError": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "resolution": "Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames."
+    },
+    {
+      "route": "/optics/optical-elements",
+      "previousError": "locator.fill: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('spinbutton', { name: 'Beam direction value', exact: true })\u001b[22m\n",
+      "resolution": "Rechecked full workflow in a fresh desktop viewport after an earlier screenshot timeout left the shared viewport at mobile width."
+    }
+  ],
+  "results": [
+    {
+      "route": "/measurement/meter-scale",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/measurement/vernier-caliper",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/measurement/micrometer",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/measurement/spherometer",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/measurement/mass-time",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/measurement/uncertainty",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 3,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/free-body-diagrams",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/inclined-plane",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/pulley-systems",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/torque-levers",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/equilibrium-com",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/mechanics/momentum-collisions",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/position-time",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/velocity-time",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/acceleration-time",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/projectile-motion",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/relative-motion",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/circular-motion",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/first-law-inertia",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/second-law-fma",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/third-law-pairs",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/friction",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/tension-normal",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/multi-force-challenge",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/work",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/kinetic-energy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/potential-energy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/conservation-energy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/power",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/efficiency",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/universal-gravity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/gravitational-field",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/gravitational-potential",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/orbits",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/escape-velocity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/keplers-laws",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/spring-shm",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/pendulum",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/energy-exchange",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 9,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/damping",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 9,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/resonance",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/coupled-oscillators",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 9,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/wave-properties",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/superposition",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/interference",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/standing-waves",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/sound-spectrum",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/motion/doppler-effect",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/reflection",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/refraction",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/lenses",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/mirrors",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/interference",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/diffraction",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/coulomb-force",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/electric-field",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/electric-potential",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/current",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/circuits",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electricity/capacitors",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        },
+        {
+          "group": "Equation views",
+          "tabs": [
+            "Capacitance",
+            "Energy",
+            "With Dielectric"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/field-lines",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/lorentz-force",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Learning modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 2,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/current-wire",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Current wire modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/solenoids",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Solenoid modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/induction",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Induction modes",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/magnetism/electromagnets",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/semiconductors",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/diodes",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Diode model",
+          "tabs": [
+            "PN Diode",
+            "Zener Diode",
+            "LED",
+            "Schottky"
+          ]
+        },
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/transistors",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/amplifiers",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        },
+        {
+          "group": "Theory view",
+          "tabs": [
+            "Circuit",
+            "Waveforms",
+            "Equation"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/logic-gates",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [
+        {
+          "group": "Lab mode",
+          "tabs": [
+            "Observe",
+            "Predict",
+            "Experiment",
+            "Explain"
+          ]
+        }
+      ],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 2,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/electronics/sensors",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/temperature",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/heat-transfer",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/gas-laws",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/first-law",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/entropy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/thermodynamics/heat-engines",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/density-pressure",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/hydrostatics",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/buoyancy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/continuity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/bernoulli",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/fluid-mechanics/viscosity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/quantum-ideas",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/photoelectric-effect",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/matter-waves",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/atomic-spectra",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": false,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 4,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/nuclear-structure",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/radioactivity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/solar-system",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/stellar-life",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/spectroscopy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/galaxies",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/cosmology",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/exoplanets",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/springs",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 3,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/capacitor",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/wire",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/rule",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 1,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/sphere",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/papers",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Practical learning views",
+          "tabs": [
+            "⚙\nSetup",
+            "⌁\nGraph",
+            "▤\nData",
+            "◈\nTheory",
+            "☷\nProcedure"
+          ]
+        }
+      ],
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 10,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/optics/optical-elements",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Optical investigation views",
+          "tabs": [
+            "Measurements",
+            "Theory",
+            "Experiments"
+          ]
+        }
+      ],
+      "additional": {
+        "sweepsPreserveUndo": true,
+        "laserOffUndefined": true,
+        "noHitCurveGaps": true,
+        "fullSetupRestore": true
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    }
+  ]
+}

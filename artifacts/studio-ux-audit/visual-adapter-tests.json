@@ -7,6 +7,7 @@
     "unknown input rejected",
     "playback restoration follows clock restoration",
     "view reset preserves clock and physics",
-    "assignment lock respected"
+    "assignment lock respected",
+    "native camera reset callback"
   ]
 }

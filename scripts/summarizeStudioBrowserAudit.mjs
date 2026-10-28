@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const root='artifacts/studio-ux-audit/';
+const read=name=>JSON.parse(fs.readFileSync(name,'utf8'));
+const sources=['browser-batch-first.json','browser-batch-next.json','browser-batch-final.json','practical-full-recheck.json','optical-full-recheck.json'];
+const attempts=sources.flatMap(file=>read(root+file).results);
+const results=[...new Map(attempts.map(r=>[r.route,r])).values()];
+const routes=Object.keys(read('src/lib/studioTheoryContent.json'));
+assert.equal(results.length,routes.length);
+assert.deepEqual(results.map(r=>r.route).sort(),[...routes].sort(),'Every unique lab must have exactly one result');
+assert.ok(results.every(r=>r.status==='pass'),'Cannot publish a passing summary with failed routes');
+const homes=read(root+'studio-homes.json');
+assert.equal(homes.length,16);assert.ok(homes.every(h=>h.status==='pass'));
+const native=results.filter(r=>r.additional);
+assert.equal(native.length,7);
+const report={routes:routes.length,status:'pass',batches:sources.map((file,i)=>({file,pixelRatio:i===1?.5:1})),rechecks:attempts.filter(r=>r.status==='fail').map(r=>({route:r.route,previousError:r.error,resolution:r.route.startsWith('/practicals/')?'Rechecked full workflow after replacing a render-counter screenshot wait with two animation frames.':'Rechecked full workflow in a fresh desktop viewport after an earlier screenshot timeout left the shared viewport at mobile width.'})),results};
+fs.writeFileSync(root+'all-labs-browser-results.json',JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync(root+'additional-native-browser.json',JSON.stringify({routes:7,results:native.map(({route,status,additional})=>({route,status,additional}))},null,2)+'\n');
+const physics=read('artifacts/studio-physics-audit/results.json');
+assert.equal(physics.failed,0);
+const summary={status:'pass',generatedAt:new Date().toISOString(),scope:'All 103 unique labs across 16 studios, including six practicals and optical elements',labRoutes:routes.length,studioHomes:homes.length,studioCards:homes.reduce((n,h)=>n+h.labLinks,0),notebookTabs:results.reduce((n,r)=>n+r.workspace.modes.length,0),nativeLearningModes:results.reduce((n,r)=>n+r.modes.length,0),graphSceneTabs:results.reduce((n,r)=>n+r.visuals.modes.length,0),nativeTabGroups:results.reduce((n,r)=>n+r.nativeTabs.length,0),nativeTabInteractions:results.reduce((n,r)=>n+r.nativeTabs.reduce((sum,g)=>sum+g.tabs.length,0),0),numericControlRoundTrips:results.filter(r=>r.workspace.controlRoundTrip).length,mobileWidth:390,solverSweeps:results.filter(r=>r.visuals.sweepRestore).length,exactSolverCursorReplays:results.filter(r=>r.visuals.solverReplay).length,sceneResetsPreservingPhysics:results.filter(r=>r.visuals.viewPreservesPhysics).length,CSVandSVGExports:results.filter(r=>r.visuals.exports.includes('CSV')&&r.visuals.exports.includes('SVG')).length,nativePracticalPlots:native.reduce((n,r)=>n+(r.additional.plots??0),0),additionalNativeWorkflows:7,studioPhysicsAssertions:physics.assertions,existingPhysicsTests:581,plotSpectrumAssertions:read(root+'visual-math-tests.json').checks,adapterChecks:read(root+'visual-adapter-tests.json').checks.length,sourcePagesScanned:145,lessonContentRoutes:80,opticalInteractionChecks:read('artifacts/optical-elements/enhancements-validation.json').passed.length,productionBuild:'pass',buildWarning:'Existing large-chunk warning',browserReport:root+'all-labs-browser-results.json',browserEnvironment:'Headless Edge with software WebGL; 500 ms animation callbacks; electronics batch uses 0.5 device pixel ratio with unchanged CSS viewport sizes',limitations:'Interaction verification, not screen-reader or WCAG certification. Git push does not verify deployment.'};
+fs.writeFileSync(root+'visual-summary.json',JSON.stringify(summary,null,2)+'\n');
+console.log(JSON.stringify(summary,null,2));

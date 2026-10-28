@@ -19,6 +19,16 @@ export function solve(id:LabId,p:Params,t:number,charging=false):Record<string,n
  const mass=p.count*p.paperMass/1000,area=Math.PI*(p.radius/100)**2,vt=Math.sqrt(2*mass*g/(1.225*1.2*area)),z=g*t/vt,logcosh=z+Math.log1p(Math.exp(-2*z))-Math.log(2),distance=vt*vt/g*logcosh,end=vt/g*Math.acosh(Math.exp(g*p.height/(vt*vt))),u=Math.min(t,end);return {x:Math.min(p.height,distance),v:vt*Math.tanh(g*u/vt),vt,end,mass};
 }
 export const controls:Record<LabId,[string,string,number,number,number][]>={springs:[['mass','Mass (kg)',.05,1,.05],['k','Spring constant (N/m)',5,80,1],['amplitude','Initial displacement (m)',.01,.15,.01]],capacitor:[['resistance','Resistance (Ω)',100,10000,100],['capacitance','Capacitance (μF)',100,2000,10],['voltage','Initial voltage (V)',1,12,.1]],wire:[['length','Contact length (m)',.1,2,.05],['diameter','Diameter (mm)',.2,1,.05],['voltage','Supply voltage (V)',.1,5,.1]],rule:[['pivot','Pivot position (cm)',10,90,1],['position','Load position (cm)',0,100,1],['mass','Hanging mass (g)',10,200,10]],sphere:[['angle','Track angle (°)',5,35,1],['radius','Sphere radius (cm)',1,4,.1],['distance','Track distance (m)',.3,1.5,.1]],papers:[['count','Nested papers',1,10,1],['radius','Paper radius (cm)',2,6,.1],['height','Release height (m)',.3,2,.1],['paperMass','Single paper mass (g)',.05,.3,.01]]};
+/** Native fields, graph replay and saved trials all enforce the same physical bounds. */
+export function sanitizeParams(id:LabId,input:Record<string,unknown>):Params {
+ const next={...defaults[id]};
+ for(const [key,,lo,hi] of controls[id]){
+  const value=input[key];
+  if(typeof value==='number'&&Number.isFinite(value))next[key]=Math.max(lo,Math.min(hi,key==='count'?Math.round(value):value));
+ }
+ if(id==='wire'&&[1.1e-6,4.9e-7,1.68e-8].includes(Number(input.rho)))next.rho=Number(input.rho);
+ return next;
+}
 export const methods:Record<LabId,{formula:string;steps:string[];analysis:string}>={
  springs:{formula:'T = 2π√(m/k) · E = ½kA²',steps:['Set the mass and spring constant. Drag the brass mass to choose a release displacement.','Release and time 10 oscillations. Divide the total time by 10 to obtain T.','Repeat for at least five masses, keeping the spring constant fixed.'],analysis:'Plot T² against mass. The gradient is 4π²/k. Repeat timings to reduce reaction-time uncertainty. This ideal spring has no damping or spring mass.'},
  capacitor:{formula:'V = V₀ exp(−t/RC) · τ = RC',steps:['Choose a resistor, capacitor and initial voltage.','Select Discharge and record voltage at several times. Use Pause to inspect a reading.','Repeat with another resistance, keeping capacitance fixed.'],analysis:'Plot ln(V) against time. Its gradient is −1/RC; infer C = −1/(R × gradient). Avoid near-zero readings. The model assumes an ideal capacitor and negligible voltmeter loading.'},

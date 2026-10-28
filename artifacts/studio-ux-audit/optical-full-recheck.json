@@ -1,0 +1,57 @@
+{
+  "routes": 1,
+  "results": [
+    {
+      "route": "/optics/optical-elements",
+      "status": "pass",
+      "modes": [],
+      "nativeTabs": [
+        {
+          "group": "Optical investigation views",
+          "tabs": [
+            "Measurements",
+            "Theory",
+            "Experiments"
+          ]
+        }
+      ],
+      "additional": {
+        "sweepsPreserveUndo": true,
+        "laserOffUndefined": true,
+        "noHitCurveGaps": true,
+        "fullSetupRestore": true
+      },
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    }
+  ]
+}

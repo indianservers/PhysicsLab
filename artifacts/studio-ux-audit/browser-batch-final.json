@@ -1,0 +1,509 @@
+{
+  "routes": 18,
+  "results": [
+    {
+      "route": "/modern-physics/photoelectric-effect",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/matter-waves",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/atomic-spectra",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": false,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 4,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/nuclear-structure",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/modern-physics/radioactivity",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/solar-system",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/stellar-life",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/spectroscopy",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/galaxies",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/cosmology",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 17,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/astrophysics/exoplanets",
+      "status": "pass",
+      "modes": [
+        "Predict",
+        "Experiment",
+        "Explain"
+      ],
+      "nativeTabs": [],
+      "additional": null,
+      "workspace": {
+        "modes": [
+          "Observe",
+          "Predict",
+          "Experiment",
+          "Explain",
+          "Challenge"
+        ],
+        "controlRoundTrip": true,
+        "mobileWidth": 390,
+        "selfAssessment": true,
+        "visualComparison": true
+      },
+      "visuals": {
+        "modes": [
+          "Response plot",
+          "Point data",
+          "Scene view"
+        ],
+        "points": 18,
+        "solverReplay": true,
+        "sweepRestore": true,
+        "viewPreservesPhysics": true,
+        "keyboardCursor": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "mobileWidth": 390,
+        "nativeScene": true
+      }
+    },
+    {
+      "route": "/practicals/springs",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/practicals/capacitor",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/practicals/wire",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/practicals/rule",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/practicals/sphere",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/practicals/papers",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 40000ms exceeded.",
+      "errors": []
+    },
+    {
+      "route": "/optics/optical-elements",
+      "status": "fail",
+      "error": "locator.fill: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('spinbutton', { name: 'Beam direction value', exact: true })\u001b[22m\n",
+      "errors": []
+    }
+  ]
+}

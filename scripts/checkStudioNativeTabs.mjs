@@ -11,7 +11,7 @@ export async function checkStudioNativeTabs(page) {
   const count=await tabs.count(),labels=[];
   for(let i=0;i<count;i++){
    const tab=tabs.nth(i);if(!await tab.isVisible()||await tab.isDisabled())continue;
-   const label=(await tab.innerText()).trim();await tab.scrollIntoViewIfNeeded();await tab.click();
+   const label=(await tab.innerText()).trim();if(process.env.STUDIO_AUDIT_TRACE==='1')console.log(`Native tab: ${label}`);await tab.scrollIntoViewIfNeeded();await tab.click();
    assert.equal(await tab.getAttribute('aria-selected'),'true',`${label} must become selected`);
    assert.equal(await group.locator('[role="tab"][aria-selected="true"]').count(),1,'A tab group has exactly one selected tab');
    const target=await tab.getAttribute('aria-controls');

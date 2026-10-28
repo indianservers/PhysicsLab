@@ -24,6 +24,14 @@ export function traceOpticsSetup(s: OpticsSetup) {
   })).flat();
 }
 export type TracedRay = ReturnType<typeof traceOpticsSetup>[number];
+/** Undefined exits and changes of interaction branch must not become plot lines. */
+export function opticsResponse(setup:OpticsSetup,ray:TracedRay){
+ const end=ray.points[ray.points.length-1],before=ray.points[ray.points.length-2];
+ const valid=setup.on&&!ray.truncated&&ray.events.length>0&&!!end&&!!before;
+ const raw=end&&before?Math.atan2(end.y-before.y,end.x-before.x)*180/Math.PI-setup.angle:0;
+ return {deviation:valid?((raw+540)%360)-180:null,interfaces:setup.on?ray.events.length:0,tir:setup.on?ray.events.filter(e=>e.tir).length:0,
+  branch:!setup.on?'laser off':ray.truncated?'trace limit':!ray.events.length?'misses glass':JSON.stringify([ray.beam,ray.w,Math.floor((raw+180)/360),ray.events.map(e=>[e.elementId,e.surfaceIndex,e.tir,e.fromIndex>e.toIndex])])};
+}
 export function shapeCategory(kind: ElementKind) {
   if (kind.includes('convex') || kind.includes('concave') || kind.includes('meniscus') || kind.includes('lens')) return 'Lenses';
   if (kind.includes('prism') || ['pentagon', 'hexagon', 'heptagon', 'octagon', 'nonagon', 'decagon', 'dodecagon', 'diamond', 'wedge'].includes(kind)) return 'Prisms';

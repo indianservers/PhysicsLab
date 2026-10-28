@@ -5,11 +5,12 @@ import { chromium } from 'playwright-core';
 import { checkStudioWorkspace, checkStudioHomes } from './checkStudioWorkspace.mjs';
 import { checkStudioVisuals } from './checkStudioVisuals.mjs';
 import { checkStudioNativeTabs } from './checkStudioNativeTabs.mjs';
+import {checkAdditionalLabNative} from './checkAdditionalLabNative.mjs';
 
 const root='artifacts/studio-physics-audit';
 fs.mkdirSync(root,{recursive:true});
 const chapters=JSON.parse(fs.readFileSync('src/lib/studioTheoryContent.json','utf8'));
-const skip=Number(process.env.STUDIO_AUDIT_SKIP??0),limit=Number(process.env.STUDIO_AUDIT_LIMIT??96);
+const skip=Number(process.env.STUDIO_AUDIT_SKIP??0),limit=Number(process.env.STUDIO_AUDIT_LIMIT??Object.keys(chapters).length);
 const requested=process.env.STUDIO_AUDIT_ROUTES?JSON.parse(process.env.STUDIO_AUDIT_ROUTES):null;
 const entries=Object.entries(chapters).filter(([route])=>!requested||requested.includes(route)).slice(skip,skip+limit);
 const resultFile=process.env.STUDIO_AUDIT_RESULT_FILE??(requested?`${root}/browser-results-filtered.json`:process.env.STUDIO_AUDIT_SKIP!==undefined?`${root}/browser-results-${skip}.json`:`${root}/browser-results.json`);
@@ -26,7 +27,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const baseURL=process.env.STUDIO_AUDIT_URL??`http://127.0.0.1:${server.address().port}${entries[0]?.[0]??'/measurement/meter-scale'}`;
 const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
+const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:Number(process.env.STUDIO_AUDIT_PIXEL_RATIO??1),reducedMotion:'reduce',serviceWorkers:'block'});
 // This audit checks UI state, not animation frame rate. Bound continuous 3D
 // rendering so headless software WebGL does not starve input/focus checks.
 await context.addInitScript(() => {
@@ -52,6 +53,8 @@ try {
 await page.goto(baseURL,{waitUntil:'domcontentloaded',timeout:60000});
 await page.locator('.str-launch').waitFor({timeout:60000});
 for(const [route,chapter] of entries){
+ const stage=name=>{if(process.env.STUDIO_AUDIT_TRACE==='1')console.log(`${route}: ${name}`)};
+ stage('load');
  errors=[];
  try{
   await page.evaluate(route=>{window.history.pushState({},'',route);window.dispatchEvent(new PopStateEvent('popstate'));},route);
@@ -59,6 +62,7 @@ for(const [route,chapter] of entries){
   await button.waitFor({state:'visible'});
   await page.locator('h1').first().waitFor({state:'visible'});
   await page.waitForFunction(route=>{const node=document.querySelector('[data-studio-visual-explorer]');return node?.getAttribute('data-route')===route&&!!node.querySelector('[data-visual-model]')?.textContent;},route);
+  if(process.env.STUDIO_ADDITIONAL_ONLY==='1'){const additional=await checkAdditionalLabNative(page,route);if(errors.length)throw Error(errors.join('; '));results.push({route,status:'pass',additional});fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2));continue;}
   if(process.env.STUDIO_NATIVE_TABS_ONLY==='1'){
    const nativeTabs=await checkStudioNativeTabs(page);
    results.push({route,status:'pass',nativeTabs});
@@ -82,6 +86,7 @@ for(const [route,chapter] of entries){
    if(results.length%6===0)console.log(`Checked graph, scene and native tabs ${results.length}/${entries.length}`);
    continue;
   }
+  stage('native tabs');const nativeTabs=await checkStudioNativeTabs(page);
   if(route==='/optics/diffraction'){
    const choices=page.getByRole('group',{name:'Experiment aperture',exact:true});
    await clickVisible(choices.getByRole('button',{name:'Circular Aperture',exact:true}));
@@ -146,13 +151,15 @@ for(const [route,chapter] of entries){
    if(content.some(text=>text.length<40)||new Set(content).size!==3)throw Error('Inline modes need distinct substantive content');
    await clickVisible(page.getByRole('tab',{name:/^Observe(?:\s|$)/}).first());
   }
-  const workspace=await checkStudioWorkspace(page,route);
-  const visuals=await checkStudioVisuals(page,route);
+  stage('native workflows');const additional=await checkAdditionalLabNative(page,route);
+  stage('notebook');const workspace=await checkStudioWorkspace(page,route);
+  stage('graphs and scene');const visuals=await checkStudioVisuals(page,route);
+  stage('theory');
   await clickVisible(button);
   const dialog=page.getByRole('dialog',{name:/.+/});
   await dialog.waitFor({state:'visible'});
   // Wait for this route's chapter rather than trusting a previous route's dialog.
-  await page.getByText(chapter.core,{exact:true}).waitFor({state:'visible'});
+  await dialog.getByText(chapter.core,{exact:true}).waitFor({state:'visible'});
   if(await dialog.locator('article>section').count()!==6)throw Error('Missing theory sections');
   await dialog.getByRole('button',{name:'Investigate & practise',exact:true}).click({force:true});
   await dialog.getByText('Reveal reasoning',{exact:true}).click({force:true});
@@ -161,8 +168,8 @@ for(const [route,chapter] of entries){
   await dialog.waitFor({state:'hidden'});
   // Rendering may finish after the reader, especially for lazy WebGL scenes.
   if(errors.length)throw Error(errors.join('; '));
-  results.push({route,status:'pass',modes:modeResults,workspace,visuals});
- }catch(error){results.push({route,status:'fail',error:error.message,errors:[...errors]});console.error(`FAIL ${route}: ${error.message}`);await page.keyboard.press('Escape');}
+  results.push({route,status:'pass',modes:modeResults,nativeTabs,additional,workspace,visuals});
+ }catch(error){results.push({route,status:'fail',error:error.message,stack:error.stack,errors:[...errors]});console.error(`FAIL ${route}: ${error.stack}`);await page.keyboard.press('Escape');await page.setViewportSize({width:1440,height:1000});}
  fs.writeFileSync(resultFile,JSON.stringify({routes:entries.length,results},null,2)+'\n');
  if(results.length%6===0)console.log(`Checked ${results.length}/${entries.length} routes (offset ${skip})`);
 }

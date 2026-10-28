@@ -1,8 +1,8 @@
 {
-  "scope": "96 studio lab routes",
-  "assertions": 264,
-  "chapters": 96,
-  "passed": 96,
+  "scope": "103 unique studio and practical lab routes",
+  "assertions": 292,
+  "chapters": 103,
+  "passed": 103,
   "failed": 0,
   "labs": [
     {
@@ -580,6 +580,48 @@
       "model": "exoplanetsStudio",
       "status": "pass",
       "assertions": 4
+    },
+    {
+      "route": "/practicals/springs",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/practicals/capacitor",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/practicals/wire",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 3
+    },
+    {
+      "route": "/practicals/rule",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/practicals/sphere",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/practicals/papers",
+      "model": "../practicals/model",
+      "status": "pass",
+      "assertions": 4
+    },
+    {
+      "route": "/optics/optical-elements",
+      "model": "../physics/opticsWorkspace",
+      "status": "pass",
+      "assertions": 7
     }
   ]
 }

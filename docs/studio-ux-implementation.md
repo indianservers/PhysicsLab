@@ -55,7 +55,7 @@ image data so it does not crowd out saved notes for other labs.
 
 ## Graph and native scene completion
 
-All 96 subject labs now publish typed snapshots from their actual production
+All 103 labs, including the six practicals and optical elements workspace, publish typed snapshots from their actual production
 solver into Graph & scene tools, available on the primary apparatus viewport.
 Each lab has explicit physical axis labels and units. The response plot supports
 bounded sweeps, cursor replay, a point table, immutable baseline traces, zoom,
@@ -79,13 +79,26 @@ available. The atomic spectrum scene now uses the same transition solver for its
 energy levels, selected arrow and wavelength positions; it labels schematic
 level spacing and wavelengths outside the visible window explicitly.
 
-This completes the graph and scene interaction layer across the 96-lab roadmap.
-It does not claim 2,880 independently built bespoke visualizations. Supplementary
-practical collections have separate implementations and verification suites.
+The six practicals additionally provide 12 native response charts with keyboard
+inspection, units, frozen baselines, zoom/pan, positive logarithmic axes, point
+tables and CSV/SVG exports. Recorded readings use scatter plots; trial restore
+replays the full apparatus settings and clock. Fits are withheld when controlled
+variables differ. Five practical tabs retain their state when switching views.
+Native camera presets and reset operate on the actual 3D camera, and paused
+apparatus renders only when its state or view changes.
+
+Optical sweeps evaluate the native ray tracer without adding undo-history steps.
+Laser-off, no-hit and truncated paths remain undefined; graph lines break when
+the interface, polygon face, TIR branch or angle winding changes. Measurements,
+Theory and Experiments are keyboard-operable tabs. All seven added labs include
+dedicated theory, worked examples, assumptions, misconceptions and investigations.
+Studio navigation is restricted to the respective studio's labs. There are 103
+unique lab routes and 104 studio cards because falling papers is cross-listed.
 
 ## Verification artifacts
 
 - `artifacts/studio-physics-audit/results.json`: physics-model and theory checks.
+- `artifacts/studio-ux-audit/all-labs-browser-results.json`: current full 103-lab audit, including native practical workflows and optical edge cases.
 - `artifacts/studio-ux-audit/visual-browser-results.json`: combined learning, graph and native-scene browser results.
 - `artifacts/studio-ux-audit/visual-release-browser-results.json`: graph, scene and native-tab checks against the isolated staged release.
 - `artifacts/studio-ux-audit/visual-math-tests.json`: graph domains, singularities, units, spectrum transitions and solver fingerprints.
@@ -103,18 +116,18 @@ verification, not a claim of screen-reader or WCAG conformance certification.
 
 ## Final verification result
 
-- 96/96 lab routes passed after the full sequential run and focused rechecks.
-- 16/16 studio homes passed six-link and search checks.
-- 480 notebook-tab and 288 native learning-mode checks passed.
-- 70 native ARIA tab interactions checked for selection, visible content, arrow navigation and focus; seven Observe associations and two keyboard handlers corrected.
-- All 96 notebook and graph-panel layouts checked at 390 px; 95 notebook numeric control round trips.
-- 288 graph/scene tabs; all 96 real-solver sweeps, cursor replays, camera resets and CSV/SVG exports checked.
-- Three representative labs additionally checked visual captures and self-assessment.
-- 264 studio physics assertions, 581 existing physics tests, 75 graph/spectrum assertions, seven adapter checks and six numeric-input assertions passed.
-- 144 page components scanned without dead-button/Observe-handler findings.
-- TypeScript and the final Vite/PWA production build passed. The build retains
-  the existing large-bundle warning.
+- 103/103 unique lab routes passed in browser batches and focused rechecks; every route received the same notebook, graph, scene and theory assertions.
+- 16/16 studio homes passed studio-scoped link and search checks (104 cards; falling papers is cross-listed).
+- 515 notebook tabs, 309 graph/scene tabs and 288 native learning modes passed.
+- 103 native ARIA tab interactions across 25 groups checked selection, visible content, arrow navigation and focus.
+- All 103 notebook and graph layouts checked at 390 px; 102 numeric control round trips.
+- All 103 real-solver sweeps, cursor replays, presentation resets and CSV/SVG exports checked.
+- Six practical workflows additionally checked all 12 native plots, saved-trial replay, immutable baselines, CSV/SVG exports, clear/undo, actual camera presets and on-demand paused rendering. Mobile captures wait for WebGL repaint after resize.
+- Optical checks cover 44 shapes, 26 materials, mouse/touch dragging, 20 detailed interaction scenarios, history-preserving sweeps and undefined no-hit/laser-off responses.
+- 292 studio physics assertions, 581 existing physics tests, 75 graph/spectrum assertions, eight adapter checks and 80 lesson-content routes passed. The six practical model and visual-geometry suites also passed.
+- 145 page components scanned without dead-button/Observe-handler findings.
+- TypeScript and the Vite/PWA production build passed with the existing large-bundle warning.
 
-The merged per-route report identifies which results came from focused rechecks;
-the latest graph/scene summary is `artifacts/studio-ux-audit/visual-summary.json`.
-A Git push does not independently confirm the deployed website has refreshed.
+The authoritative per-route report is `artifacts/studio-ux-audit/all-labs-browser-results.json`; counts are reproduced by `node scripts/summarizeStudioBrowserAudit.mjs`. Its recheck metadata records the corrected screenshot wait and the resulting viewport recovery. File-import checks wait for the asynchronous setup restoration. Browser checks used headless Edge and software WebGL with 500 ms animation callbacks. The electronics batch used a 0.5 device pixel ratio to reduce software rendering cost; CSS viewports and assertions were unchanged. Remaining batches used a pixel ratio of 1.
+
+These checks verify interactions, not screen-reader or WCAG certification. A Git push does not independently confirm the deployed website has refreshed.

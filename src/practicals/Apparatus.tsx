@@ -6,8 +6,10 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {LabId,Params,solve} from './model';
 import {createWorkshop,makeHelix} from './workshop';
 
-type Props={id:LabId;p:Params;time:number;charging:boolean;onAdjust:(key:string,value:number)=>void;onRelease:()=>void};
-export function Apparatus({id,p,time,charging,onAdjust,onRelease}:Props){
+type Props={id:LabId;p:Params;time:number;charging:boolean;onAdjust:(key:string,value:number)=>void;onRelease:()=>void;resetCamera?:number;cameraView?:string};
+export function Apparatus({id,p,time,charging,onAdjust,onRelease,resetCamera,cameraView='default'}:Props){
+  const restoreCamera=useRef<(view:string)=>void>(()=>{});
+  useEffect(()=>restoreCamera.current(cameraView),[resetCamera,cameraView]);
   const el=useRef<HTMLDivElement>(null),live=useRef({p,time,charging,onRelease});
   live.current={p,time,charging,onRelease};const [failed,setFailed]=useState(false);
   useEffect(()=>{
@@ -22,6 +24,7 @@ export function Apparatus({id,p,time,charging,onAdjust,onRelease}:Props){
     const orbit=new OrbitControls(camera,renderer.domElement);orbit.target.set(0,wide?.85:1.25,0);
     orbit.enableDamping=true;orbit.dampingFactor=.08;orbit.enablePan=false;orbit.minDistance=3.6;orbit.maxDistance=9;
     orbit.minPolarAngle=Math.PI*.24;orbit.maxPolarAngle=Math.PI*.49;orbit.minAzimuthAngle=-.65;orbit.maxAzimuthAngle=.65;
+    orbit.saveState();restoreCamera.current=view=>{const damping=orbit.enableDamping;orbit.enableDamping=false;orbit.update();orbit.reset();if(view!=='default'){const a=view==='left'?-.45:view==='right'?.45:0,r=wide?6.6:5.6;camera.position.set(r*Math.sin(a),wide?1.9:1.65,r*Math.cos(a));orbit.update();}orbit.enableDamping=damping;};
     const room=new RoomEnvironment();
     const softbox=new T.Mesh(new T.PlaneGeometry(4,2),new T.MeshBasicMaterial({color:new T.Color(4,3.8,3.5),side:T.DoubleSide}));softbox.position.set(-2,3,3);softbox.lookAt(0,1,0);room.add(softbox);
     const pm=new T.PMREMGenerator(renderer),environment=pm.fromScene(room,.04);scene.environment=environment.texture;scene.environmentIntensity=.8;
@@ -117,7 +120,7 @@ export function Apparatus({id,p,time,charging,onAdjust,onRelease}:Props){
     }
     // Ray-plane dragging follows world coordinates even after orbiting or zooming.
     const ray=new T.Raycaster(),mouse=new T.Vector2(),plane=new T.Plane(new T.Vector3(0,0,1),0),grab=new T.Vector3(),point=new T.Vector3();let dragging=false,startValue=0;
-    const project=(e:PointerEvent)=>{const rect=host.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);return ray.ray.intersectPlane(plane,point);};
+    const project=(e:PointerEvent)=>{const rect=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);return ray.ray.intersectPlane(plane,point);};
     const down=(e:PointerEvent)=>{project(e);if(!ray.intersectObjects(interact,true).length)return;dragging=true;grab.copy(point);startValue=live.current.p.amplitude??0;orbit.enabled=false;renderer.domElement.setPointerCapture(e.pointerId);host.classList.add('is-dragging');};
     const move=(e:PointerEvent)=>{if(!dragging||!project(e))return;const params=live.current.p;
       if(id==='springs'){const extension=params.mass*9.81/params.k,scale=Math.min(1.85,1.22/(.44+extension+params.amplitude));onAdjust('amplitude',Math.max(.01,Math.min(.15,startValue+(grab.y-point.y)/scale)));}
@@ -126,8 +129,10 @@ export function Apparatus({id,p,time,charging,onAdjust,onRelease}:Props){
     };
     const up=()=>{const release=dragging;dragging=false;orbit.enabled=true;host.classList.remove('is-dragging');if(release&&['springs','sphere','papers'].includes(id))live.current.onRelease();};
     const canvas=renderer.domElement;canvas.addEventListener('pointerdown',down,{capture:true});canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',()=>{dragging=false;orbit.enabled=true;host.classList.remove('is-dragging');});
-    let frame=0;const render=()=>{const {p,time,charging}=live.current,s=solve(id,p,time,charging);for(const fn of update)fn(s,p,time);orbit.update();renderer.render(scene,camera);frame=requestAnimationFrame(render);};
-    const resize=()=>{renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();};const observer=new ResizeObserver(resize);observer.observe(host);resize();render();
+    let frame=0,dirty=true,lastSignature='',renders=0;
+    const invalidate=()=>{dirty=true};orbit.addEventListener('change',invalidate);
+    const render=()=>{const {p,time,charging}=live.current,signature=JSON.stringify([p,time,charging]);orbit.update();if(dirty||signature!==lastSignature){const s=solve(id,p,time,charging);for(const fn of update)fn(s,p,time);renderer.render(scene,camera);canvas.dataset.sceneRenders=String(++renders);canvas.dataset.cameraPose=JSON.stringify([...camera.position.toArray(),...orbit.target.toArray()]);lastSignature=signature;dirty=false;}frame=requestAnimationFrame(render);};
+    const resize=()=>{renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();dirty=true;};const observer=new ResizeObserver(resize);observer.observe(host);resize();render();
     return()=>{cancelAnimationFrame(frame);observer.disconnect();orbit.dispose();const geometries=new Set<T.BufferGeometry>(),materials=new Set<T.Material>(),textures=new Set<T.Texture>();scene.traverse(o=>{if(o instanceof T.Mesh){geometries.add(o.geometry);for(const material of Array.isArray(o.material)?o.material:[o.material])materials.add(material);}});for(const material of Object.values(m))materials.add(material);for(const material of materials){for(const value of Object.values(material))if(value instanceof T.Texture)textures.add(value);material.dispose();}geometries.forEach(g=>g.dispose());textures.forEach(t=>t.dispose());environment.dispose();room.dispose();pm.dispose();renderer.dispose();host.replaceChildren();};
   },[id,onAdjust]);
   return <div className="pr-apparatus" ref={el} role="img" aria-label={`Interactive 3D ${id} apparatus. Drag to orbit; scroll to zoom.`}>{failed&&<div className="pr-fallback">3D rendering is unavailable. Controls, measurements and analysis remain available.</div>}</div>;

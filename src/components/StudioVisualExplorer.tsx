@@ -91,7 +91,7 @@ function Explorer({route,definition:d}:{route:string;definition:VisualDefinition
     if(!Number.isFinite(lo)||!Number.isFinite(hi)||lo>=hi||lo<bounds.min||hi>bounds.max){setNotice(`Choose an increasing range within ${plotValue(bounds.min)} to ${plotValue(bounds.max)} ${d.xUnit}.`);return;}
     const steps=bounds.values?bounds.values.filter(n=>n>=lo&&n<=hi):[...new Set(Array.from({length:17},(_,i)=>d.discrete?Math.round(lo+(hi-lo)*i/16):lo+(hi-lo)*i/16))];
     if(steps.length<2){setNotice('Choose at least two available parameter settings.');return;}
-    beforeSweep.current={input:current.input,scene:current.scene};cancel.current=false;setPoints([]);setCursor(null);lastSample.current='';setSweeping(true);pause();
+    beforeSweep.current={input:current.input,scene:current.scene};cancel.current=false;setPoints([]);setCursor(null);lastSample.current='';setSweeping(true);setNotice('Collecting solver response. Original settings will be restored.');pause();
     try{
       for(const value of steps){
         if(cancel.current)break;

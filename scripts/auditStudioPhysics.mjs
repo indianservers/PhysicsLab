@@ -140,11 +140,31 @@ await check('/astrophysics/galaxies','galaxiesStudio',m=>{const s=m.galaxySoluti
 await check('/astrophysics/cosmology','cosmologyStudio',m=>{const s=m.cosmoSolution(m.COSMO_DEFAULTS);ok(s.age>13.4&&s.age<13.6);near(s.dist,s.distanceMpc*.003261563777);near(s.velocity,70*s.distanceMpc);const present=m.cosmoSolution({...m.COSMO_DEFAULTS,epoch:13.8e9});near(present.z,0);near(present.dist,0);ok(m.cosmoSolution({...m.COSMO_DEFAULTS,omega:1}).age<s.age);});
 await check('/astrophysics/exoplanets','exoplanetsStudio',m=>{const central=m.exoSolution({radius:1,period:30,inclination:90}),miss=m.exoSolution({radius:1,period:30,inclination:80});near(central.depth,(6371/695700)**2);near(miss.depth,0);near(m.exoSolution({radius:2,period:30,inclination:90}).depth,4*central.depth);ok(m.exoSolution({radius:1,period:100,inclination:90}).temp<central.temp);});
 
+for(const id of ['springs','capacitor','wire','rule','sphere','papers'])await check('/practicals/'+id,'../practicals/model',m=>{
+ const p=m.defaults[id],v=m.solve(id,p,.1);
+ ok(Object.values(v).every(Number.isFinite),'Default practical outputs are finite');
+ if(id==='springs'){near(v.kinetic+v.potential,v.energy);near(m.solve(id,{...p,mass:p.mass*4},0).period,m.solve(id,p,0).period*2);}
+ if(id==='capacitor'){near(m.solve(id,p,v.tau).v,p.voltage/Math.E);near(m.solve(id,p,0,true).v,0);}
+ if(id==='wire'){near(m.solve(id,{...p,length:2*p.length},0).resistance,2*v.resistance);near(m.solve(id,{...p,diameter:2*p.diameter},0).resistance,v.resistance/4);}
+ if(id==='rule'){const balanced=m.solve(id,{pivot:40,position:20,mass:50},0);near(balanced.torque,0);near(balanced.inferred,.981);ok(Number.isNaN(m.solve(id,{...p,pivot:50},0).inferred));}
+ if(id==='sphere'){const end=m.solve(id,p,100);near(end.x,p.distance);near(end.kinetic+end.rotation,end.energy);near(end.kinetic/end.rotation,2.5);}
+ if(id==='papers'){near(m.solve(id,{...p,count:4},0).vt,m.solve(id,{...p,count:1},0).vt*2);near(m.solve(id,p,v.end).x,p.height);near(m.sanitizeParams(id,{...p,count:2.6}).count,3);}
+});
+await check('/optics/optical-elements','../physics/opticsWorkspace',m=>{
+ const setup=m.defaultOpticsSetup(),rays=m.traceOpticsSetup(setup),center=rays[1];
+ ok(center.events.length>=2);ok(Number.isFinite(m.opticsResponse(setup,center).deviation));
+ near(m.opticsResponse({...setup,on:false},center).interfaces,0);ok(m.opticsResponse({...setup,on:false},center).deviation===null);
+ const empty=m.traceOpticsSetup({...setup,scene:[]})[1];ok(m.opticsResponse({...setup,scene:[]},empty).deviation===null);
+ for(const event of center.events)if(!event.tir)near(event.fromIndex*Math.sin(event.incidence*Math.PI/180),event.toIndex*Math.sin(event.refraction*Math.PI/180));
+});
+
 const { referenceLabsByStudio } = await model('studioReferenceLabs');
 const theory = JSON.parse(fs.readFileSync('src/lib/studioTheoryContent.json', 'utf8'));
-const all = Object.entries(referenceLabsByStudio).flatMap(([studio,labs]) => labs.map(lab=>({...lab,studio})));
-assert.equal(all.length,96);
-assert.equal(new Set(report.map(item=>item.route)).size,96);
+const registered = Object.entries(referenceLabsByStudio).flatMap(([studio,labs]) => labs.map(lab=>({...lab,studio})));
+const all=[...new Set(registered.map(l=>l.route))].map(route=>registered.find(l=>l.route===route&&l.studio===theory[route]?.studio)??registered.find(l=>l.route===route));
+assert.equal(all.length,103);
+assert.equal(new Set(report.map(item=>item.route)).size,103);
+assert.equal(Object.keys(theory).length,103);
 for (const lab of all) {
   assert.ok(report.some(item=>item.route===lab.route),`No numeric test for ${lab.route}`);
   const chapter=theory[lab.route];
@@ -154,8 +174,8 @@ for (const lab of all) {
 }
 const failed=report.filter(item=>item.status==='fail');
 fs.mkdirSync('artifacts/studio-physics-audit',{recursive:true});
-fs.writeFileSync('artifacts/studio-physics-audit/results.json',JSON.stringify({scope:'96 studio lab routes',assertions,chapters:all.length,passed:96-failed.length,failed:failed.length,labs:report},null,2)+'\n');
-console.log(`${96-failed.length}/96 studio models passed; ${assertions} numeric/invariant assertions; 96 complete theory chapters.`);
+fs.writeFileSync('artifacts/studio-physics-audit/results.json',JSON.stringify({scope:'103 unique studio and practical lab routes',assertions,chapters:all.length,passed:all.length-failed.length,failed:failed.length,labs:report},null,2)+'\n');
+console.log(`${all.length-failed.length}/${all.length} studio/practical models passed; ${assertions} numeric/invariant assertions; 103 complete theory chapters.`);
 if(failed.length)process.exitCode=1;
 } finally {
   const resolved=path.resolve(temporaryRoot),expectedParent=path.resolve(os.tmpdir());

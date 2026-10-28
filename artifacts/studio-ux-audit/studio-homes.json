@@ -7,12 +7,12 @@
   {
     "route": "/concept-studio/mechanics",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 8
   },
   {
     "route": "/concept-studio/motion-kinematics",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 7
   },
   {
     "route": "/concept-studio/force-newton",
@@ -32,7 +32,7 @@
   {
     "route": "/concept-studio/oscillations",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 7
   },
   {
     "route": "/concept-studio/waves-sound",
@@ -42,12 +42,12 @@
   {
     "route": "/concept-studio/optics",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 7
   },
   {
     "route": "/concept-studio/electricity",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 8
   },
   {
     "route": "/concept-studio/magnetism",
@@ -67,7 +67,7 @@
   {
     "route": "/concept-studio/fluid-mechanics",
     "status": "pass",
-    "labLinks": 6
+    "labLinks": 7
   },
   {
     "route": "/concept-studio/modern-physics",

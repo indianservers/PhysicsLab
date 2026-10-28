@@ -1,10 +1,11 @@
 import { CSSProperties, PointerEvent as ReactPointerEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StudioLabNav } from '../components/StudioLabNav';
+import {useStudioVisualModel} from '../lib/studioVisualModel';
 import { OpticalGlass } from '../components/OpticalGlass';
 import { OpticsChallenges, OpticsComparison, OpticsProtractor, OpticsSetupTools, OpticsValueControl } from '../components/OpticsWorkspaceTools';
 import { useOpticsHistory } from '../hooks/useOpticsHistory';
-import { defaultOpticsSetup, OpticsSetup, parseOpticsSetup, rayDash, rayKey, shapeCategory, traceOpticsSetup } from '../physics/opticsWorkspace';
+import { defaultOpticsSetup, OpticsSetup, opticsResponse, parseOpticsSetup, rayDash, rayKey, shapeCategory, traceOpticsSetup } from '../physics/opticsWorkspace';
 import { canPlaceElement, elementOutline, ElementKind, glasses, glassIndex, GLASS_CATALOG_SOURCE, opticalElementCatalog, placedOutline, PlacedElement, Point } from '../physics/opticalElements';
 import './optical-elements.css';
 
@@ -31,6 +32,7 @@ export default function OpticalElementsPage() {
   const [baseline, setBaseline] = useState<OpticsSetup | null>(null);
   const [context, setContext] = useState<{ id: number; x: number; y: number } | null>(null);
   const [tab, setTab] = useState('Measurements');
+  const [materialInfoPinned,setMaterialInfoPinned]=useState(false);
   const [draggingId, setDraggingId] = useState<number | null>(null);
   const [dropActive, setDropActive] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -45,6 +47,10 @@ export default function OpticalElementsPage() {
   const rays = useMemo(() => traceOpticsSetup(workspace.setup), [workspace.setup]);
   const central = rays.find(r => rayKey(r) === raySelection) ?? rays[Math.floor(beams / 2) * (white ? 3 : 1)];
   const visibleRays = raySelection === 'all' ? rays : [central];
+  useStudioVisualModel({route:'/optics/optical-elements',input:{...workspace.setup,raySelection},outputs:{s:opticsResponse(workspace.setup,central)},
+    apply:patch=>{const setup=parseOpticsSetup({...workspace.setup,...patch});endDrag();workspace.preview(setup);if(typeof patch.raySelection==='string')setRaySelection(patch.raySelection)},
+    scene:{zoom,pan,layers:{grid:guides},accessible,panMode},sceneSetters:{zoom:setZoom,pan:setPan,layers:value=>setGuides(value.grid),accessible:setAccessible,panMode:setPanMode},
+    resetSceneView:()=>{setZoom(1);setPan({x:0,y:0});setPanMode(false)}});
   const matchingShapes = opticalElementCatalog.filter(e => `${e.name} ${e.description}`.toLowerCase().includes(query.toLowerCase()) && (category === 'All shapes' || shapeCategory(e.id) === category) && (!favoritesOnly || favorites.includes(e.id)));
 
   useEffect(() => { nextId.current = Math.max(0, ...scene.map(e => e.id)) + 1; }, [scene]);
@@ -197,7 +203,7 @@ export default function OpticalElementsPage() {
           {scene.length >= MAX_ELEMENTS && <p>Six pieces placed. Remove a piece to add another.</p>}
         </aside>
 
-        <section ref={benchRef} className={`oe-bench${expanded ? ' oe-bench-expanded' : ''}`}>
+        <section ref={benchRef} data-studio-scene className={`oe-bench${expanded ? ' oe-bench-expanded' : ''}`}>
           <div className="oe-bench-title"><span>INTERACTIVE RAY BENCH</span><span>Grid: 1 cm · air n = 1</span></div>
           <div className="oe-view-tools"><button aria-label="Zoom out" disabled={zoom <= .6} onClick={() => setZoom(z => Math.max(.6, z - .2))}>−</button><output aria-label="Bench zoom">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" disabled={zoom >= 3} onClick={() => setZoom(z => Math.min(3, z + .2))}>+</button><button aria-pressed={panMode} onClick={() => setPanMode(v => !v)}>Pan view</button><button onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); setPanMode(false); }}>Reset view</button><button aria-pressed={expanded} onClick={toggleFullscreen}>{expanded ? 'Exit fullscreen' : 'Fullscreen bench'}</button></div>
           <div className="oe-view-options"><label><input type="checkbox" checked={snap} onChange={e => setSnap(e.target.checked)} />Snap to 0.25 cm grid</label><label><input type="checkbox" checked={guides} onChange={e => setGuides(e.target.checked)} />Alignment guides</label><label><input type="checkbox" checked={accessible} onChange={e => setAccessible(e.target.checked)} />Accessible ray patterns</label></div>
@@ -232,7 +238,7 @@ export default function OpticalElementsPage() {
             <label className="oe-select">Shape<select aria-label="Selected glass shape" value={selected.kind} onChange={e => updateElement(selected.id, { kind: e.target.value as ElementKind })}>{opticalElementCatalog.map(e => <option key={e.id} value={e.id}>{e.name}</option>)}</select></label>
             <label className="oe-select">Optical material<select value={selected.material} onChange={e => updateElement(selected.id, { material: +e.target.value })}>{glasses.map((g, i) => <option key={g.name} value={i}>{g.name}</option>)}</select></label>
             <p className="oe-index">n = <strong>{n.toFixed(4)}</strong><small>at {wavelength} nm</small></p>
-            <div className="oe-material-info"><button type="button" aria-label="Material information" aria-describedby="oe-material-tooltip">ⓘ Material information</button><div role="tooltip" id="oe-material-tooltip"><strong>{glasses[selected.material].name}</strong><span>n at 587.6 nm: {glassIndex(selected.material, 587.5618).toFixed(5)}</span><span>Approximate Abbe number: {((glassIndex(selected.material, 587.5618) - 1) / (glassIndex(selected.material, 486.1327) - glassIndex(selected.material, 656.2725))).toFixed(1)}</span><span>A higher index usually bends an oblique ray more. A lower Abbe number means stronger colour dispersion. These are visible-band approximations.</span></div></div>
+            <div className="oe-material-info" data-pinned={materialInfoPinned}><button type="button" aria-label="Material information" aria-describedby="oe-material-tooltip" aria-pressed={materialInfoPinned} onClick={()=>setMaterialInfoPinned(v=>!v)}>ⓘ {materialInfoPinned?'Unpin material information':'Material information'}</button><div role="tooltip" id="oe-material-tooltip"><strong>{glasses[selected.material].name}</strong><span>n at 587.6 nm: {glassIndex(selected.material, 587.5618).toFixed(5)}</span><span>Approximate Abbe number: {((glassIndex(selected.material, 587.5618) - 1) / (glassIndex(selected.material, 486.1327) - glassIndex(selected.material, 656.2725))).toFixed(1)}</span><span>A higher index usually bends an oblique ray more. A lower Abbe number means stronger colour dispersion. These are visible-band approximations.</span></div></div>
             {slider('Element rotation', selected.rotation, -180, 180, .1, '°', rotation => updateElement(selected.id, { rotation }))}
             {slider('Horizontal position', selected.x, -11, 11, .05, ' cm', x => updateElement(selected.id, { x }))}
             {slider('Vertical position', selected.y, -5.5, 5.5, .05, ' cm', y => updateElement(selected.id, { y }))}
@@ -252,12 +258,13 @@ export default function OpticalElementsPage() {
       {baseline && <OpticsComparison baseline={baseline} current={workspace.setup} accessible={accessible} capture={() => setBaseline(workspace.setup)} close={() => setBaseline(null)} />}
 
       <div className="oe-bottom"><section className="oe-panel oe-readings">
-        <div className="oe-tabs">{['Measurements', 'Theory', 'Experiments'].map(t => <button key={t} aria-pressed={tab === t} onClick={() => setTab(t)}>{t}</button>)}</div>
+        <div className="oe-tabs" role="tablist" aria-label="Optical investigation views">{['Measurements', 'Theory', 'Experiments'].map((t,i) => <button key={t} id={`oe-investigation-tab-${i}`} role="tab" tabIndex={tab===t?0:-1} aria-selected={tab===t} aria-controls="oe-investigation-panel" aria-pressed={tab === t} onClick={() => setTab(t)} onKeyDown={e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;setTab(['Measurements','Theory','Experiments'][next]);document.getElementById(`oe-investigation-tab-${next}`)?.focus()}}>{t}</button>)}</div>
+        <div role="tabpanel" id="oe-investigation-panel" aria-labelledby={`oe-investigation-tab-${['Measurements','Theory','Experiments'].indexOf(tab)}`}>
         {tab === 'Measurements' ? <><h2>Live interface measurements</h2><p>{raySelection === 'all' ? 'Central beam' : `Selected beam ${central.beam + 1}`}{white || raySelection !== 'all' ? ` · ${central.w} nm` : ''} · through all glass pieces · angles from the local normal</p>
           <div className="oe-table-scroll"><table><thead><tr><th>Glass</th><th>Index change</th><th>Incidence</th><th>Refraction</th><th>Behaviour</th></tr></thead><tbody>{on && central.events.map((e, i) => <tr key={i} className={e.elementId === selected?.id ? 'oe-selected-reading' : ''} onClick={() => { setSurface(i); setProtractor(true); }}><td>#{e.elementId}</td><td>{e.fromIndex.toFixed(3)} → {e.toIndex.toFixed(3)}</td><td><button className="oe-measure-angle" aria-label={`Measure interface ${i + 1}`} onClick={() => { setSurface(i); setProtractor(true); }}>{e.incidence.toFixed(2)}°</button></td><td>{e.refraction === null ? '—' : `${e.refraction.toFixed(2)}°`}</td><td>{e.tir ? 'Total internal reflection' : 'Transmission'}</td></tr>)}</tbody></table></div>
           {!on ? <p>Switch on the laser to take measurements.</p> : !central.events.length ? <p>The central ray misses the glass. Move a piece into the path or adjust the beam direction.</p> : central.truncated ? <p>Trace stops after 64 surface interactions.</p> : null}
         </> : tab === 'Theory' ? <><h2>Every surface changes the direction</h2><p className="oe-equation">n₁ sin θ₁ = n₂ sin θ₂</p><p>Light bends toward the normal when entering a higher index and away when leaving. Above the critical angle, it reflects internally. Rays can pass through several pieces or return to an earlier piece after reflection.</p><p>Each solid has its own material. Pieces are kept apart with an air gap; overlapping solids are not part of this model. Cone and cylinder shapes represent two-dimensional sections. Curved faces are sampled with up to 480 line segments.</p><p>Named catalog glasses use approximate two-term Cauchy dispersion fitted to d-line index and Abbe number. Generic glass, silica, borosilicate and acrylic use representative fits. Weak Fresnel reflections, absorption, diffraction and three-dimensional skew rays are omitted.</p><p>Zoom, panning, protractors, patterns and comparison views do not change physical coordinates. Grid snapping changes actual glass positions and is off by default. The protractor is anchored to the selected traced interface and measures angles from its local normal.</p><a href={GLASS_CATALOG_SOURCE} target="_blank" rel="noreferrer">Material data: SCHOTT Optical Glass catalog, pp. 102–108</a></> : <OpticsChallenges setup={workspace.setup} rays={rays} report={setMessage} />}
-      </section><section className="oe-panel oe-about"><span className="oe-eyebrow">SELECTED PIECE {selected ? `#${selected.id}` : ''}</span><h2>{description?.name ?? 'An empty optical bench'}</h2><p>{description?.detail ?? `Add any of the ${opticalElementCatalog.length} shapes to begin tracing light.`}</p>
+      </div></section><section className="oe-panel oe-about"><span className="oe-eyebrow">SELECTED PIECE {selected ? `#${selected.id}` : ''}</span><h2>{description?.name ?? 'An empty optical bench'}</h2><p>{description?.detail ?? `Add any of the ${opticalElementCatalog.length} shapes to begin tracing light.`}</p>
         {selected && <><p className="oe-material-caption">{glasses[selected.material].name} · size {selected.scale}× · rotation {selected.rotation}°</p><div className="oe-facts"><span>Glass → air critical angle<strong>{(Math.asin(1 / n) * 180 / Math.PI).toFixed(2)}°</strong></span><span>Light speed in glass<strong>{(299792458 / n / 1e8).toFixed(3)} × 10⁸ m/s</strong></span></div></>}
       </section></div>
     </main>

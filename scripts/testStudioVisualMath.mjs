@@ -26,10 +26,10 @@ const gas=await load('src/lib/gasLawsStudio.ts'),density=await load('src/lib/den
 check(gas.gasSolution(gas.GAS_DEFAULTS).P>100&&gas.gasSolution(gas.GAS_DEFAULTS).P<200,'Gas pressure uses kPa');
 check(Math.abs(density.densitySolution(density.DENSITY_DEFAULTS).pressure-2.943)<1e-12,'Hydrostatic pressure uses kPa');
 const definitions=JSON.parse(fs.readFileSync('src/lib/studioVisualDefinitions.json','utf8'));
-check(Object.keys(definitions).length===96,'Every lab has an explicit dimensional graph definition');
+check(Object.keys(definitions).length===103,'Every lab has an explicit dimensional graph definition');
 check(Object.values(definitions).every(d=>d.xUnit&&d.yUnit&&!d.xUnit.includes('model')&&!d.yUnit.includes('model')),'No guessed or unlabeled model-unit axes');
 const models=JSON.parse(fs.readFileSync('artifacts/studio-physics-audit/results.json','utf8')).labs;
-check(models.every(m=>definitions[m.route].solverVersion===createHash('sha256').update(fs.readFileSync(`src/lib/${m.model}.ts`)).digest('hex').slice(0,12)),'Exported solver fingerprints match all 96 production model sources');
+check(models.every(m=>definitions[m.route].solverVersion===createHash('sha256').update(m.route==='/optics/optical-elements'?Buffer.concat([fs.readFileSync('src/physics/opticalElements.ts'),fs.readFileSync('src/physics/opticsWorkspace.ts')]):fs.readFileSync(`src/lib/${m.model}.ts`)).digest('hex').slice(0,12)),'Exported solver fingerprints match all production model sources');
 check(['/electronics/logic-gates','/modern-physics/atomic-spectra','/modern-physics/nuclear-structure'].every(route=>definitions[route].discrete),'Boolean and quantum/nucleon parameters cannot be interpolated');
 fs.writeFileSync('artifacts/studio-ux-audit/visual-math-tests.json',JSON.stringify({status:'pass',checks},null,2));
 console.log(`${checks} plot, singularity, dimensional and spectrum assertions passed.`);

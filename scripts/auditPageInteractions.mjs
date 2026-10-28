@@ -40,9 +40,9 @@ for(const mode of ['Observe','Predict','Experiment','Explain','Challenge'])asser
 const css=fs.readFileSync('src/components/mastery-dialog.css','utf8');
 assert.ok(/\.mc-backdrop\{position:fixed/.test(css));
 const chapters=JSON.parse(fs.readFileSync('src/lib/studioTheoryContent.json','utf8'));
-assert.equal(Object.keys(chapters).length,96);
+assert.equal(Object.keys(chapters).length,103);
 fs.mkdirSync('artifacts/studio-physics-audit',{recursive:true});
-fs.writeFileSync('artifacts/studio-physics-audit/page-interactions.json',JSON.stringify({pagesScanned:pages.length,studioChapters:96,learningModes:['Observe','Predict','Experiment','Explain','Challenge'],failures,unhandledButtons:buttons},null,2)+'\n');
+fs.writeFileSync('artifacts/studio-physics-audit/page-interactions.json',JSON.stringify({pagesScanned:pages.length,studioChapters:Object.keys(chapters).length,learningModes:['Observe','Predict','Experiment','Explain','Challenge'],failures,unhandledButtons:buttons},null,2)+'\n');
 for(const failure of failures)console.error(`FAIL ${failure}`);
 console.log(`${pages.length} pages scanned; ${failures.length} dead-button/Observe-handler findings; 5 distinct contextual learning modes.`);
 if(failures.length)process.exitCode=1;

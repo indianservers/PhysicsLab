@@ -2,7 +2,7 @@ import definitions from './studioVisualDefinitions.json';
 import type { VisualFrame, VisualState } from './studioVisualModel';
 import { visualNumber } from './studioVisualModel';
 
-export type VisualDefinition=(typeof definitions)[keyof typeof definitions];
+export type VisualDefinition={title:string;parameter:string;source:string;xLabel:string;xUnit:string;quantity:string;yLabel:string;yUnit:string;discrete:boolean;solverVersion:string;bounds?:{min:number;max:number;values?:number[]}};
 export const visualDefinitions:Record<string,VisualDefinition>=definitions;
 export type PlotPoint={id:number;x:number;y:number|null;input:VisualState;scene:VisualState;branch?:string};
 export {plotValue,plotDomain,plotPath} from './studioPlotMath';
@@ -14,6 +14,7 @@ export function pointFromFrame(frame:VisualFrame,definition:VisualDefinition,id:
 }
 /** Locate authored bounds, never reinterpret a logarithmic slider as a physical value. */
 export function parameterBounds(root:HTMLElement|null,frame:VisualFrame,d:VisualDefinition) {
+  if(d.bounds)return {...d.bounds,values:d.bounds.values??null};
   const value=(d.source==='scene'?frame.scene:frame.input)[d.parameter];
   if(typeof value==='boolean')return {min:0,max:1,values:[0,1]};
   const norm=(s:string)=>s.toLowerCase().replace(/[^a-z0-9]/g,'');

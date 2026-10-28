@@ -1150,5 +1150,117 @@
     "yUnit": "1",
     "discrete": false,
     "solverVersion": "b12bf2f64c82"
+  },
+  "/practicals/springs": {
+    "title": "Springs Oscillation",
+    "parameter": "mass",
+    "source": "input",
+    "xLabel": "Mass",
+    "xUnit": "kg",
+    "quantity": "s.period",
+    "yLabel": "Period",
+    "yUnit": "s",
+    "discrete": false,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 0.05,
+      "max": 1
+    }
+  },
+  "/practicals/capacitor": {
+    "title": "Capacitor Discharge",
+    "parameter": "capacitance",
+    "source": "input",
+    "xLabel": "Capacitance",
+    "xUnit": "μF",
+    "quantity": "s.tau",
+    "yLabel": "Time constant",
+    "yUnit": "s",
+    "discrete": false,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 100,
+      "max": 2000
+    }
+  },
+  "/practicals/wire": {
+    "title": "Resistance in a Wire",
+    "parameter": "length",
+    "source": "input",
+    "xLabel": "Contact length",
+    "xUnit": "m",
+    "quantity": "s.resistance",
+    "yLabel": "Resistance",
+    "yUnit": "Ω",
+    "discrete": false,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 0.1,
+      "max": 2
+    }
+  },
+  "/practicals/rule": {
+    "title": "Weight of a Metre Rule",
+    "parameter": "position",
+    "source": "input",
+    "xLabel": "Load position",
+    "xUnit": "cm",
+    "quantity": "s.torque",
+    "yLabel": "Net moment",
+    "yUnit": "N·m",
+    "discrete": false,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 0,
+      "max": 100
+    }
+  },
+  "/practicals/sphere": {
+    "title": "Sphere Rolling on a Track",
+    "parameter": "angle",
+    "source": "input",
+    "xLabel": "Track angle",
+    "xUnit": "°",
+    "quantity": "s.a",
+    "yLabel": "Acceleration",
+    "yUnit": "m/s²",
+    "discrete": false,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 5,
+      "max": 35
+    }
+  },
+  "/practicals/papers": {
+    "title": "Filter Papers Falling in Air",
+    "parameter": "count",
+    "source": "input",
+    "xLabel": "Nested papers",
+    "xUnit": "count",
+    "quantity": "s.vt",
+    "yLabel": "Terminal speed",
+    "yUnit": "m/s",
+    "discrete": true,
+    "solverVersion": "949d78c9785f",
+    "bounds": {
+      "min": 1,
+      "max": 10
+    }
+  },
+  "/optics/optical-elements": {
+    "title": "Optical Elements",
+    "parameter": "angle",
+    "source": "input",
+    "xLabel": "Beam direction",
+    "xUnit": "°",
+    "quantity": "s.deviation",
+    "yLabel": "Signed exit deviation",
+    "yUnit": "°",
+    "discrete": false,
+    "solverVersion": "5eded8868c23",
+    "bounds": {
+      "min": -65,
+      "max": 65
+    }
   }
 }

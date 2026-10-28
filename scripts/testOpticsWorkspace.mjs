@@ -41,3 +41,14 @@ for (let i = 0; i < 100; i++) state = history(state, { type: 'patch', patch: { a
 assert.ok(state.past.length <= 80, 'History is bounded');
 const prior = state.present; state = history(state, { type: 'replace', setup: { ...initial, beams: 7, white: true } }); state = history(state, { type: 'undo' }); assert.deepEqual(state.present, prior, 'Loading a saved setup can be undone atomically');
 console.log('PASS: undo/redo gestures, history bounds, save/load round trips, invalid imports, geometry protection, categories, patterns, and 132 workspace/physics equivalence checks.');
+
+const beforePreview={present:state.present,past:state.past,future:state.future,transaction:state.transaction};
+for(let angle=-60;angle<=60;angle+=10)state=history(state,{type:'preview',setup:{...state.present,angle}});
+state=history(state,{type:'preview',setup:beforePreview.present});
+assert.deepEqual(state,beforePreview,'Solver sweeps restore the optical setup without polluting undo/redo or an open gesture');
+const central=m.traceOpticsSetup(initial)[1];assert.equal(m.opticsResponse({...initial,on:false},central).deviation,null);
+const empty={...initial,scene:[]};assert.equal(m.opticsResponse(empty,m.traceOpticsSetup(empty)[1]).deviation,null);
+assert.equal(m.opticsResponse(initial,{...central,truncated:true}).deviation,null);
+console.log('PASS: temporary response sweeps preserve history; laser-off, no-hit and truncated exits remain undefined.');
+
+for(const shape of engine.opticalElementCatalog){const setup={...initial,scene:[{...initial.scene[0],kind:shape.id}]};for(const ray of m.traceOpticsSetup(setup))for(const event of ray.events)assert.ok(Number.isInteger(event.surfaceIndex)&&event.surfaceIndex>=0&&event.surfaceIndex<engine.placedOutline(setup.scene[0]).length,'Every plotted branch identifies the actual intersected polygon face');}

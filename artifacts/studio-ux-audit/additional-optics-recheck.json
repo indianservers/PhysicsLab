@@ -1,0 +1,15 @@
+{
+  "routes": 1,
+  "results": [
+    {
+      "route": "/optics/optical-elements",
+      "status": "pass",
+      "additional": {
+        "sweepsPreserveUndo": true,
+        "laserOffUndefined": true,
+        "noHitCurveGaps": true,
+        "fullSetupRestore": true
+      }
+    }
+  ]
+}

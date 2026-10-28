@@ -164,7 +164,7 @@ export function elementOutline(kind: ElementKind, rotation = 0): Point[] {
   const t = rotation * Math.PI / 180;
   return p.map(v => ({ x: v.x * Math.cos(t) - v.y * Math.sin(t), y: v.x * Math.sin(t) + v.y * Math.cos(t) }));
 }
-export interface InterfaceEvent { point: Point; normal: Point; incidence: number; refraction: number | null; tir: boolean; elementId: number; fromIndex: number; toIndex: number }
+export interface InterfaceEvent { surfaceIndex:number; point: Point; normal: Point; incidence: number; refraction: number | null; tir: boolean; elementId: number; fromIndex: number; toIndex: number }
 export interface OpticalBody { id: number; polygon: Point[]; index: number }
 export interface PlacedElement { id: number; kind: ElementKind; material: number; rotation: number; x: number; y: number; scale: number }
 export function placedOutline(element: PlacedElement): Point[] {
@@ -205,7 +205,7 @@ export function traceScene(bodies: OpticalBody[], origin: Point, direction: Poin
   if (!Number.isFinite(magnitude) || magnitude === 0) throw new Error('Ray direction must be finite and non-zero');
   let d = mul(direction, 1 / magnitude), o = origin;
   for (let bounce = 0; bounce < 64; bounce++) {
-    let nearest = Infinity; let normal: Point | null = null; let surface: OpticalBody | null = null;
+    let nearest = Infinity; let surfaceIndex=0; let normal: Point | null = null; let surface: OpticalBody | null = null;
     for (const body of bodies) for (let i = 0; i < body.polygon.length; i++) {
       const polygon = body.polygon;
       const a = polygon[i], b = polygon[(i + 1) % polygon.length];
@@ -213,7 +213,7 @@ export function traceScene(bodies: OpticalBody[], origin: Point, direction: Poin
       if (Math.abs(denominator) < 1e-10) continue;
       const t = cross(offset, edge) / denominator, u = cross(offset, d) / denominator;
       if (t > 1e-6 && u >= 0 && u <= 1 && t < nearest) {
-        nearest = t; surface = body; const length = Math.hypot(edge.x, edge.y); normal = { x: -edge.y / length, y: edge.x / length };
+        nearest = t; surface = body; surfaceIndex=i; const length = Math.hypot(edge.x, edge.y); normal = { x: -edge.y / length, y: edge.x / length };
       }
     }
     if (!normal || !surface) { points.push(add(o, mul(d, 50))); return { points, events, truncated: false }; }
@@ -226,7 +226,7 @@ export function traceScene(bodies: OpticalBody[], origin: Point, direction: Poin
     // total internal reflection. Preserve genuinely supercritical incidence.
     const rawDiscriminant = 1 - (eta * sine) ** 2, tir = rawDiscriminant < -1e-12;
     const discriminant = Math.max(0, rawDiscriminant);
-    events.push({ point: hit, normal, incidence: Math.atan2(sine, cosine) * 180 / Math.PI, refraction: tir ? null : Math.atan2(eta * sine, Math.sqrt(discriminant)) * 180 / Math.PI, tir, elementId: surface.id, fromIndex, toIndex });
+    events.push({ surfaceIndex, point: hit, normal, incidence: Math.atan2(sine, cosine) * 180 / Math.PI, refraction: tir ? null : Math.atan2(eta * sine, Math.sqrt(discriminant)) * 180 / Math.PI, tir, elementId: surface.id, fromIndex, toIndex });
     d = tir ? add(d, mul(normal, 2 * cosine)) : add(mul(d, eta), mul(normal, eta * cosine - Math.sqrt(discriminant)));
     d = mul(d, 1 / Math.hypot(d.x, d.y));
     if (!tir) active = next;

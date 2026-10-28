@@ -1,0 +1,123 @@
+{
+  "routes": 7,
+  "results": [
+    {
+      "route": "/practicals/springs",
+      "status": "pass",
+      "additional": {
+        "plots": 3,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/practicals/capacitor",
+      "status": "pass",
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/practicals/wire",
+      "status": "pass",
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/practicals/rule",
+      "status": "pass",
+      "additional": {
+        "plots": 1,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/practicals/sphere",
+      "status": "pass",
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/practicals/papers",
+      "status": "pass",
+      "additional": {
+        "plots": 2,
+        "cursorReplay": true,
+        "baselines": true,
+        "exports": [
+          "CSV",
+          "SVG"
+        ],
+        "nativeCameraPreservesPhysics": true,
+        "pausedSceneRendersOnDemand": true,
+        "trialRestore": true,
+        "undoClear": true,
+        "mobileWidth": 390
+      }
+    },
+    {
+      "route": "/optics/optical-elements",
+      "status": "pass",
+      "additional": {
+        "sweepsPreserveUndo": true,
+        "laserOffUndefined": true,
+        "noHitCurveGaps": true,
+        "fullSetupRestore": true
+      }
+    }
+  ]
+}

@@ -22,14 +22,15 @@ function flatten(value:unknown,path:string,result:Record<string,number|null>,sta
   for(const [key,child] of Object.entries(value))flatten(child,path?`${path}.${key}`:key,result,states,depth+1);
 }
 /** Called inside each real lab, after its existing solver has run. No second physics engine. */
-export function useStudioVisualModel<I extends object,S extends object>({route,input,outputs,apply,scene,sceneSetters}: {
+export function useStudioVisualModel<I extends object,S extends object>({route,input,outputs,apply,scene,sceneSetters,resetSceneView}: {
   route:string;input:I;outputs:Record<string,unknown>;apply:(patch:Partial<I>)=>void;
   scene:S;sceneSetters:{[K in keyof S]?:(value:S[K])=>void};
+  resetSceneView?:()=>void;
 }) {
   const {search}=useLocation();
   const locked=Boolean(getAssignmentFromSearch(search)?.lockVariables);
   const initialView=useRef(clone(scene));
-  const latest=useRef({input,apply,scene,sceneSetters,locked});latest.current={input,apply,scene,sceneSetters,locked};
+  const latest=useRef({input,apply,scene,sceneSetters,locked,resetSceneView});latest.current={input,apply,scene,sceneSetters,locked,resetSceneView};
   const signature=useRef('');
   useEffect(()=>{
     const quantities:Record<string,number|null>={},states:Record<string,string>={};flatten(outputs,'',quantities,states);
@@ -57,6 +58,7 @@ export function useStudioVisualModel<I extends object,S extends object>({route,i
       }
     };
     frames.set(route,{route,revision:(frames.get(route)?.revision??0)+1,input:inputCopy,scene:sceneCopy,quantities,states,locked,applyInput,applyScene,resetView:()=>{
+      latest.current.resetSceneView?.();
       const view:VisualState={};for(const [key,value] of Object.entries(initialView.current))if(['camera','zoom','view','overlays','visibility','layers','bright','light','display','primary','secondary','vectors','flow','tangent','area','equation','trails','values'].includes(key))view[key]=value;
       applyScene(view);
     }});

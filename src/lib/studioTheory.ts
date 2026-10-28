@@ -2,7 +2,7 @@ import chapters from './studioTheoryContent.json';
 import { referenceLabsByStudio } from './studioReferenceLabs';
 import { studioHomeById } from './conceptStudioHomes';
 
-export type StudioTheoryChapter = (typeof chapters)[keyof typeof chapters];
+export type StudioTheoryChapter = {studio:string;core:string;equation:string;symbols:string;derivation:string[];example:string[];assumptions:string;misconception:string;investigation:string;question:string;answer:string;extension:string};
 export const studioTheory: Record<string, StudioTheoryChapter> = chapters;
 
 export const theoryReferences = {
